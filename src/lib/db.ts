@@ -192,6 +192,12 @@ async function initSchema(db: Client) {
     }
   }
 
+  // One-time normalization: old seed data stored YoC as percentages (8.2 = 8.2%).
+  // New data stores as decimals (0.082). Any value > 1 is legacy percentage form.
+  await db.execute('UPDATE deals SET yoc_target = yoc_target / 100.0 WHERE yoc_target > 1');
+  await db.execute('UPDATE deals SET yoc_initial = yoc_initial / 100.0 WHERE yoc_initial > 1');
+  await db.execute('UPDATE deals SET occupancy = occupancy / 100.0 WHERE occupancy > 1');
+
   // Migrate contact_log if missing columns (existing DBs)
   const colInfo = await db.execute("PRAGMA table_info(contact_log)");
   const colNames = colInfo.rows.map(r => String(r.name));

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { Deal, STAGES, Stage, fmt, fmtPct, daysUntil, ddChipColor } from '@/lib/utils';
+import { Deal, STAGES, Stage, fmt, daysUntil, ddChipColor } from '@/lib/utils';
 import DealDetailPanel from '@/components/DealDetailPanel';
 
 const emptyDeal = {
@@ -186,7 +186,7 @@ export default function PipelinePage() {
                           <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{deal.market}</p>
                           <div className="flex items-center justify-between">
                             <span className="font-mono text-xs text-gray-700 dark:text-gray-300">{fmt(deal.asking_price)}</span>
-                            <span className="font-mono text-xs text-amber-dark dark:text-amber-light">{fmtPct(deal.yoc_target)} YoC</span>
+                            <span className="font-mono text-xs text-amber-dark dark:text-amber-light">{deal.yoc_target ? `${(deal.yoc_target * 100).toFixed(1)}%` : '—'} YoC</span>
                           </div>
                           {days != null && (
                             <div className={`mt-2 text-xs px-2 py-0.5 rounded-full font-mono text-center ${ddChipColor(days)}`}>
