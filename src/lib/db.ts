@@ -5,7 +5,10 @@ let _initPromise: Promise<void> | null = null;
 
 export async function getDb(): Promise<Client> {
   if (!_client) {
-    const url = process.env.TURSO_DATABASE_URL || 'file:sandpiper.db';
+    // Vercel / other serverless: only /tmp is writable. Local dev: project root is fine.
+    const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+    const defaultUrl = isServerless ? 'file:/tmp/sandpiper.db' : 'file:sandpiper.db';
+    const url = process.env.TURSO_DATABASE_URL || defaultUrl;
     const authToken = process.env.TURSO_AUTH_TOKEN;
     _client = createClient({ url, authToken });
   }
