@@ -49,16 +49,24 @@ async function initSchema(db: Client) {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
       address TEXT,
+      city TEXT,
       market TEXT,
       submarket TEXT,
+      sf INTEGER DEFAULT 0,
       acreage REAL,
+      occupancy REAL DEFAULT 0,
       asking_price REAL,
+      yoc_initial REAL DEFAULT 0,
       yoc_target REAL,
+      equity_required REAL DEFAULT 0,
       zoning TEXT,
       ios_eligible INTEGER DEFAULT 1,
       stage TEXT DEFAULT 'Tracking',
       source TEXT,
       dd_expiry TEXT,
+      dd_days INTEGER DEFAULT 0,
+      close_days INTEGER DEFAULT 0,
+      deposit REAL DEFAULT 0,
       notes TEXT,
       pinned INTEGER DEFAULT 0,
       created_at TEXT DEFAULT (datetime('now'))
@@ -161,11 +169,24 @@ async function initSchema(db: Client) {
     );
   `);
 
-  // Migrate deals if missing pinned column (existing DBs)
+  // Migrate deals: add missing columns on existing DBs
   const dealCols = await db.execute("PRAGMA table_info(deals)");
   const dealColNames = dealCols.rows.map(r => String(r.name));
-  if (!dealColNames.includes('pinned')) {
-    await db.execute('ALTER TABLE deals ADD COLUMN pinned INTEGER DEFAULT 0');
+  const dealColsToAdd: { name: string; def: string }[] = [
+    { name: 'pinned', def: 'INTEGER DEFAULT 0' },
+    { name: 'city', def: 'TEXT' },
+    { name: 'sf', def: 'INTEGER DEFAULT 0' },
+    { name: 'occupancy', def: 'REAL DEFAULT 0' },
+    { name: 'yoc_initial', def: 'REAL DEFAULT 0' },
+    { name: 'equity_required', def: 'REAL DEFAULT 0' },
+    { name: 'dd_days', def: 'INTEGER DEFAULT 0' },
+    { name: 'close_days', def: 'INTEGER DEFAULT 0' },
+    { name: 'deposit', def: 'REAL DEFAULT 0' },
+  ];
+  for (const col of dealColsToAdd) {
+    if (!dealColNames.includes(col.name)) {
+      await db.execute(`ALTER TABLE deals ADD COLUMN ${col.name} ${col.def}`);
+    }
   }
 
   // Migrate contact_log if missing columns (existing DBs)

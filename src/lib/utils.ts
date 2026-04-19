@@ -55,6 +55,7 @@ export function timeAgo(iso: string | null | undefined): string {
 export const STAGES = [
   'Tracking',
   'LOI Submitted',
+  'Signed LOI',
   'PSA Negotiation',
   'Under Contract',
   'Closed',
@@ -67,16 +68,24 @@ export interface Deal {
   id: number;
   name: string;
   address: string;
+  city: string;
   market: string;
   submarket: string;
+  sf: number;
   acreage: number;
+  occupancy: number;
   asking_price: number;
+  yoc_initial: number;
   yoc_target: number;
+  equity_required: number;
   zoning: string;
   ios_eligible: number;
   stage: Stage;
   source: string;
   dd_expiry: string | null;
+  dd_days: number;
+  close_days: number;
+  deposit: number;
   notes: string;
   pinned: number;
   created_at: string;
