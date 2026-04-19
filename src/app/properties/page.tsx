@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Deal, STAGES, Stage } from '@/lib/utils';
+import { Fragment, useEffect, useState } from 'react';
+import { Deal, Stage } from '@/lib/utils';
 
 // Stages shown on this report (in order)
 const REPORT_STAGES: Stage[] = ['Signed LOI', 'LOI Submitted', 'PSA Negotiation', 'Under Contract', 'Tracking'];
@@ -128,17 +128,18 @@ export default function PropertiesPage() {
           <tbody>
             {REPORT_STAGES.filter(stage => enriched.some(d => d.stage === stage)).map(stage => {
               const stageDeals = enriched.filter(d => d.stage === stage);
+              const startingNo = REPORT_STAGES.slice(0, REPORT_STAGES.indexOf(stage)).reduce((a, s) => a + enriched.filter(x => x.stage === s).length, 0);
               return (
-                <>
+                <Fragment key={stage}>
                   {/* Stage section header */}
-                  <tr key={`${stage}-header`} className="bg-amber/10 dark:bg-amber/20">
+                  <tr className="bg-amber/10 dark:bg-amber/20">
                     <td colSpan={17} className="py-1.5 px-2 text-xs font-semibold text-amber-dark dark:text-amber-light uppercase tracking-wider">
                       {stage}
                     </td>
                   </tr>
                   {stageDeals.map((d, idx) => (
                     <tr key={d.id} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                      <Td>{idx + 1 + REPORT_STAGES.slice(0, REPORT_STAGES.indexOf(stage)).reduce((a, s) => a + enriched.filter(x => x.stage === s).length, 0)}</Td>
+                      <Td>{startingNo + idx + 1}</Td>
                       <Td align="left" font="sans" bold>{d.address}</Td>
                       <Td align="left" font="sans">{d.city}</Td>
                       <Td align="left" font="sans">{d.market}</Td>
@@ -157,7 +158,7 @@ export default function PropertiesPage() {
                       <Td align="left" font="sans" muted>{d.notes}</Td>
                     </tr>
                   ))}
-                </>
+                </Fragment>
               );
             })}
 
