@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { all } from '@/lib/db';
 
 interface TaskRow { note: string; type: string; due_date: string; contact_name: string }
 interface DDRow { name: string; dd_expiry: string; days_left: number }
@@ -74,35 +74,38 @@ function buildDigestHTML(data: {
 }
 
 export async function GET() {
-  const db = getDb();
   const today = new Date().toISOString().split('T')[0];
 
-  const overdue = db.prepare(`
-    SELECT t.note, t.type, t.due_date, c.name as contact_name FROM tasks t
-    LEFT JOIN contacts c ON t.contact_id = c.id WHERE t.done = 0 AND t.due_date < ?
-    ORDER BY t.due_date
-  `).all(today) as TaskRow[];
+  const overdue = await all<TaskRow>(
+    `SELECT t.note, t.type, t.due_date, c.name as contact_name FROM tasks t
+     LEFT JOIN contacts c ON t.contact_id = c.id WHERE t.done = 0 AND t.due_date < ?
+     ORDER BY t.due_date`,
+    [today]
+  );
 
-  const todayTasks = db.prepare(`
-    SELECT t.note, t.type, t.due_date, c.name as contact_name FROM tasks t
-    LEFT JOIN contacts c ON t.contact_id = c.id WHERE t.done = 0 AND t.due_date = ?
-  `).all(today) as TaskRow[];
+  const todayTasks = await all<TaskRow>(
+    `SELECT t.note, t.type, t.due_date, c.name as contact_name FROM tasks t
+     LEFT JOIN contacts c ON t.contact_id = c.id WHERE t.done = 0 AND t.due_date = ?`,
+    [today]
+  );
 
-  const ddExpiring = db.prepare(`
-    SELECT name, dd_expiry, CAST(julianday(dd_expiry) - julianday('now') AS INTEGER) as days_left
-    FROM deals WHERE stage = 'Under Contract' AND dd_expiry IS NOT NULL
-    AND julianday(dd_expiry) - julianday('now') BETWEEN 0 AND 14
-    ORDER BY dd_expiry
-  `).all() as DDRow[];
+  const ddExpiringRaw = await all<{ name: string; dd_expiry: string; days_left: number }>(
+    `SELECT name, dd_expiry, CAST(julianday(dd_expiry) - julianday('now') AS INTEGER) as days_left
+     FROM deals WHERE stage = 'Under Contract' AND dd_expiry IS NOT NULL
+     AND julianday(dd_expiry) - julianday('now') BETWEEN 0 AND 14
+     ORDER BY dd_expiry`
+  );
+  const ddExpiring: DDRow[] = ddExpiringRaw.map(d => ({ ...d, days_left: Number(d.days_left) }));
 
-  const staleDeals = db.prepare(`
-    SELECT name, last_activity, days_stale FROM (
-      SELECT d.name,
-        COALESCE((SELECT MAX(created_at) FROM activity_log WHERE entity_type = 'deal' AND entity_id = d.id), d.created_at) as last_activity,
-        CAST(julianday('now') - julianday(COALESCE((SELECT MAX(created_at) FROM activity_log WHERE entity_type = 'deal' AND entity_id = d.id), d.created_at)) AS INTEGER) as days_stale
-      FROM deals d WHERE d.stage NOT IN ('Closed', 'Dead')
-    ) WHERE days_stale >= 14 ORDER BY days_stale DESC
-  `).all() as StaleRow[];
+  const staleDealsRaw = await all<{ name: string; last_activity: string; days_stale: number }>(
+    `SELECT name, last_activity, days_stale FROM (
+       SELECT d.name,
+         COALESCE((SELECT MAX(created_at) FROM activity_log WHERE entity_type = 'deal' AND entity_id = d.id), d.created_at) as last_activity,
+         CAST(julianday('now') - julianday(COALESCE((SELECT MAX(created_at) FROM activity_log WHERE entity_type = 'deal' AND entity_id = d.id), d.created_at)) AS INTEGER) as days_stale
+       FROM deals d WHERE d.stage NOT IN ('Closed', 'Dead')
+     ) WHERE days_stale >= 14 ORDER BY days_stale DESC`
+  );
+  const staleDeals: StaleRow[] = staleDealsRaw.map(d => ({ ...d, days_stale: Number(d.days_stale) }));
 
   const html = buildDigestHTML({
     overdue, today: todayTasks, ddExpiring, staleDeals,
@@ -118,11 +121,9 @@ export async function POST() {
     return NextResponse.json({ error: 'RESEND_API_KEY not configured' }, { status: 400 });
   }
 
-  // Get the HTML content
   const digestRes = await GET();
   const html = await digestRes.text();
 
-  // Send via Resend
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },

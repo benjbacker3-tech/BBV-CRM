@@ -1,59 +1,65 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { all, get } from '@/lib/db';
 
 export async function GET() {
-  const db = getDb();
+  const dealsByStage = await all<{ stage: string; count: number }>(
+    'SELECT stage, COUNT(*) as count FROM deals GROUP BY stage'
+  );
 
-  const dealsByStage = db.prepare(`
-    SELECT stage, COUNT(*) as count FROM deals GROUP BY stage
-  `).all() as { stage: string; count: number }[];
+  const totalPipeline = await get<{ total: number }>(
+    `SELECT COALESCE(SUM(asking_price), 0) as total FROM deals WHERE stage != 'Dead' AND stage != 'Closed'`
+  );
 
-  const totalPipeline = db.prepare(`
-    SELECT COALESCE(SUM(asking_price), 0) as total FROM deals WHERE stage != 'Dead' AND stage != 'Closed'
-  `).get() as { total: number };
+  const activeDeals = await get<{ count: number }>(
+    `SELECT COUNT(*) as count FROM deals WHERE stage NOT IN ('Dead', 'Closed')`
+  );
 
-  const activeDeals = db.prepare(`
-    SELECT COUNT(*) as count FROM deals WHERE stage NOT IN ('Dead', 'Closed')
-  `).get() as { count: number };
+  const investorStats = await get<{ total_investors: number; total_commitment: number; total_called: number; active_investors: number }>(
+    `SELECT
+       COUNT(*) as total_investors,
+       COALESCE(SUM(commitment), 0) as total_commitment,
+       COALESCE(SUM(called), 0) as total_called,
+       COUNT(CASE WHEN status = 'Active' THEN 1 END) as active_investors
+     FROM investors`
+  );
 
-  const investorStats = db.prepare(`
-    SELECT
-      COUNT(*) as total_investors,
-      COALESCE(SUM(commitment), 0) as total_commitment,
-      COALESCE(SUM(called), 0) as total_called,
-      COUNT(CASE WHEN status = 'Active' THEN 1 END) as active_investors
-    FROM investors
-  `).get() as { total_investors: number; total_commitment: number; total_called: number; active_investors: number };
+  const overdueTasks = await get<{ count: number }>(
+    `SELECT COUNT(*) as count FROM tasks WHERE done = 0 AND due_date < date('now')`
+  );
 
-  const overdueTasks = db.prepare(`
-    SELECT COUNT(*) as count FROM tasks WHERE done = 0 AND due_date < date('now')
-  `).get() as { count: number };
+  const dueTodayTasks = await get<{ count: number }>(
+    `SELECT COUNT(*) as count FROM tasks WHERE done = 0 AND due_date = date('now')`
+  );
 
-  const dueTodayTasks = db.prepare(`
-    SELECT COUNT(*) as count FROM tasks WHERE done = 0 AND due_date = date('now')
-  `).get() as { count: number };
+  const dueThreeDays = await get<{ count: number }>(
+    `SELECT COUNT(*) as count FROM tasks WHERE done = 0 AND due_date BETWEEN date('now') AND date('now', '+3 days')`
+  );
 
-  const dueThreeDays = db.prepare(`
-    SELECT COUNT(*) as count FROM tasks WHERE done = 0 AND due_date BETWEEN date('now') AND date('now', '+3 days')
-  `).get() as { count: number };
+  const closedDeals = await get<{ count: number; total: number }>(
+    `SELECT COUNT(*) as count, COALESCE(SUM(asking_price), 0) as total FROM deals WHERE stage = 'Closed'`
+  );
 
-  const closedDeals = db.prepare(`
-    SELECT COUNT(*) as count, COALESCE(SUM(asking_price), 0) as total FROM deals WHERE stage = 'Closed'
-  `).get() as { count: number; total: number };
-
-  const underContract = db.prepare(`
-    SELECT COUNT(*) as count FROM deals WHERE stage = 'Under Contract'
-  `).get() as { count: number };
+  const underContract = await get<{ count: number }>(
+    `SELECT COUNT(*) as count FROM deals WHERE stage = 'Under Contract'`
+  );
 
   return NextResponse.json({
     dealsByStage,
-    totalPipeline: totalPipeline.total,
-    activeDeals: activeDeals.count,
-    investorStats,
-    overdueTasks: overdueTasks.count,
-    dueTodayTasks: dueTodayTasks.count,
-    dueThreeDays: dueThreeDays.count,
-    closedDeals,
-    underContract: underContract.count,
+    totalPipeline: Number(totalPipeline?.total || 0),
+    activeDeals: Number(activeDeals?.count || 0),
+    investorStats: {
+      total_investors: Number(investorStats?.total_investors || 0),
+      total_commitment: Number(investorStats?.total_commitment || 0),
+      total_called: Number(investorStats?.total_called || 0),
+      active_investors: Number(investorStats?.active_investors || 0),
+    },
+    overdueTasks: Number(overdueTasks?.count || 0),
+    dueTodayTasks: Number(dueTodayTasks?.count || 0),
+    dueThreeDays: Number(dueThreeDays?.count || 0),
+    closedDeals: {
+      count: Number(closedDeals?.count || 0),
+      total: Number(closedDeals?.total || 0),
+    },
+    underContract: Number(underContract?.count || 0),
   });
 }

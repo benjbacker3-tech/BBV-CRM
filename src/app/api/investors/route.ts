@@ -1,17 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { all, run } from '@/lib/db';
 
 export async function GET() {
-  const db = getDb();
-  return NextResponse.json(db.prepare('SELECT * FROM investors ORDER BY name').all());
+  return NextResponse.json(await all('SELECT * FROM investors ORDER BY name'));
 }
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const db = getDb();
-  const result = db.prepare(`
-    INSERT INTO investors (name, type, commitment, called, status, notes)
-    VALUES (@name, @type, @commitment, @called, @status, @notes)
-  `).run(body);
+  const result = await run(
+    `INSERT INTO investors (name, type, commitment, called, status, notes) VALUES (?, ?, ?, ?, ?, ?)`,
+    [body.name, body.type ?? null, body.commitment ?? 0, body.called ?? 0, body.status ?? null, body.notes ?? null]
+  );
   return NextResponse.json({ id: result.lastInsertRowid });
 }
