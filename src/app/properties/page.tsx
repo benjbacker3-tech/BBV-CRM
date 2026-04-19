@@ -51,7 +51,7 @@ export default function PropertiesPage() {
   const activeDeals = deals.filter(d => REPORT_STAGES.includes(d.stage as Stage));
 
   // Compute per-deal derived metrics
-  const enriched = activeDeals.map((d, _i) => {
+  const enriched = activeDeals.map((d) => {
     const landSF = (d.acreage || 0) * SQFT_PER_ACRE;
     const far = landSF > 0 ? (d.sf || 0) / landSF : 0;
     const plf = landSF > 0 ? (d.asking_price || 0) / landSF : 0;
