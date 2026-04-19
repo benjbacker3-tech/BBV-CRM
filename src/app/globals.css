@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.dark {
+  --background: #0f1117;
+  --foreground: #e5e7eb;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.font-mono, .tabular-nums {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+.dark ::-webkit-scrollbar-thumb { background: #374151; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+/* Kanban card animations */
+.kanban-card {
+  transition: box-shadow 0.15s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+.kanban-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.dark .kanban-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fadeSlideIn 0.2s ease-out; }
+
+/* Skeleton pulse */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+.dark .skeleton {
+  background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+  background-size: 200% 100%;
+}
