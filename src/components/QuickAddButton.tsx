@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { STAGES, Stage } from '@/lib/utils';
+import { useState, useEffect } from 'react';
 
 type Modal = null | 'deal' | 'contact' | 'task';
 
