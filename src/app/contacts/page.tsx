@@ -19,6 +19,9 @@ export default function ContactsPage() {
     name: string; type: 'broker' | 'owner'; firm: string; phone: string;
     email: string; markets: string; warmth: 'hot' | 'warm' | 'cool'; notes: string;
   }>({ name: '', type: 'broker', firm: '', phone: '', email: '', markets: '', warmth: 'cool', notes: '' });
+  const [uploading, setUploading] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState<{ kind: 'ok' | 'err'; msg: string } | null>(null);
+  const [showUploadConfirm, setShowUploadConfirm] = useState<File | null>(null);
 
   const load = useCallback(() => {
     fetch('/api/contacts').then(r => r.json()).then(setContacts);
@@ -26,6 +29,41 @@ export default function ContactsPage() {
   }, []);
 
   useEffect(() => { load(); }, [load]);
+
+  const downloadTemplate = () => { window.location.href = '/api/contacts/template'; };
+
+  const onFilePicked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (file) setShowUploadConfirm(file);
+  };
+
+  const runUpload = async (file: File, mode: 'append' | 'replace') => {
+    setShowUploadConfirm(null);
+    setUploading(true);
+    setUploadStatus(null);
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('mode', mode);
+    try {
+      const res = await fetch('/api/contacts/import', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) {
+        setUploadStatus({ kind: 'err', msg: data.error || `Upload failed (${res.status})` });
+      } else {
+        setUploadStatus({
+          kind: 'ok',
+          msg: `${mode === 'replace' ? 'Replaced' : 'Imported'}: ${data.inserted} added, ${data.skipped} skipped`,
+        });
+        load();
+      }
+    } catch (e) {
+      setUploadStatus({ kind: 'err', msg: e instanceof Error ? e.message : 'Upload failed' });
+    } finally {
+      setUploading(false);
+      setTimeout(() => setUploadStatus(null), 8000);
+    }
+  };
 
   const addContact = async () => {
     if (!form.name.trim()) return;
@@ -94,6 +132,13 @@ export default function ContactsPage() {
               <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Contacts</h1>
               <button onClick={() => setAdding(!adding)} className="px-3 py-1.5 bg-amber text-white rounded text-sm hover:bg-amber-dark">
                 {adding ? 'Cancel' : '+ Add Contact'}
+              </button>
+              <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a CSV of contacts (Outlook export or MCI template)">
+                {uploading ? 'Uploading…' : 'Upload CSV'}
+                <input type="file" accept=".csv,text/csv" onChange={onFilePicked} className="hidden" disabled={uploading} />
+              </label>
+              <button onClick={downloadTemplate} className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800" title="Download MCI Contacts CSV template">
+                Template
               </button>
             </div>
             <div className="flex items-center gap-4">
@@ -201,6 +246,55 @@ export default function ContactsPage() {
         </div>
       </div>
       {selectedContact && <ContactDetailPanel contact={selectedContact} onClose={() => setSelectedContact(null)} onUpdate={load} />}
+
+      {/* Upload confirm dialog: append vs replace */}
+      {showUploadConfirm && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center" onClick={() => setShowUploadConfirm(null)}>
+          <div className="fixed inset-0 bg-black/40 dark:bg-black/60" />
+          <div className="relative bg-white dark:bg-surface rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-md p-5" onClick={e => e.stopPropagation()}>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Import {showUploadConfirm.name}</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+              {(showUploadConfirm.size / 1024).toFixed(1)} KB · auto-detects Outlook export or MCI template columns
+            </p>
+            <div className="space-y-2">
+              <button
+                onClick={() => runUpload(showUploadConfirm, 'append')}
+                className="w-full text-left px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <div className="text-sm font-medium text-gray-900 dark:text-gray-100">Append</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Add new contacts. Skip rows that already exist (matched by email or name+firm).</div>
+              </button>
+              <button
+                onClick={() => runUpload(showUploadConfirm, 'replace')}
+                className="w-full text-left px-4 py-3 border border-red-200 dark:border-red-900 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20"
+              >
+                <div className="text-sm font-medium text-red-700 dark:text-red-400">Replace All</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Wipe all existing contacts (and their tasks/log) and load only what&apos;s in this file.</div>
+              </button>
+            </div>
+            <div className="mt-4 flex justify-end">
+              <button onClick={() => setShowUploadConfirm(null)} className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Status toast */}
+      {uploadStatus && (
+        <div className={`fixed top-16 right-6 z-[80] px-4 py-3 rounded-lg shadow-lg border text-sm max-w-md animate-fade-in ${
+          uploadStatus.kind === 'ok'
+            ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/30 dark:border-green-800 dark:text-green-300'
+            : 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-300'
+        }`}>
+          <div className="flex items-start gap-2">
+            <span>{uploadStatus.kind === 'ok' ? '✓' : '⚠'}</span>
+            <p className="flex-1">{uploadStatus.msg}</p>
+            <button onClick={() => setUploadStatus(null)} className="text-current opacity-60 hover:opacity-100">×</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
