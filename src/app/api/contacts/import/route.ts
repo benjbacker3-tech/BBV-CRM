@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { all, batch, run } from '@/lib/db';
+import { all, batch } from '@/lib/db';
 import { parseCSV, indexHeaders, pick } from '@/lib/csv';
 
 export const maxDuration = 60; // Vercel: extend serverless function timeout
