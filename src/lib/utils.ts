@@ -83,6 +83,7 @@ export interface Deal {
   source: string;
   dd_expiry: string | null;
   dd_days: number;
+  close_date: string | null;
   close_days: number;
   deposit: number;
   notes: string;

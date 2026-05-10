@@ -68,6 +68,7 @@ async function initSchema(db: Client) {
       source TEXT,
       dd_expiry TEXT,
       dd_days INTEGER DEFAULT 0,
+      close_date TEXT,
       close_days INTEGER DEFAULT 0,
       deposit REAL DEFAULT 0,
       notes TEXT,
@@ -210,6 +211,7 @@ async function initSchema(db: Client) {
     { name: 'yoc_initial', def: 'REAL DEFAULT 0' },
     { name: 'equity_required', def: 'REAL DEFAULT 0' },
     { name: 'dd_days', def: 'INTEGER DEFAULT 0' },
+    { name: 'close_date', def: 'TEXT' },
     { name: 'close_days', def: 'INTEGER DEFAULT 0' },
     { name: 'deposit', def: 'REAL DEFAULT 0' },
   ];

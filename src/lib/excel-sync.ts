@@ -42,6 +42,7 @@ export const SYNC_FIELDS: SyncField[] = [
   { field: 'Close (days)', col: 'close_days', kind: 'days' },
   { field: 'Deposit', col: 'deposit', kind: 'money' },
   { field: 'DD Expiry', col: 'dd_expiry', kind: 'date' },
+  { field: 'Close Date', col: 'close_date', kind: 'date' },
 
   // Notes
   { field: 'Notes', col: 'notes', kind: 'text' },

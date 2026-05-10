@@ -15,8 +15,8 @@ export async function POST(req: NextRequest) {
        sf, acreage, occupancy,
        asking_price, yoc_initial, yoc_target, equity_required,
        zoning, ios_eligible, stage, source,
-       dd_expiry, dd_days, close_days, deposit, notes
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       dd_expiry, dd_days, close_date, close_days, deposit, notes
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       body.name,
       body.address ?? null,
@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
       body.source ?? null,
       body.dd_expiry || null,
       body.dd_days ?? 0,
+      body.close_date || null,
       body.close_days ?? 0,
       body.deposit ?? 0,
       body.notes ?? null,
