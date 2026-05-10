@@ -170,6 +170,33 @@ async function initSchema(db: Client) {
       metadata TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     );
+
+    CREATE TABLE IF NOT EXISTS events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      category TEXT,                       -- mining | shipping | construction | logistics | other
+      start_date TEXT,
+      end_date TEXT,
+      location TEXT,
+      url TEXT,
+      cost TEXT,                           -- free-form (e.g. "$1,295" or "Free for members")
+      notes TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS economic_releases (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,                  -- e.g. "Nonfarm Payrolls"
+      release_date TEXT NOT NULL,          -- ISO date
+      release_time TEXT,                   -- e.g. "8:30 AM ET"
+      previous_value TEXT,                 -- last reading
+      consensus TEXT,                      -- forecast
+      actual_value TEXT,                   -- once released
+      interpretation TEXT,                 -- our take
+      importance TEXT DEFAULT 'medium',    -- low | medium | high
+      url TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
   `);
 
   // Migrate deals: add missing columns on existing DBs
@@ -221,6 +248,48 @@ async function initSchema(db: Client) {
   const dealCount = await db.execute('SELECT COUNT(*) as c FROM deals');
   if (Number(dealCount.rows[0].c) === 0) {
     await seed(db);
+  }
+
+  // Seed events if empty — known IOS-relevant industry expos
+  const eventCount = await db.execute('SELECT COUNT(*) as c FROM events');
+  if (Number(eventCount.rows[0].c) === 0) {
+    await db.batch([
+      { sql: `INSERT INTO events (name, category, start_date, end_date, location, url, cost, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, args: [
+        'CONEXPO-CON/AGG', 'Construction', '2026-03-03', '2026-03-07', 'Las Vegas Convention Center, NV',
+        'https://www.conexpoconagg.com/', '$169–$309',
+        'Largest North American construction trade show. Heavy equipment, contractors, ready-mix.',
+      ] },
+      { sql: `INSERT INTO events (name, category, start_date, end_date, location, url, cost, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, args: [
+        'TPM (Trans-Pacific Maritime)', 'Shipping', '2026-03-01', '2026-03-04', 'Long Beach Convention Center, CA',
+        'https://events.joc.com/tpm', '$2,495+',
+        'Premier container shipping & supply chain conference. Beneficial cargo owners, carriers, ports.',
+      ] },
+      { sql: `INSERT INTO events (name, category, start_date, end_date, location, url, cost, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, args: [
+        'MINExpo INTERNATIONAL', 'Mining', '2028-09-25', '2028-09-27', 'Las Vegas Convention Center, NV',
+        'https://www.minexpo.com/', 'TBD',
+        'World\'s largest mining trade show. Held every 4 years.',
+      ] },
+      { sql: `INSERT INTO events (name, category, start_date, end_date, location, url, cost, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, args: [
+        'NAIOP CRE.Converge', 'Industrial', '2026-10-12', '2026-10-14', 'Boca Raton, FL',
+        'https://www.naiop.org/events-and-sponsorship/2026/cre-converge/', '$1,945–$2,495',
+        'Top industrial CRE conference; lots of IOS investors and operators.',
+      ] },
+      { sql: `INSERT INTO events (name, category, start_date, end_date, location, url, cost, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, args: [
+        'Manifest: The Future of Supply Chain & Logistics', 'Logistics', '2026-02-09', '2026-02-11', 'The Venetian, Las Vegas, NV',
+        'https://www.manifestvegas.com/', '$1,995+',
+        'Trucking, freight, last-mile, warehousing leaders.',
+      ] },
+      { sql: `INSERT INTO events (name, category, start_date, end_date, location, url, cost, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, args: [
+        'IPI Annual Conference & Trade Show', 'Industrial', '2026-06-21', '2026-06-24', 'Phoenix Convention Center, AZ',
+        'https://www.parking-mobility.org/', '$1,295',
+        'Parking & mobility — relevant for surface lot operators.',
+      ] },
+      { sql: `INSERT INTO events (name, category, start_date, end_date, location, url, cost, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, args: [
+        'World of Concrete', 'Construction', '2027-01-19', '2027-01-22', 'Las Vegas Convention Center, NV',
+        'https://www.worldofconcrete.com/', '$120+',
+        'Concrete & masonry industry. Contractors, equipment, materials.',
+      ] },
+    ] as never);
   }
 }
 

@@ -3,6 +3,8 @@ import ExcelJS from 'exceljs';
 import { all } from '@/lib/db';
 import { Deal, Stage } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 const REPORT_STAGES: Stage[] = ['Negotiating PSA', 'LOI Submitted', 'Under Contract', 'Tracking'];
 const SQFT_PER_ACRE = 43560;
 
