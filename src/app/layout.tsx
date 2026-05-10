@@ -8,7 +8,7 @@ import QuickAddButton from "@/components/QuickAddButton";
 import TopBar from "@/components/TopBar";
 
 export const metadata: Metadata = {
-  title: "Sandpiper CRM",
+  title: "MCI CRM",
   description: "Industrial Outdoor Storage Investment CRM",
 };
 

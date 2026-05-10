@@ -3,7 +3,7 @@ import ExcelJS from 'exceljs';
 import { all } from '@/lib/db';
 import { Deal, Stage } from '@/lib/utils';
 
-const REPORT_STAGES: Stage[] = ['Signed LOI', 'LOI Submitted', 'PSA Negotiation', 'Under Contract', 'Tracking'];
+const REPORT_STAGES: Stage[] = ['Negotiating PSA', 'LOI Submitted', 'Under Contract', 'Tracking'];
 const SQFT_PER_ACRE = 43560;
 
 // Format matching the source spreadsheet exactly:
@@ -19,7 +19,7 @@ export async function GET() {
   const active = deals.filter(d => REPORT_STAGES.includes(d.stage as Stage));
 
   const wb = new ExcelJS.Workbook();
-  wb.creator = 'Sandpiper CRM';
+  wb.creator = 'MCI CRM';
   wb.created = new Date();
   const ws = wb.addWorksheet('Pipeline');
 
@@ -198,7 +198,7 @@ export async function GET() {
 
   const buffer = await wb.xlsx.writeBuffer();
   const today = new Date().toISOString().split('T')[0];
-  const filename = `BBV_Acq_Pipeline_${today.replace(/-/g, '_')}.xlsx`;
+  const filename = `MCI_Acq_Pipeline_${today.replace(/-/g, '_')}.xlsx`;
 
   return new NextResponse(buffer, {
     headers: {

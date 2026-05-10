@@ -55,8 +55,7 @@ export function timeAgo(iso: string | null | undefined): string {
 export const STAGES = [
   'Tracking',
   'LOI Submitted',
-  'Signed LOI',
-  'PSA Negotiation',
+  'Negotiating PSA',
   'Under Contract',
   'Closed',
   'Dead',

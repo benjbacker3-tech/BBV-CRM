@@ -198,6 +198,9 @@ async function initSchema(db: Client) {
   await db.execute('UPDATE deals SET yoc_initial = yoc_initial / 100.0 WHERE yoc_initial > 1');
   await db.execute('UPDATE deals SET occupancy = occupancy / 100.0 WHERE occupancy > 1');
 
+  // Stage rename: "Signed LOI" + "PSA Negotiation" → "Negotiating PSA"
+  await db.execute("UPDATE deals SET stage = 'Negotiating PSA' WHERE stage = 'Signed LOI' OR stage = 'PSA Negotiation'");
+
   // Migrate contact_log if missing columns (existing DBs)
   const colInfo = await db.execute("PRAGMA table_info(contact_log)");
   const colNames = colInfo.rows.map(r => String(r.name));

@@ -69,11 +69,11 @@ export default function LOITab({ deal }: Props) {
     addGap();
     addText(`Dear ${fields.sellerName}:`);
     addGap();
-    addText('Thank you for the opportunity to present our offer for the above referenced Property. This letter summarizes the basic business terms and conditions upon which Sandpiper Partners LLC ("Buyer") is willing to acquire the subject property.');
+    addText('Thank you for the opportunity to present our offer for the above referenced Property. This letter summarizes the basic business terms and conditions upon which Mission Critical Industrial LLC ("Buyer") is willing to acquire the subject property.');
     addGap();
 
     const sections = [
-      ['BUYER:', 'Sandpiper Partners LLC — Principal investor with deep experience investing in industrial and industrial outdoor storage assets across the US.'],
+      ['BUYER:', 'Mission Critical Industrial LLC — Principal investor with deep experience investing in industrial and industrial outdoor storage assets across the US.'],
       ['PROPERTY:', `${deal.address} — ${fields.propertyDesc}`],
       ['PURCHASE PRICE:', `${fields.purchasePrice} (${fields.financing})`],
       ['DEPOSIT:', `$${fields.deposit} due within five (5) days of PSA execution`],
@@ -95,7 +95,7 @@ export default function LOITab({ deal }: Props) {
     addGap();
     addText('Best Regards,');
     addText('Ben Backer');
-    addText('Principal, Sandpiper Partners');
+    addText('Principal, Mission Critical Industrial');
     addGap(2);
     addText(`SELLER ACCEPTED AND AGREED this ________ day of _____________, 2026`);
     addText('By: ___________________________');

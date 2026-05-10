@@ -4,7 +4,7 @@ import { Fragment, useCallback, useEffect, useState } from 'react';
 import { Deal, Stage, STAGES } from '@/lib/utils';
 import DealDetailPanel from '@/components/DealDetailPanel';
 
-const REPORT_STAGES: Stage[] = ['Signed LOI', 'LOI Submitted', 'PSA Negotiation', 'Under Contract', 'Tracking'];
+const REPORT_STAGES: Stage[] = ['Negotiating PSA', 'LOI Submitted', 'Under Contract', 'Tracking'];
 const SQFT_PER_ACRE = 43560;
 
 const nf0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
@@ -24,6 +24,8 @@ export default function PropertiesPage() {
   const [importResult, setImportResult] = useState<string | null>(null);
   const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
   const [showNewModal, setShowNewModal] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState<{ kind: 'ok' | 'err'; msg: string } | null>(null);
 
   const load = useCallback(() => fetch('/api/deals').then(r => r.json()).then(setDeals), []);
 
@@ -44,6 +46,77 @@ export default function PropertiesPage() {
 
   const exportXlsx = () => {
     window.location.href = '/api/properties/export';
+  };
+
+  const downloadTemplate = () => {
+    window.location.href = '/api/properties/template';
+  };
+
+  const uploadModel = async (file: File) => {
+    setUploadStatus(null);
+    const fd = new FormData();
+    fd.append('file', file);
+    try {
+      const res = await fetch('/api/properties/import', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) {
+        setUploadStatus({ kind: 'err', msg: data.error || `Upload failed (${res.status})` });
+      } else {
+        const verb = data.mode === 'created' ? 'Created' : 'Updated';
+        setUploadStatus({ kind: 'ok', msg: `${verb} "${data.name}" from ${file.name}` });
+        load();
+      }
+    } catch (e) {
+      setUploadStatus({ kind: 'err', msg: e instanceof Error ? e.message : 'Upload failed' });
+    }
+    // Auto-clear status after 6s
+    setTimeout(() => setUploadStatus(null), 6000);
+  };
+
+  // Page-level drag-and-drop: user can drop file anywhere on the page
+  useEffect(() => {
+    const onDragEnter = (e: DragEvent) => {
+      if (e.dataTransfer?.types.includes('Files')) {
+        e.preventDefault();
+        setIsDragging(true);
+      }
+    };
+    const onDragOver = (e: DragEvent) => {
+      if (e.dataTransfer?.types.includes('Files')) e.preventDefault();
+    };
+    const onDragLeave = (e: DragEvent) => {
+      // Only un-highlight when leaving the window entirely
+      if (e.relatedTarget == null) setIsDragging(false);
+    };
+    const onDrop = async (e: DragEvent) => {
+      e.preventDefault();
+      setIsDragging(false);
+      const file = e.dataTransfer?.files[0];
+      if (!file) return;
+      if (!/\.(xlsx|xlsm)$/i.test(file.name)) {
+        setUploadStatus({ kind: 'err', msg: `Not an Excel file: ${file.name}` });
+        setTimeout(() => setUploadStatus(null), 6000);
+        return;
+      }
+      await uploadModel(file);
+    };
+    window.addEventListener('dragenter', onDragEnter);
+    window.addEventListener('dragover', onDragOver);
+    window.addEventListener('dragleave', onDragLeave);
+    window.addEventListener('drop', onDrop);
+    return () => {
+      window.removeEventListener('dragenter', onDragEnter);
+      window.removeEventListener('dragover', onDragOver);
+      window.removeEventListener('dragleave', onDragLeave);
+      window.removeEventListener('drop', onDrop);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onFilePicked = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) await uploadModel(file);
+    e.target.value = '';
   };
 
   if (deals === null) {
@@ -80,11 +153,39 @@ export default function PropertiesPage() {
 
   return (
     <>
+      {/* Upload status toast */}
+      {uploadStatus && (
+        <div className={`fixed top-16 right-6 z-[80] px-4 py-3 rounded-lg shadow-lg border text-sm max-w-md animate-fade-in ${
+          uploadStatus.kind === 'ok'
+            ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/30 dark:border-green-800 dark:text-green-300'
+            : 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-300'
+        }`}>
+          <div className="flex items-start gap-2">
+            <span>{uploadStatus.kind === 'ok' ? '✓' : '⚠'}</span>
+            <p className="flex-1">{uploadStatus.msg}</p>
+            <button onClick={() => setUploadStatus(null)} className="text-current opacity-60 hover:opacity-100">×</button>
+          </div>
+        </div>
+      )}
+
+      {/* Drag-and-drop overlay */}
+      {isDragging && (
+        <div className="fixed inset-0 z-[90] bg-navy/80 backdrop-blur-sm flex items-center justify-center pointer-events-none">
+          <div className="border-2 border-dashed border-amber rounded-xl px-12 py-10 text-center bg-white/5">
+            <svg className="w-12 h-12 mx-auto mb-3 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <p className="text-lg font-semibold text-white mb-1">Drop Excel model</p>
+            <p className="text-xs text-slate-300">Must contain a &ldquo;MCI Pipeline&rdquo; tab. Matches by address — updates if exists, creates if new.</p>
+          </div>
+        </div>
+      )}
+
       <div className={`px-8 py-8 max-w-[1500px] transition-all ${selectedDeal ? 'mr-[480px]' : ''}`}>
         {/* Report header */}
         <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-800">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">Sandpiper Partners · Acquisition Pipeline</p>
+            <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">Mission Critical Industrial · Acquisition Pipeline</p>
             <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-tight">Properties</h1>
           </div>
           <div className="flex items-center gap-2">
@@ -94,6 +195,17 @@ export default function PropertiesPage() {
               className="px-3 py-1.5 text-xs text-white bg-amber hover:bg-amber-dark rounded"
             >
               + New Property
+            </button>
+            <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a deal model containing a 'MCI Pipeline' tab">
+              Upload Model
+              <input type="file" accept=".xlsx,.xlsm" onChange={onFilePicked} className="hidden" />
+            </label>
+            <button
+              onClick={downloadTemplate}
+              className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800"
+              title="Download the MCI Pipeline sync tab template"
+            >
+              Template
             </button>
             <button
               onClick={runImport}
@@ -106,7 +218,7 @@ export default function PropertiesPage() {
               onClick={exportXlsx}
               className="px-3 py-1.5 text-xs text-white bg-navy hover:bg-navy-light rounded"
             >
-              Export to Excel
+              Export
             </button>
           </div>
         </div>

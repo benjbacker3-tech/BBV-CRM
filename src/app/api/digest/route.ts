@@ -57,7 +57,7 @@ function buildDigestHTML(data: {
 <body style="margin:0;padding:0;background:#f9fafb;font-family:'Inter',Arial,sans-serif;">
   <table style="width:100%;max-width:600px;margin:0 auto;background:#ffffff;">
     <tr><td style="background:#0B1A2B;padding:24px 30px;">
-      <h1 style="margin:0;font-size:18px;color:#ffffff;"><span style="color:#BA7517;">Sandpiper</span> Morning Briefing</h1>
+      <h1 style="margin:0;font-size:18px;color:#ffffff;"><span style="color:#BA7517;">MCI</span> Morning Briefing</h1>
       <p style="margin:4px 0 0;font-size:12px;color:#94a3b8;">${data.date}</p>
     </td></tr>
     <tr><td style="padding:20px 30px;">
@@ -67,7 +67,7 @@ function buildDigestHTML(data: {
       ${data.staleDeals.length > 0 ? section('🚨 Stale Deals (14d+ no activity)', staleHtml) : ''}
     </td></tr>
     <tr><td style="background:#f9fafb;padding:16px 30px;border-top:1px solid #e5e7eb;">
-      <p style="margin:0;font-size:11px;color:#9ca3af;">Sandpiper Partners LLC · Industrial Outdoor Storage</p>
+      <p style="margin:0;font-size:11px;color:#9ca3af;">Mission Critical Industrial · Industrial Outdoor Storage</p>
     </td></tr>
   </table>
 </body></html>`;
@@ -128,9 +128,9 @@ export async function POST() {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      from: 'Sandpiper CRM <digest@sandpipercre.com>',
-      to: ['ben@sandpipercre.com'],
-      subject: `Sandpiper Morning Briefing — ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`,
+      from: process.env.DIGEST_FROM || 'MCI CRM <onboarding@resend.dev>',
+      to: [process.env.DIGEST_TO || 'ben@missioncriticalindustrial.com'],
+      subject: `MCI Morning Briefing — ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`,
       html,
     }),
   });
