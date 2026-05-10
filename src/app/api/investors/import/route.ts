@@ -18,16 +18,17 @@ export async function POST(req: NextRequest) {
 
   const text = await file.text();
   const rows = parseCSV(text);
-  if (rows.length < 2) {
-    return NextResponse.json({ error: 'CSV is empty or has no data rows.' }, { status: 400 });
-  }
-
-  const idx = indexHeaders(rows[0]);
 
   if (mode === 'replace') {
     await run('DELETE FROM investors');
     await run("DELETE FROM sqlite_sequence WHERE name = 'investors'");
   }
+
+  if (rows.length < 2) {
+    return NextResponse.json({ mode, inserted: 0, skipped: 0, message: mode === 'replace' ? 'Wiped' : 'CSV had no data rows' });
+  }
+
+  const idx = indexHeaders(rows[0]);
 
   const existing = await all<{ name: string }>('SELECT name FROM investors');
   const existingKeys = new Set<string>(existing.map(e => e.name.toLowerCase()));

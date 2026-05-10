@@ -22,30 +22,34 @@ export async function POST(req: NextRequest) {
 
   const text = await file.text();
   const rows = parseCSV(text);
+
+  // Wipe first if requested. Done as a single batch to save round-trips.
+  if (mode === 'replace') {
+    await batch([
+      { sql: 'DELETE FROM tasks', args: [] },
+      { sql: 'DELETE FROM contact_log', args: [] },
+      { sql: 'DELETE FROM contacts', args: [] },
+      { sql: "DELETE FROM sqlite_sequence WHERE name IN ('contacts','tasks','contact_log')", args: [] },
+    ] as never);
+  }
+
   if (rows.length < 2) {
-    return NextResponse.json({ error: 'CSV is empty or has no data rows.' }, { status: 400 });
+    return NextResponse.json({ mode, inserted: 0, skipped: 0, message: mode === 'replace' ? 'Wiped (no rows to insert)' : 'CSV had no data rows' });
   }
 
   const headers = rows[0];
   const idx = indexHeaders(headers);
 
-  // Wipe if requested. Also clear dependent rows.
-  if (mode === 'replace') {
-    await run('DELETE FROM tasks');
-    await run('DELETE FROM contact_log');
-    await run('DELETE FROM contacts');
-    await run("DELETE FROM sqlite_sequence WHERE name IN ('contacts','tasks','contact_log')");
-  }
-
-  // Build de-dupe set so an "append" upload doesn't double-create existing rows.
-  // Match by lowercased email when present, else by lowercased name+firm.
-  const existing = await all<{ email: string | null; name: string; firm: string | null }>(
-    'SELECT email, name, firm FROM contacts'
-  );
+  // Build de-dupe set. Skip the SELECT in replace mode since the table is empty.
   const existingKeys = new Set<string>();
-  for (const c of existing) {
-    if (c.email) existingKeys.add(`e:${c.email.toLowerCase()}`);
-    existingKeys.add(`n:${(c.name || '').toLowerCase()}|${(c.firm || '').toLowerCase()}`);
+  if (mode !== 'replace') {
+    const existing = await all<{ email: string | null; name: string; firm: string | null }>(
+      'SELECT email, name, firm FROM contacts'
+    );
+    for (const c of existing) {
+      if (c.email) existingKeys.add(`e:${c.email.toLowerCase()}`);
+      existingKeys.add(`n:${(c.name || '').toLowerCase()}|${(c.firm || '').toLowerCase()}`);
+    }
   }
 
   let inserted = 0;
@@ -139,7 +143,7 @@ export async function POST(req: NextRequest) {
       ],
     });
 
-    if (statements.length >= 500) {
+    if (statements.length >= 1000) {
       await flushBatch();
     }
   }
