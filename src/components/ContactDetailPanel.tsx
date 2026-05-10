@@ -27,14 +27,41 @@ interface Props {
   onUpdate: () => void;
 }
 
-type Tab = 'Tasks' | 'Log' | 'Deals';
+type Tab = 'Info' | 'Tasks' | 'Log' | 'Deals';
 
 export default function ContactDetailPanel({ contact, onClose, onUpdate }: Props) {
-  const [tab, setTab] = useState<Tab>('Tasks');
+  const [tab, setTab] = useState<Tab>('Info');
   const [tasks, setTasks] = useState<Task[]>([]);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [deals, setDeals] = useState<{ id: number; name: string; stage: string }[]>([]);
   const [syncStatus, setSyncStatus] = useState<SyncStatus | null>(null);
+
+  // Inline edit state for the contact's own fields
+  const [editing, setEditing] = useState(false);
+  const [editForm, setEditForm] = useState<Contact>(contact);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  // Re-initialize the edit form whenever the contact prop changes
+  useEffect(() => { setEditForm(contact); setEditing(false); }, [contact]);
+
+  const saveContact = async () => {
+    const res = await fetch(`/api/contacts/${contact.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(editForm),
+    });
+    if (res.ok) {
+      setEditing(false);
+      onUpdate();
+    }
+  };
+
+  const deleteContact = async () => {
+    await fetch(`/api/contacts/${contact.id}`, { method: 'DELETE' });
+    setConfirmDelete(false);
+    onUpdate();
+    onClose();
+  };
 
   const loadData = useCallback(() => {
     fetch(`/api/tasks?contact_id=${contact.id}`).then(r => r.json()).then(setTasks);
@@ -89,7 +116,11 @@ export default function ContactDetailPanel({ contact, onClose, onUpdate }: Props
     onUpdate();
   };
 
-  const warmthColors = { hot: 'bg-red-100 text-red-700', warm: 'bg-amber-100 text-amber-700', cool: 'bg-blue-100 text-blue-700' };
+  const warmthColors = {
+    hot: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+    warm: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+    cool: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+  };
   const typeIcons: Record<string, string> = { call: '📞', email: '✉️', coffee: '☕', sms: '💬' };
 
   return (
@@ -105,16 +136,27 @@ export default function ContactDetailPanel({ contact, onClose, onUpdate }: Props
           </div>
           {contact.email && <p className="text-xs text-blue-600 mt-1">{contact.email}</p>}
         </div>
-        <button onClick={onClose} className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 p-1">
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => setConfirmDelete(true)}
+            title="Delete contact"
+            className="text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 p-1.5 rounded hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M11 7V4a2 2 0 114 0v3" />
+            </svg>
+          </button>
+          <button onClick={onClose} className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}
       <div className="flex border-b border-gray-100 dark:border-gray-700 px-5 shrink-0">
-        {(['Tasks', 'Log', 'Deals'] as const).map(t => (
+        {(['Info', 'Tasks', 'Log', 'Deals'] as const).map(t => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -129,6 +171,17 @@ export default function ContactDetailPanel({ contact, onClose, onUpdate }: Props
 
       {/* Content */}
       <div className="flex-1 overflow-auto p-5">
+        {tab === 'Info' && (
+          <InfoTab
+            contact={contact}
+            editing={editing}
+            form={editForm}
+            setForm={setEditForm}
+            onEdit={() => setEditing(true)}
+            onCancel={() => { setEditing(false); setEditForm(contact); }}
+            onSave={saveContact}
+          />
+        )}
         {tab === 'Tasks' && (
           <div>
             <div className="flex justify-between items-center mb-3">
@@ -260,6 +313,136 @@ export default function ContactDetailPanel({ contact, onClose, onUpdate }: Props
           </div>
         )}
       </div>
+
+      {/* Delete confirmation overlay */}
+      {confirmDelete && (
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-10" onClick={() => setConfirmDelete(false)}>
+          <div className="bg-white dark:bg-surface rounded-lg shadow-xl p-5 w-[360px] max-w-[90%]" onClick={e => e.stopPropagation()}>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">Delete &ldquo;{contact.name}&rdquo;?</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+              This will permanently remove the contact and their tasks/log entries. This cannot be undone.
+            </p>
+            <div className="flex gap-2 justify-end">
+              <button onClick={() => setConfirmDelete(false)} className="px-3 py-1.5 text-xs border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+                Cancel
+              </button>
+              <button onClick={deleteContact} className="px-3 py-1.5 text-xs bg-red-600 text-white rounded hover:bg-red-700">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// -----------------------------------------------------------------------------
+// Info tab: view + edit the contact's own fields (name, firm, phone, email,
+// markets, type, warmth, notes)
+// -----------------------------------------------------------------------------
+
+function InfoTab({
+  contact, editing, form, setForm, onEdit, onCancel, onSave,
+}: {
+  contact: Contact;
+  editing: boolean;
+  form: Contact;
+  setForm: (c: Contact) => void;
+  onEdit: () => void;
+  onCancel: () => void;
+  onSave: () => void;
+}) {
+  const inputCls = "w-full border border-gray-200 dark:border-gray-600 rounded px-2.5 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber dark:bg-surface-dark dark:text-gray-200";
+
+  if (editing) {
+    return (
+      <div className="space-y-3">
+        <Field label="Name">
+          <input value={form.name || ''} onChange={e => setForm({ ...form, name: e.target.value })} className={inputCls} />
+        </Field>
+        <div className="grid grid-cols-2 gap-3">
+          <Field label="Type">
+            <select value={form.type} onChange={e => setForm({ ...form, type: e.target.value as 'broker' | 'owner' })} className={inputCls}>
+              <option value="broker">Broker</option>
+              <option value="owner">Owner</option>
+            </select>
+          </Field>
+          <Field label="Warmth">
+            <select value={form.warmth} onChange={e => setForm({ ...form, warmth: e.target.value as 'hot' | 'warm' | 'cool' })} className={inputCls}>
+              <option value="hot">Hot</option>
+              <option value="warm">Warm</option>
+              <option value="cool">Cool</option>
+            </select>
+          </Field>
+        </div>
+        <Field label="Firm">
+          <input value={form.firm || ''} onChange={e => setForm({ ...form, firm: e.target.value })} className={inputCls} />
+        </Field>
+        <div className="grid grid-cols-2 gap-3">
+          <Field label="Phone">
+            <input value={form.phone || ''} onChange={e => setForm({ ...form, phone: e.target.value })} className={inputCls} />
+          </Field>
+          <Field label="Email">
+            <input type="email" value={form.email || ''} onChange={e => setForm({ ...form, email: e.target.value })} className={inputCls} />
+          </Field>
+        </div>
+        <Field label="Markets">
+          <input value={form.markets || ''} onChange={e => setForm({ ...form, markets: e.target.value })} className={inputCls} placeholder="Houston, Dallas" />
+        </Field>
+        <Field label="Notes">
+          <textarea rows={5} value={form.notes || ''} onChange={e => setForm({ ...form, notes: e.target.value })} className={inputCls} />
+        </Field>
+        <div className="flex gap-2 pt-2 sticky bottom-0 bg-white dark:bg-surface pb-2">
+          <button onClick={onSave} className="px-3 py-1.5 bg-amber text-white rounded text-sm hover:bg-amber-dark">Save</button>
+          <button onClick={onCancel} className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded text-sm hover:bg-gray-200 dark:hover:bg-gray-600">Cancel</button>
+        </div>
+      </div>
+    );
+  }
+
+  // Read-only view
+  const fields = [
+    { label: 'Firm', value: contact.firm },
+    { label: 'Type', value: contact.type },
+    { label: 'Markets', value: contact.markets },
+    { label: 'Phone', value: contact.phone },
+    { label: 'Email', value: contact.email },
+    { label: 'Last Contact', value: contact.last_contact },
+  ];
+
+  return (
+    <div>
+      <div className="flex justify-end mb-3">
+        <button onClick={onEdit} className="text-xs text-amber hover:text-amber-dark font-medium">
+          Edit
+        </button>
+      </div>
+      <div className="space-y-2">
+        {fields.map(f => (
+          <div key={f.label} className="flex justify-between gap-3">
+            <span className="text-xs text-gray-500 dark:text-gray-400 shrink-0">{f.label}</span>
+            <span className="text-xs text-gray-900 dark:text-gray-100 text-right">{f.value || '—'}</span>
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700">
+        <h5 className="text-[10px] uppercase tracking-[0.12em] text-gray-400 dark:text-gray-500 font-semibold mb-2">Notes</h5>
+        {contact.notes ? (
+          <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">{contact.notes}</p>
+        ) : (
+          <p className="text-xs italic text-gray-400 dark:text-gray-500">No notes yet — click <span className="text-amber not-italic">Edit</span> to add some.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <label className="text-[11px] text-gray-500 dark:text-gray-400 block mb-1">{label}</label>
+      {children}
     </div>
   );
 }
