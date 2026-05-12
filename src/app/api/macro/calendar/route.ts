@@ -1,13 +1,19 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { unstable_cache, revalidateTag } from 'next/cache';
 
 // Fetches the US economic calendar from Trading Economics guest API
 // (free, no key, rate-limited). Returns this week + last week.
 //
 // Docs: https://docs.tradingeconomics.com/economic_calendar/
 // Guest credentials: c=guest:guest
+//
+// Caching: results are cached for a week via unstable_cache and the upstream
+// fetch is also tagged with the same TTL. Pass ?force=1 to bust the cache
+// (calls revalidateTag) so the user's refresh button can pull fresh data.
 
 export const dynamic = 'force-dynamic';
-const REVALIDATE = 1800;  // 30 min — calendar updates intraday
+const WEEK_SECONDS = 7 * 24 * 60 * 60;
+const TAG = 'macro-calendar';
 
 export interface CalendarItem {
   id: string;                       // synthetic key
@@ -57,7 +63,7 @@ function fmtTime(iso: string): string {
   }
 }
 
-export async function GET() {
+async function fetchCalendar(): Promise<{ items: CalendarItem[]; error?: string; fetched_at: string }> {
   // Pull a window spanning previous Monday through next Sunday
   const today = new Date();
   const dow = today.getDay() || 7;
@@ -73,10 +79,10 @@ export async function GET() {
   try {
     const res = await fetch(url, {
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MCI-CRM/1.0)' },
-      next: { revalidate: REVALIDATE },
+      next: { revalidate: WEEK_SECONDS, tags: [TAG] },
     });
     if (!res.ok) {
-      return NextResponse.json({ error: `TE API ${res.status}`, items: [] }, { status: 200 });
+      return { items: [], error: `TE API ${res.status}`, fetched_at: new Date().toISOString() };
     }
     const raw = await res.json() as unknown;
     const events: TEEvent[] = Array.isArray(raw) ? raw as TEEvent[] : [];
@@ -96,11 +102,25 @@ export async function GET() {
       }))
       .sort((a, b) => a.release_date.localeCompare(b.release_date));
 
-    return NextResponse.json({ items, fetched_at: new Date().toISOString() });
+    return { items, fetched_at: new Date().toISOString() };
   } catch (err) {
-    return NextResponse.json({
-      error: err instanceof Error ? err.message : 'fetch failed',
+    return {
       items: [],
-    }, { status: 200 });
+      error: err instanceof Error ? err.message : 'fetch failed',
+      fetched_at: new Date().toISOString(),
+    };
   }
+}
+
+const cachedCalendar = unstable_cache(fetchCalendar, ['mci-calendar', 'us'], {
+  revalidate: WEEK_SECONDS,
+  tags: [TAG],
+});
+
+export async function GET(req: NextRequest) {
+  const force = req.nextUrl.searchParams.get('force') === '1';
+  if (force) revalidateTag(TAG);
+
+  const result = await cachedCalendar();
+  return NextResponse.json({ ...result, cache: force ? 'busted' : 'weekly' });
 }

@@ -213,8 +213,8 @@ export default function EconomyUpdatePage() {
     setRefreshing(force);
     try {
       const [research, cal] = await Promise.all([
-        fetch('/api/macro/research' + (force ? `?t=${Date.now()}` : '')).then(x => x.json()),
-        fetch('/api/macro/calendar' + (force ? `?t=${Date.now()}` : '')).then(x => x.json()),
+        fetch('/api/macro/research' + (force ? '?force=1' : '')).then(x => x.json()),
+        fetch('/api/macro/calendar' + (force ? '?force=1' : '')).then(x => x.json()),
       ]);
       setAutoResearch(research);
       setAutoCalendar(cal);

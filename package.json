@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.95.2",
     "@libsql/client": "^0.17.2",
     "exceljs": "^4.4.0",
     "jspdf": "^4.2.1",
