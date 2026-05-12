@@ -160,11 +160,39 @@ const DEFAULT_DATA: EconomyData = {
 
 const fmtPct = (n: number | null, d = 2) => n == null ? '—' : `${n.toFixed(d)}%`;
 
+interface AutoResearch {
+  items: ResearchItem[];
+  additional_calc_risk: ResearchItem[];
+  fetched_at: string;
+}
+interface ResearchItem {
+  source: string;
+  title: string;
+  published: string;
+  themes: string;
+  url: string;
+  fetched_at: string;
+}
+interface AutoCalendarItem {
+  id: string;
+  name: string;
+  release_date: string;
+  release_time: string | null;
+  previous_value: string | null;
+  consensus: string | null;
+  actual_value: string | null;
+  importance: 'low' | 'medium' | 'high';
+  url: string | null;
+}
+
 export default function EconomyUpdatePage() {
   const [snapshot, setSnapshot] = useState<MarketSnapshot | null>(null);
   const [data, setData] = useState<EconomyData>(DEFAULT_DATA);
   const [releases, setReleases] = useState<Release[]>([]);
   const [editing, setEditing] = useState(false);
+  const [autoResearch, setAutoResearch] = useState<AutoResearch | null>(null);
+  const [autoCalendar, setAutoCalendar] = useState<{ items: AutoCalendarItem[]; fetched_at?: string } | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   const loadAll = useCallback(async () => {
     const [s, r] = await Promise.all([
@@ -172,7 +200,6 @@ export default function EconomyUpdatePage() {
       fetch('/api/releases').then(x => x.json()),
     ]);
     if (s && s.data) {
-      // Merge fetched data over defaults so missing keys from older snapshots fall back gracefully
       const merged = { ...DEFAULT_DATA, ...s.data };
       setSnapshot({ ...s, data: merged });
       setData(merged);
@@ -182,7 +209,20 @@ export default function EconomyUpdatePage() {
     setReleases(r);
   }, []);
 
-  useEffect(() => { loadAll(); }, [loadAll]);
+  const loadAuto = useCallback(async (force = false) => {
+    setRefreshing(force);
+    try {
+      const [research, cal] = await Promise.all([
+        fetch('/api/macro/research' + (force ? `?t=${Date.now()}` : '')).then(x => x.json()),
+        fetch('/api/macro/calendar' + (force ? `?t=${Date.now()}` : '')).then(x => x.json()),
+      ]);
+      setAutoResearch(research);
+      setAutoCalendar(cal);
+    } catch {}
+    finally { setRefreshing(false); }
+  }, []);
+
+  useEffect(() => { loadAll(); loadAuto(false); }, [loadAll, loadAuto]);
 
   const save = async () => {
     await fetch('/api/market-data', {
@@ -207,6 +247,17 @@ export default function EconomyUpdatePage() {
           <span className="text-[10px] text-gray-400 dark:text-gray-500 font-mono mr-1">
             Snapshot: {snapshot?.snapshot_date || 'default'}
           </span>
+          <button
+            onClick={() => loadAuto(true)}
+            disabled={refreshing}
+            title="Refresh macro feeds + calendar"
+            className="px-2.5 py-1 text-[11px] text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50 flex items-center gap-1"
+          >
+            <svg className={`w-3 h-3 ${refreshing ? 'animate-spin' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            {refreshing ? 'Refreshing' : 'Refresh feeds'}
+          </button>
           {editing ? (
             <>
               <button onClick={() => { setEditing(false); loadAll(); }} className="px-3 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Cancel</button>
@@ -233,11 +284,20 @@ export default function EconomyUpdatePage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <LMICard data={data.lmi || DEFAULT_DATA.lmi} editing={editing}
           onChange={(lmi) => setData({ ...data, lmi })} />
-        <ResearchCard data={data.research || DEFAULT_DATA.research} editing={editing}
-          onChange={(research) => setData({ ...data, research })} />
+        <ResearchCard
+          manual={data.research || DEFAULT_DATA.research}
+          auto={autoResearch}
+          editing={editing}
+          onChange={(research) => setData({ ...data, research })}
+        />
       </div>
 
-      <EconomicCalendar releases={releases} reload={loadAll} />
+      <EconomicCalendar
+        autoItems={autoCalendar?.items || []}
+        manualReleases={releases}
+        reload={loadAll}
+        fetchedAt={autoCalendar?.fetched_at}
+      />
     </div>
   );
 }
@@ -547,13 +607,37 @@ function PortVolumes({ data, columns }: { data: EconomyData['ports']; columns: s
 // Economic Calendar — admin-editable releases
 // ----------------------------------------------------------------------------
 
-function EconomicCalendar({ releases, reload }: { releases: Release[]; reload: () => void }) {
+function EconomicCalendar({ autoItems, manualReleases, reload, fetchedAt }: {
+  autoItems: AutoCalendarItem[];
+  manualReleases: Release[];
+  reload: () => void;
+  fetchedAt?: string;
+}) {
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState<Release | null>(null);
 
-  // Group: this week (Mon–Sun) vs prior week
+  // Map auto items to the same Release shape so we can re-use CalendarSection.
+  // Manual releases use negative IDs to distinguish; auto items use the positive id space starting at 1000000.
+  const autoAsReleases: Release[] = autoItems.map((a, i) => ({
+    id: 1_000_000 + i,
+    name: a.name,
+    release_date: a.release_date,
+    release_time: a.release_time,
+    previous_value: a.previous_value,
+    consensus: a.consensus,
+    actual_value: a.actual_value,
+    interpretation: null,
+    importance: a.importance,
+    url: a.url,
+  }));
+
+  // De-dupe: if a manual release matches an auto one by (name, release_date), prefer the manual entry.
+  const manualKeys = new Set(manualReleases.map(r => `${r.name.toLowerCase()}|${r.release_date}`));
+  const mergedAuto = autoAsReleases.filter(a => !manualKeys.has(`${a.name.toLowerCase()}|${a.release_date}`));
+  const allReleases = [...manualReleases, ...mergedAuto];
+
   const today = new Date();
-  const dow = today.getDay() || 7;  // Mon=1..Sun=7
+  const dow = today.getDay() || 7;
   const monday = new Date(today); monday.setDate(today.getDate() - (dow - 1)); monday.setHours(0,0,0,0);
   const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6); sunday.setHours(23,59,59,999);
   const lastMonday = new Date(monday); lastMonday.setDate(monday.getDate() - 7);
@@ -563,25 +647,33 @@ function EconomicCalendar({ releases, reload }: { releases: Release[]; reload: (
     const t = new Date(d + 'T00:00:00').getTime();
     return t >= start.getTime() && t <= end.getTime();
   };
-  const thisWeek = releases.filter(r => inRange(r.release_date, monday, sunday));
-  const lastWeek = releases.filter(r => inRange(r.release_date, lastMonday, lastSunday));
+  const thisWeek = allReleases.filter(r => inRange(r.release_date, monday, sunday)).sort((a, b) => a.release_date.localeCompare(b.release_date));
+  const lastWeek = allReleases.filter(r => inRange(r.release_date, lastMonday, lastSunday)).sort((a, b) => a.release_date.localeCompare(b.release_date));
 
   return (
     <div className="bg-white dark:bg-surface border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 dark:bg-surface-dark border-b border-gray-200 dark:border-gray-700">
-        <h2 className="text-[11px] uppercase tracking-[0.15em] font-semibold text-gray-700 dark:text-gray-200">
-          Economic Calendar
-        </h2>
+        <div className="flex items-center gap-2">
+          <h2 className="text-[11px] uppercase tracking-[0.15em] font-semibold text-gray-700 dark:text-gray-200">
+            Economic Calendar
+          </h2>
+          {fetchedAt && (
+            <span className="text-[9px] text-gray-400 dark:text-gray-500 font-mono">
+              Auto · {new Date(fetchedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+            </span>
+          )}
+        </div>
         <button onClick={() => { setEditing(null); setShowForm(true); }}
-          className="px-2.5 py-1 text-[11px] text-white bg-amber hover:bg-amber-dark rounded">
-          + Add Release
+          className="px-2.5 py-1 text-[11px] text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+          + Add Manual
         </button>
       </div>
 
       <CalendarSection title={`This Week — ${monday.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} to ${sunday.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`}
-        releases={thisWeek} onEdit={r => { setEditing(r); setShowForm(true); }} onReload={reload} empty="No releases scheduled this week. Add upcoming releases from the calendar." />
+        releases={thisWeek} onEdit={r => { if (r.id < 1_000_000) { setEditing(r); setShowForm(true); } }} onReload={reload}
+        empty="Loading releases from Trading Economics… or none scheduled this week." />
 
-      <CalendarSection title="Last Week" releases={lastWeek} onEdit={r => { setEditing(r); setShowForm(true); }} onReload={reload} muted />
+      <CalendarSection title="Last Week" releases={lastWeek} onEdit={r => { if (r.id < 1_000_000) { setEditing(r); setShowForm(true); } }} onReload={reload} muted />
 
       {showForm && (
         <ReleaseModal release={editing} onClose={() => { setShowForm(false); setEditing(null); }} onSaved={() => { setShowForm(false); setEditing(null); reload(); }} />
@@ -628,7 +720,9 @@ function CalendarSection({ title, releases, onEdit, onReload, muted, empty }: {
             </tr>
           </thead>
           <tbody>
-            {releases.map(r => (
+            {releases.map(r => {
+              const isAuto = r.id >= 1_000_000;
+              return (
               <tr key={r.id} className="border-b border-gray-100 dark:border-gray-800 last:border-0 group hover:bg-gray-50/60 dark:hover:bg-gray-800/30">
                 <td className="py-1.5 px-4 font-mono text-gray-700 dark:text-gray-300 whitespace-nowrap">
                   {new Date(r.release_date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
@@ -638,6 +732,7 @@ function CalendarSection({ title, releases, onEdit, onReload, muted, empty }: {
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-gray-900 dark:text-gray-100">{r.name}</span>
                     <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${importanceColor[r.importance] || importanceColor.medium}`}>{r.importance}</span>
+                    {isAuto && <span className="text-[9px] text-gray-400 dark:text-gray-500 font-mono">auto</span>}
                   </div>
                 </td>
                 <td className="py-1.5 px-4 text-right font-mono text-gray-700 dark:text-gray-300">{r.previous_value || '—'}</td>
@@ -645,19 +740,24 @@ function CalendarSection({ title, releases, onEdit, onReload, muted, empty }: {
                 <td className={`py-1.5 px-4 text-right font-mono ${r.actual_value ? 'text-gray-900 dark:text-gray-100 font-semibold' : 'text-gray-400 dark:text-gray-500'}`}>
                   {r.actual_value || '—'}
                 </td>
-                <td className="py-1.5 px-4 text-gray-600 dark:text-gray-300 text-[11px]">{r.interpretation || <span className="text-gray-400 italic">awaiting release</span>}</td>
+                <td className="py-1.5 px-4 text-gray-600 dark:text-gray-300 text-[11px]">{r.interpretation || <span className="text-gray-400 italic">{isAuto && r.actual_value ? '' : 'awaiting release'}</span>}</td>
                 <td className="py-1.5 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="flex gap-1 justify-end">
-                    <button onClick={() => onEdit(r)} className="p-1 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200" title="Edit">
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-                    </button>
-                    <button onClick={() => remove(r.id)} className="p-1 text-gray-400 hover:text-red-600" title="Delete">
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M11 7V4a2 2 0 114 0v3" /></svg>
-                    </button>
+                    {!isAuto && (
+                      <>
+                        <button onClick={() => onEdit(r)} className="p-1 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200" title="Edit">
+                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                        </button>
+                        <button onClick={() => remove(r.id)} className="p-1 text-gray-400 hover:text-red-600" title="Delete">
+                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M11 7V4a2 2 0 114 0v3" /></svg>
+                        </button>
+                      </>
+                    )}
                   </div>
                 </td>
               </tr>
-            ))}
+            );
+            })}
           </tbody>
         </table>
       )}
@@ -844,13 +944,30 @@ function LMICard({ data, editing, onChange }: {
 // Macro Research — themes from Howard Marks, Eye on the Market, Calc Risk, LMI
 // ----------------------------------------------------------------------------
 
-function ResearchCard({ data, editing, onChange }: {
-  data: EconomyData['research'];
+function ResearchCard({ manual, auto, editing, onChange }: {
+  manual: EconomyData['research'];
+  auto: AutoResearch | null;
   editing: boolean;
   onChange: (research: EconomyData['research']) => void;
 }) {
+  // Merge: for each source, auto provides title/published/url if not manually overridden.
+  // Themes prefer the manual value if present, otherwise auto.
+  const merge = (m: EconomyData['research'][0]): EconomyData['research'][0] => {
+    if (!auto) return m;
+    const a = auto.items.find(i => i.source === m.source);
+    if (!a) return m;
+    return {
+      source: m.source,
+      title: m.title || a.title,
+      published: m.published || a.published,
+      themes: m.themes || a.themes,
+      url: m.url || a.url,
+    };
+  };
+  const data = manual.map(merge);
+
   const update = (i: number, key: keyof EconomyData['research'][0], v: string) => {
-    const next = [...data];
+    const next = [...manual];
     next[i] = { ...next[i], [key]: v };
     onChange(next);
   };
@@ -858,9 +975,16 @@ function ResearchCard({ data, editing, onChange }: {
 
   return (
     <div className="bg-white dark:bg-surface border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-      <h2 className="text-[11px] uppercase tracking-[0.15em] font-semibold text-gray-700 dark:text-gray-200 px-4 py-2.5 bg-gray-50 dark:bg-surface-dark border-b border-gray-200 dark:border-gray-700">
-        Macro Read-In
-      </h2>
+      <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 dark:bg-surface-dark border-b border-gray-200 dark:border-gray-700">
+        <h2 className="text-[11px] uppercase tracking-[0.15em] font-semibold text-gray-700 dark:text-gray-200">
+          Macro Read-In
+        </h2>
+        {auto?.fetched_at && (
+          <span className="text-[9px] text-gray-400 dark:text-gray-500 font-mono">
+            Auto · {new Date(auto.fetched_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+          </span>
+        )}
+      </div>
       <div className="divide-y divide-gray-100 dark:divide-gray-800">
         {data.map((r, i) => (
           <div key={i} className="p-4">
