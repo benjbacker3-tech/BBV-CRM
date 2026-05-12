@@ -21,6 +21,9 @@ Output format:
 • If the content is genuinely irrelevant to industrial RE, return one bullet: "• Not directly relevant — see source."`;
 
 let _client: Anthropic | null = null;
+// Last error from a Claude call, captured so the route can surface it for
+// debugging without exposing every internal log to the UI by default.
+let _lastError: string | null = null;
 
 function getClient(): Anthropic | null {
   if (!process.env.ANTHROPIC_API_KEY) return null;
@@ -28,10 +31,21 @@ function getClient(): Anthropic | null {
   return _client;
 }
 
+export function getLastClaudeError(): string | null {
+  return _lastError;
+}
+
+export function isClaudeConfigured(): boolean {
+  return !!process.env.ANTHROPIC_API_KEY;
+}
+
 /** Summarize macro content into 2-3 IOS-relevant bullet themes. Returns null on failure. */
 export async function summarizeForIOS(content: string, source: string): Promise<string | null> {
   const client = getClient();
-  if (!client) return null;
+  if (!client) {
+    _lastError = 'ANTHROPIC_API_KEY not set';
+    return null;
+  }
 
   // Cap input to keep token costs predictable. ~8K chars ≈ 2K tokens — plenty
   // of room for a single article / press release while controlling cost.
@@ -66,10 +80,17 @@ export async function summarizeForIOS(content: string, source: string): Promise<
       .join('\n')
       .trim();
 
-    return text || null;
+    if (text) {
+      _lastError = null;
+      return text;
+    }
+    _lastError = `empty response (stop_reason=${msg.stop_reason})`;
+    return null;
   } catch (err) {
-    // Don't crash the route on an Anthropic API error — fall back to placeholder
-    console.error('[claude.summarizeForIOS]', source, err instanceof Error ? err.message : err);
+    const msg = err instanceof Error ? err.message : String(err);
+    _lastError = msg;
+    // Also log so it shows up in Vercel function logs
+    console.error('[claude.summarizeForIOS]', source, msg);
     return null;
   }
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { unstable_cache, revalidateTag } from 'next/cache';
-import { summarizeForIOS } from '@/lib/claude';
+import { summarizeForIOS, getLastClaudeError, isClaudeConfigured } from '@/lib/claude';
 
 // Aggregates macro research from 3 sources with weekly caching and AI summaries.
 //
@@ -274,7 +274,8 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     items,
     fetched_at: new Date().toISOString(),
-    ai_enabled: !!process.env.ANTHROPIC_API_KEY,
+    ai_enabled: isClaudeConfigured(),
+    ai_last_error: getLastClaudeError(),  // null when the most recent call succeeded
     cache: force ? 'busted' : 'weekly',
   });
 }
