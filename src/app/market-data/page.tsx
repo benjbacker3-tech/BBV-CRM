@@ -18,6 +18,21 @@ interface EconomyData {
   trading_partners: { country: string; import_value: string; pct: string; yoy: string }[];
   ports: { year: string; values: Record<string, number | null> }[];
   port_columns: string[];
+
+  // Logistics Managers' Index — 8 components + headline. Scale 0–100, 50 = neutral.
+  lmi: {
+    report_month: string;       // e.g. "April 2026"
+    components: { name: string; latest: number | null; prior: number | null }[];
+  };
+
+  // Macro research themes from outside sources
+  research: {
+    source: string;             // "Howard Marks", "Eye on the Market", "Calculated Risk", "LMI Report"
+    title: string;
+    published: string;          // ISO date or "Apr 2026"
+    themes: string;             // free-form bullets / paragraph
+    url: string;
+  }[];
 }
 
 interface MarketSnapshot {
@@ -120,6 +135,27 @@ const DEFAULT_DATA: EconomyData = {
     { year: '2024', values: { 'Los Angeles': 10.3, 'Long Beach': 9.1, 'NY / NJ': 8.7, 'Savannah': 5.1, 'Houston': 4.1, 'Seattle (NWSA)': 3.3, 'Baltimore': 0.7, 'South Florida': 2.2 } },
     { year: '2025', values: { 'Los Angeles': 10.0, 'Long Beach': 8.2, 'NY / NJ': 7.5, 'Savannah': 4.8, 'Houston': 4.0, 'Seattle (NWSA)': 3.4, 'Baltimore': 0.8, 'South Florida': 2.3 } },
   ],
+  lmi: {
+    report_month: 'April 2026',
+    // Scale 0–100; >50 = expanding, <50 = contracting
+    components: [
+      { name: 'LMI Headline',        latest: null, prior: null },
+      { name: 'Inventory Levels',    latest: null, prior: null },
+      { name: 'Inventory Costs',     latest: null, prior: null },
+      { name: 'Warehousing Capacity',latest: null, prior: null },
+      { name: 'Warehousing Util.',   latest: null, prior: null },
+      { name: 'Warehousing Prices',  latest: null, prior: null },
+      { name: 'Transportation Cap.', latest: null, prior: null },
+      { name: 'Transportation Util.',latest: null, prior: null },
+      { name: 'Transportation Prices', latest: null, prior: null },
+    ],
+  },
+  research: [
+    { source: 'LMI Report',           title: '',  published: '', themes: '', url: 'https://www.the-lmi.com/' },
+    { source: 'Howard Marks Memo',    title: '',  published: '', themes: '', url: 'https://www.oaktreecapital.com/insights/memos' },
+    { source: 'Eye on the Market',    title: '',  published: '', themes: '', url: 'https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/eye-on-the-market/' },
+    { source: 'Calculated Risk',      title: '',  published: '', themes: '', url: 'https://www.calculatedriskblog.com/' },
+  ],
 };
 
 const fmtPct = (n: number | null, d = 2) => n == null ? '—' : `${n.toFixed(d)}%`;
@@ -193,6 +229,13 @@ export default function EconomyUpdatePage() {
       </div>
 
       <PortVolumes data={data.ports} columns={data.port_columns} />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <LMICard data={data.lmi || DEFAULT_DATA.lmi} editing={editing}
+          onChange={(lmi) => setData({ ...data, lmi })} />
+        <ResearchCard data={data.research || DEFAULT_DATA.research} editing={editing}
+          onChange={(research) => setData({ ...data, research })} />
+      </div>
 
       <EconomicCalendar releases={releases} reload={loadAll} />
     </div>
@@ -709,6 +752,164 @@ function ReleaseModal({ release, onClose, onSaved }: { release: Release | null; 
             {release ? 'Save' : 'Add Release'}
           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ----------------------------------------------------------------------------
+// LMI — Logistics Managers' Index (monthly, 8 components + headline)
+// ----------------------------------------------------------------------------
+
+function LMICard({ data, editing, onChange }: {
+  data: EconomyData['lmi'];
+  editing: boolean;
+  onChange: (lmi: EconomyData['lmi']) => void;
+}) {
+  const updateMonth = (v: string) => onChange({ ...data, report_month: v });
+  const updateComponent = (i: number, field: 'latest' | 'prior', v: string) => {
+    const next = [...data.components];
+    next[i] = { ...next[i], [field]: v === '' ? null : parseFloat(v) };
+    onChange({ ...data, components: next });
+  };
+
+  const cellInput = "w-full text-right font-mono text-[11px] bg-transparent border-0 outline-none focus:ring-1 focus:ring-amber rounded px-1";
+  const fmt = (n: number | null) => n == null ? '—' : n.toFixed(1);
+  const chip = (n: number | null) => {
+    if (n == null) return 'text-gray-400';
+    if (n >= 60) return 'text-green-700 dark:text-green-400';
+    if (n >= 50) return 'text-gray-700 dark:text-gray-300';
+    return 'text-red-600 dark:text-red-400';
+  };
+
+  return (
+    <div className="bg-white dark:bg-surface border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 dark:bg-surface-dark border-b border-gray-200 dark:border-gray-700">
+        <h2 className="text-[11px] uppercase tracking-[0.15em] font-semibold text-gray-700 dark:text-gray-200">
+          Logistics Managers&apos; Index
+        </h2>
+        {editing ? (
+          <input
+            value={data.report_month}
+            onChange={e => updateMonth(e.target.value)}
+            className="text-[10px] font-mono text-right bg-transparent border-0 outline-none focus:ring-1 focus:ring-amber rounded px-1 w-28 text-gray-500 dark:text-gray-400"
+          />
+        ) : (
+          <span className="text-[10px] font-mono text-gray-500 dark:text-gray-400">{data.report_month || '—'}</span>
+        )}
+      </div>
+      <table className="w-full text-[11px]">
+        <thead>
+          <tr className="text-[9px] uppercase tracking-[0.12em] text-gray-400 dark:text-gray-500 border-b border-gray-200 dark:border-gray-700">
+            <th className="text-left py-1.5 px-4 font-semibold">Component</th>
+            <th className="text-right py-1.5 px-4 font-semibold">Latest</th>
+            <th className="text-right py-1.5 px-4 font-semibold">Prior</th>
+            <th className="text-right py-1.5 px-4 font-semibold">Δ</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.components.map((c, i) => {
+            const delta = (c.latest != null && c.prior != null) ? c.latest - c.prior : null;
+            return (
+              <tr key={c.name} className={`border-b border-gray-100 dark:border-gray-800 last:border-0 ${i === 0 ? 'bg-amber/5 dark:bg-amber/10 font-semibold' : ''}`}>
+                <td className="py-1.5 px-4 text-gray-700 dark:text-gray-200">{c.name}</td>
+                <td className={`py-1.5 px-4 text-right font-mono tabular-nums ${chip(c.latest)}`}>
+                  {editing
+                    ? <input type="number" step="0.1" value={c.latest ?? ''} onChange={e => updateComponent(i, 'latest', e.target.value)} className={cellInput} />
+                    : fmt(c.latest)}
+                </td>
+                <td className="py-1.5 px-4 text-right font-mono tabular-nums text-gray-500 dark:text-gray-400">
+                  {editing
+                    ? <input type="number" step="0.1" value={c.prior ?? ''} onChange={e => updateComponent(i, 'prior', e.target.value)} className={cellInput} />
+                    : fmt(c.prior)}
+                </td>
+                <td className={`py-1.5 px-4 text-right font-mono tabular-nums ${
+                  delta == null ? 'text-gray-400' : delta > 0 ? 'text-green-600' : delta < 0 ? 'text-red-600' : 'text-gray-500'
+                }`}>
+                  {delta == null ? '—' : `${delta >= 0 ? '+' : ''}${delta.toFixed(1)}`}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <p className="px-4 py-2 text-[9px] text-gray-400 dark:text-gray-500 border-t border-gray-100 dark:border-gray-800">
+        Scale 0–100; &gt;50 = expanding, &lt;50 = contracting. Source: <a href="https://www.the-lmi.com/" target="_blank" rel="noreferrer" className="text-amber hover:text-amber-dark">the-lmi.com</a>
+      </p>
+    </div>
+  );
+}
+
+// ----------------------------------------------------------------------------
+// Macro Research — themes from Howard Marks, Eye on the Market, Calc Risk, LMI
+// ----------------------------------------------------------------------------
+
+function ResearchCard({ data, editing, onChange }: {
+  data: EconomyData['research'];
+  editing: boolean;
+  onChange: (research: EconomyData['research']) => void;
+}) {
+  const update = (i: number, key: keyof EconomyData['research'][0], v: string) => {
+    const next = [...data];
+    next[i] = { ...next[i], [key]: v };
+    onChange(next);
+  };
+  const inputCls = "w-full bg-transparent border-0 outline-none text-[11px] focus:ring-1 focus:ring-amber rounded px-1 py-0.5";
+
+  return (
+    <div className="bg-white dark:bg-surface border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+      <h2 className="text-[11px] uppercase tracking-[0.15em] font-semibold text-gray-700 dark:text-gray-200 px-4 py-2.5 bg-gray-50 dark:bg-surface-dark border-b border-gray-200 dark:border-gray-700">
+        Macro Read-In
+      </h2>
+      <div className="divide-y divide-gray-100 dark:divide-gray-800">
+        {data.map((r, i) => (
+          <div key={i} className="p-4">
+            <div className="flex items-baseline justify-between gap-2 mb-1">
+              <div className="flex items-baseline gap-2 min-w-0 flex-1">
+                <span className="text-[10px] uppercase tracking-[0.12em] font-semibold text-amber dark:text-amber-light shrink-0">
+                  {r.source}
+                </span>
+                {editing ? (
+                  <input value={r.title} onChange={e => update(i, 'title', e.target.value)} className={inputCls + ' text-gray-900 dark:text-gray-100 font-medium flex-1'} placeholder="Latest title…" />
+                ) : r.title ? (
+                  <span className="text-xs text-gray-900 dark:text-gray-100 font-medium truncate">{r.title}</span>
+                ) : (
+                  <span className="text-xs italic text-gray-400 dark:text-gray-500">No title yet</span>
+                )}
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                {editing ? (
+                  <input value={r.published} onChange={e => update(i, 'published', e.target.value)} className={inputCls + ' text-right font-mono text-gray-500 dark:text-gray-400 w-24'} placeholder="Apr 2026" />
+                ) : (
+                  <span className="text-[10px] font-mono text-gray-500 dark:text-gray-400">{r.published || ''}</span>
+                )}
+                <a href={r.url || '#'} target="_blank" rel="noreferrer"
+                  className="text-gray-400 hover:text-amber dark:text-gray-500 dark:hover:text-amber-light"
+                  title={r.url}
+                >
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            {editing ? (
+              <textarea
+                value={r.themes}
+                onChange={e => update(i, 'themes', e.target.value)}
+                rows={3}
+                placeholder="Key themes / takeaways…"
+                className="w-full text-[11px] text-gray-700 dark:text-gray-300 bg-transparent border border-gray-200 dark:border-gray-700 rounded px-2 py-1 leading-relaxed focus:outline-none focus:ring-1 focus:ring-amber mt-1"
+              />
+            ) : r.themes ? (
+              <p className="text-[11px] text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">{r.themes}</p>
+            ) : (
+              <p className="text-[11px] italic text-gray-400 dark:text-gray-500">
+                Click Edit at the top to add themes from the latest piece.
+              </p>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
