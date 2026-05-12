@@ -1,26 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { unstable_cache, revalidateTag } from 'next/cache';
 
-// Fetches the US economic calendar by scraping Forex Factory's weekly view.
-// The page embeds the full week's data as JSON inside a JS assignment
-// (`window.calendarComponentStates[1] = { days: [...] }`). We extract that,
-// filter to US events, and normalize.
+// Fetches the US economic calendar from the FairEconomy XML feed that powers
+// Forex Factory's calendar. Direct scraping of forexfactory.com fails from
+// server-side (Cloudflare blocks plain UAs with a JS challenge), but their
+// CDN-hosted XML feed at nfs.faireconomy.media is open and structured.
 //
-// Why FF: Trading Economics killed their public guest endpoint and the other
-// well-known free calendars (MarketWatch, Investing) gate or block crawlers.
-// FF returns 200 with a plain UA and the data is structurally stable.
+// Feed shape (1 file = this week):
+//   <weeklyevents>
+//     <event>
+//       <title>...</title>
+//       <country>USD</country>
+//       <date>05-11-2026</date>       <!-- MM-DD-YYYY -->
+//       <time>8:30am</time>           <!-- "All Day" / "Tentative" possible -->
+//       <impact>High</impact>         <!-- Low | Medium | High | Holiday -->
+//       <forecast>0.3%</forecast>
+//       <previous>0.2%</previous>
+//       <actual>0.4%</actual>         <!-- only after release -->
+//       <url>https://...</url>
+//     </event>
+//     ...
 //
 // Caching: weekly via unstable_cache + tag. ?force=1 calls revalidateTag.
+// The feed is rate-limited per IP — keeping the weekly cache prevents us
+// from ever exceeding their threshold under normal use.
 
 export const dynamic = 'force-dynamic';
 const WEEK_SECONDS = 7 * 24 * 60 * 60;
 const TAG = 'macro-calendar';
+const FEED_URL = 'https://nfs.faireconomy.media/ff_calendar_thisweek.xml';
 
 export interface CalendarItem {
   id: string;
   name: string;
   release_date: string;             // ISO date (YYYY-MM-DD)
-  release_time: string | null;      // human ("8:30 AM ET")
+  release_time: string | null;
   previous_value: string | null;
   consensus: string | null;
   actual_value: string | null;
@@ -28,153 +42,94 @@ export interface CalendarItem {
   url: string | null;
 }
 
-interface FFEvent {
-  id?: number;
-  name?: string;
-  country?: string;
-  impactName?: string;       // "low" | "medium" | "high" | "holiday" | "non-economic"
-  impactTitle?: string;
-  timeLabel?: string;        // e.g. "8:30am", "All Day", "Tentative"
-  dateline?: number;         // unix seconds
-  date?: string;             // "May 10, 2026"
-  actual?: string;
-  previous?: string;
-  forecast?: string;
-  url?: string;
-  prefixedName?: string;
-}
-
-interface FFDay {
-  date?: string;
-  dateline?: number;
-  events?: FFEvent[];
-}
-
-function nullish(v: string | undefined | null): string | null {
-  if (v == null) return null;
-  const t = String(v).trim();
+function cdataOr(s: string | undefined | null): string | null {
+  if (s == null) return null;
+  const t = s.replace(/^\s*<!\[CDATA\[\s*/, '').replace(/\s*\]\]>\s*$/, '').trim();
   return t ? t : null;
 }
 
-function normalizeImpact(s: string | undefined): 'low' | 'medium' | 'high' {
+function fieldOf(block: string, name: string): string | null {
+  const m = block.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`));
+  return m ? cdataOr(m[1]) : null;
+}
+
+function importanceFromFF(s: string | null): 'low' | 'medium' | 'high' {
   const v = (s || '').toLowerCase();
   if (v === 'high') return 'high';
   if (v === 'low') return 'low';
   return 'medium';
 }
 
-function fmtTimeFromLabel(timeLabel: string | undefined): string | null {
-  if (!timeLabel) return null;
-  const lbl = timeLabel.trim();
-  if (!lbl || /^all\s*day$/i.test(lbl) || /^tentative$/i.test(lbl)) return lbl;
-  // FF labels look like "8:30am" / "10:00pm" — append ET (FF defaults to NY time)
-  return `${lbl.toUpperCase()} ET`;
+// "05-11-2026" → "2026-05-11". Returns "" on bad input.
+function ymdFromMDY(mdy: string | null): string {
+  if (!mdy) return '';
+  const m = mdy.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  return m ? `${m[3]}-${m[1]}-${m[2]}` : '';
 }
 
-function dateFromDateline(sec: number | undefined): string {
-  if (!sec) return '';
-  try { return new Date(sec * 1000).toISOString().split('T')[0]; }
-  catch { return ''; }
-}
-
-// Pull "window.calendarComponentStates[N] = { ... };" block(s) and parse the
-// `days: [...]` array out. We can't JSON.parse the whole object literal (keys
-// are bare identifiers), but `days: [...]` is valid JSON because all its
-// content is double-quoted.
-function extractFFDays(html: string): FFDay[] {
-  const out: FFDay[] = [];
-  const stateRe = /window\.calendarComponentStates\[\d+\]\s*=\s*\{([\s\S]*?)\n\s*\};/g;
-  let m: RegExpExecArray | null;
-  while ((m = stateRe.exec(html)) !== null) {
-    const body = m[1];
-    // Find the `days:` array via brace matching from its opening [
-    const daysIdx = body.indexOf('days:');
-    if (daysIdx < 0) continue;
-    const arrStart = body.indexOf('[', daysIdx);
-    if (arrStart < 0) continue;
-    // Match brackets respecting string literals
-    let depth = 0;
-    let i = arrStart;
-    let inStr = false;
-    let strCh = '';
-    let esc = false;
-    for (; i < body.length; i++) {
-      const ch = body[i];
-      if (inStr) {
-        if (esc) { esc = false; continue; }
-        if (ch === '\\') { esc = true; continue; }
-        if (ch === strCh) inStr = false;
-        continue;
-      }
-      if (ch === '"' || ch === "'") { inStr = true; strCh = ch; continue; }
-      if (ch === '[') depth++;
-      else if (ch === ']') { depth--; if (depth === 0) { i++; break; } }
-    }
-    const arrJson = body.slice(arrStart, i);
-    try {
-      const parsed = JSON.parse(arrJson) as FFDay[];
-      if (Array.isArray(parsed)) out.push(...parsed);
-    } catch { /* skip malformed block */ }
-  }
-  return out;
+function fmtTime(timeRaw: string | null): string | null {
+  if (!timeRaw) return null;
+  const t = timeRaw.trim();
+  if (!t || /^all\s*day$/i.test(t) || /^tentative$/i.test(t)) return t || null;
+  // "8:30am" → "8:30 AM ET"
+  const m = t.match(/^(\d{1,2}):(\d{2})\s*(am|pm)$/i);
+  if (!m) return `${t} ET`;
+  return `${m[1]}:${m[2]} ${m[3].toUpperCase()} ET`;
 }
 
 async function fetchCalendar(): Promise<{ items: CalendarItem[]; error?: string; fetched_at: string }> {
-  // FF supports week=this / week=next / week=last. Fetch this + next to give
-  // the user a forward-looking view alongside what just happened.
-  const urls = [
-    'https://www.forexfactory.com/calendar?week=this',
-    'https://www.forexfactory.com/calendar?week=next',
-  ];
-
-  const headers = {
-    'User-Agent': 'Mozilla/5.0 (compatible; MCI-CRM/1.0)',
-    'Accept': 'text/html,application/xhtml+xml',
-    'Accept-Language': 'en-US,en;q=0.9',
-  };
-
   try {
-    const responses = await Promise.all(urls.map(u =>
-      fetch(u, { headers, next: { revalidate: WEEK_SECONDS, tags: [TAG] } })
-    ));
+    const res = await fetch(FEED_URL, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; MCI-CRM/1.0)',
+        'Accept': 'application/xml,text/xml,*/*',
+      },
+      next: { revalidate: WEEK_SECONDS, tags: [TAG] },
+    });
 
-    const days: FFDay[] = [];
-    for (const r of responses) {
-      if (!r.ok) continue;
-      const html = await r.text();
-      days.push(...extractFFDays(html));
+    if (!res.ok) {
+      return { items: [], error: `feed ${res.status}`, fetched_at: new Date().toISOString() };
+    }
+    const xml = await res.text();
+    // Rate-limited responses come back as HTML with a "Rate Limited" title.
+    if (!xml.includes('<event>') && /Rate Limited/i.test(xml)) {
+      return { items: [], error: 'feed rate-limited', fetched_at: new Date().toISOString() };
     }
 
-    if (days.length === 0) {
-      return { items: [], error: 'no data extracted from FF', fetched_at: new Date().toISOString() };
-    }
-
-    const seen = new Set<string>();
     const items: CalendarItem[] = [];
-    for (const day of days) {
-      const dayDate = dateFromDateline(day.dateline);
-      for (const e of (day.events || [])) {
-        if (e.country !== 'US') continue;
-        // FF includes "holiday" or "non-economic" impacts that aren't releases
-        const imp = (e.impactName || '').toLowerCase();
-        if (imp === 'holiday' || imp === 'non-economic') continue;
+    const seen = new Set<string>();
+    const eventRe = /<event>([\s\S]*?)<\/event>/g;
+    let m: RegExpExecArray | null;
+    let idx = 0;
+    while ((m = eventRe.exec(xml)) !== null) {
+      const blk = m[1];
+      const country = fieldOf(blk, 'country');
+      if (country !== 'USD') continue;
 
-        const id = e.id ? `ff-${e.id}` : `ff-${dayDate}-${e.name}`;
-        if (seen.has(id)) continue;
-        seen.add(id);
+      const impactRaw = fieldOf(blk, 'impact');
+      // Skip non-economic items the feed marks as Holiday.
+      if (impactRaw && /^holiday$/i.test(impactRaw)) continue;
 
-        items.push({
-          id,
-          name: e.name || 'Unknown release',
-          release_date: dateFromDateline(e.dateline) || dayDate,
-          release_time: fmtTimeFromLabel(e.timeLabel),
-          previous_value: nullish(e.previous),
-          consensus: nullish(e.forecast),
-          actual_value: nullish(e.actual),
-          importance: normalizeImpact(e.impactName),
-          url: e.url ? `https://www.forexfactory.com${e.url}` : null,
-        });
-      }
+      const release_date = ymdFromMDY(fieldOf(blk, 'date'));
+      if (!release_date) continue;
+
+      const name = fieldOf(blk, 'title') || 'Unknown release';
+      const url = fieldOf(blk, 'url');
+      const key = `${release_date}|${name}|${fieldOf(blk, 'time') || ''}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+
+      items.push({
+        id: `ff-${idx++}`,
+        name,
+        release_date,
+        release_time: fmtTime(fieldOf(blk, 'time')),
+        previous_value: fieldOf(blk, 'previous'),
+        consensus: fieldOf(blk, 'forecast'),
+        actual_value: fieldOf(blk, 'actual'),
+        importance: importanceFromFF(impactRaw),
+        url: url || null,
+      });
     }
 
     items.sort((a, b) => a.release_date.localeCompare(b.release_date));
@@ -188,7 +143,7 @@ async function fetchCalendar(): Promise<{ items: CalendarItem[]; error?: string;
   }
 }
 
-const cachedCalendar = unstable_cache(fetchCalendar, ['mci-calendar', 'us-ff'], {
+const cachedCalendar = unstable_cache(fetchCalendar, ['mci-calendar', 'us-fairecon'], {
   revalidate: WEEK_SECONDS,
   tags: [TAG],
 });
