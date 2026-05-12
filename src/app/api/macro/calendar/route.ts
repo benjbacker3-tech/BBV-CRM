@@ -1,24 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { unstable_cache, revalidateTag } from 'next/cache';
 
-// Fetches the US economic calendar from Trading Economics guest API
-// (free, no key, rate-limited). Returns this week + last week.
+// Fetches the US economic calendar by scraping Forex Factory's weekly view.
+// The page embeds the full week's data as JSON inside a JS assignment
+// (`window.calendarComponentStates[1] = { days: [...] }`). We extract that,
+// filter to US events, and normalize.
 //
-// Docs: https://docs.tradingeconomics.com/economic_calendar/
-// Guest credentials: c=guest:guest
+// Why FF: Trading Economics killed their public guest endpoint and the other
+// well-known free calendars (MarketWatch, Investing) gate or block crawlers.
+// FF returns 200 with a plain UA and the data is structurally stable.
 //
-// Caching: results are cached for a week via unstable_cache and the upstream
-// fetch is also tagged with the same TTL. Pass ?force=1 to bust the cache
-// (calls revalidateTag) so the user's refresh button can pull fresh data.
+// Caching: weekly via unstable_cache + tag. ?force=1 calls revalidateTag.
 
 export const dynamic = 'force-dynamic';
 const WEEK_SECONDS = 7 * 24 * 60 * 60;
 const TAG = 'macro-calendar';
 
 export interface CalendarItem {
-  id: string;                       // synthetic key
+  id: string;
   name: string;
-  release_date: string;             // ISO date
+  release_date: string;             // ISO date (YYYY-MM-DD)
   release_time: string | null;      // human ("8:30 AM ET")
   previous_value: string | null;
   consensus: string | null;
@@ -27,81 +28,156 @@ export interface CalendarItem {
   url: string | null;
 }
 
-interface TEEvent {
-  CalendarId?: string;
-  Date?: string;        // ISO datetime
-  Country?: string;
-  Category?: string;
-  Event?: string;
-  Reference?: string;
-  Source?: string;
-  Actual?: string | number | null;
-  Previous?: string | number | null;
-  Forecast?: string | number | null;
-  TEForecast?: string | number | null;
-  Importance?: number;  // 1 (low) – 3 (high)
+interface FFEvent {
+  id?: number;
+  name?: string;
+  country?: string;
+  impactName?: string;       // "low" | "medium" | "high" | "holiday" | "non-economic"
+  impactTitle?: string;
+  timeLabel?: string;        // e.g. "8:30am", "All Day", "Tentative"
+  dateline?: number;         // unix seconds
+  date?: string;             // "May 10, 2026"
+  actual?: string;
+  previous?: string;
+  forecast?: string;
+  url?: string;
+  prefixedName?: string;
 }
 
-function importanceFromTE(n: number | undefined): 'low' | 'medium' | 'high' {
-  if (n == null) return 'medium';
-  if (n >= 3) return 'high';
-  if (n <= 1) return 'low';
+interface FFDay {
+  date?: string;
+  dateline?: number;
+  events?: FFEvent[];
+}
+
+function nullish(v: string | undefined | null): string | null {
+  if (v == null) return null;
+  const t = String(v).trim();
+  return t ? t : null;
+}
+
+function normalizeImpact(s: string | undefined): 'low' | 'medium' | 'high' {
+  const v = (s || '').toLowerCase();
+  if (v === 'high') return 'high';
+  if (v === 'low') return 'low';
   return 'medium';
 }
 
-function fmtVal(v: string | number | null | undefined): string | null {
-  if (v == null || v === '') return null;
-  return String(v);
+function fmtTimeFromLabel(timeLabel: string | undefined): string | null {
+  if (!timeLabel) return null;
+  const lbl = timeLabel.trim();
+  if (!lbl || /^all\s*day$/i.test(lbl) || /^tentative$/i.test(lbl)) return lbl;
+  // FF labels look like "8:30am" / "10:00pm" — append ET (FF defaults to NY time)
+  return `${lbl.toUpperCase()} ET`;
 }
 
-function fmtTime(iso: string): string {
-  try {
-    const d = new Date(iso);
-    return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) + ' ET';
-  } catch {
-    return '';
+function dateFromDateline(sec: number | undefined): string {
+  if (!sec) return '';
+  try { return new Date(sec * 1000).toISOString().split('T')[0]; }
+  catch { return ''; }
+}
+
+// Pull "window.calendarComponentStates[N] = { ... };" block(s) and parse the
+// `days: [...]` array out. We can't JSON.parse the whole object literal (keys
+// are bare identifiers), but `days: [...]` is valid JSON because all its
+// content is double-quoted.
+function extractFFDays(html: string): FFDay[] {
+  const out: FFDay[] = [];
+  const stateRe = /window\.calendarComponentStates\[\d+\]\s*=\s*\{([\s\S]*?)\n\s*\};/g;
+  let m: RegExpExecArray | null;
+  while ((m = stateRe.exec(html)) !== null) {
+    const body = m[1];
+    // Find the `days:` array via brace matching from its opening [
+    const daysIdx = body.indexOf('days:');
+    if (daysIdx < 0) continue;
+    const arrStart = body.indexOf('[', daysIdx);
+    if (arrStart < 0) continue;
+    // Match brackets respecting string literals
+    let depth = 0;
+    let i = arrStart;
+    let inStr = false;
+    let strCh = '';
+    let esc = false;
+    for (; i < body.length; i++) {
+      const ch = body[i];
+      if (inStr) {
+        if (esc) { esc = false; continue; }
+        if (ch === '\\') { esc = true; continue; }
+        if (ch === strCh) inStr = false;
+        continue;
+      }
+      if (ch === '"' || ch === "'") { inStr = true; strCh = ch; continue; }
+      if (ch === '[') depth++;
+      else if (ch === ']') { depth--; if (depth === 0) { i++; break; } }
+    }
+    const arrJson = body.slice(arrStart, i);
+    try {
+      const parsed = JSON.parse(arrJson) as FFDay[];
+      if (Array.isArray(parsed)) out.push(...parsed);
+    } catch { /* skip malformed block */ }
   }
+  return out;
 }
 
 async function fetchCalendar(): Promise<{ items: CalendarItem[]; error?: string; fetched_at: string }> {
-  // Pull a window spanning previous Monday through next Sunday
-  const today = new Date();
-  const dow = today.getDay() || 7;
-  const monday = new Date(today); monday.setDate(today.getDate() - (dow - 1)); monday.setHours(0, 0, 0, 0);
-  const lastMonday = new Date(monday); lastMonday.setDate(monday.getDate() - 7);
-  const nextSunday = new Date(monday); nextSunday.setDate(monday.getDate() + 6); nextSunday.setHours(23, 59, 59, 999);
+  // FF supports week=this / week=next / week=last. Fetch this + next to give
+  // the user a forward-looking view alongside what just happened.
+  const urls = [
+    'https://www.forexfactory.com/calendar?week=this',
+    'https://www.forexfactory.com/calendar?week=next',
+  ];
 
-  const d1 = lastMonday.toISOString().split('T')[0];
-  const d2 = nextSunday.toISOString().split('T')[0];
-
-  const url = `https://api.tradingeconomics.com/calendar/country/united%20states/${d1}/${d2}?c=guest:guest&format=json`;
+  const headers = {
+    'User-Agent': 'Mozilla/5.0 (compatible; MCI-CRM/1.0)',
+    'Accept': 'text/html,application/xhtml+xml',
+    'Accept-Language': 'en-US,en;q=0.9',
+  };
 
   try {
-    const res = await fetch(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MCI-CRM/1.0)' },
-      next: { revalidate: WEEK_SECONDS, tags: [TAG] },
-    });
-    if (!res.ok) {
-      return { items: [], error: `TE API ${res.status}`, fetched_at: new Date().toISOString() };
+    const responses = await Promise.all(urls.map(u =>
+      fetch(u, { headers, next: { revalidate: WEEK_SECONDS, tags: [TAG] } })
+    ));
+
+    const days: FFDay[] = [];
+    for (const r of responses) {
+      if (!r.ok) continue;
+      const html = await r.text();
+      days.push(...extractFFDays(html));
     }
-    const raw = await res.json() as unknown;
-    const events: TEEvent[] = Array.isArray(raw) ? raw as TEEvent[] : [];
 
-    const items: CalendarItem[] = events
-      .filter(e => !!e.Date && !!e.Event)
-      .map((e, i) => ({
-        id: e.CalendarId || `te-${i}-${e.Date}`,
-        name: e.Reference ? `${e.Event} (${e.Reference})` : e.Event!,
-        release_date: e.Date!.split('T')[0],
-        release_time: fmtTime(e.Date!),
-        previous_value: fmtVal(e.Previous),
-        consensus: fmtVal(e.Forecast ?? e.TEForecast),
-        actual_value: fmtVal(e.Actual),
-        importance: importanceFromTE(e.Importance),
-        url: e.Source ? `https://tradingeconomics.com/united-states/calendar` : null,
-      }))
-      .sort((a, b) => a.release_date.localeCompare(b.release_date));
+    if (days.length === 0) {
+      return { items: [], error: 'no data extracted from FF', fetched_at: new Date().toISOString() };
+    }
 
+    const seen = new Set<string>();
+    const items: CalendarItem[] = [];
+    for (const day of days) {
+      const dayDate = dateFromDateline(day.dateline);
+      for (const e of (day.events || [])) {
+        if (e.country !== 'US') continue;
+        // FF includes "holiday" or "non-economic" impacts that aren't releases
+        const imp = (e.impactName || '').toLowerCase();
+        if (imp === 'holiday' || imp === 'non-economic') continue;
+
+        const id = e.id ? `ff-${e.id}` : `ff-${dayDate}-${e.name}`;
+        if (seen.has(id)) continue;
+        seen.add(id);
+
+        items.push({
+          id,
+          name: e.name || 'Unknown release',
+          release_date: dateFromDateline(e.dateline) || dayDate,
+          release_time: fmtTimeFromLabel(e.timeLabel),
+          previous_value: nullish(e.previous),
+          consensus: nullish(e.forecast),
+          actual_value: nullish(e.actual),
+          importance: normalizeImpact(e.impactName),
+          url: e.url ? `https://www.forexfactory.com${e.url}` : null,
+        });
+      }
+    }
+
+    items.sort((a, b) => a.release_date.localeCompare(b.release_date));
     return { items, fetched_at: new Date().toISOString() };
   } catch (err) {
     return {
@@ -112,7 +188,7 @@ async function fetchCalendar(): Promise<{ items: CalendarItem[]; error?: string;
   }
 }
 
-const cachedCalendar = unstable_cache(fetchCalendar, ['mci-calendar', 'us'], {
+const cachedCalendar = unstable_cache(fetchCalendar, ['mci-calendar', 'us-ff'], {
   revalidate: WEEK_SECONDS,
   tags: [TAG],
 });

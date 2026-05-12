@@ -47,6 +47,8 @@ function cdataOr(s: string): string {
 }
 
 // ─── LMI (scrape press release page) ─────────────────────────────────────────
+const MONTHS = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+
 async function fetchLMI(): Promise<ResearchItem | null> {
   try {
     const res = await fetch('https://www.the-lmi.com/', {
@@ -56,15 +58,40 @@ async function fetchLMI(): Promise<ResearchItem | null> {
     if (!res.ok) return null;
     const html = await res.text();
 
-    const titleMatch = html.match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+(20\d{2})[^<>]{0,80}Logistics Manager[^<>]{0,160}/i);
-    const title = titleMatch ? clean(titleMatch[0]).slice(0, 200) : '';
-    const published = titleMatch ? `${titleMatch[1]} ${titleMatch[2]}` : '';
+    // The homepage lists every monthly report ever published. The regex used
+    // to grab the first match — which was always the oldest. Instead, find
+    // ALL "Month YYYY Logistics Manager..." titles and pick the most recent
+    // by (year, month).
+    const titleRe = /(January|February|March|April|May|June|July|August|September|October|November|December)\s+(20\d{2})[^"<>]{0,80}Logistics Manager[^"<>]{0,160}/gi;
+    let best: { ord: number; raw: string; month: string; year: string } | null = null;
+    let m: RegExpExecArray | null;
+    while ((m = titleRe.exec(html)) !== null) {
+      const month = m[1];
+      const year = m[2];
+      const mi = MONTHS.indexOf(month.toLowerCase());
+      if (mi < 0) continue;
+      const ord = Number(year) * 12 + mi;
+      if (!best || ord > best.ord) {
+        best = { ord, raw: m[0], month, year };
+      }
+    }
 
-    // For Claude context: extract the main content block (strip nav/footer/scripts)
+    const title = best ? clean(best.raw).slice(0, 200) : '';
+    const published = best ? `${best.month} ${best.year}` : '';
+
+    // For Claude context: extract the main content block (strip nav/footer/scripts).
+    // We focus the snippet around the latest-report match so Claude actually sees
+    // the current commentary, not the historical archive list.
     const cleanedHtml = html
       .replace(/<script[\s\S]*?<\/script>/gi, '')
       .replace(/<style[\s\S]*?<\/style>/gi, '');
-    const body = clean(cleanedHtml).slice(0, 6000);
+    let body = clean(cleanedHtml);
+    if (best) {
+      const idx = body.toLowerCase().indexOf(`${best.month.toLowerCase()} ${best.year}`);
+      if (idx > 0) body = body.slice(Math.max(0, idx - 500), idx + 6000);
+    } else {
+      body = body.slice(0, 6000);
+    }
     const themes = body ? await summarizeForIOS(body, 'LMI Report') : null;
 
     return {
