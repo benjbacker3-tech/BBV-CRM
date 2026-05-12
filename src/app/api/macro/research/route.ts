@@ -51,55 +51,102 @@ const MONTHS = ['january','february','march','april','may','june','july','august
 
 async function fetchLMI(): Promise<ResearchItem | null> {
   try {
-    const res = await fetch('https://www.the-lmi.com/', {
+    // Step 1: fetch the homepage and find the most-recent report. The page
+    // embeds a JSON-ish nav list of every report: {"title":"...","url":"..."}
+    // We match all "Month YYYY Logistics Manager..." entries with their
+    // accompanying url and pick the highest (year, month).
+    const homeRes = await fetch('https://www.the-lmi.com/', {
       headers: UA,
       next: { revalidate: WEEK_SECONDS, tags: [TAG] },
     });
-    if (!res.ok) return null;
-    const html = await res.text();
+    if (!homeRes.ok) return null;
+    const homeHtml = await homeRes.text();
 
-    // The homepage lists every monthly report ever published. The regex used
-    // to grab the first match — which was always the oldest. Instead, find
-    // ALL "Month YYYY Logistics Manager..." titles and pick the most recent
-    // by (year, month).
-    const titleRe = /(January|February|March|April|May|June|July|August|September|October|November|December)\s+(20\d{2})[^"<>]{0,80}Logistics Manager[^"<>]{0,160}/gi;
-    let best: { ord: number; raw: string; month: string; year: string } | null = null;
+    const entryRe = /"title":"((January|February|March|April|May|June|July|August|September|October|November|December)\s+(20\d{2})[^"]*Logistics Manager[^"]*)","url":"([^"]+\.html)"/gi;
+    let best: { ord: number; title: string; month: string; year: string; href: string } | null = null;
     let m: RegExpExecArray | null;
-    while ((m = titleRe.exec(html)) !== null) {
-      const month = m[1];
-      const year = m[2];
+    while ((m = entryRe.exec(homeHtml)) !== null) {
+      const month = m[2];
+      const year = m[3];
       const mi = MONTHS.indexOf(month.toLowerCase());
       if (mi < 0) continue;
       const ord = Number(year) * 12 + mi;
       if (!best || ord > best.ord) {
-        best = { ord, raw: m[0], month, year };
+        best = { ord, title: m[1], month, year, href: m[4] };
       }
     }
 
-    const title = best ? clean(best.raw).slice(0, 200) : '';
-    const published = best ? `${best.month} ${best.year}` : '';
-
-    // For Claude context: extract the main content block (strip nav/footer/scripts).
-    // We focus the snippet around the latest-report match so Claude actually sees
-    // the current commentary, not the historical archive list.
-    const cleanedHtml = html
-      .replace(/<script[\s\S]*?<\/script>/gi, '')
-      .replace(/<style[\s\S]*?<\/style>/gi, '');
-    let body = clean(cleanedHtml);
-    if (best) {
-      const idx = body.toLowerCase().indexOf(`${best.month.toLowerCase()} ${best.year}`);
-      if (idx > 0) body = body.slice(Math.max(0, idx - 500), idx + 6000);
-    } else {
-      body = body.slice(0, 6000);
+    // Fallback: if the JSON-ish nav isn't found, scan freeform titles on the
+    // homepage and link to the homepage itself.
+    if (!best) {
+      const titleRe = /(January|February|March|April|May|June|July|August|September|October|November|December)\s+(20\d{2})[^"<>]{0,80}Logistics Manager[^"<>]{0,160}/gi;
+      let m2: RegExpExecArray | null;
+      while ((m2 = titleRe.exec(homeHtml)) !== null) {
+        const month = m2[1];
+        const year = m2[2];
+        const mi = MONTHS.indexOf(month.toLowerCase());
+        if (mi < 0) continue;
+        const ord = Number(year) * 12 + mi;
+        if (!best || ord > best.ord) {
+          best = { ord, title: m2[0], month, year, href: '' };
+        }
+      }
     }
-    const themes = body ? await summarizeForIOS(body, 'LMI Report') : null;
+
+    const reportUrl = best?.href
+      ? (best.href.startsWith('http') ? best.href : `https://www.the-lmi.com/${best.href.replace(/^\//, '')}`)
+      : 'https://www.the-lmi.com/';
+
+    // Step 2: fetch the actual report page so Claude can summarize its
+    // commentary instead of the homepage archive list. The report page is
+    // the same Weebly template so it includes the full archive nav in the
+    // header AND footer — slice out the middle to isolate body content.
+    let themes: string | null = null;
+    if (best?.href) {
+      try {
+        const reportRes = await fetch(reportUrl, { headers: UA, next: { revalidate: WEEK_SECONDS, tags: [TAG] } });
+        if (reportRes.ok) {
+          const reportHtml = await reportRes.text();
+          const stripped = reportHtml
+            .replace(/<script[\s\S]*?<\/script>/gi, '')
+            .replace(/<style[\s\S]*?<\/style>/gi, '');
+          let text = clean(stripped);
+          // The Weebly nav menu lists every prior report. Drop the header nav
+          // by finding the first paragraph-style content after position 2500
+          // (everything before tends to be nav links). Trim the trailing nav
+          // by lopping the last 4000 chars where the footer nav lives.
+          if (text.length > 8000) {
+            text = text.slice(2500, Math.max(2500, text.length - 4000));
+          }
+          if (text.length > 200) {
+            themes = await summarizeForIOS(text, 'LMI Report');
+          }
+        }
+      } catch { /* fall through to homepage-based summary */ }
+    }
+
+    // Last-ditch: if the report fetch failed, summarize what we have on the
+    // homepage near the latest-report mention.
+    if (!themes) {
+      const stripped = homeHtml
+        .replace(/<script[\s\S]*?<\/script>/gi, '')
+        .replace(/<style[\s\S]*?<\/style>/gi, '');
+      let body = clean(stripped);
+      if (best) {
+        const idx = body.toLowerCase().indexOf(`${best.month.toLowerCase()} ${best.year}`);
+        if (idx > 0) body = body.slice(Math.max(0, idx - 500), idx + 6000);
+      } else {
+        body = body.slice(0, 6000);
+      }
+      if (body.length > 200) themes = await summarizeForIOS(body, 'LMI Report');
+    }
 
     return {
       source: 'LMI Report',
-      title: title || 'Latest LMI release',
-      published,
-      themes: themes || 'Open the LMI homepage for the latest reading.',
-      url: 'https://www.the-lmi.com/',
+      title: best ? clean(best.title).slice(0, 200) : 'Latest LMI release',
+      published: best ? `${best.month} ${best.year}` : '',
+      themes: themes || 'Open the latest LMI report at the link.',
+      url: reportUrl,
       fetched_at: new Date().toISOString(),
       ai: !!themes,
     };
