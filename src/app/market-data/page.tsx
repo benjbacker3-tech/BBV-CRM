@@ -27,7 +27,7 @@ interface EconomyData {
 
   // Macro research themes from outside sources
   research: {
-    source: string;             // "Howard Marks", "Eye on the Market", "Calculated Risk", "LMI Report"
+    source: string;             // "Howard Marks", "Eye on the Market", "LMI Report"
     title: string;
     published: string;          // ISO date or "Apr 2026"
     themes: string;             // free-form bullets / paragraph
@@ -153,8 +153,7 @@ const DEFAULT_DATA: EconomyData = {
   research: [
     { source: 'LMI Report',           title: '',  published: '', themes: '', url: 'https://www.the-lmi.com/' },
     { source: 'Howard Marks Memo',    title: '',  published: '', themes: '', url: 'https://www.oaktreecapital.com/insights/memos' },
-    { source: 'Eye on the Market',    title: '',  published: '', themes: '', url: 'https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/eye-on-the-market/' },
-    { source: 'Calculated Risk',      title: '',  published: '', themes: '', url: 'https://www.calculatedriskblog.com/' },
+    { source: 'Eye on the Market',    title: '',  published: '', themes: '', url: 'https://am.jpmorgan.com/us/en/asset-management/institutional/insights/market-insights/eye-on-the-market/' },
   ],
 };
 
@@ -162,7 +161,6 @@ const fmtPct = (n: number | null, d = 2) => n == null ? '—' : `${n.toFixed(d)}
 
 interface AutoResearch {
   items: ResearchItem[];
-  additional_calc_risk: ResearchItem[];
   fetched_at: string;
 }
 interface ResearchItem {
@@ -941,7 +939,7 @@ function LMICard({ data, editing, onChange }: {
 }
 
 // ----------------------------------------------------------------------------
-// Macro Research — themes from Howard Marks, Eye on the Market, Calc Risk, LMI
+// Macro Research — themes from Howard Marks, Eye on the Market, LMI
 // ----------------------------------------------------------------------------
 
 function ResearchCard({ manual, auto, editing, onChange }: {

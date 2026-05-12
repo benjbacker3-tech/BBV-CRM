@@ -2,13 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { unstable_cache, revalidateTag } from 'next/cache';
 import { summarizeForIOS } from '@/lib/claude';
 
-// Aggregates macro research from 4 sources with weekly caching and AI summaries.
+// Aggregates macro research from 3 sources with weekly caching and AI summaries.
 //
 // Sources:
-//   - Calculated Risk: native RSS feed (reliable)
 //   - LMI: scrape the-lmi.com homepage (best-effort regex)
 //   - Howard Marks (Oaktree): scrape memos listing (best-effort regex)
-//   - Eye on the Market (JP Morgan): scrape index page (best-effort)
+//   - Eye on the Market (JP Morgan AM institutional): scrape index page (best-effort)
 //
 // Caching strategy:
 //   - Each source is fetched + Claude-summarized once a week
@@ -16,8 +15,8 @@ import { summarizeForIOS } from '@/lib/claude';
 //   - On ?force=1, revalidateTag('macro-research') busts everything
 //
 // All external fetches are also cached at the Next fetch layer with the same
-// weekly TTL and tag, so even within a refresh cycle we don't re-hit Calc Risk
-// RSS / Oaktree / etc. multiple times.
+// weekly TTL and tag, so even within a refresh cycle we don't re-hit
+// Oaktree / LMI / JPM multiple times.
 
 export const dynamic = 'force-dynamic';
 const WEEK_SECONDS = 7 * 24 * 60 * 60;
@@ -45,44 +44,6 @@ function clean(s: string): string {
 
 function cdataOr(s: string): string {
   return s.replace(/^\s*<!\[CDATA\[\s*/, '').replace(/\s*\]\]>\s*$/, '').trim();
-}
-
-// ─── Calculated Risk (RSS) ──────────────────────────────────────────────────
-async function fetchCalculatedRisk(): Promise<ResearchItem | null> {
-  try {
-    const res = await fetch('https://www.calculatedriskblog.com/feeds/posts/default?alt=rss', {
-      headers: UA,
-      next: { revalidate: WEEK_SECONDS, tags: [TAG] },
-    });
-    if (!res.ok) return null;
-    const xml = await res.text();
-    const match = xml.match(/<item>([\s\S]*?)<\/item>/);
-    if (!match) return null;
-
-    const itemXml = match[1];
-    const rawTitle = itemXml.match(/<title>([\s\S]*?)<\/title>/)?.[1] || '';
-    const rawDesc = itemXml.match(/<description>([\s\S]*?)<\/description>/)?.[1] || '';
-    const link = itemXml.match(/<link>([\s\S]*?)<\/link>/)?.[1]?.trim() || '';
-    const pubDate = itemXml.match(/<pubDate>([\s\S]*?)<\/pubDate>/)?.[1]?.trim() || '';
-    const title = clean(cdataOr(rawTitle));
-    const desc = clean(cdataOr(rawDesc));
-    if (!title || !link) return null;
-
-    // Try Claude on the description; fall back to the description itself if no key
-    const themes = await summarizeForIOS(desc, 'Calculated Risk');
-
-    return {
-      source: 'Calculated Risk',
-      title,
-      published: pubDate ? new Date(pubDate).toISOString().split('T')[0] : '',
-      themes: themes || desc.slice(0, 320),
-      url: link,
-      fetched_at: new Date().toISOString(),
-      ai: !!themes,
-    };
-  } catch {
-    return null;
-  }
 }
 
 // ─── LMI (scrape press release page) ─────────────────────────────────────────
@@ -171,7 +132,7 @@ async function fetchHowardMarks(): Promise<ResearchItem | null> {
 // ─── Eye on the Market (JP Morgan AM) ────────────────────────────────────────
 async function fetchEOTM(): Promise<ResearchItem | null> {
   try {
-    const res = await fetch('https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/eye-on-the-market/', {
+    const res = await fetch('https://am.jpmorgan.com/us/en/asset-management/institutional/insights/market-insights/eye-on-the-market/', {
       headers: UA,
       next: { revalidate: WEEK_SECONDS, tags: [TAG] },
     });
@@ -193,7 +154,7 @@ async function fetchEOTM(): Promise<ResearchItem | null> {
       title: headline || 'Latest Eye on the Market — Cembalest',
       published,
       themes: themes || 'Visit JP Morgan to read the latest piece.',
-      url: 'https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/eye-on-the-market/',
+      url: 'https://am.jpmorgan.com/us/en/asset-management/institutional/insights/market-insights/eye-on-the-market/',
       fetched_at: new Date().toISOString(),
       ai: !!themes,
     };
@@ -204,10 +165,9 @@ async function fetchEOTM(): Promise<ResearchItem | null> {
 
 // Wrap each source's full fetch + Claude pipeline in unstable_cache keyed by
 // source name. Result is cached for a week and invalidated by revalidateTag.
-const cachedCalculatedRisk = unstable_cache(fetchCalculatedRisk, ['mci-research', 'cr'],   { revalidate: WEEK_SECONDS, tags: [TAG] });
-const cachedLMI            = unstable_cache(fetchLMI,            ['mci-research', 'lmi'],  { revalidate: WEEK_SECONDS, tags: [TAG] });
-const cachedHowardMarks    = unstable_cache(fetchHowardMarks,    ['mci-research', 'hm'],   { revalidate: WEEK_SECONDS, tags: [TAG] });
-const cachedEOTM           = unstable_cache(fetchEOTM,           ['mci-research', 'eotm'], { revalidate: WEEK_SECONDS, tags: [TAG] });
+const cachedLMI         = unstable_cache(fetchLMI,         ['mci-research', 'lmi'],  { revalidate: WEEK_SECONDS, tags: [TAG] });
+const cachedHowardMarks = unstable_cache(fetchHowardMarks, ['mci-research', 'hm'],   { revalidate: WEEK_SECONDS, tags: [TAG] });
+const cachedEOTM        = unstable_cache(fetchEOTM,        ['mci-research', 'eotm'], { revalidate: WEEK_SECONDS, tags: [TAG] });
 
 function placeholder(source: string, url: string): ResearchItem {
   return {
@@ -225,8 +185,7 @@ export async function GET(req: NextRequest) {
   const force = req.nextUrl.searchParams.get('force') === '1';
   if (force) revalidateTag(TAG);
 
-  const [cr, lmi, hm, eotm] = await Promise.all([
-    cachedCalculatedRisk(),
+  const [lmi, hm, eotm] = await Promise.all([
     cachedLMI(),
     cachedHowardMarks(),
     cachedEOTM(),
@@ -235,13 +194,11 @@ export async function GET(req: NextRequest) {
   const items: ResearchItem[] = [
     lmi  || placeholder('LMI Report',         'https://www.the-lmi.com/'),
     hm   || placeholder('Howard Marks Memo',  'https://www.oaktreecapital.com/insights/memos'),
-    eotm || placeholder('Eye on the Market',  'https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/eye-on-the-market/'),
-    cr   || placeholder('Calculated Risk',    'https://www.calculatedriskblog.com/'),
+    eotm || placeholder('Eye on the Market',  'https://am.jpmorgan.com/us/en/asset-management/institutional/insights/market-insights/eye-on-the-market/'),
   ];
 
   return NextResponse.json({
     items,
-    additional_calc_risk: [],   // kept for API shape compatibility
     fetched_at: new Date().toISOString(),
     ai_enabled: !!process.env.ANTHROPIC_API_KEY,
     cache: force ? 'busted' : 'weekly',
