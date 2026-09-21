@@ -125,6 +125,31 @@ export interface Investor {
   notes: string;
 }
 
+export interface CapitalSource {
+  id: number;
+  name: string;
+  short_name: string | null;
+  kind: string | null;
+  status: string | null;
+  primary_contact: string | null;
+  headquarters: string | null;
+  target_size: string | null;
+  pref_pct: number | null;
+  promote_summary: string | null;
+  geo_focus: string | null;
+  strategy_fit: string | null;
+  sponsor_skin_pct: number | null;
+  asset_mgmt_fee_pct: number | null;
+  acq_fee_pct: number | null;
+  loan_rate_pct: number | null;
+  leverage_target_pct: number | null;
+  hold_period: string | null;
+  exclusivity_notes: string | null;
+  signed_date: string | null;
+  notes: string | null;
+  created_at: string;
+}
+
 export interface ActivityEntry {
   id: number;
   entity_type: string;

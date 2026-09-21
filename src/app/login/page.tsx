@@ -43,10 +43,10 @@ function LoginForm() {
         {/* Brand */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-12 h-12 bg-navy rounded-lg mb-3">
-            <span className="text-amber font-bold text-lg">S</span>
+            <span className="text-white font-bold text-lg">S</span>
           </div>
           <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100 tracking-tight">
-            <span className="text-amber">Sandpiper</span> Capital
+            <span className="text-navy dark:text-white">Sandpiper</span> Capital
           </h1>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-[0.15em]">
             Sandpiper Capital LLC
@@ -63,7 +63,7 @@ function LoginForm() {
                 onChange={e => setUsername(e.target.value)}
                 autoFocus
                 autoComplete="username"
-                className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber dark:bg-surface-dark dark:text-gray-100"
+                className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-navy dark:bg-surface-dark dark:text-gray-100"
                 placeholder="ben"
               />
             </div>
@@ -74,7 +74,7 @@ function LoginForm() {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 autoComplete="current-password"
-                className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber dark:bg-surface-dark dark:text-gray-100"
+                className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-navy dark:bg-surface-dark dark:text-gray-100"
               />
             </div>
 
@@ -87,7 +87,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-2 bg-amber text-white text-sm font-medium rounded hover:bg-amber-dark disabled:opacity-50 transition-colors"
+              className="w-full py-2 bg-navy text-white text-sm font-medium rounded hover:bg-navy-light disabled:opacity-50 transition-colors"
             >
               {submitting ? 'Signing in…' : 'Sign in'}
             </button>

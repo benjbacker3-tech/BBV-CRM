@@ -140,6 +140,34 @@ async function initSchema(db: Client) {
       notes TEXT
     );
 
+    -- Capital sources: JV equity partners, HNW investors, LOC providers.
+    -- Structured to hold enough of a term sheet to answer "what's the deal
+    -- with this partner" without opening the PDF.
+    CREATE TABLE IF NOT EXISTS capital_sources (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      short_name TEXT,
+      kind TEXT,                       -- e.g. 'JV Equity — Programmatic', 'JV Equity — Deal-by-Deal', 'HNW Equity / LOC'
+      status TEXT,                     -- 'Signed', 'Draft LOI', 'Verbal', 'Executed Note'
+      primary_contact TEXT,
+      headquarters TEXT,
+      target_size TEXT,                -- '$X for Deal Y' / 'Programmatic — no cap' / '$X revolver'
+      pref_pct REAL DEFAULT 0,         -- e.g. 8
+      promote_summary TEXT,            -- multi-line waterfall summary
+      geo_focus TEXT,
+      strategy_fit TEXT,
+      sponsor_skin_pct REAL,           -- required SPC principal contribution (%)
+      asset_mgmt_fee_pct REAL,
+      acq_fee_pct REAL,
+      loan_rate_pct REAL,              -- if this source provides debt / LOC
+      leverage_target_pct REAL,        -- LTC target if applicable
+      hold_period TEXT,                -- '2-5 years' etc.
+      exclusivity_notes TEXT,          -- ROFR/tail/non-compete notes
+      signed_date TEXT,
+      notes TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+
     CREATE TABLE IF NOT EXISTS market_snapshots (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       snapshot_date TEXT DEFAULT (date('now')),

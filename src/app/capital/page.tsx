@@ -1,80 +1,171 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Investor, fmt, fmtPct } from '@/lib/utils';
+import { CapitalSource } from '@/lib/utils';
 
 export default function CapitalPage() {
-  const [investors, setInvestors] = useState<Investor[]>([]);
+  const [sources, setSources] = useState<CapitalSource[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [seeding, setSeeding] = useState(false);
 
-  useEffect(() => {
-    fetch('/api/investors').then(r => r.json()).then(setInvestors);
-  }, []);
+  const load = () => {
+    setLoading(true);
+    fetch('/api/capital-sources')
+      .then(r => r.json())
+      .then((rows: CapitalSource[]) => setSources(rows))
+      .finally(() => setLoading(false));
+  };
 
-  const totalCommitment = investors.reduce((sum, i) => sum + i.commitment, 0);
-  const totalCalled = investors.reduce((sum, i) => sum + i.called, 0);
-  const uncalled = totalCommitment - totalCalled;
-  const pctCalled = totalCommitment > 0 ? (totalCalled / totalCommitment) * 100 : 0;
+  useEffect(() => { load(); }, []);
+
+  const seed = async () => {
+    if (!confirm('Reload capital sources from term sheets? This wipes the current list first.')) return;
+    setSeeding(true);
+    await fetch('/api/seed-capital', { method: 'POST' });
+    setSeeding(false);
+    load();
+  };
 
   return (
-    <div className="p-6 max-w-6xl">
-      <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-5">Capital</h1>
+    <div className="p-8 max-w-[1400px]">
+      <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 mb-1">Sandpiper Capital LLC · Capital Stack</p>
+          <h1 className="text-xl font-medium text-gray-900 tracking-tight">Capital Sources</h1>
+        </div>
+        <button
+          onClick={seed}
+          disabled={seeding}
+          className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50"
+          title="Reset capital_sources from the seed data (CentrePoint, Oakwood, BFO)"
+        >
+          {seeding ? 'Loading…' : 'Reload from term sheets'}
+        </button>
+      </div>
 
-      {/* Summary cards */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
-        {[
-          { label: 'Total Commitments', value: fmt(totalCommitment), color: 'border-blue-500' },
-          { label: 'Capital Called', value: fmt(totalCalled), color: 'border-green-500' },
-          { label: 'Uncalled Capital', value: fmt(uncalled), color: 'border-amber' },
-          { label: '% Called', value: fmtPct(pctCalled), color: 'border-purple-500' },
-        ].map(c => (
-          <div key={c.label} className={`bg-white dark:bg-surface rounded-lg border-l-4 ${c.color} border border-gray-100 dark:border-gray-700 p-4`}>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{c.label}</p>
-            <p className="text-xl font-mono font-semibold text-gray-900 dark:text-gray-100">{c.value}</p>
+      {loading && <p className="text-sm text-gray-500">Loading…</p>}
+
+      {!loading && sources.length === 0 && (
+        <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
+          <p className="text-sm text-gray-600 mb-3">No capital sources loaded yet.</p>
+          <button onClick={seed} className="px-4 py-2 bg-navy text-white text-sm rounded hover:bg-navy-light">
+            Load CentrePoint, Oakwood & BFO from term sheets
+          </button>
+        </div>
+      )}
+
+      <div className="space-y-4">
+        {sources.map(s => <SourceCard key={s.id} source={s} />)}
+      </div>
+    </div>
+  );
+}
+
+function SourceCard({ source: s }: { source: CapitalSource }) {
+  const [expanded, setExpanded] = useState(false);
+
+  const stat = (label: string, value: string | number | null) => {
+    if (value == null || value === '') return null;
+    return (
+      <div>
+        <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-0.5">{label}</p>
+        <p className="text-sm text-gray-900">{value}</p>
+      </div>
+    );
+  };
+
+  return (
+    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+      {/* Header row */}
+      <div
+        className="px-5 py-4 flex items-start justify-between cursor-pointer hover:bg-gray-50 transition-colors"
+        onClick={() => setExpanded(!expanded)}
+      >
+        <div className="flex-1">
+          <div className="flex items-baseline gap-3">
+            <h3 className="text-base font-semibold text-navy">{s.short_name || s.name}</h3>
+            {s.kind && <span className="text-[11px] uppercase tracking-wide text-gray-400">{s.kind}</span>}
           </div>
-        ))}
+          {s.short_name && s.name !== s.short_name && (
+            <p className="text-xs text-gray-500 mt-0.5">{s.name}</p>
+          )}
+          <div className="flex items-center gap-4 mt-2 text-xs text-gray-600">
+            {s.status && (
+              <span className="inline-flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-navy" />
+                {s.status}
+              </span>
+            )}
+            {s.primary_contact && <span>· {s.primary_contact}</span>}
+            {s.geo_focus && <span>· {s.geo_focus.split('.')[0]}</span>}
+          </div>
+        </div>
+        <svg
+          className={`w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5 transition-transform ${expanded ? 'rotate-180' : ''}`}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
 
-      {/* Capital call progress */}
-      <div className="bg-white dark:bg-surface rounded-lg border border-gray-200 dark:border-gray-700 p-5 mb-6">
-        <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Capital Deployment</h3>
-        <div className="w-full h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-          <div className="h-full bg-amber rounded-full transition-all" style={{ width: `${pctCalled}%` }} />
-        </div>
-        <div className="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
-          <span>Called: {fmt(totalCalled)}</span>
-          <span>Remaining: {fmt(uncalled)}</span>
-        </div>
-      </div>
+      {/* Expanded detail */}
+      {expanded && (
+        <div className="px-5 pb-5 pt-1 border-t border-gray-100 bg-gray-50/40">
+          {s.target_size && (
+            <section className="mb-4">
+              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Size / Scope</p>
+              <p className="text-sm text-gray-800 leading-relaxed">{s.target_size}</p>
+            </section>
+          )}
 
-      {/* Investor breakdown */}
-      <div className="bg-white dark:bg-surface rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-surface-dark">
-              <th className="text-left py-2.5 px-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">Investor</th>
-              <th className="text-left py-2.5 px-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">Type</th>
-              <th className="text-right py-2.5 px-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">Commitment</th>
-              <th className="text-right py-2.5 px-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">Called</th>
-              <th className="text-left py-2.5 px-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {investors.map(inv => (
-              <tr key={inv.id} className="border-b border-gray-50 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800">
-                <td className="py-2.5 px-4 font-medium text-gray-900 dark:text-gray-100">{inv.name}</td>
-                <td className="py-2.5 px-4 text-gray-600 dark:text-gray-300">{inv.type}</td>
-                <td className="py-2.5 px-4 text-right font-mono text-gray-700 dark:text-gray-300">{fmt(inv.commitment)}</td>
-                <td className="py-2.5 px-4 text-right font-mono text-gray-700 dark:text-gray-300">{fmt(inv.called)}</td>
-                <td className="py-2.5 px-4">
-                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                    inv.status === 'Active' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
-                  }`}>{inv.status}</span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          <div className="grid grid-cols-3 gap-4 mb-4">
+            {stat('Preferred Return', s.pref_pct != null ? `${s.pref_pct}%` : null)}
+            {stat('Leverage Target', s.leverage_target_pct != null ? `${s.leverage_target_pct}% LTC` : null)}
+            {stat('Hold Period', s.hold_period)}
+            {stat('Sponsor Skin', s.sponsor_skin_pct != null ? `${s.sponsor_skin_pct}%` : null)}
+            {stat('Acq Fee (to SPC)', s.acq_fee_pct != null ? `${s.acq_fee_pct}%` : null)}
+            {stat('Asset Mgmt Fee', s.asset_mgmt_fee_pct != null ? `${s.asset_mgmt_fee_pct}%` : null)}
+            {stat('Loan Rate', s.loan_rate_pct != null ? `${s.loan_rate_pct}%` : null)}
+            {stat('Signed', s.signed_date)}
+            {stat('HQ', s.headquarters)}
+          </div>
+
+          {s.promote_summary && (
+            <section className="mb-4">
+              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Waterfall / Promote</p>
+              <p className="text-sm text-gray-800 leading-relaxed">{s.promote_summary}</p>
+            </section>
+          )}
+
+          {s.strategy_fit && (
+            <section className="mb-4">
+              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Strategy Fit</p>
+              <p className="text-sm text-gray-800 leading-relaxed">{s.strategy_fit}</p>
+            </section>
+          )}
+
+          {s.geo_focus && (
+            <section className="mb-4">
+              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Geography</p>
+              <p className="text-sm text-gray-800 leading-relaxed">{s.geo_focus}</p>
+            </section>
+          )}
+
+          {s.exclusivity_notes && (
+            <section className="mb-4">
+              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Exclusivity / Non-compete</p>
+              <p className="text-sm text-gray-800 leading-relaxed">{s.exclusivity_notes}</p>
+            </section>
+          )}
+
+          {s.notes && (
+            <section>
+              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Notes</p>
+              <p className="text-sm text-gray-800 leading-relaxed">{s.notes}</p>
+            </section>
+          )}
+        </div>
+      )}
     </div>
   );
 }
