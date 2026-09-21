@@ -45,6 +45,19 @@ OPENPHONE_NUMBER_ID=PNxxxxxxx
 RESEND_API_KEY=re_xxxxxxx
 ```
 
+## Outlook Sync
+
+Email-derived deal status is loaded from snapshot files in `sync/`:
+
+```bash
+node scripts/outlook-sync.mjs sync/outlook-2026-09-21.json --dry-run   # preview
+node scripts/outlook-sync.mjs sync/outlook-2026-09-21.json             # apply
+```
+
+The script writes to `TURSO_DATABASE_URL` from `.env.local` (falls back to local `sandpiper.db`). It is non-destructive and safe to re-run. It updates deal fields, and your own notes are kept: only the trailing "── Email status" block is replaced. It also fills blank contact fields and de-duplicates tasks, log entries and diligence items.
+
+In Claude Code, run `/outlook-sync` to scan Outlook since the last snapshot, write a new snapshot, preview it and apply it. This needs the Microsoft 365 connector.
+
 ## Deployment Notes
 
 - SQLite does not persist on serverless (Vercel) — migrate to Turso or Postgres for production

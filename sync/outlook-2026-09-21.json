@@ -1,0 +1,599 @@
+{
+  "as_of": "2026-09-21",
+  "source": "Outlook review of ben@sandpiperre.com (read-only)",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "name": "10275 E 106th",
+        "address": "10275 E 106th Ave",
+        "city": "Brighton",
+        "market": "Denver",
+        "acreage": 2.05,
+        "asking_price": 4000000,
+        "stage": "Under Contract",
+        "dd_expiry": "2026-10-31",
+        "close_date": "2026-11-09",
+        "deposit": 20000
+      },
+      "status": [
+        "Seller: Precision Ventures LLC (Boyle / Westbrook). Title/escrow: Fidelity FBDO-2607358. Tenant: Zero Carbon Systems (lease exp 2/28).",
+        "Capital: CentrePoint JV 90/10 (term sheet executed 8/26; JV docs drafting). Debt: First Interstate, Prime, 3-yr IO, 25% recourse w/ burn-off (5-yr lease + 1.40x DSCR).",
+        "DD extended to 10/31 (Amendment 1A). Closing = DD + 7 days \u2192 11/7 per amendment vs 11/9 in emails \u2014 CONFIRM.",
+        "Ben owes: form Brighton IOS LLC + assign PSA; PNC op account docs; estoppel/SNDA to seller (promised 9/1); RIO onboarding + PMA review; final ALTA certified to FIB; tenant financials.",
+        "Waiting on: seller demo/shed permits/RTU (done ~10/16); final appraisal; JV docs; AEI PZR (~10/8); Ryan tax estimate; title objection outcome (seller responded 9/2).",
+        "Risks: tenant credit; water district use restriction + unreleased 2018 O&G lease; loan # mismatch 100069869 vs 100069896; no sprinklers."
+      ]
+    },
+    {
+      "key": "1862 Ives",
+      "fields": {
+        "name": "1862 Ives",
+        "address": "1862 Ives Ave",
+        "city": "Kent",
+        "market": "Seattle / Tacoma",
+        "sf": 60000,
+        "acreage": 5.19,
+        "asking_price": 6550000,
+        "stage": "Negotiating PSA",
+        "dd_days": 60,
+        "close_days": 30,
+        "deposit": 50000
+      },
+      "status": [
+        "Seller: Magnum Venus Products (CBRE: Steve & Ryan Brunette). Buyer counsel: Stephen Schuster (Burke). Buyer broker: Taylor Hudson, NAI \u2014 3% paid by Sandpiper.",
+        "LOI $6.85M executed 8/31 \u2192 PSA price $6.55M. $800K env escrow. 60 DD / 30 close. Seller wants YE close; LOI exclusivity lapsing ~9/21.",
+        "Revised PSA sent to CBRE 9/18 \u2014 seller holds pen. Open: reject extra $100K deposit; tie env escrow release to NFA progress (not 18-mo outside date).",
+        "PSA fixes: \u00a77.2 broker rep (NAI owed); title co First American vs Fidelity; address 1962 Ives St \u2192 1862 Ives Ave, APN 346280-0190.",
+        "Waiting on: CBRE PSA response; BNSF easement timing (since 9/8); GeoEngineers soil-vapor + covenant answers (since 9/11); City of Kent records request W083543 (~10/15).",
+        "Upcoming: S-Bar contractor tour Wed 9/23 10am (unconfirmed)."
+      ],
+      "aliases": [
+        "1962 Ives"
+      ]
+    },
+    {
+      "key": "724 Taylor",
+      "fields": {
+        "name": "724 Taylor",
+        "address": "724 W Taylor Ave",
+        "city": "Meridian",
+        "market": "Boise",
+        "sf": 44600,
+        "acreage": 8.1,
+        "asking_price": 5000040,
+        "stage": "Closed"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Taylor IOS LLC + RBNB 69th LLC (TIC). Partners: Nublock (Roy Harel), RBN (Aviv Rubin, Mitch). Counsel: Oren Fishman.",
+        "GC: S-Bar est 26-047 Rev 2.1 (8/27): $779,364 base / $1,013,353 w/ options vs $1.25M CapEx. 8 weeks. Permits excluded.",
+        "GC agreement NOT signed: owners' redline sent 9/18, S-Bar feedback due 9/21. Price/dates/Exh A\u2013D blank. Permit conflict (contract includes, proposal excludes). Exh C payment terms conflict with \u00a74.2.",
+        "Not mobilized. Digline 2026383773 (Ben as excavator): Meridian marked 9/21; 5 utilities pending; ticket expires ~10/15.",
+        "Open: scope summary for lender (Oren asked 9/9); lender contractor consent; Rev 2.1 pricing may lapse ~9/26."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "name": "6371 Nesbitt",
+        "address": "6371 Nesbitt Rd",
+        "city": "Madison",
+        "market": "Wisconsin",
+        "asking_price": 3450000,
+        "stage": "Closed",
+        "close_date": "2026-09-11"
+      },
+      "status": [
+        "CONSTRUCTION. Closed 9/11 at $3.45M. Owner: Verona IOS LLC. Lender: Sunwest. PM: Oakbrook (Peter DeVore, PMA pending).",
+        "GC: TJK Design Build $907,220, executed 9/10. 5% retainage, 15% CO fee, roofing excluded. Kickoff 9/14 \u2192 substantial completion 12/2.",
+        "Security: repeated vandalism; boarding-up not confirmed. Per Mar camera $1,399 + $1,037/mo (8-mo min) \u2014 pending Kevin Harn reply.",
+        "Adams Outdoor easement drafts 9/18: $40K + $23.75K + $23.75K = $87.5K; needs Oren review + lender consent.",
+        "Ben owes: Verona IOS LLC address to Jack Russell (asked 9/18; '6731 Nesbitt' typo in earlier email). Waiting: Aviv on DD invoices (AEI $10.2K, TrueNorth $3.3K); First Student lease signature."
+      ]
+    },
+    {
+      "key": "18050 Keith Harrow",
+      "fields": {
+        "name": "18050 Keith Harrow",
+        "address": "18050 Keith Harrow Blvd",
+        "city": "Houston",
+        "market": "Houston",
+        "stage": "Dead"
+      },
+      "status": [
+        "DEAD \u2014 terminated 9/8 within feasibility. Seller (ALVinvest) claims $25K of deposit; legal dispute ongoing via Porter Firm (Jonathan Sandstrom Hill).",
+        "Close out: Red Iron PM, Oakwood term sheet, Ambrose PG pref equity."
+      ]
+    },
+    {
+      "key": "1901 Taylor",
+      "insert_only": true,
+      "fields": {
+        "name": "1901 Taylor",
+        "address": "1901 Taylor",
+        "city": "Tacoma",
+        "market": "Seattle / Tacoma",
+        "sf": 77000,
+        "acreage": 8.6,
+        "asking_price": 20000000,
+        "stage": "LOI Submitted"
+      },
+      "status": [
+        "LOI $20M (latest 9/16, two capital options incl. CentrePoint JV). Kidder Mathews (Chris Trussel). Wilhelmsen blend-and-extend. Awaiting counter."
+      ]
+    },
+    {
+      "key": "3033 Losee",
+      "insert_only": true,
+      "fields": {
+        "name": "3033 Losee",
+        "address": "3033 Losee Rd",
+        "city": "North Las Vegas",
+        "market": "Las Vegas",
+        "sf": 17000,
+        "acreage": 4.1,
+        "stage": "LOI Submitted"
+      },
+      "status": [
+        "LOI 9/8 via Cushman (Michael Scher, Jason Griffis). No response yet; Vegas call 9/22."
+      ]
+    },
+    {
+      "key": "1600 W Yale",
+      "insert_only": true,
+      "fields": {
+        "name": "1600 W Yale",
+        "address": "1600 W Yale Ave",
+        "city": "Englewood",
+        "market": "Denver",
+        "asking_price": 5500000,
+        "stage": "Tracking"
+      },
+      "status": [
+        "Ask ~$5.5M (~$200/SF). Ben told Spencer Horne (Fillmore) 9/21: need $110/SF or less."
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "deal": "10275 E 106th",
+      "type": "broker",
+      "name": "Jonathan Lee",
+      "firm": "Nublock Partners",
+      "email": "jlee@nublockpartners.com",
+      "notes": "Broker on 106th."
+    },
+    {
+      "deal": "10275 E 106th",
+      "type": "owner",
+      "name": "Patrick Boyle",
+      "firm": "Precision Ventures LLC",
+      "email": "pboylet5853@gmail.com",
+      "notes": "Seller member/manager."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Nick Michel",
+      "firm": "Wormser Casey",
+      "email": "nick@wormsercasey.com",
+      "notes": "Role: buyer counsel (106th)."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Chad Murray",
+      "firm": "RIO Real Estate",
+      "email": "cmurray@RIO-RealEstate.com",
+      "notes": "Role: property manager (106th)."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Bryan Quigley",
+      "firm": "PNC",
+      "email": "bryan.quigley@pnc.com",
+      "notes": "Role: bank \u2014 operating account (106th)."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Tucker Manion",
+      "firm": "CentrePoint Properties",
+      "notes": "Role: equity partner (JV facility 90/10)."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Matt Poling",
+      "firm": "Ryan",
+      "email": "matt.poling@ryan.com",
+      "notes": "Role: property tax advisor (engaged 9/18)."
+    },
+    {
+      "deal": "1862 Ives",
+      "type": "broker",
+      "name": "Steven Brunette",
+      "firm": "CBRE",
+      "email": "Steven.Brunette@cbre.com",
+      "markets": "Seattle / Tacoma",
+      "notes": "Seller broker (Ives)."
+    },
+    {
+      "deal": "1862 Ives",
+      "type": "broker",
+      "name": "Ryan Brunette",
+      "firm": "CBRE",
+      "email": "Ryan.Brunette@cbre.com",
+      "markets": "Seattle / Tacoma",
+      "notes": "Seller broker (Ives)."
+    },
+    {
+      "deal": "1862 Ives",
+      "type": "broker",
+      "name": "Taylor Hudson",
+      "firm": "NAI Puget Sound",
+      "email": "thudson@nai-psp.com",
+      "markets": "Seattle / Tacoma",
+      "notes": "Buyer broker \u2014 3% commission agreement signed 9/16."
+    },
+    {
+      "deal": "1862 Ives",
+      "name": "Stephen Schuster",
+      "firm": "Burke, Warren, MacKay & Serritella",
+      "email": "SSchuster@burkelaw.com",
+      "notes": "Role: buyer counsel (PSA)."
+    },
+    {
+      "deal": "1862 Ives",
+      "name": "Chris Valcheff",
+      "firm": "True North",
+      "email": "cvalcheff@consulttruenorth.com",
+      "notes": "Role: environmental reviewer."
+    },
+    {
+      "deal": "1862 Ives",
+      "name": "Kaileigh Seaver",
+      "email": "kaileighseaver@gmail.com",
+      "notes": "Role: pre-app project manager ($185/hr, NTE $7,400)."
+    },
+    {
+      "deal": "1862 Ives",
+      "name": "Brett Conway",
+      "firm": "Mackenzie",
+      "email": "BConway@mcknze.com",
+      "notes": "Role: architect (Lift pre-app LU2026 0985)."
+    },
+    {
+      "deal": "724 Taylor",
+      "type": "owner",
+      "name": "Roy Harel",
+      "firm": "Nublock Partners",
+      "email": "roy@nublockpartners.com",
+      "notes": "Partner on 724 Taylor + Nesbitt."
+    },
+    {
+      "deal": "724 Taylor",
+      "name": "Paul Siwek",
+      "firm": "S-Bar Construction",
+      "email": "paul@sbarconstruction.com",
+      "notes": "Role: GC (Founder/CEO)."
+    },
+    {
+      "deal": "724 Taylor",
+      "name": "Jason Barkatt",
+      "firm": "S-Bar Construction",
+      "email": "jasonb@sbarconstruction.com",
+      "notes": "Role: GC."
+    },
+    {
+      "deal": "724 Taylor",
+      "name": "Oren Fishman",
+      "firm": "Fishman PC",
+      "email": "oren@fishmanlawgroup.com",
+      "notes": "Role: owners' counsel (Taylor + Nesbitt)."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Kevin Harn",
+      "firm": "TJK Design Build",
+      "email": "kharn@tjkdesignbuild.com",
+      "notes": "Role: GC PM."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Jon Hepner",
+      "firm": "TJK Design Build",
+      "email": "jhepner@tjkdesignbuild.com",
+      "notes": "Role: GC EVP."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Jack Russell",
+      "firm": "Adams Outdoor",
+      "email": "jrussell@adamsoutdoor.com",
+      "notes": "Role: billboard easements."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Peter DeVore",
+      "firm": "Oakbrook",
+      "email": "pdevore@oakbrookcorp.com",
+      "notes": "Role: property manager (proposed)."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Edan Avital",
+      "firm": "Highpoint CRE",
+      "email": "edan@highpointcre.com",
+      "notes": "Partner (Nesbitt)."
+    },
+    {
+      "deal": "18050 Keith Harrow",
+      "name": "Jonathan Sandstrom Hill",
+      "firm": "Porter Firm",
+      "email": "jonathan@porterfirm.com",
+      "notes": "Role: counsel \u2014 earnest money dispute."
+    }
+  ],
+  "tasks": [
+    {
+      "contact_email": "nick@wormsercasey.com",
+      "type": "email",
+      "due_date": "2026-09-23",
+      "note": "106th: form Brighton IOS LLC + assign PSA (needed by title, FIB, PNC, RIO)"
+    },
+    {
+      "contact_email": "bryan.quigley@pnc.com",
+      "type": "email",
+      "due_date": "2026-09-23",
+      "note": "106th: send PNC op account docs (Articles, OA, SOS, EIN, DL)"
+    },
+    {
+      "contact_email": "pboylet5853@gmail.com",
+      "type": "email",
+      "due_date": "2026-09-23",
+      "note": "106th: send estoppel + SNDA (FIB forms) \u2014 promised 9/1"
+    },
+    {
+      "contact_email": "cmurray@RIO-RealEstate.com",
+      "type": "email",
+      "due_date": "2026-09-25",
+      "note": "106th: RIO onboarding sheet, notices address, review draft PMA"
+    },
+    {
+      "contact_email": "nick@wormsercasey.com",
+      "type": "call",
+      "due_date": "2026-09-25",
+      "note": "106th: confirm closing 11/7 (DD+7) vs 11/9; title objection status"
+    },
+    {
+      "contact_email": "Steven.Brunette@cbre.com",
+      "type": "email",
+      "due_date": "2026-09-22",
+      "note": "Ives: confirm 9/23 10am contractor tour; chase PSA response + BNSF timing"
+    },
+    {
+      "contact_email": "cvalcheff@consulttruenorth.com",
+      "type": "email",
+      "due_date": "2026-09-23",
+      "note": "Ives: set up True North / GeoEngineers / seller call"
+    },
+    {
+      "contact_email": "BConway@mcknze.com",
+      "type": "call",
+      "due_date": "2026-09-23",
+      "note": "Ives: Mackenzie follow-up (promised week of 9/14)"
+    },
+    {
+      "contact_email": "SSchuster@burkelaw.com",
+      "type": "email",
+      "due_date": "2026-09-24",
+      "note": "Ives PSA fixes: \u00a77.2 broker rep (NAI), title co, address/APN"
+    },
+    {
+      "contact_email": "paul@sbarconstruction.com",
+      "type": "call",
+      "due_date": "2026-09-22",
+      "note": "724 Taylor: S-Bar redline feedback; resolve permit scope; hold Rev 2.1 pricing"
+    },
+    {
+      "contact_email": "jasonb@sbarconstruction.com",
+      "type": "email",
+      "due_date": "2026-09-22",
+      "note": "724 Taylor: chase 5 outstanding utility locates (ticket 2026383773)"
+    },
+    {
+      "contact_email": "oren@fishmanlawgroup.com",
+      "type": "email",
+      "due_date": "2026-09-24",
+      "note": "724 Taylor: scope summary for lender + contractor consent"
+    },
+    {
+      "contact_email": "jrussell@adamsoutdoor.com",
+      "type": "email",
+      "due_date": "2026-09-22",
+      "note": "Nesbitt: send Verona IOS LLC business address"
+    },
+    {
+      "contact_email": "kharn@tjkdesignbuild.com",
+      "type": "call",
+      "due_date": "2026-09-22",
+      "note": "Nesbitt: Per Mar go/no-go; confirm boarding up complete"
+    },
+    {
+      "contact_email": "oren@fishmanlawgroup.com",
+      "type": "email",
+      "due_date": "2026-09-25",
+      "note": "Nesbitt: review Adams easement drafts ($87.5K) + lender consent"
+    },
+    {
+      "contact_email": "jonathan@porterfirm.com",
+      "type": "call",
+      "due_date": "2026-09-23",
+      "note": "Keith Harrow: earnest money dispute status"
+    }
+  ],
+  "contact_log": [
+    {
+      "contact_email": "Steven.Brunette@cbre.com",
+      "type": "email",
+      "date": "2026-09-18",
+      "note": "Sent revised PSA (Purchaser 9.18) \u2014 $6.55M."
+    },
+    {
+      "contact_email": "SSchuster@burkelaw.com",
+      "type": "call",
+      "date": "2026-09-18",
+      "note": "PSA call; revised draft issued."
+    },
+    {
+      "contact_email": "roy@nublockpartners.com",
+      "type": "email",
+      "date": "2026-09-18",
+      "note": "Owners' GC agreement redline forwarded to S-Bar."
+    },
+    {
+      "contact_email": "kharn@tjkdesignbuild.com",
+      "type": "email",
+      "date": "2026-09-21",
+      "note": "Per Mar security proposal \u2014 asked about north side + month-to-month."
+    },
+    {
+      "contact_email": "cmurray@RIO-RealEstate.com",
+      "type": "email",
+      "date": "2026-09-21",
+      "note": "RIO sent draft PMA; entity placeholder Sandpiper Capital LLC."
+    },
+    {
+      "contact_email": "matt.poling@ryan.com",
+      "type": "email",
+      "date": "2026-09-21",
+      "note": "Sent Brighton tax estimate inputs."
+    },
+    {
+      "contact_email": "jonathan@porterfirm.com",
+      "type": "email",
+      "date": "2026-09-21",
+      "note": "Asked to be cc'd on seller follow-up re: $25K deposit."
+    }
+  ],
+  "diligence": [
+    {
+      "deal": "10275 E 106th",
+      "category": "env",
+      "vendor": "True North",
+      "items": [
+        [
+          "Phase I ESA \u2014 clean (8/10)",
+          "complete"
+        ]
+      ]
+    },
+    {
+      "deal": "10275 E 106th",
+      "category": "pca",
+      "vendor": "AEI",
+      "items": [
+        [
+          "PCA \u2014 clean",
+          "complete"
+        ]
+      ]
+    },
+    {
+      "deal": "10275 E 106th",
+      "category": "survey",
+      "vendor": "AEI",
+      "items": [
+        [
+          "Preliminary ALTA (8/14)",
+          "complete"
+        ],
+        [
+          "Final ALTA certified to First Interstate",
+          "pending"
+        ]
+      ]
+    },
+    {
+      "deal": "10275 E 106th",
+      "category": "roof",
+      "vendor": "Empire",
+      "items": [
+        [
+          "Roof inspection",
+          "complete"
+        ],
+        [
+          "Seller RTU replacement (done ~10/16)",
+          "in-progress"
+        ]
+      ]
+    },
+    {
+      "deal": "10275 E 106th",
+      "category": "zoning",
+      "vendor": "AEI",
+      "due_date": "2026-10-08",
+      "items": [
+        [
+          "PZR ordered 9/17",
+          "in-progress"
+        ]
+      ]
+    },
+    {
+      "deal": "10275 E 106th",
+      "category": "site",
+      "vendor": "Fidelity / Wormser Casey",
+      "items": [
+        [
+          "Title objection (seller responded 9/2)",
+          "in-progress"
+        ],
+        [
+          "Estoppel + SNDA",
+          "pending"
+        ],
+        [
+          "Brighton IOS LLC formed + PSA assigned",
+          "pending"
+        ]
+      ]
+    },
+    {
+      "deal": "1862 Ives",
+      "category": "env",
+      "vendor": "True North (review) / GeoEngineers (seller)",
+      "items": [
+        [
+          "GeoEngineers soil-vapor + covenant answers",
+          "pending"
+        ],
+        [
+          "TN / GeoEng / seller call",
+          "pending"
+        ]
+      ]
+    },
+    {
+      "deal": "1862 Ives",
+      "category": "zoning",
+      "vendor": "Kaileigh Seaver / City of Kent",
+      "due_date": "2026-10-15",
+      "items": [
+        [
+          "Records request W083543 (filed 9/15)",
+          "in-progress"
+        ]
+      ]
+    },
+    {
+      "deal": "1862 Ives",
+      "category": "contractor",
+      "vendor": "S-Bar",
+      "items": [
+        [
+          "Site tour 9/23 10am",
+          "pending"
+        ]
+      ]
+    }
+  ]
+}
