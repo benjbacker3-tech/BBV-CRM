@@ -21,6 +21,7 @@ export default function OverviewTab({ deal, onUpdate }: Props) {
     yoc_initial: toPct(deal.yoc_initial),
     yoc_target: toPct(deal.yoc_target),
     occupancy: toPct(deal.occupancy),
+    irr: toPct(deal.irr),
   }));
 
   // Inline-editable fields (live; auto-save)
@@ -42,6 +43,7 @@ export default function OverviewTab({ deal, onUpdate }: Props) {
       yoc_initial: toPct(deal.yoc_initial),
       yoc_target: toPct(deal.yoc_target),
       occupancy: toPct(deal.occupancy),
+      irr: toPct(deal.irr),
     });
     setEditingAll(false);
   }, [deal]);
@@ -100,6 +102,7 @@ export default function OverviewTab({ deal, onUpdate }: Props) {
       yoc_initial: fromPct(allForm.yoc_initial),
       yoc_target: fromPct(allForm.yoc_target),
       occupancy: fromPct(allForm.occupancy),
+      irr: fromPct(allForm.irr),
     };
     const res = await fetch(`/api/deals/${deal.id}`, {
       method: 'PUT',
@@ -245,10 +248,11 @@ function SaveIndicator({ status }: { status: SaveStatus }) {
 // Bulk edit mode — full form for the less-frequently-edited fields
 // -----------------------------------------------------------------------------
 
-interface BulkForm extends Omit<Deal, 'yoc_initial' | 'yoc_target' | 'occupancy'> {
+interface BulkForm extends Omit<Deal, 'yoc_initial' | 'yoc_target' | 'occupancy' | 'irr'> {
   yoc_initial: number; // percent
   yoc_target: number;  // percent
   occupancy: number;   // percent
+  irr: number;         // percent
 }
 
 function BulkEditForm({ form, setForm, onSave, onCancel }: {
@@ -264,6 +268,7 @@ function BulkEditForm({ form, setForm, onSave, onCancel }: {
       { key: 'name', label: 'Name', colSpan: 2 },
       { key: 'address', label: 'Address', colSpan: 2 },
       { key: 'city', label: 'City' },
+      { key: 'state', label: 'State (2-letter)' },
       { key: 'market', label: 'Market' },
       { key: 'submarket', label: 'Submarket' },
       { key: 'zoning', label: 'Zoning' },
@@ -275,8 +280,11 @@ function BulkEditForm({ form, setForm, onSave, onCancel }: {
     ]},
     { label: 'Basis & Returns', fields: [
       { key: 'asking_price', label: 'Asking Price ($)', type: 'number', step: '10000' },
+      { key: 'all_in_basis', label: 'All-In Basis ($)', type: 'number', step: '10000' },
       { key: 'yoc_initial', label: 'Initial YoC (%)', type: 'number', step: '0.1' },
       { key: 'yoc_target', label: 'Stab YoC (%)', type: 'number', step: '0.1' },
+      { key: 'irr', label: 'IRR (%)', type: 'number', step: '0.1' },
+      { key: 'em', label: 'Equity Multiple (x)', type: 'number', step: '0.01' },
       { key: 'equity_required', label: 'Equity Required ($)', type: 'number', step: '10000' },
     ]},
     { label: 'Transaction', fields: [

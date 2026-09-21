@@ -89,6 +89,10 @@ export interface Deal {
   notes: string;
   pinned: number;
   ownership_pct: number;
+  state: string | null;
+  irr: number | null;
+  em: number | null;
+  all_in_basis: number | null;
   created_at: string;
 }
 

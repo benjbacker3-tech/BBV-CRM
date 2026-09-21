@@ -74,6 +74,10 @@ async function initSchema(db: Client) {
       notes TEXT,
       pinned INTEGER DEFAULT 0,
       ownership_pct REAL DEFAULT 100,       -- SPC's ownership percentage of the asset (100 for wholly-owned; e.g. 18 for a co-invest)
+      state TEXT,                           -- 2-letter US state code (CO, WA, NV, ...)
+      irr REAL,                             -- underwritten IRR as decimal (0.225 = 22.5%)
+      em REAL,                              -- underwritten equity multiple (2.1 = 2.1x)
+      all_in_basis REAL,                    -- total capitalization (purchase price + capex + closing + lender fees)
       created_at TEXT DEFAULT (datetime('now'))
     );
 
@@ -269,6 +273,10 @@ async function initSchema(db: Client) {
     { name: 'close_days', def: 'INTEGER DEFAULT 0' },
     { name: 'deposit', def: 'REAL DEFAULT 0' },
     { name: 'ownership_pct', def: 'REAL DEFAULT 100' },
+    { name: 'state', def: 'TEXT' },
+    { name: 'irr', def: 'REAL' },
+    { name: 'em', def: 'REAL' },
+    { name: 'all_in_basis', def: 'REAL' },
   ];
   for (const col of dealColsToAdd) {
     if (!dealColNames.includes(col.name)) {

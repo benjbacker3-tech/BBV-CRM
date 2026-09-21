@@ -4,8 +4,34 @@ import { Fragment, useCallback, useEffect, useState } from 'react';
 import { Deal, Stage, STAGES } from '@/lib/utils';
 import DealDetailPanel from '@/components/DealDetailPanel';
 
-const REPORT_STAGES: Stage[] = ['Negotiating PSA', 'LOI Submitted', 'Under Contract', 'Tracking'];
 const SQFT_PER_ACRE = 43560;
+
+// Section order in the report — matches the xlsx tab layout the user works from.
+// "PSA" = executed PSA (Under Contract in our system).
+// "Agreed to Terms" = handshake, PSA being drafted (Negotiating PSA in our system).
+// "LOI Tracking" = LOIs out, no counter yet (LOI Submitted in our system).
+// Tracking / Closed / Dead render as their own smaller sections at the bottom.
+const REPORT_SECTIONS: { label: string; stages: Stage[]; subtotal: boolean; clusterWith?: string }[] = [
+  { label: 'PSA',             stages: ['Under Contract'],  subtotal: false, clusterWith: 'Committed' },
+  { label: 'Agreed to Terms', stages: ['Negotiating PSA'], subtotal: true,  clusterWith: 'Committed' },  // subtotal covers PSA + Agreed
+  { label: 'LOI Tracking',    stages: ['LOI Submitted'],   subtotal: true },
+  { label: 'Tracking',        stages: ['Tracking'],        subtotal: false },
+];
+
+// Cities → US state code (fallback when `state` isn't stored on the deal itself).
+// Populated from the addresses we already have in the pipeline; adding a new
+// city just falls through to no-state (—).
+const CITY_STATE: Record<string, string> = {
+  denver: 'CO', 'commerce city': 'CO', englewood: 'CO', 'north las vegas': 'NV',
+  brighton: 'CO', henderson: 'CO', kent: 'WA', tacoma: 'WA', puyallup: 'WA',
+  seattle: 'WA', meridian: 'ID', 'las vegas': 'NV', phoenix: 'AZ', madison: 'WI',
+  houston: 'TX',
+};
+const inferState = (d: { state?: string | null; city?: string; market?: string }): string => {
+  if (d.state) return d.state;
+  const key = (d.city || '').trim().toLowerCase();
+  return CITY_STATE[key] || '';
+};
 
 const nf0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
 const nf2 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -17,6 +43,7 @@ const fmtMoney2 = (n: number) => (n == null || !isFinite(n) || n === 0 ? dash : 
 const fmtPct1 = (n: number) => (n == null || !isFinite(n) || n === 0 ? dash : `${(n * 100).toFixed(1)}%`);
 const fmtPct0 = (n: number) => (n == null || !isFinite(n) ? dash : `${Math.round(n * 100)}%`);
 const fmtDec = (n: number, d = 2) => (n == null || !isFinite(n) || n === 0 ? dash : n.toFixed(d));
+const fmtMult = (n: number | null | undefined) => (n == null || !isFinite(n) || n === 0 ? dash : `${n.toFixed(2)}x`);
 
 export default function PropertiesPage() {
   const [deals, setDeals] = useState<Deal[] | null>(null);
@@ -128,6 +155,7 @@ export default function PropertiesPage() {
     );
   }
 
+  const REPORT_STAGES = REPORT_SECTIONS.flatMap(s => s.stages);
   const activeDeals = deals.filter(d => REPORT_STAGES.includes(d.stage as Stage));
 
   const enriched = activeDeals.map(d => {
@@ -136,20 +164,6 @@ export default function PropertiesPage() {
     const plf = landSF > 0 ? (d.asking_price || 0) / landSF : 0;
     return { ...d, far, plf };
   });
-
-  const totals = {
-    sf: enriched.reduce((s, d) => s + (d.sf || 0), 0),
-    acres: enriched.reduce((s, d) => s + (d.acreage || 0), 0),
-    price: enriched.reduce((s, d) => s + (d.asking_price || 0), 0),
-    equity: enriched.reduce((s, d) => s + (d.equity_required || 0), 0),
-    deposit: enriched.reduce((s, d) => s + (d.deposit || 0), 0),
-  };
-  const totalLandSF = totals.acres * SQFT_PER_ACRE;
-  const wFar = totalLandSF > 0 ? totals.sf / totalLandSF : 0;
-  const wOcc = enriched.length > 0 ? enriched.reduce((s, d) => s + (d.occupancy || 0), 0) / enriched.length : 0;
-  const wPlf = totalLandSF > 0 ? totals.price / totalLandSF : 0;
-  const wInitial = totals.price > 0 ? enriched.reduce((s, d) => s + (d.yoc_initial || 0) * (d.asking_price || 0), 0) / totals.price : 0;
-  const wStab = totals.price > 0 ? enriched.reduce((s, d) => s + (d.yoc_target || 0) * (d.asking_price || 0), 0) / totals.price : 0;
 
   return (
     <>
@@ -223,119 +237,121 @@ export default function PropertiesPage() {
           </div>
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto">
+        {/* Table — matches the xlsx pipeline tab layout (columns, groupings, section labels, per-cluster subtotals) */}
+        <div className="overflow-x-auto border border-gray-300">
           <table className="w-full text-[11px] border-collapse">
             <thead>
-              <tr className="text-gray-500 dark:text-gray-400">
-                <th colSpan={4} className="py-1.5 px-2"></th>
-                <th colSpan={4} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-b border-gray-300 dark:border-gray-600">Specs</th>
-                <th colSpan={2} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-b border-gray-300 dark:border-gray-600">Basis</th>
-                <th colSpan={2} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-b border-gray-300 dark:border-gray-600">Yield-on-Cost</th>
-                <th colSpan={1} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-b border-gray-300 dark:border-gray-600">Equity</th>
-                <th colSpan={3} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-b border-gray-300 dark:border-gray-600">Transaction Terms</th>
-                <th colSpan={1} className="py-1.5 px-2"></th>
+              {/* Row 1 — column group band */}
+              <tr className="bg-navy text-white">
+                <th colSpan={4} className="py-1.5 px-2 text-left text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">Sandpiper Acquisition Pipeline</th>
+                <th colSpan={4} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">Specs</th>
+                <th colSpan={2} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">Basis</th>
+                <th colSpan={2} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">Returns</th>
+                <th colSpan={1} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">All-In</th>
+                <th colSpan={1} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold">Equity</th>
               </tr>
-              <tr className="text-gray-600 dark:text-gray-300 border-b border-gray-300 dark:border-gray-600">
+              {/* Row 2 — column labels */}
+              <tr className="text-gray-700 bg-gray-50 border-b border-gray-400">
                 <Th align="right">No.</Th>
                 <Th align="left">Address</Th>
                 <Th align="left">City</Th>
-                <Th align="left">Market</Th>
+                <Th align="left">State</Th>
                 <Th align="right">SF</Th>
                 <Th align="right">Acres</Th>
                 <Th align="right">FAR</Th>
                 <Th align="right">Occ</Th>
                 <Th align="right">Price</Th>
-                <Th align="right">$ / LSF</Th>
-                <Th align="right">Initial</Th>
-                <Th align="right">Stab</Th>
+                <Th align="right">$ PLF</Th>
+                <Th align="right">IRR</Th>
+                <Th align="right">EM</Th>
+                <Th align="right">Basis</Th>
                 <Th align="right">Req&apos;d</Th>
-                <Th align="right">DD</Th>
-                <Th align="right">Close</Th>
-                <Th align="right">Deposit</Th>
-                <Th align="left">Notes</Th>
               </tr>
             </thead>
 
             <tbody>
-              {REPORT_STAGES.filter(stage => enriched.some(d => d.stage === stage)).map(stage => {
-                const stageDeals = enriched.filter(d => d.stage === stage);
-                const startingNo = REPORT_STAGES.slice(0, REPORT_STAGES.indexOf(stage)).reduce((a, s) => a + enriched.filter(x => x.stage === s).length, 0);
-                return (
-                  <Fragment key={stage}>
-                    <tr>
-                      <td colSpan={17} className="pt-5 pb-1.5">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-gray-700 dark:text-gray-200">{stage}</span>
-                          <span className="text-[10px] text-gray-400 dark:text-gray-500 font-mono">({stageDeals.length})</span>
-                        </div>
+              {(() => {
+                // Walk sections in order, emit header + rows + cluster subtotals where flagged.
+                let no = 0;
+                const clusterAccum: Record<string, EnrichedDeal[]> = {};
+                const rows: React.ReactNode[] = [];
+
+                for (const section of REPORT_SECTIONS) {
+                  const sectionDeals = enriched.filter(d => section.stages.includes(d.stage as Stage));
+                  if (sectionDeals.length === 0 && !section.subtotal) continue;
+
+                  // Section header row
+                  if (sectionDeals.length > 0) {
+                    rows.push(
+                      <tr key={`hdr-${section.label}`} className="bg-gray-100 border-b border-gray-300">
+                        <td colSpan={14} className="py-1.5 px-2">
+                          <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-navy">{section.label}</span>
+                          <span className="text-[10px] text-gray-500 font-mono ml-2">({sectionDeals.length})</span>
+                        </td>
+                      </tr>
+                    );
+
+                    for (const d of sectionDeals) {
+                      no++;
+                      const state = inferState(d);
+                      rows.push(
+                        <tr
+                          key={d.id}
+                          onClick={() => setSelectedDeal(d)}
+                          className={`border-b border-gray-200 cursor-pointer ${
+                            selectedDeal?.id === d.id ? 'bg-amber/10' : 'hover:bg-gray-50'
+                          }`}
+                        >
+                          <Td align="right" muted>{no}</Td>
+                          <Td align="left" font="sans" bold>{d.address}</Td>
+                          <Td align="left" font="sans">{d.city}</Td>
+                          <Td align="left" font="sans">{state || dash}</Td>
+                          <Td align="right">{fmtInt(d.sf || 0)}</Td>
+                          <Td align="right">{fmtDec(d.acreage || 0, 2)}</Td>
+                          <Td align="right">{fmtDec(d.far, 2)}</Td>
+                          <Td align="right">{fmtPct0(d.occupancy || 0)}</Td>
+                          <Td align="right">{fmtMoney(d.asking_price || 0)}</Td>
+                          <Td align="right">{fmtMoney2(d.plf)}</Td>
+                          <Td align="right">{fmtPct1(d.irr ?? 0)}</Td>
+                          <Td align="right">{fmtMult(d.em)}</Td>
+                          <Td align="right">{fmtMoney(d.all_in_basis ?? 0)}</Td>
+                          <Td align="right">{fmtMoney(d.equity_required || 0)}</Td>
+                        </tr>
+                      );
+                    }
+
+                    // Add to cluster accumulator
+                    if (section.clusterWith) {
+                      clusterAccum[section.clusterWith] = [...(clusterAccum[section.clusterWith] || []), ...sectionDeals];
+                    }
+                  }
+
+                  // Subtotal — either a cluster subtotal (across accumulated sections) or a section subtotal
+                  if (section.subtotal) {
+                    const subtotalDeals = section.clusterWith ? clusterAccum[section.clusterWith] : sectionDeals;
+                    const label = section.clusterWith
+                      ? `${section.clusterWith} · Total / Weighted Avg.`
+                      : `${section.label} · Total / Weighted Avg.`;
+                    if (subtotalDeals && subtotalDeals.length > 0) {
+                      rows.push(<SubtotalRow key={`sub-${section.label}`} label={label} deals={subtotalDeals} />);
+                    }
+                    // Reset cluster after emitting its subtotal so we don't double-count later sections
+                    if (section.clusterWith) delete clusterAccum[section.clusterWith];
+                  }
+                }
+
+                if (rows.length === 0) {
+                  rows.push(
+                    <tr key="empty">
+                      <td colSpan={14} className="py-16 text-center text-sm text-gray-400 font-sans">
+                        No active deals. Click <span className="font-medium text-gray-600">+ New Property</span> to add one, or upload a workbook containing a <span className="font-medium text-gray-600">Sandpiper Pipeline</span> tab.
                       </td>
                     </tr>
-                    <tr>
-                      <td colSpan={17} className="border-t border-gray-300 dark:border-gray-600 p-0" />
-                    </tr>
-                    {stageDeals.map((d, idx) => (
-                      <tr
-                        key={d.id}
-                        onClick={() => setSelectedDeal(d)}
-                        className={`border-b border-gray-100 dark:border-gray-800 cursor-pointer transition-colors ${
-                          selectedDeal?.id === d.id ? 'bg-amber/5 dark:bg-amber/10' : 'hover:bg-gray-50/60 dark:hover:bg-gray-800/30'
-                        }`}
-                      >
-                        <Td align="right" muted>{startingNo + idx + 1}</Td>
-                        <Td align="left" font="sans" bold>{d.address}</Td>
-                        <Td align="left" font="sans">{d.city}</Td>
-                        <Td align="left" font="sans">{d.market}</Td>
-                        <Td align="right">{fmtInt(d.sf || 0)}</Td>
-                        <Td align="right">{fmtDec(d.acreage || 0, 2)}</Td>
-                        <Td align="right">{fmtDec(d.far, 2)}</Td>
-                        <Td align="right">{fmtPct0(d.occupancy || 0)}</Td>
-                        <Td align="right">{fmtMoney(d.asking_price || 0)}</Td>
-                        <Td align="right">{fmtMoney2(d.plf)}</Td>
-                        <Td align="right">{fmtPct1(d.yoc_initial || 0)}</Td>
-                        <Td align="right">{fmtPct1(d.yoc_target || 0)}</Td>
-                        <Td align="right">{fmtMoney(d.equity_required || 0)}</Td>
-                        <Td align="right">{d.dd_days || dash}</Td>
-                        <Td align="right">{d.close_days || dash}</Td>
-                        <Td align="right">{fmtMoney(d.deposit || 0)}</Td>
-                        <Td align="left" font="sans" muted>{d.notes}</Td>
-                      </tr>
-                    ))}
-                  </Fragment>
-                );
-              })}
+                  );
+                }
 
-              {enriched.length > 0 && (
-                <>
-                  <tr><td colSpan={17} className="pt-3 p-0" /></tr>
-                  <tr className="border-t-2 border-b border-double border-gray-700 dark:border-gray-400">
-                    <td colSpan={4} className="py-2 px-2 text-[11px] font-sans font-semibold text-gray-900 dark:text-gray-100 text-left">
-                      Total / Weighted Avg.
-                    </td>
-                    <Td align="right" bold mono>{fmtInt(totals.sf)}</Td>
-                    <Td align="right" bold mono>{fmtDec(totals.acres, 2)}</Td>
-                    <Td align="right" bold mono>{fmtDec(wFar, 2)}</Td>
-                    <Td align="right" bold mono>{fmtPct0(wOcc)}</Td>
-                    <Td align="right" bold mono>{fmtMoney(totals.price)}</Td>
-                    <Td align="right" bold mono>{fmtMoney2(wPlf)}</Td>
-                    <Td align="right" bold mono>{fmtPct1(wInitial)}</Td>
-                    <Td align="right" bold mono>{fmtPct1(wStab)}</Td>
-                    <Td align="right" bold mono>{fmtMoney(totals.equity)}</Td>
-                    <Td align="right" muted>{dash}</Td>
-                    <Td align="right" muted>{dash}</Td>
-                    <Td align="right" bold mono>{fmtMoney(totals.deposit)}</Td>
-                    <Td align="right" muted>{dash}</Td>
-                  </tr>
-                </>
-              )}
-
-              {enriched.length === 0 && (
-                <tr>
-                  <td colSpan={17} className="py-16 text-center text-sm text-gray-400 dark:text-gray-500 font-sans">
-                    No active deals. Click <span className="font-medium text-gray-600 dark:text-gray-300">+ New Property</span> to add one, or upload a workbook containing a <span className="font-medium text-gray-600 dark:text-gray-300">Sandpiper Pipeline</span> tab.
-                  </td>
-                </tr>
-              )}
+                return rows;
+              })()}
             </tbody>
           </table>
         </div>
@@ -360,6 +376,54 @@ export default function PropertiesPage() {
           onCreated={() => { setShowNewModal(false); load(); }}
         />
       )}
+    </>
+  );
+}
+
+type EnrichedDeal = Deal & { far: number; plf: number };
+
+// Cluster subtotal row — weighted averages for ratio columns, sums for absolute
+// columns. Weights: SF-weighted for occupancy; land-SF-weighted for FAR / $ PLF;
+// equity-weighted for IRR and EM (deals with null IRR/EM are excluded from the
+// weighted-avg denominator so an empty column doesn't drag the number to zero).
+function SubtotalRow({ label, deals }: { label: string; deals: EnrichedDeal[] }) {
+  const totalSF = deals.reduce((s, d) => s + (d.sf || 0), 0);
+  const totalAcres = deals.reduce((s, d) => s + (d.acreage || 0), 0);
+  const totalLandSF = totalAcres * SQFT_PER_ACRE;
+  const totalPrice = deals.reduce((s, d) => s + (d.asking_price || 0), 0);
+  const totalEquity = deals.reduce((s, d) => s + (d.equity_required || 0), 0);
+  const totalAllIn = deals.reduce((s, d) => s + (d.all_in_basis || 0), 0);
+
+  const wFar = totalLandSF > 0 ? totalSF / totalLandSF : 0;
+  const wOcc = totalSF > 0
+    ? deals.reduce((s, d) => s + (d.occupancy || 0) * (d.sf || 0), 0) / totalSF
+    : deals.length > 0 ? deals.reduce((s, d) => s + (d.occupancy || 0), 0) / deals.length : 0;
+  const wPlf = totalLandSF > 0 ? totalPrice / totalLandSF : 0;
+
+  const irrDeals = deals.filter(d => d.irr != null && d.equity_required);
+  const irrEquity = irrDeals.reduce((s, d) => s + (d.equity_required || 0), 0);
+  const wIrr = irrEquity > 0 ? irrDeals.reduce((s, d) => s + (d.irr || 0) * (d.equity_required || 0), 0) / irrEquity : 0;
+
+  const emDeals = deals.filter(d => d.em != null && d.equity_required);
+  const emEquity = emDeals.reduce((s, d) => s + (d.equity_required || 0), 0);
+  const wEm = emEquity > 0 ? emDeals.reduce((s, d) => s + (d.em || 0) * (d.equity_required || 0), 0) / emEquity : 0;
+
+  return (
+    <>
+      <tr className="border-t-2 border-gray-500 bg-gray-50">
+        <td colSpan={4} className="py-1.5 px-2 text-[11px] font-sans font-semibold text-gray-900 text-left">{label}</td>
+        <Td align="right" bold mono>{fmtInt(totalSF)}</Td>
+        <Td align="right" bold mono>{fmtDec(totalAcres, 2)}</Td>
+        <Td align="right" bold mono>{fmtDec(wFar, 2)}</Td>
+        <Td align="right" bold mono>{fmtPct0(wOcc)}</Td>
+        <Td align="right" bold mono>{fmtMoney(totalPrice)}</Td>
+        <Td align="right" bold mono>{fmtMoney2(wPlf)}</Td>
+        <Td align="right" bold mono>{wIrr > 0 ? fmtPct1(wIrr) : dash}</Td>
+        <Td align="right" bold mono>{wEm > 0 ? fmtMult(wEm) : dash}</Td>
+        <Td align="right" bold mono>{fmtMoney(totalAllIn)}</Td>
+        <Td align="right" bold mono>{fmtMoney(totalEquity)}</Td>
+      </tr>
+      <tr><td colSpan={14} className="pt-2 p-0" /></tr>
     </>
   );
 }
