@@ -58,3 +58,5 @@ sandpiper.db*
 # Logs
 *.log
 logs/
+
+.vercel
