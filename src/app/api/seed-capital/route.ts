@@ -39,14 +39,14 @@ const SOURCES = [
     name: 'Oakwood Real Estate Partners, LLC',
     short_name: 'Oakwood (OREP)',
     kind: 'JV Equity — Deal-by-Deal',
-    status: 'LOI issued 9/4/2026 (Kieth Harrow, Houston)',
+    status: 'Term Sheet Received — First Deal TBD',
     primary_contact: 'R. Barton Spaulding, Managing Partner',
     headquarters: '55 Madison St, Suite 600, Denver, CO 80206',
-    target_size: '$1,194,167 total equity for 18050 Kieth Harrow Rd, Houston (17k SF IOS on 1.7 ac). OREP 90% ($1,074,751) / Sandpiper 10% ($119,417).',
+    target_size: 'Deal-by-deal JV, ~10% sponsor skin. Sized to each transaction — no committed facility amount.',
     pref_pct: 8,
     promote_summary:
       '8% pref pari passu → 75/25 to 20% IRR → 50/50 thereafter. Additional Capital Contributions earn priority 15% IRR ahead of the stack.',
-    geo_focus: 'Texas + all states not covered by the CentrePoint agreement. Colorado added post-CentrePoint tail. 5-mile non-compete radius around each JV property.',
+    geo_focus: 'All states not covered by the CentrePoint agreement. Colorado added post-CentrePoint tail. 5-mile non-compete radius around each JV property.',
     strategy_fit: 'Single-asset IOS JV. Non-recourse to OREP; Ben Backer + Aasif Bade guarantor entity carries all repayment/recourse/bad-boy obligations.',
     sponsor_skin_pct: 10,
     asset_mgmt_fee_pct: 1,
@@ -55,10 +55,10 @@ const SOURCES = [
     leverage_target_pct: 65,
     hold_period: 'Undefined (OREP has unilateral forced-sale right)',
     exclusivity_notes:
-      'No ROFR (deferred to CentrePoint), but SPC must present all IOS acquisitions in TX + non-CentrePoint states to OREP before offering to other capital. 5-mile non-compete around each Property.',
+      'No ROFR (deferred to CentrePoint), but SPC must present all IOS acquisitions in non-CentrePoint states to OREP before offering to other capital. 5-mile non-compete around each Property.',
     signed_date: null,
     notes:
-      'Construction mgmt fee 5% of hard costs; leasing fee 1% of gross lease revenue. Debt: 65% LTC, 6.75%, 36mo IO, 360mo am, 48mo term, 1.5% loan fee. First $39,208 of cost overruns funded by GP (no capital-account credit).',
+      'Construction mgmt fee 5% of hard costs; leasing fee 1% of gross lease revenue. Standard debt profile: 65% LTC, ~6.75%, 36mo IO, 360mo am, 48mo term, 1.5% loan fee. First tranche of cost overruns funded by GP (no capital-account credit).',
   },
   {
     name: 'Aasif Bade — BFO Investments LLC',

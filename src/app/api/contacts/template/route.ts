@@ -7,8 +7,8 @@ import { buildCSV } from '@/lib/csv';
 export async function GET() {
   const headers = ['Name', 'Email', 'Phone', 'Firm', 'Title', 'Markets', 'Type', 'Warmth', 'Notes'];
   const example = [
-    'John Smith', 'jsmith@cbre.com', '(713) 555-0142', 'CBRE', 'Senior VP',
-    'Houston, Dallas', 'broker', 'hot', 'Top broker in Houston market',
+    'John Smith', 'jsmith@cbre.com', '(303) 555-0142', 'CBRE', 'Senior VP',
+    'Denver, Seattle', 'broker', 'hot', 'Top broker in Denver market',
   ];
   const csv = buildCSV([headers, example]);
   return new NextResponse(csv, {

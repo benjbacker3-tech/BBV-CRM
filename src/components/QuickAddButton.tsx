@@ -83,9 +83,9 @@ function DealModal({ onClose }: { onClose: () => void }) {
   return (
     <ModalWrapper title="New Deal" onClose={onClose}>
       <div className="space-y-3">
-        <InputField label="Deal Name *" value={f.name} onChange={v => setF({ ...f, name: v })} autoFocus placeholder="e.g. Port Houston Yard" />
+        <InputField label="Deal Name *" value={f.name} onChange={v => setF({ ...f, name: v })} autoFocus placeholder="e.g. Denver Equipment Shop" />
         <div className="grid grid-cols-2 gap-3">
-          <InputField label="Market" value={f.market} onChange={v => setF({ ...f, market: v })} placeholder="Houston" />
+          <InputField label="Market" value={f.market} onChange={v => setF({ ...f, market: v })} placeholder="Denver" />
           <InputField label="Source" value={f.source} onChange={v => setF({ ...f, source: v })} placeholder="CBRE Listing" />
         </div>
         <InputField label="Address" value={f.address} onChange={v => setF({ ...f, address: v })} />

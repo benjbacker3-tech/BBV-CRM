@@ -66,8 +66,8 @@ export default function CommandBar() {
 
   const navigate = useCallback((item: typeof allItems[0]) => {
     setOpen(false);
-    if (item.type === 'deal') router.push(`/pipeline?deal=${item.id}`);
-    else router.push('/pipeline');
+    if (item.type === 'deal') router.push(`/properties?deal=${item.id}`);
+    else router.push('/properties');
   }, [router]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

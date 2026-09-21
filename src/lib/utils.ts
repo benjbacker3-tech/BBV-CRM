@@ -88,6 +88,7 @@ export interface Deal {
   deposit: number;
   notes: string;
   pinned: number;
+  ownership_pct: number;
   created_at: string;
 }
 

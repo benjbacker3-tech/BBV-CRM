@@ -79,6 +79,17 @@ const DEALS = [
     asking_price: 6500000, yoc_initial: 0, yoc_target: 0, equity_required: 2068714,
     stage: 'LOI Submitted', dd_days: 45, close_days: 30, deposit: null,
     notes: 'CentrePoint partner deal. All-in basis $5.91M. Returns TBD.',
+    ownership_pct: 100,
+  },
+
+  // ─── Closed (Owned Asset) ────────────────────────────────────────────────
+  {
+    address: '6371 Nesbitt', city: 'Madison', market: 'Wisconsin',
+    sf: 25000, acreage: 11.1, occupancy: 0,
+    asking_price: 3600000, yoc_initial: 0, yoc_target: 0.108, equity_required: 2343106,
+    stage: 'Closed', dd_days: 60, close_days: 30, deposit: 50000,
+    notes: 'Closed. SPC owns 18%. Larger site with two shops and multiple access points.',
+    ownership_pct: 18,
   },
 ];
 
@@ -108,14 +119,15 @@ export async function POST() {
          sf, acreage, occupancy,
          asking_price, yoc_initial, yoc_target, equity_required,
          zoning, ios_eligible, stage, source,
-         dd_expiry, dd_days, close_days, deposit, notes
-       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         dd_expiry, dd_days, close_days, deposit, notes, ownership_pct
+       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         d.address, d.address, d.city, d.market, null,
         d.sf, d.acreage, d.occupancy,
         d.asking_price, d.yoc_initial, d.yoc_target, d.equity_required,
         null, 1, d.stage, 'Pipeline import 09/16/2026',
         null, d.dd_days, d.close_days, d.deposit, d.notes,
+        (d as { ownership_pct?: number }).ownership_pct ?? 100,
       ]
     );
     await logActivity({

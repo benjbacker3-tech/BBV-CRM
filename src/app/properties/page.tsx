@@ -186,7 +186,7 @@ export default function PropertiesPage() {
         <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-800">
           <div>
             <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">Sandpiper Capital LLC · Acquisition Pipeline</p>
-            <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-tight">Properties</h1>
+            <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-tight">Pipeline</h1>
           </div>
           <div className="flex items-center gap-2">
             {importResult && <span className="text-xs text-gray-500 dark:text-gray-400 mr-2">{importResult}</span>}
@@ -332,7 +332,7 @@ export default function PropertiesPage() {
               {enriched.length === 0 && (
                 <tr>
                   <td colSpan={17} className="py-16 text-center text-sm text-gray-400 dark:text-gray-500 font-sans">
-                    No active deals. Click <span className="font-medium text-gray-600 dark:text-gray-300">+ New Property</span> to add one, or <span className="font-medium text-gray-600 dark:text-gray-300">Import Pipeline</span> to load the 8 deals from the Excel file.
+                    No active deals. Click <span className="font-medium text-gray-600 dark:text-gray-300">+ New Property</span> to add one, or upload a workbook containing a <span className="font-medium text-gray-600 dark:text-gray-300">Sandpiper Pipeline</span> tab.
                   </td>
                 </tr>
               )}

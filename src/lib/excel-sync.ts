@@ -20,7 +20,7 @@ export const SYNC_FIELDS: SyncField[] = [
   { field: 'Address', col: 'address', kind: 'text', note: 'Required. Used as the unique key for upsert.' },
   { field: 'Deal Name', col: 'name', kind: 'text', note: 'Optional. Defaults to Address if blank.' },
   { field: 'City', col: 'city', kind: 'text' },
-  { field: 'Market', col: 'market', kind: 'text', note: 'e.g. Detroit, Denver, Wisconsin' },
+  { field: 'Market', col: 'market', kind: 'text', note: 'e.g. Denver, Seattle, Las Vegas' },
   { field: 'Submarket', col: 'submarket', kind: 'text' },
   { field: 'Zoning', col: 'zoning', kind: 'text' },
   { field: 'Source', col: 'source', kind: 'text', note: 'Broker, off-market, listing, etc.' },
