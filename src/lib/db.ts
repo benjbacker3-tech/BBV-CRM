@@ -201,6 +201,31 @@ async function initSchema(db: Client) {
       created_at TEXT DEFAULT (datetime('now'))
     );
 
+    CREATE TABLE IF NOT EXISTS lois (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      deal_id INTEGER,
+      sent_date TEXT,                      -- ISO date the LOI was emailed
+      property TEXT,                       -- address as written in the LOI
+      price REAL,
+      sf INTEGER,
+      acreage REAL,
+      deposit REAL,
+      dd_days INTEGER,
+      close_days INTEGER,                  -- days after DD
+      exclusivity_days INTEGER,
+      leaseback TEXT,
+      other_terms TEXT,
+      version_note TEXT,                   -- e.g. "revised — price up from $X", "executed by seller"
+      to_name TEXT,
+      to_email TEXT,
+      to_firm TEXT,
+      attachment_name TEXT,
+      message_id TEXT UNIQUE,              -- Outlook message id (dedupe key)
+      outlook_link TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (deal_id) REFERENCES deals(id)
+    );
+
     CREATE TABLE IF NOT EXISTS events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,

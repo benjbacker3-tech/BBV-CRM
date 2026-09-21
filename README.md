@@ -56,6 +56,8 @@ node scripts/outlook-sync.mjs sync/outlook-2026-09-21.json             # apply
 
 The script writes to `TURSO_DATABASE_URL` from `.env.local` (falls back to local `sandpiper.db`). It is non-destructive and safe to re-run. It updates deal fields, and your own notes are kept: only the trailing "── Email status" block is replaced. It also fills blank contact fields and de-duplicates tasks, log entries and diligence items.
 
+**LOIs:** the snapshot's `lois[]` list holds every LOI you've emailed, with terms read from the attached letter. Each one is stored in the `lois` table, and the full history shows under **Sent LOIs** in the deal's LOI tab. The newest LOI sets the deal's price, SF, acres, deposit and DD/close days while the deal is at Tracking or LOI Submitted. For deals past that stage, it only fills blank fields. If an LOI is for a property the CRM doesn't have yet, it creates the deal at LOI Submitted.
+
 In Claude Code, run `/outlook-sync` to scan Outlook since the last snapshot, write a new snapshot, preview it and apply it. This needs the Microsoft 365 connector.
 
 ## Deployment Notes

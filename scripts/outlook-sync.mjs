@@ -13,6 +13,11 @@
 //    only the "── Email status" block at the end is replaced on each run.
 //  - Contacts matched by email (else name). Blank fields are filled; nothing is overwritten.
 //  - Tasks / contact-log entries / diligence items are de-duplicated, so re-running is safe.
+//  - LOIs (snapshot `lois[]`, extracted from the LOI attachments Ben emailed) are stored in the
+//    `lois` table, one row per sent email (deduped by Outlook message id). The newest LOI drives
+//    the deal's price / SF / acres / deposit / DD / close for deals still at Tracking or LOI
+//    Submitted; later-stage deals only get blanks filled. Low-confidence LOIs are skipped unless
+//    you pass --include-low.
 import fs from 'node:fs';
 import path from 'node:path';
 import { createClient } from '@libsql/client';
@@ -20,6 +25,7 @@ import { createClient } from '@libsql/client';
 const args = process.argv.slice(2);
 const file = args.find(a => !a.startsWith('--'));
 const DRY = args.includes('--dry-run');
+const INCLUDE_LOW = args.includes('--include-low');
 if (!file) {
   console.error('Usage: node scripts/outlook-sync.mjs <snapshot.json> [--dry-run]');
   process.exit(1);
@@ -132,6 +138,98 @@ for (const c of snap.contacts) {
   }
 }
 const cid = email => contactIds[(email || '').toLowerCase()];
+
+// ── LOIs ─────────────────────────────────────────────────────────────────
+await exec(`CREATE TABLE IF NOT EXISTS lois (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, deal_id INTEGER, sent_date TEXT, property TEXT,
+  price REAL, sf INTEGER, acreage REAL, deposit REAL, dd_days INTEGER, close_days INTEGER,
+  exclusivity_days INTEGER, leaseback TEXT, other_terms TEXT, version_note TEXT,
+  to_name TEXT, to_email TEXT, to_firm TEXT, attachment_name TEXT, message_id TEXT UNIQUE,
+  outlook_link TEXT, created_at TEXT DEFAULT (datetime('now')),
+  FOREIGN KEY (deal_id) REFERENCES deals(id))`);
+const hasLoiTable = DRY ? (await q("SELECT name FROM sqlite_master WHERE name='lois'")).length > 0 : true;
+const loiDeals = new Set();
+const EARLY = ['Tracking', 'LOI Submitted'];
+const outlookLink = id => `https://outlook.office365.com/owa/?ItemID=${encodeURIComponent(id)}&exvsurl=1&viewmodel=ReadMessageItem`;
+
+for (const l of snap.lois || []) {
+  const label = `${l.deal} ${l.sent_date}`;
+  if (l.confidence === 'low' && !INCLUDE_LOW) { say(`loi    ! skipped (low confidence — check it, then re-run with --include-low): ${label}. ${l.notes || ''}`); continue; }
+
+  // Deal: reuse from this run, else match, else create at "LOI Submitted"
+  let dealId = dealIds[l.deal];
+  if (!dealId) {
+    const ex = await findDeal({ key: l.deal, aliases: l.aliases });
+    if (ex) dealId = dealIds[l.deal] = Number(ex.id);
+  }
+  if (!dealId) {
+    const r = await exec(
+      'INSERT INTO deals (name, address, city, market, stage, source, ios_eligible) VALUES (?, ?, ?, ?, ?, ?, 1)',
+      [l.deal, l.property, l.city ?? null, l.market ?? l.city ?? null, 'LOI Submitted', 'Outlook LOI']);
+    dealId = dealIds[l.deal] = Number(r.lastInsertRowid);
+    await activity('deal', dealId, 'created', `Deal "${l.deal}" added from LOI sent ${l.sent_date}`);
+    say(`deal   + ${l.deal} (LOI Submitted, from LOI)`);
+  }
+
+  // Broker the LOI went to
+  if (l.to_email) {
+    const key = l.to_email.toLowerCase();
+    const rows = await q('SELECT * FROM contacts WHERE lower(email) = ? LIMIT 1', [key]);
+    if (rows.length) {
+      contactIds[key] = Number(rows[0].id);
+      if (!rows[0].deal_id && dealId) await exec('UPDATE contacts SET deal_id = ? WHERE id = ?', [dealId, rows[0].id]);
+    } else {
+      const name = (l.to_name || l.to_email).split('/')[0].trim();
+      const r = await exec('INSERT INTO contacts (deal_id, type, name, firm, email, markets, warmth) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [dealId ?? null, 'broker', name, l.to_firm ?? null, l.to_email, l.market ?? l.city ?? null, 'warm']);
+      contactIds[key] = Number(r.lastInsertRowid);
+      say(`contact+ ${name} (${l.to_firm || 'broker'})`);
+    }
+    await exec('UPDATE contacts SET last_contact = ? WHERE lower(email) = ? AND (last_contact IS NULL OR last_contact < ?)', [l.sent_date, key, l.sent_date]);
+  }
+
+  if (hasLoiTable && (await q('SELECT id FROM lois WHERE message_id = ?', [l.message_id])).length) { say(`loi    = ${label}`); loiDeals.add(dealId); continue; }
+  const r = await exec(
+    `INSERT INTO lois (deal_id, sent_date, property, price, sf, acreage, deposit, dd_days, close_days, exclusivity_days,
+       leaseback, other_terms, version_note, to_name, to_email, to_firm, attachment_name, message_id, outlook_link)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [dealId, l.sent_date, l.property, l.price ?? null, l.sf ?? null, l.acreage ?? null, l.deposit ?? null, l.dd_days ?? null,
+     l.close_days ?? null, l.exclusivity_days ?? null, l.leaseback ?? null, l.other_terms ?? null, l.version_note ?? null,
+     l.to_name ?? null, l.to_email ?? null, l.to_firm ?? null, l.attachment_name ?? null, l.message_id, outlookLink(l.message_id)]);
+  if (contactIds[(l.to_email || '').toLowerCase()]) {
+    const ext = `outlook-loi:${l.message_id}`;
+    if (!(await q('SELECT id FROM contact_log WHERE external_id = ?', [ext])).length) {
+      await exec("INSERT INTO contact_log (contact_id, type, note, date, external_id, source) VALUES (?, 'email', ?, ?, ?, 'outlook')",
+        [contactIds[l.to_email.toLowerCase()], `Sent LOI — ${l.property}${l.price ? ` at $${Number(l.price).toLocaleString('en-US')}` : ''}`, l.sent_date, ext]);
+    }
+  }
+  await activity('deal', dealId, 'loi_sent', `LOI sent ${l.sent_date}${l.price ? ` — $${Number(l.price).toLocaleString('en-US')}` : ''}`);
+  loiDeals.add(dealId);
+  say(`loi    + ${label}: ${l.price ? '$' + Number(l.price).toLocaleString('en-US') : 'no price'} · ${l.sf ?? '—'} SF · ${l.acreage ?? '—'} ac`);
+}
+
+// Newest LOI → deal fields
+for (const dealId of loiDeals) {
+  if (!dealId || DRY) continue;
+  const [latest] = await q('SELECT * FROM lois WHERE deal_id = ? ORDER BY sent_date DESC, id DESC LIMIT 1', [dealId]);
+  const [deal] = await q('SELECT * FROM deals WHERE id = ?', [dealId]);
+  if (!latest || !deal) continue;
+  const map = { asking_price: 'price', sf: 'sf', acreage: 'acreage', deposit: 'deposit', dd_days: 'dd_days', close_days: 'close_days' };
+  const early = EARLY.includes(String(deal.stage));
+  const set = {};
+  for (const [col, src] of Object.entries(map)) {
+    const v = latest[src];
+    if (v == null) continue;
+    const blank = deal[col] == null || Number(deal[col]) === 0;
+    if ((early || blank) && Number(deal[col]) !== Number(v)) set[col] = v;
+  }
+  if (deal.stage === 'Tracking') set.stage = 'LOI Submitted';
+  const keys = Object.keys(set);
+  if (keys.length) {
+    await exec(`UPDATE deals SET ${keys.map(k => `${k} = ?`).join(', ')} WHERE id = ?`, [...keys.map(k => set[k]), dealId]);
+    say(`deal   ~ ${deal.name}: ${keys.map(k => `${k}=${set[k]}`).join(', ')} (from LOI ${latest.sent_date})`);
+  }
+}
 
 // ── Tasks ────────────────────────────────────────────────────────────────
 for (const t of snap.tasks) {

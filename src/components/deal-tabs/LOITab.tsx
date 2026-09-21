@@ -1,11 +1,87 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { Deal, fmt } from '@/lib/utils';
 import { Contact } from '@/lib/utils';
 
 interface Props {
   deal: Deal;
+}
+
+interface SentLOI {
+  id: number;
+  sent_date: string;
+  price: number | null;
+  sf: number | null;
+  acreage: number | null;
+  deposit: number | null;
+  dd_days: number | null;
+  close_days: number | null;
+  exclusivity_days: number | null;
+  leaseback: string | null;
+  other_terms: string | null;
+  version_note: string | null;
+  to_name: string | null;
+  to_firm: string | null;
+  attachment_name: string | null;
+  outlook_link: string | null;
+}
+
+function SentLOIs({ dealId }: { dealId: number }) {
+  const [lois, setLois] = useState<SentLOI[]>([]);
+  const [open, setOpen] = useState<number | null>(null);
+  useEffect(() => {
+    fetch(`/api/lois?deal_id=${dealId}`).then(r => r.json()).then(setLois).catch(() => setLois([]));
+  }, [dealId]);
+  if (!lois.length) return null;
+  const num = (n: number | null, d = 0) => (n == null ? '—' : n.toLocaleString('en-US', { maximumFractionDigits: d }));
+  return (
+    <div className="mb-6">
+      <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sent LOIs <span className="text-xs text-gray-400">(from Outlook)</span></h4>
+      <div className="overflow-x-auto border border-gray-100 dark:border-gray-700 rounded">
+        <table className="w-full text-xs">
+          <thead className="bg-gray-50 dark:bg-surface-dark text-gray-500 dark:text-gray-400">
+            <tr>
+              {['Sent', 'Price', '$/SF', 'SF', 'Acres', 'Deposit', 'DD / Close', 'To'].map(h => (
+                <th key={h} className="text-left font-medium px-2 py-1.5 whitespace-nowrap">{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {lois.map((l, i) => (
+              <Fragment key={l.id}>
+                <tr onClick={() => setOpen(open === l.id ? null : l.id)}
+                    className={`cursor-pointer border-t border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-surface-dark ${i === 0 ? 'font-medium text-gray-900 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'}`}>
+                  <td className="px-2 py-1.5 whitespace-nowrap">{l.sent_date}</td>
+                  <td className="px-2 py-1.5 font-mono whitespace-nowrap">{fmt(l.price)}</td>
+                  <td className="px-2 py-1.5 font-mono">{l.price && l.sf ? `$${num(l.price / l.sf)}` : '—'}</td>
+                  <td className="px-2 py-1.5 font-mono">{num(l.sf)}</td>
+                  <td className="px-2 py-1.5 font-mono">{num(l.acreage, 2)}</td>
+                  <td className="px-2 py-1.5 font-mono">{fmt(l.deposit)}</td>
+                  <td className="px-2 py-1.5 whitespace-nowrap">{l.dd_days ?? '—'} / {l.close_days ?? '—'}</td>
+                  <td className="px-2 py-1.5 whitespace-nowrap">{[l.to_name, l.to_firm].filter(Boolean).join(', ') || '—'}</td>
+                </tr>
+                {open === l.id && (
+                  <tr className="bg-gray-50 dark:bg-surface-dark text-gray-600 dark:text-gray-400">
+                    <td colSpan={8} className="px-3 py-2 space-y-1">
+                      {l.version_note && <p><strong>Version:</strong> {l.version_note}</p>}
+                      {l.exclusivity_days != null && <p><strong>Exclusivity:</strong> {l.exclusivity_days} days</p>}
+                      {l.leaseback && <p><strong>Leaseback:</strong> {l.leaseback}</p>}
+                      {l.other_terms && <p><strong>Other terms:</strong> {l.other_terms}</p>}
+                      <p>
+                        {l.attachment_name}
+                        {l.outlook_link && <> · <a href={l.outlook_link} target="_blank" rel="noreferrer" className="text-amber underline">Open email</a></>}
+                      </p>
+                    </td>
+                  </tr>
+                )}
+              </Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export default function LOITab({ deal }: Props) {
@@ -106,6 +182,7 @@ export default function LOITab({ deal }: Props) {
 
   return (
     <div>
+      <SentLOIs dealId={deal.id} />
       <div className="flex justify-between items-center mb-4">
         <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Letter of Intent</h4>
         <button onClick={exportPDF} className="px-3 py-1.5 bg-amber text-white rounded text-xs hover:bg-amber-dark flex items-center gap-1">

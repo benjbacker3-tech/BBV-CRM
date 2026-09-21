@@ -19,7 +19,7 @@
       "status": [
         "Seller: Precision Ventures LLC (Boyle / Westbrook). Title/escrow: Fidelity FBDO-2607358. Tenant: Zero Carbon Systems (lease exp 2/28).",
         "Capital: CentrePoint JV 90/10 (term sheet executed 8/26; JV docs drafting). Debt: First Interstate, Prime, 3-yr IO, 25% recourse w/ burn-off (5-yr lease + 1.40x DSCR).",
-        "DD extended to 10/31 (Amendment 1A). Closing = DD + 7 days \u2192 11/7 per amendment vs 11/9 in emails \u2014 CONFIRM.",
+        "DD extended to 10/31 (Amendment 1A). Closing = DD + 7 days → 11/7 per amendment vs 11/9 in emails — CONFIRM.",
         "Ben owes: form Brighton IOS LLC + assign PSA; PNC op account docs; estoppel/SNDA to seller (promised 9/1); RIO onboarding + PMA review; final ALTA certified to FIB; tenant financials.",
         "Waiting on: seller demo/shed permits/RTU (done ~10/16); final appraisal; JV docs; AEI PZR (~10/8); Ryan tax estimate; title objection outcome (seller responded 9/2).",
         "Risks: tenant credit; water district use restriction + unreleased 2018 O&G lease; loan # mismatch 100069869 vs 100069896; no sprinklers."
@@ -41,10 +41,10 @@
         "deposit": 50000
       },
       "status": [
-        "Seller: Magnum Venus Products (CBRE: Steve & Ryan Brunette). Buyer counsel: Stephen Schuster (Burke). Buyer broker: Taylor Hudson, NAI \u2014 3% paid by Sandpiper.",
-        "LOI $6.85M executed 8/31 \u2192 PSA price $6.55M. $800K env escrow. 60 DD / 30 close. Seller wants YE close; LOI exclusivity lapsing ~9/21.",
-        "Revised PSA sent to CBRE 9/18 \u2014 seller holds pen. Open: reject extra $100K deposit; tie env escrow release to NFA progress (not 18-mo outside date).",
-        "PSA fixes: \u00a77.2 broker rep (NAI owed); title co First American vs Fidelity; address 1962 Ives St \u2192 1862 Ives Ave, APN 346280-0190.",
+        "Seller: Magnum Venus Products (CBRE: Steve & Ryan Brunette). Buyer counsel: Stephen Schuster (Burke). Buyer broker: Taylor Hudson, NAI — 3% paid by Sandpiper.",
+        "LOI $6.85M executed 8/31 → PSA price $6.55M. $800K env escrow. 60 DD / 30 close. Seller wants YE close; LOI exclusivity lapsing ~9/21.",
+        "Revised PSA sent to CBRE 9/18 — seller holds pen. Open: reject extra $100K deposit; tie env escrow release to NFA progress (not 18-mo outside date).",
+        "PSA fixes: §7.2 broker rep (NAI owed); title co First American vs Fidelity; address 1962 Ives St → 1862 Ives Ave, APN 346280-0190.",
         "Waiting on: CBRE PSA response; BNSF easement timing (since 9/8); GeoEngineers soil-vapor + covenant answers (since 9/11); City of Kent records request W083543 (~10/15).",
         "Upcoming: S-Bar contractor tour Wed 9/23 10am (unconfirmed)."
       ],
@@ -67,7 +67,7 @@
       "status": [
         "CONSTRUCTION. Owner: Taylor IOS LLC + RBNB 69th LLC (TIC). Partners: Nublock (Roy Harel), RBN (Aviv Rubin, Mitch). Counsel: Oren Fishman.",
         "GC: S-Bar est 26-047 Rev 2.1 (8/27): $779,364 base / $1,013,353 w/ options vs $1.25M CapEx. 8 weeks. Permits excluded.",
-        "GC agreement NOT signed: owners' redline sent 9/18, S-Bar feedback due 9/21. Price/dates/Exh A\u2013D blank. Permit conflict (contract includes, proposal excludes). Exh C payment terms conflict with \u00a74.2.",
+        "GC agreement NOT signed: owners' redline sent 9/18, S-Bar feedback due 9/21. Price/dates/Exh A–D blank. Permit conflict (contract includes, proposal excludes). Exh C payment terms conflict with §4.2.",
         "Not mobilized. Digline 2026383773 (Ben as excavator): Meridian marked 9/21; 5 utilities pending; ticket expires ~10/15.",
         "Open: scope summary for lender (Oren asked 9/9); lender contractor consent; Rev 2.1 pricing may lapse ~9/26."
       ]
@@ -85,8 +85,8 @@
       },
       "status": [
         "CONSTRUCTION. Closed 9/11 at $3.45M. Owner: Verona IOS LLC. Lender: Sunwest. PM: Oakbrook (Peter DeVore, PMA pending).",
-        "GC: TJK Design Build $907,220, executed 9/10. 5% retainage, 15% CO fee, roofing excluded. Kickoff 9/14 \u2192 substantial completion 12/2.",
-        "Security: repeated vandalism; boarding-up not confirmed. Per Mar camera $1,399 + $1,037/mo (8-mo min) \u2014 pending Kevin Harn reply.",
+        "GC: TJK Design Build $907,220, executed 9/10. 5% retainage, 15% CO fee, roofing excluded. Kickoff 9/14 → substantial completion 12/2.",
+        "Security: repeated vandalism; boarding-up not confirmed. Per Mar camera $1,399 + $1,037/mo (8-mo min) — pending Kevin Harn reply.",
         "Adams Outdoor easement drafts 9/18: $40K + $23.75K + $23.75K = $87.5K; needs Oren review + lender consent.",
         "Ben owes: Verona IOS LLC address to Jack Russell (asked 9/18; '6731 Nesbitt' typo in earlier email). Waiting: Aviv on DD invoices (AEI $10.2K, TrueNorth $3.3K); First Student lease signature."
       ]
@@ -101,7 +101,7 @@
         "stage": "Dead"
       },
       "status": [
-        "DEAD \u2014 terminated 9/8 within feasibility. Seller (ALVinvest) claims $25K of deposit; legal dispute ongoing via Porter Firm (Jonathan Sandstrom Hill).",
+        "DEAD — terminated 9/8 within feasibility. Seller (ALVinvest) claims $25K of deposit; legal dispute ongoing via Porter Firm (Jonathan Sandstrom Hill).",
         "Close out: Red Iron PM, Oakwood term sheet, Ambrose PG pref equity."
       ]
     },
@@ -113,13 +113,10 @@
         "address": "1901 Taylor",
         "city": "Tacoma",
         "market": "Seattle / Tacoma",
-        "sf": 77000,
-        "acreage": 8.6,
-        "asking_price": 20000000,
         "stage": "LOI Submitted"
       },
       "status": [
-        "LOI $20M (latest 9/16, two capital options incl. CentrePoint JV). Kidder Mathews (Chris Trussel). Wilhelmsen blend-and-extend. Awaiting counter."
+        "LOIs to Kidder Mathews (Chris Trussel): $20.03M (9/8) → $22.03M (9/9) → $27.03M (9/16). 77K SF / 8.3 ac. Capital: CentrePoint JV or family office, all cash. Wilhelmsen blend-and-extend. Awaiting counter."
       ]
     },
     {
@@ -130,12 +127,10 @@
         "address": "3033 Losee Rd",
         "city": "North Las Vegas",
         "market": "Las Vegas",
-        "sf": 17000,
-        "acreage": 4.1,
         "stage": "LOI Submitted"
       },
       "status": [
-        "LOI 9/8 via Cushman (Michael Scher, Jason Griffis). No response yet; Vegas call 9/22."
+        "LOI 9/8 $13.03M (25K SF / 5.07 ac) with up to 4-yr leaseback at $66K/mo, 4% bumps. Cushman (Michael Scher, Jason Griffis). No response yet; Vegas call 9/22."
       ]
     },
     {
@@ -190,7 +185,7 @@
       "name": "Bryan Quigley",
       "firm": "PNC",
       "email": "bryan.quigley@pnc.com",
-      "notes": "Role: bank \u2014 operating account (106th)."
+      "notes": "Role: bank — operating account (106th)."
     },
     {
       "deal": "10275 E 106th",
@@ -230,7 +225,7 @@
       "firm": "NAI Puget Sound",
       "email": "thudson@nai-psp.com",
       "markets": "Seattle / Tacoma",
-      "notes": "Buyer broker \u2014 3% commission agreement signed 9/16."
+      "notes": "Buyer broker — 3% commission agreement signed 9/16."
     },
     {
       "deal": "1862 Ives",
@@ -328,7 +323,7 @@
       "name": "Jonathan Sandstrom Hill",
       "firm": "Porter Firm",
       "email": "jonathan@porterfirm.com",
-      "notes": "Role: counsel \u2014 earnest money dispute."
+      "notes": "Role: counsel — earnest money dispute."
     }
   ],
   "tasks": [
@@ -348,7 +343,7 @@
       "contact_email": "pboylet5853@gmail.com",
       "type": "email",
       "due_date": "2026-09-23",
-      "note": "106th: send estoppel + SNDA (FIB forms) \u2014 promised 9/1"
+      "note": "106th: send estoppel + SNDA (FIB forms) — promised 9/1"
     },
     {
       "contact_email": "cmurray@RIO-RealEstate.com",
@@ -384,7 +379,7 @@
       "contact_email": "SSchuster@burkelaw.com",
       "type": "email",
       "due_date": "2026-09-24",
-      "note": "Ives PSA fixes: \u00a77.2 broker rep (NAI), title co, address/APN"
+      "note": "Ives PSA fixes: §7.2 broker rep (NAI), title co, address/APN"
     },
     {
       "contact_email": "paul@sbarconstruction.com",
@@ -434,7 +429,7 @@
       "contact_email": "Steven.Brunette@cbre.com",
       "type": "email",
       "date": "2026-09-18",
-      "note": "Sent revised PSA (Purchaser 9.18) \u2014 $6.55M."
+      "note": "Sent revised PSA (Purchaser 9.18) — $6.55M."
     },
     {
       "contact_email": "SSchuster@burkelaw.com",
@@ -452,7 +447,7 @@
       "contact_email": "kharn@tjkdesignbuild.com",
       "type": "email",
       "date": "2026-09-21",
-      "note": "Per Mar security proposal \u2014 asked about north side + month-to-month."
+      "note": "Per Mar security proposal — asked about north side + month-to-month."
     },
     {
       "contact_email": "cmurray@RIO-RealEstate.com",
@@ -480,7 +475,7 @@
       "vendor": "True North",
       "items": [
         [
-          "Phase I ESA \u2014 clean (8/10)",
+          "Phase I ESA — clean (8/10)",
           "complete"
         ]
       ]
@@ -491,7 +486,7 @@
       "vendor": "AEI",
       "items": [
         [
-          "PCA \u2014 clean",
+          "PCA — clean",
           "complete"
         ]
       ]
@@ -594,6 +589,291 @@
           "pending"
         ]
       ]
+    }
+  ],
+  "lois": [
+    {
+      "deal": "1901 Taylor",
+      "property": "1901 Taylor Way",
+      "city": "Tacoma",
+      "market": "Seattle / Tacoma",
+      "sent_date": "2026-09-08",
+      "attachment_name": "1901 Taylor LOI - 09 08 26.pdf",
+      "to_name": "Chris Trussel",
+      "to_email": "chris.trussel@kidder.com",
+      "to_firm": "Kidder Mathews",
+      "price": 20030000,
+      "sf": 77000,
+      "acreage": 8.3,
+      "deposit": 50000,
+      "dd_days": 45,
+      "close_days": 20,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Original",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAEjAAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "1901 Taylor",
+      "property": "1901 Taylor Way",
+      "city": "Tacoma",
+      "market": "Seattle / Tacoma",
+      "sent_date": "2026-09-09",
+      "attachment_name": "1901 Taylor LOI - 09 09 26.pdf",
+      "to_name": "Chris Trussel",
+      "to_email": "chris.trussel@kidder.com",
+      "to_firm": "Kidder Mathews",
+      "price": 22030000,
+      "sf": 77000,
+      "acreage": 8.3,
+      "deposit": 50000,
+      "dd_days": 45,
+      "close_days": 20,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Revised — price up from $20,030,000",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAFMAAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "1901 Taylor",
+      "property": "1901 Taylor Way",
+      "city": "Tacoma",
+      "market": "Seattle / Tacoma",
+      "sent_date": "2026-09-16",
+      "attachment_name": "1901 Taylor LOI - 09 16 26.pdf",
+      "to_name": "Chris Trussel",
+      "to_email": "chris.trussel@kidder.com",
+      "to_firm": "Kidder Mathews",
+      "price": 27030000,
+      "sf": 77000,
+      "acreage": 8.3,
+      "deposit": 50000,
+      "dd_days": 45,
+      "close_days": 20,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity. Email: funding via $30M CentrePoint JV or family office ($50M equity), all cash.",
+      "version_note": "Revised — price up from $22,030,000",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAGEAAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "1862 Ives",
+      "aliases": [
+        "1962 Ives"
+      ],
+      "property": "1962 Ives Street",
+      "city": "Kent",
+      "market": "Seattle / Tacoma",
+      "sent_date": "2026-08-31",
+      "attachment_name": "1962 Ives LOI - 08 26 2026 fully executed.pdf",
+      "to_name": "Stephen Schuster",
+      "to_email": "SSchuster@burkelaw.com",
+      "to_firm": "Burke, Warren, MacKay & Serritella",
+      "price": 6850000,
+      "sf": 60000,
+      "acreage": 5.19,
+      "deposit": 50000,
+      "dd_days": 60,
+      "close_days": 30,
+      "exclusivity_days": 21,
+      "leaseback": null,
+      "other_terms": "Seller escrows $800K for environmental remediation (200% of $400K estimate); $300K demo escrow for SE building. Buyer drafts PSA. Seller pays CBRE commission.",
+      "version_note": "Fully executed LOI (dated 8/26) — forwarded to counsel 8/31 to start PSA",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAT7DlAAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "2611 Inter",
+      "aliases": [
+        "2511 Inter"
+      ],
+      "property": "2611 Inter Ave",
+      "city": "Puyallup",
+      "market": "Seattle / Tacoma",
+      "sent_date": "2026-09-17",
+      "attachment_name": "2511 Inter LOI - 09 17 26.pdf",
+      "to_name": "Chris Trussel",
+      "to_email": "chris.trussel@kidder.com",
+      "to_firm": "Kidder Mathews",
+      "price": 4100000,
+      "sf": 7000,
+      "acreage": 1.9,
+      "deposit": 20000,
+      "dd_days": 50,
+      "close_days": 20,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Original. Email subject says 2511 Inter; letter says 2611 Inter Ave — confirm address",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAGZAAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "2808 N 27th",
+      "property": "2808 N 27th Ave",
+      "city": "Phoenix",
+      "market": "Phoenix",
+      "sent_date": "2026-08-27",
+      "attachment_name": "2808 N 27th LOI - 08 26 26.pdf",
+      "to_name": "Will Groves",
+      "to_email": "will.groves@cushwake.com",
+      "to_firm": "Cushman & Wakefield",
+      "price": 6730000,
+      "sf": 25000,
+      "acreage": 3.8,
+      "deposit": 20000,
+      "dd_days": 50,
+      "close_days": 30,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Original",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAT7DAAAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "2808 N 27th",
+      "property": "2808 N 27th Ave",
+      "city": "Phoenix",
+      "market": "Phoenix",
+      "sent_date": "2026-09-16",
+      "attachment_name": "2808 N 27th LOI - 09 16 26.pdf",
+      "to_name": "Will Groves",
+      "to_email": "will.groves@cushwake.com",
+      "to_firm": "Cushman & Wakefield",
+      "price": 8030000,
+      "sf": 37000,
+      "acreage": 5.35,
+      "deposit": 25000,
+      "dd_days": 35,
+      "close_days": 15,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Seller pays brokerage commissions to Cushman & Wakefield. Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Revised — price up from $6,730,000; SF/acres larger than 8/26 version. Corrected resend (first send same day had wrong name)",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAGFAAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "3033 Losee",
+      "property": "3033 Losee Rd",
+      "city": "North Las Vegas",
+      "market": "Las Vegas",
+      "sent_date": "2026-09-08",
+      "attachment_name": "3033 Losee LOI - 09 08 26.pdf",
+      "to_name": "Jason Griffis",
+      "to_email": "jason.griffis@cushwake.com",
+      "to_firm": "Cushman & Wakefield",
+      "price": 13030000,
+      "sf": 25000,
+      "acreage": 5.07,
+      "deposit": 50000,
+      "dd_days": 45,
+      "close_days": 15,
+      "exclusivity_days": 30,
+      "leaseback": "Up to 4-yr leaseback at $66,000/mo, 4.0% annual increases",
+      "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Original",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAEiAAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "3825 Losee",
+      "property": "3825 Losee Rd",
+      "city": "North Las Vegas",
+      "market": "Las Vegas",
+      "sent_date": "2026-09-09",
+      "attachment_name": "3825 Losee LOI - 09 08 26.pdf",
+      "to_name": "Michael Scher",
+      "to_email": "michael.scher@cushwake.com",
+      "to_firm": "Cushman & Wakefield",
+      "price": 6230000,
+      "sf": 25000,
+      "acreage": 5.07,
+      "deposit": 25000,
+      "dd_days": 45,
+      "close_days": 15,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Revised LOI (Komatsu site thread)",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAEyAAA=",
+      "confidence": "low",
+      "notes": "File named 3825 Losee but the letter's RE: line says 3033 Losee Rd and SF/acres match the 3033 LOI — likely address not updated. Verify before loading."
+    },
+    {
+      "deal": "3450 S 36th",
+      "property": "3450 S 36th St",
+      "city": "Phoenix",
+      "market": "Phoenix",
+      "sent_date": "2026-09-21",
+      "attachment_name": "3450 S 36th LOI - 09 21 26.pdf",
+      "to_name": "Michael Kitlica",
+      "to_email": "michael.kitlica@cushwake.com",
+      "to_firm": "Cushman & Wakefield",
+      "price": 1230000,
+      "sf": 5550,
+      "acreage": 0.78,
+      "deposit": 20000,
+      "dd_days": 40,
+      "close_days": 15,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Buyer pays brokerage commissions to Cushman & Wakefield. Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Original — 'Clean Contractor Facility – Near Sky Harbor'",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAG3AAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "5555 Dahlia",
+      "property": "5555 Dahlia St",
+      "city": "Commerce City",
+      "market": "Denver",
+      "sent_date": "2026-08-26",
+      "attachment_name": "5555 Dahlia LOI - 08 26 26.pdf",
+      "to_name": "Carson Lang",
+      "to_email": "clang@uniqueprop.com",
+      "to_firm": "Unique Properties",
+      "price": 5100000,
+      "sf": 25000,
+      "acreage": 3.8,
+      "deposit": 20000,
+      "dd_days": 60,
+      "close_days": 30,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Seller pays brokerage commissions. Title/escrow: Andy Rowley, Fidelity. Seller: Tebo-Dahlia LLC.",
+      "version_note": "Revised counter — up from ~$5.0M executed LOI (~8/7, seen only via DocuSign notice)",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAT7C6AAA=",
+      "confidence": "high"
+    },
+    {
+      "deal": "7281 E 96th",
+      "property": "7281 E 96th Ave",
+      "city": "Henderson",
+      "market": "Denver",
+      "sent_date": "2026-09-10",
+      "attachment_name": "7281 E 96th LOI - 09 10 26.pdf",
+      "to_name": "Alyssa Tomback",
+      "to_email": "alyssa.tomback@marcusmillichap.com",
+      "to_firm": "Marcus & Millichap",
+      "price": 4200000,
+      "sf": 7200,
+      "acreage": 3.1,
+      "deposit": 20000,
+      "dd_days": 45,
+      "close_days": 15,
+      "exclusivity_days": 30,
+      "leaseback": null,
+      "other_terms": "Buyer pays brokerage commissions to Marcus & Millichap. Title/escrow: Andy Rowley, Fidelity.",
+      "version_note": "Original",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAFRAAA=",
+      "confidence": "high"
     }
   ]
 }
