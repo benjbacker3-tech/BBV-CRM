@@ -88,7 +88,7 @@ export default function EventsPage() {
     <div className="px-8 py-8 max-w-[1300px]">
       <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-800">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">MCI · IOS Tenant Industry Calendar</p>
+          <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">Sandpiper Capital · IOS Tenant Industry Calendar</p>
           <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-tight">Events</h1>
         </div>
         <div className="flex items-center gap-2">

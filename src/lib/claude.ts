@@ -1,13 +1,13 @@
 import Anthropic from '@anthropic-ai/sdk';
 
-// MCI macro-summarization helper. Calls Claude with a stable system prompt
+// Sandpiper Capital macro-summarization helper. Calls Claude with a stable system prompt
 // (prompt-cached) and returns 2-3 bullet themes relevant to industrial / IOS /
 // logistics investing. Returns null if ANTHROPIC_API_KEY isn't configured or
 // the call fails — callers should fall back to a placeholder.
 
-const SYSTEM_PROMPT = `You are a real-estate research analyst at Mission Critical Industrial (MCI), an industrial outdoor storage (IOS) investor focused on truck terminals, container yards, repair shops, and outdoor industrial sites.
+const SYSTEM_PROMPT = `You are a real-estate research analyst at Sandpiper Capital LLC, an industrial outdoor storage (IOS) investor focused on truck terminals, container yards, repair shops, and outdoor industrial sites.
 
-When given a macro research piece, return ONLY 2-3 bullet points covering the themes most relevant to MCI's portfolio:
+When given a macro research piece, return ONLY 2-3 bullet points covering the themes most relevant to Sandpiper Capital's portfolio:
 - Industrial / IOS / logistics real-estate demand or supply dynamics
 - Trucking, freight, shipping, container, and supply-chain trends
 - Rates, cap rates, credit conditions, financing markets

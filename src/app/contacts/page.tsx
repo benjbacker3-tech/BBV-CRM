@@ -133,11 +133,11 @@ export default function ContactsPage() {
               <button onClick={() => setAdding(!adding)} className="px-3 py-1.5 bg-amber text-white rounded text-sm hover:bg-amber-dark">
                 {adding ? 'Cancel' : '+ Add Contact'}
               </button>
-              <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a CSV of contacts (Outlook export or MCI template)">
+              <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a CSV of contacts (Outlook export or Sandpiper template)">
                 {uploading ? 'Uploading…' : 'Upload CSV'}
                 <input type="file" accept=".csv,text/csv" onChange={onFilePicked} className="hidden" disabled={uploading} />
               </label>
-              <button onClick={downloadTemplate} className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800" title="Download MCI Contacts CSV template">
+              <button onClick={downloadTemplate} className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800" title="Download Sandpiper Contacts CSV template">
                 Template
               </button>
             </div>
@@ -254,7 +254,7 @@ export default function ContactsPage() {
           <div className="relative bg-white dark:bg-surface rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-md p-5" onClick={e => e.stopPropagation()}>
             <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Import {showUploadConfirm.name}</h3>
             <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-              {(showUploadConfirm.size / 1024).toFixed(1)} KB · auto-detects Outlook export or MCI template columns
+              {(showUploadConfirm.size / 1024).toFixed(1)} KB · auto-detects Outlook export or Sandpiper template columns
             </p>
             <div className="space-y-2">
               <button

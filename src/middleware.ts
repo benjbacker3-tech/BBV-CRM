@@ -25,9 +25,9 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // Pass through; downstream can read x-mci-user if needed
+  // Pass through; downstream can read x-scap-user if needed
   const res = NextResponse.next();
-  res.headers.set('x-mci-user', session.username);
+  res.headers.set('x-scap-user', session.username);
   return res;
 }
 

@@ -24,7 +24,7 @@ export default function Sidebar() {
     <aside className="w-56 bg-navy text-white flex flex-col shrink-0 h-screen">
       <div className="px-5 py-5 border-b border-navy-lighter">
         <h1 className="text-lg font-semibold tracking-tight">
-          <span className="text-amber">MCI</span> CRM
+          <span className="text-amber">Sandpiper</span> Capital
         </h1>
         <p className="text-[11px] text-slate-400 mt-0.5">Industrial Outdoor Storage</p>
       </div>
@@ -48,7 +48,7 @@ export default function Sidebar() {
         })}
       </nav>
       <div className="px-4 py-3 border-t border-navy-lighter">
-        <p className="text-[11px] text-slate-500">Mission Critical Industrial</p>
+        <p className="text-[11px] text-slate-500">Sandpiper Capital LLC</p>
       </div>
     </aside>
   );

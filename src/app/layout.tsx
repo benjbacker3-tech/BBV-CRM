@@ -4,8 +4,8 @@ import ThemeProvider from "@/components/ThemeProvider";
 import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
-  title: "MCI CRM",
-  description: "Mission Critical Industrial — Industrial Outdoor Storage CRM",
+  title: "Sandpiper Capital CRM",
+  description: "Sandpiper Capital LLC — Industrial Outdoor Storage CRM",
 };
 
 export default function RootLayout({

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { buildCSV } from '@/lib/csv';
 
 // GET /api/contacts/template
-// Returns a minimal CSV template for the MCI contact import format.
+// Returns a minimal CSV template for the Sandpiper contact import format.
 // (The /import endpoint also auto-accepts Microsoft Outlook export columns.)
 export async function GET() {
   const headers = ['Name', 'Email', 'Phone', 'Firm', 'Title', 'Markets', 'Type', 'Warmth', 'Notes'];
@@ -14,7 +14,7 @@ export async function GET() {
   return new NextResponse(csv, {
     headers: {
       'Content-Type': 'text/csv; charset=utf-8',
-      'Content-Disposition': 'attachment; filename="MCI_Contacts_Template.csv"',
+      'Content-Disposition': 'attachment; filename="Sandpiper_Contacts_Template.csv"',
     },
   });
 }

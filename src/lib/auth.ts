@@ -1,16 +1,14 @@
 // HMAC-signed session cookies. Edge-runtime compatible (uses Web Crypto, not Node crypto).
 // Cookie format: `<username>|<exp_ms>|<hex_hmac_sha256(username|exp_ms, AUTH_SECRET)>`
 
-export const SESSION_COOKIE = 'mci_session';
+export const SESSION_COOKIE = 'scap_session';
 const TTL_DAYS = 30;
 const ENCODER = new TextEncoder();
 
-// Hardcoded user list. All share the same password ("breakfree").
+// Single-user login for Sandpiper Capital LLC.
 // Lowercased usernames for case-insensitive login.
 export const USERS: Record<string, string> = {
-  eric: 'breakfree',
-  ben: 'breakfree',
-  anthony: 'breakfree',
+  ben: 'SAB',
 };
 
 // Pretty-print name for display (capitalized)

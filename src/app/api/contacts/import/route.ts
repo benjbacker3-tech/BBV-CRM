@@ -9,7 +9,7 @@ export const maxDuration = 60; // Vercel: extend serverless function timeout
 //   file:  CSV file (required)
 //   mode:  'replace' to wipe existing contacts before import, else 'append' (default)
 //
-// Auto-detects Outlook export columns AND the simple MCI template columns.
+// Auto-detects Outlook export columns AND the simple Sandpiper template columns.
 // Skips rows with no name/firm/email/phone (truly empty rows).
 export async function POST(req: NextRequest) {
   const form = await req.formData();

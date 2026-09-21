@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { run } from '@/lib/db';
 import { logActivity } from '@/lib/activity';
 
-// MCI Acquisition Pipeline — sourced from Acq Pipeline - 05 04 2026.xlsx
+// Sandpiper Capital Acquisition Pipeline — sourced from Acq Pipeline - 05 04 2026.xlsx
 // 7 active deals + 1 tracked (3302 A St)
 const DEALS = [
   // Negotiating PSA
@@ -105,7 +105,7 @@ export async function POST() {
       entity_type: 'deal',
       entity_id: Number(result.lastInsertRowid),
       action: 'created',
-      description: `Deal "${d.address}" loaded from MCI pipeline`,
+      description: `Deal "${d.address}" loaded from Sandpiper Capital pipeline`,
     });
     inserted.push({ id: Number(result.lastInsertRowid), address: d.address });
   }
@@ -115,7 +115,7 @@ export async function POST() {
 
 export async function GET() {
   return NextResponse.json({
-    message: 'POST to this endpoint to RESET the pipeline (wipes existing deals/contacts/activity, then loads the 8 MCI deals)',
+    message: 'POST to this endpoint to RESET the pipeline (wipes existing deals/contacts/activity, then loads the 8 Sandpiper Capital deals)',
     deals: DEALS.map(d => ({ address: d.address, market: d.market, stage: d.stage })),
   });
 }

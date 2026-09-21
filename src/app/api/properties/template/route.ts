@@ -3,12 +3,12 @@ import ExcelJS from 'exceljs';
 import { SYNC_TAB_NAME, SYNC_FIELDS, numFmt } from '@/lib/excel-sync';
 
 // GET /api/properties/template
-// Returns a .xlsx with a single tab called "MCI Pipeline" that users copy into
+// Returns a .xlsx with a single tab called "Sandpiper Pipeline" that users copy into
 // each of their deal models (right-click the tab → Move or Copy → Create a copy
 // → select their workbook). The CRM reads this tab on drag-and-drop import.
 export async function GET() {
   const wb = new ExcelJS.Workbook();
-  wb.creator = 'MCI CRM';
+  wb.creator = 'Sandpiper Capital CRM';
   wb.created = new Date();
 
   const ws = wb.addWorksheet(SYNC_TAB_NAME, {
@@ -36,7 +36,7 @@ export async function GET() {
   // Row 1: Title band
   ws.mergeCells('A1:C1');
   const title = ws.getCell('A1');
-  title.value = 'MCI CRM Sync';
+  title.value = 'Sandpiper Capital CRM Sync';
   title.font = { name: 'Calibri', size: 14, bold: true, color: { argb: 'FFFFFFFF' } };
   title.fill = { type: 'pattern', pattern: 'solid', fgColor: navy };
   title.alignment = { horizontal: 'left', vertical: 'middle', indent: 1 };
@@ -109,7 +109,7 @@ export async function GET() {
   return new NextResponse(buffer, {
     headers: {
       'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'Content-Disposition': 'attachment; filename="MCI_CRM_Sync_Template.xlsx"',
+      'Content-Disposition': 'attachment; filename="Sandpiper_CRM_Sync_Template.xlsx"',
     },
   });
 }

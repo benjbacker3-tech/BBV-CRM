@@ -237,7 +237,7 @@ export default function EconomyUpdatePage() {
       <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-800">
         <div>
           <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">
-            Mission Critical Industrial · Macro Brief
+            Sandpiper Capital LLC · Macro Brief
           </p>
           <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-tight">Economy Update</h1>
         </div>

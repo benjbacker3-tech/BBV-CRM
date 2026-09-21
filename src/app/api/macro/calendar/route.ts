@@ -81,7 +81,7 @@ async function fetchCalendar(): Promise<{ items: CalendarItem[]; error?: string;
   try {
     const res = await fetch(FEED_URL, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; MCI-CRM/1.0)',
+        'User-Agent': 'Mozilla/5.0 (compatible; Sandpiper-CRM/1.0)',
         'Accept': 'application/xml,text/xml,*/*',
       },
       next: { revalidate: WEEK_SECONDS, tags: [TAG] },

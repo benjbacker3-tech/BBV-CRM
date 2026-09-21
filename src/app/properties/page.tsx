@@ -176,7 +176,7 @@ export default function PropertiesPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
             <p className="text-lg font-semibold text-white mb-1">Drop Excel model</p>
-            <p className="text-xs text-slate-300">Must contain a &ldquo;MCI Pipeline&rdquo; tab. Matches by address — updates if exists, creates if new.</p>
+            <p className="text-xs text-slate-300">Must contain a &ldquo;Sandpiper Pipeline&rdquo; tab. Matches by address — updates if exists, creates if new.</p>
           </div>
         </div>
       )}
@@ -185,7 +185,7 @@ export default function PropertiesPage() {
         {/* Report header */}
         <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-800">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">Mission Critical Industrial · Acquisition Pipeline</p>
+            <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">Sandpiper Capital LLC · Acquisition Pipeline</p>
             <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-tight">Properties</h1>
           </div>
           <div className="flex items-center gap-2">
@@ -196,14 +196,14 @@ export default function PropertiesPage() {
             >
               + New Property
             </button>
-            <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a deal model containing a 'MCI Pipeline' tab">
+            <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a deal model containing a 'Sandpiper Pipeline' tab">
               Upload Model
               <input type="file" accept=".xlsx,.xlsm" onChange={onFilePicked} className="hidden" />
             </label>
             <button
               onClick={downloadTemplate}
               className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800"
-              title="Download the MCI Pipeline sync tab template"
+              title="Download the Sandpiper Pipeline sync tab template"
             >
               Template
             </button>

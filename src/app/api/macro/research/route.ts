@@ -32,7 +32,7 @@ export interface ResearchItem {
   ai: boolean;       // true if themes were Claude-generated, false for placeholder/excerpt
 }
 
-const UA = { 'User-Agent': 'Mozilla/5.0 (compatible; MCI-CRM/1.0)' };
+const UA = { 'User-Agent': 'Mozilla/5.0 (compatible; Sandpiper-CRM/1.0)' };
 
 function clean(s: string): string {
   return s.replace(/<[^>]+>/g, ' ')

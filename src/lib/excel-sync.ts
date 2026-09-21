@@ -2,7 +2,7 @@
 // Both /api/properties/template (generator) and /api/properties/import (parser)
 // import from this module so the field list stays in sync.
 
-export const SYNC_TAB_NAME = 'MCI Pipeline';
+export const SYNC_TAB_NAME = 'Sandpiper Pipeline';
 
 export type SyncKind = 'text' | 'int' | 'money' | 'acres' | 'pct' | 'days' | 'stage' | 'date';
 

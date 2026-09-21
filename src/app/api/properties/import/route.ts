@@ -6,7 +6,7 @@ import { SYNC_TAB_NAME, SYNC_FIELDS, parseValue } from '@/lib/excel-sync';
 
 // POST /api/properties/import
 // Accepts multipart/form-data with a "file" field containing an .xlsx.
-// Looks up the "MCI Pipeline" tab, extracts field/value pairs, and upserts
+// Looks up the "Sandpiper Pipeline" tab, extracts field/value pairs, and upserts
 // the deal in the DB (matched by address).
 export async function POST(req: NextRequest) {
   const form = await req.formData();
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
   // Must have at least an address
   const address = (parsed.address as string | null) || null;
   if (!address) {
-    return NextResponse.json({ error: 'Missing "Address" value in the MCI Pipeline tab.' }, { status: 400 });
+    return NextResponse.json({ error: 'Missing "Address" value in the Sandpiper Pipeline tab.' }, { status: 400 });
   }
 
   // Default the deal name to the address if blank

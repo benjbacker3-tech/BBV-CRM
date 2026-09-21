@@ -12,7 +12,7 @@ export async function GET() {
   return new NextResponse(csv, {
     headers: {
       'Content-Type': 'text/csv; charset=utf-8',
-      'Content-Disposition': 'attachment; filename="MCI_Investors_Template.csv"',
+      'Content-Disposition': 'attachment; filename="Sandpiper_Investors_Template.csv"',
     },
   });
 }

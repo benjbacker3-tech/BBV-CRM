@@ -21,7 +21,7 @@ export async function GET() {
   const active = deals.filter(d => REPORT_STAGES.includes(d.stage as Stage));
 
   const wb = new ExcelJS.Workbook();
-  wb.creator = 'MCI CRM';
+  wb.creator = 'Sandpiper Capital CRM';
   wb.created = new Date();
   const ws = wb.addWorksheet('Pipeline');
 
@@ -200,7 +200,7 @@ export async function GET() {
 
   const buffer = await wb.xlsx.writeBuffer();
   const today = new Date().toISOString().split('T')[0];
-  const filename = `MCI_Acq_Pipeline_${today.replace(/-/g, '_')}.xlsx`;
+  const filename = `Sandpiper_Acq_Pipeline_${today.replace(/-/g, '_')}.xlsx`;
 
   return new NextResponse(buffer, {
     headers: {
