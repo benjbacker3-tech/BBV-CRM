@@ -7,7 +7,6 @@ const navItems = [
   { href: '/', label: 'Dashboard', icon: DashboardIcon },
   { href: '/properties', label: 'Pipeline', icon: PipelineIcon },
   { href: '/capital', label: 'Capital', icon: CapitalIcon },
-  { href: '/investors', label: 'Investors', icon: InvestorsIcon },
   { href: '/assets', label: 'Assets', icon: AssetsIcon },
   { href: '/settings', label: 'Settings', icon: SettingsIcon },
 ];
@@ -69,14 +68,6 @@ function CapitalIcon({ active }: { active: boolean }) {
   return (
     <svg className={`w-4 h-4 ${active ? 'text-white' : 'text-slate-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-  );
-}
-
-function InvestorsIcon({ active }: { active: boolean }) {
-  return (
-    <svg className={`w-4 h-4 ${active ? 'text-white' : 'text-slate-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
     </svg>
   );
 }

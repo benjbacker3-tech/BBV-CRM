@@ -97,7 +97,7 @@ const DEALS = [
 // Wipes deals/contacts/tasks/contact_log/diligence/diligence_items/activity_log
 // and reloads with the 09/16/2026 active pipeline (LOI + PSA only).
 // Idempotent — safe to call multiple times.
-// Investors, capital_sources, and market_snapshots are preserved.
+// capital_sources are preserved.
 export async function POST() {
   // Wipe — order matters because of foreign keys
   await run('DELETE FROM tasks');

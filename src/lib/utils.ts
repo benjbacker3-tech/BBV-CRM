@@ -116,16 +116,6 @@ export interface Task {
   created_at: string;
 }
 
-export interface Investor {
-  id: number;
-  name: string;
-  type: string;
-  commitment: number;
-  called: number;
-  status: string;
-  notes: string;
-}
-
 export interface CapitalSource {
   id: number;
   name: string;

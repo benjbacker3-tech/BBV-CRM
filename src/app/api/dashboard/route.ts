@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { all, get } from '@/lib/db';
 
+// Dashboard summary. The main dashboard page reads /api/deals directly for
+// its per-stage detail; this endpoint keeps the roll-up counts around in
+// case anything (email digest, future widgets) wants them.
 export async function GET() {
   const dealsByStage = await all<{ stage: string; count: number }>(
     'SELECT stage, COUNT(*) as count FROM deals GROUP BY stage'
@@ -12,15 +15,6 @@ export async function GET() {
 
   const activeDeals = await get<{ count: number }>(
     `SELECT COUNT(*) as count FROM deals WHERE stage NOT IN ('Dead', 'Closed')`
-  );
-
-  const investorStats = await get<{ total_investors: number; total_commitment: number; total_called: number; active_investors: number }>(
-    `SELECT
-       COUNT(*) as total_investors,
-       COALESCE(SUM(commitment), 0) as total_commitment,
-       COALESCE(SUM(called), 0) as total_called,
-       COUNT(CASE WHEN status = 'Active' THEN 1 END) as active_investors
-     FROM investors`
   );
 
   const overdueTasks = await get<{ count: number }>(
@@ -47,12 +41,6 @@ export async function GET() {
     dealsByStage,
     totalPipeline: Number(totalPipeline?.total || 0),
     activeDeals: Number(activeDeals?.count || 0),
-    investorStats: {
-      total_investors: Number(investorStats?.total_investors || 0),
-      total_commitment: Number(investorStats?.total_commitment || 0),
-      total_called: Number(investorStats?.total_called || 0),
-      active_investors: Number(investorStats?.active_investors || 0),
-    },
     overdueTasks: Number(overdueTasks?.count || 0),
     dueTodayTasks: Number(dueTodayTasks?.count || 0),
     dueThreeDays: Number(dueThreeDays?.count || 0),
