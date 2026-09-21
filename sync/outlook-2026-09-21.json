@@ -19,7 +19,7 @@
       "status": [
         "Seller: Precision Ventures LLC (Boyle / Westbrook). Title/escrow: Fidelity FBDO-2607358. Tenant: Zero Carbon Systems (lease exp 2/28).",
         "Capital: CentrePoint JV 90/10 (term sheet executed 8/26; JV docs drafting). Debt: First Interstate, Prime, 3-yr IO, 25% recourse w/ burn-off (5-yr lease + 1.40x DSCR).",
-        "DD extended to 10/31 (Amendment 1A). Closing = DD + 7 days → 11/7 per amendment vs 11/9 in emails — CONFIRM.",
+        "DD extended to 10/31 (Amendment 1A). Closing 11/9/26 (confirmed by Ben).",
         "Ben owes: form Brighton IOS LLC + assign PSA; PNC op account docs; estoppel/SNDA to seller (promised 9/1); RIO onboarding + PMA review; final ALTA certified to FIB; tenant financials.",
         "Waiting on: seller demo/shed permits/RTU (done ~10/16); final appraisal; JV docs; AEI PZR (~10/8); Ryan tax estimate; title objection outcome (seller responded 9/2).",
         "Risks: tenant credit; water district use restriction + unreleased 2018 O&G lease; loan # mismatch 100069869 vs 100069896; no sprinklers."
@@ -688,11 +688,11 @@
       "confidence": "high"
     },
     {
-      "deal": "2611 Inter",
+      "deal": "2511 Inter",
       "aliases": [
-        "2511 Inter"
+        "2611 Inter"
       ],
-      "property": "2611 Inter Ave",
+      "property": "2511 Inter Ave",
       "city": "Puyallup",
       "market": "Seattle / Tacoma",
       "sent_date": "2026-09-17",
@@ -709,7 +709,7 @@
       "exclusivity_days": 30,
       "leaseback": null,
       "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity.",
-      "version_note": "Original. Email subject says 2511 Inter; letter says 2611 Inter Ave — confirm address",
+      "version_note": "Original. Letter says 2611 Inter Ave; correct address confirmed as 2511 Inter Ave",
       "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAGZAAA=",
       "confidence": "high"
     },
@@ -781,30 +781,6 @@
       "version_note": "Original",
       "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAEiAAA=",
       "confidence": "high"
-    },
-    {
-      "deal": "3825 Losee",
-      "property": "3825 Losee Rd",
-      "city": "North Las Vegas",
-      "market": "Las Vegas",
-      "sent_date": "2026-09-09",
-      "attachment_name": "3825 Losee LOI - 09 08 26.pdf",
-      "to_name": "Michael Scher",
-      "to_email": "michael.scher@cushwake.com",
-      "to_firm": "Cushman & Wakefield",
-      "price": 6230000,
-      "sf": 25000,
-      "acreage": 5.07,
-      "deposit": 25000,
-      "dd_days": 45,
-      "close_days": 15,
-      "exclusivity_days": 30,
-      "leaseback": null,
-      "other_terms": "Buyer pays brokerage commissions (separate agreement). Title/escrow: Andy Rowley, Fidelity.",
-      "version_note": "Revised LOI (Komatsu site thread)",
-      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEJAABS90g6XJRvQIqf5guK_r1JAAAAUAEyAAA=",
-      "confidence": "low",
-      "notes": "File named 3825 Losee but the letter's RE: line says 3033 Losee Rd and SF/acres match the 3033 LOI — likely address not updated. Verify before loading."
     },
     {
       "deal": "3450 S 36th",
