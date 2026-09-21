@@ -5,8 +5,14 @@ import { Deal, fmt } from '@/lib/utils';
 
 // SPC's default fee stack when SPC is the sponsor (source: CentrePoint term sheet).
 // A deal where SPC isn't a sponsor (co-invest, passive LP) doesn't earn these.
-const ACQ_FEE_PCT = 0.0135;   // 1.35% of purchase price at closing
-const AM_FEE_PCT = 0.01;      // 1% of invested equity per year
+const ACQ_FEE_PCT = 0.0135;         // 1.35% of purchase price at closing
+const AM_FEE_PCT = 0.01;            // 1% of invested equity per year
+const CONSTRUCTION_FEE_PCT = 0.04;  // 4% of major capex
+const LEASING_FEE_PCT = 0.01;       // 1% of net rent (i.e. leasing commission)
+// Proxies used until we track capex + annual rent per deal:
+//   capex ≈ 15% of purchase price (typical light value-add IOS budget)
+//   annual net rent ≈ purchase price × stabilized YoC
+const CAPEX_PROXY_PCT = 0.15;
 
 // Stages the dashboard tracks in detail — everything past the LOI stage.
 const TRACKED_STAGES = ['Closed', 'Under Contract', 'Negotiating PSA'] as const;
@@ -27,14 +33,17 @@ export default function Dashboard() {
   }, [tracked]);
 
   const totals = useMemo(() => {
-    const t = { price: 0, equity: 0, acqFee: 0, amFee: 0, sponsorDeals: 0 };
+    const t = { price: 0, equity: 0, acqFee: 0, amFee: 0, constFee: 0, leaseFee: 0, sponsorDeals: 0 };
     for (const d of tracked) {
       t.price += d.asking_price || 0;
       t.equity += d.equity_required || 0;
       if (isSponsor(d)) {
         t.sponsorDeals++;
-        t.acqFee += (d.asking_price || 0) * ACQ_FEE_PCT;
-        t.amFee += (d.equity_required || 0) * AM_FEE_PCT;
+        const fees = computeFees(d);
+        t.acqFee += fees.acq;
+        t.amFee += fees.am;
+        t.constFee += fees.construction;
+        t.leaseFee += fees.leasing;
       }
     }
     return t;
@@ -60,7 +69,11 @@ export default function Dashboard() {
         <SummaryTile label="Committed Deals" value={String(tracked.length)} />
         <SummaryTile label="Purchase Price" value={fmt(totals.price)} />
         <SummaryTile label="Equity Required" value={fmt(totals.equity)} />
-        <SummaryTile label="Projected Fees to SPC" value={fmt(totals.acqFee + totals.amFee)} sub={`${fmt(totals.acqFee)} acq + ${fmt(totals.amFee)}/yr AM`} />
+        <SummaryTile
+          label="Projected Fees to SPC"
+          value={fmt(totals.acqFee + totals.constFee + totals.leaseFee + totals.amFee)}
+          sub={`${fmt(totals.acqFee)} acq · ${fmt(totals.constFee)} constr · ${fmt(totals.leaseFee)} lease · ${fmt(totals.amFee)}/yr AM`}
+        />
       </div>
 
       {/* Sections */}
@@ -75,6 +88,20 @@ function isSponsor(d: Deal): boolean {
   // SPC earns fees when SPC (via a JV entity) is the sponsor. A Closed deal we
   // co-invested in as a passive LP shows an ownership_pct < 100 and no fees.
   return (d.ownership_pct ?? 100) === 100;
+}
+
+function computeFees(d: Deal) {
+  const price = d.asking_price || 0;
+  const equity = d.equity_required || 0;
+  const yoc = d.yoc_target || 0;
+  const capexProxy = price * CAPEX_PROXY_PCT;         // rough capex budget
+  const annualRentProxy = price * yoc;                // stabilized rent proxy (price × YoC)
+  return {
+    acq: price * ACQ_FEE_PCT,
+    am: equity * AM_FEE_PCT,
+    construction: capexProxy * CONSTRUCTION_FEE_PCT,
+    leasing: annualRentProxy * LEASING_FEE_PCT,
+  };
 }
 
 function SummaryTile({ label, value, sub }: { label: string; value: string; sub?: string }) {
@@ -105,12 +132,15 @@ function StageSection({ stage, deals }: { stage: TrackedStage; deals: Deal[] }) 
       acc.price += d.asking_price || 0;
       acc.equity += d.equity_required || 0;
       if (isSponsor(d)) {
-        acc.acqFee += (d.asking_price || 0) * ACQ_FEE_PCT;
-        acc.amFee += (d.equity_required || 0) * AM_FEE_PCT;
+        const f = computeFees(d);
+        acc.acqFee += f.acq;
+        acc.constFee += f.construction;
+        acc.leaseFee += f.leasing;
+        acc.amFee += f.am;
       }
       return acc;
     },
-    { price: 0, equity: 0, acqFee: 0, amFee: 0 }
+    { price: 0, equity: 0, acqFee: 0, constFee: 0, leaseFee: 0, amFee: 0 }
   );
 
   return (
@@ -130,6 +160,8 @@ function StageSection({ stage, deals }: { stage: TrackedStage; deals: Deal[] }) 
               <th className="text-right py-2 px-3 font-semibold uppercase tracking-wide text-[9px]">Price</th>
               <th className="text-right py-2 px-3 font-semibold uppercase tracking-wide text-[9px]">Equity</th>
               <th className="text-right py-2 px-3 font-semibold uppercase tracking-wide text-[9px]">Acq Fee</th>
+              <th className="text-right py-2 px-3 font-semibold uppercase tracking-wide text-[9px]">Constr Fee</th>
+              <th className="text-right py-2 px-3 font-semibold uppercase tracking-wide text-[9px]">Leasing Fee</th>
               <th className="text-right py-2 px-3 font-semibold uppercase tracking-wide text-[9px]">AM Fee / Yr</th>
             </tr>
           </thead>
@@ -137,8 +169,7 @@ function StageSection({ stage, deals }: { stage: TrackedStage; deals: Deal[] }) 
             {deals.map(d => {
               const ownership = d.ownership_pct ?? 100;
               const sponsor = isSponsor(d);
-              const acqFee = sponsor ? (d.asking_price || 0) * ACQ_FEE_PCT : 0;
-              const amFee = sponsor ? (d.equity_required || 0) * AM_FEE_PCT : 0;
+              const f = computeFees(d);
               return (
                 <tr key={d.id} className="border-b border-gray-100 last:border-b-0">
                   <td className="py-2 px-3 font-medium text-gray-900">{d.address}</td>
@@ -146,8 +177,10 @@ function StageSection({ stage, deals }: { stage: TrackedStage; deals: Deal[] }) 
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-700">{ownership}%</td>
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{fmt(d.asking_price || 0)}</td>
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{fmt(d.equity_required || 0)}</td>
-                  <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(acqFee) : '—'}</td>
-                  <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(amFee) : '—'}</td>
+                  <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(f.acq) : '—'}</td>
+                  <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(f.construction) : '—'}</td>
+                  <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(f.leasing) : '—'}</td>
+                  <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(f.am) : '—'}</td>
                 </tr>
               );
             })}
@@ -156,6 +189,8 @@ function StageSection({ stage, deals }: { stage: TrackedStage; deals: Deal[] }) 
               <td className="py-2 px-3 text-right font-mono font-semibold tabular-nums text-gray-900">{fmt(subtotals.price)}</td>
               <td className="py-2 px-3 text-right font-mono font-semibold tabular-nums text-gray-900">{fmt(subtotals.equity)}</td>
               <td className="py-2 px-3 text-right font-mono font-semibold tabular-nums text-gray-900">{fmt(subtotals.acqFee)}</td>
+              <td className="py-2 px-3 text-right font-mono font-semibold tabular-nums text-gray-900">{fmt(subtotals.constFee)}</td>
+              <td className="py-2 px-3 text-right font-mono font-semibold tabular-nums text-gray-900">{fmt(subtotals.leaseFee)}</td>
               <td className="py-2 px-3 text-right font-mono font-semibold tabular-nums text-gray-900">{fmt(subtotals.amFee)}</td>
             </tr>
           </tbody>
@@ -163,7 +198,7 @@ function StageSection({ stage, deals }: { stage: TrackedStage; deals: Deal[] }) 
       </div>
 
       <p className="mt-1.5 text-[10px] text-gray-400">
-        Fee stack: 1.35% acquisition fee at close + 1% asset mgmt fee/yr on equity. Passive co-invests (ownership &lt; 100%) don&apos;t earn sponsor fees.
+        Fee stack: 1.35% acquisition fee at close · 4% construction fee on capex (proxy: 15% of price) · 1% leasing fee on annual net rent (proxy: price × YoC) · 1% AM fee/yr on equity. Passive co-invests (ownership &lt; 100%) don&apos;t earn sponsor fees.
       </p>
     </div>
   );
