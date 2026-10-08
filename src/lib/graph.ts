@@ -69,6 +69,12 @@ export async function graph<T = unknown>(path: string, init: RequestInit = {}): 
       headers: { Authorization: `Bearer ${await accessToken()}`, ...(init.body && !(init.body instanceof ArrayBuffer) ? { 'Content-Type': 'application/json' } : {}), ...init.headers },
       cache: 'no-store',
     });
+    // A cached token predates any permission change (e.g. admin consent just granted);
+    // drop it and retry once with a fresh one.
+    if ((res.status === 401 || res.status === 403) && attempt === 0 && cachedToken) {
+      cachedToken = null;
+      continue;
+    }
     if ((res.status === 429 || res.status === 503) && attempt < 3) {
       await new Promise(r => setTimeout(r, Number(res.headers.get('Retry-After') || 2) * 1000));
       continue;
