@@ -3,6 +3,7 @@
 import { Suspense, useCallback, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { uploadToDrive } from '@/components/DriveUpload';
+import ShareDialog, { ShareTarget } from '@/components/ShareDialog';
 
 interface Item {
   id: string;
@@ -33,6 +34,10 @@ function DocumentsInner() {
   const [results, setResults] = useState<Item[] | null>(null);
   const [searching, setSearching] = useState(false);
   const [uploads, setUploads] = useState<{ name: string; pct: number; error?: string }[]>([]);
+  const [sharing, setSharing] = useState<ShareTarget | null>(null);
+  const [inbox, setInbox] = useState<number | null>(null);
+
+  useEffect(() => { fetch('/api/email-files?status=review').then(r => r.json()).then(j => setInbox(j.counts?.review ?? 0)).catch(() => null); }, []);
 
   useEffect(() => { fetch('/api/drive/status').then(r => r.json()).then(setStatus); }, []);
 
@@ -80,7 +85,10 @@ function DocumentsInner() {
         </div>
         {status?.ok && folder && (
           <div className="flex items-center gap-2">
+            <a href="/documents/inbox" className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Email inbox{inbox ? <span className="ml-1.5 text-[10px] font-semibold text-white bg-navy rounded-full px-1.5">{inbox}</span> : null}</a>
+            <a href="/documents/shares" className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Shared links</a>
             <a href="/documents/cleanup" className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Organize folders</a>
+            {path && <button onClick={() => setSharing({ id: folder.id, name: folder.name, isFolder: true })} className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Share this folder</button>}
             <a href={folder.webUrl} target="_blank" rel="noreferrer" className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Open in OneDrive</a>
             <label className="px-3 py-1.5 text-xs text-white bg-navy rounded hover:bg-navy-light cursor-pointer">
               Upload here
@@ -154,12 +162,12 @@ function DocumentsInner() {
               </div>
 
               <div className="border border-gray-300">
-                <div className="grid grid-cols-[1fr_120px_80px] bg-navy text-white text-[10px] uppercase tracking-[0.06em] font-semibold px-3 py-1.5">
-                  <span>Name</span><span className="text-right">Modified</span><span className="text-right">Size</span>
+                <div className="grid grid-cols-[1fr_120px_80px_56px] bg-navy text-white text-[10px] uppercase tracking-[0.06em] font-semibold px-3 py-1.5">
+                  <span>Name</span><span className="text-right">Modified</span><span className="text-right">Size</span><span />
                 </div>
                 {items === null && <div className="p-3 space-y-2">{[0, 1, 2, 3, 4].map(i => <div key={i} className="skeleton h-5 w-full" />)}</div>}
                 {items?.map(i => (
-                  <div key={i.id} className="grid grid-cols-[1fr_120px_80px] items-center px-3 py-1.5 border-b border-gray-200 text-xs hover:bg-gray-50">
+                  <div key={i.id} className="group grid grid-cols-[1fr_120px_80px_56px] items-center px-3 py-1.5 border-b border-gray-200 text-xs hover:bg-gray-50">
                     {i.folder ? (
                       <button onClick={() => go([path, i.name].filter(Boolean).join('/'))} className="flex items-center gap-2 text-left font-medium text-gray-900 hover:text-navy">
                         <svg className="w-4 h-4 text-navy/70 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z" /></svg>
@@ -173,6 +181,7 @@ function DocumentsInner() {
                     )}
                     <span className="text-right text-gray-500">{day(i.lastModifiedDateTime)}</span>
                     <span className="text-right text-gray-400 font-mono">{i.folder ? '' : size(i.size)}</span>
+                    <button onClick={() => setSharing({ id: i.id, name: i.name, isFolder: !!i.folder })} className="text-right text-[11px] text-navy opacity-0 group-hover:opacity-100 hover:underline">Share</button>
                   </div>
                 ))}
                 {items?.length === 0 && !error && <p className="px-3 py-6 text-xs text-gray-500">Empty folder.</p>}
@@ -181,6 +190,7 @@ function DocumentsInner() {
           )}
         </>
       )}
+      {sharing && <ShareDialog target={sharing} onClose={() => setSharing(null)} />}
     </div>
   );
 }

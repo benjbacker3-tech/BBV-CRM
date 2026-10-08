@@ -216,3 +216,106 @@ export async function ensureFolderPath(rel: string): Promise<DriveItem> {
   }
   return parent;
 }
+
+// ── Mail (application permissions Mail.Read and, for notifications, Mail.Send) ──
+
+const mailbox = () => `/users/${encodeURIComponent(process.env.MS_DRIVE_USER!)}`;
+
+export interface MailMessage {
+  id: string;
+  subject: string | null;
+  bodyPreview: string;
+  receivedDateTime: string;
+  webLink: string;
+  conversationId: string;
+  isDraft: boolean;
+  from?: { emailAddress: { name?: string; address?: string } };
+}
+
+export interface MailAttachment {
+  '@odata.type': string; // #microsoft.graph.fileAttachment | itemAttachment | referenceAttachment
+  id: string;
+  name: string;
+  contentType: string | null;
+  size: number;
+  isInline: boolean;
+}
+
+// Messages with attachments received (or sent) at or after `since`, oldest first.
+// Pass the returned nextLink back in to continue.
+export async function messagesWithAttachments(since: string, nextLink?: string): Promise<{ messages: MailMessage[]; nextLink?: string }> {
+  const url = nextLink ?? `${mailbox()}/messages?$filter=${encodeURIComponent(`receivedDateTime ge ${since} and hasAttachments eq true`)}&$orderby=receivedDateTime asc&$select=id,subject,bodyPreview,receivedDateTime,webLink,conversationId,isDraft,from&$top=25`;
+  const page = await graph<{ value: MailMessage[]; '@odata.nextLink'?: string }>(url);
+  return { messages: page.value, nextLink: page['@odata.nextLink'] };
+}
+
+export async function messageAttachments(messageId: string): Promise<MailAttachment[]> {
+  const res = await graph<{ value: MailAttachment[] }>(`${mailbox()}/messages/${encodeURIComponent(messageId)}/attachments?$select=id,name,contentType,size,isInline`);
+  return res.value;
+}
+
+export async function messageById(messageId: string): Promise<MailMessage | null> {
+  try {
+    return await graph<MailMessage>(`${mailbox()}/messages/${encodeURIComponent(messageId)}?$select=id,subject,bodyPreview,receivedDateTime,webLink,conversationId,isDraft,from`);
+  } catch (e) {
+    if (e instanceof GraphError && e.status === 404) return null;
+    throw e;
+  }
+}
+
+export async function attachmentBytes(messageId: string, attachmentId: string): Promise<ArrayBuffer> {
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch(`${GRAPH}${mailbox()}/messages/${encodeURIComponent(messageId)}/attachments/${encodeURIComponent(attachmentId)}/$value`, {
+      headers: { Authorization: `Bearer ${await accessToken()}` },
+      cache: 'no-store',
+    });
+    if ((res.status === 401 || res.status === 403) && attempt === 0) { cachedToken = null; continue; }
+    if (!res.ok) throw new GraphError(`Attachment download failed (${res.status})`, res.status);
+    return res.arrayBuffer();
+  }
+}
+
+// Save bytes as a new file in a folder (a same-named file there is kept; this one
+// gets a numbered name). Small files in one request, larger ones via an upload session.
+export async function uploadBytes(parentId: string, name: string, bytes: ArrayBuffer): Promise<DriveItem> {
+  const safe = name.replace(/[\/:*?"<>|]/g, '-');
+  if (bytes.byteLength < 4 * 1024 * 1024) {
+    return graph<DriveItem>(`${drive()}/items/${encodeURIComponent(parentId)}:/${encodeURIComponent(safe)}:/content?@microsoft.graph.conflictBehavior=rename`, { method: 'PUT', body: bytes });
+  }
+  const uploadUrl = await createUploadSession(parentId, safe);
+  const CHUNK = 320 * 1024 * 32;
+  let last: DriveItem | null = null;
+  for (let start = 0; start < bytes.byteLength; start += CHUNK) {
+    const end = Math.min(start + CHUNK, bytes.byteLength);
+    const res = await fetch(uploadUrl, { method: 'PUT', headers: { 'Content-Range': `bytes ${start}-${end - 1}/${bytes.byteLength}` }, body: bytes.slice(start, end) });
+    if (!res.ok && res.status !== 202) throw new GraphError(`Upload failed (${res.status})`, res.status);
+    if (res.status === 200 || res.status === 201) last = await res.json();
+  }
+  if (!last) throw new GraphError('Upload did not complete', 500);
+  return last;
+}
+
+// Pre-authenticated, short-lived download URL for a file.
+export async function downloadUrl(id: string): Promise<string> {
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch(`${GRAPH}${drive()}/items/${encodeURIComponent(id)}/content`, {
+      headers: { Authorization: `Bearer ${await accessToken()}` },
+      redirect: 'manual',
+      cache: 'no-store',
+    });
+    if ((res.status === 401 || res.status === 403) && attempt === 0) { cachedToken = null; continue; }
+    const loc = res.headers.get('location');
+    if (res.status >= 300 && res.status < 400 && loc) return loc;
+    throw new GraphError(`Download link failed (${res.status})`, res.status);
+  }
+}
+
+// Email Ben (from and to the OneDrive owner's mailbox). Needs Mail.Send; callers
+// treat failures as non-fatal.
+export async function sendMailToOwner(subject: string, html: string): Promise<void> {
+  const to = process.env.NOTIFY_EMAIL || process.env.MS_DRIVE_USER!;
+  await graph(`${mailbox()}/sendMail`, {
+    method: 'POST',
+    body: JSON.stringify({ message: { subject, body: { contentType: 'HTML', content: html }, toRecipients: [{ emailAddress: { address: to } }] }, saveToSentItems: false }),
+  });
+}

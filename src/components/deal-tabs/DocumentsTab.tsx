@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Deal, fmt } from '@/lib/utils';
 import { uploadToDrive } from '@/components/DriveUpload';
+import ShareDialog, { ShareTarget } from '@/components/ShareDialog';
+import SharedLinks from '@/components/SharedLinks';
 
 interface Item {
   id: string;
@@ -41,20 +43,23 @@ function FileRow({ item, indent = 0 }: { item: Item; indent?: number }) {
   );
 }
 
-function FolderRow({ item, indent = 0 }: { item: Item; indent?: number }) {
+function FolderRow({ item, indent = 0, onShare }: { item: Item; indent?: number; onShare?: (t: ShareTarget) => void }) {
   const [open, setOpen] = useState(false);
   const count = item.folder?.childCount ?? 0;
   return (
     <div>
-      <button onClick={() => setOpen(!open)} className="w-full flex items-center gap-2 py-1 pr-1 rounded hover:bg-gray-50 text-left" style={{ paddingLeft: indent * 14 + 4 }}>
+      <div className="group flex items-center rounded hover:bg-gray-50">
+      <button onClick={() => setOpen(!open)} className="flex-1 min-w-0 flex items-center gap-2 py-1 pr-1 text-left" style={{ paddingLeft: indent * 14 + 4 }}>
         <svg className={`w-3 h-3 text-gray-400 shrink-0 transition-transform ${open ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
         <svg className="w-4 h-4 text-navy/70 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z" /></svg>
         <span className="flex-1 text-xs font-medium text-gray-800">{item.name}</span>
         <span className="text-[10px] text-gray-400 font-mono">{count}</span>
       </button>
+      {onShare && <button onClick={() => onShare({ id: item.id, name: item.name, isFolder: true })} className="px-1.5 text-[10px] text-navy opacity-0 group-hover:opacity-100 hover:underline">Share</button>}
+      </div>
       {open && (
         <div>
-          {(item.children || []).map(c => (c.folder ? <FolderRow key={c.id} item={c} indent={indent + 1} /> : <FileRow key={c.id} item={c} indent={indent + 1} />))}
+          {(item.children || []).map(c => (c.folder ? <FolderRow key={c.id} item={c} indent={indent + 1} onShare={onShare} /> : <FileRow key={c.id} item={c} indent={indent + 1} />))}
           {count > 0 && !item.children && (
             <a href={item.webUrl} target="_blank" rel="noreferrer" className="block text-[11px] text-navy underline py-1" style={{ paddingLeft: (indent + 1) * 14 + 4 }}>Open folder in OneDrive</a>
           )}
@@ -72,6 +77,8 @@ export default function DocumentsTab({ deal, onUpdate }: { deal: Deal; onUpdate:
   const [target, setTarget] = useState<string>('');
   const [uploads, setUploads] = useState<{ name: string; pct: number; error?: string }[]>([]);
   const [dragging, setDragging] = useState(false);
+  const [sharing, setSharing] = useState<ShareTarget | null>(null);
+  const [sharesKey, setSharesKey] = useState(0);
 
   const load = useCallback(async () => {
     const res = await fetch(`/api/deals/${deal.id}/documents`);
@@ -189,14 +196,19 @@ export default function DocumentsTab({ deal, onUpdate }: { deal: Deal; onUpdate:
       <section>
         <div className="flex items-center justify-between mb-2">
           <h5 className="text-[10px] uppercase tracking-[0.12em] text-gray-500 font-semibold">Deal folder</h5>
-          {data.folder && <a href={data.folder.webUrl} target="_blank" rel="noreferrer" className="text-xs text-navy font-medium hover:underline">Open in OneDrive</a>}
+          {data.folder && (
+            <div className="flex items-center gap-3">
+              <button onClick={() => setSharing({ id: data.folder!.id, name: data.folder!.name, isFolder: true })} className="text-xs text-navy font-medium hover:underline">Share</button>
+              <a href={data.folder.webUrl} target="_blank" rel="noreferrer" className="text-xs text-navy font-medium hover:underline">Open in OneDrive</a>
+            </div>
+          )}
         </div>
         {data.folder ? (
           <>
             <p className="text-[11px] text-gray-500 mb-2 truncate" title={data.folder.name}>{data.folder.name}</p>
             <div className="border border-gray-200 rounded-lg p-1.5 max-h-80 overflow-y-auto">
               {tree.length === 0 && <p className="text-xs text-gray-400 p-2">Folder is empty.</p>}
-              {tree.map(i => (i.folder ? <FolderRow key={i.id} item={i} /> : <FileRow key={i.id} item={i} />))}
+              {tree.map(i => (i.folder ? <FolderRow key={i.id} item={i} onShare={setSharing} /> : <FileRow key={i.id} item={i} />))}
             </div>
 
             {/* Upload */}
@@ -235,6 +247,13 @@ export default function DocumentsTab({ deal, onUpdate }: { deal: Deal; onUpdate:
         )}
       </section>
 
+      {data.folder && (
+        <section>
+          <h5 className="text-[10px] uppercase tracking-[0.12em] text-gray-500 font-semibold mb-2">Shared links</h5>
+          <SharedLinks dealId={deal.id} refreshKey={sharesKey} compact />
+        </section>
+      )}
+
       {/* Related */}
       {related.length > 0 && (
         <section>
@@ -247,6 +266,7 @@ export default function DocumentsTab({ deal, onUpdate }: { deal: Deal; onUpdate:
           </div>
         </section>
       )}
+      {sharing && <ShareDialog target={sharing} dealId={deal.id} onClose={() => setSharing(null)} onCreated={() => setSharesKey(k => k + 1)} />}
     </div>
   );
 }

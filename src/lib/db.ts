@@ -314,6 +314,69 @@ async function initSchema(db: Client) {
       url TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     );
+
+    -- Small key/value store (e.g. the email scan watermark).
+    CREATE TABLE IF NOT EXISTS app_state (
+      key TEXT PRIMARY KEY,
+      value TEXT,
+      updated_at TEXT DEFAULT (datetime('now'))
+    );
+
+    -- Email attachments seen by the filing scan (see lib/mail-filing.ts). One row per
+    -- attachment; status: filed | review | dismissed | skipped.
+    CREATE TABLE IF NOT EXISTS email_files (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      message_id TEXT NOT NULL,
+      attachment_id TEXT NOT NULL,
+      conversation_id TEXT,
+      received_at TEXT,
+      sender TEXT,
+      subject TEXT,
+      web_link TEXT,
+      file_name TEXT NOT NULL,
+      size INTEGER,
+      deal_id INTEGER,                     -- matched or chosen deal
+      folder TEXT,                         -- standard subfolder, e.g. "03 Diligence"
+      status TEXT NOT NULL,
+      reason TEXT,
+      drive_item_id TEXT,
+      drive_web_url TEXT,
+      filed_at TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      UNIQUE(message_id, attachment_id)
+    );
+    CREATE INDEX IF NOT EXISTS ix_email_files_status ON email_files(status, received_at);
+    CREATE INDEX IF NOT EXISTS ix_email_files_conv ON email_files(conversation_id);
+
+    -- Share links for vendors / consultants (see lib/shares.ts). mode: view | upload | both.
+    CREATE TABLE IF NOT EXISTS shares (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      token TEXT NOT NULL UNIQUE,
+      mode TEXT NOT NULL CHECK(mode IN ('view','upload','both')),
+      item_id TEXT NOT NULL,
+      item_name TEXT NOT NULL,
+      item_path TEXT,
+      is_folder INTEGER NOT NULL DEFAULT 1,
+      deal_id INTEGER,
+      recipient TEXT NOT NULL,
+      recipient_email TEXT,
+      password_hash TEXT,
+      expires_at TEXT,
+      notify INTEGER NOT NULL DEFAULT 1,
+      revoked_at TEXT,
+      last_access_at TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS share_events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      share_id INTEGER NOT NULL,
+      kind TEXT NOT NULL,                  -- open | download | upload | bad_password
+      detail TEXT,
+      ip TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS ix_share_events_share ON share_events(share_id, created_at);
   `);
 
   // Migrate deals: add missing columns on existing DBs

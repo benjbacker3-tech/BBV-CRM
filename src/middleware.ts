@@ -3,13 +3,15 @@ import { verifySession, SESSION_COOKIE } from '@/lib/auth';
 
 // Routes that don't require authentication
 const PUBLIC_PATHS = new Set<string>(['/login']);
-const PUBLIC_API_PREFIXES = ['/api/auth/'];
+// /api/share/<token> and /s/<token>: vendor share links (checked per link in lib/shares).
+// /api/cron/: Vercel cron, checked against CRON_SECRET in the route.
+const PUBLIC_API_PREFIXES = ['/api/auth/', '/api/share/', '/api/cron/'];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Skip auth on public paths
-  if (PUBLIC_PATHS.has(pathname)) return NextResponse.next();
+  if (PUBLIC_PATHS.has(pathname) || pathname.startsWith('/s/')) return NextResponse.next();
   if (PUBLIC_API_PREFIXES.some(p => pathname.startsWith(p))) return NextResponse.next();
 
   const token = req.cookies.get(SESSION_COOKIE)?.value;

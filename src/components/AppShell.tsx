@@ -11,7 +11,8 @@ const FULLSCREEN_PATHS = new Set<string>(['/login']);
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const fullscreen = FULLSCREEN_PATHS.has(pathname);
+  // Share links (/s/<token>) are public pages for vendors: no CRM chrome.
+  const fullscreen = FULLSCREEN_PATHS.has(pathname) || pathname.startsWith('/s/');
 
   if (fullscreen) {
     return <main className="h-screen overflow-auto">{children}</main>;
