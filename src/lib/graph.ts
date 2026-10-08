@@ -49,6 +49,18 @@ async function accessToken(): Promise<string> {
   return cachedToken.value;
 }
 
+// Application permissions granted to the app, read from the access token's `roles`
+// claim (for diagnosing 401/403s; the token itself is never exposed).
+export async function grantedRoles(): Promise<string[]> {
+  const payload = (await accessToken()).split('.')[1];
+  try {
+    const json = JSON.parse(Buffer.from(payload.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8'));
+    return Array.isArray(json.roles) ? json.roles : [];
+  } catch {
+    return [];
+  }
+}
+
 export async function graph<T = unknown>(path: string, init: RequestInit = {}): Promise<T> {
   const url = path.startsWith('https://') ? path : `${GRAPH}${path}`;
   for (let attempt = 0; ; attempt++) {

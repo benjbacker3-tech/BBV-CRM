@@ -15,7 +15,7 @@ interface Item {
   folderPath?: string | null;
 }
 
-interface Status { configured: boolean; ok: boolean; owner?: string; rootPath?: string; rootWebUrl?: string; error?: string }
+interface Status { configured: boolean; ok: boolean; owner?: string; rootPath?: string; rootWebUrl?: string; error?: string; hint?: string }
 
 const size = (n?: number) => (n == null ? '' : n < 1024 * 1024 ? `${Math.max(1, Math.round(n / 1024))} KB` : `${(n / 1024 / 1024).toFixed(1)} MB`);
 const day = (s: string) => new Date(s).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -102,7 +102,7 @@ function DocumentsInner() {
       )}
 
       {status?.configured && !status.ok && (
-        <p className="text-xs text-red-700 bg-red-50 border border-red-200 rounded px-3 py-2 max-w-3xl">{status.error}</p>
+        <div className="text-xs text-red-700 bg-red-50 border border-red-200 rounded px-3 py-2 max-w-3xl space-y-1"><p>{status.error}</p>{status.hint && <p className="text-red-900 font-medium">{status.hint}</p>}</div>
       )}
 
       {status?.ok && (
