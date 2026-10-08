@@ -27,7 +27,7 @@ import {
 } from './graph';
 
 export const FOLDER_STAGES = ['Negotiating PSA', 'Under Contract', 'Closed'];
-export const RULES_VERSION = 4;
+export const RULES_VERSION = 5;
 
 // Sent by Ben, from any of his addresses (Outlook shows his own mailbox as an
 // Exchange address, so match the name too).
@@ -82,6 +82,24 @@ function addressCandidates(text: string): string[] {
 }
 
 const label = (d: Deal) => d.address || d.name;
+
+// Does the file name point at a property other than `deal`? Another CRM deal's street,
+// or a different street address ("1436 Thornton WA - model.xlsm" emailed on a 106th
+// thread). Dates, suite numbers and ranges like "6371-6399 Nesbitt" don't count.
+export function namesOtherProperty(fileName: string, deal: Deal, deals: Deal[]): string | null {
+  const n = fileName.replace(/_/g, ' ').replace(/\b(north|south|east|west)\b/gi, w => w[0]);
+  const own = streetOf(deal);
+  const ownNum = label(deal).match(/^\s*(\d+)/)?.[1];
+  // A street address: number + ordinal ("12705 E 106th") or number + name + suffix ("230 F St").
+  const ADDR = /(^|[^\d-])(\d{2,6})\s+(?:[nsew]\.?\s+)?(?:(\d+(?:st|nd|rd|th))\b|([a-z]+)\s+(?:st|street|ave|avenue|rd|road|blvd|boulevard|dr|drive|way|ln|lane|ct|court|pl|place|pkwy|parkway|hwy|highway)\b)/gi;
+  for (const m of Array.from(n.matchAll(ADDR))) {
+    if (m[2] === ownNum || /^(19|20)\d\d$/.test(m[2])) continue;
+    const c = `${m[2]} ${m[3] || m[4]}`;
+    if (!sameAddress(c, label(deal))) return c;
+  }
+  const other = deals.find(d => d.id !== deal.id && streetOf(d) && streetOf(d) !== own && new RegExp(`\\b${streetOf(d)}\\b`, 'i').test(n));
+  return other ? label(other) : null;
+}
 const streetOf = (d: Deal) => (label(d).toLowerCase().match(/^\s*\d+\s+(?:[nsew]\.?\s+)?([a-z][a-z-]{3,})/)?.[1]) ?? null;
 // Property LLCs named in deal notes ("Owner: Verona IOS LLC", "form Brighton IOS LLC").
 const entitiesOf = (d: Deal) => Array.from((d.notes || '').matchAll(/\b([A-Z][A-Za-z0-9]+) IOS LLC\b/g), m => `${m[1].toLowerCase()} ios`);
@@ -268,6 +286,8 @@ async function processAttachment(msg: MailMessage, att: MailAttachment, c: Ctx) 
     if (!fileable(d)) {
       return record('skipped', d.stage === 'Dead' ? `${label(d)} is no longer active` : `${label(d)} is ${d.stage}; no folder until the LOI is accepted`, { deal_id: d.id, folder: cat });
     }
+    const elsewhere = namesOtherProperty(att.name, d, c.deals);
+    if (elsewhere) return record('skipped', `Email is about ${label(d)}, but the file is named for ${elsewhere}`, { deal_id: d.id, folder: cat });
     if (!cat) return record('review', `Matched ${label(d)}${how}; pick a subfolder`, { deal_id: d.id });
     try {
       const { item, existing } = await saveToDeal(d, cat, base, c.docs);
