@@ -98,7 +98,13 @@ export type SyncResult =
   | { status: 'updated'; model: string; values: ReturnType<typeof modelToDealPatch> }
   | { status: 'unchanged'; model: string }
   | { status: 'no_model' | 'no_outputs'; model?: string }
+  | { status: 'price_mismatch'; model: string; modelPrice: number; dealPrice: number }
   | { status: 'error'; error: string };
+
+// A model underwriting a very different purchase price is a stale or wrong file
+// (e.g. an early $3.5M model on an $11M deal); don't let it overwrite the deal.
+const priceMismatch = (modelPrice: number | null, dealPrice: number | null | undefined) =>
+  !!modelPrice && !!dealPrice && (modelPrice / dealPrice < 0.6 || modelPrice / dealPrice > 1.67);
 
 // Read the deal's newest model and write its outputs onto the deal.
 export async function syncDealModel(deal: Deal, ctx = new DocsContext(), force = false): Promise<SyncResult> {
@@ -111,10 +117,15 @@ export async function syncDealModel(deal: Deal, ctx = new DocsContext(), force =
     }
     const candidates = await modelCandidates(deal, folder, ctx);
     if (!candidates.length) return { status: 'no_model' };
+    let mismatch: Extract<SyncResult, { status: 'price_mismatch' }> | null = null;
     for (const file of candidates.slice(0, 3)) {
       if (!force && file.id === deal.model_item_id && file.lastModifiedDateTime === deal.model_modified) return { status: 'unchanged', model: file.name };
       const outputs = await parseModel(await download(file.id));
       if (!outputs) continue;
+      if (priceMismatch(outputs.price, deal.asking_price)) {
+        mismatch ??= { status: 'price_mismatch', model: file.name, modelPrice: outputs.price!, dealPrice: deal.asking_price };
+        continue;
+      }
       const patch = modelToDealPatch(outputs);
       const extra: Record<string, unknown> = {
         model_item_id: file.id,
@@ -130,7 +141,7 @@ export async function syncDealModel(deal: Deal, ctx = new DocsContext(), force =
       await run(`UPDATE deals SET ${keys.map(k => `${k} = ?`).join(', ')} WHERE id = ?`, [...keys.map(k => all[k as keyof typeof all] as string | number), deal.id]);
       return { status: 'updated', model: file.name, values: patch };
     }
-    return { status: 'no_outputs', model: candidates[0].name };
+    return mismatch ?? { status: 'no_outputs', model: candidates[0].name };
   } catch (e) {
     return { status: 'error', error: e instanceof Error ? e.message : String(e) };
   }

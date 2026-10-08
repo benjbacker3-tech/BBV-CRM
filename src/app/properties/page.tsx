@@ -66,7 +66,7 @@ export default function PropertiesPage() {
       const res = await fetch('/api/models/sync', { method: 'POST' });
       const data = await res.json();
       if (!res.ok) { if (!quiet) setImportResult(data.error || 'Model sync failed'); return; }
-      const msg = `Models: ${data.updated} updated, ${data.unchanged} unchanged, ${data.noModel} without a model${data.problems ? `, ${data.problems} unreadable` : ''}`;
+      const msg = `Models: ${data.updated} updated, ${data.unchanged} unchanged, ${data.noModel} without a model${data.priceMismatch ? `, ${data.priceMismatch} skipped (model price far from deal price)` : ''}${data.problems ? `, ${data.problems} unreadable` : ''}`;
       if (!quiet || data.updated) setImportResult(msg);
       if (data.updated) load();
     } finally {

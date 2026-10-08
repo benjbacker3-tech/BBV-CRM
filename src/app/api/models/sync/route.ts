@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
     updated: count('updated'),
     unchanged: count('unchanged'),
     noModel: count('no_model'),
+    priceMismatch: count('price_mismatch'),
     problems: count('error', 'no_outputs'),
     results,
   });

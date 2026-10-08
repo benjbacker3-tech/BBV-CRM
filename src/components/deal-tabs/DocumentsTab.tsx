@@ -91,6 +91,7 @@ export default function DocumentsTab({ deal, onUpdate }: { deal: Deal; onUpdate:
     else if (r.status === 'updated') { setMessage(`Updated from ${r.model}`); onUpdate(json.deal); load(); }
     else if (r.status === 'no_model') setMessage('No model found in the deal folder or Prelim Models.');
     else if (r.status === 'no_outputs') setMessage(`${r.model} doesn't have the IOS model's Assumptions layout.`);
+    else if (r.status === 'price_mismatch') setMessage(`Skipped ${r.model}: it underwrites a ${Math.round(r.modelPrice).toLocaleString('en-US')} purchase, but the deal is at ${Math.round(r.dealPrice).toLocaleString('en-US')}. Save an updated model and sync again.`);
     else if (r.status === 'error') setMessage(r.error);
     else setMessage(`Already up to date (${r.model}).`);
   };
