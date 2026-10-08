@@ -132,13 +132,18 @@ export async function search(q: string): Promise<DriveItem[]> {
   return res.value.filter(i => !i.parentReference?.path || i.parentReference.path.includes(`root:/${ROOT_PATH}`));
 }
 
+// /content answers with a redirect to a pre-authenticated URL; fetch follows it and
+// drops the Authorization header on the cross-origin hop, which is what we want.
 export async function download(id: string): Promise<ArrayBuffer> {
-  const item = await graph<DriveItem>(`${drive()}/items/${encodeURIComponent(id)}?$select=id,@microsoft.graph.downloadUrl`);
-  const url = item['@microsoft.graph.downloadUrl'];
-  if (!url) throw new GraphError('No download URL for item', 500);
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new GraphError(`Download failed (${res.status})`, res.status);
-  return res.arrayBuffer();
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch(`${GRAPH}${drive()}/items/${encodeURIComponent(id)}/content`, {
+      headers: { Authorization: `Bearer ${await accessToken()}` },
+      cache: 'no-store',
+    });
+    if ((res.status === 401 || res.status === 403) && attempt === 0) { cachedToken = null; continue; }
+    if (!res.ok) throw new GraphError(`Download failed (${res.status})`, res.status);
+    return res.arrayBuffer();
+  }
 }
 
 export async function createFolder(parentId: string, name: string): Promise<DriveItem> {
