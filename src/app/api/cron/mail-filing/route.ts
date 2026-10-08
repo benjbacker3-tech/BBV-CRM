@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { graphConfigured, graphErrorMessage } from '@/lib/graph';
-import { scanMail } from '@/lib/mail-filing';
+import { recheckMail, scanMail } from '@/lib/mail-filing';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
@@ -11,7 +11,9 @@ export async function GET(req: NextRequest) {
   if (!secret || req.headers.get('authorization') !== `Bearer ${secret}`) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   if (!graphConfigured()) return NextResponse.json({ skipped: 'Microsoft 365 not connected' });
   try {
-    return NextResponse.json(await scanMail(50_000));
+    const scan = await scanMail(40_000);
+    const recheck = scan.more ? null : await recheckMail(12_000);
+    return NextResponse.json({ scan, recheck });
   } catch (e) {
     return NextResponse.json({ error: graphErrorMessage(e) }, { status: 502 });
   }

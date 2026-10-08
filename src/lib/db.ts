@@ -416,6 +416,10 @@ async function initSchema(db: Client) {
     }
   }
 
+  // email_files.rules_version: which filing rules decided a row (see lib/mail-filing.ts).
+  const efCols = (await db.execute('PRAGMA table_info(email_files)')).rows.map(r => String(r.name));
+  if (!efCols.includes('rules_version')) await db.execute('ALTER TABLE email_files ADD COLUMN rules_version INTEGER DEFAULT 0');
+
   // One-time normalization: old seed data stored YoC as percentages (8.2 = 8.2%).
   // New data stores as decimals (0.082). Any value > 1 is legacy percentage form.
   await db.execute('UPDATE deals SET yoc_target = yoc_target / 100.0 WHERE yoc_target > 1');

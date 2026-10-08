@@ -17,8 +17,9 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
   }
   if (body.action !== 'file') return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
   try {
-    const rec = await fileFromReview(id, Number(body.dealId), String(body.folder ?? ''));
-    await logActivity({ entity_type: 'deal', entity_id: Number(body.dealId), action: 'email_filed', description: `Filed ${rec.file_name} from email to ${rec.folder || 'the deal folder'}` });
+    const dealId = body.dealId ? Number(body.dealId) : null;
+    const rec = await fileFromReview(id, dealId, String(body.folder ?? ''));
+    if (dealId) await logActivity({ entity_type: 'deal', entity_id: dealId, action: 'email_filed', description: `Filed ${rec.file_name} from email to ${rec.folder || 'the deal folder'}` });
     return NextResponse.json({ row: rec });
   } catch (e) {
     return NextResponse.json({ error: graphErrorMessage(e) }, { status: 502 });

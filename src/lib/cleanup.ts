@@ -52,6 +52,7 @@ export function categoryOf(name: string, isFolder: boolean): string | null {
   if (/\blease\b|estoppel|\bsnda\b|\bpma\b|property management|insurance|tax (bill|estimate)|rent roll|statement of values|\bcoi\b|certificate of insurance/.test(n)) return '07 Leasing & Mgmt';
   if (/\bloi\b|letter of intent|\bpsa\b|purchase (and|&) sale|commission agreement|listing agreement|em receipt|release of em|earnest money/.test(n)) return '02 LOI & PSA';
   if (/term sheet|financing|\bloan\b|lender/.test(n)) return '04 Debt';
+  if (/operating agreement|org(anizational)? chart|\bjv\b|joint venture|subscription agreement|capital call/.test(n)) return '05 Equity';
   if (/construction|\bgc\b|general contractor|pay app|draw request|lien waiver|change order|schedule of values|scope of work|\bw-?9\b|\bach\b|certificate of registration|\bcontract\b.*\broof|\broof\b.*\bcontract\b/.test(n)) return '09 Construction';
   if (/wire instructions|settlement statement|closing statement|invoices for escrow|escrow invoice/.test(n)) return '06 Closing';
   if (/brochure|\bom\b|offering memo|site plan|floor plan|\bdrone\b|\bphotos?\b|pictures|\bdecks?\b|aerial/.test(n) || (!isFolder && /\.(jpe?g|png|heic)$/.test(n))) return '08 Property Info';

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { COMPANY_FOLDERS } from '@/lib/company-folders';
 
 // Email attachments: what the daily scan filed into deal folders, and what it wants
 // a decision on (see lib/mail-filing.ts).
@@ -71,8 +72,19 @@ export default function InboxPage() {
       if (json.errors?.length) { setMessage(`Stopped on an error: ${json.errors[0]}`); break; }
       const summary = `Checked ${total.messages} emails with attachments: ${total.filed} filed, ${total.review} to review, ${total.skipped} skipped.`;
       if (!json.more) { setMessage(summary); break; }
-      if (round === 60) setMessage(`${summary} More to go: click Check email now again to continue.`);
+      if (round === 60) { setMessage(`${summary} More to go: click Check email now again to continue.`); setScanning(null); load(); return; }
     }
+    // Earlier review / skipped items get another look with the current rules.
+    let re = { checked: 0, filed: 0 };
+    for (let round = 1; round <= 40; round++) {
+      setScanning(`Re-sorting earlier attachments with the latest rules… ${re.checked ? `${re.checked} so far` : ''}`);
+      const res = await fetch('/api/email-files', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'recheck' }) });
+      const json = await res.json();
+      if (!res.ok) break;
+      re = { checked: re.checked + json.checked, filed: re.filed + json.filed };
+      if (!json.more) break;
+    }
+    if (re.checked) setMessage(m => `${m ?? ''} Re-sorted ${re.checked} earlier attachments; ${re.filed} more filed.`.trim());
     setScanning(null);
     load();
   };
@@ -93,7 +105,8 @@ export default function InboxPage() {
     load();
   };
 
-  const pick = (r: Row) => choice[r.id] ?? { dealId: r.deal_id ? String(r.deal_id) : '', folder: r.folder ?? '' };
+  // dealId '' = nothing chosen, 'company' = a company folder (folder holds its path).
+  const pick = (r: Row) => choice[r.id] ?? (r.deal_id ? { dealId: String(r.deal_id), folder: r.folder ?? '' } : COMPANY_FOLDERS.includes(r.folder ?? '') ? { dealId: 'company', folder: r.folder! } : { dealId: '', folder: '' });
 
   return (
     <div className="px-8 py-8 max-w-[1200px]">
@@ -109,8 +122,8 @@ export default function InboxPage() {
 
       <p className="text-xs text-gray-600 leading-relaxed mb-4 max-w-3xl">
         Every morning the CRM reads new email with attachments (received and sent). When an email names a deal that has a folder (by street address, or because the thread was already filed to that deal),
-        its attachments are saved into the right subfolder, using the same rules as Organize folders. Anything it isn&apos;t sure about waits here.
-        Signatures, invites and attachments for deals still at Tracking or LOI are skipped.
+        its attachments are saved into the right subfolder. Company documents go to the company folders: formation and banking papers, engagement letters and NDAs, investor decks,
+        broker OMs, market reports and comps, lender quotes, templates. Anything it isn&apos;t sure about waits here. Signatures, invites, mail reports and attachments for deals still at Tracking or LOI are skipped.
       </p>
 
       {data && data.configured && data.mailAccess === false && (
@@ -158,21 +171,22 @@ export default function InboxPage() {
                 </div>
                 <div className="text-[11px] mt-0.5">
                   {r.status === 'filed' ? (
-                    <span className="text-emerald-700">Filed to {r.deal_name} / {r.folder || 'top level'}<span className="text-gray-400"> · {r.reason}</span></span>
+                    <span className="text-emerald-700">Filed to {r.deal_name ? `${r.deal_name} / ${r.folder || 'top level'}` : r.folder}<span className="text-gray-400"> · {r.reason}</span></span>
                   ) : <span className="text-gray-500">{r.reason}</span>}
                 </div>
 
                 {r.status === 'review' && (
                   <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                    <select value={c.dealId} onChange={e => setChoice(x => ({ ...x, [r.id]: { ...c, dealId: e.target.value } }))} className="border border-gray-300 rounded px-2 py-1 text-xs text-gray-800 bg-white">
-                      <option value="">Deal…</option>
-                      {data.deals.map(d => <option key={d.id} value={d.id}>{d.label} ({d.stage})</option>)}
+                    <select value={c.dealId} onChange={e => setChoice(x => ({ ...x, [r.id]: { dealId: e.target.value, folder: e.target.value === 'company' || c.dealId === 'company' ? '' : c.folder } }))} className="border border-gray-300 rounded px-2 py-1 text-xs text-gray-800 bg-white">
+                      <option value="">Deal or company…</option>
+                      <optgroup label="Deals">{data.deals.map(d => <option key={d.id} value={d.id}>{d.label} ({d.stage})</option>)}</optgroup>
+                      <option value="company">Company folder (not a deal)</option>
                     </select>
                     <select value={c.folder} onChange={e => setChoice(x => ({ ...x, [r.id]: { ...c, folder: e.target.value } }))} className="border border-gray-300 rounded px-2 py-1 text-xs text-gray-800 bg-white">
-                      <option value="">Subfolder…</option>
-                      {SUBFOLDERS.map(f => <option key={f} value={f}>{f}</option>)}
+                      <option value="">{c.dealId === 'company' ? 'Folder…' : 'Subfolder…'}</option>
+                      {(c.dealId === 'company' ? COMPANY_FOLDERS : SUBFOLDERS).map(f => <option key={f} value={f}>{f}</option>)}
                     </select>
-                    <button disabled={!c.dealId || !c.folder || busy === r.id} onClick={() => act(r, { action: 'file', dealId: c.dealId, folder: c.folder })} className="px-3 py-1 text-xs text-white bg-navy rounded hover:bg-navy-light disabled:opacity-40">
+                    <button disabled={!c.dealId || !c.folder || busy === r.id} onClick={() => act(r, { action: 'file', dealId: c.dealId === 'company' ? null : c.dealId, folder: c.folder })} className="px-3 py-1 text-xs text-white bg-navy rounded hover:bg-navy-light disabled:opacity-40">
                       {busy === r.id ? 'Saving…' : 'File'}
                     </button>
                     <button disabled={busy === r.id} onClick={() => act(r, { action: 'dismiss' })} className="px-2 py-1 text-xs text-gray-600 hover:text-red-600">Dismiss</button>
