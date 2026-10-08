@@ -130,7 +130,7 @@ export default function InboxPage() {
       <p className="text-xs text-gray-600 leading-relaxed mb-4 max-w-3xl">
         Every morning the CRM reads new email with attachments (received and sent). When an email names a deal that has a folder (by street address, or because the thread was already filed to that deal),
         its attachments are saved into the right subfolder. Company documents go to the company folders: formation and banking papers, engagement letters and NDAs, investor decks,
-        broker OMs, market reports and comps, lender quotes, templates. Anything it isn&apos;t sure about waits here. Signatures, invites, mail reports and attachments for deals still at Tracking or LOI are skipped.
+        broker OMs, market reports and comps, lender quotes, templates. Anything it isn&apos;t sure about waits here. Only active deals get files: attachments for Dead deals, deals still at Tracking or LOI, and properties that aren&apos;t in the CRM are skipped, as are signatures, invites and mail reports.
       </p>
 
       {data && data.configured && data.mailAccess === false && (

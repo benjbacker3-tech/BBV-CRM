@@ -3,13 +3,14 @@
 //
 //   Deal documents → the deal's folder, in the standard subfolder (categoryOf, or the
 //   email subject when the file name doesn't say). A deal is recognised by street
-//   number + street, a street name or property LLC ("Verona IOS") unique to one deal,
-//   or a thread already filed to it. Deals at Tracking / LOI have no folder yet and are
-//   skipped; Dead deals are filed only if their folder exists.
+//   number + street, or a street name or property LLC ("Verona IOS") unique to one
+//   deal. Only active deals with a folder (Negotiating PSA, Under Contract, Closed) get
+//   files: Tracking / LOI deals have no folder yet, and Dead deals are no longer filed.
 //   Company documents → Formation, Investor Update, Accounting, Market Info, … (see
 //   company-folders.ts).
-//   Review: anything it isn't sure about. Skipped: signatures, invites, mail reports,
-//   and attachments with nothing to go on.
+//   Review: an active deal it isn't sure about (city only, same thread, several deals,
+//   or no clear subfolder). Skipped: signatures, invites, mail reports, inactive deals,
+//   and deal-type documents that don't name an active deal.
 //
 // Each decision records the rules version; when the rules improve, review and skipped
 // items are re-checked (recheckMail). Filed and dismissed items are never revisited.
@@ -26,7 +27,7 @@ import {
 } from './graph';
 
 export const FOLDER_STAGES = ['Negotiating PSA', 'Under Contract', 'Closed'];
-export const RULES_VERSION = 2;
+export const RULES_VERSION = 3;
 const FIRST_SCAN_DAYS = 14;
 const WATERMARK_KEY = 'mail_filing_since';
 
@@ -66,7 +67,9 @@ function noise(a: MailAttachment): string | null {
 const ADDRESS_RE = /\b(\d{2,6})\s+(?:[nsew]\.?\s+)?([a-z0-9][a-z0-9-]*)/gi;
 function addressCandidates(text: string): string[] {
   const out: string[] = [];
-  for (const m of Array.from(text.matchAll(ADDRESS_RE))) out.push(`${m[1]} ${m[2]}`);
+  // "10275 East 106th Avenue" → "10275 E 106th Avenue"
+  const t = text.replace(/\b(north|south|east|west)\b/gi, w => w[0]);
+  for (const m of Array.from(t.matchAll(ADDRESS_RE))) out.push(`${m[1]} ${m[2]}`);
   return out;
 }
 
@@ -78,11 +81,11 @@ const entitiesOf = (d: Deal) => Array.from((d.notes || '').matchAll(/\b([A-Z][A-
 // Subfolder from the file name; when the name doesn't say, the email subject decides if
 // it's clear (contractor COIs and W-9s on a GC thread, an exhibit on a PSA thread).
 const SUBJECT_RULES: [RegExp, string][] = [
-  [/construction|\bgc\b|general contractor|contractor|pay app|\bdraw\b|lien waiver|change order|\broof|permit/, '09 Construction'],
+  [/construction|\bgc\b|general contractor|contractor|pay app|\bdraw\b|lien waiver|change order|\broof|permit|security|camera|fenc(e|ing)/, '09 Construction'],
   [/\bloan\b|lender|appraisal|term sheet|financing|\bdebt\b|\bbank\b/, '04 Debt'],
   [/\bpsa\b|purchase (and|&) sale|purchase agreement|\bloi\b|letter of intent|earnest money|amendment|commission agreement|listing agreement/, '02 LOI & PSA'],
-  [/\btitle\b|survey|\balta\b|phase i|\besa\b|environmental|zoning|\bpzr\b|geotech|due diligence|\bdd\b|inspection/, '03 Diligence'],
-  [/closing|settlement statement|wire instructions|escrow/, '06 Closing'],
+  [/\btitle\b|survey|\balta\b|phase i|\besa\b|environmental|zoning|\bpzr\b|geotech|due diligence|\bdd\b|inspection|\baei\b|\bpca\b|property condition/, '03 Diligence'],
+  [/closing|settlement statement|wire instructions|escrow|\bfbdo|\bgf ?#|buyer stmt|seller stmt|title order/, '06 Closing'],
   [/\blease\b|tenant|estoppel|\bsnda\b|insurance|property tax|\btaxes\b|tax estimate|property management|\bpma\b|rent roll/, '07 Leasing & Mgmt'],
   [/\bjv\b|joint venture|operating agreement|org chart|capital call|investor|equity/, '05 Equity'],
   [/\bom\b|offering memo|brochure|site plan|drone|photos/, '08 Property Info'],
@@ -122,7 +125,7 @@ async function matchDeal(msg: MailMessage, att: MailAttachment, deals: Deal[], f
       [msg.conversationId],
     );
     const d = prior && deals.find(x => x.id === prior.deal_id);
-    if (d) return { deal: d, how: 'thread' };
+    if (d && fileable(d)) return { deal: d, how: 'thread' };
   }
   // Street name alone ("Nesbitt Rd - Roof Timing"): counts when no other deal shares it.
   const head = `${msg.subject || ''} ${att.name}`.toLowerCase();
@@ -182,21 +185,18 @@ async function saveToCompany(path: string, rec: Rec) {
 interface Ctx {
   deals: Deal[];
   docs: DocsContext;
-  deadWithFolder: Set<number>;
   counts: { filed: number; review: number; skipped: number };
 }
 
 async function loadCtx(): Promise<Ctx> {
   const deals = await all<Deal>('SELECT * FROM deals');
   const docs = new DocsContext();
-  const deadWithFolder = new Set<number>();
-  for (const d of deals.filter(x => x.stage === 'Dead')) if (await findDealFolder(d, docs)) deadWithFolder.add(d.id);
   folderCache.clear();
   companyFolderIds.clear();
-  return { deals, docs, deadWithFolder, counts: { filed: 0, review: 0, skipped: 0 } };
+  return { deals, docs, counts: { filed: 0, review: 0, skipped: 0 } };
 }
 
-const fileableIn = (c: Ctx) => (d: Deal) => FOLDER_STAGES.includes(d.stage) || c.deadWithFolder.has(d.id);
+const fileableIn = (_c: Ctx) => (d: Deal) => FOLDER_STAGES.includes(d.stage);
 
 // Decide and record one attachment (insert, or update an earlier review/skipped decision).
 async function processAttachment(msg: MailMessage, att: MailAttachment, c: Ctx) {
@@ -244,11 +244,11 @@ async function processAttachment(msg: MailMessage, att: MailAttachment, c: Ctx) 
   // unless the file name itself names a deal.
   if (strong && !(m.deal && m.inName)) return toCompany(strong, 'Company document');
 
-  if (m.deal && m.how !== 'city') {
+  if (m.deal && m.how !== 'city' && m.how !== 'thread') {
     const d = m.deal;
-    const how = m.how === 'thread' ? ' (same email thread)' : m.how === 'street' ? ` (mentions ${streetOf(d)})` : m.how === 'entity' ? ' (property LLC)' : '';
+    const how = m.how === 'street' ? ` (mentions ${streetOf(d)})` : m.how === 'entity' ? ' (property LLC)' : '';
     if (!fileable(d)) {
-      return record('skipped', d.stage === 'Dead' ? `${label(d)} is Dead and has no folder` : `${label(d)} is ${d.stage}; no folder until the LOI is accepted`, { deal_id: d.id, folder: cat });
+      return record('skipped', d.stage === 'Dead' ? `${label(d)} is no longer active` : `${label(d)} is ${d.stage}; no folder until the LOI is accepted`, { deal_id: d.id, folder: cat });
     }
     if (!cat) return record('review', `Matched ${label(d)}${how}; pick a subfolder`, { deal_id: d.id });
     try {
@@ -260,6 +260,7 @@ async function processAttachment(msg: MailMessage, att: MailAttachment, c: Ctx) 
   }
 
   if (m.how === 'city' && m.deal) return record('review', `Mentions ${m.deal.city}; is this ${label(m.deal)}?`, { deal_id: m.deal.id, folder: cat });
+  if (m.how === 'thread' && m.deal) return record('review', `Same email thread as other ${label(m.deal)} files; is it?`, { deal_id: m.deal.id, folder: cat });
   if (m.how === 'several') {
     const withFolder = (m.others || []).filter(fileable);
     if (withFolder.length) return record('review', `Mentions several deals: ${(m.others || []).map(label).join(', ')}`, { deal_id: withFolder[0].id, folder: cat });
@@ -268,10 +269,10 @@ async function processAttachment(msg: MailMessage, att: MailAttachment, c: Ctx) 
   const weak = weakCompanyFolder(att.name, msg.subject);
   if (weak) return toCompany(weak, 'Company document');
   if (m.how === 'several') return record('skipped', `Mentions ${(m.others || []).map(label).join(', ')} (no folders yet)`, { folder: cat });
-  // Looks like a deal document but no deal is named: worth a look.
-  if (cat) return record('review', 'No deal named in the email', { folder: cat });
   const offering = offeringByAddress(att.name, msg.subject);
   if (offering) return toCompany(offering, 'Property that is not a CRM deal');
+  // A deal-type document that doesn't name an active deal: an old or dropped property.
+  if (cat) return record('skipped', 'Deal document, but no active deal named', { folder: cat });
   return record('skipped', 'Nothing to say where it goes');
 }
 
@@ -374,9 +375,7 @@ export async function fileFromReview(id: number, dealId: number | null, folder: 
     const deal = await get<Deal>('SELECT * FROM deals WHERE id = ?', [dealId]);
     if (!deal) throw new Error('Deal not found');
     const docs = new DocsContext();
-    if (!FOLDER_STAGES.includes(deal.stage) && !(deal.stage === 'Dead' && (await findDealFolder(deal, docs)))) {
-      throw new Error(`${label(deal)} is ${deal.stage}; deal folders start at Negotiating PSA`);
-    }
+    if (!FOLDER_STAGES.includes(deal.stage)) throw new Error(`${label(deal)} is ${deal.stage}; only active deals with a folder get files`);
     if (folder !== '' && !STANDARD_SUBFOLDERS.includes(folder)) throw new Error('Unknown subfolder');
     item = (await saveToDeal(deal, folder, rec, docs)).item;
   }

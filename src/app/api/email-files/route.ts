@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
   const counts = Object.fromEntries((await all<{ status: string; n: number }>('SELECT status, COUNT(*) AS n FROM email_files GROUP BY status')).map(r => [r.status, Number(r.n)]));
   const last = await get<{ value: string }>("SELECT value FROM app_state WHERE key = 'mail_filing_last_run'");
   const deals = await all<{ id: number; label: string; stage: string }>(
-    `SELECT id, COALESCE(address, name) AS label, stage FROM deals WHERE stage IN (${FOLDER_STAGES.map(() => '?').join(',')}) OR (stage = 'Dead' AND drive_folder_id IS NOT NULL) ORDER BY label`, FOLDER_STAGES);
+    `SELECT id, COALESCE(address, name) AS label, stage FROM deals WHERE stage IN (${FOLDER_STAGES.map(() => '?').join(',')}) ORDER BY label`, FOLDER_STAGES);
   let mailAccess: boolean | null = null;
   if (graphConfigured()) mailAccess = await grantedRoles().then(r => r.some(x => /^Mail\.(Read|ReadWrite)$/.test(x))).catch(() => null);
   return NextResponse.json({ rows, counts, lastRun: last ? JSON.parse(last.value) : null, deals, mailAccess, configured: graphConfigured() });

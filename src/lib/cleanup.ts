@@ -46,17 +46,17 @@ const LEGACY: Record<string, string[]> = {
 
 // Which standard subfolder an item belongs in, from its name. Null = can't tell (left alone).
 export function categoryOf(name: string, isFolder: boolean): string | null {
-  const n = name.toLowerCase();
+  const n = name.toLowerCase().replace(/_/g, ' ');
   if (!isFolder && /\.xlsm$/.test(n)) return '01 Models';
   if (!isFolder && /\.xlsx?$/.test(n) && /model/.test(n)) return '01 Models';
-  if (/\blease\b|estoppel|\bsnda\b|\bpma\b|property management|insurance|tax (bill|estimate)|rent roll|statement of values|\bcoi\b|certificate of insurance/.test(n)) return '07 Leasing & Mgmt';
-  if (/\bloi\b|letter of intent|\bpsa\b|purchase (and|&) sale|commission agreement|listing agreement|em receipt|release of em|earnest money/.test(n)) return '02 LOI & PSA';
-  if (/term sheet|financing|\bloan\b|lender/.test(n)) return '04 Debt';
-  if (/operating agreement|org(anizational)? chart|\bjv\b|joint venture|subscription agreement|capital call/.test(n)) return '05 Equity';
+  if (/\bleases?\b|estoppel|\bsnda\b|\bpma\b|property management|management agreement|monthly reporting|insurance|\bisaoa\b|loss payee|loss runs|\beop\b|tax (bill|estimate)|cost seg|rent roll|statement of values|\bcoi\b|cert(ificate)? of insurance/.test(n)) return '07 Leasing & Mgmt';
+  if (/\bloi\b|letter of intent|\bpsa\b|purchase (and|&) sale|purchase agreement|offer to purchase|contract to buy|commercial contract|\bamendment\b|addendum|extension of contract|contract extension|commission agreement|listing agreement|em receipt|release of em|earnest money/.test(n)) return '02 LOI & PSA';
+  if (/term sheet|financing|\bloan\b|lender|sources (and|&) uses|appraisal|banking letter/.test(n)) return '04 Debt';
+  if (/operating agreement|\boa\b|written consent|signature pages|\bios llc\b|org(anizational)? chart|\bjv\b|joint venture|subscription agreement|capital call|\bfund i\b|financial statements|\bfs q\d|\bq\d report/.test(n)) return '05 Equity';
   if (/construction|\bgc\b|general contractor|pay app|draw request|lien waiver|change order|schedule of values|scope of work|\bw-?9\b|\bach\b|certificate of registration|\bcontract\b.*\broof|\broof\b.*\bcontract\b/.test(n)) return '09 Construction';
-  if (/wire instructions|settlement statement|closing statement|invoices for escrow|escrow invoice/.test(n)) return '06 Closing';
+  if (/wire instructions|settlement (statement|agent)|closing statement|buyers? (statement|stmt)|sellers? (statement|stmt)|affidavit|\bretr\b|1099|disbursement|entity doc|invoices? for escrow|escrow invoice|\binvoice|payment instructions|receipted/.test(n)) return '06 Closing';
   if (/brochure|\bom\b|offering memo|site plan|floor plan|\bdrone\b|\bphotos?\b|pictures|\bdecks?\b|aerial/.test(n) || (!isFolder && /\.(jpe?g|png|heic)$/.test(n))) return '08 Property Info';
-  if (/phase i\b|phase ii|\besa\b|\bpca\b|survey|\btitle\b|zoning|\bpzr\b|permit|\broof\b|geotech|soils|environmental|proposal/.test(n)) return '03 Diligence';
+  if (/phase i\b|phase ii|\besa\b|\bpca\b|survey|\btitle\b|\balta\b|commitment|schedule b|tax certificate|questionnaire|\bnda\b|confidentiality|comps?\b|comp grid|\bbov\b|zoning|\bpzr\b|permit|\broof\b|geotech|soils|environmental|proposal/.test(n)) return '03 Diligence';
   return null;
 }
 
