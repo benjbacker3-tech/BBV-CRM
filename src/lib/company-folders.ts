@@ -32,6 +32,7 @@ const STRONG: [RegExp, string][] = [
   [/sandpiper update|track record|deal sheet|investor update|aasif pipeline/, 'Investor Update'],
   [/\btour\b/, 'Investor Update/Tour Decks'],
   [/bfo investments|revolving demand note/, 'Formation/Note from Aasif'],
+  [/\bfund i\b.*\b(fs|financials?|report|statements?)\b|fund financial/, 'Formation/CentrePoint Properties'],
   [/signature card|client (information|profile)|deposit account|fee ?schedule|beneficial own|\bcobo\b/, 'Accounting/Banking'],
   [/engagement letter|service agreement|statement of work|\bsow\b|master services/, 'Company Level Contracts'],
   [/template|lease form|checklist/, 'Templates'],

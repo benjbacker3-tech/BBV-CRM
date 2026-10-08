@@ -27,11 +27,14 @@ import {
 } from './graph';
 
 export const FOLDER_STAGES = ['Negotiating PSA', 'Under Contract', 'Closed'];
-export const RULES_VERSION = 5;
+export const RULES_VERSION = 7;
+
+// Broker marketing emails ("Off-Market IOS Opportunity in Brighton, CO").
+const OFFERING_SUBJECT = /off[- ]market|pre[- ]market|opportunity|for sale|\bom\b|offering|new listing|hit the market|cap rate/;
 
 // Sent by Ben, from any of his addresses (Outlook shows his own mailbox as an
 // Exchange address, so match the name too).
-const fromBen = (msg: MailMessage) => {
+export const fromBen = (msg: MailMessage) => {
   const a = (msg.from?.emailAddress?.address || '').toLowerCase();
   const n = (msg.from?.emailAddress?.name || '').toLowerCase();
   return a === (process.env.MS_DRIVE_USER || '').toLowerCase() || /\bben(jamin)? backer\b/.test(n) || /benj\.backer3@|^ben@iovre\.com$/.test(a);
@@ -62,7 +65,7 @@ export interface EmailFile {
 
 // Attachments that are never documents.
 const NOISE_REASONS = ['Not a file (forwarded email or cloud link)', 'Inline image', 'Invite, contact card or signature', 'Small image (likely a logo or signature)'];
-function noise(a: MailAttachment): string | null {
+export function noise(a: MailAttachment): string | null {
   const n = a.name.toLowerCase();
   if (a['@odata.type'] !== '#microsoft.graph.fileAttachment') return NOISE_REASONS[0];
   if (a.isInline) return NOISE_REASONS[1];
@@ -72,7 +75,7 @@ function noise(a: MailAttachment): string | null {
 }
 
 // "1862 Ives Ave", "10275 E 106th" … anywhere in free text.
-const ADDRESS_RE = /\b(\d{2,6})\s+(?:[nsew]\.?\s+)?([a-z0-9][a-z0-9-]*)/gi;
+const ADDRESS_RE = /\b(\d{2,6})(?:-\d{2,6})?\s+(?:[nsew]\.?\s+)?([a-z0-9][a-z0-9-]*)/gi;
 function addressCandidates(text: string): string[] {
   const out: string[] = [];
   // "10275 East 106th Avenue" → "10275 E 106th Avenue"
@@ -117,11 +120,13 @@ const SUBJECT_RULES: [RegExp, string][] = [
   [/\bom\b|offering memo|brochure|site plan|drone|photos/, '08 Property Info'],
 ];
 
-function mailCategory(name: string, subject: string | null): string | null {
+export function mailCategory(name: string, subject: string | null): string | null {
   const cat = categoryOf(name, false);
   const s = (subject || '').toLowerCase();
   const fromSubject = SUBJECT_RULES.filter(([re]) => re.test(s)).map(([, f]) => f);
   if (fromSubject[0] === '09 Construction' && /\bcoi\b|certificate of insurance/i.test(name)) return '09 Construction';
+  // Tenant onboarding (W-9 / ACH forms on a tenant or lease thread) goes with leasing.
+  if (/\bw-?9\b|\bach\b/i.test(name) && /tenant|\blease|leasing|school bus/.test(s)) return '07 Leasing & Mgmt';
   if (cat) return cat;
   // Only when the subject points one way; "PSA + loan" threads go to review.
   return new Set(fromSubject).size === 1 ? fromSubject[0] : null;
@@ -129,7 +134,7 @@ function mailCategory(name: string, subject: string | null): string | null {
 
 interface Match { deal: Deal | null; how: 'address' | 'entity' | 'thread' | 'street' | 'city' | 'several' | 'none'; inName?: boolean; others?: Deal[] }
 
-async function matchDeal(msg: MailMessage, att: MailAttachment, deals: Deal[], fileable: (d: Deal) => boolean): Promise<Match> {
+export async function matchDeal(msg: MailMessage, att: MailAttachment, deals: Deal[], fileable: (d: Deal) => boolean): Promise<Match> {
   const text = `${msg.subject || ''}\n${att.name}\n${msg.bodyPreview || ''}`;
   const nameCands = addressCandidates(att.name);
   const named = (d: Deal) => nameCands.some(c => sameAddress(c, label(d)));
@@ -145,6 +150,18 @@ async function matchDeal(msg: MailMessage, att: MailAttachment, deals: Deal[], f
   const lower = text.toLowerCase();
   const byEntity = deals.filter(d => entitiesOf(d).some(e => lower.includes(e)));
   if (byEntity.length === 1) return { deal: byEntity[0], how: 'entity', inName: entitiesOf(byEntity[0]).some(e => att.name.toLowerCase().includes(e)) };
+  // Street name alone ("Nesbitt Rd - Roof Timing"): counts when no other deal shares it.
+  const head = `${msg.subject || ''} ${att.name}`.toLowerCase();
+  const byStreet = deals.filter(d => { const s = streetOf(d); return s && new RegExp(`\\b${s}\\b`).test(head); });
+  if (byStreet.length === 1 && deals.filter(d => streetOf(d) === streetOf(byStreet[0])).length === 1) {
+    return { deal: byStreet[0], how: 'street', inName: new RegExp(`\\b${streetOf(byStreet[0])}\\b`).test(att.name.toLowerCase()) };
+  }
+  // City alone ("Sandpiper Brighton - term sheet"): the deal when exactly one active deal
+  // is in that city; several → review.
+  const subj = (msg.subject || '').toLowerCase();
+  const byCity = deals.filter(d => fileable(d) && d.city && new RegExp(`\\b${d.city.toLowerCase().replace(/[^a-z ]/g, '')}\\b`).test(subj));
+  if (byCity.length === 1) return { deal: byCity[0], how: 'city' };
+  if (byCity.length > 1) return { deal: null, how: 'several', others: byCity };
   if (msg.conversationId) {
     const prior = await get<{ deal_id: number }>(
       "SELECT deal_id FROM email_files WHERE conversation_id = ? AND status = 'filed' AND deal_id IS NOT NULL GROUP BY deal_id ORDER BY COUNT(*) DESC LIMIT 1",
@@ -153,17 +170,6 @@ async function matchDeal(msg: MailMessage, att: MailAttachment, deals: Deal[], f
     const d = prior && deals.find(x => x.id === prior.deal_id);
     if (d && fileable(d)) return { deal: d, how: 'thread' };
   }
-  // Street name alone ("Nesbitt Rd - Roof Timing"): counts when no other deal shares it.
-  const head = `${msg.subject || ''} ${att.name}`.toLowerCase();
-  const byStreet = deals.filter(d => { const s = streetOf(d); return s && new RegExp(`\\b${s}\\b`).test(head); });
-  if (byStreet.length === 1 && deals.filter(d => streetOf(d) === streetOf(byStreet[0])).length === 1) {
-    return { deal: byStreet[0], how: 'street', inName: new RegExp(`\\b${streetOf(byStreet[0])}\\b`).test(att.name.toLowerCase()) };
-  }
-  // City alone ("Sandpiper Brighton - term sheet"): a suggestion when exactly one deal
-  // with a folder is in that city.
-  const subj = (msg.subject || '').toLowerCase();
-  const byCity = deals.filter(d => fileable(d) && d.city && new RegExp(`\\b${d.city.toLowerCase().replace(/[^a-z ]/g, '')}\\b`).test(subj));
-  if (byCity.length === 1) return { deal: byCity[0], how: 'city' };
   return { deal: null, how: 'none' };
 }
 
@@ -263,6 +269,8 @@ async function processAttachment(msg: MailMessage, att: MailAttachment, c: Ctx) 
   const m = await matchDeal(msg, att, c.deals, fileable);
   if (isModel && !strong) {
     const d = m.deal && fileable(m.deal) ? m.deal : null;
+    const elsewhere = d && namesOtherProperty(att.name, d, c.deals);
+    if (elsewhere) return record('skipped', `Model for ${elsewhere}, not ${label(d!)}`, { deal_id: d!.id });
     return d ? record('review', `Model from ${msg.from?.emailAddress?.name || 'someone else'}; file it only if you want it in ${label(d)}`, { deal_id: d.id, folder: '01 Models' })
       : record('skipped', 'Model, and no active deal named');
   }
@@ -297,14 +305,33 @@ async function processAttachment(msg: MailMessage, att: MailAttachment, c: Ctx) 
     }
   }
 
-  if (m.how === 'city' && m.deal) return record('review', `Mentions ${m.deal.city}; is this ${label(m.deal)}?`, { deal_id: m.deal.id, folder: cat });
+  const weak = weakCompanyFolder(att.name, msg.subject);
+  if ((m.how === 'city' || m.how === 'thread') && m.deal) {
+    const elsewhere = namesOtherProperty(att.name, m.deal, c.deals);
+    if (elsewhere) return record('skipped', `File is named for ${elsewhere}`, { folder: cat });
+    if (weak) return toCompany(weak, 'Company document');
+  }
+  // City alone counts as the deal (Ben, 10/8) while only one active deal is in that city,
+  // except broker offerings ("Off-Market IOS Opportunity in Brighton") and screenshots.
+  if (m.how === 'city' && m.deal) {
+    const d = m.deal;
+    if (OFFERING_SUBJECT.test((msg.subject || '').toLowerCase()) || !/\.(pdf|docx?|xlsx?|xlsm|pptx?|csv|zip)$/i.test(att.name)) {
+      return record('skipped', `Mentions ${d.city}, but looks like a broker offering or a screenshot`, { folder: cat });
+    }
+    if (!cat) return record('review', `Mentions ${d.city} (${label(d)}); pick a subfolder`, { deal_id: d.id });
+    try {
+      const { item, existing } = await saveToDeal(d, cat, base, c.docs);
+      return filedNow(item, existing, `Mentions ${d.city} (${label(d)})`, { deal_id: d.id, folder: cat });
+    } catch (e) {
+      return record('review', `Mentions ${d.city} but saving failed: ${e instanceof Error ? e.message : String(e)}`, { deal_id: d.id, folder: cat });
+    }
+  }
   if (m.how === 'thread' && m.deal) return record('review', `Same email thread as other ${label(m.deal)} files; is it?`, { deal_id: m.deal.id, folder: cat });
   if (m.how === 'several') {
     const withFolder = (m.others || []).filter(fileable);
     if (withFolder.length) return record('review', `Mentions several deals: ${(m.others || []).map(label).join(', ')}`, { deal_id: withFolder[0].id, folder: cat });
   }
 
-  const weak = weakCompanyFolder(att.name, msg.subject);
   if (weak) return toCompany(weak, 'Company document');
   if (m.how === 'several') return record('skipped', `Mentions ${(m.others || []).map(label).join(', ')} (no folders yet)`, { folder: cat });
   const offering = offeringByAddress(att.name, msg.subject);
@@ -420,6 +447,12 @@ export async function fileFromReview(id: number, dealId: number | null, folder: 
   await run(
     "UPDATE email_files SET status = 'filed', deal_id = ?, folder = ?, drive_item_id = ?, drive_web_url = ?, filed_at = ?, reason = 'Filed from review' WHERE id = ?",
     [dealId || null, folder, item.id, item.webUrl, new Date().toISOString(), id],
+  );
+  // The same attachment forwarded on other emails: settled by this decision too.
+  await run(
+    `UPDATE email_files SET status = 'filed', deal_id = ?, folder = ?, drive_item_id = ?, drive_web_url = ?, filed_at = ?, reason = 'Same file as one filed from review'
+     WHERE status = 'review' AND id != ? AND lower(file_name) = lower(?) AND (deal_id IS NULL OR deal_id = ? OR ? IS NULL)`,
+    [dealId || null, folder, item.id, item.webUrl, new Date().toISOString(), id, rec.file_name, dealId || null, dealId || null],
   );
   return (await get<EmailFile>('SELECT * FROM email_files WHERE id = ?', [id]))!;
 }

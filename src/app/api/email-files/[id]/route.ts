@@ -13,6 +13,8 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
   const id = Number(params.id);
   if (body.action === 'dismiss' || body.action === 'review') {
     await run('UPDATE email_files SET status = ? WHERE id = ?', [body.action === 'dismiss' ? 'dismissed' : 'review', id]);
+    // Dismissing also dismisses the same attachment forwarded on other emails.
+    if (body.action === 'dismiss') await run("UPDATE email_files SET status = 'dismissed' WHERE status = 'review' AND lower(file_name) = (SELECT lower(file_name) FROM email_files WHERE id = ?)", [id]);
     return NextResponse.json({ ok: true });
   }
   if (body.action !== 'file') return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
