@@ -65,17 +65,27 @@ function addressCandidates(text: string): string[] {
 
 const label = (d: Deal) => d.address || d.name;
 
-// Subfolder from the file name; when the name doesn't say, a construction or insurance
-// thread decides (contractor COIs, W-9s, schedules on a GC thread).
+// Subfolder from the file name; when the name doesn't say, the email subject decides if
+// it's clear (contractor COIs and W-9s on a GC thread, an exhibit on a PSA thread).
+const SUBJECT_RULES: [RegExp, string][] = [
+  [/construction|\bgc\b|general contractor|contractor|pay app|\bdraw\b|lien waiver|change order|\broof|permit/, '09 Construction'],
+  [/\bloan\b|lender|appraisal|term sheet|financing|\bdebt\b|\bbank\b/, '04 Debt'],
+  [/\bpsa\b|purchase (and|&) sale|purchase agreement|\bloi\b|letter of intent|earnest money|amendment|commission agreement|listing agreement/, '02 LOI & PSA'],
+  [/\btitle\b|survey|\balta\b|phase i|\besa\b|environmental|zoning|\bpzr\b|geotech|due diligence|\bdd\b|inspection/, '03 Diligence'],
+  [/closing|settlement statement|wire instructions|escrow/, '06 Closing'],
+  [/\blease\b|tenant|estoppel|\bsnda\b|insurance|property tax|\btaxes\b|tax estimate|property management|\bpma\b|rent roll/, '07 Leasing & Mgmt'],
+  [/\bjv\b|joint venture|operating agreement|capital call|investor|equity/, '05 Equity'],
+  [/\bom\b|offering memo|brochure|site plan|drone|photos/, '08 Property Info'],
+];
+
 function mailCategory(name: string, subject: string | null): string | null {
   const cat = categoryOf(name, false);
   const s = (subject || '').toLowerCase();
-  const construction = /construction|\bgc\b|general contractor|contractor|pay app|\bdraw\b|lien waiver|change order|\broof/.test(s);
-  if (construction && /\bcoi\b|certificate of insurance/i.test(name)) return '09 Construction';
+  const fromSubject = SUBJECT_RULES.filter(([re]) => re.test(s)).map(([, f]) => f);
+  if (fromSubject[0] === '09 Construction' && /\bcoi\b|certificate of insurance/i.test(name)) return '09 Construction';
   if (cat) return cat;
-  if (construction) return '09 Construction';
-  if (/insurance/.test(s)) return '07 Leasing & Mgmt';
-  return null;
+  // Only when the subject points one way; "PSA + loan" threads go to review.
+  return new Set(fromSubject).size === 1 ? fromSubject[0] : null;
 }
 const streetOf = (d: Deal) => (label(d).toLowerCase().match(/^\s*\d+\s+(?:[nsew]\.?\s+)?([a-z][a-z-]{3,})/)?.[1]) ?? null;
 
