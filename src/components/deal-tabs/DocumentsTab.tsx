@@ -102,7 +102,7 @@ export default function DocumentsTab({ deal, onUpdate }: { deal: Deal; onUpdate:
     const json = await res.json();
     setBusy(null);
     if (!res.ok) setMessage(json.error || 'Could not create folder');
-    else { setMessage(json.created ? `Created ${json.folder.name} with the standard subfolders.` : `Found existing folder ${json.folder.name}.`); load(); }
+    else { setMessage(json.created ? `Created ${json.folder.name}${json.moved ? ` and moved ${json.moved} models / LOIs in` : ''}.` : `Organized ${json.folder.name}.`); load(); }
   };
 
   const upload = async (files: FileList | File[]) => {
@@ -221,13 +221,17 @@ export default function DocumentsTab({ deal, onUpdate }: { deal: Deal; onUpdate:
             </div>
           </>
         ) : (
+          ['Negotiating PSA', 'Under Contract', 'Closed'].includes(deal.stage) ? (
           <div className="border border-gray-200 rounded-lg p-3 text-xs text-gray-600">
-            <p className="mb-2">No folder for this deal in Acquisitions yet.</p>
+            <p className="mb-2">No folder for this deal yet.</p>
             <button onClick={createFolder} disabled={busy === 'folder'} className="px-3 py-1.5 text-xs text-white bg-navy rounded hover:bg-navy-light disabled:opacity-50">
               {busy === 'folder' ? 'Creating…' : 'Create deal folder'}
             </button>
-            <p className="text-[10px] text-gray-400 mt-2">Creates Acquisitions/{[deal.address || deal.name, deal.city, deal.state].filter(Boolean).join(', ')} with 01 Models through 08 Property Info.</p>
+            <p className="text-[10px] text-gray-400 mt-2">Creates the deal folder with 01 Models through 08 Property Info and moves this deal&apos;s models and LOIs in from Prelim Models and LOIs.</p>
           </div>
+          ) : (
+          <p className="text-xs text-gray-500 border border-gray-200 rounded-lg p-3">A folder is created automatically once the LOI is accepted (stage changes to Negotiating PSA). Until then this deal&apos;s model stays in Prelim Models and its LOIs in LOIs, listed below.</p>
+          )
         )}
       </section>
 

@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { get, run } from '@/lib/db';
 import { logActivity } from '@/lib/activity';
+import { graphConfigured } from '@/lib/graph';
+import { organizeDeal } from '@/lib/cleanup';
+
+export const maxDuration = 60;
+
+// Stages at which a deal's OneDrive folder is created or moved (see lib/cleanup).
+const FOLDER_STAGES = ['Negotiating PSA', 'Under Contract', 'Closed', 'Dead'];
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const deal = await get('SELECT * FROM deals WHERE id = ?', [params.id]);
@@ -22,6 +29,15 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   if (old) {
     if (body.stage && body.stage !== old.stage) {
       await logActivity({ entity_type: 'deal', entity_id: Number(params.id), action: 'stage_changed', description: `Stage changed from ${old.stage} to ${body.stage}` });
+      if (graphConfigured() && FOLDER_STAGES.includes(body.stage)) {
+        try {
+          const results = await organizeDeal(Number(params.id));
+          const ok = results.filter(r => r.ok).length;
+          if (results.length) await logActivity({ entity_type: 'deal', entity_id: Number(params.id), action: 'folder_organized', description: `OneDrive folder updated for ${body.stage} (${ok} of ${results.length} changes)` });
+        } catch (e) {
+          console.error('[deals PUT] organizeDeal', e);
+        }
+      }
     }
     if (body.pinned !== undefined && body.pinned !== old.pinned) {
       await logActivity({ entity_type: 'deal', entity_id: Number(params.id), action: body.pinned ? 'pinned' : 'unpinned', description: body.pinned ? 'Deal pinned' : 'Deal unpinned' });

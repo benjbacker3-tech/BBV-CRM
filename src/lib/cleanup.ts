@@ -96,7 +96,7 @@ interface Subject {
   folderPath: string;          // where it should be
 }
 
-export async function planCleanup(): Promise<CleanupPlan> {
+export async function planCleanup(onlyDealId?: number): Promise<CleanupPlan> {
   const deals = await all<Deal>('SELECT * FROM deals');
   const [acq, dead, portfolio, prelim, prelimArchive, lois] = await Promise.all([
     safeChildren('Acquisitions'), safeChildren('Acquisitions/Dead'), safeChildren('Portfolio'),
@@ -113,6 +113,7 @@ export async function planCleanup(): Promise<CleanupPlan> {
   const subjects: Subject[] = [];
   const claimed = new Set<string>();
   for (const d of deals) {
+    if (onlyDealId != null && d.id !== onlyDealId) continue;
     const label = d.address || d.name;
     const match = folders.find(f => f.item.id === d.drive_folder_id) ?? folders.find(f => sameAddress(f.item.name, label));
     const parent = STAGE_PARENT[d.stage];
@@ -127,7 +128,7 @@ export async function planCleanup(): Promise<CleanupPlan> {
       folderPath: `${parent}/${name}`,
     });
   }
-  for (const f of folders) {
+  for (const f of onlyDealId != null ? [] : folders) {
     if (claimed.has(f.item.id)) continue;
     subjects.push({ title: f.item.name, deal: null, stage: null, existing: f.item, existingPath: `${f.parent}/${f.item.name}`, folderPath: `${f.parent}/${f.item.name}` });
   }
@@ -266,7 +267,11 @@ export async function planCleanup(): Promise<CleanupPlan> {
         const sub = f.finalPath.slice(s.folderPath.length + 1).split('/')[0];
         return cat ? sub === cat : false;
       };
-      const keeper = [...group].sort((a, b) => Number(right(b)) - Number(right(a)) || a.finalPath.length - b.finalPath.length)[0];
+      // Prefer: the right subfolder, then a clean name (no "(1)" / "Copy"), then a dated name, then the shortest path.
+      const clean = (f: { n: Node }) => !/\(\d+\)|\bcopy\b/i.test(f.n.item.name);
+      const dated = (f: { n: Node }) => /\d{1,2}[-. ]\d{1,2}[-. ]\d{2,4}/.test(f.n.item.name);
+      const keeper = [...group].sort((a, b) =>
+        Number(right(b)) - Number(right(a)) || Number(clean(b)) - Number(clean(a)) || Number(dated(b)) - Number(dated(a)) || a.finalPath.length - b.finalPath.length)[0];
       for (const f of group) {
         if (f === keeper) continue;
         deleted.add(f.n.item.id);
@@ -340,4 +345,12 @@ export async function applyOps(ops: CleanupOp[]): Promise<OpResult[]> {
     }
   }
   return results;
+}
+
+// Bring one deal's folder in line with its stage (create / move / sort / pull in its
+// models and LOIs). Never deletes; duplicate removal only happens from the review page.
+export async function organizeDeal(dealId: number): Promise<OpResult[]> {
+  const plan = await planCleanup(dealId);
+  const ops = plan.groups.flatMap(g => g.ops).filter(o => o.kind !== 'delete');
+  return applyOps(ops);
 }

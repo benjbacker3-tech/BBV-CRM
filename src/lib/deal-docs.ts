@@ -1,6 +1,6 @@
 import { run } from './db';
 import { Deal } from './utils';
-import { DriveItem, children, childrenByPath, createFolder, download, itemById, itemByPath } from './graph';
+import { DriveItem, children, childrenByPath, download, itemById } from './graph';
 import { addressKey, dateFromFilename, modelToDealPatch, parseModel, sameAddress } from './model-parse';
 
 // Standard deal folder (see the folder plan agreed with Ben).
@@ -127,15 +127,4 @@ export async function syncDealModel(deal: Deal, ctx = new DocsContext(), force =
   } catch (e) {
     return { status: 'error', error: e instanceof Error ? e.message : String(e) };
   }
-}
-
-// Create Acquisitions/<Address, City, ST>/ with the standard subfolders.
-export async function createDealFolder(deal: Deal): Promise<DriveItem> {
-  const parent = await itemByPath('Acquisitions');
-  if (!parent) throw new Error('Could not find the Sandpiper/Acquisitions folder in OneDrive.');
-  const name = [deal.address || deal.name, deal.city, deal.state].filter(Boolean).join(', ').replace(/[\\/:*?"<>|]/g, '-');
-  const folder = await createFolder(parent.id, name);
-  for (const sub of STANDARD_SUBFOLDERS) await createFolder(folder.id, sub);
-  await run('UPDATE deals SET drive_folder_id = ?, drive_folder_path = ? WHERE id = ?', [folder.id, `/Acquisitions/${folder.name}`, deal.id]);
-  return folder;
 }

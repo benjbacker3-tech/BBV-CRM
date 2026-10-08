@@ -80,6 +80,7 @@ function DocumentsInner() {
         </div>
         {status?.ok && folder && (
           <div className="flex items-center gap-2">
+            <a href="/documents/cleanup" className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Organize folders</a>
             <a href={folder.webUrl} target="_blank" rel="noreferrer" className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Open in OneDrive</a>
             <label className="px-3 py-1.5 text-xs text-white bg-navy rounded hover:bg-navy-light cursor-pointer">
               Upload here
