@@ -1,0 +1,201 @@
+{
+  "as_of": "2026-10-08",
+  "source": "Outlook review of ben@sandpiperre.com (read-only), 2026-09-21 → 2026-10-08. Automated run; no LOI search.",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "name": "10275 E 106th",
+        "address": "10275 E 106th Ave",
+        "city": "Brighton",
+        "market": "Denver",
+        "acreage": 2.05,
+        "asking_price": 4000000,
+        "stage": "Under Contract",
+        "dd_expiry": "2026-10-31",
+        "close_date": "2026-11-09",
+        "deposit": 20000
+      },
+      "status": [
+        "Retrade open: Ben asked 10/7 for $250K cut to $3.75M (rates up ~90bps). Seller (Boyle/Westbrook) countered 10/7 with $70K, and says Zero Carbon (tenant) would buy at $4M cash if the deal falls through. Ben's 10/8 model assumes a $100K cut. Price not final; CRM keeps $4.0M.",
+        "Capital: CentrePoint JV 90/10. Draft CPP-SPC Holdco JV LLC OA received 10/6. Ben flagged 10/7: SPC should not pay the 1.0% CPP acq fee, and Ben personally funds at least 3 of SPC's 10%. Debt: First Interstate via Essex (Cooper Williams); loan docs expected week of 10/19.",
+        "Entities/legal: Burke (Schuster / Stacey Clement) forming SP Brighton IOS LLC (Colorado) and handling PSA assignment; BWMS address for everything except registered agent (CSC) (10/8). Wormser Casey (Nick Michel) limited to the Zero Carbon lease assignment. Seller counsel Craig Johnson sent draft Lease Assignment 10/8; Ben reviewing.",
+        "Ben owes: retrade response; lease assignment comments; FIB needs list (liquidity statements, 2025 return, org docs, PMA, estoppel/SNDA with buyer entity as Landlord per FIB 10/2); final ALTA go-ahead to AEI (cert updated 10/1); loop Red Cedar (accounting, contract executed 10/7) into AppFolio.",
+        "Waiting on: AEI draft ZAR (received 10/8, review); tenant SNDA (sent via Jonathan Lee 10/7); JV docs; seller demo/RTU completion; Ryan tax estimate.",
+        "Risks: retrade with a $4M cash backup buyer; tenant credit; water district restriction + unreleased 2018 O&G lease. Title easements reviewed, no concerns (Ben 10/5)."
+      ]
+    },
+    {
+      "key": "1862 Ives",
+      "aliases": ["1962 Ives"],
+      "fields": {
+        "name": "1862 Ives",
+        "address": "1862 Ives Ave",
+        "city": "Kent",
+        "market": "Seattle / Tacoma",
+        "sf": 60000,
+        "acreage": 5.19,
+        "asking_price": 6550000,
+        "stage": "Negotiating PSA",
+        "dd_days": 60,
+        "close_days": 30,
+        "deposit": 50000
+      },
+      "status": [
+        "Seller: Magnum Venus Products (CBRE: Steve & Ryan Brunette). Buyer counsel: Stephen Schuster (Burke). Buyer broker: Taylor Hudson, NAI (3% paid by Sandpiper).",
+        "PSA $6.55M, $800K env escrow, 60 DD / 30 close. Seller redline 10/6 reinserted the post-closing indemnity (§4.9) and kept §4.10. Schuster spoke with seller's attorneys 10/8 and sent a revised draft (§4.9, §7.15). Ben approved 10/8 and is sending it to the seller.",
+        "Seller offered a separate remediation-assistance agreement as a PSA exhibit (CBRE 10/6); broker thinks it's moot.",
+        "DD vendors on hold until PSA signed: Contour Engineering ALTA/topo proposal; Mackenzie DD/pre-app contract (DocuSign awaiting Ben). New survey 30–45 days out. Brett Conway on PTO through 10/16.",
+        "Still open from before (no new mail): BNSF easement timing; GeoEngineers soil-vapor + covenant answers; City of Kent records request W083543 (~10/15)."
+      ]
+    },
+    {
+      "key": "724 Taylor",
+      "fields": {
+        "name": "724 Taylor",
+        "address": "724 W Taylor Ave",
+        "city": "Meridian",
+        "market": "Boise",
+        "sf": 44600,
+        "acreage": 8.1,
+        "asking_price": 5000040,
+        "stage": "Closed"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Taylor IOS LLC + RBNB 69th LLC (TIC). Partners: Nublock (Roy Harel), RBN (Aviv Rubin, Mitch Veremeychik). Counsel: Oren Fishman.",
+        "S-Bar GC agreement fully executed 9/28 (sent by Mitch), on Rev 2.1: ~$780K base + ~$230K options (Roy 9/24). S-Bar says the initial scope needs no permits (9/24) and is registering in Idaho.",
+        "Mobilized; demo underway (S-Bar 9/30). Invoice #01 (26-047-RBN-TAYLOR-01, with conditional waiver) received 9/30. Ben asked Michelle Goss (Highpoint) to pay it 10/8.",
+        "Insurance: IMA (for RBN) flagged S-Bar COI gaps on 9/29–9/30: endorsements and excess liability. Mitch is following up with S-Bar.",
+        "Open: lender contractor consent / scope summary (no update seen)."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "name": "6371 Nesbitt",
+        "address": "6371 Nesbitt Rd",
+        "city": "Madison",
+        "market": "Wisconsin",
+        "asking_price": 3450000,
+        "stage": "Closed",
+        "close_date": "2026-09-11"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Verona IOS LLC. Lender: Sunwest. GC: TJK ($907,220; substantial completion 12/2). TJK asked 10/7 what pay-request format to use.",
+        "Roof: Ben signed the Tilsen Roofing proposal for the back shop roof (ballasted EPDM) on 10/1. Ben's 9/30 reading was ~$170K of the original $270K; Tilsen confirmed it covers the shop roof only. Likely a winter job; office roof repairs TBD. Tilsen needs Verona IOS mailing address.",
+        "Security: Per Mar installation created 10/7 (job #241226091344).",
+        "Capital call (Highpoint, 10/7): Ben's $15,733 received 9/24; Aviv $52,300 and Roy $18,967 still due.",
+        "Leasing: First Student lease (1 ac north parcel) still unsigned; Oren chasing 10/8. Ben asked Oakbrook 10/7 to complete First Student payment-setup forms. Oakbrook on a short list for a national tenant for the main building (9/23). Opex estimate pending (insurance $16,181.25/yr, 10/6).",
+        "Adams Outdoor: Word versions of 3 easement purchase agreements sent 10/2; awaiting Oren's comments."
+      ]
+    },
+    {
+      "key": "18050 Keith Harrow",
+      "fields": {
+        "name": "18050 Keith Harrow",
+        "address": "18050 Keith Harrow Blvd",
+        "city": "Houston",
+        "market": "Houston",
+        "stage": "Dead"
+      },
+      "status": [
+        "DEAD (terminated 9/8). Earnest money dispute resolved: signed Notice of Release, and North Star Title wired $49,500 to Sandpiper on 9/23. The balance is likely the independent consideration (inferred).",
+        "Close-out: pay LandTech survey invoice 61070 (ACH details received 9/29; paid status not confirmed); Burke August billing (10/1); Porter Firm bill (9/24). EPS Phase I paid 9/23."
+      ]
+    },
+    {
+      "key": "22014 Bostian",
+      "aliases": ["8624 219th", "8624 218th"],
+      "insert_only": true,
+      "fields": {
+        "name": "22014 Bostian",
+        "address": "22014 Bostian Rd",
+        "city": "Woodinville",
+        "market": "Seattle / Tacoma",
+        "acreage": 9.48,
+        "asking_price": 19000000,
+        "stage": "Tracking"
+      },
+      "status": [
+        "Off-market via Andrew Kemmerer (Burr Temkin) 10/8: 9.48 ac LI (zoning to be confirmed), ask $19.0M ($46.01/land SF). Income $75K/mo (4.74% gross yield); lease has ~3 yrs left per the rent schedule, not 8 months. Kemmerer calls it a covered land play. Ben: tough cap rate, he's \"probably lower teens\" (presumably $M). SP passed."
+      ]
+    }
+  ],
+  "contacts": [
+    { "deal": "10275 E 106th", "type": "owner", "name": "Patrick Boyle", "firm": "Precision Ventures LLC", "email": "pboylet5853@gmail.com" },
+    { "deal": "10275 E 106th", "name": "Craig Johnson", "firm": "Johnson & Ytterberg, P.C.", "email": "cjohnson@cdjlaw.com", "notes": "Role: seller counsel (106th). Office hours Tue–Thu 9–3." },
+    { "deal": "10275 E 106th", "name": "Cooper Williams", "firm": "Essex Real Estate Capital", "email": "cwilliams@essexreca.com", "notes": "Role: debt advisor, First Interstate loan (106th)." },
+    { "deal": "10275 E 106th", "name": "Stephen Schuster", "firm": "Burke, Warren, MacKay & Serritella", "email": "SSchuster@burkelaw.com" },
+    { "deal": "1862 Ives", "type": "broker", "name": "Steven Brunette", "firm": "CBRE", "email": "Steven.Brunette@cbre.com" },
+    { "deal": "724 Taylor", "name": "Michelle Goss", "firm": "HighPoint CRE", "email": "Michelle@highpointcre.com", "notes": "Role: accounting/asset management (Taylor + Nesbitt payments, capital calls)." },
+    { "deal": "6371 Nesbitt", "name": "Graham Schroeder", "firm": "Tilsen Roofing", "email": "graham@tilsenroofing.com", "notes": "Role: roofer (Nesbitt shop roof)." },
+    { "deal": "6371 Nesbitt", "name": "Oren Fishman", "firm": "Fishman PC", "email": "oren@fishmanlawgroup.com" },
+    { "deal": "22014 Bostian", "type": "broker", "name": "Andrew Kemmerer", "firm": "Burr Temkin", "email": "akemmerer@burrtemkin.com", "markets": "Seattle / Tacoma", "notes": "Broker; sent Woodinville 9.48 ac off-market 10/8." }
+  ],
+  "tasks": [
+    { "contact_email": "pboylet5853@gmail.com", "type": "call", "due_date": "2026-10-12", "note": "106th: respond to seller's $70K retrade counter (asked $250K; model assumes $100K)" },
+    { "contact_email": "cjohnson@cdjlaw.com", "type": "email", "due_date": "2026-10-13", "note": "106th: comments on seller's draft Zero Carbon Lease Assignment (with Nick Michel)" },
+    { "contact_email": "cwilliams@essexreca.com", "type": "email", "due_date": "2026-10-14", "note": "106th: FIB needs — liquidity stmts, 2025 return, SP Brighton IOS org docs, PMA, estoppel/SNDA (buyer as Landlord)" },
+    { "contact_email": "SSchuster@burkelaw.com", "type": "email", "due_date": "2026-10-13", "note": "106th: finish SP Brighton IOS LLC + PSA assignment; review CPP-SPC Holdco JV OA (acq fee, co-invest)" },
+    { "contact_email": "Steven.Brunette@cbre.com", "type": "email", "due_date": "2026-10-09", "note": "Ives: send Burke's revised PSA (10/8, §4.9/§7.15) to seller and push to execution" },
+    { "contact_email": "Michelle@highpointcre.com", "type": "email", "due_date": "2026-10-12", "note": "724 Taylor: confirm S-Bar invoice #01 paid" },
+    { "contact_email": "graham@tilsenroofing.com", "type": "email", "due_date": "2026-10-09", "note": "Nesbitt: send Verona IOS LLC mailing address for roof warranty registration" },
+    { "contact_email": "oren@fishmanlawgroup.com", "type": "email", "due_date": "2026-10-14", "note": "Nesbitt: comments on Adams easement purchase agreements (Word sent 10/2)" }
+  ],
+  "contact_log": [
+    { "contact_email": "graham@tilsenroofing.com", "type": "email", "date": "2026-10-01", "note": "Signed Tilsen proposal for back shop roof replacement." },
+    { "contact_email": "pboylet5853@gmail.com", "type": "call", "date": "2026-10-07", "note": "Retrade call; Ben asked $250K cut to $3.75M. Seller countered $70K, cites Zero Carbon $4M backup." },
+    { "contact_email": "SSchuster@burkelaw.com", "type": "email", "date": "2026-10-08", "note": "Revised Ives PSA after call with seller counsel (§4.9, §7.15); Ben approved." },
+    { "contact_email": "cjohnson@cdjlaw.com", "type": "email", "date": "2026-10-08", "note": "Seller counsel sent draft Zero Carbon Lease Assignment; Ben reviewing." },
+    { "contact_email": "cwilliams@essexreca.com", "type": "email", "date": "2026-10-08", "note": "FIB loan docs expected week of 10/19; Ben sent updated Brighton model." },
+    { "contact_email": "akemmerer@burrtemkin.com", "type": "email", "date": "2026-10-08", "note": "Woodinville 9.48 ac at $19M ask; Ben 'probably lower teens'." }
+  ],
+  "diligence": [
+    {
+      "deal": "10275 E 106th",
+      "category": "survey",
+      "vendor": "AEI",
+      "items": [
+        ["Preliminary ALTA (8/14)", "complete"],
+        ["Final ALTA certified to First Interstate", "in-progress"]
+      ]
+    },
+    {
+      "deal": "10275 E 106th",
+      "category": "zoning",
+      "vendor": "AEI",
+      "items": [
+        ["PZR ordered 9/17", "complete"],
+        ["Draft ZAR received 10/8 — review", "in-progress"]
+      ]
+    },
+    {
+      "deal": "10275 E 106th",
+      "category": "site",
+      "vendor": "Fidelity / Burke / Wormser Casey",
+      "items": [
+        ["Estoppel + SNDA", "in-progress"],
+        ["Brighton IOS LLC formed + PSA assigned", "in-progress"],
+        ["Zero Carbon lease assignment (seller draft 10/8)", "in-progress"]
+      ]
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "category": "roof",
+      "vendor": "Tilsen Roofing",
+      "items": [
+        ["Back shop roof replacement — proposal signed 10/1", "in-progress"]
+      ]
+    },
+    {
+      "deal": "724 Taylor",
+      "category": "contractor",
+      "vendor": "S-Bar",
+      "items": [
+        ["GC agreement executed 9/28", "complete"],
+        ["Demo underway (9/30)", "in-progress"]
+      ]
+    }
+  ],
+  "lois": []
+}
