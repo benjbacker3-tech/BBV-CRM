@@ -35,9 +35,9 @@ const STRONG: [RegExp, string][] = [
   [/\bfund i\b.*\b(fs|financials?|report|statements?)\b|fund financial/, 'Formation/CentrePoint Properties'],
   [/signature card|client (information|profile)|deposit account|fee ?schedule|beneficial own|\bcobo\b/, 'Accounting/Banking'],
   [/engagement letter|service agreement|statement of work|\bsow\b|master services/, 'Company Level Contracts'],
-  [/template|lease form|checklist/, 'Templates'],
+  [/template|lease form/, 'Templates'],
   [/\blogo\b|\bbrand(ing)?\b|discovery phase/, 'Branding'],
-  [/market (flash|report|update|insights?|outlook)|executive summary|research report/, 'Market Info/Reports'],
+  [/market (flash|report|update|insights?|outlook)|research report/, 'Market Info/Reports'],
 ];
 
 // Sandpiper Capital LLC's own entity documents.
@@ -51,6 +51,9 @@ const WEAK_NAME: [RegExp, string][] = [
   [/quote matrix|term sheet|financing submission|\bpfs\b|\breo template/, 'Capital Markets'],
   [/invoice|receipt|\binv[-_ ]?\d|expenses?\b|payment/, 'Accounting'],
   [/comps?\b|rent formula|market rent|rent survey|west region/, 'Market Info/Comps'],
+  // "Closing Checklist" and "Phase I - Executive Summary" on a deal thread belong to the deal.
+  [/checklist/, 'Templates'],
+  [/executive summary/, 'Market Info/Reports'],
   [/\bom\b|offering ?memo|brochure|flyer|teaser|off[- ]market|for sale|investment opportunity/, 'Market Info/Offerings'],
 ];
 
@@ -100,5 +103,8 @@ export function weakCompanyFolder(name: string, subject: string | null): string 
 export function offeringByAddress(name: string, subject: string | null): string | null {
   const n = name.toLowerCase().replace(/_/g, ' ');
   if (!/\.pdf$/.test(n) || EVENT.test((subject || '').toLowerCase())) return null;
-  return /^\s*\d{2,6}(-\d+)? (?:[nsew]\.? )?[a-z0-9]+/.test(n) ? 'Market Info/Offerings' : null;
+  // Number + street, not a year ("2024 Tax Return") or a count ("30 Day Notice").
+  const m = n.match(/^\s*(\d{2,6})(?:-\d+)? (?:([nsew])\.? )?(\d+(?:st|nd|rd|th)\b|[a-z] (?=st\b|street\b|ave\b)|[a-z]{2,})/);
+  if (!m || (/^(19|20)\d\d$/.test(m[1]) && !m[2]) || /^(days?|months?|years?|weeks?|acres?|units?|sf|percent|k)$/.test(m[3])) return null;
+  return 'Market Info/Offerings';
 }

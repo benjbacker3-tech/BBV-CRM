@@ -220,6 +220,10 @@ export async function ensureFolderPath(rel: string): Promise<DriveItem> {
 // ── Mail (application permissions Mail.Read and, for notifications, Mail.Send) ──
 
 const mailbox = () => `/users/${encodeURIComponent(process.env.MS_DRIVE_USER!)}`;
+// Immutable ids stay the same when Ben moves or archives an email, so a review item can
+// still be filed afterwards. Graph accepts the older ids in requests too.
+const IMMUTABLE = { Prefer: 'IdType="ImmutableId"' };
+const MSG_FIELDS = 'id,subject,bodyPreview,receivedDateTime,webLink,conversationId,isDraft,from,parentFolderId';
 
 export interface MailMessage {
   id: string;
@@ -229,7 +233,12 @@ export interface MailMessage {
   webLink: string;
   conversationId: string;
   isDraft: boolean;
+  parentFolderId?: string;
   from?: { emailAddress: { name?: string; address?: string } };
+}
+
+export async function junkFolderId(): Promise<string> {
+  return (await graph<{ id: string }>(`${mailbox()}/mailFolders/junkemail?$select=id`, { headers: IMMUTABLE })).id;
 }
 
 export interface MailAttachment {
@@ -244,19 +253,19 @@ export interface MailAttachment {
 // Messages with attachments received (or sent) at or after `since`, oldest first.
 // Pass the returned nextLink back in to continue.
 export async function messagesWithAttachments(since: string, nextLink?: string): Promise<{ messages: MailMessage[]; nextLink?: string }> {
-  const url = nextLink ?? `${mailbox()}/messages?$filter=${encodeURIComponent(`receivedDateTime ge ${since} and hasAttachments eq true`)}&$orderby=receivedDateTime asc&$select=id,subject,bodyPreview,receivedDateTime,webLink,conversationId,isDraft,from&$top=25`;
-  const page = await graph<{ value: MailMessage[]; '@odata.nextLink'?: string }>(url);
+  const url = nextLink ?? `${mailbox()}/messages?$filter=${encodeURIComponent(`receivedDateTime ge ${since} and hasAttachments eq true`)}&$orderby=receivedDateTime asc&$select=${MSG_FIELDS}&$top=25`;
+  const page = await graph<{ value: MailMessage[]; '@odata.nextLink'?: string }>(url, { headers: IMMUTABLE });
   return { messages: page.value, nextLink: page['@odata.nextLink'] };
 }
 
 export async function messageAttachments(messageId: string): Promise<MailAttachment[]> {
-  const res = await graph<{ value: MailAttachment[] }>(`${mailbox()}/messages/${encodeURIComponent(messageId)}/attachments?$select=id,name,contentType,size,isInline`);
+  const res = await graph<{ value: MailAttachment[] }>(`${mailbox()}/messages/${encodeURIComponent(messageId)}/attachments?$select=id,name,contentType,size,isInline`, { headers: IMMUTABLE });
   return res.value;
 }
 
 export async function messageById(messageId: string): Promise<MailMessage | null> {
   try {
-    return await graph<MailMessage>(`${mailbox()}/messages/${encodeURIComponent(messageId)}?$select=id,subject,bodyPreview,receivedDateTime,webLink,conversationId,isDraft,from`);
+    return await graph<MailMessage>(`${mailbox()}/messages/${encodeURIComponent(messageId)}?$select=${MSG_FIELDS}`, { headers: IMMUTABLE });
   } catch (e) {
     if (e instanceof GraphError && e.status === 404) return null;
     throw e;
@@ -266,7 +275,7 @@ export async function messageById(messageId: string): Promise<MailMessage | null
 export async function attachmentBytes(messageId: string, attachmentId: string): Promise<ArrayBuffer> {
   for (let attempt = 0; ; attempt++) {
     const res = await fetch(`${GRAPH}${mailbox()}/messages/${encodeURIComponent(messageId)}/attachments/${encodeURIComponent(attachmentId)}/$value`, {
-      headers: { Authorization: `Bearer ${await accessToken()}` },
+      headers: { Authorization: `Bearer ${await accessToken()}`, ...IMMUTABLE },
       cache: 'no-store',
     });
     if ((res.status === 401 || res.status === 403) && attempt === 0) { cachedToken = null; continue; }

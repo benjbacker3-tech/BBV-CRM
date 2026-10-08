@@ -10,7 +10,7 @@ export const maxDuration = 60;
 
 const FOLDER_STAGES = ['Negotiating PSA', 'Under Contract', 'Closed'];
 
-// POST → create the deal's folder (stage-appropriate location, 8 standard subfolders)
+// POST → create the deal's folder (stage-appropriate location, 9 standard subfolders)
 // and move its models / LOIs in from Prelim Models and LOIs.
 export async function POST(_req: NextRequest, { params }: { params: { id: string } }) {
   if (!graphConfigured()) return NextResponse.json({ error: 'OneDrive is not connected yet.' }, { status: 503 });

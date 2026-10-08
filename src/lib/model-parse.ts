@@ -184,6 +184,15 @@ function oneEditApart(a: string, b: string): boolean {
   return edits + (a.length - i) + (b.length - j) <= 1;
 }
 
+// Same street number and street (the street may be one letter off). For linking a deal to
+// a folder or pulling files into it, where one wrong digit could take over a neighbour's
+// folder (4501 vs 4511 E 64th).
+export function sameNumberAndStreet(a: string, b: string): boolean {
+  const ka = addressKey(a), kb = addressKey(b);
+  if (!ka || !kb || ka.num !== kb.num) return false;
+  return ka.street === kb.street || (Math.min(ka.street.length, kb.street.length) >= 4 && oneEditApart(ka.street, kb.street));
+}
+
 // Same property, allowing one typo: either the street name is one letter off
 // (4+ letter names, e.g. "3033 Lossee"), or the street number has one wrong digit
 // with the street name exact (e.g. "1962 Ives" for 1862 Ives). Never both.

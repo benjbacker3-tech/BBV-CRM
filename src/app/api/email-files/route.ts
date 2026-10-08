@@ -33,7 +33,8 @@ export async function POST(req: NextRequest) {
   if (action !== 'scan' && action !== 'recheck') return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
   if (!graphConfigured()) return NextResponse.json({ error: 'Microsoft 365 is not connected yet.' }, { status: 503 });
   try {
-    return NextResponse.json(action === 'scan' ? await scanMail(45_000) : await recheckMail(45_000));
+    // Budgets leave room under the 60 s limit for the email being worked on when time runs out.
+    return NextResponse.json(action === 'scan' ? await scanMail(40_000) : await recheckMail(40_000));
   } catch (e) {
     return NextResponse.json({ error: graphErrorMessage(e) }, { status: 502 });
   }

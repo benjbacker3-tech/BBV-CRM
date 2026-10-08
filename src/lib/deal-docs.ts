@@ -1,7 +1,7 @@
-import { run } from './db';
+import { all, run } from './db';
 import { Deal } from './utils';
 import { DriveItem, children, childrenByPath, download, itemById } from './graph';
-import { addressKey, dateFromFilename, modelToDealPatch, parseModel, sameAddress } from './model-parse';
+import { addressKey, dateFromFilename, modelToDealPatch, parseModel, sameAddress, sameNumberAndStreet } from './model-parse';
 
 // Standard deal folder (see the folder plan agreed with Ben).
 export const STANDARD_SUBFOLDERS = [
@@ -23,33 +23,26 @@ export class DocsContext {
   }
 }
 
-const sameKey = sameAddress;
-
+// The deal's folder: the linked one, else a folder named for exactly its street number and
+// street that no other deal is linked to. Nothing looser: a neighbouring number or the same
+// street in the same city could be another property's folder.
 export async function findDealFolder(deal: Deal, ctx = new DocsContext()): Promise<DriveItem | null> {
   if (deal.drive_folder_id) {
     const item = await itemById(deal.drive_folder_id);
     if (item?.folder) return item;
   }
   const label = deal.address || deal.name;
-  const key = addressKey(label);
-  if (!key) return null;
+  if (!addressKey(label)) return null;
   const folders = (await Promise.all(DEAL_PARENTS.map(p => ctx.list(p)))).flat().filter(i => i.folder);
-  // Exact street number + name first; otherwise same street name in the same city
-  // (covers renumbered addresses like 1962 → 1862 Ives).
-  const exact = folders.find(f => sameKey(f.name, label));
-  if (exact) return exact;
-  const city = (deal.city || '').toLowerCase();
-  return folders.find(f => {
-    const k = addressKey(f.name);
-    return k && k.street === key.street && city && f.name.toLowerCase().includes(city);
-  }) ?? null;
+  const taken = new Set((await all<{ drive_folder_id: string }>('SELECT drive_folder_id FROM deals WHERE drive_folder_id IS NOT NULL AND id != ?', [deal.id])).map(r => r.drive_folder_id));
+  return folders.find(f => !taken.has(f.id) && sameNumberAndStreet(f.name, label)) ?? null;
 }
 
 // Files about this deal that live outside its folder (until the folder cleanup moves them).
 export async function relatedFiles(deal: Deal, ctx = new DocsContext()) {
   const label = deal.address || deal.name;
   const [models, lois] = await Promise.all([ctx.list('Prelim Models'), ctx.list('LOIs')]);
-  const match = (items: DriveItem[]) => items.filter(i => i.file && sameKey(i.name, label));
+  const match = (items: DriveItem[]) => items.filter(i => i.file && sameAddress(i.name, label));
   return { prelimModels: match(models), lois: match(lois) };
 }
 

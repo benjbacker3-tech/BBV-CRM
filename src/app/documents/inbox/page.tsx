@@ -60,34 +60,43 @@ export default function InboxPage() {
   }, [tab]);
   useEffect(() => { setData(null); load(); }, [load]);
 
+  // A timeout comes back as an HTML error page, so the body may not be JSON.
+  const post = async (url: string, body: unknown) => {
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
+    const json = res ? await res.json().catch(() => ({ error: `The server timed out (${res.status}).` })) : { error: 'Could not reach the server.' };
+    return { ok: !!res?.ok, json };
+  };
+  const pause = (ms: number) => new Promise(r => setTimeout(r, ms));
+
   const scan = async () => {
     setMessage(null);
     let total = { messages: 0, filed: 0, review: 0, skipped: 0 };
     let failures = 0;
+    let done = false;
     for (let round = 1; round <= 60; round++) {
       setScanning(`Checking email… ${total.messages ? `${total.messages} emails so far` : ''}`);
-      const res = await fetch('/api/email-files', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'scan' }) });
-      const json = await res.json();
-      if (!res.ok) { setMessage(json.error || 'Scan failed'); break; }
-      total = { messages: total.messages + json.messages, filed: total.filed + json.filed, review: total.review + json.review, skipped: total.skipped + json.skipped };
-      // A dropped connection is usually transient; the scan resumes where it stopped.
-      if (json.errors?.length) {
+      const { ok, json } = await post('/api/email-files', { action: 'scan' });
+      // Timeouts and dropped connections are usually transient; the scan resumes where it stopped.
+      if (!ok || json.errors?.length) {
         failures++;
-        if (failures >= 3) { setMessage(`Stopped on an error: ${json.errors[0]}`); break; }
+        if (failures >= 3) { setMessage(`Stopped on an error: ${json.error || json.errors?.[0]}`); break; }
+        await pause(3000);
         continue;
       }
+      if (json.busy) { setScanning('Another check (the daily run) is in progress; waiting for it…'); await pause(10_000); continue; }
       failures = 0;
+      total = { messages: total.messages + json.messages, filed: total.filed + json.filed, review: total.review + json.review, skipped: total.skipped + json.skipped };
       const summary = `Checked ${total.messages} emails with attachments: ${total.filed} filed, ${total.review} to review, ${total.skipped} skipped.`;
-      if (!json.more) { setMessage(summary); break; }
-      if (round === 60) { setMessage(`${summary} More to go: click Check email now again to continue.`); setScanning(null); load(); return; }
+      if (!json.more) { setMessage(summary); done = true; break; }
+      if (round === 60) setMessage(`${summary} More to go: click Check email now again to continue.`);
     }
     // Earlier review / skipped items get another look with the current rules.
     let re = { checked: 0, filed: 0 };
-    for (let round = 1; round <= 40; round++) {
+    for (let round = 1; done && round <= 40; round++) {
       setScanning(`Re-sorting earlier attachments with the latest rules… ${re.checked ? `${re.checked} so far` : ''}`);
-      const res = await fetch('/api/email-files', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'recheck' }) });
-      const json = await res.json();
-      if (!res.ok) break;
+      const { ok, json } = await post('/api/email-files', { action: 'recheck' });
+      if (!ok) { setMessage(m => `${m ?? ''} Re-sorting stopped: ${json.error}`.trim()); break; }
+      if (json.busy) { await pause(10_000); continue; }
       re = { checked: re.checked + json.checked, filed: re.filed + json.filed };
       if (!json.more) break;
     }
@@ -99,10 +108,9 @@ export default function InboxPage() {
   const act = async (row: Row, body: Record<string, unknown>) => {
     setBusy(row.id);
     setRowError(e => ({ ...e, [row.id]: '' }));
-    const res = await fetch(`/api/email-files/${row.id}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    const json = await res.json();
+    const { ok, json } = await post(`/api/email-files/${row.id}`, body);
     setBusy(null);
-    if (!res.ok) { setRowError(e => ({ ...e, [row.id]: json.error || 'Failed' })); return; }
+    if (!ok) { setRowError(e => ({ ...e, [row.id]: json.error || 'Failed' })); return; }
     load();
   };
 
@@ -128,8 +136,8 @@ export default function InboxPage() {
       </div>
 
       <p className="text-xs text-gray-600 leading-relaxed mb-4 max-w-3xl">
-        Every morning the CRM reads new email with attachments (received and sent). When an email names a deal that has a folder (by street address, or because the thread was already filed to that deal),
-        its attachments are saved into the right subfolder. Company documents go to the company folders: formation and banking papers, engagement letters and NDAs, investor decks,
+        Every morning the CRM reads new email with attachments (received and sent). When an email names a deal that has a folder (by street address, street name, property LLC, or a city with only one active deal),
+        its attachments are saved into the right subfolder, unless an identical copy is already somewhere in that deal&apos;s folder. A match only by email thread waits here for you. Company documents go to the company folders: formation and banking papers, engagement letters and NDAs, investor decks,
         broker OMs, market reports and comps, lender quotes, templates. Anything it isn&apos;t sure about waits here. Only active deals get files: attachments for Dead deals, deals still at Tracking or LOI, and properties that aren&apos;t in the CRM are skipped, as are signatures, invites and mail reports.
       </p>
 

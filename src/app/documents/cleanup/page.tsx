@@ -63,10 +63,13 @@ export default function CleanupPage() {
     for (const [label, ops] of phases) {
       for (let i = 0; i < ops.length; i += 12) {
         setRunning(`${label}… ${Math.min(i + 12, ops.length)} of ${ops.length}`);
-        const res = await fetch('/api/drive/cleanup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ops: ops.slice(i, i + 12) }) });
-        const json = await res.json();
+        const batch = ops.slice(i, i + 12);
+        // A timeout returns an HTML page and a dropped connection throws: mark the batch as
+        // not confirmed (some steps may have gone through; a fresh plan will show what's left).
+        const res = await fetch('/api/drive/cleanup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ops: batch }) }).catch(() => null);
+        const json = res ? await res.json().catch(() => ({})) : {};
         for (const r of (json.results || []) as Result[]) out.set(r.id, r);
-        if (!res.ok) for (const o of ops.slice(i, i + 12)) out.set(o.id, { id: o.id, ok: false, error: json.error || `HTTP ${res.status}` });
+        for (const o of batch) if (!out.has(o.id)) out.set(o.id, { id: o.id, ok: false, error: json.error || (res ? `Not confirmed (HTTP ${res.status}); reload the plan to check` : 'Connection lost; reload the plan to check') });
         setResults(new Map(out));
       }
     }
