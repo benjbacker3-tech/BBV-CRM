@@ -15,7 +15,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const fullscreen = FULLSCREEN_PATHS.has(pathname) || pathname.startsWith('/s/');
 
   if (fullscreen) {
-    return <main className="h-screen overflow-auto">{children}</main>;
+    return <main className="flex-1 min-w-0 h-screen overflow-auto">{children}</main>;
   }
 
   return (
