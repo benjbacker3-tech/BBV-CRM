@@ -34,8 +34,13 @@ export async function POST(req: NextRequest) {
     const item = await itemById(String(b.itemId));
     if (!item) return NextResponse.json({ error: 'File or folder not found' }, { status: 404 });
     if (mode !== 'view' && !item.folder) return NextResponse.json({ error: 'Upload links need a folder.' }, { status: 400 });
+    // Only things inside the Sandpiper folder can be shared (never the whole OneDrive).
+    const fullParent = decodeURIComponent(item.parentReference?.path?.split('root:')[1] ?? '');
+    if (!(fullParent === `/${ROOT_PATH}` || fullParent.startsWith(`/${ROOT_PATH}/`))) {
+      return NextResponse.json({ error: `Only files and folders inside ${ROOT_PATH} can be shared.` }, { status: 400 });
+    }
     // "/drive/root:/Sandpiper/Acquisitions/…" → "Acquisitions/…/<name>"
-    const parent = decodeURIComponent(item.parentReference?.path?.split('root:')[1] ?? '').replace(new RegExp(`^/?${ROOT_PATH}/?`), '');
+    const parent = fullParent.replace(new RegExp(`^/?${ROOT_PATH}/?`), '');
     const itemPath = [parent, item.name].filter(Boolean).join('/');
     let dealId: number | null = b.dealId ? Number(b.dealId) : null;
     if (!dealId) {

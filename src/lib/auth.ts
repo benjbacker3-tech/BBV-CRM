@@ -6,9 +6,10 @@ const TTL_DAYS = 30;
 const ENCODER = new TextEncoder();
 
 // Single-user login for Sandpiper Capital LLC.
-// Lowercased usernames for case-insensitive login.
+// Lowercased usernames for case-insensitive login. Set CRM_PASSWORD in Vercel to replace
+// the short default password without a code change.
 export const USERS: Record<string, string> = {
-  ben: 'SAB',
+  ben: process.env.CRM_PASSWORD || 'SAB',
 };
 
 // Pretty-print name for display (capitalized)

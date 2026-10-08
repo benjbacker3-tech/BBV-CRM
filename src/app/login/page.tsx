@@ -6,7 +6,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get('next') || '/';
+  // Only paths on this site ("/deals"), never "//other.site", "/\other.site" or "javascript:".
+  const raw = searchParams.get('next') || '/';
+  const next = /^\/(?![\/\\])/.test(raw) ? raw : '/';
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

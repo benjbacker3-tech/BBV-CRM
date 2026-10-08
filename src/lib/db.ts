@@ -371,12 +371,20 @@ async function initSchema(db: Client) {
     CREATE TABLE IF NOT EXISTS share_events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       share_id INTEGER NOT NULL,
-      kind TEXT NOT NULL,                  -- open | download | upload | bad_password
+      kind TEXT NOT NULL,                  -- open | download | upload | upload_start | bad_password
       detail TEXT,
       ip TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     );
     CREATE INDEX IF NOT EXISTS ix_share_events_share ON share_events(share_id, created_at);
+
+    -- Failed CRM sign-ins, for throttling (see api/auth/login).
+    CREATE TABLE IF NOT EXISTS auth_failures (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      ip TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS ix_auth_failures ON auth_failures(created_at);
   `);
 
   // Migrate deals: add missing columns on existing DBs

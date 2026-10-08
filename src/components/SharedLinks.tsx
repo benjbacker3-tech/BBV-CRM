@@ -133,7 +133,7 @@ export default function SharedLinks({ dealId, refreshKey = 0, compact = false }:
                               {events.map((e, i) => (
                                 <li key={i} className="flex gap-3">
                                   <span className="text-gray-400 w-28 shrink-0">{when(e.created_at)}</span>
-                                  <span className={`w-20 shrink-0 ${e.kind === 'bad_password' ? 'text-red-600' : e.kind === 'upload' ? 'text-emerald-700' : 'text-gray-700'}`}>{e.kind === 'bad_password' ? 'wrong password' : e.kind}</span>
+                                  <span className={`w-20 shrink-0 ${e.kind === 'bad_password' ? 'text-red-600' : e.kind === 'upload' ? 'text-emerald-700' : 'text-gray-700'}`}>{e.kind === 'bad_password' ? 'wrong password' : e.kind === 'upload_start' ? 'upload started' : e.kind}</span>
                                   <span className="text-gray-800 truncate">{e.detail}</span>
                                   {e.ip && <span className="ml-auto text-gray-400 font-mono">{e.ip}</span>}
                                 </li>

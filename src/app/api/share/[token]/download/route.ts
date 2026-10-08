@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { downloadUrl, graphErrorMessage } from '@/lib/graph';
-import { canView, clientIp, itemInShare, logEvent, openShare } from '@/lib/shares';
+import { downloadUrl } from '@/lib/graph';
+import { canView, clientIp, itemInShare, logEvent, openShare, publicError } from '@/lib/shares';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +15,6 @@ export async function GET(req: NextRequest, { params }: { params: { token: strin
     await logEvent(st.share, 'download', item.name, clientIp(req));
     return NextResponse.redirect(await downloadUrl(item.id));
   } catch (e) {
-    return NextResponse.json({ error: graphErrorMessage(e) }, { status: 502 });
+    return NextResponse.json({ error: publicError(e, 'download') }, { status: 502 });
   }
 }

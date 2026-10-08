@@ -31,8 +31,9 @@ export default function SharePage({ params }: { params: { token: string } }) {
 
   const load = useCallback(async (folderId: string | null) => {
     setError(null);
-    const res = await fetch(folderId ? `${api}?folder=${encodeURIComponent(folderId)}` : api);
-    const json = await res.json();
+    const res = await fetch(folderId ? `${api}?folder=${encodeURIComponent(folderId)}` : api).catch(() => null);
+    if (!res) { setError('Could not reach the server. Check your connection and reload.'); return; }
+    const json = await res.json().catch(() => ({}));
     if (res.status === 401 && json.needsPassword) { setLocked(json.name || 'Shared files'); return; }
     if (!res.ok) { setError(json.error || 'Something went wrong.'); return; }
     setLocked(null);
@@ -43,10 +44,10 @@ export default function SharePage({ params }: { params: { token: string } }) {
   const submitPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setUnlocking(true); setError(null);
-    const res = await fetch(`${api}/unlock`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password }) });
-    const json = await res.json();
+    const res = await fetch(`${api}/unlock`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password }) }).catch(() => null);
+    const json = res ? await res.json().catch(() => ({})) : { error: 'Could not reach the server. Check your connection.' };
     setUnlocking(false);
-    if (!res.ok) { setError(json.error || 'Wrong password.'); return; }
+    if (!res?.ok) { setError(json.error || 'Wrong password.'); return; }
     setPassword('');
     load(folder);
   };
