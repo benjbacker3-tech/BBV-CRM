@@ -239,7 +239,7 @@ export default function DocumentsTab({ deal, onUpdate }: { deal: Deal; onUpdate:
             <button onClick={createFolder} disabled={busy === 'folder'} className="px-3 py-1.5 text-xs text-white bg-navy rounded hover:bg-navy-light disabled:opacity-50">
               {busy === 'folder' ? 'Creating…' : 'Create deal folder'}
             </button>
-            <p className="text-[10px] text-gray-400 mt-2">Creates the deal folder with 01 Models through 08 Property Info and moves this deal&apos;s models and LOIs in from Prelim Models and LOIs.</p>
+            <p className="text-[10px] text-gray-400 mt-2">Creates the deal folder with 01 Models through 09 Construction and moves this deal&apos;s models and LOIs in from Prelim Models and LOIs.</p>
           </div>
           ) : (
           <p className="text-xs text-gray-500 border border-gray-200 rounded-lg p-3">A folder is created automatically once the LOI is accepted (stage changes to Negotiating PSA). Until then this deal&apos;s model stays in Prelim Models and its LOIs in LOIs, listed below.</p>

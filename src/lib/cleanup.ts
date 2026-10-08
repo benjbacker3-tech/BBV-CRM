@@ -41,6 +41,7 @@ const LEGACY: Record<string, string[]> = {
   '06 Closing': ['closing'],
   '07 Leasing & Mgmt': ['management', 'leasing', 'mgmt', 'property management'],
   '08 Property Info': ['property info', 'marketing'],
+  '09 Construction': ['construction', 'gc', 'capex', 'permitting'],
 };
 
 // Which standard subfolder an item belongs in, from its name. Null = can't tell (left alone).
@@ -48,9 +49,10 @@ export function categoryOf(name: string, isFolder: boolean): string | null {
   const n = name.toLowerCase();
   if (!isFolder && /\.xlsm$/.test(n)) return '01 Models';
   if (!isFolder && /\.xlsx?$/.test(n) && /model/.test(n)) return '01 Models';
-  if (/\blease\b|estoppel|\bsnda\b|\bpma\b|property management|insurance|tax (bill|estimate)|rent roll/.test(n)) return '07 Leasing & Mgmt';
-  if (/\bloi\b|letter of intent|\bpsa\b|purchase (and|&) sale|commission agreement|em receipt|release of em|earnest money/.test(n)) return '02 LOI & PSA';
+  if (/\blease\b|estoppel|\bsnda\b|\bpma\b|property management|insurance|tax (bill|estimate)|rent roll|statement of values|\bcoi\b|certificate of insurance/.test(n)) return '07 Leasing & Mgmt';
+  if (/\bloi\b|letter of intent|\bpsa\b|purchase (and|&) sale|commission agreement|listing agreement|em receipt|release of em|earnest money/.test(n)) return '02 LOI & PSA';
   if (/term sheet|financing|\bloan\b|lender/.test(n)) return '04 Debt';
+  if (/construction|\bgc\b|general contractor|pay app|draw request|lien waiver|change order|schedule of values|scope of work|\bw-?9\b|\bach\b|certificate of registration|\bcontract\b.*\broof|\broof\b.*\bcontract\b/.test(n)) return '09 Construction';
   if (/wire instructions|settlement statement|closing statement|invoices for escrow|escrow invoice/.test(n)) return '06 Closing';
   if (/brochure|\bom\b|offering memo|site plan|floor plan|\bdrone\b|\bphotos?\b|pictures|\bdecks?\b|aerial/.test(n) || (!isFolder && /\.(jpe?g|png|heic)$/.test(n))) return '08 Property Info';
   if (/phase i\b|phase ii|\besa\b|\bpca\b|survey|\btitle\b|zoning|\bpzr\b|permit|\broof\b|geotech|soils|environmental|proposal/.test(n)) return '03 Diligence';

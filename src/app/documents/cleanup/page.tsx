@@ -96,7 +96,7 @@ export default function CleanupPage() {
 
       <div className="text-xs text-gray-600 leading-relaxed mb-5 max-w-3xl">
         Deals get a folder once the LOI is accepted (Negotiating PSA or Under Contract) in <span className="font-mono">Acquisitions/</span>; Closed deals live in <span className="font-mono">Portfolio/</span> and Dead deals in <span className="font-mono">Acquisitions/Dead/</span>.
-        Every deal folder has <span className="font-mono">01 Models</span> through <span className="font-mono">08 Property Info</span>. Models and LOIs move in from <span className="font-mono">Prelim Models/</span> and <span className="font-mono">LOIs/</span>.
+        Every deal folder has <span className="font-mono">01 Models</span> through <span className="font-mono">09 Construction</span>. Models and LOIs move in from <span className="font-mono">Prelim Models/</span> and <span className="font-mono">LOIs/</span>.
         Duplicates are only removed when byte-for-byte identical to a copy that stays, and go to the OneDrive recycle bin. Uncheck anything you don&apos;t want.
       </div>
 

@@ -5,7 +5,7 @@ import { addressKey, dateFromFilename, modelToDealPatch, parseModel, sameAddress
 
 // Standard deal folder (see the folder plan agreed with Ben).
 export const STANDARD_SUBFOLDERS = [
-  '01 Models', '02 LOI & PSA', '03 Diligence', '04 Debt', '05 Equity', '06 Closing', '07 Leasing & Mgmt', '08 Property Info',
+  '01 Models', '02 LOI & PSA', '03 Diligence', '04 Debt', '05 Equity', '06 Closing', '07 Leasing & Mgmt', '08 Property Info', '09 Construction',
 ];
 
 // Where deal folders can live, relative to the Sandpiper root.

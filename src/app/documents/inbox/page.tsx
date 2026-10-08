@@ -6,7 +6,7 @@ import Link from 'next/link';
 // Email attachments: what the daily scan filed into deal folders, and what it wants
 // a decision on (see lib/mail-filing.ts).
 
-const SUBFOLDERS = ['01 Models', '02 LOI & PSA', '03 Diligence', '04 Debt', '05 Equity', '06 Closing', '07 Leasing & Mgmt', '08 Property Info'];
+const SUBFOLDERS = ['01 Models', '02 LOI & PSA', '03 Diligence', '04 Debt', '05 Equity', '06 Closing', '07 Leasing & Mgmt', '08 Property Info', '09 Construction'];
 
 interface Row {
   id: number;
@@ -62,14 +62,16 @@ export default function InboxPage() {
   const scan = async () => {
     setMessage(null);
     let total = { messages: 0, filed: 0, review: 0, skipped: 0 };
-    for (let round = 1; round <= 10; round++) {
+    for (let round = 1; round <= 60; round++) {
       setScanning(`Checking email… ${total.messages ? `${total.messages} emails so far` : ''}`);
       const res = await fetch('/api/email-files', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'scan' }) });
       const json = await res.json();
       if (!res.ok) { setMessage(json.error || 'Scan failed'); break; }
       total = { messages: total.messages + json.messages, filed: total.filed + json.filed, review: total.review + json.review, skipped: total.skipped + json.skipped };
       if (json.errors?.length) { setMessage(`Stopped on an error: ${json.errors[0]}`); break; }
-      if (!json.more) { setMessage(`Checked ${total.messages} emails with attachments: ${total.filed} filed, ${total.review} to review, ${total.skipped} skipped.`); break; }
+      const summary = `Checked ${total.messages} emails with attachments: ${total.filed} filed, ${total.review} to review, ${total.skipped} skipped.`;
+      if (!json.more) { setMessage(summary); break; }
+      if (round === 60) setMessage(`${summary} More to go: click Check email now again to continue.`);
     }
     setScanning(null);
     load();

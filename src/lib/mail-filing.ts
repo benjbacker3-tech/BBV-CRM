@@ -64,9 +64,22 @@ function addressCandidates(text: string): string[] {
 }
 
 const label = (d: Deal) => d.address || d.name;
+
+// Subfolder from the file name; when the name doesn't say, a construction or insurance
+// thread decides (contractor COIs, W-9s, schedules on a GC thread).
+function mailCategory(name: string, subject: string | null): string | null {
+  const cat = categoryOf(name, false);
+  const s = (subject || '').toLowerCase();
+  const construction = /construction|\bgc\b|general contractor|contractor|pay app|\bdraw\b|lien waiver|change order|\broof/.test(s);
+  if (construction && /\bcoi\b|certificate of insurance/i.test(name)) return '09 Construction';
+  if (cat) return cat;
+  if (construction) return '09 Construction';
+  if (/insurance/.test(s)) return '07 Leasing & Mgmt';
+  return null;
+}
 const streetOf = (d: Deal) => (label(d).toLowerCase().match(/^\s*\d+\s+(?:[nsew]\.?\s+)?([a-z][a-z-]{3,})/)?.[1]) ?? null;
 
-interface Match { deal: Deal | null; how: 'address' | 'thread' | 'street' | 'several' | 'none'; others?: Deal[] }
+interface Match { deal: Deal | null; how: 'address' | 'thread' | 'street' | 'city' | 'several' | 'none'; others?: Deal[] }
 
 async function matchDeal(msg: MailMessage, att: MailAttachment, deals: Deal[]): Promise<Match> {
   const text = `${msg.subject || ''}\n${att.name}\n${msg.bodyPreview || ''}`;
@@ -87,11 +100,16 @@ async function matchDeal(msg: MailMessage, att: MailAttachment, deals: Deal[]): 
     const d = prior && deals.find(x => x.id === prior.deal_id);
     if (d) return { deal: d, how: 'thread' };
   }
-  // Street name alone ("Ives - title objections"): only a suggestion, and only when
-  // no other deal shares the street name.
+  // Street name alone ("Nesbitt Rd - Roof Timing"): counts when no other deal shares
+  // the street name.
   const head = `${msg.subject || ''} ${att.name}`.toLowerCase();
   const byStreet = deals.filter(d => { const s = streetOf(d); return s && new RegExp(`\\b${s}\\b`).test(head); });
   if (byStreet.length === 1 && deals.filter(d => streetOf(d) === streetOf(byStreet[0])).length === 1) return { deal: byStreet[0], how: 'street' };
+  // City alone ("Sandpiper Brighton - term sheet"): a suggestion when exactly one deal
+  // with a folder is in that city.
+  const subj = (msg.subject || '').toLowerCase();
+  const byCity = deals.filter(d => FOLDER_STAGES.includes(d.stage) && d.city && new RegExp(`\\b${d.city.toLowerCase().replace(/[^a-z ]/g, '')}\\b`).test(subj));
+  if (byCity.length === 1) return { deal: byCity[0], how: 'city' };
   return { deal: null, how: 'none' };
 }
 
@@ -110,9 +128,11 @@ async function saveToDeal(deal: Deal, folder: string, rec: { message_id: string;
   const sub = folder === '' ? root : await createFolder(root.id, folder);
   if (!subfolderCache.has(sub.id)) subfolderCache.set(sub.id, await children(sub.id));
   const there = subfolderCache.get(sub.id)!;
-  const same = there.find(i => i.file && i.name.toLowerCase() === rec.file_name.toLowerCase() && (rec.size == null || Math.abs((i.size ?? 0) - rec.size) < 64));
+  // Outlook's attachment size includes metadata, so compare the downloaded bytes.
+  const bytes = await attachmentBytes(rec.message_id, rec.attachment_id);
+  const same = there.find(i => i.file && i.name.toLowerCase() === rec.file_name.replace(/[\\/:*?"<>|]/g, '-').toLowerCase() && i.size === bytes.byteLength);
   if (same) return { item: same, existing: true };
-  const item = await uploadBytes(sub.id, rec.file_name, await attachmentBytes(rec.message_id, rec.attachment_id));
+  const item = await uploadBytes(sub.id, rec.file_name, bytes);
   there.push(item);
   if (deal.drive_folder_id !== root.id) {
     const parentPath = root.parentReference?.path?.split('root:')[1] ?? '';
@@ -186,20 +206,19 @@ async function scanMessage(msg: MailMessage, deals: Deal[], ctx: DocsContext, re
     const junk = noise(att);
     if (junk) { await record('skipped', junk); continue; }
 
-    const cat = categoryOf(att.name, false);
+    const cat = mailCategory(att.name, msg.subject);
     const m = await matchDeal(msg, att, deals);
+    const how = m.how === 'thread' ? ' (same email thread)' : m.how === 'street' ? ` (mentions ${streetOf(m.deal!)})` : '';
 
-    if (m.deal && (m.how === 'address' || m.how === 'thread')) {
+    if (m.deal && (m.how === 'address' || m.how === 'thread' || m.how === 'street')) {
       if (!FOLDER_STAGES.includes(m.deal.stage)) {
         await record('skipped', `${label(m.deal)} is ${m.deal.stage}; no folder until the LOI is accepted`, { deal_id: m.deal.id, folder: cat });
         continue;
       }
       if (!cat) {
-        await record('review', `Matched ${label(m.deal)}${m.how === 'thread' ? ' (same email thread)' : ''}; pick a subfolder`, { deal_id: m.deal.id });
+        await record('review', `Matched ${label(m.deal)}${how}; pick a subfolder`, { deal_id: m.deal.id });
         continue;
       }
-      const dupe = await get<{ id: number }>("SELECT id FROM email_files WHERE status = 'filed' AND deal_id = ? AND lower(file_name) = lower(?) AND size = ?", [m.deal.id, att.name, att.size]);
-      if (dupe) { await record('skipped', 'Same file already filed from another email', { deal_id: m.deal.id, folder: cat }); continue; }
       let saved: Awaited<ReturnType<typeof saveToDeal>>;
       try {
         saved = await saveToDeal(m.deal, cat, base, ctx);
@@ -208,15 +227,14 @@ async function scanMessage(msg: MailMessage, deals: Deal[], ctx: DocsContext, re
         continue;
       }
       const { item, existing } = saved;
-      await record('filed', existing ? 'Already in the folder' : `Matched ${label(m.deal)}${m.how === 'thread' ? ' (same email thread)' : ''}`, {
+      await record('filed', existing ? 'Already in the folder' : `Matched ${label(m.deal)}${how}`, {
         deal_id: m.deal.id, folder: cat, drive_item_id: item.id, drive_web_url: item.webUrl, filed_at: new Date().toISOString(),
       });
       continue;
     }
 
-    if (m.how === 'street' && m.deal) {
-      if (FOLDER_STAGES.includes(m.deal.stage)) await record('review', `Mentions ${streetOf(m.deal)}; is this ${label(m.deal)}?`, { deal_id: m.deal.id, folder: cat });
-      else await record('skipped', `Mentions ${label(m.deal)} (${m.deal.stage}, no folder yet)`, { deal_id: m.deal.id, folder: cat });
+    if (m.how === 'city' && m.deal) {
+      await record('review', `Mentions ${m.deal.city}; is this ${label(m.deal)}?`, { deal_id: m.deal.id, folder: cat });
       continue;
     }
     if (m.how === 'several') {
