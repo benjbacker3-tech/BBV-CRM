@@ -281,4 +281,44 @@ for (const g of snap.diligence) {
   }
 }
 
-console.log(`\n${DRY ? '[DRY RUN] nothing written.' : 'Done.'} ${log.length} operations.`);
+// ── Comps & availabilities ───────────────────────────────────────────────
+// Everything found in email lands as review_status 'pending': it shows up in the
+// Comps page's "To Review" tab and never touches approved comps until Ben accepts it.
+// Skipped when we've already seen the same email + address, or when an existing comp
+// (any status, so rejected ones don't come back) has the same kind, address and date.
+const COMP_COLS = ['kind', 'market', 'status', 'comp_date', 'available_date', 'address', 'city', 'state', 'submarket', 'landlord', 'tenant',
+  'buyer', 'seller', 'property_type', 'sf', 'acres', 'rent_monthly', 'rent_plf', 'nnn_plf', 'price', 'alt_price', 'bumps', 'term_months',
+  'broker', 'zoning', 'yard', 'fence', 'lit', 'doors', 'depth', 'occupancy_note', 'marketing', 'notes', 'tom_months'];
+const MARKET_STATE = { Seattle: 'WA', Denver: 'CO', Phoenix: 'AZ', 'Salt Lake City': 'UT', 'Las Vegas': 'NV', SF: 'CA', IE: 'CA', LA: 'CA', Terminals: 'CO' };
+const normAddr = a => String(a || '').toLowerCase().replace(/[.,#]/g, ' ')
+  .replace(/\bavenue\b/g, 'ave').replace(/\bstreet\b/g, 'st').replace(/\broad\b/g, 'rd').replace(/\bdrive\b/g, 'dr')
+  .replace(/\bboulevard\b/g, 'blvd').replace(/\bcourt\b/g, 'ct').replace(/\blane\b/g, 'ln').replace(/\s+/g, ' ').trim();
+const compKey = c => `${c.kind}|${normAddr(c.address)}|${c.kind === 'availability' ? '' : c.comp_date || ''}`;
+
+let compsQueued = 0;
+if ((snap.comps || []).length && !tables.includes('comps')) {
+  say(`comp   ! skipped ${snap.comps.length} comps — the comps table doesn't exist yet (open the deployed app once so it migrates).`);
+} else if ((snap.comps || []).length) {
+  const existing = await q('SELECT kind, address, comp_date, source_ref FROM comps');
+  const seen = new Set(existing.map(compKey));
+  const seenMsg = new Set(existing.filter(r => r.source_ref).map(r => `${r.source_ref}|${normAddr(r.address)}`));
+  for (const c of snap.comps) {
+    if (!c.address || !['lease', 'sale', 'availability'].includes(c.kind)) { say(`comp   ! skipped (missing address or bad kind): ${JSON.stringify(c).slice(0, 80)}`); continue; }
+    const label = `${c.kind} ${c.address}${c.market ? ` (${c.market})` : ''}`;
+    const msgKey = c.message_id ? `${c.message_id}|${normAddr(c.address)}` : null;
+    if ((msgKey && seenMsg.has(msgKey)) || seen.has(compKey(c))) { say(`comp   = ${label} (already have it)`); continue; }
+    const row = { ...c, state: c.state ?? MARKET_STATE[c.market] ?? null };
+    const keys = COMP_COLS.filter(k => row[k] !== undefined && row[k] !== null);
+    await exec(
+      `INSERT INTO comps (${keys.join(', ')}, review_status, source, source_ref, source_note) VALUES (${keys.map(() => '?').join(', ')}, 'pending', 'email', ?, ?)`,
+      [...keys.map(k => row[k]), c.message_id ?? null, c.source_note ?? null]);
+    seen.add(compKey(c));
+    if (msgKey) seenMsg.add(msgKey);
+    compsQueued++;
+    const econ = c.kind === 'sale' ? (c.price ? `$${Number(c.price).toLocaleString('en-US')}` : 'no price')
+      : c.rent_monthly ? `$${Number(c.rent_monthly).toLocaleString('en-US')}/mo` : c.rent_plf ? `$${c.rent_plf}/LSF/mo` : 'no rent';
+    say(`comp   + ${label}: ${econ} · ${c.sf ?? '—'} SF · ${c.acres ?? '—'} ac → review queue`);
+  }
+}
+
+console.log(`\n${DRY ? '[DRY RUN] nothing written.' : 'Done.'} ${log.length} operations (${compsQueued} comps queued for review).`);

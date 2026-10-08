@@ -173,6 +173,53 @@ async function initSchema(db: Client) {
       created_at TEXT DEFAULT (datetime('now'))
     );
 
+    -- Lease comps, sale comps and availabilities. Rent is stored once as total
+    -- monthly rent; $/LSF/mo, $/BSF/yr, $/acre/mo etc. are derived (see lib/comps.ts).
+    CREATE TABLE IF NOT EXISTS comps (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      kind TEXT NOT NULL CHECK(kind IN ('lease','sale','availability')),
+      market TEXT,                          -- workbook tab: Seattle, Denver, Phoenix, ...
+      status TEXT,                          -- e.g. Pending (sale), SELLING (availability)
+      comp_date TEXT,                       -- lease commencement / sale close
+      available_date TEXT,
+      address TEXT NOT NULL,
+      city TEXT,
+      state TEXT,
+      submarket TEXT,
+      landlord TEXT,
+      tenant TEXT,
+      buyer TEXT,
+      seller TEXT,
+      property_type TEXT,                   -- Equipment, Trailer, Contractor, Maintenance, Terminal
+      sf REAL,                              -- building SF
+      acres REAL,
+      rent_monthly REAL,                    -- total $/month (lease, or asking for availabilities)
+      rent_plf REAL,                        -- $/land SF/month, only when acres are unknown
+      nnn_plf REAL,                         -- $/land SF/month
+      price REAL,                           -- sale price
+      alt_price REAL,                       -- "IOV Price" column
+      bumps REAL,                           -- decimal (0.035 = 3.5%)
+      term_months REAL,
+      broker TEXT,
+      zoning TEXT,
+      yard TEXT,
+      fence TEXT,
+      lit TEXT,
+      doors REAL,
+      depth REAL,
+      occupancy_note TEXT,                  -- sale "Term" column: Vacant, Less than 1Y, ...
+      marketing TEXT,                       -- Off Market, Fully Marketed, ...
+      notes TEXT,
+      tom_months REAL,                      -- time on market, when there's no available_date
+      review_status TEXT NOT NULL DEFAULT 'approved' CHECK(review_status IN ('pending','approved','rejected')),
+      source TEXT NOT NULL DEFAULT 'manual', -- manual | import | email
+      source_ref TEXT,                      -- Outlook message id for email-sourced comps
+      source_note TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      updated_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS ix_comps_kind_market ON comps(kind, market, review_status);
+
     CREATE TABLE IF NOT EXISTS market_snapshots (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       snapshot_date TEXT DEFAULT (date('now')),
