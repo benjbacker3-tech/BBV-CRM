@@ -27,7 +27,15 @@ import {
 } from './graph';
 
 export const FOLDER_STAGES = ['Negotiating PSA', 'Under Contract', 'Closed'];
-export const RULES_VERSION = 3;
+export const RULES_VERSION = 4;
+
+// Sent by Ben, from any of his addresses (Outlook shows his own mailbox as an
+// Exchange address, so match the name too).
+const fromBen = (msg: MailMessage) => {
+  const a = (msg.from?.emailAddress?.address || '').toLowerCase();
+  const n = (msg.from?.emailAddress?.name || '').toLowerCase();
+  return a === (process.env.MS_DRIVE_USER || '').toLowerCase() || /\bben(jamin)? backer\b/.test(n) || /benj\.backer3@|^ben@iovre\.com$/.test(a);
+};
 const FIRST_SCAN_DAYS = 14;
 const WATERMARK_KEY = 'mail_filing_since';
 
@@ -228,8 +236,18 @@ async function processAttachment(msg: MailMessage, att: MailAttachment, c: Ctx) 
 
   const fileable = fileableIn(c);
   const cat = mailCategory(att.name, msg.subject);
+  // Models: the OneDrive copy is the source of truth, and model sync reads the newest file
+  // in 01 Models, so emailed copies are never added on their own. Ben's own are skipped;
+  // models from others wait in review.
+  const isModel = categoryOf(att.name, false) === '01 Models';
+  if (isModel && fromBen(msg)) return record('skipped', 'Model you sent (OneDrive has the original)');
   const strong = strongCompanyFolder(att.name);
   const m = await matchDeal(msg, att, c.deals, fileable);
+  if (isModel && !strong) {
+    const d = m.deal && fileable(m.deal) ? m.deal : null;
+    return d ? record('review', `Model from ${msg.from?.emailAddress?.name || 'someone else'}; file it only if you want it in ${label(d)}`, { deal_id: d.id, folder: '01 Models' })
+      : record('skipped', 'Model, and no active deal named');
+  }
 
   const toCompany = async (path: string, why: string) => {
     try {
