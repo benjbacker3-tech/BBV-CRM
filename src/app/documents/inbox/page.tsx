@@ -63,13 +63,20 @@ export default function InboxPage() {
   const scan = async () => {
     setMessage(null);
     let total = { messages: 0, filed: 0, review: 0, skipped: 0 };
+    let failures = 0;
     for (let round = 1; round <= 60; round++) {
       setScanning(`Checking email… ${total.messages ? `${total.messages} emails so far` : ''}`);
       const res = await fetch('/api/email-files', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'scan' }) });
       const json = await res.json();
       if (!res.ok) { setMessage(json.error || 'Scan failed'); break; }
       total = { messages: total.messages + json.messages, filed: total.filed + json.filed, review: total.review + json.review, skipped: total.skipped + json.skipped };
-      if (json.errors?.length) { setMessage(`Stopped on an error: ${json.errors[0]}`); break; }
+      // A dropped connection is usually transient; the scan resumes where it stopped.
+      if (json.errors?.length) {
+        failures++;
+        if (failures >= 3) { setMessage(`Stopped on an error: ${json.errors[0]}`); break; }
+        continue;
+      }
+      failures = 0;
       const summary = `Checked ${total.messages} emails with attachments: ${total.filed} filed, ${total.review} to review, ${total.skipped} skipped.`;
       if (!json.more) { setMessage(summary); break; }
       if (round === 60) { setMessage(`${summary} More to go: click Check email now again to continue.`); setScanning(null); load(); return; }
