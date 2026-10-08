@@ -90,7 +90,19 @@ function isSponsor(d: Deal): boolean {
   return (d.ownership_pct ?? 100) === 100;
 }
 
+// Real sponsor fees from the deal's model when it has been synced; otherwise the proxies above.
+// The model's AM fee covers the whole hold, so it's annualized with the model's hold period.
 function computeFees(d: Deal) {
+  if (d.model_synced_at && (d.fee_acq != null || d.fee_am != null)) {
+    const years = d.hold_months ? d.hold_months / 12 : null;
+    return {
+      acq: d.fee_acq || 0,
+      am: d.fee_am && years ? d.fee_am / years : (d.equity_required || 0) * AM_FEE_PCT,
+      construction: d.fee_construction || 0,
+      leasing: d.fee_leasing || 0,
+      fromModel: true,
+    };
+  }
   const price = d.asking_price || 0;
   const equity = d.equity_required || 0;
   const yoc = d.yoc_target || 0;
@@ -101,6 +113,7 @@ function computeFees(d: Deal) {
     am: equity * AM_FEE_PCT,
     construction: capexProxy * CONSTRUCTION_FEE_PCT,
     leasing: annualRentProxy * LEASING_FEE_PCT,
+    fromModel: false,
   };
 }
 
@@ -177,7 +190,7 @@ function StageSection({ stage, deals }: { stage: TrackedStage; deals: Deal[] }) 
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-700">{ownership}%</td>
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{fmt(d.asking_price || 0)}</td>
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{fmt(d.equity_required || 0)}</td>
-                  <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(f.acq) : '—'}</td>
+                  <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? <>{fmt(f.acq)}{f.fromModel && <span className="text-navy" title="From the synced model">*</span>}</> : '—'}</td>
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(f.construction) : '—'}</td>
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(f.leasing) : '—'}</td>
                   <td className="py-2 px-3 text-right font-mono tabular-nums text-gray-900">{sponsor ? fmt(f.am) : '—'}</td>
@@ -198,7 +211,7 @@ function StageSection({ stage, deals }: { stage: TrackedStage; deals: Deal[] }) 
       </div>
 
       <p className="mt-1.5 text-[10px] text-gray-400">
-        Fee stack: 1.35% acquisition fee at close · 4% construction fee on capex (proxy: 15% of price) · 1% leasing fee on annual net rent (proxy: price × YoC) · 1% AM fee/yr on equity. Passive co-invests (ownership &lt; 100%) don&apos;t earn sponsor fees.
+        Fees marked * come from the deal&apos;s synced model (Assumptions tab; AM fee annualized over the model&apos;s hold). Others are estimates: 1.35% acquisition fee · 4% construction fee on capex (15% of price) · 1% leasing fee on rent (price × YoC) · 1% AM fee/yr on equity. Passive co-invests (ownership &lt; 100%) don&apos;t earn sponsor fees.
       </p>
     </div>
   );

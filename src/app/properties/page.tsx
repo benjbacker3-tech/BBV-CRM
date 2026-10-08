@@ -58,18 +58,30 @@ export default function PropertiesPage() {
 
   useEffect(() => { load(); }, [load]);
 
-  const runImport = async () => {
+  // Re-read every live deal's newest model from OneDrive (returns, basis, equity, fees).
+  const syncModels = useCallback(async (quiet = false) => {
     setImporting(true);
-    setImportResult(null);
+    if (!quiet) setImportResult(null);
     try {
-      const res = await fetch('/api/seed-pipeline', { method: 'POST' });
+      const res = await fetch('/api/models/sync', { method: 'POST' });
       const data = await res.json();
-      setImportResult(`Imported ${data.inserted?.length || 0}, skipped ${data.skipped?.length || 0}`);
-      load();
+      if (!res.ok) { if (!quiet) setImportResult(data.error || 'Model sync failed'); return; }
+      const msg = `Models: ${data.updated} updated, ${data.unchanged} unchanged, ${data.noModel} without a model${data.problems ? `, ${data.problems} unreadable` : ''}`;
+      if (!quiet || data.updated) setImportResult(msg);
+      if (data.updated) load();
     } finally {
       setImporting(false);
     }
-  };
+  }, [load]);
+
+  // Once OneDrive is connected, refresh from models in the background if the last sync is stale.
+  useEffect(() => {
+    if (!deals) return;
+    const last = deals.map(d => d.model_synced_at).filter(Boolean).sort().pop();
+    if (last && Date.now() - Date.parse(last) < 12 * 3600_000) return;
+    fetch('/api/drive/status').then(r => r.json()).then(s => { if (s.ok) syncModels(true); }).catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deals === null]);
 
   const exportXlsx = () => {
     window.location.href = '/api/properties/export';
@@ -190,7 +202,7 @@ export default function PropertiesPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
             <p className="text-lg font-semibold text-white mb-1">Drop Excel model</p>
-            <p className="text-xs text-slate-300">Must contain a &ldquo;Sandpiper Pipeline&rdquo; tab. Matches by address — updates if exists, creates if new.</p>
+            <p className="text-xs text-slate-300">A deal model (IOS model Assumptions tab) updates that deal&apos;s IRR, EM, basis, equity and fees. A workbook with a &ldquo;Sandpiper Pipeline&rdquo; tab creates or updates the deal. Matched by address.</p>
           </div>
         </div>
       )}
@@ -210,7 +222,7 @@ export default function PropertiesPage() {
             >
               + New Property
             </button>
-            <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a deal model containing a 'Sandpiper Pipeline' tab">
+            <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a deal model (updates returns and fees) or a workbook with a 'Sandpiper Pipeline' tab">
               Upload Model
               <input type="file" accept=".xlsx,.xlsm" onChange={onFilePicked} className="hidden" />
             </label>
@@ -222,11 +234,12 @@ export default function PropertiesPage() {
               Template
             </button>
             <button
-              onClick={runImport}
+              onClick={() => syncModels(false)}
               disabled={importing}
+              title="Re-read IRR, EM, basis, equity and sponsor fees from each deal's newest model in OneDrive"
               className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50"
             >
-              {importing ? 'Importing…' : 'Import Pipeline'}
+              {importing ? 'Syncing models…' : 'Sync models'}
             </button>
             <button
               onClick={exportXlsx}

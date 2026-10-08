@@ -7,6 +7,7 @@ import ContactsTab from './deal-tabs/ContactsTab';
 import DiligenceTab from './deal-tabs/DiligenceTab';
 import LOITab from './deal-tabs/LOITab';
 import NapkinMathTab from './deal-tabs/NapkinMathTab';
+import DocumentsTab from './deal-tabs/DocumentsTab';
 
 interface Props {
   deal: Deal;
@@ -15,7 +16,7 @@ interface Props {
   onDelete?: () => void;
 }
 
-const TABS = ['Overview', 'Contacts', 'Diligence', 'LOI', 'Napkin Math'] as const;
+const TABS = ['Overview', 'Documents', 'Contacts', 'Diligence', 'LOI', 'Napkin Math'] as const;
 type Tab = (typeof TABS)[number];
 
 export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete }: Props) {
@@ -79,6 +80,7 @@ export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete }: P
       {/* Tab content */}
       <div className="flex-1 overflow-auto p-5">
         {tab === 'Overview' && <OverviewTab deal={deal} onUpdate={onUpdate} />}
+        {tab === 'Documents' && <DocumentsTab deal={deal} onUpdate={onUpdate} />}
         {tab === 'Contacts' && <ContactsTab dealId={deal.id} />}
         {tab === 'Diligence' && <DiligenceTab deal={deal} />}
         {tab === 'LOI' && <LOITab deal={deal} />}

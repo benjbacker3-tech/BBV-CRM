@@ -93,6 +93,17 @@ export interface Deal {
   irr: number | null;
   em: number | null;
   all_in_basis: number | null;
+  fee_acq: number | null;
+  fee_construction: number | null;
+  fee_leasing: number | null;
+  fee_am: number | null;
+  hold_months: number | null;
+  drive_folder_id: string | null;
+  drive_folder_path: string | null;
+  model_item_id: string | null;
+  model_name: string | null;
+  model_modified: string | null;
+  model_synced_at: string | null;
   created_at: string;
 }
 

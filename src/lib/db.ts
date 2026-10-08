@@ -78,6 +78,17 @@ async function initSchema(db: Client) {
       irr REAL,                             -- underwritten IRR as decimal (0.225 = 22.5%)
       em REAL,                              -- underwritten equity multiple (2.1 = 2.1x)
       all_in_basis REAL,                    -- total capitalization (purchase price + capex + closing + lender fees)
+      fee_acq REAL,                         -- sponsor fees from the deal model (Assumptions tab), total $
+      fee_construction REAL,                -- "Development Fee" in the model
+      fee_leasing REAL,
+      fee_am REAL,                          -- asset mgmt fee over the whole hold
+      hold_months REAL,
+      drive_folder_id TEXT,                 -- OneDrive item id of the deal folder
+      drive_folder_path TEXT,
+      model_item_id TEXT,                   -- OneDrive item id of the model the numbers came from
+      model_name TEXT,
+      model_modified TEXT,
+      model_synced_at TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     );
 
@@ -324,6 +335,17 @@ async function initSchema(db: Client) {
     { name: 'irr', def: 'REAL' },
     { name: 'em', def: 'REAL' },
     { name: 'all_in_basis', def: 'REAL' },
+    { name: 'fee_acq', def: 'REAL' },
+    { name: 'fee_construction', def: 'REAL' },
+    { name: 'fee_leasing', def: 'REAL' },
+    { name: 'fee_am', def: 'REAL' },
+    { name: 'hold_months', def: 'REAL' },
+    { name: 'drive_folder_id', def: 'TEXT' },
+    { name: 'drive_folder_path', def: 'TEXT' },
+    { name: 'model_item_id', def: 'TEXT' },
+    { name: 'model_name', def: 'TEXT' },
+    { name: 'model_modified', def: 'TEXT' },
+    { name: 'model_synced_at', def: 'TEXT' },
   ];
   for (const col of dealColsToAdd) {
     if (!dealColNames.includes(col.name)) {

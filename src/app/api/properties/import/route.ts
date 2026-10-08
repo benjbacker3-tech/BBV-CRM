@@ -1,8 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import ExcelJS from 'exceljs';
-import { get, run } from '@/lib/db';
+import { all, get, run } from '@/lib/db';
 import { logActivity } from '@/lib/activity';
 import { SYNC_TAB_NAME, SYNC_FIELDS, parseValue } from '@/lib/excel-sync';
+import { addressKey, modelToDealPatch, parseModel } from '@/lib/model-parse';
+import { Deal } from '@/lib/utils';
+
+// Same street number + name, else same street name in the same city.
+async function matchDeal(label: string, city: string | null): Promise<Deal | undefined> {
+  const key = addressKey(label);
+  if (!key) return undefined;
+  const deals = await all<Deal>('SELECT * FROM deals');
+  const exact = deals.find(d => { const k = addressKey(d.address || d.name); return k && k.num === key.num && k.street === key.street; });
+  if (exact) return exact;
+  const c = (city || '').toLowerCase();
+  return deals.find(d => { const k = addressKey(d.address || d.name); return k && k.street === key.street && c && (d.city || '').toLowerCase() === c; });
+}
 
 // POST /api/properties/import
 // Accepts multipart/form-data with a "file" field containing an .xlsx.
@@ -28,6 +41,26 @@ export async function POST(req: NextRequest) {
 
   // Find the sync tab — case-insensitive, allows trailing whitespace
   const ws = wb.worksheets.find(s => s.name.trim().toLowerCase() === SYNC_TAB_NAME.toLowerCase());
+
+  // No sync tab, but an IOS deal model (Assumptions tab): read its outputs onto the matching deal.
+  if (!ws && wb.getWorksheet('Assumptions')) {
+    const outputs = await parseModel(arrayBuffer);
+    if (!outputs) return NextResponse.json({ error: 'This workbook has an Assumptions tab, but not the IOS model layout (no Total Project Cost / Levered Returns).' }, { status: 400 });
+    const fileName = file instanceof File ? file.name : 'model.xlsm';
+    const deal = await matchDeal(outputs.address || outputs.name || fileName, outputs.city) ?? await matchDeal(fileName, outputs.city);
+    if (!deal) {
+      return NextResponse.json({ error: `No deal in the pipeline matches "${outputs.address || fileName}". Add the deal first, then drop the model again.` }, { status: 404 });
+    }
+    if (req.nextUrl.searchParams.get('dry') === '1') return NextResponse.json({ mode: 'model', dry: true, name: deal.name, outputs });
+    const patch: Record<string, unknown> = { ...modelToDealPatch(outputs), model_name: fileName, model_item_id: null, model_modified: null, model_synced_at: new Date().toISOString() };
+    if (!deal.sf && outputs.sf) patch.sf = outputs.sf;
+    if (!deal.acreage && outputs.acres) patch.acreage = outputs.acres;
+    const keys = Object.keys(patch).filter(k => patch[k] !== undefined);
+    await run(`UPDATE deals SET ${keys.map(k => `${k} = ?`).join(', ')} WHERE id = ?`, [...keys.map(k => patch[k] as string | number | null), deal.id]);
+    await logActivity({ entity_type: 'deal', entity_id: deal.id, action: 'model_synced', description: `Returns and fees updated from ${fileName}` });
+    return NextResponse.json({ mode: 'model', name: deal.name, outputs });
+  }
+
   if (!ws) {
     const found = wb.worksheets.map(s => s.name).join(', ');
     return NextResponse.json({
