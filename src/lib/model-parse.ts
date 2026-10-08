@@ -170,3 +170,31 @@ export function addressKey(s: string): { num: string; street: string } | null {
   const m = s.toLowerCase().match(/^\s*(\d+)\s+(?:[nsew]\.?\s+)?([a-z0-9][a-z0-9-]*)/);
   return m ? { num: m[1], street: m[2] } : null;
 }
+
+// At most one inserted, deleted or changed character ("Lossee" vs "Losee").
+function oneEditApart(a: string, b: string): boolean {
+  if (a === b) return true;
+  if (Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, edits = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++edits > 1) return false;
+    if (a.length > b.length) i++; else if (b.length > a.length) j++; else { i++; j++; }
+  }
+  return edits + (a.length - i) + (b.length - j) <= 1;
+}
+
+// Same property, allowing one typo: either the street name is one letter off
+// (4+ letter names, e.g. "3033 Lossee"), or the street number has one wrong digit
+// with the street name exact (e.g. "1962 Ives" for 1862 Ives). Never both.
+export function sameAddress(a: string, b: string): boolean {
+  const ka = addressKey(a), kb = addressKey(b);
+  if (!ka || !kb) return false;
+  if (ka.num === kb.num) {
+    return ka.street === kb.street || (Math.min(ka.street.length, kb.street.length) >= 4 && oneEditApart(ka.street, kb.street));
+  }
+  if (ka.street !== kb.street || ka.num.length !== kb.num.length) return false;
+  let diff = 0;
+  for (let i = 0; i < ka.num.length; i++) if (ka.num[i] !== kb.num[i]) diff++;
+  return diff === 1;
+}

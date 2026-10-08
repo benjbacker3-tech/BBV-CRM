@@ -1,7 +1,7 @@
 import { run } from './db';
 import { Deal } from './utils';
 import { DriveItem, children, childrenByPath, createFolder, download, itemById, itemByPath } from './graph';
-import { addressKey, dateFromFilename, modelToDealPatch, parseModel } from './model-parse';
+import { addressKey, dateFromFilename, modelToDealPatch, parseModel, sameAddress } from './model-parse';
 
 // Standard deal folder (see the folder plan agreed with Ben).
 export const STANDARD_SUBFOLDERS = [
@@ -23,25 +23,7 @@ export class DocsContext {
   }
 }
 
-// At most one inserted, deleted or changed letter ("Lossee" vs "Losee").
-function oneEditApart(a: string, b: string): boolean {
-  if (a === b) return true;
-  if (Math.abs(a.length - b.length) > 1) return false;
-  let i = 0, j = 0, edits = 0;
-  while (i < a.length && j < b.length) {
-    if (a[i] === b[j]) { i++; j++; continue; }
-    if (++edits > 1) return false;
-    if (a.length > b.length) i++; else if (b.length > a.length) j++; else { i++; j++; }
-  }
-  return edits + (a.length - i) + (b.length - j) <= 1;
-}
-
-// Same street number, and the same street name allowing a one-letter typo in names of 4+ letters.
-const sameKey = (a: string, b: string) => {
-  const ka = addressKey(a), kb = addressKey(b);
-  if (!ka || !kb || ka.num !== kb.num) return false;
-  return ka.street === kb.street || (Math.min(ka.street.length, kb.street.length) >= 4 && oneEditApart(ka.street, kb.street));
-};
+const sameKey = sameAddress;
 
 export async function findDealFolder(deal: Deal, ctx = new DocsContext()): Promise<DriveItem | null> {
   if (deal.drive_folder_id) {

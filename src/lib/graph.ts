@@ -15,7 +15,7 @@ export interface DriveItem {
   webUrl: string;
   lastModifiedDateTime: string;
   folder?: { childCount: number };
-  file?: { mimeType: string };
+  file?: { mimeType: string; hashes?: { quickXorHash?: string; sha1Hash?: string } };
   parentReference?: { id?: string; path?: string; driveId?: string };
   '@microsoft.graph.downloadUrl'?: string;
 }
@@ -183,4 +183,36 @@ export function graphErrorMessage(e: unknown): string {
     return e.message;
   }
   return e instanceof Error ? e.message : String(e);
+}
+
+export async function renameItem(id: string, name: string): Promise<DriveItem> {
+  return graph<DriveItem>(`${drive()}/items/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify({ name }) });
+}
+
+// Move into another folder. A same-named item already there is kept and the
+// moved one gets a numbered name.
+export async function moveItem(id: string, parentId: string): Promise<DriveItem> {
+  return graph<DriveItem>(`${drive()}/items/${encodeURIComponent(id)}?@microsoft.graph.conflictBehavior=rename`, {
+    method: 'PATCH',
+    body: JSON.stringify({ parentReference: { id: parentId } }),
+  });
+}
+
+// Deleted items go to the OneDrive recycle bin (restorable for 93 days).
+export async function deleteItem(id: string): Promise<void> {
+  await graph(`${drive()}/items/${encodeURIComponent(id)}`, { method: 'DELETE' });
+}
+
+// Folder at a path under ROOT_PATH, creating any missing segments.
+export async function ensureFolderPath(rel: string): Promise<DriveItem> {
+  const existing = await itemByPath(rel);
+  if (existing) return existing;
+  const segments = rel.split('/').filter(Boolean);
+  let parent = await itemByPath('');
+  if (!parent) throw new GraphError(`No "${ROOT_PATH}" folder in OneDrive`, 404);
+  for (let i = 0; i < segments.length; i++) {
+    const here = await itemByPath(segments.slice(0, i + 1).join('/'));
+    parent = here ?? (await createFolder(parent.id, segments[i]));
+  }
+  return parent;
 }
