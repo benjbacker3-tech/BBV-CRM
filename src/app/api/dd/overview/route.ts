@@ -2,17 +2,22 @@ import { NextRequest, NextResponse } from 'next/server';
 import { all } from '@/lib/db';
 import { ensureChecklist, checklistItems, dealCosts } from '@/lib/dd-server';
 
-// GET ?closed=1 → every Under Contract deal (plus Closed when asked) with its checklist
-// and costs, for the cross-deal grid.
+// GET ?closed=1 → every deal in diligence, with its checklist and costs, for the
+// cross-deal grid and the dashboard. "In diligence" = Under Contract, plus a
+// Negotiating PSA deal whose checklist has already been started (diligence can
+// begin before the PSA is signed). ?closed=1 adds Closed deals.
 export async function GET(req: NextRequest) {
-  const stages = req.nextUrl.searchParams.get('closed') ? ['Under Contract', 'Closed'] : ['Under Contract'];
+  const closed = !!req.nextUrl.searchParams.get('closed');
   const deals = await all<{ id: number; name: string; address: string; city: string; state: string | null; stage: string; dd_expiry: string | null; close_date: string | null }>(
     `SELECT id, name, address, city, state, stage, dd_expiry, close_date FROM deals
-     WHERE stage IN (${stages.map(() => '?').join(',')}) ORDER BY stage DESC, COALESCE(close_date, dd_expiry, '9999'), name`,
-    stages,
+     WHERE stage = 'Under Contract'
+        OR (stage = 'Negotiating PSA' AND EXISTS (SELECT 1 FROM dd_items i WHERE i.deal_id = deals.id))
+        ${closed ? "OR stage = 'Closed'" : ''}
+     ORDER BY CASE stage WHEN 'Closed' THEN 2 WHEN 'Under Contract' THEN 0 ELSE 1 END,
+              COALESCE(close_date, dd_expiry, '9999'), name`,
   );
   const ids = deals.map(d => d.id);
-  await ensureChecklist(ids);
+  await ensureChecklist(deals.filter(d => d.stage !== 'Negotiating PSA').map(d => d.id));
   const [items, costs] = await Promise.all([checklistItems(ids), dealCosts(ids)]);
   return NextResponse.json({ deals, items, costs });
 }

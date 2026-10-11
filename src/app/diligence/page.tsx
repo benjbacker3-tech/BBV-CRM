@@ -100,7 +100,7 @@ export default function DiligencePage() {
                     return (
                       <th key={d.id} className={`${colW} text-left px-3 py-3 border-l border-gray-100 font-normal`}>
                         <button onClick={() => openDeal(d.id)} className="text-sm font-semibold text-gray-900 hover:text-navy hover:underline text-left">{d.name}</button>
-                        <p className="text-[11px] text-gray-500">{[d.city, d.state].filter(Boolean).join(', ')}{d.stage === 'Closed' ? ' · Closed' : ''}</p>
+                        <p className="text-[11px] text-gray-500">{[d.city, d.state].filter(Boolean).join(', ')}{d.stage === 'Closed' ? ' · Closed' : d.stage === 'Negotiating PSA' ? ' · PSA pending' : ''}</p>
                         <div className="flex flex-wrap gap-1 mt-1.5">
                           {d.dd_expiry && <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${ddChipColor(dd)}`}>DD {d.dd_expiry}</span>}
                           {d.close_date && <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${ddChipColor(close)}`}>Close {d.close_date}</span>}
