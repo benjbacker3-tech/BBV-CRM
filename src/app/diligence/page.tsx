@@ -3,10 +3,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Deal, fmt, daysUntil, ddChipColor } from '@/lib/utils';
 import {
-  DD_SECTIONS, DD_STATUSES, DD_STATUS_LABEL, DdItem, DdStatus, DdCost, OWNERSHIP_SECTION, costAmount, costTotals,
+  DD_SECTIONS, DdItem, DdCost, OWNERSHIP_SECTION, costAmount, costTotals,
 } from '@/lib/dd-template';
-import { STATUS_STYLE } from '@/components/deal-tabs/DiligenceTab';
+import { Section, GridCell, colW } from '@/components/ChecklistGrid';
 import DealDetailPanel from '@/components/DealDetailPanel';
+import ConstructionGrid from '@/components/ConstructionGrid';
 
 interface GridDeal {
   id: number;
@@ -21,13 +22,17 @@ interface GridDeal {
 
 interface Row { section: string; key: string; label: string }
 
-// Cross-deal diligence tracker: one column per deal, laid out like the
-// SPC Diligence Checklist workbook (checklist on top, spend tracker below).
+// Cross-deal trackers, one column per deal. Diligence: laid out like the SPC Diligence
+// Checklist workbook (checklist on top, spend tracker below). Construction: the
+// Construction Mgmt sheet for every deal with a construction checklist.
 export default function DiligencePage() {
+  const [view, setView] = useState<'dd' | 'cm'>('dd');
   const [showClosed, setShowClosed] = useState(false);
   const [deals, setDeals] = useState<GridDeal[] | null>(null);
   const [items, setItems] = useState<DdItem[]>([]);
   const [costs, setCosts] = useState<DdCost[]>([]);
+  const [cmDeals, setCmDeals] = useState<GridDeal[]>([]);
+  const [cmItems, setCmItems] = useState<DdItem[]>([]);
   const [editing, setEditing] = useState<number | null>(null);
   const [panelDeal, setPanelDeal] = useState<Deal | null>(null);
 
@@ -36,6 +41,8 @@ export default function DiligencePage() {
       setDeals(data.deals || []);
       setItems(data.items || []);
       setCosts(data.costs || []);
+      setCmDeals(data.cmDeals || []);
+      setCmItems(data.construction || []);
     });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,7 +65,9 @@ export default function DiligencePage() {
   const costCategories = useMemo(() => Array.from(new Set(costs.filter(c => c.status !== 'declined').map(c => c.category))).sort(), [costs]);
 
   const saveItem = async (id: number, patch: Partial<DdItem>) => {
-    setItems(prev => prev.map(i => (i.id === id ? { ...i, ...patch } : i)));
+    const apply = (prev: DdItem[]) => prev.map(i => (i.id === id ? { ...i, ...patch } : i));
+    setItems(apply);
+    setCmItems(apply);
     await fetch(`/api/dd/items/${id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(patch) });
   };
 
@@ -67,26 +76,43 @@ export default function DiligencePage() {
     setPanelDeal(all.find(d => d.id === id) ?? null);
   };
 
-  const colW = 'min-w-[220px] w-[220px]';
-
   return (
     <>
       <div className={`p-8 transition-all ${panelDeal ? 'mr-[480px]' : ''}`}>
         <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 mb-1">Sandpiper Capital LLC · Signed PSAs</p>
-            <h1 className="text-xl font-medium text-gray-900 tracking-tight">Diligence</h1>
+            <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 mb-1">Sandpiper Capital LLC · Signed PSAs &amp; Construction</p>
+            <h1 className="text-xl font-medium text-gray-900 tracking-tight">Diligence / CM</h1>
           </div>
-          <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
-            <input type="checkbox" checked={showClosed} onChange={e => setShowClosed(e.target.checked)} />
-            Include closed deals
-          </label>
+          {view === 'dd' && (
+            <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
+              <input type="checkbox" checked={showClosed} onChange={e => setShowClosed(e.target.checked)} />
+              Include closed deals
+            </label>
+          )}
         </div>
 
-        {deals === null && <p className="text-sm text-gray-400">Loading…</p>}
-        {deals?.length === 0 && <p className="text-sm text-gray-400">No deals under contract. A deal&apos;s checklist starts when it moves to Under Contract.</p>}
+        <div className="flex border-b border-gray-200 mb-5 -mt-2">
+          {([['dd', 'Diligence', deals?.length], ['cm', 'Construction', cmDeals.length]] as const).map(([v, label, n]) => (
+            <button
+              key={v}
+              onClick={() => { setView(v); setEditing(null); }}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+                view === v ? 'border-navy text-navy' : 'border-transparent text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              {label}
+              {n != null && <span className="ml-1.5 text-[11px] font-mono text-gray-400">{n}</span>}
+            </button>
+          ))}
+        </div>
 
-        {!!deals?.length && (
+        {view === 'cm' && <ConstructionGrid deals={cmDeals} items={cmItems} onSave={saveItem} onOpenDeal={openDeal} />}
+
+        {view === 'dd' && deals === null && <p className="text-sm text-gray-400">Loading…</p>}
+        {view === 'dd' && deals?.length === 0 && <p className="text-sm text-gray-400">No deals under contract. A deal&apos;s checklist starts when it moves to Under Contract.</p>}
+
+        {view === 'dd' && !!deals?.length && (
           <div className="overflow-x-auto border border-gray-200 rounded-lg bg-white">
             <table className="text-xs border-collapse">
               <thead>
@@ -185,7 +211,11 @@ export default function DiligencePage() {
             </table>
           </div>
         )}
-        <p className="mt-3 text-[11px] text-gray-400">Click a cell to update it. Proposals, invoices and payments are entered on each deal&apos;s Diligence tab (click the deal name).</p>
+        <p className="mt-3 text-[11px] text-gray-400">
+          Click a cell to update it. {view === 'dd'
+            ? 'Proposals, invoices and payments are entered on each deal’s Diligence / CM tab (click the deal name).'
+            : 'Add contract items or due dates on each deal’s Diligence / CM tab (click the deal name).'}
+        </p>
       </div>
 
       {panelDeal && (
@@ -198,58 +228,5 @@ export default function DiligencePage() {
         />
       )}
     </>
-  );
-}
-
-function Section({ title, span, children }: { title: string; span: number; children: React.ReactNode }) {
-  return (
-    <>
-      <tr className="bg-navy/5 border-b border-gray-200">
-        <td className="sticky left-0 z-10 bg-[#EEF1F5] px-3 py-1.5 text-[10px] uppercase tracking-[0.12em] font-semibold text-navy">{title}</td>
-        <td colSpan={span} className="bg-[#EEF1F5]" />
-      </tr>
-      {children}
-    </>
-  );
-}
-
-function GridCell({ item, editing, onEdit, onSave }: {
-  item: DdItem;
-  editing: boolean;
-  onEdit: (open: boolean) => void;
-  onSave: (id: number, patch: Partial<DdItem>) => void;
-}) {
-  const text = [item.vendor, item.note].filter(Boolean).join(' · ');
-  if (!editing) {
-    return (
-      <button onClick={() => onEdit(true)} className={`w-full text-left px-3 py-2 hover:bg-gray-50 ${item.status === 'na' ? 'opacity-50' : ''}`}>
-        <span className={`inline-block text-[10px] px-1.5 py-0.5 rounded-full font-medium ${STATUS_STYLE[item.status]}`}>{DD_STATUS_LABEL[item.status]}</span>
-        {item.due_date && <span className="ml-1.5 font-mono text-[10px] text-gray-400">due {item.due_date}</span>}
-        {text && <span className="block mt-0.5 text-[11px] text-gray-600 line-clamp-2 whitespace-pre-line">{text}</span>}
-      </button>
-    );
-  }
-  const blur = (field: 'vendor' | 'note') => (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const v = e.target.value.trim() || null;
-    if (v !== (item[field] ?? null)) onSave(item.id, { [field]: v });
-  };
-  const field = 'text-[11px] border border-gray-200 rounded px-1.5 py-1 w-full focus:outline-none focus:ring-1 focus:ring-navy';
-  return (
-    <div className="px-2 py-2 space-y-1 bg-gray-50">
-      <div className="flex gap-1">
-        {DD_STATUSES.map(s => (
-          <button
-            key={s}
-            onClick={() => onSave(item.id, { status: s as DdStatus })}
-            className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${item.status === s ? STATUS_STYLE[s] + ' ring-1 ring-navy/40' : 'text-gray-400 hover:bg-gray-100'}`}
-          >
-            {DD_STATUS_LABEL[s]}
-          </button>
-        ))}
-      </div>
-      <input autoFocus defaultValue={item.vendor ?? ''} onBlur={blur('vendor')} placeholder="Vendor / who" className={field} />
-      <textarea defaultValue={item.note ?? ''} onBlur={blur('note')} rows={2} placeholder="Where it stands" className={`${field} resize-y`} />
-      <button onClick={() => onEdit(false)} className="text-[10px] text-navy font-medium">Done</button>
-    </div>
   );
 }

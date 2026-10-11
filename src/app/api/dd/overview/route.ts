@@ -20,10 +20,12 @@ export async function GET(req: NextRequest) {
   );
   const ids = deals.map(d => d.id);
   await ensureChecklist(deals.filter(d => d.stage !== 'Negotiating PSA').map(d => d.id));
-  const [items, costs, construction] = await Promise.all([
+  const [items, costs, construction, cmDeals] = await Promise.all([
     checklistItems(ids),
     dealCosts(ids),
     all<DdItem>("SELECT * FROM dd_items WHERE list = 'cm' ORDER BY deal_id, sort, id"),
+    all(`SELECT id, name, address, city, state, stage, dd_expiry, close_date FROM deals
+         WHERE EXISTS (SELECT 1 FROM dd_items i WHERE i.deal_id = deals.id AND i.list = 'cm') ORDER BY name`),
   ]);
-  return NextResponse.json({ deals, items, costs, construction });
+  return NextResponse.json({ deals, items, costs, construction, cmDeals });
 }
