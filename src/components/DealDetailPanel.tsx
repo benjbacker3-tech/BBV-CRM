@@ -14,13 +14,14 @@ interface Props {
   onClose: () => void;
   onUpdate: (deal: Deal) => void;
   onDelete?: () => void;
+  initialTab?: Tab;
 }
 
 const TABS = ['Overview', 'Documents', 'Contacts', 'Diligence', 'LOI', 'Napkin Math'] as const;
 type Tab = (typeof TABS)[number];
 
-export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete }: Props) {
-  const [tab, setTab] = useState<Tab>('Overview');
+export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete, initialTab = 'Overview' }: Props) {
+  const [tab, setTab] = useState<Tab>(initialTab);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const handleDelete = async () => {

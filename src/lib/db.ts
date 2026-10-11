@@ -146,6 +146,43 @@ async function initSchema(db: Client) {
       FOREIGN KEY (diligence_id) REFERENCES diligence(id)
     );
 
+    -- Diligence checklist (SPC Diligence Checklist template, see lib/dd-template.ts).
+    -- One row per checklist line per deal; rows are created from the template the first
+    -- time a deal's checklist is opened. status: open | in_progress | done | na.
+    CREATE TABLE IF NOT EXISTS dd_items (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      deal_id INTEGER NOT NULL,
+      item_key TEXT NOT NULL,               -- template key, or custom-<n> for added rows
+      section TEXT NOT NULL,
+      grp TEXT,                             -- sub-heading (Ownership Materials only)
+      label TEXT NOT NULL,
+      sort INTEGER DEFAULT 0,
+      status TEXT NOT NULL DEFAULT 'open' CHECK(status IN ('open','in_progress','done','na')),
+      vendor TEXT,
+      note TEXT,
+      due_date TEXT,
+      updated_at TEXT DEFAULT (datetime('now')),
+      UNIQUE(deal_id, item_key),
+      FOREIGN KEY (deal_id) REFERENCES deals(id)
+    );
+
+    -- Diligence spend: one row per proposal / engagement. Amount is the proposal until an
+    -- invoice comes in. status: proposal | signed | invoiced | paid | declined.
+    CREATE TABLE IF NOT EXISTS dd_costs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      deal_id INTEGER NOT NULL,
+      category TEXT NOT NULL,               -- Legal, Phase I, PCA, Survey, ...
+      vendor TEXT,
+      proposal_amount REAL,
+      invoice_amount REAL,
+      status TEXT NOT NULL DEFAULT 'proposal' CHECK(status IN ('proposal','signed','invoiced','paid','declined')),
+      paid_date TEXT,
+      notes TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (deal_id) REFERENCES deals(id)
+    );
+    CREATE INDEX IF NOT EXISTS ix_dd_costs_deal ON dd_costs(deal_id);
+
     CREATE TABLE IF NOT EXISTS investors (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
