@@ -25,6 +25,76 @@ body {
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
+/* ── Design system ─────────────────────────────────────────────────────
+   Shared look for every page and the deal panel: a soft page background,
+   white cards, one header style, one table style, one set of status pills.
+   Use these classes instead of hand-rolling the same Tailwind strings. */
+@layer components {
+  /* Page frame */
+  .page { @apply px-8 py-7 max-w-[1440px]; }
+  .page-header { @apply flex items-end justify-between gap-4 mb-6; }
+  .eyebrow { @apply text-[10px] uppercase tracking-[0.16em] font-medium text-slate-400 dark:text-slate-500 mb-1; }
+  .page-title { @apply text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100; }
+  .page-sub { @apply text-sm text-slate-500 dark:text-slate-400 mt-1; }
+
+  /* Cards */
+  .card { @apply bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-[0_1px_2px_rgba(15,23,42,0.04)]; }
+  .card-header { @apply flex items-center justify-between gap-3 px-4 py-3 border-b border-slate-100 dark:border-slate-800; }
+  .card-title { @apply text-sm font-semibold text-slate-800 dark:text-slate-100; }
+  .card-body { @apply p-4; }
+
+  /* Section labels */
+  .section-label { @apply flex items-center gap-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-slate-500 dark:text-slate-400; }
+  .count { @apply inline-flex items-center justify-center min-w-[1.25rem] h-[1.125rem] px-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 normal-case tracking-normal; }
+
+  /* Stat tiles */
+  .stat { @apply card px-4 py-3.5; }
+  .stat-label { @apply text-[10px] uppercase tracking-[0.12em] font-medium text-slate-400 dark:text-slate-500; }
+  .stat-value { @apply mt-1 text-xl font-semibold font-mono tabular-nums text-slate-900 dark:text-slate-100; }
+  .stat-sub { @apply mt-0.5 text-[11px] text-slate-500 dark:text-slate-400; }
+
+  /* Tables */
+  .table-clean { @apply w-full text-xs border-collapse; }
+  .table-clean thead th { @apply bg-slate-50/80 dark:bg-slate-800/60 text-left text-[10px] uppercase tracking-[0.08em] font-semibold text-slate-500 dark:text-slate-400 px-3 py-2.5 border-b border-slate-200 dark:border-slate-700 whitespace-nowrap; }
+  .table-clean tbody td { @apply px-3 py-2.5 border-b border-slate-100 dark:border-slate-800 text-slate-700 dark:text-slate-300 align-middle; }
+  .table-clean tbody tr:last-child td { @apply border-b-0; }
+  .table-clean tbody tr.row:hover td { @apply bg-slate-50/70 dark:bg-slate-800/40; }
+  .table-clean .num { @apply text-right font-mono tabular-nums; }
+  .table-clean tr.group-row td { @apply bg-slate-50 dark:bg-slate-800/50 py-2 text-[10px] uppercase tracking-[0.12em] font-semibold text-navy dark:text-blue-300 border-b border-slate-200 dark:border-slate-700; }
+  .table-clean tr.total-row td { @apply bg-slate-50/70 dark:bg-slate-800/40 font-semibold text-slate-900 dark:text-slate-100 border-t border-slate-200 dark:border-slate-700; }
+
+  /* Pills / badges */
+  .pill { @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-medium ring-1 ring-inset; }
+  .pill-slate { @apply bg-slate-50 text-slate-600 ring-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700; }
+  .pill-navy { @apply bg-navy/5 text-navy ring-navy/15 dark:bg-blue-900/30 dark:text-blue-300 dark:ring-blue-800; }
+  .pill-blue { @apply bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:ring-blue-800; }
+  .pill-green { @apply bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:ring-emerald-800; }
+  .pill-amber { @apply bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:ring-amber-800; }
+  .pill-red { @apply bg-red-50 text-red-700 ring-red-200 dark:bg-red-900/30 dark:text-red-400 dark:ring-red-800; }
+  .pill-muted { @apply bg-transparent text-slate-400 ring-slate-200 dark:text-slate-500 dark:ring-slate-700; }
+
+  /* Tabs (underline) and segmented control */
+  .tabs { @apply flex gap-1 border-b border-slate-200 dark:border-slate-800; }
+  .tab { @apply -mb-px px-3.5 py-2 text-sm font-medium border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors whitespace-nowrap; }
+  .tab-active { @apply border-navy text-navy dark:border-blue-300 dark:text-blue-300; }
+  .segmented { @apply inline-flex gap-0.5 p-0.5 rounded-lg bg-slate-100 dark:bg-slate-800; }
+  .segment { @apply px-3 py-1 text-xs font-medium rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors; }
+  .segment-active { @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm; }
+
+  /* Buttons and inputs */
+  .btn { @apply inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-navy text-white hover:bg-navy-light shadow-sm; }
+  .btn-secondary { @apply btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800; }
+  .btn-ghost { @apply btn text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800; }
+  .btn-danger { @apply btn text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20; }
+  .field { @apply w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs text-slate-800 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/40; }
+  .field-label { @apply block text-[10px] uppercase tracking-[0.08em] font-medium text-slate-500 dark:text-slate-400 mb-1; }
+
+  /* Progress bar */
+  .progress { @apply h-1.5 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden; }
+  .progress-bar { @apply block h-full rounded-full bg-navy dark:bg-blue-400 transition-all duration-300; }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }

@@ -35,9 +35,9 @@ const day = (s: string) => asDate(s).toLocaleDateString('en-US', { month: 'short
 const when = (s: string) => asDate(s).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
 
 export function shareStatus(s: ShareRow): { label: string; cls: string; active: boolean } {
-  if (s.revoked_at) return { label: 'Revoked', cls: 'bg-gray-100 text-gray-500', active: false };
-  if (s.expires_at && asDate(s.expires_at).getTime() < Date.now()) return { label: 'Expired', cls: 'bg-gray-100 text-gray-500', active: false };
-  return { label: 'Active', cls: 'bg-emerald-50 text-emerald-700', active: true };
+  if (s.revoked_at) return { label: 'Revoked', cls: 'pill-muted', active: false };
+  if (s.expires_at && asDate(s.expires_at).getTime() < Date.now()) return { label: 'Expired', cls: 'pill-slate', active: false };
+  return { label: 'Active', cls: 'pill-green', active: true };
 }
 
 export default function SharedLinks({ dealId, refreshKey = 0, compact = false }: { dealId?: number; refreshKey?: number; compact?: boolean }) {
@@ -79,18 +79,18 @@ export default function SharedLinks({ dealId, refreshKey = 0, compact = false }:
   return (
     <div>
       {visible.length === 0 ? (
-        <p className="text-xs text-gray-500">{rows.length ? 'No active links.' : 'No share links yet.'}</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400">{rows.length ? 'No active links.' : 'No share links yet.'}</p>
       ) : (
-        <div className="border border-gray-300 overflow-x-auto">
-          <table className="w-full text-xs">
+        <div className="card overflow-x-auto">
+          <table className="table-clean">
             <thead>
-              <tr className="bg-navy text-white text-[10px] uppercase tracking-[0.06em]">
-                <th className="text-left font-semibold px-3 py-1.5">Shared</th>
-                <th className="text-left font-semibold px-3 py-1.5">With</th>
-                {!compact && <th className="text-left font-semibold px-3 py-1.5">Access</th>}
-                <th className="text-left font-semibold px-3 py-1.5">Expires</th>
-                <th className="text-right font-semibold px-3 py-1.5" title="Opens / downloads / uploads">Activity</th>
-                <th className="px-3 py-1.5" />
+              <tr>
+                <th>Shared</th>
+                <th>With</th>
+                {!compact && <th>Access</th>}
+                <th>Expires</th>
+                <th className="!text-right" title="Opens / downloads / uploads">Activity</th>
+                <th />
               </tr>
             </thead>
             <tbody>
@@ -98,51 +98,51 @@ export default function SharedLinks({ dealId, refreshKey = 0, compact = false }:
                 const st = shareStatus(s);
                 return (
                   <Fragment key={s.id}>
-                    <tr className={`border-b border-gray-200 ${st.active ? '' : 'opacity-60'}`}>
-                      <td className="px-3 py-1.5 max-w-[280px]">
-                        <div className="truncate text-gray-900 font-medium" title={s.item_path || s.item_name}>{s.item_name}{s.is_folder ? '/' : ''}</div>
-                        {!compact && s.item_path && <div className="truncate text-[10px] text-gray-400" title={s.item_path}>{s.item_path}</div>}
+                    <tr className={`row ${st.active ? '' : 'opacity-60'}`}>
+                      <td className="max-w-[280px]">
+                        <div className="truncate text-slate-900 dark:text-slate-100 font-medium" title={s.item_path || s.item_name}>{s.item_name}{s.is_folder ? '/' : ''}</div>
+                        {!compact && s.item_path && <div className="truncate text-[10px] text-slate-400 dark:text-slate-500" title={s.item_path}>{s.item_path}</div>}
                       </td>
-                      <td className="px-3 py-1.5">
-                        <div className="text-gray-900">{s.recipient}</div>
-                        {s.recipient_email && <div className="text-[10px] text-gray-400">{s.recipient_email}</div>}
+                      <td>
+                        <div className="text-slate-900 dark:text-slate-100">{s.recipient}</div>
+                        {s.recipient_email && <div className="text-[10px] text-slate-400 dark:text-slate-500">{s.recipient_email}</div>}
                       </td>
-                      {!compact && <td className="px-3 py-1.5 text-gray-700">{MODE[s.mode]}{s.has_password ? ' · password' : ''}</td>}
-                      <td className="px-3 py-1.5 whitespace-nowrap">
-                        <span className={`text-[10px] font-semibold rounded px-1.5 py-0.5 mr-1.5 ${st.cls}`}>{st.label}</span>
-                        <span className="text-gray-500">{s.expires_at ? day(s.expires_at) : 'never'}</span>
+                      {!compact && <td>{MODE[s.mode]}{s.has_password ? ' · password' : ''}</td>}
+                      <td className="whitespace-nowrap">
+                        <span className={`pill mr-1.5 ${st.cls}`}>{st.label}</span>
+                        <span className="font-mono tabular-nums text-slate-500 dark:text-slate-400">{s.expires_at ? day(s.expires_at) : 'never'}</span>
                       </td>
-                      <td className="px-3 py-1.5 text-right whitespace-nowrap">
-                        <button onClick={() => toggle(s.id)} className="text-gray-700 hover:text-navy hover:underline font-mono" title="Opens / downloads / uploads — click for the log">
+                      <td className="num whitespace-nowrap">
+                        <button onClick={() => toggle(s.id)} className="text-slate-700 dark:text-slate-300 hover:text-navy dark:hover:text-blue-300 hover:underline font-mono tabular-nums" title="Opens / downloads / uploads — click for the log">
                           {s.opens} / {s.downloads} / {s.uploads}
                         </button>
-                        {s.last_access_at && <div className="text-[10px] text-gray-400">last {when(s.last_access_at)}</div>}
+                        {s.last_access_at && <div className="text-[10px] font-sans text-slate-400 dark:text-slate-500">last {when(s.last_access_at)}</div>}
                       </td>
-                      <td className="px-3 py-1.5 text-right whitespace-nowrap space-x-2">
-                        {st.active && <button onClick={() => copy(s)} className="text-navy hover:underline">{copied === s.id ? 'Copied' : 'Copy link'}</button>}
-                        {st.active && <button onClick={() => { if (confirm(`Turn off the link for ${s.recipient}? It stops working immediately.`)) patch(s.id, { action: 'revoke' }); }} className="text-red-600 hover:underline">Revoke</button>}
-                        {!st.active && s.revoked_at && <button onClick={() => patch(s.id, { action: 'restore' })} className="text-navy hover:underline">Restore</button>}
-                        {!st.active && !s.revoked_at && <button onClick={() => patch(s.id, { expiresDays: 30 })} className="text-navy hover:underline">Extend 30 days</button>}
+                      <td className="text-right whitespace-nowrap space-x-2">
+                        {st.active && <button onClick={() => copy(s)} className="font-medium text-navy dark:text-blue-300 hover:underline">{copied === s.id ? 'Copied' : 'Copy link'}</button>}
+                        {st.active && <button onClick={() => { if (confirm(`Turn off the link for ${s.recipient}? It stops working immediately.`)) patch(s.id, { action: 'revoke' }); }} className="font-medium text-red-600 dark:text-red-400 hover:underline">Revoke</button>}
+                        {!st.active && s.revoked_at && <button onClick={() => patch(s.id, { action: 'restore' })} className="font-medium text-navy dark:text-blue-300 hover:underline">Restore</button>}
+                        {!st.active && !s.revoked_at && <button onClick={() => patch(s.id, { expiresDays: 30 })} className="font-medium text-navy dark:text-blue-300 hover:underline">Extend 30 days</button>}
                       </td>
                     </tr>
                     {open === s.id && (
-                      <tr className="bg-gray-50 border-b border-gray-200">
-                        <td colSpan={compact ? 5 : 6} className="px-3 py-2">
-                          {!events ? <p className="text-[11px] text-gray-500">Loading…</p> : events.length === 0 ? <p className="text-[11px] text-gray-500">Not opened yet.</p> : (
+                      <tr>
+                        <td colSpan={compact ? 5 : 6} className="!bg-slate-50 dark:!bg-slate-800/50">
+                          {!events ? <p className="text-[11px] text-slate-500 dark:text-slate-400">Loading…</p> : events.length === 0 ? <p className="text-[11px] text-slate-500 dark:text-slate-400">Not opened yet.</p> : (
                             <ul className="space-y-0.5 text-[11px] max-h-48 overflow-y-auto">
                               {events.map((e, i) => (
                                 <li key={i} className="flex gap-3">
-                                  <span className="text-gray-400 w-28 shrink-0">{when(e.created_at)}</span>
-                                  <span className={`w-20 shrink-0 ${e.kind === 'bad_password' ? 'text-red-600' : e.kind === 'upload' ? 'text-emerald-700' : 'text-gray-700'}`}>{e.kind === 'bad_password' ? 'wrong password' : e.kind === 'upload_start' ? 'upload started' : e.kind}</span>
-                                  <span className="text-gray-800 truncate">{e.detail}</span>
-                                  {e.ip && <span className="ml-auto text-gray-400 font-mono">{e.ip}</span>}
+                                  <span className="text-slate-400 dark:text-slate-500 font-mono tabular-nums w-28 shrink-0">{when(e.created_at)}</span>
+                                  <span className={`w-20 shrink-0 ${e.kind === 'bad_password' ? 'text-red-600 dark:text-red-400' : e.kind === 'upload' ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-700 dark:text-slate-300'}`}>{e.kind === 'bad_password' ? 'wrong password' : e.kind === 'upload_start' ? 'upload started' : e.kind}</span>
+                                  <span className="text-slate-800 dark:text-slate-200 truncate">{e.detail}</span>
+                                  {e.ip && <span className="ml-auto text-slate-400 dark:text-slate-500 font-mono">{e.ip}</span>}
                                 </li>
                               ))}
                             </ul>
                           )}
                           <div className="mt-2 flex gap-3 text-[11px]">
-                            <button onClick={() => patch(s.id, { notify: !s.notify })} className="text-navy hover:underline">{s.notify ? 'Stop emailing me about this link' : 'Email me about this link'}</button>
-                            {st.active && <button onClick={() => patch(s.id, { expiresDays: 30 })} className="text-navy hover:underline">Expire 30 days from now</button>}
+                            <button onClick={() => patch(s.id, { notify: !s.notify })} className="font-medium text-navy dark:text-blue-300 hover:underline">{s.notify ? 'Stop emailing me about this link' : 'Email me about this link'}</button>
+                            {st.active && <button onClick={() => patch(s.id, { expiresDays: 30 })} className="font-medium text-navy dark:text-blue-300 hover:underline">Expire 30 days from now</button>}
                           </div>
                         </td>
                       </tr>
@@ -155,7 +155,7 @@ export default function SharedLinks({ dealId, refreshKey = 0, compact = false }:
         </div>
       )}
       {inactive > 0 && (
-        <button onClick={() => setShowInactive(!showInactive)} className="mt-2 text-[11px] text-gray-500 hover:text-navy">
+        <button onClick={() => setShowInactive(!showInactive)} className="mt-2 text-[11px] text-slate-500 dark:text-slate-400 hover:text-navy dark:hover:text-blue-300">
           {showInactive ? 'Hide' : 'Show'} {inactive} expired or revoked
         </button>
       )}

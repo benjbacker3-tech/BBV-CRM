@@ -40,48 +40,48 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-surface-dark px-4">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 px-4">
       <div className="w-full max-w-sm">
         {/* Brand */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-navy rounded-lg mb-3">
-            <span className="text-white font-bold text-lg">S</span>
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-11 h-11 bg-navy rounded-xl shadow-sm mb-3">
+            <span className="text-white font-semibold text-lg">S</span>
           </div>
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100 tracking-tight">
-            <span className="text-navy dark:text-white">Sandpiper</span> Capital
+          <h1 className="text-xl font-semibold tracking-tight text-navy dark:text-blue-200">
+            Sandpiper Capital
           </h1>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-[0.15em]">
+          <p className="eyebrow mt-1 !mb-0">
             Sandpiper Capital LLC
           </p>
         </div>
 
-        <form onSubmit={submit} className="bg-white dark:bg-surface border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow-sm">
+        <form onSubmit={submit} className="card p-6">
           <div className="space-y-4">
             <div>
-              <label className="text-xs text-gray-500 dark:text-gray-400 block mb-1.5 uppercase tracking-wide">User</label>
+              <label className="field-label">User</label>
               <input
                 type="text"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
                 autoFocus
                 autoComplete="username"
-                className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-navy dark:bg-surface-dark dark:text-gray-100"
+                className="field !text-[13px] !py-2"
                 placeholder="ben"
               />
             </div>
             <div>
-              <label className="text-xs text-gray-500 dark:text-gray-400 block mb-1.5 uppercase tracking-wide">Password</label>
+              <label className="field-label">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 autoComplete="current-password"
-                className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-navy dark:bg-surface-dark dark:text-gray-100"
+                className="field !text-[13px] !py-2"
               />
             </div>
 
             {error && (
-              <div className="text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded px-3 py-2">
+              <div className="text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2">
                 {error}
               </div>
             )}
@@ -89,14 +89,14 @@ function LoginForm() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-2 bg-navy text-white text-sm font-medium rounded hover:bg-navy-light disabled:opacity-50 transition-colors"
+              className="btn-primary w-full !py-2 !text-[13px]"
             >
               {submitting ? 'Signing in…' : 'Sign in'}
             </button>
           </div>
         </form>
 
-        <p className="text-[10px] text-center text-gray-400 dark:text-gray-500 mt-6 uppercase tracking-[0.15em]">
+        <p className="text-[10px] text-center text-slate-400 dark:text-slate-500 mt-6 uppercase tracking-[0.15em]">
           Confidential · Authorized users only
         </p>
       </div>

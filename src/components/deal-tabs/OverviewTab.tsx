@@ -119,8 +119,6 @@ export default function OverviewTab({ deal, onUpdate }: Props) {
   // -------------------------------------------------------------------------
   // Default view: quick-edit at top, read-only details below
   // -------------------------------------------------------------------------
-  const inputCls = "w-full border border-gray-200 dark:border-gray-600 rounded px-2.5 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber dark:bg-surface-dark dark:text-gray-200";
-
   const landSF = (deal.acreage || 0) * 43560;
   const plf = landSF > 0 ? (deal.asking_price || 0) / landSF : 0;
   const far = landSF > 0 ? (deal.sf || 0) / landSF : 0;
@@ -154,65 +152,65 @@ export default function OverviewTab({ deal, onUpdate }: Props) {
   ];
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       {/* QUICK EDIT — always editable, auto-saves */}
       <section>
         <div className="flex items-center justify-between mb-2">
-          <h5 className="text-[10px] uppercase tracking-[0.12em] text-gray-500 dark:text-gray-400 font-semibold">Quick Edit</h5>
+          <h5 className="section-label">Quick Edit</h5>
           <SaveIndicator status={saveStatus} />
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <div className="col-span-2">
-            <label className="text-[11px] text-gray-500 dark:text-gray-400 block mb-1">Stage</label>
-            <select value={stage} onChange={e => onStageChange(e.target.value)} className={inputCls + ' font-medium'}>
+            <label className="field-label">Stage</label>
+            <select value={stage} onChange={e => onStageChange(e.target.value)} className="field font-medium">
               {STAGES.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-[11px] text-gray-500 dark:text-gray-400 block mb-1">DD Expiration</label>
-            <input type="date" value={ddExpiry} onChange={e => onDdExpiryChange(e.target.value)} className={inputCls + ' font-mono'} />
+            <label className="field-label">DD Expiration</label>
+            <input type="date" value={ddExpiry} onChange={e => onDdExpiryChange(e.target.value)} className="field font-mono tabular-nums" />
           </div>
           <div>
-            <label className="text-[11px] text-gray-500 dark:text-gray-400 block mb-1">Closing</label>
-            <input type="date" value={closeDate} onChange={e => onCloseDateChange(e.target.value)} className={inputCls + ' font-mono'} />
+            <label className="field-label">Closing</label>
+            <input type="date" value={closeDate} onChange={e => onCloseDateChange(e.target.value)} className="field font-mono tabular-nums" />
           </div>
         </div>
       </section>
 
       {/* NOTES — auto-saves on debounce/blur */}
       <section>
-        <h5 className="text-[10px] uppercase tracking-[0.12em] text-gray-500 dark:text-gray-400 font-semibold mb-2">Notes</h5>
+        <h5 className="section-label mb-2">Notes</h5>
         <textarea
           value={notes}
           onChange={e => onNotesChange(e.target.value)}
           onBlur={onNotesBlur}
           rows={5}
           placeholder="Add notes about this deal…"
-          className={inputCls + ' leading-relaxed'}
+          className="field leading-relaxed"
         />
       </section>
 
       {/* DETAILS — read-only with one Edit All button */}
       <section>
         <div className="flex items-center justify-between mb-2">
-          <h5 className="text-[10px] uppercase tracking-[0.12em] text-gray-500 dark:text-gray-400 font-semibold">Details</h5>
-          <button onClick={() => setEditingAll(true)} className="text-xs text-amber hover:text-amber-dark font-medium">
+          <h5 className="section-label">Details</h5>
+          <button onClick={() => setEditingAll(true)} className="btn-ghost -mr-2">
             Edit all fields
           </button>
         </div>
-        <div className="space-y-4">
+        <div className="card divide-y divide-slate-100 dark:divide-slate-800">
           {detailGroups.map(g => (
-            <div key={g.label}>
-              <h6 className="text-[9px] uppercase tracking-[0.1em] text-gray-400 dark:text-gray-500 font-semibold mb-1">{g.label}</h6>
-              <div className="space-y-1">
+            <div key={g.label} className="px-3 py-2.5">
+              <h6 className="text-[10px] uppercase tracking-[0.1em] font-semibold text-slate-400 dark:text-slate-500 mb-1.5">{g.label}</h6>
+              <dl className="space-y-1">
                 {g.items.map(f => (
-                  <div key={f.label} className="flex justify-between">
-                    <span className="text-xs text-gray-500 dark:text-gray-400">{f.label}</span>
-                    <span className={`text-xs text-gray-900 dark:text-gray-100 ${f.mono ? 'font-mono tabular-nums' : ''}`}>{f.value}</span>
+                  <div key={f.label} className="flex items-baseline justify-between gap-3">
+                    <dt className="text-xs text-slate-500 dark:text-slate-400">{f.label}</dt>
+                    <dd className={`text-[13px] text-right text-slate-800 dark:text-slate-100 ${f.mono ? 'font-mono tabular-nums' : ''}`}>{f.value}</dd>
                   </div>
                 ))}
-              </div>
+              </dl>
             </div>
           ))}
         </div>
@@ -224,7 +222,7 @@ export default function OverviewTab({ deal, onUpdate }: Props) {
 function SaveIndicator({ status }: { status: SaveStatus }) {
   if (status === 'idle') return null;
   return (
-    <span className={`text-[10px] flex items-center gap-1 ${status === 'saved' ? 'text-green-600 dark:text-green-400' : 'text-gray-400 dark:text-gray-500'}`}>
+    <span className={`text-[10px] flex items-center gap-1 ${status === 'saved' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-500'}`}>
       {status === 'saving' ? (
         <>
           <svg className="w-3 h-3 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -261,8 +259,6 @@ function BulkEditForm({ form, setForm, onSave, onCancel }: {
   onSave: () => void;
   onCancel: () => void;
 }) {
-  const inputCls = "w-full border border-gray-200 dark:border-gray-600 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-amber dark:bg-surface-dark dark:text-gray-200";
-
   const groups: { label: string; fields: { key: keyof BulkForm; label: string; type?: string; step?: string; colSpan?: 1 | 2 }[] }[] = [
     { label: 'Property', fields: [
       { key: 'name', label: 'Name', colSpan: 2 },
@@ -296,32 +292,32 @@ function BulkEditForm({ form, setForm, onSave, onCancel }: {
   ];
 
   return (
-    <div className="space-y-5">
-      <p className="text-xs text-gray-500 dark:text-gray-400">
+    <div className="space-y-6">
+      <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
         Editing all fields. Quick fields (stage, dates, notes) auto-save on the main view — use this for the less-common ones.
       </p>
       {groups.map(group => (
-        <div key={group.label}>
-          <h5 className="text-[10px] uppercase tracking-[0.12em] text-gray-400 dark:text-gray-500 font-semibold mb-2">{group.label}</h5>
-          <div className="grid grid-cols-2 gap-2">
+        <section key={group.label}>
+          <h5 className="section-label mb-2">{group.label}</h5>
+          <div className="grid grid-cols-2 gap-3">
             {group.fields.map(({ key, label, type, step, colSpan }) => (
               <div key={key as string} className={colSpan === 2 ? 'col-span-2' : ''}>
-                <label className="text-[11px] text-gray-500 dark:text-gray-400 block mb-0.5">{label}</label>
+                <label className="field-label">{label}</label>
                 <input
                   type={type || 'text'}
                   step={step}
                   value={(form as unknown as Record<string, unknown>)[key as string] as string | number ?? ''}
                   onChange={e => setForm({ ...form, [key]: type === 'number' ? parseFloat(e.target.value) || 0 : e.target.value })}
-                  className={inputCls}
+                  className={`field ${type === 'number' ? 'font-mono tabular-nums' : ''}`}
                 />
               </div>
             ))}
           </div>
-        </div>
+        </section>
       ))}
-      <div className="flex gap-2 pt-2 sticky bottom-0 bg-white dark:bg-surface pb-2">
-        <button onClick={onSave} className="px-3 py-1.5 bg-amber text-white rounded text-sm hover:bg-amber-dark">Save</button>
-        <button onClick={onCancel} className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded text-sm hover:bg-gray-200 dark:hover:bg-gray-600">Cancel</button>
+      <div className="sticky bottom-0 flex justify-end gap-2 py-3 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+        <button onClick={onCancel} className="btn-secondary">Cancel</button>
+        <button onClick={onSave} className="btn-primary">Save</button>
       </div>
     </div>
   );

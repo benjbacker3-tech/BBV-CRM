@@ -160,9 +160,9 @@ export default function PropertiesPage() {
 
   if (deals === null) {
     return (
-      <div className="p-8">
-        <div className="skeleton h-7 w-40 mb-5" />
-        <div className="skeleton h-96 w-full" />
+      <div className="page">
+        <div className="skeleton h-7 w-40 mb-6" />
+        <div className="skeleton h-96 w-full rounded-xl" />
       </div>
     );
   }
@@ -181,9 +181,9 @@ export default function PropertiesPage() {
     <>
       {/* Upload status toast */}
       {uploadStatus && (
-        <div className={`fixed top-16 right-6 z-[80] px-4 py-3 rounded-lg shadow-lg border text-sm max-w-md animate-fade-in ${
+        <div className={`fixed top-16 right-6 z-[80] px-4 py-3 rounded-xl shadow-lg border text-xs max-w-md animate-fade-in ${
           uploadStatus.kind === 'ok'
-            ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/30 dark:border-green-800 dark:text-green-300'
+            ? 'bg-emerald-50 border-emerald-200 text-emerald-800 dark:bg-emerald-900/30 dark:border-emerald-800 dark:text-emerald-300'
             : 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-300'
         }`}>
           <div className="flex items-start gap-2">
@@ -197,8 +197,8 @@ export default function PropertiesPage() {
       {/* Drag-and-drop overlay */}
       {isDragging && (
         <div className="fixed inset-0 z-[90] bg-navy/80 backdrop-blur-sm flex items-center justify-center pointer-events-none">
-          <div className="border-2 border-dashed border-amber rounded-xl px-12 py-10 text-center bg-white/5">
-            <svg className="w-12 h-12 mx-auto mb-3 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="border-2 border-dashed border-white/40 rounded-xl px-12 py-10 text-center bg-white/5 max-w-lg">
+            <svg className="w-12 h-12 mx-auto mb-3 text-white/80"fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
             <p className="text-lg font-semibold text-white mb-1">Drop Excel model</p>
@@ -207,28 +207,23 @@ export default function PropertiesPage() {
         </div>
       )}
 
-      <div className={`px-8 py-8 max-w-[1500px] transition-all ${selectedDeal ? 'mr-[480px]' : ''}`}>
+      <div className={`page transition-all ${selectedDeal ? 'mr-[480px]' : ''}`}>
         {/* Report header */}
-        <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-800">
+        <div className="page-header">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500 mb-1">Sandpiper Capital LLC · Acquisition Pipeline</p>
-            <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100 tracking-tight">Pipeline</h1>
+            <p className="eyebrow">Sandpiper Capital LLC · Acquisition Pipeline</p>
+            <h1 className="page-title">Pipeline</h1>
+            <p className="page-sub">Active deals by stage, with specs, basis and returns from each deal&apos;s latest model.</p>
           </div>
-          <div className="flex items-center gap-2">
-            {importResult && <span className="text-xs text-gray-500 dark:text-gray-400 mr-2">{importResult}</span>}
-            <button
-              onClick={() => setShowNewModal(true)}
-              className="px-3 py-1.5 text-xs text-white bg-amber hover:bg-amber-dark rounded"
-            >
-              + New Property
-            </button>
-            <label className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" title="Upload a deal model (updates returns and fees) or a workbook with a 'Sandpiper Pipeline' tab">
+          <div className="flex flex-wrap items-center justify-end gap-2">
+            {importResult && <span className="text-[11px] text-slate-500 dark:text-slate-400 mr-1 max-w-xs">{importResult}</span>}
+            <label className="btn-secondary cursor-pointer" title="Upload a deal model (updates returns and fees) or a workbook with a 'Sandpiper Pipeline' tab">
               Upload Model
               <input type="file" accept=".xlsx,.xlsm" onChange={onFilePicked} className="hidden" />
             </label>
             <button
               onClick={downloadTemplate}
-              className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800"
+              className="btn-secondary"
               title="Download the Sandpiper Pipeline sync tab template"
             >
               Template
@@ -237,34 +232,40 @@ export default function PropertiesPage() {
               onClick={() => syncModels(false)}
               disabled={importing}
               title="Re-read IRR, EM, basis, equity and sponsor fees from each deal's newest model in OneDrive"
-              className="px-3 py-1.5 text-xs text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50"
+              className="btn-secondary"
             >
               {importing ? 'Syncing models…' : 'Sync models'}
             </button>
             <button
               onClick={exportXlsx}
-              className="px-3 py-1.5 text-xs text-white bg-navy hover:bg-navy-light rounded"
+              className="btn-secondary"
             >
               Export
+            </button>
+            <button
+              onClick={() => setShowNewModal(true)}
+              className="btn-primary"
+            >
+              + New Property
             </button>
           </div>
         </div>
 
         {/* Table — matches the xlsx pipeline tab layout (columns, groupings, section labels, per-cluster subtotals) */}
-        <div className="overflow-x-auto border border-gray-300">
-          <table className="w-full text-[11px] border-collapse">
+        <div className="card overflow-x-auto">
+          <table className="table-clean">
             <thead>
               {/* Row 1 — column group band */}
-              <tr className="bg-navy text-white">
-                <th colSpan={4} className="py-1.5 px-2 text-left text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">Sandpiper Acquisition Pipeline</th>
-                <th colSpan={4} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">Specs</th>
-                <th colSpan={2} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">Basis</th>
-                <th colSpan={2} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">Returns</th>
-                <th colSpan={1} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold border-r border-navy-lighter">All-In</th>
-                <th colSpan={1} className="py-1.5 px-2 text-center text-[9px] uppercase tracking-[0.15em] font-semibold">Equity</th>
+              <tr>
+                <th colSpan={4} className="!pb-1 !border-b-0 !text-slate-400 dark:!text-slate-500">Acquisition Pipeline</th>
+                <th colSpan={4} className="!text-center !pb-1 !border-b-0 border-l border-slate-200 dark:border-slate-700 !text-slate-400 dark:!text-slate-500">Specs</th>
+                <th colSpan={2} className="!text-center !pb-1 !border-b-0 border-l border-slate-200 dark:border-slate-700 !text-slate-400 dark:!text-slate-500">Basis</th>
+                <th colSpan={2} className="!text-center !pb-1 !border-b-0 border-l border-slate-200 dark:border-slate-700 !text-slate-400 dark:!text-slate-500">Returns</th>
+                <th colSpan={1} className="!text-center !pb-1 !border-b-0 border-l border-slate-200 dark:border-slate-700 !text-slate-400 dark:!text-slate-500">All-In</th>
+                <th colSpan={1} className="!text-center !pb-1 !border-b-0 border-l border-slate-200 dark:border-slate-700 !text-slate-400 dark:!text-slate-500">Equity</th>
               </tr>
               {/* Row 2 — column labels */}
-              <tr className="text-gray-700 bg-gray-50 border-b border-gray-400">
+              <tr>
                 <Th align="right">No.</Th>
                 <Th align="left">Address</Th>
                 <Th align="left">City</Th>
@@ -296,10 +297,12 @@ export default function PropertiesPage() {
                   // Section header row
                   if (sectionDeals.length > 0) {
                     rows.push(
-                      <tr key={`hdr-${section.label}`} className="bg-gray-100 border-b border-gray-300">
-                        <td colSpan={14} className="py-1.5 px-2">
-                          <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-navy">{section.label}</span>
-                          <span className="text-[10px] text-gray-500 font-mono ml-2">({sectionDeals.length})</span>
+                      <tr key={`hdr-${section.label}`} className="group-row">
+                        <td colSpan={14}>
+                          <span className="inline-flex items-center gap-2">
+                            {section.label}
+                            <span className="count">{sectionDeals.length}</span>
+                          </span>
                         </td>
                       </tr>
                     );
@@ -311,8 +314,8 @@ export default function PropertiesPage() {
                         <tr
                           key={d.id}
                           onClick={() => setSelectedDeal(d)}
-                          className={`border-b border-gray-200 cursor-pointer ${
-                            selectedDeal?.id === d.id ? 'bg-amber/10' : 'hover:bg-gray-50'
+                          className={`row cursor-pointer ${
+                            selectedDeal?.id === d.id ? 'bg-navy/5 dark:bg-blue-900/20' : ''
                           }`}
                         >
                           <Td align="right" muted>{no}</Td>
@@ -356,8 +359,8 @@ export default function PropertiesPage() {
                 if (rows.length === 0) {
                   rows.push(
                     <tr key="empty">
-                      <td colSpan={14} className="py-16 text-center text-sm text-gray-400 font-sans">
-                        No active deals. Click <span className="font-medium text-gray-600">+ New Property</span> to add one, or upload a workbook containing a <span className="font-medium text-gray-600">Sandpiper Pipeline</span> tab.
+                      <td colSpan={14} className="!py-16 text-center text-[13px] !text-slate-400 dark:!text-slate-500">
+                        No active deals. Click <span className="font-medium text-slate-600 dark:text-slate-300">+ New Property</span> to add one, or upload a workbook containing a <span className="font-medium text-slate-600 dark:text-slate-300">Sandpiper Pipeline</span> tab.
                       </td>
                     </tr>
                   );
@@ -369,7 +372,7 @@ export default function PropertiesPage() {
           </table>
         </div>
 
-        <p className="mt-5 pt-3 border-t border-gray-100 dark:border-gray-800 text-[10px] text-gray-400 dark:text-gray-500 text-right">
+        <p className="mt-4 text-[10px] uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500 text-right">
           Confidential · Prepared {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </p>
       </div>
@@ -423,8 +426,8 @@ function SubtotalRow({ label, deals }: { label: string; deals: EnrichedDeal[] })
 
   return (
     <>
-      <tr className="border-t-2 border-gray-500 bg-gray-50">
-        <td colSpan={4} className="py-1.5 px-2 text-[11px] font-sans font-semibold text-gray-900 text-left">{label}</td>
+      <tr className="total-row">
+        <td colSpan={4} className="whitespace-nowrap">{label}</td>
         <Td align="right" bold mono>{fmtInt(totalSF)}</Td>
         <Td align="right" bold mono>{fmtDec(totalAcres, 2)}</Td>
         <Td align="right" bold mono>{fmtDec(wFar, 2)}</Td>
@@ -436,14 +439,14 @@ function SubtotalRow({ label, deals }: { label: string; deals: EnrichedDeal[] })
         <Td align="right" bold mono>{fmtMoney(totalAllIn)}</Td>
         <Td align="right" bold mono>{fmtMoney(totalEquity)}</Td>
       </tr>
-      <tr><td colSpan={14} className="pt-2 p-0" /></tr>
+      <tr><td colSpan={14} className="!p-0 h-3 !border-b-0 !bg-transparent" /></tr>
     </>
   );
 }
 
 function Th({ children, align = 'right' }: { children: React.ReactNode; align?: 'left' | 'right' }) {
   return (
-    <th className={`py-1.5 px-2 text-[10px] font-semibold uppercase tracking-[0.08em] ${align === 'left' ? 'text-left' : 'text-right'}`}>
+    <th className={align === 'right' ? '!text-right' : undefined}>
       {children}
     </th>
   );
@@ -458,14 +461,15 @@ function Td({ children, align = 'right', font, bold, muted, mono }: {
   mono?: boolean;
 }) {
   const textClass = bold
-    ? 'text-gray-900 dark:text-gray-100 font-semibold'
+    ? '!text-slate-900 dark:!text-slate-100 font-semibold'
     : muted
-      ? 'text-gray-500 dark:text-gray-500'
-      : 'text-gray-800 dark:text-gray-200';
+      ? '!text-slate-400 dark:!text-slate-500'
+      : '';
   const useMono = mono || font !== 'sans';
-  const fontClass = useMono ? 'font-mono tabular-nums' : 'font-sans';
+  const alignClass = useMono && align === 'right' ? 'num' : align === 'left' ? 'text-left' : 'text-right';
+  const fontClass = useMono ? 'font-mono tabular-nums' : '';
   return (
-    <td className={`py-1.5 px-2 text-[11px] whitespace-nowrap ${align === 'left' ? 'text-left' : 'text-right'} ${fontClass} ${textClass}`}>
+    <td className={`whitespace-nowrap ${alignClass} ${fontClass} ${textClass}`}>
       {children}
     </td>
   );
@@ -559,18 +563,18 @@ function NewPropertyModal({ onClose, onCreated }: { onClose: () => void; onCreat
 
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center" onClick={onClose}>
-      <div className="fixed inset-0 bg-black/40 dark:bg-black/60" />
+      <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-[1px]" />
       <div
-        className="relative bg-white dark:bg-surface rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-2xl max-h-[90vh] overflow-auto"
+        className="card relative shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-auto"
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between sticky top-0 bg-white dark:bg-surface z-10">
+        <div className="card-header !px-6 !py-4 sticky top-0 bg-white dark:bg-slate-900 z-10">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500">Acquisition Pipeline</p>
-            <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">New Property</h2>
+            <p className="eyebrow">Acquisition Pipeline</p>
+            <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">New Property</h2>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1">
+          <button onClick={onClose} className="btn-ghost !p-1.5 text-slate-400">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -647,11 +651,11 @@ function NewPropertyModal({ onClose, onCreated }: { onClose: () => void; onCreat
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-end gap-2 sticky bottom-0 bg-white dark:bg-surface">
-          <button onClick={onClose} className="px-4 py-1.5 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+        <div className="px-6 py-3.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-2 sticky bottom-0 bg-white dark:bg-slate-900">
+          <button onClick={onClose} className="btn-secondary">
             Cancel
           </button>
-          <button onClick={submit} disabled={saving || !form.address.trim()} className="px-4 py-1.5 text-sm text-white bg-amber hover:bg-amber-dark rounded disabled:opacity-50">
+          <button onClick={submit} disabled={saving || !form.address.trim()} className="btn-primary">
             {saving ? 'Saving…' : 'Create Property'}
           </button>
         </div>
@@ -660,12 +664,12 @@ function NewPropertyModal({ onClose, onCreated }: { onClose: () => void; onCreat
   );
 }
 
-const inputCls = "w-full border border-gray-200 dark:border-gray-600 rounded px-2.5 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber dark:bg-surface-dark dark:text-gray-200";
+const inputCls = "field";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="text-[10px] uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400 font-semibold mb-2 pb-1 border-b border-gray-100 dark:border-gray-700">{title}</h3>
+      <h3 className="section-label mb-3 pb-1.5 border-b border-slate-100 dark:border-slate-800">{title}</h3>
       <div className="grid grid-cols-3 gap-3">{children}</div>
     </div>
   );
@@ -675,7 +679,7 @@ function Field({ label, children, colSpan = 1 }: { label: string; children: Reac
   const colSpanClass = colSpan === 3 ? 'col-span-3' : colSpan === 2 ? 'col-span-2' : 'col-span-1';
   return (
     <div className={colSpanClass}>
-      <label className="text-[11px] text-gray-500 dark:text-gray-400 block mb-1">{label}</label>
+      <label className="field-label">{label}</label>
       {children}
     </div>
   );

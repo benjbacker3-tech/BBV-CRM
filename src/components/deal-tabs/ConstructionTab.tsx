@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Deal, daysUntil, ddChipColor } from '@/lib/utils';
+import { Deal, daysUntil, ddPill, shortDate } from '@/lib/utils';
 import { CM_SECTIONS, DdItem } from '@/lib/dd-template';
 import { ChecklistSection, Progress } from './DiligenceTab';
 
@@ -18,7 +18,7 @@ export default function ConstructionTab({ deal }: { deal: Deal }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { load(); }, [deal.id]);
 
-  if (items === null) return <p className="text-xs text-gray-400 py-8 text-center">Loading…</p>;
+  if (items === null) return <p className="text-xs text-slate-400 py-8 text-center">Loading…</p>;
 
   if (!items.length) {
     const start = async () => {
@@ -26,9 +26,9 @@ export default function ConstructionTab({ deal }: { deal: Deal }) {
       load();
     };
     return (
-      <div className="text-center py-8 space-y-3">
-        <p className="text-sm text-gray-400 dark:text-gray-500">No construction checklist for this deal yet.</p>
-        <button onClick={start} className="px-3 py-1.5 text-xs bg-navy text-white rounded hover:bg-navy/90">Start construction checklist</button>
+      <div className="card text-center py-8 px-6 space-y-3">
+        <p className="text-sm text-slate-500 dark:text-slate-400">No construction checklist for this deal yet.</p>
+        <button onClick={start} className="btn-primary">Start construction checklist</button>
       </div>
     );
   }
@@ -46,22 +46,25 @@ export default function ConstructionTab({ deal }: { deal: Deal }) {
 
   return (
     <div>
-      <div className="mb-4">
+      <div className="card p-3.5 mb-4">
         <Progress label="Construction checklist" done={done} total={live.length} pct={live.length ? Math.round((done / live.length) * 100) : 0} />
       </div>
 
       {upcoming.length > 0 && (
-        <div className="mb-5 border border-gray-100 dark:border-gray-700 rounded-lg p-2.5">
-          <p className="text-[10px] uppercase tracking-[0.12em] font-semibold text-gray-500 mb-1.5">Due in the next {UPCOMING_DAYS} days</p>
-          <ul className="space-y-1">
+        <div className="card mb-5 overflow-hidden">
+          <div className="card-header !py-2.5">
+            <p className="section-label">Due in the next {UPCOMING_DAYS} days</p>
+            <span className="count">{upcoming.length}</span>
+          </div>
+          <ul className="divide-y divide-slate-100 dark:divide-slate-800">
             {upcoming.map(i => {
               const d = daysUntil(i.due_date);
               return (
-                <li key={i.id} className="flex items-start gap-2 text-[11px]">
-                  <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium shrink-0 ${ddChipColor(d)}`}>
-                    {d != null && d < 0 ? `${-d}d late` : i.due_date}
+                <li key={i.id} className="flex items-start gap-3 px-3 py-2 text-[12px]">
+                  <span className={`${d != null && d < 0 ? 'pill pill-red' : ddPill(d)} shrink-0 w-16 justify-center font-mono`}>
+                    {d != null && d < 0 ? `${-d}d late` : shortDate(i.due_date)}
                   </span>
-                  <span className="text-gray-700 dark:text-gray-300">{i.label}</span>
+                  <span className="text-slate-700 dark:text-slate-300 leading-snug">{i.label}</span>
                 </li>
               );
             })}

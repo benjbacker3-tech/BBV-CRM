@@ -45,11 +45,11 @@ function ModalWrapper({ title, onClose, children }: { title: string; onClose: ()
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center" onClick={onClose}>
       <div className="fixed inset-0 bg-black/40 dark:bg-black/60" />
-      <div className="relative bg-white dark:bg-surface rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-md p-5 animate-fade-in"
+      <div className="relative bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full max-w-md p-5 animate-fade-in"
         onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{title}</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
         </div>
@@ -64,9 +64,9 @@ function InputField({ label, value, onChange, type, placeholder, autoFocus }: {
 }) {
   return (
     <div>
-      <label className="text-xs text-gray-500 dark:text-gray-400 block mb-1">{label}</label>
+      <label className="text-xs text-slate-500 dark:text-slate-400 block mb-1">{label}</label>
       <input type={type || 'text'} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} autoFocus={autoFocus}
-        className="w-full border border-gray-200 dark:border-gray-600 dark:bg-surface-dark rounded px-2.5 py-1.5 text-sm dark:text-gray-200 focus:outline-none focus:ring-1 focus:ring-navy" />
+        className="w-full border border-slate-200 dark:border-slate-600 dark:bg-slate-900 rounded px-2.5 py-1.5 text-sm dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-navy" />
     </div>
   );
 }

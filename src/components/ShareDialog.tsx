@@ -64,48 +64,48 @@ export default function ShareDialog({ target, dealId, onClose, onCreated }: { ta
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-        <div className="px-5 py-3 border-b border-gray-200 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-[1px] flex items-center justify-center p-4" onClick={onClose}>
+      <div className="card shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+        <div className="card-header">
           <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.12em] text-gray-400">Share {target.isFolder ? 'folder' : 'file'}</p>
-            <h2 className="text-sm font-medium text-gray-900 truncate" title={target.name}>{target.name}</h2>
+            <p className="eyebrow !mb-0.5">Share {target.isFolder ? 'folder' : 'file'}</p>
+            <h2 className="card-title truncate" title={target.name}>{target.name}</h2>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-700 text-lg leading-none px-1">×</button>
+          <button onClick={onClose} className="btn-ghost !px-2 text-lg leading-none text-slate-400" aria-label="Close">×</button>
         </div>
 
         {link ? (
-          <div className="p-5 space-y-3">
-            <p className="text-xs text-gray-700">Link for <span className="font-medium">{recipient}</span>:</p>
+          <div className="card-body space-y-3">
+            <p className="text-xs text-slate-700 dark:text-slate-300">Link for <span className="font-medium text-slate-900 dark:text-slate-100">{recipient}</span>:</p>
             <div className="flex gap-2">
-              <input readOnly value={link} onFocus={e => e.target.select()} className="flex-1 border border-gray-300 rounded px-2 py-1.5 text-xs font-mono text-gray-800 bg-gray-50" />
-              <button onClick={copy} className="px-3 py-1.5 text-xs text-white bg-navy rounded hover:bg-navy-light">{copied ? 'Copied' : 'Copy'}</button>
+              <input readOnly value={link} onFocus={e => e.target.select()} className="field flex-1 min-w-0 font-mono !bg-slate-50 dark:!bg-slate-800" />
+              <button onClick={copy} className="btn-primary shrink-0">{copied ? 'Copied' : 'Copy'}</button>
             </div>
             {password && (
-              <p className="text-xs text-gray-700 bg-amber-50 border border-amber-200 rounded px-3 py-2">
+              <p className="text-xs leading-relaxed text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg px-3 py-2">
                 Password: <span className="font-mono font-semibold select-all">{password}</span>. It isn&apos;t shown again, so send it now, separately from the link (text or call).
               </p>
             )}
             <div className="flex items-center justify-between pt-1">
-              <a href={mailto()} className="text-xs text-navy font-medium hover:underline">Email the link from Outlook</a>
-              <button onClick={onClose} className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Done</button>
+              <a href={mailto()} className="text-xs text-navy dark:text-blue-300 font-medium hover:underline">Email the link from Outlook</a>
+              <button onClick={onClose} className="btn-secondary">Done</button>
             </div>
           </div>
         ) : (
-          <form onSubmit={create} className="p-5 space-y-4">
+          <form onSubmit={create} className="card-body space-y-4">
             <div>
-              <label className="block text-[10px] uppercase tracking-wide text-gray-500 mb-1">Who is it for</label>
-              <input required autoFocus value={recipient} onChange={e => setRecipient(e.target.value)} placeholder="e.g. AEI Consultants (Phase I)" className="w-full border border-gray-300 rounded px-2.5 py-1.5 text-sm text-gray-900" />
-              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Their email (optional)" className="w-full border border-gray-300 rounded px-2.5 py-1.5 text-sm text-gray-900 mt-2" />
+              <label className="field-label">Who is it for</label>
+              <input required autoFocus value={recipient} onChange={e => setRecipient(e.target.value)} placeholder="e.g. AEI Consultants (Phase I)" className="field" />
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Their email (optional)" className="field mt-2" />
             </div>
 
             <div>
-              <label className="block text-[10px] uppercase tracking-wide text-gray-500 mb-1">Access</label>
-              <div className="space-y-1.5">
+              <label className="field-label">Access</label>
+              <div className="space-y-1">
                 {MODES.filter(m => target.isFolder || m.value === 'view').map(m => (
-                  <label key={m.value} className="flex items-start gap-2 cursor-pointer">
-                    <input type="radio" name="mode" checked={mode === m.value} onChange={() => setMode(m.value)} className="mt-0.5" />
-                    <span className="text-xs"><span className="text-gray-900 font-medium">{m.label}</span> <span className="text-gray-500">{m.hint}</span></span>
+                  <label key={m.value} className={`flex items-start gap-2 cursor-pointer rounded-lg border px-2.5 py-2 transition-colors ${mode === m.value ? 'border-navy/40 bg-navy/5 dark:border-blue-800 dark:bg-blue-900/20' : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/60'}`}>
+                    <input type="radio" name="mode" checked={mode === m.value} onChange={() => setMode(m.value)} className="mt-0.5 accent-navy" />
+                    <span className="text-xs leading-snug"><span className="block text-slate-900 dark:text-slate-100 font-medium">{m.label}</span> <span className="text-slate-500 dark:text-slate-400">{m.hint}</span></span>
                   </label>
                 ))}
               </div>
@@ -113,30 +113,30 @@ export default function ShareDialog({ target, dealId, onClose, onCreated }: { ta
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[10px] uppercase tracking-wide text-gray-500 mb-1">Expires after</label>
-                <select value={days} onChange={e => setDays(Number(e.target.value))} className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm text-gray-900 bg-white">
+                <label className="field-label">Expires after</label>
+                <select value={days} onChange={e => setDays(Number(e.target.value))} className="field">
                   {EXPIRY.map(x => <option key={x.days} value={x.days}>{x.label}</option>)}
                 </select>
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-wide text-gray-500 mb-1">Password (optional)</label>
+                <label className="field-label">Password (optional)</label>
                 <div className="flex gap-1">
-                  <input value={password} onChange={e => setPassword(e.target.value)} placeholder="None" className="flex-1 min-w-0 border border-gray-300 rounded px-2 py-1.5 text-sm font-mono text-gray-900" />
-                  <button type="button" onClick={() => setPassword(genPassword())} className="px-2 text-[11px] text-navy border border-gray-300 rounded hover:bg-gray-50">New</button>
+                  <input value={password} onChange={e => setPassword(e.target.value)} placeholder="None" className="field flex-1 min-w-0 font-mono" />
+                  <button type="button" onClick={() => setPassword(genPassword())} className="btn-secondary !px-2 shrink-0">New</button>
                 </div>
               </div>
             </div>
 
-            <label className="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
-              <input type="checkbox" checked={notify} onChange={e => setNotify(e.target.checked)} />
+            <label className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
+              <input type="checkbox" checked={notify} onChange={e => setNotify(e.target.checked)} className="accent-navy" />
               Email me when they open it or upload files
             </label>
 
-            {error && <p className="text-xs text-red-700 bg-red-50 border border-red-200 rounded px-3 py-2">{error}</p>}
+            {error && <p className="text-xs text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2">{error}</p>}
 
-            <div className="flex justify-end gap-2 pt-1">
-              <button type="button" onClick={onClose} className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Cancel</button>
-              <button disabled={busy} className="px-4 py-1.5 text-xs text-white bg-navy rounded hover:bg-navy-light disabled:opacity-50">{busy ? 'Creating…' : 'Create link'}</button>
+            <div className="flex justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
+              <button type="button" onClick={onClose} className="btn-secondary">Cancel</button>
+              <button disabled={busy} className="btn-primary">{busy ? 'Creating…' : 'Create link'}</button>
             </div>
           </form>
         )}

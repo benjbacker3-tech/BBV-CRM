@@ -21,11 +21,11 @@ export default function AssetsPage() {
   const proRataAcres = closed.reduce((s, d) => s + proRataOf(d, d.acreage), 0);
 
   return (
-    <div className="p-8 max-w-[1400px]">
-      <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200">
+    <div className="page">
+      <div className="page-header">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 mb-1">Sandpiper Capital LLC · Owned Portfolio</p>
-          <h1 className="text-xl font-medium text-gray-900 tracking-tight">Assets</h1>
+          <p className="eyebrow">Sandpiper Capital LLC · Owned Portfolio</p>
+          <h1 className="page-title">Assets</h1>
         </div>
       </div>
 
@@ -37,29 +37,29 @@ export default function AssetsPage() {
           { label: 'Total Acres (pro rata)', value: `${fmtNum(proRataAcres, 1)} ac` },
           { label: 'Under Contract', value: `${underContract.length}` },
         ].map(c => (
-          <div key={c.label} className="bg-white rounded-lg border border-gray-200 p-4">
-            <p className="text-xs text-gray-500 mb-1">{c.label}</p>
-            <p className="text-lg font-mono font-semibold text-gray-900">{c.value}</p>
+          <div key={c.label} className="stat">
+            <p className="stat-label">{c.label}</p>
+            <p className="stat-value">{c.value}</p>
           </div>
         ))}
       </div>
 
       {/* Owned Assets */}
-      <h2 className="text-[10px] uppercase tracking-[0.15em] font-semibold text-gray-500 mb-2">Owned Assets ({closed.length})</h2>
-      <div className="space-y-3 mb-8">
+      <h2 className="section-label mb-2">Owned Assets <span className="count">{closed.length}</span></h2>
+      <div className="space-y-3 mb-6">
         {closed.map(d => (
           <AssetCard key={d.id} deal={d} />
         ))}
-        {closed.length === 0 && <p className="text-sm text-gray-400">No closed assets yet.</p>}
+        {closed.length === 0 && <p className="text-xs italic text-slate-400">No closed assets yet.</p>}
       </div>
 
       {/* Under Contract */}
-      <h2 className="text-[10px] uppercase tracking-[0.15em] font-semibold text-gray-500 mb-2">Under Contract ({underContract.length})</h2>
+      <h2 className="section-label mb-2">Under Contract <span className="count">{underContract.length}</span></h2>
       <div className="space-y-3">
         {underContract.map(d => (
           <AssetCard key={d.id} deal={d} underContract />
         ))}
-        {underContract.length === 0 && <p className="text-sm text-gray-400">No deals under contract.</p>}
+        {underContract.length === 0 && <p className="text-xs italic text-slate-400">No deals under contract.</p>}
       </div>
     </div>
   );
@@ -70,27 +70,23 @@ function AssetCard({ deal: d, underContract }: { deal: Deal; underContract?: boo
   const proRataPrice = d.asking_price * (ownership / 100);
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4">
-      <div className="flex items-center justify-between mb-2">
+    <div className="card card-body">
+      <div className="flex items-center justify-between gap-3 mb-3">
         <div className="flex items-baseline gap-2">
-          <h3 className="text-sm font-semibold text-gray-900">{d.address}</h3>
-          <span className="text-xs text-gray-500">{d.city}{d.city && d.market ? ', ' : ''}{d.market}</span>
+          <h3 className="text-[13px] font-semibold text-slate-900 dark:text-slate-100">{d.address}</h3>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400">{d.city}{d.city && d.market ? ', ' : ''}{d.market}</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           {ownership < 100 && (
-            <span className="text-[11px] bg-navy/10 text-navy px-2 py-0.5 rounded-full font-medium tabular-nums">
-              {ownership}% owned
-            </span>
+            <span className="pill pill-navy font-mono tabular-nums">{ownership}% owned</span>
           )}
-          <span className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${
-            underContract ? 'bg-slate-100 text-slate-700' : 'bg-emerald-50 text-emerald-700'
-          }`}>
+          <span className={underContract ? 'pill pill-navy' : 'pill pill-green'}>
             {underContract ? 'Under Contract' : 'Closed'}
           </span>
         </div>
       </div>
-      {d.notes && <p className="text-xs text-gray-500 mb-3">{d.notes}</p>}
-      <div className="grid grid-cols-5 gap-4">
+      {d.notes && <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">{d.notes}</p>}
+      <div className="grid grid-cols-5 gap-4 pt-3 border-t border-slate-100 dark:border-slate-800">
         <Stat label="Building SF" value={d.sf ? fmtNum(d.sf, 0) : '—'} />
         <Stat label="Acres" value={d.acreage ? fmtNum(d.acreage, 2) : '—'} />
         <Stat label="Price (100%)" value={d.asking_price ? fmt(d.asking_price) : '—'} />
@@ -106,8 +102,8 @@ function AssetCard({ deal: d, underContract }: { deal: Deal; underContract?: boo
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-0.5">{label}</p>
-      <p className="text-sm font-mono text-gray-900">{value}</p>
+      <p className="field-label">{label}</p>
+      <p className="text-[13px] font-mono tabular-nums text-slate-800 dark:text-slate-200">{value}</p>
     </div>
   );
 }

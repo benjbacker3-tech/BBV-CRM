@@ -27,38 +27,51 @@ export default function CapitalPage() {
   };
 
   return (
-    <div className="p-8 max-w-[1400px]">
-      <div className="flex items-end justify-between mb-6 pb-4 border-b border-gray-200">
+    <div className="page">
+      <div className="page-header">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 mb-1">Sandpiper Capital LLC · Capital Stack</p>
-          <h1 className="text-xl font-medium text-gray-900 tracking-tight">Capital Sources</h1>
+          <p className="eyebrow">Sandpiper Capital LLC · Capital Stack</p>
+          <h1 className="page-title">Capital Sources</h1>
         </div>
         <button
           onClick={seed}
           disabled={seeding}
-          className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50"
+          className="btn-secondary"
           title="Reset capital_sources from the seed data (CentrePoint, Oakwood, BFO)"
         >
           {seeding ? 'Loading…' : 'Reload from term sheets'}
         </button>
       </div>
 
-      {loading && <p className="text-sm text-gray-500">Loading…</p>}
+      {loading && <p className="text-xs text-slate-500">Loading…</p>}
 
       {!loading && sources.length === 0 && (
-        <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
-          <p className="text-sm text-gray-600 mb-3">No capital sources loaded yet.</p>
-          <button onClick={seed} className="px-4 py-2 bg-navy text-white text-sm rounded hover:bg-navy-light">
+        <div className="card p-8 text-center">
+          <p className="text-[13px] text-slate-600 dark:text-slate-400 mb-3">No capital sources loaded yet.</p>
+          <button onClick={seed} className="btn-primary">
             Load CentrePoint, Oakwood & BFO from term sheets
           </button>
         </div>
       )}
 
-      <div className="space-y-4">
+      {!loading && sources.length > 0 && (
+        <h2 className="section-label mb-2">Sources <span className="count">{sources.length}</span></h2>
+      )}
+      <div className="space-y-3">
         {sources.map(s => <SourceCard key={s.id} source={s} />)}
       </div>
     </div>
   );
+}
+
+// Status chip color: Signed green, Draft LOI amber, Verbal blue.
+function statusPill(status: string): string {
+  const v = status.toLowerCase();
+  if (v.includes('signed') || v.includes('active') || v.includes('closed')) return 'pill pill-green';
+  if (v.includes('loi') || v.includes('draft') || v.includes('pending')) return 'pill pill-amber';
+  if (v.includes('verbal')) return 'pill pill-blue';
+  if (v.includes('dead') || v.includes('pass') || v.includes('declin')) return 'pill pill-muted';
+  return 'pill pill-slate';
 }
 
 function SourceCard({ source: s }: { source: CapitalSource }) {
@@ -68,40 +81,45 @@ function SourceCard({ source: s }: { source: CapitalSource }) {
     if (value == null || value === '') return null;
     return (
       <div>
-        <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-0.5">{label}</p>
-        <p className="text-sm text-gray-900">{value}</p>
+        <p className="field-label">{label}</p>
+        <p className="text-[13px] font-mono tabular-nums text-slate-800 dark:text-slate-200">{value}</p>
       </div>
     );
   };
 
+  const section = (label: string, value: string | null, last = false) => {
+    if (!value) return null;
+    return (
+      <section className={last ? '' : 'mb-4'}>
+        <p className="field-label">{label}</p>
+        <p className="text-[13px] text-slate-800 dark:text-slate-200 leading-relaxed">{value}</p>
+      </section>
+    );
+  };
+
   return (
-    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+    <div className="card overflow-hidden">
       {/* Header row */}
       <div
-        className="px-5 py-4 flex items-start justify-between cursor-pointer hover:bg-gray-50 transition-colors"
+        className="px-4 py-3.5 flex items-start justify-between gap-3 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition-colors"
         onClick={() => setExpanded(!expanded)}
       >
         <div className="flex-1">
-          <div className="flex items-baseline gap-3">
-            <h3 className="text-base font-semibold text-navy">{s.short_name || s.name}</h3>
-            {s.kind && <span className="text-[11px] uppercase tracking-wide text-gray-400">{s.kind}</span>}
+          <div className="flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-navy dark:text-blue-300">{s.short_name || s.name}</h3>
+            {s.kind && <span className="pill pill-slate">{s.kind}</span>}
           </div>
           {s.short_name && s.name !== s.short_name && (
-            <p className="text-xs text-gray-500 mt-0.5">{s.name}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{s.name}</p>
           )}
-          <div className="flex items-center gap-4 mt-2 text-xs text-gray-600">
-            {s.status && (
-              <span className="inline-flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-navy" />
-                {s.status}
-              </span>
-            )}
+          <div className="flex items-center gap-2 mt-2 text-xs text-slate-600 dark:text-slate-400">
+            {s.status && <span className={statusPill(s.status)}>{s.status}</span>}
             {s.primary_contact && <span>· {s.primary_contact}</span>}
             {s.geo_focus && <span>· {s.geo_focus.split('.')[0]}</span>}
           </div>
         </div>
         <svg
-          className={`w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5 transition-transform ${expanded ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5 transition-transform ${expanded ? 'rotate-180' : ''}`}
           fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -110,15 +128,10 @@ function SourceCard({ source: s }: { source: CapitalSource }) {
 
       {/* Expanded detail */}
       {expanded && (
-        <div className="px-5 pb-5 pt-1 border-t border-gray-100 bg-gray-50/40">
-          {s.target_size && (
-            <section className="mb-4">
-              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Size / Scope</p>
-              <p className="text-sm text-gray-800 leading-relaxed">{s.target_size}</p>
-            </section>
-          )}
+        <div className="card-body border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+          {section('Size / Scope', s.target_size)}
 
-          <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-3 gap-4 mb-4 p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800">
             {stat('Preferred Return', s.pref_pct != null ? `${s.pref_pct}%` : null)}
             {stat('Leverage Target', s.leverage_target_pct != null ? `${s.leverage_target_pct}% LTC` : null)}
             {stat('Hold Period', s.hold_period)}
@@ -130,40 +143,11 @@ function SourceCard({ source: s }: { source: CapitalSource }) {
             {stat('HQ', s.headquarters)}
           </div>
 
-          {s.promote_summary && (
-            <section className="mb-4">
-              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Waterfall / Promote</p>
-              <p className="text-sm text-gray-800 leading-relaxed">{s.promote_summary}</p>
-            </section>
-          )}
-
-          {s.strategy_fit && (
-            <section className="mb-4">
-              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Strategy Fit</p>
-              <p className="text-sm text-gray-800 leading-relaxed">{s.strategy_fit}</p>
-            </section>
-          )}
-
-          {s.geo_focus && (
-            <section className="mb-4">
-              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Geography</p>
-              <p className="text-sm text-gray-800 leading-relaxed">{s.geo_focus}</p>
-            </section>
-          )}
-
-          {s.exclusivity_notes && (
-            <section className="mb-4">
-              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Exclusivity / Non-compete</p>
-              <p className="text-sm text-gray-800 leading-relaxed">{s.exclusivity_notes}</p>
-            </section>
-          )}
-
-          {s.notes && (
-            <section>
-              <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Notes</p>
-              <p className="text-sm text-gray-800 leading-relaxed">{s.notes}</p>
-            </section>
-          )}
+          {section('Waterfall / Promote', s.promote_summary)}
+          {section('Strategy Fit', s.strategy_fit)}
+          {section('Geography', s.geo_focus)}
+          {section('Exclusivity / Non-compete', s.exclusivity_notes)}
+          {section('Notes', s.notes, true)}
         </div>
       )}
     </div>

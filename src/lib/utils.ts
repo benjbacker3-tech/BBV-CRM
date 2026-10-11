@@ -36,6 +36,22 @@ export function ddChipColor(days: number | null): string {
   return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400';
 }
 
+// Same thresholds as ddChipColor, as a design-system pill (see globals.css).
+export function ddPill(days: number | null): string {
+  if (days == null) return 'pill pill-slate';
+  if (days < 0) return 'pill pill-muted';
+  if (days <= 7) return 'pill pill-red';
+  if (days <= 14) return 'pill pill-amber';
+  return 'pill pill-green';
+}
+
+// "10/31" (adds the year when it isn't this year).
+export function shortDate(iso: string | null | undefined): string {
+  if (!iso) return '—';
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${m}/${d}${y !== new Date().getFullYear() ? `/${String(y).slice(2)}` : ''}`;
+}
+
 export function timeAgo(iso: string | null | undefined): string {
   if (!iso) return 'never';
   const diff = Date.now() - new Date(iso).getTime();

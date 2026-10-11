@@ -36,14 +36,18 @@ function SentLOIs({ dealId }: { dealId: number }) {
   if (!lois.length) return null;
   const num = (n: number | null, d = 0) => (n == null ? '—' : n.toLocaleString('en-US', { maximumFractionDigits: d }));
   return (
-    <div className="mb-6">
-      <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sent LOIs <span className="text-xs text-gray-400">(from Outlook)</span></h4>
-      <div className="overflow-x-auto border border-gray-100 dark:border-gray-700 rounded">
-        <table className="w-full text-xs">
-          <thead className="bg-gray-50 dark:bg-surface-dark text-gray-500 dark:text-gray-400">
+    <section>
+      <h4 className="section-label mb-2">
+        Sent LOIs
+        <span className="count">{lois.length}</span>
+        <span className="pill pill-muted normal-case tracking-normal font-normal">from Outlook</span>
+      </h4>
+      <div className="card overflow-x-auto">
+        <table className="table-clean">
+          <thead>
             <tr>
               {['Sent', 'Price', '$/SF', 'SF', 'Acres', 'Deposit', 'DD / Close', 'To'].map(h => (
-                <th key={h} className="text-left font-medium px-2 py-1.5 whitespace-nowrap">{h}</th>
+                <th key={h} className={['Price', '$/SF', 'SF', 'Acres', 'Deposit'].includes(h) ? '!text-right' : ''}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -51,26 +55,26 @@ function SentLOIs({ dealId }: { dealId: number }) {
             {lois.map((l, i) => (
               <Fragment key={l.id}>
                 <tr onClick={() => setOpen(open === l.id ? null : l.id)}
-                    className={`cursor-pointer border-t border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-surface-dark ${i === 0 ? 'font-medium text-gray-900 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'}`}>
-                  <td className="px-2 py-1.5 whitespace-nowrap">{l.sent_date}</td>
-                  <td className="px-2 py-1.5 font-mono whitespace-nowrap">{fmt(l.price)}</td>
-                  <td className="px-2 py-1.5 font-mono">{l.price && l.sf ? `$${num(l.price / l.sf)}` : '—'}</td>
-                  <td className="px-2 py-1.5 font-mono">{num(l.sf)}</td>
-                  <td className="px-2 py-1.5 font-mono">{num(l.acreage, 2)}</td>
-                  <td className="px-2 py-1.5 font-mono">{fmt(l.deposit)}</td>
-                  <td className="px-2 py-1.5 whitespace-nowrap">{l.dd_days ?? '—'} / {l.close_days ?? '—'}</td>
-                  <td className="px-2 py-1.5 whitespace-nowrap">{[l.to_name, l.to_firm].filter(Boolean).join(', ') || '—'}</td>
+                    className={`row cursor-pointer ${i === 0 ? '[&>td]:font-medium [&>td]:text-slate-900 dark:[&>td]:text-slate-100' : ''}`}>
+                  <td className="whitespace-nowrap font-mono tabular-nums">{l.sent_date}</td>
+                  <td className="num whitespace-nowrap">{fmt(l.price)}</td>
+                  <td className="num">{l.price && l.sf ? `$${num(l.price / l.sf)}` : '—'}</td>
+                  <td className="num">{num(l.sf)}</td>
+                  <td className="num">{num(l.acreage, 2)}</td>
+                  <td className="num">{fmt(l.deposit)}</td>
+                  <td className="whitespace-nowrap font-mono tabular-nums">{l.dd_days ?? '—'} / {l.close_days ?? '—'}</td>
+                  <td className="whitespace-nowrap">{[l.to_name, l.to_firm].filter(Boolean).join(', ') || '—'}</td>
                 </tr>
                 {open === l.id && (
-                  <tr className="bg-gray-50 dark:bg-surface-dark text-gray-600 dark:text-gray-400">
-                    <td colSpan={8} className="px-3 py-2 space-y-1">
-                      {l.version_note && <p><strong>Version:</strong> {l.version_note}</p>}
-                      {l.exclusivity_days != null && <p><strong>Exclusivity:</strong> {l.exclusivity_days} days</p>}
-                      {l.leaseback && <p><strong>Leaseback:</strong> {l.leaseback}</p>}
-                      {l.other_terms && <p><strong>Other terms:</strong> {l.other_terms}</p>}
-                      <p>
+                  <tr>
+                    <td colSpan={8} className="!bg-slate-50 dark:!bg-slate-800/50 space-y-1 leading-relaxed">
+                      {l.version_note && <p><span className="font-medium text-slate-800 dark:text-slate-100">Version:</span> {l.version_note}</p>}
+                      {l.exclusivity_days != null && <p><span className="font-medium text-slate-800 dark:text-slate-100">Exclusivity:</span> {l.exclusivity_days} days</p>}
+                      {l.leaseback && <p><span className="font-medium text-slate-800 dark:text-slate-100">Leaseback:</span> {l.leaseback}</p>}
+                      {l.other_terms && <p><span className="font-medium text-slate-800 dark:text-slate-100">Other terms:</span> {l.other_terms}</p>}
+                      <p className="text-slate-500 dark:text-slate-400">
                         {l.attachment_name}
-                        {l.outlook_link && <> · <a href={l.outlook_link} target="_blank" rel="noreferrer" className="text-amber underline">Open email</a></>}
+                        {l.outlook_link && <> · <a href={l.outlook_link} target="_blank" rel="noreferrer" className="text-navy dark:text-blue-300 font-medium hover:underline">Open email</a></>}
                       </p>
                     </td>
                   </tr>
@@ -80,7 +84,7 @@ function SentLOIs({ dealId }: { dealId: number }) {
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -181,11 +185,12 @@ export default function LOITab({ deal }: Props) {
   };
 
   return (
-    <div>
+    <div className="space-y-6">
       <SentLOIs dealId={deal.id} />
-      <div className="flex justify-between items-center mb-4">
-        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Letter of Intent</h4>
-        <button onClick={exportPDF} className="px-3 py-1.5 bg-amber text-white rounded text-xs hover:bg-amber-dark flex items-center gap-1">
+      <section>
+      <div className="flex justify-between items-center mb-2">
+        <h4 className="section-label">Letter of Intent</h4>
+        <button onClick={exportPDF} className="btn-primary">
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
@@ -193,7 +198,7 @@ export default function LOITab({ deal }: Props) {
         </button>
       </div>
 
-      <div className="space-y-3">
+      <div className="grid grid-cols-2 gap-3">
         {[
           { key: 'date', label: 'Date' },
           { key: 'sellerName', label: 'Seller Contact Name' },
@@ -205,22 +210,23 @@ export default function LOITab({ deal }: Props) {
           { key: 'titleContact', label: 'Title/Escrow Contact' },
           { key: 'ddDays', label: 'DD Period (days)' },
         ].map(({ key, label }) => (
-          <div key={key}>
-            <label className="text-xs text-gray-500 dark:text-gray-400 block mb-1">{label}</label>
+          <div key={key} className={['date', 'propertyDesc'].includes(key) ? 'col-span-2' : ''}>
+            <label className="field-label">{label}</label>
             <input
               type="text"
               value={fields[key as keyof typeof fields]}
               onChange={(e) => setFields({ ...fields, [key]: e.target.value })}
-              className="w-full border border-gray-200 dark:border-gray-600 rounded px-2.5 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber dark:bg-surface-dark dark:text-gray-200"
+              className={`field ${['purchasePrice', 'deposit', 'ddDays'].includes(key) ? 'font-mono tabular-nums' : ''}`}
             />
           </div>
         ))}
       </div>
+      </section>
 
       {/* Preview */}
-      <div className="mt-5 pt-5 border-t border-gray-100 dark:border-gray-700">
-        <h4 className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Preview</h4>
-        <div className="bg-gray-50 dark:bg-surface-dark rounded-lg p-4 text-xs text-gray-700 dark:text-gray-300 space-y-2 leading-relaxed">
+      <section>
+        <h4 className="section-label mb-2">Preview</h4>
+        <div className="card card-body text-xs text-slate-700 dark:text-slate-300 space-y-2 leading-relaxed">
           <p>{fields.date}</p>
           <p>{fields.sellerName}<br />{fields.sellerFirm}</p>
           <p className="font-medium">RE: {deal.address}</p>
@@ -229,9 +235,9 @@ export default function LOITab({ deal }: Props) {
           <p><strong>PURCHASE PRICE:</strong> {fields.purchasePrice} ({fields.financing})</p>
           <p><strong>DEPOSIT:</strong> ${fields.deposit}</p>
           <p><strong>DUE DILIGENCE:</strong> {fields.ddDays} days</p>
-          <p className="italic text-gray-400 dark:text-gray-500">This offer is not legally binding on either party.</p>
+          <p className="italic text-slate-400 dark:text-slate-500">This offer is not legally binding on either party.</p>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

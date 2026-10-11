@@ -12,16 +12,12 @@ export default function DiligenceCmTab({ deal }: { deal: Deal }) {
 
   return (
     <div>
-      <div className="flex border-b border-gray-100 dark:border-gray-700 mb-4 -mt-1">
+      <div className="segmented w-full mb-4">
         {([['dd', 'Diligence'], ['cm', 'Construction']] as const).map(([v, label]) => (
           <button
             key={v}
             onClick={() => setView(v)}
-            className={`px-3 py-1.5 text-xs font-medium border-b-2 -mb-px transition-colors ${
-              view === v
-                ? 'border-navy text-navy dark:border-blue-300 dark:text-blue-300'
-                : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
-            }`}
+            className={`segment flex-1 !py-1.5 ${view === v ? 'segment-active' : ''}`}
           >
             {label}
           </button>

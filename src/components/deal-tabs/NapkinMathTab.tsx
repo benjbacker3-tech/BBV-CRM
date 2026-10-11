@@ -55,27 +55,28 @@ export default function NapkinMathTab({ deal }: { deal: Deal }) {
   ];
 
   return (
-    <div>
-      <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Napkin Math</h4>
-
+    <div className="space-y-6">
       {/* Inputs */}
-      <div className="grid grid-cols-2 gap-2 mb-5">
-        {inputFields.map(({ key, label, step }) => (
-          <div key={key}>
-            <label className="text-[10px] text-gray-500 dark:text-gray-400 block mb-0.5">{label}</label>
-            <input
-              type="number"
-              step={step || '1000'}
-              value={inputs[key as keyof typeof inputs]}
-              onChange={(e) => update(key as keyof typeof inputs, e.target.value)}
-              className="w-full border border-gray-200 dark:border-gray-600 rounded px-2 py-1 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-amber dark:bg-surface-dark dark:text-gray-200"
-            />
-          </div>
-        ))}
-      </div>
+      <section>
+        <h4 className="section-label mb-2">Napkin Math Inputs</h4>
+        <div className="grid grid-cols-2 gap-3">
+          {inputFields.map(({ key, label, step }) => (
+            <div key={key}>
+              <label className="field-label">{label}</label>
+              <input
+                type="number"
+                step={step || '1000'}
+                value={inputs[key as keyof typeof inputs]}
+                onChange={(e) => update(key as keyof typeof inputs, e.target.value)}
+                className="field font-mono tabular-nums"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Results */}
-      <div className="space-y-4">
+      <section className="space-y-4">
         <ResultSection title="Capitalization" items={[
           { label: 'Purchase Price', value: fmt(inputs.purchasePrice) },
           { label: 'CapEx', value: fmt(inputs.capex) },
@@ -98,24 +99,26 @@ export default function NapkinMathTab({ deal }: { deal: Deal }) {
           { label: 'YoC (Equity)', value: fmtPct(calc.yocEquity), bold: true },
           { label: 'Cash-on-Cash', value: fmtPct(calc.cashOnCash), bold: true, highlight: true },
         ]} />
-      </div>
+      </section>
     </div>
   );
 }
 
 function ResultSection({ title, items }: { title: string; items: { label: string; value: string; bold?: boolean; highlight?: boolean }[] }) {
   return (
-    <div className="border border-gray-100 dark:border-gray-700 rounded-lg p-3">
-      <h5 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">{title}</h5>
-      <div className="space-y-1.5">
-        {items.map(item => (
-          <div key={item.label} className={`flex justify-between items-center ${item.bold ? 'pt-1.5 border-t border-gray-100 dark:border-gray-700' : ''}`}>
-            <span className={`text-xs ${item.bold ? 'font-medium text-gray-800 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400'}`}>{item.label}</span>
-            <span className={`font-mono text-xs ${item.highlight ? 'text-amber font-bold' : item.bold ? 'font-semibold text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'}`}>
-              {item.value}
-            </span>
-          </div>
-        ))}
+    <div>
+      <h5 className="section-label mb-2">{title}</h5>
+      <div className="card overflow-hidden">
+        <table className="table-clean">
+          <tbody>
+            {items.map(item => (
+              <tr key={item.label} className={item.bold ? 'total-row' : 'row'}>
+                <td className={item.bold ? '' : 'text-slate-500 dark:text-slate-400'}>{item.label}</td>
+                <td className={`num ${item.highlight ? 'text-navy dark:text-blue-300' : ''}`}>{item.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

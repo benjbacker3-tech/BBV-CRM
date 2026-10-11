@@ -125,17 +125,17 @@ export default function InboxPage() {
 
   return (
     <div className="px-8 py-8 max-w-[1200px]">
-      <div className="flex items-end justify-between mb-5 pb-4 border-b border-gray-200">
+      <div className="flex items-end justify-between mb-5 pb-4 border-b border-slate-200">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 mb-1"><Link href="/documents" className="hover:underline">Documents</Link> · Email</p>
-          <h1 className="text-xl font-medium text-gray-900 tracking-tight">Email attachments</h1>
+          <p className="text-[10px] uppercase tracking-[0.15em] text-slate-400 mb-1"><Link href="/documents" className="hover:underline">Documents</Link> · Email</p>
+          <h1 className="text-xl font-medium text-slate-900 tracking-tight">Email attachments</h1>
         </div>
         {data?.mailAccess && (
           <button onClick={scan} disabled={!!scanning} className="px-4 py-1.5 text-sm text-white bg-navy rounded hover:bg-navy-light disabled:opacity-50">{scanning ? 'Checking…' : 'Check email now'}</button>
         )}
       </div>
 
-      <p className="text-xs text-gray-600 leading-relaxed mb-4 max-w-3xl">
+      <p className="text-xs text-slate-600 leading-relaxed mb-4 max-w-3xl">
         Every morning the CRM reads new email with attachments (received and sent). When an email names a deal that has a folder (by street address, street name, property LLC, or a city with only one active deal),
         its attachments are saved into the right subfolder, unless an identical copy is already somewhere in that deal&apos;s folder. A match only by email thread waits here for you. Company documents go to the company folders: formation and banking papers, engagement letters and NDAs, investor decks,
         broker OMs, market reports and comps, lender quotes, templates. Anything it isn&apos;t sure about waits here. Only active deals get files: attachments for Dead deals, deals still at Tracking or LOI, and properties that aren&apos;t in the CRM are skipped, as are signatures, invites and mail reports.
@@ -149,62 +149,62 @@ export default function InboxPage() {
       )}
 
       {scanning && <p className="text-xs text-navy bg-navy/5 border border-navy/20 rounded px-3 py-2 mb-4">{scanning}</p>}
-      {message && <p className="text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded px-3 py-2 mb-4">{message}</p>}
+      {message && <p className="text-xs text-slate-700 bg-slate-50 border border-slate-200 rounded px-3 py-2 mb-4">{message}</p>}
       {data?.lastRun && !message && (
-        <p className="text-[11px] text-gray-500 mb-4">Last check {when(data.lastRun.at)}: {data.lastRun.filed} filed, {data.lastRun.review} to review, {data.lastRun.skipped} skipped.</p>
+        <p className="text-[11px] text-slate-500 mb-4">Last check {when(data.lastRun.at)}: {data.lastRun.filed} filed, {data.lastRun.review} to review, {data.lastRun.skipped} skipped.</p>
       )}
 
-      <div className="flex items-center gap-1 mb-3 border-b border-gray-200">
+      <div className="flex items-center gap-1 mb-3 border-b border-slate-200">
         {TABS.map(t => (
-          <button key={t.key} onClick={() => setTab(t.key)} className={`px-3 py-1.5 text-xs -mb-px border-b-2 ${tab === t.key ? 'border-navy text-navy font-medium' : 'border-transparent text-gray-500 hover:text-gray-800'}`}>
-            {t.label}{data?.counts[t.key] ? <span className="ml-1 text-[10px] text-gray-400">{data.counts[t.key]}</span> : null}
+          <button key={t.key} onClick={() => setTab(t.key)} className={`px-3 py-1.5 text-xs -mb-px border-b-2 ${tab === t.key ? 'border-navy text-navy font-medium' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>
+            {t.label}{data?.counts[t.key] ? <span className="ml-1 text-[10px] text-slate-400">{data.counts[t.key]}</span> : null}
           </button>
         ))}
-        {tab === 'review' && !!data?.rows.length && <button onClick={dismissAll} className="ml-auto text-[11px] text-gray-500 hover:text-red-600">Dismiss all</button>}
+        {tab === 'review' && !!data?.rows.length && <button onClick={dismissAll} className="ml-auto text-[11px] text-slate-500 hover:text-red-600">Dismiss all</button>}
       </div>
 
       {!data && <div className="skeleton h-40 w-full" />}
-      {data && data.rows.length === 0 && <p className="text-sm text-gray-500 py-6">{tab === 'review' ? 'Nothing to review.' : 'None.'}</p>}
+      {data && data.rows.length === 0 && <p className="text-sm text-slate-500 py-6">{tab === 'review' ? 'Nothing to review.' : 'None.'}</p>}
 
       {data && data.rows.length > 0 && (
-        <div className="border border-gray-300">
+        <div className="border border-slate-300">
           {data.rows.map(r => {
             const c = pick(r);
             return (
-              <div key={r.id} className="px-3 py-2 border-b border-gray-200 text-xs">
+              <div key={r.id} className="px-3 py-2 border-b border-slate-200 text-xs">
                 <div className="flex items-baseline gap-3">
                   {r.drive_web_url ? (
-                    <a href={`/api/email-files/${r.id}`} target="_blank" rel="noreferrer" className="font-medium text-gray-900 hover:text-navy hover:underline truncate">{r.file_name}</a>
-                  ) : <span className="font-medium text-gray-900 truncate">{r.file_name}</span>}
-                  <span className="text-[10px] text-gray-400 font-mono shrink-0">{size(r.size)}</span>
-                  <span className="ml-auto text-[11px] text-gray-400 shrink-0">{when(r.received_at)}</span>
+                    <a href={`/api/email-files/${r.id}`} target="_blank" rel="noreferrer" className="font-medium text-slate-900 hover:text-navy hover:underline truncate">{r.file_name}</a>
+                  ) : <span className="font-medium text-slate-900 truncate">{r.file_name}</span>}
+                  <span className="text-[10px] text-slate-400 font-mono shrink-0">{size(r.size)}</span>
+                  <span className="ml-auto text-[11px] text-slate-400 shrink-0">{when(r.received_at)}</span>
                 </div>
-                <div className="flex items-baseline gap-2 text-[11px] text-gray-500 mt-0.5 min-w-0">
+                <div className="flex items-baseline gap-2 text-[11px] text-slate-500 mt-0.5 min-w-0">
                   <span className="shrink-0">{senderName(r.sender)}</span>
-                  <span className="text-gray-300">·</span>
+                  <span className="text-slate-300">·</span>
                   {r.web_link ? <a href={r.web_link} target="_blank" rel="noreferrer" className="truncate hover:text-navy hover:underline">{r.subject || '(no subject)'}</a> : <span className="truncate">{r.subject}</span>}
                 </div>
                 <div className="text-[11px] mt-0.5">
                   {r.status === 'filed' ? (
-                    <span className="text-emerald-700">Filed to {r.deal_name ? `${r.deal_name} / ${r.folder || 'top level'}` : r.folder}<span className="text-gray-400"> · {r.reason}</span></span>
-                  ) : <span className="text-gray-500">{r.reason}</span>}
+                    <span className="text-emerald-700">Filed to {r.deal_name ? `${r.deal_name} / ${r.folder || 'top level'}` : r.folder}<span className="text-slate-400"> · {r.reason}</span></span>
+                  ) : <span className="text-slate-500">{r.reason}</span>}
                 </div>
 
                 {r.status === 'review' && (
                   <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                    <select value={c.dealId} onChange={e => setChoice(x => ({ ...x, [r.id]: { dealId: e.target.value, folder: e.target.value === 'company' || c.dealId === 'company' ? '' : c.folder } }))} className="border border-gray-300 rounded px-2 py-1 text-xs text-gray-800 bg-white">
+                    <select value={c.dealId} onChange={e => setChoice(x => ({ ...x, [r.id]: { dealId: e.target.value, folder: e.target.value === 'company' || c.dealId === 'company' ? '' : c.folder } }))} className="border border-slate-300 rounded px-2 py-1 text-xs text-slate-800 bg-white">
                       <option value="">Deal or company…</option>
                       <optgroup label="Deals">{data.deals.map(d => <option key={d.id} value={d.id}>{d.label} ({d.stage})</option>)}</optgroup>
                       <option value="company">Company folder (not a deal)</option>
                     </select>
-                    <select value={c.folder} onChange={e => setChoice(x => ({ ...x, [r.id]: { ...c, folder: e.target.value } }))} className="border border-gray-300 rounded px-2 py-1 text-xs text-gray-800 bg-white">
+                    <select value={c.folder} onChange={e => setChoice(x => ({ ...x, [r.id]: { ...c, folder: e.target.value } }))} className="border border-slate-300 rounded px-2 py-1 text-xs text-slate-800 bg-white">
                       <option value="">{c.dealId === 'company' ? 'Folder…' : 'Subfolder…'}</option>
                       {(c.dealId === 'company' ? COMPANY_FOLDERS : SUBFOLDERS).map(f => <option key={f} value={f}>{f}</option>)}
                     </select>
                     <button disabled={!c.dealId || !c.folder || busy === r.id} onClick={() => act(r, { action: 'file', dealId: c.dealId === 'company' ? null : c.dealId, folder: c.folder })} className="px-3 py-1 text-xs text-white bg-navy rounded hover:bg-navy-light disabled:opacity-40">
                       {busy === r.id ? 'Saving…' : 'File'}
                     </button>
-                    <button disabled={busy === r.id} onClick={() => act(r, { action: 'dismiss' })} className="px-2 py-1 text-xs text-gray-600 hover:text-red-600">Dismiss</button>
+                    <button disabled={busy === r.id} onClick={() => act(r, { action: 'dismiss' })} className="px-2 py-1 text-xs text-slate-600 hover:text-red-600">Dismiss</button>
                     {rowError[r.id] && <span className="text-[11px] text-red-600">{rowError[r.id]}</span>}
                   </div>
                 )}

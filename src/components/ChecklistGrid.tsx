@@ -1,17 +1,18 @@
 'use client';
 
 import { DD_STATUSES, DD_STATUS_LABEL, DdItem, DdStatus } from '@/lib/dd-template';
+import { daysUntil, ddPill, shortDate } from '@/lib/utils';
 import { STATUS_STYLE } from '@/components/deal-tabs/DiligenceTab';
 
 // Shared pieces of the cross-deal checklist grids (Diligence / CM page).
-export const colW = 'min-w-[220px] w-[220px]';
+export const colW = 'min-w-[230px] w-[230px]';
 
 export function Section({ title, span, children }: { title: string; span: number; children: React.ReactNode }) {
   return (
     <>
-      <tr className="bg-navy/5 border-b border-gray-200">
-        <td className="sticky left-0 z-10 bg-[#EEF1F5] px-3 py-1.5 text-[10px] uppercase tracking-[0.12em] font-semibold text-navy">{title}</td>
-        <td colSpan={span} className="bg-[#EEF1F5]" />
+      <tr className="border-y border-slate-200 dark:border-slate-700">
+        <td className="sticky left-0 z-10 bg-slate-100 dark:bg-slate-800 px-3 py-2 text-[10px] uppercase tracking-[0.12em] font-semibold text-navy dark:text-blue-300">{title}</td>
+        <td colSpan={span} className="bg-slate-100 dark:bg-slate-800" />
       </tr>
       {children}
     </>
@@ -29,11 +30,11 @@ export function GridCell({ item, editing, onEdit, onSave, showLabel = false }: {
   const text = [item.vendor, item.note].filter(Boolean).join(' · ');
   if (!editing) {
     return (
-      <button onClick={() => onEdit(true)} className={`w-full text-left px-3 py-2 hover:bg-gray-50 ${item.status === 'na' ? 'opacity-50' : ''}`}>
-        {showLabel && <span className="block text-[11px] font-medium text-gray-800 mb-0.5">{item.label}</span>}
-        <span className={`inline-block text-[10px] px-1.5 py-0.5 rounded-full font-medium ${STATUS_STYLE[item.status]}`}>{DD_STATUS_LABEL[item.status]}</span>
-        {item.due_date && <span className="ml-1.5 font-mono text-[10px] text-gray-400">due {item.due_date}</span>}
-        {text && <span className="block mt-0.5 text-[11px] text-gray-600 line-clamp-2 whitespace-pre-line">{text}</span>}
+      <button onClick={() => onEdit(true)} className={`w-full text-left px-3 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors ${item.status === 'na' ? 'opacity-50' : ''}`}>
+        {showLabel && <span className="block text-[12px] font-medium leading-snug text-slate-800 dark:text-slate-200 mb-1">{item.label}</span>}
+        <span className={STATUS_STYLE[item.status]}>{DD_STATUS_LABEL[item.status]}</span>
+        {item.due_date && <span className={`ml-1.5 ${item.status === 'done' ? 'pill pill-muted' : ddPill(daysUntil(item.due_date))}`}>due <span className="font-mono">{shortDate(item.due_date)}</span></span>}
+        {text && <span className="block mt-1 text-[11px] leading-snug text-slate-500 dark:text-slate-400 line-clamp-2 whitespace-pre-line">{text}</span>}
       </button>
     );
   }
@@ -41,15 +42,15 @@ export function GridCell({ item, editing, onEdit, onSave, showLabel = false }: {
     const v = e.target.value.trim() || null;
     if (v !== (item[field] ?? null)) onSave(item.id, { [field]: v });
   };
-  const field = 'text-[11px] border border-gray-200 rounded px-1.5 py-1 w-full focus:outline-none focus:ring-1 focus:ring-navy';
+  const field = 'field !text-[11px]';
   return (
-    <div className="px-2 py-2 space-y-1 bg-gray-50">
+    <div className="px-2.5 py-2.5 space-y-1.5 bg-slate-50 dark:bg-slate-800/50 ring-1 ring-inset ring-navy/20">
       <div className="flex gap-1">
         {DD_STATUSES.map(s => (
           <button
             key={s}
             onClick={() => onSave(item.id, { status: s as DdStatus })}
-            className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${item.status === s ? STATUS_STYLE[s] + ' ring-1 ring-navy/40' : 'text-gray-400 hover:bg-gray-100'}`}
+            className={item.status === s ? STATUS_STYLE[s] : 'pill pill-muted hover:text-slate-600 cursor-pointer'}
           >
             {DD_STATUS_LABEL[s]}
           </button>
@@ -57,7 +58,7 @@ export function GridCell({ item, editing, onEdit, onSave, showLabel = false }: {
       </div>
       <input autoFocus defaultValue={item.vendor ?? ''} onBlur={blur('vendor')} placeholder="Vendor / who" className={field} />
       <textarea defaultValue={item.note ?? ''} onBlur={blur('note')} rows={2} placeholder="Where it stands" className={`${field} resize-y`} />
-      <button onClick={() => onEdit(false)} className="text-[10px] text-navy font-medium">Done</button>
+      <button onClick={() => onEdit(false)} className="btn-primary !py-0.5 !px-2.5 !text-[11px]">Done</button>
     </div>
   );
 }

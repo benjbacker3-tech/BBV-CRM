@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { daysUntil, ddChipColor } from '@/lib/utils';
+import { daysUntil, ddPill, shortDate } from '@/lib/utils';
 import { CM_SECTIONS, CONTRACT_SECTION, DdItem } from '@/lib/dd-template';
 import { Section, GridCell, colW } from './ChecklistGrid';
 
@@ -42,24 +42,27 @@ export default function ConstructionGrid({ deals, items, onSave, onOpenDeal }: {
     .sort((a, b) => (a.due_date || '').localeCompare(b.due_date || ''));
 
   if (!deals.length) {
-    return <p className="text-sm text-gray-400">No construction checklists yet. Start one from a deal&apos;s Diligence / CM tab.</p>;
+    return <p className="card px-6 py-10 text-center text-sm text-slate-500">No construction checklists yet. Start one from a deal&apos;s Diligence / CM tab.</p>;
   }
 
   return (
     <div>
       {upcoming.length > 0 && (
-        <div className="mb-4 bg-white border border-gray-200 rounded-lg px-4 py-3">
-          <p className="text-[10px] uppercase tracking-[0.12em] font-semibold text-gray-500 mb-2">Due in the next {UPCOMING_DAYS} days</p>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-1">
+        <div className="card mb-5 overflow-hidden">
+          <div className="card-header">
+            <p className="section-label">Due in the next {UPCOMING_DAYS} days</p>
+            <span className="count">{upcoming.length}</span>
+          </div>
+          <ul className="grid grid-cols-2">
             {upcoming.map(i => {
               const d = daysUntil(i.due_date);
               return (
-                <li key={i.id} className="flex items-start gap-2 text-[11px]">
-                  <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium shrink-0 font-mono ${ddChipColor(d)}`}>
-                    {d != null && d < 0 ? `${-d}d late` : i.due_date}
+                <li key={i.id} className="flex items-start gap-3 px-4 py-2 text-[12px] border-b border-slate-100 dark:border-slate-800">
+                  <span className={`${d != null && d < 0 ? 'pill pill-red' : ddPill(d)} shrink-0 w-16 justify-center font-mono`}>
+                    {d != null && d < 0 ? `${-d}d late` : shortDate(i.due_date)}
                   </span>
-                  <span className="text-gray-500 shrink-0">{name(i.deal_id)}</span>
-                  <span className="text-gray-800">{i.label}</span>
+                  <span className="pill pill-slate shrink-0">{name(i.deal_id)}</span>
+                  <span className="text-slate-700 dark:text-slate-300 leading-snug">{i.label}</span>
                 </li>
               );
             })}
@@ -67,26 +70,29 @@ export default function ConstructionGrid({ deals, items, onSave, onOpenDeal }: {
         </div>
       )}
 
-      <div className="overflow-x-auto border border-gray-200 rounded-lg bg-white">
+      <div className="card overflow-x-auto w-fit max-w-full">
         <table className="text-xs border-collapse">
           <thead>
-            <tr className="border-b border-gray-200 align-top">
-              <th className="sticky left-0 z-10 bg-white text-left px-3 py-3 min-w-[210px] font-medium text-gray-500">Item</th>
+            <tr className="border-b border-slate-200 dark:border-slate-700 align-top">
+              <th className="sticky left-0 z-10 bg-white dark:bg-slate-900 text-left px-4 py-3.5 min-w-[220px] text-[10px] uppercase tracking-[0.08em] font-semibold text-slate-400">Item</th>
               {deals.map(d => {
                 const live = items.filter(i => i.deal_id === d.id && i.status !== 'na');
                 const done = live.filter(i => i.status === 'done').length;
                 const sc = items.find(i => i.deal_id === d.id && i.item_key === 'cm_est_completion')?.due_date ?? null;
                 const scDays = daysUntil(sc);
                 return (
-                  <th key={d.id} className={`${colW} text-left px-3 py-3 border-l border-gray-100 font-normal`}>
-                    <button onClick={() => onOpenDeal(d.id)} className="text-sm font-semibold text-gray-900 hover:text-navy hover:underline text-left">{d.name}</button>
-                    <p className="text-[11px] text-gray-500">{[d.city, d.state].filter(Boolean).join(', ')}</p>
+                  <th key={d.id} className={`${colW} text-left px-3 py-3.5 border-l border-slate-100 dark:border-slate-800 font-normal`}>
+                    <button onClick={() => onOpenDeal(d.id)} className="text-sm font-semibold text-slate-900 dark:text-slate-100 hover:text-navy hover:underline text-left">{d.name}</button>
+                    <p className="text-[11px] text-slate-500">{[d.city, d.state].filter(Boolean).join(', ')}</p>
                     {sc && (
-                      <span className={`inline-block mt-1.5 text-[10px] px-1.5 py-0.5 rounded-full font-medium ${ddChipColor(scDays)}`}>
-                        Est. completion {sc}{scDays != null && scDays >= 0 ? ` · ${scDays}d` : ''}
+                      <span className={`mt-2 ${ddPill(scDays)}`}>
+                        Est. completion <span className="font-mono">{shortDate(sc)}</span>{scDays != null && scDays >= 0 ? ` · ${scDays}d` : ''}
                       </span>
                     )}
-                    <p className="text-[10px] text-gray-400 mt-1 font-mono">{done}/{live.length} done</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <span className="progress w-20"><span className="progress-bar" style={{ width: `${live.length ? Math.round((done / live.length) * 100) : 0}%` }} /></span>
+                      <span className="text-[10px] text-slate-400 font-mono">{done}/{live.length}</span>
+                    </div>
                   </th>
                 );
               })}
@@ -94,10 +100,10 @@ export default function ConstructionGrid({ deals, items, onSave, onOpenDeal }: {
           </thead>
           <tbody>
             <Section title={CONTRACT_SECTION} span={deals.length}>
-              <tr className="border-b border-gray-100 align-top">
-                <td className="sticky left-0 z-10 bg-white px-3 py-2 text-gray-700">
+              <tr className="border-b border-slate-100 dark:border-slate-800 align-top">
+                <td className="sticky left-0 z-10 bg-white dark:bg-slate-900 px-4 py-2.5 text-slate-700 dark:text-slate-300">
                   Open items
-                  <span className="block text-[10px] text-gray-400">from each construction contract</span>
+                  <span className="block text-[10px] text-slate-400">from each construction contract</span>
                 </td>
                 {deals.map(d => {
                   const all = items.filter(i => i.deal_id === d.id && i.section === CONTRACT_SECTION);
@@ -105,15 +111,15 @@ export default function ConstructionGrid({ deals, items, onSave, onOpenDeal }: {
                     .filter(i => i.status === 'open' || i.status === 'in_progress')
                     .sort((a, b) => (a.due_date || '9999').localeCompare(b.due_date || '9999') || a.sort - b.sort);
                   return (
-                    <td key={d.id} className={`${colW} border-l border-gray-100 p-0`}>
-                      <div className="divide-y divide-gray-100">
+                    <td key={d.id} className={`${colW} border-l border-slate-100 dark:border-slate-800 p-0`}>
+                      <div className="divide-y divide-slate-100 dark:divide-slate-800">
                         {open.map(it => (
                           <GridCell key={it.id} item={it} showLabel editing={editing === it.id} onEdit={edit(it.id)} onSave={onSave} />
                         ))}
                       </div>
-                      {!open.length && <span className="block px-3 py-2 text-gray-300">—</span>}
+                      {!open.length && <span className="block px-3 py-2.5 text-slate-300">—</span>}
                       {all.length > open.length && (
-                        <button onClick={() => onOpenDeal(d.id)} className="block px-3 py-1.5 text-[10px] text-gray-400 hover:text-navy">
+                        <button onClick={() => onOpenDeal(d.id)} className="block w-full text-left px-3 py-2 text-[10px] text-slate-400 hover:text-navy border-t border-slate-100 dark:border-slate-800">
                           {all.length - open.length} done / N/A
                         </button>
                       )}
@@ -126,15 +132,15 @@ export default function ConstructionGrid({ deals, items, onSave, onOpenDeal }: {
             {rows.map(group => (
               <Section key={group.section} title={group.section} span={deals.length}>
                 {group.rows.map(r => (
-                  <tr key={r.key} className="border-b border-gray-100 align-top">
-                    <td className="sticky left-0 z-10 bg-white px-3 py-2 text-gray-700">{r.label}</td>
+                  <tr key={r.key} className="border-b border-slate-100 dark:border-slate-800 align-top">
+                    <td className="sticky left-0 z-10 bg-white dark:bg-slate-900 px-4 py-2.5 text-slate-700 dark:text-slate-300">{r.label}</td>
                     {deals.map(d => {
                       const it = cell(d.id, r.key);
                       return (
-                        <td key={d.id} className={`${colW} border-l border-gray-100 p-0`}>
+                        <td key={d.id} className={`${colW} border-l border-slate-100 dark:border-slate-800 p-0`}>
                           {it ? (
                             <GridCell item={it} editing={editing === it.id} onEdit={edit(it.id)} onSave={onSave} />
-                          ) : <span className="block px-3 py-2 text-gray-300">—</span>}
+                          ) : <span className="block px-3 py-2.5 text-slate-300">—</span>}
                         </td>
                       );
                     })}

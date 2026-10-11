@@ -99,6 +99,8 @@ const mean = (xs: (number | null)[]) => {
 
 const dateOf = (c: Comp) => (c.kind === 'availability' ? c.available_date : c.comp_date);
 
+const KIND_PILL: Record<CompKind, string> = { lease: 'pill-navy', sale: 'pill-green', availability: 'pill-blue' };
+
 export default function CompsPage() {
   const [approved, setApproved] = useState<Comp[] | null>(null);
   const [pending, setPending] = useState<Comp[]>([]);
@@ -163,46 +165,49 @@ export default function CompsPage() {
   };
 
   if (!approved) {
-    return <div className="p-8"><div className="skeleton h-7 w-40 mb-5" /><div className="skeleton h-96 w-full" /></div>;
+    return <div className="page"><div className="skeleton h-7 w-40 mb-6" /><div className="skeleton h-96 w-full rounded-xl" /></div>;
   }
 
   const cols = tab === 'review' ? [] : COLUMNS[tab];
 
   return (
-    <div className="px-8 py-8 max-w-[1600px]">
+    <div className="page">
       {/* Header */}
-      <div className="flex items-end justify-between mb-5 pb-4 border-b border-gray-200">
+      <div className="page-header">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.15em] text-gray-400 mb-1">Sandpiper Capital LLC · Market Intelligence</p>
-          <h1 className="text-xl font-medium text-gray-900 tracking-tight">Comps</h1>
+          <p className="eyebrow">Sandpiper Capital LLC · Market Intelligence</p>
+          <h1 className="page-title">Comps</h1>
+          <p className="page-sub">Lease comps, sale comps and availabilities by market</p>
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setEditing({ kind: tab === 'review' ? 'lease' : tab, market: market === 'All' ? 'Denver' : market })}
-            className="px-3 py-1.5 text-xs text-white bg-navy hover:bg-navy-light rounded"
-          >
-            + Add Comp
-          </button>
-          <button
             onClick={() => { window.location.href = '/api/comps/export'; }}
-            className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50"
+            className="btn-secondary"
             title="Rebuild the West Region tracking workbook (one tab per market)"
           >
             Export xlsx
+          </button>
+          <button
+            onClick={() => setEditing({ kind: tab === 'review' ? 'lease' : tab, market: market === 'All' ? 'Denver' : market })}
+            className="btn-primary"
+          >
+            + Add Comp
           </button>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 mb-4 border-b border-gray-200">
+      <div className="tabs mb-5">
         {([['lease', 'Lease Comps', counts.lease], ['sale', 'Sale Comps', counts.sale], ['availability', 'Availabilities', counts.availability], ['review', 'To Review', pending.length]] as [Tab, string, number][]).map(([t, label, n]) => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`px-3 py-2 text-xs font-medium border-b-2 -mb-px transition-colors ${tab === t ? 'border-navy text-navy' : 'border-transparent text-gray-500 hover:text-gray-800'}`}
+            className={`tab inline-flex items-center gap-1.5 ${tab === t ? 'tab-active' : ''}`}
           >
             {label}
-            <span className={`ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] font-mono ${t === 'review' && n > 0 ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-500'}`}>{n}</span>
+            {t === 'review' && n > 0
+              ? <span className="pill pill-amber font-mono">{n}</span>
+              : <span className="count">{n}</span>}
           </button>
         ))}
       </div>
@@ -210,14 +215,14 @@ export default function CompsPage() {
       {tab !== 'review' && (
         <>
           {/* Filters */}
-          <div className="flex items-center gap-3 mb-4">
-            <select value={market} onChange={e => setMarket(e.target.value)} className="border border-gray-300 rounded px-2 py-1.5 text-xs text-gray-800 bg-white">
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <select value={market} onChange={e => setMarket(e.target.value)} className="field !w-auto">
               <option value="All">All markets ({Object.values(marketCounts).reduce((a, b) => a + b, 0)})</option>
               {[...MARKETS, ...Object.keys(marketCounts).filter(m => !MARKETS.includes(m))].map(m => (
                 <option key={m} value={m}>{m} ({marketCounts[m] || 0})</option>
               ))}
             </select>
-            <select value={since} onChange={e => setSince(e.target.value as 'all' | '12' | '24')} className="border border-gray-300 rounded px-2 py-1.5 text-xs text-gray-800 bg-white">
+            <select value={since} onChange={e => setSince(e.target.value as 'all' | '12' | '24')} className="field !w-auto">
               <option value="all">All dates</option>
               <option value="12">Last 12 months</option>
               <option value="24">Last 24 months</option>
@@ -226,18 +231,18 @@ export default function CompsPage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search address, tenant, landlord, broker…"
-              className="flex-1 max-w-sm border border-gray-300 rounded px-2.5 py-1.5 text-xs text-gray-800"
+              className="field flex-1 max-w-sm"
             />
-            <span className="text-xs text-gray-500 ml-auto">{rows.length} comps · click a row to edit</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 ml-auto"><span className="font-mono tabular-nums">{rows.length}</span> comps · click a row to edit</span>
           </div>
 
           {/* Table */}
-          <div className="overflow-x-auto border border-gray-300">
-            <table className="w-full text-[11px] border-collapse">
+          <div className="card overflow-x-auto">
+            <table className="table-clean">
               <thead>
-                <tr className="bg-navy text-white">
+                <tr>
                   {cols.map((c, i) => (
-                    <th key={i} className={`py-1.5 px-2 text-[10px] font-semibold uppercase tracking-[0.06em] whitespace-nowrap ${c.right ? 'text-right' : 'text-left'}`}>{c.label}</th>
+                    <th key={i} className={c.right ? '!text-right' : ''}>{c.label}</th>
                   ))}
                 </tr>
               </thead>
@@ -246,39 +251,38 @@ export default function CompsPage() {
                   const group = rows.filter(r => (r.market || 'Other') === mk);
                   return (
                     <Fragment key={mk}>
-                      <tr className="bg-gray-100 border-b border-gray-300">
-                        <td colSpan={cols.length} className="py-1.5 px-2">
-                          <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-navy">{mk}</span>
-                          <span className="text-[10px] text-gray-500 font-mono ml-2">({group.length})</span>
+                      <tr className="group-row">
+                        <td colSpan={cols.length}>
+                          {mk}
+                          <span className="count ml-2">{group.length}</span>
                         </td>
                       </tr>
                       {group.map(r => (
-                        <tr key={r.id} onClick={() => setEditing(r)} className="border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+                        <tr key={r.id} onClick={() => setEditing(r)} className="row cursor-pointer">
                           {cols.map((c, i) => (
-                            <td key={i} className={`py-1.5 px-2 whitespace-nowrap ${c.right ? 'text-right font-mono tabular-nums' : ''} ${c.bold ? 'font-semibold text-gray-900' : 'text-gray-800'}`}>
+                            <td key={i} className={`whitespace-nowrap ${c.right ? 'num' : ''} ${c.bold ? 'font-semibold !text-slate-900 dark:!text-slate-100' : ''}`}>
                               {c.render(r)}
                             </td>
                           ))}
                         </tr>
                       ))}
-                      <tr className="border-t-2 border-gray-400 bg-gray-50">
+                      <tr className="total-row">
                         {cols.map((c, i) => (
-                          <td key={i} className={`py-1.5 px-2 whitespace-nowrap font-semibold text-gray-900 ${c.right ? 'text-right font-mono tabular-nums' : ''}`}>
+                          <td key={i} className={`whitespace-nowrap ${c.right ? 'num' : ''}`}>
                             {i === 0 ? `${mk} · Average` : c.value && c.fmt ? c.fmt(mean(group.map(c.value))) : ''}
                           </td>
                         ))}
                       </tr>
-                      <tr><td colSpan={cols.length} className="p-0 h-3" /></tr>
                     </Fragment>
                   );
                 })}
                 {rows.length === 0 && (
-                  <tr><td colSpan={cols.length} className="py-16 text-center text-sm text-gray-400">No comps match these filters.</td></tr>
+                  <tr><td colSpan={cols.length} className="!py-16 text-center text-sm !text-slate-400">No comps match these filters.</td></tr>
                 )}
               </tbody>
             </table>
           </div>
-          <p className="mt-2 text-[10px] text-gray-400">
+          <p className="mt-2 text-[10px] text-slate-400 dark:text-slate-500">
             Rent is stored as total $/month; $/LSF/Mo is per land SF per month, $/BSF/Yr is per building SF per year. Averages are simple means of the rows shown, ignoring blanks.
           </p>
         </>
@@ -299,9 +303,9 @@ function ReviewQueue({ pending, onAccept, onReject, onEdit, onAcceptAll }: {
 }) {
   if (!pending.length) {
     return (
-      <div className="border border-gray-200 rounded-lg p-10 text-center">
-        <p className="text-sm text-gray-700 mb-1">Nothing to review.</p>
-        <p className="text-xs text-gray-500">The daily Outlook sync drops comps and availabilities it finds in broker emails here for you to accept, edit or reject.</p>
+      <div className="card px-6 py-12 text-center">
+        <p className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Nothing to review.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400">The daily Outlook sync drops comps and availabilities it finds in broker emails here for you to accept, edit or reject.</p>
       </div>
     );
   }
@@ -309,15 +313,18 @@ function ReviewQueue({ pending, onAccept, onReject, onEdit, onAcceptAll }: {
   return (
     <>
       <div className="flex items-center justify-between mb-3">
-        <p className="text-xs text-gray-600">{pending.length} comps found in email, waiting for review.</p>
-        <button onClick={onAcceptAll} className="px-3 py-1.5 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-50">Accept all</button>
+        <div>
+          <h2 className="section-label">To Review <span className="count">{pending.length}</span></h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{pending.length} comps found in email, waiting for review.</p>
+        </div>
+        <button onClick={onAcceptAll} className="btn-secondary">Accept all</button>
       </div>
-      <div className="border border-gray-300 overflow-x-auto">
-        <table className="w-full text-[11px] border-collapse">
+      <div className="card overflow-x-auto">
+        <table className="table-clean">
           <thead>
-            <tr className="bg-navy text-white text-left">
+            <tr>
               {['Kind', 'Market', 'Address', 'City', 'Size', 'Economics', 'Parties', 'Source', ''].map(h => (
-                <th key={h} className="py-1.5 px-2 text-[10px] font-semibold uppercase tracking-[0.06em]">{h}</th>
+                <th key={h}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -329,24 +336,26 @@ function ReviewQueue({ pending, onAccept, onReject, onEdit, onAcceptAll }: {
                 : [money0(m.rentMonthly) + '/mo', m.rentLsfMo ? `${money2(m.rentLsfMo)}/LSF/mo` : null, c.bumps ? `${pct1(c.bumps)} bumps` : null, c.term_months ? `${c.term_months} mo` : null].filter(Boolean).join(' · ');
               const parties = c.kind === 'sale' ? [c.buyer, c.seller].filter(Boolean).join(' ← ') : [c.landlord, c.tenant].filter(Boolean).join(' / ');
               return (
-                <tr key={c.id} className="border-b border-gray-200 align-top">
-                  <td className="py-2 px-2 capitalize">{c.kind}</td>
-                  <td className="py-2 px-2">{c.market || dash}</td>
-                  <td className="py-2 px-2 font-semibold text-gray-900">{c.address}</td>
-                  <td className="py-2 px-2">{c.city || dash}</td>
-                  <td className="py-2 px-2 font-mono whitespace-nowrap">{[c.sf ? `${int0(c.sf)} SF` : null, c.acres ? `${dec2(c.acres)} ac` : null].filter(Boolean).join(' · ') || dash}</td>
-                  <td className="py-2 px-2 font-mono">{econ || dash}</td>
-                  <td className="py-2 px-2">{parties || dash}</td>
-                  <td className="py-2 px-2 text-gray-600 max-w-xs">
+                <tr key={c.id} className="row [&>td]:!align-top">
+                  <td><span className={`pill capitalize ${KIND_PILL[c.kind] ?? 'pill-slate'}`}>{c.kind}</span></td>
+                  <td>{c.market || dash}</td>
+                  <td className="font-semibold !text-slate-900 dark:!text-slate-100">{c.address}</td>
+                  <td>{c.city || dash}</td>
+                  <td className="font-mono tabular-nums whitespace-nowrap">{[c.sf ? `${int0(c.sf)} SF` : null, c.acres ? `${dec2(c.acres)} ac` : null].filter(Boolean).join(' · ') || dash}</td>
+                  <td className="font-mono tabular-nums">{econ || dash}</td>
+                  <td>{parties || dash}</td>
+                  <td className="!text-slate-500 dark:!text-slate-400 max-w-xs">
                     {c.source_note || dash}
                     {c.source_ref && !c.source_ref.startsWith('file:') && (
-                      <> · <a href={outlookLink(c.source_ref)} target="_blank" rel="noreferrer" className="text-navy underline">Open email</a></>
+                      <> · <a href={outlookLink(c.source_ref)} target="_blank" rel="noreferrer" className="text-navy dark:text-blue-300 underline">Open email</a></>
                     )}
                   </td>
-                  <td className="py-2 px-2 whitespace-nowrap text-right">
-                    <button onClick={() => onAccept(c)} className="px-2 py-1 text-[11px] text-white bg-navy rounded hover:bg-navy-light mr-1">Accept</button>
-                    <button onClick={() => onEdit(c)} className="px-2 py-1 text-[11px] text-gray-700 border border-gray-300 rounded hover:bg-gray-50 mr-1">Edit</button>
-                    <button onClick={() => onReject(c)} className="px-2 py-1 text-[11px] text-red-700 border border-red-200 rounded hover:bg-red-50">Reject</button>
+                  <td className="whitespace-nowrap text-right">
+                    <div className="inline-flex items-center gap-1">
+                      <button onClick={() => onAccept(c)} className="btn-primary">Accept</button>
+                      <button onClick={() => onEdit(c)} className="btn-secondary">Edit</button>
+                      <button onClick={() => onReject(c)} className="btn-danger">Reject</button>
+                    </div>
                   </td>
                 </tr>
               );
@@ -414,27 +423,28 @@ function CompModal({ comp, onClose, onSaved }: { comp: Partial<Comp>; onClose: (
     onSaved();
   };
 
-  const input = 'w-full border border-gray-300 rounded px-2 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-navy';
+  const input = 'field';
   const F = ({ k, label, type = 'text', span = 1, placeholder }: { k: string; label: string; type?: string; span?: 1 | 2 | 3; placeholder?: string }) => (
     <div className={span === 3 ? 'col-span-3' : span === 2 ? 'col-span-2' : ''}>
-      <label className="text-[11px] text-gray-500 block mb-0.5">{label}</label>
+      <label className="field-label">{label}</label>
       <input type={type} step="any" value={f[k] ?? ''} onChange={e => set(k, e.target.value)} placeholder={placeholder} className={input} />
     </div>
   );
 
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center" onClick={onClose}>
-      <div className="fixed inset-0 bg-black/40" />
-      <div className="relative bg-white rounded-xl shadow-2xl border border-gray-200 w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6" onClick={e => e.stopPropagation()}>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900">{isNew ? 'Add comp' : comp.address}{isPending && <span className="ml-2 text-xs font-normal text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Pending review</span>}</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-700 text-xl leading-none">×</button>
+      <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-[1px]" />
+      <div className="card relative w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
+        <div className="card-header">
+          <h2 className="card-title flex items-center gap-2">{isNew ? 'Add comp' : comp.address}{isPending && <span className="pill pill-amber">Pending review</span>}</h2>
+          <button onClick={onClose} className="btn-ghost !px-2 text-base leading-none" aria-label="Close">×</button>
         </div>
-        {comp.source_note && <p className="text-[11px] text-gray-500 mb-4">Source: {comp.source_note}</p>}
+        <div className="card-body">
+        {comp.source_note && <p className="text-[11px] text-slate-500 dark:text-slate-400 mb-4">Source: {comp.source_note}</p>}
 
-        <div className="grid grid-cols-3 gap-3 mb-5">
+        <div className="grid grid-cols-3 gap-3 mb-6">
           <div>
-            <label className="text-[11px] text-gray-500 block mb-0.5">Kind</label>
+            <label className="field-label">Kind</label>
             <select value={kind} onChange={e => set('kind', e.target.value)} className={input}>
               <option value="lease">Lease comp</option>
               <option value="sale">Sale comp</option>
@@ -442,7 +452,7 @@ function CompModal({ comp, onClose, onSaved }: { comp: Partial<Comp>; onClose: (
             </select>
           </div>
           <div>
-            <label className="text-[11px] text-gray-500 block mb-0.5">Market</label>
+            <label className="field-label">Market</label>
             <input list="markets" value={f.market ?? ''} onChange={e => set('market', e.target.value)} className={input} />
             <datalist id="markets">{MARKETS.map(mk => <option key={mk} value={mk} />)}</datalist>
           </div>
@@ -456,8 +466,8 @@ function CompModal({ comp, onClose, onSaved }: { comp: Partial<Comp>; onClose: (
           {F({ k: "broker", label: "Broker" })}
         </div>
 
-        <h3 className="text-[10px] uppercase tracking-[0.12em] text-gray-500 font-semibold mb-2">Property</h3>
-        <div className="grid grid-cols-3 gap-3 mb-5">
+        <h3 className="section-label mb-2">Property</h3>
+        <div className="grid grid-cols-3 gap-3 mb-6">
           {F({ k: "sf", label: "Building SF", type: "number" })}
           {F({ k: "acres", label: "Acres", type: "number" })}
           {F({ k: "zoning", label: "Zoning" })}
@@ -468,7 +478,7 @@ function CompModal({ comp, onClose, onSaved }: { comp: Partial<Comp>; onClose: (
           {F({ k: "depth", label: "Depth (terminals)", type: "number" })}
         </div>
 
-        <h3 className="text-[10px] uppercase tracking-[0.12em] text-gray-500 font-semibold mb-2">Economics</h3>
+        <h3 className="section-label mb-2">Economics</h3>
         <div className="grid grid-cols-3 gap-3 mb-3">
           {kind === 'sale' ? (
             <>
@@ -488,12 +498,12 @@ function CompModal({ comp, onClose, onSaved }: { comp: Partial<Comp>; onClose: (
             </>
           )}
           <div className="col-span-3">
-            <label className="text-[11px] text-gray-500 block mb-0.5">Notes</label>
+            <label className="field-label">Notes</label>
             <textarea rows={2} value={f.notes ?? ''} onChange={e => set('notes', e.target.value)} className={input} />
           </div>
         </div>
 
-        <div className="bg-gray-50 border border-gray-200 rounded px-3 py-2 mb-5 text-[11px] text-gray-700 font-mono flex flex-wrap gap-x-5 gap-y-1">
+        <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-[11px] text-slate-700 dark:text-slate-300 font-mono tabular-nums flex flex-wrap gap-x-5 gap-y-1">
           <span>Cvg {pct1(m.coverage)}</span>
           {kind === 'sale' ? (
             <><span>{money2(m.priceLsf)} / LSF</span><span>{money0(m.priceBsf)} / BSF</span></>
@@ -502,17 +512,21 @@ function CompModal({ comp, onClose, onSaved }: { comp: Partial<Comp>; onClose: (
           )}
         </div>
 
-        <div className="flex items-center gap-2">
-          {isPending ? (
-            <>
-              <button onClick={() => save(true)} disabled={saving} className="px-4 py-1.5 bg-navy text-white rounded text-sm hover:bg-navy-light disabled:opacity-50">Save & accept</button>
-              <button onClick={() => save(false)} disabled={saving} className="px-4 py-1.5 border border-gray-300 text-gray-700 rounded text-sm hover:bg-gray-50 disabled:opacity-50">Save, keep in review</button>
-            </>
-          ) : (
-            <button onClick={() => save(false)} disabled={saving} className="px-4 py-1.5 bg-navy text-white rounded text-sm hover:bg-navy-light disabled:opacity-50">{isNew ? 'Add comp' : 'Save'}</button>
-          )}
-          <button onClick={onClose} className="px-4 py-1.5 text-gray-600 text-sm hover:text-gray-900">Cancel</button>
-          {!isNew && <button onClick={remove} className="ml-auto px-3 py-1.5 text-red-700 text-sm hover:bg-red-50 rounded">Delete</button>}
+        </div>
+
+        <div className="flex items-center gap-2 px-4 py-3 border-t border-slate-100 dark:border-slate-800">
+          {!isNew && <button onClick={remove} className="btn-danger">Delete</button>}
+          <div className="ml-auto flex items-center gap-2">
+            <button onClick={onClose} className="btn-secondary">Cancel</button>
+            {isPending ? (
+              <>
+                <button onClick={() => save(false)} disabled={saving} className="btn-secondary">Save, keep in review</button>
+                <button onClick={() => save(true)} disabled={saving} className="btn-primary">Save & accept</button>
+              </>
+            ) : (
+              <button onClick={() => save(false)} disabled={saving} className="btn-primary">{isNew ? 'Add comp' : 'Save'}</button>
+            )}
+          </div>
         </div>
       </div>
     </div>
