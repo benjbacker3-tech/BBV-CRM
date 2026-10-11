@@ -191,7 +191,7 @@ export default function DiligencePage() {
       {panelDeal && (
         <DealDetailPanel
           deal={panelDeal}
-          initialTab="Diligence"
+          initialTab="Diligence / CM"
           onClose={() => { setPanelDeal(null); load(); }}
           onUpdate={updated => { setPanelDeal(updated); load(); }}
           onDelete={() => { setPanelDeal(null); load(); }}

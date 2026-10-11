@@ -118,7 +118,7 @@ export default function Dashboard() {
           SPC Fees = acquisition + construction + leasing. * from the deal&apos;s synced model; others estimated (1.35% acq · 4% of capex at 15% of price · 1% of rent at price × YoC). Passive co-invests earn none.
         </p>
 
-        <ToDos deals={[...pending, ...groups[1].deals]} items={items} onOpen={d => open(d, d.stage === 'Closed' ? 'Construction' : 'Diligence')} onDone={markDone} />
+        <ToDos deals={[...pending, ...groups[1].deals]} items={items} onOpen={d => open(d, 'Diligence / CM')} onDone={markDone} />
       </div>
 
       {panel && (
@@ -187,7 +187,7 @@ function GroupRows({ group, items, onOpen }: { group: Group; items: DdItem[]; on
             </td>
             <td className="py-1.5 px-3">
               {checklist.length > 0 ? (
-                <button onClick={() => onOpen(d, closed ? 'Construction' : 'Diligence')} className="flex items-center gap-1.5 group" title={closed ? 'Open the construction checklist' : 'Open the diligence checklist'}>
+                <button onClick={() => onOpen(d, 'Diligence / CM')} className="flex items-center gap-1.5 group" title={closed ? 'Open the construction checklist' : 'Open the diligence checklist'}>
                   <span className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                     <span className="block h-full bg-navy rounded-full" style={{ width: `${Math.round((done / checklist.length) * 100)}%` }} />
                   </span>

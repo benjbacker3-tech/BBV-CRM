@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { Deal, fmt } from '@/lib/utils';
 import OverviewTab from './deal-tabs/OverviewTab';
 import ContactsTab from './deal-tabs/ContactsTab';
-import DiligenceTab from './deal-tabs/DiligenceTab';
-import ConstructionTab from './deal-tabs/ConstructionTab';
+import DiligenceCmTab from './deal-tabs/DiligenceCmTab';
 import LOITab from './deal-tabs/LOITab';
 import NapkinMathTab from './deal-tabs/NapkinMathTab';
 import DocumentsTab from './deal-tabs/DocumentsTab';
@@ -18,7 +17,7 @@ interface Props {
   initialTab?: Tab;
 }
 
-const TABS = ['Overview', 'Documents', 'Contacts', 'Diligence', 'Construction', 'LOI', 'Napkin Math'] as const;
+const TABS = ['Overview', 'Documents', 'Contacts', 'Diligence / CM', 'LOI', 'Napkin Math'] as const;
 export type Tab = (typeof TABS)[number];
 
 export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete, initialTab = 'Overview' }: Props) {
@@ -84,8 +83,7 @@ export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete, ini
         {tab === 'Overview' && <OverviewTab deal={deal} onUpdate={onUpdate} />}
         {tab === 'Documents' && <DocumentsTab deal={deal} onUpdate={onUpdate} />}
         {tab === 'Contacts' && <ContactsTab dealId={deal.id} />}
-        {tab === 'Diligence' && <DiligenceTab deal={deal} />}
-        {tab === 'Construction' && <ConstructionTab deal={deal} />}
+        {tab === 'Diligence / CM' && <DiligenceCmTab deal={deal} />}
         {tab === 'LOI' && <LOITab deal={deal} />}
         {tab === 'Napkin Math' && <NapkinMathTab deal={deal} />}
       </div>
