@@ -1,11 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { get, run } from '@/lib/db';
-import { graphErrorMessage } from '@/lib/graph';
+import { graphErrorMessage, itemById } from '@/lib/graph';
 import { EmailFile, RULES_VERSION, fileFromReview } from '@/lib/mail-filing';
 import { logActivity } from '@/lib/activity';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
+
+// GET: open the filed document. Looked up by item id, since the saved link stops working
+// once the file is renamed or moved in OneDrive.
+export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+  const rec = await get<EmailFile>('SELECT * FROM email_files WHERE id = ?', [Number(params.id)]);
+  if (!rec?.drive_item_id) return NextResponse.json({ error: 'Not filed' }, { status: 404 });
+  const item = await itemById(rec.drive_item_id).catch(() => null);
+  const url = item?.webUrl || rec.drive_web_url;
+  if (!url) return NextResponse.json({ error: 'File not found in OneDrive' }, { status: 404 });
+  if (item?.webUrl && item.webUrl !== rec.drive_web_url) await run('UPDATE email_files SET drive_web_url = ? WHERE id = ?', [item.webUrl, rec.id]);
+  return NextResponse.redirect(url);
+}
 
 // POST { action: 'file', dealId, folder } | { action: 'dismiss' } | { action: 'review' }
 export async function POST(req: NextRequest, { params }: { params: { id: string } }) {

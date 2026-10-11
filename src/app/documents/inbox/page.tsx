@@ -174,7 +174,7 @@ export default function InboxPage() {
               <div key={r.id} className="px-3 py-2 border-b border-gray-200 text-xs">
                 <div className="flex items-baseline gap-3">
                   {r.drive_web_url ? (
-                    <a href={r.drive_web_url} target="_blank" rel="noreferrer" className="font-medium text-gray-900 hover:text-navy hover:underline truncate">{r.file_name}</a>
+                    <a href={`/api/email-files/${r.id}`} target="_blank" rel="noreferrer" className="font-medium text-gray-900 hover:text-navy hover:underline truncate">{r.file_name}</a>
                   ) : <span className="font-medium text-gray-900 truncate">{r.file_name}</span>}
                   <span className="text-[10px] text-gray-400 font-mono shrink-0">{size(r.size)}</span>
                   <span className="ml-auto text-[11px] text-gray-400 shrink-0">{when(r.received_at)}</span>
