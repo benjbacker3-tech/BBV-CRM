@@ -20,6 +20,7 @@ import { Deal } from './utils';
 import { STANDARD_SUBFOLDERS, findDealFolder, DocsContext } from './deal-docs';
 import { categoryOf, organizeDeal } from './cleanup';
 import { sameAddress } from './model-parse';
+import { standardFileName } from './doc-names';
 import { COMPANY_FOLDERS, companyNoise, offeringByAddress, strongCompanyFolder, weakCompanyFolder } from './company-folders';
 import {
   DriveItem, MailAttachment, MailMessage, attachmentBytes, children, createFolder, download, ensureFolderPath,
@@ -263,14 +264,14 @@ async function subfolder(t: Tree, rel: string): Promise<DriveItem> {
 // (another subfolder, an Archive folder, a "name 1.pdf" copy or a different name).
 // Outlook's attachment size includes metadata, so the downloaded bytes are compared:
 // sizes first, then the content of any file of exactly that size.
-async function saveInto(root: DriveItem, rel: string, rec: Rec): Promise<{ item: DriveItem; existing: boolean; where: string }> {
+async function saveInto(root: DriveItem, rel: string, rec: Rec, name = rec.file_name): Promise<{ item: DriveItem; existing: boolean; where: string }> {
   const t = await treeOf(root);
   const raw = await attachmentBytes(rec.message_id, rec.attachment_id);
   const bytes = Buffer.from(raw);
   for (const f of t.files.filter(f => f.item.size === bytes.length)) {
     if (Buffer.from(await download(f.item.id)).equals(bytes)) return { item: f.item, existing: true, where: f.rel };
   }
-  const item = await uploadBytes((await subfolder(t, rel)).id, rec.file_name, raw);
+  const item = await uploadBytes((await subfolder(t, rel)).id, name, raw);
   t.files.push({ item, rel });
   return { item, existing: false, where: rel };
 }
@@ -278,7 +279,8 @@ async function saveInto(root: DriveItem, rel: string, rec: Rec): Promise<{ item:
 async function saveToDeal(deal: Deal, folder: string, rec: Rec, ctx: DocsContext) {
   const root = await dealFolder(deal, ctx);
   if (!root) throw new Error(`${label(deal)} has no OneDrive folder`);
-  const saved = await saveInto(root, folder, rec);
+  // Deal documents are saved as "[document] - [street address]" (doc-names.ts).
+  const saved = await saveInto(root, folder, rec, standardFileName(rec.file_name, deal));
   if (deal.drive_folder_id !== root.id) {
     const parentPath = root.parentReference?.path?.split('root:')[1] ?? '';
     await run('UPDATE deals SET drive_folder_id = ?, drive_folder_path = ? WHERE id = ?', [root.id, `${parentPath}/${root.name}`, deal.id]);
