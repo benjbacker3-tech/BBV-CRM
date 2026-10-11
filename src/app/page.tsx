@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Deal, fmt, fmtNum, daysUntil, ddChipColor } from '@/lib/utils';
-import { DdItem, DD_SECTIONS, OWNERSHIP_SECTION } from '@/lib/dd-template';
-import DealDetailPanel from '@/components/DealDetailPanel';
+import { DdItem, DD_SECTIONS, CM_SECTIONS, OWNERSHIP_SECTION } from '@/lib/dd-template';
+import DealDetailPanel, { Tab } from '@/components/DealDetailPanel';
 
 // SPC's default fee stack when SPC is the sponsor (source: CentrePoint term sheet).
 // A deal where SPC isn't a sponsor (co-invest, passive LP) doesn't earn these.
@@ -25,15 +25,16 @@ export default function Dashboard() {
   const [deals, setDeals] = useState<Deal[] | null>(null);
   const [inDd, setInDd] = useState<Set<number>>(new Set());
   const [items, setItems] = useState<DdItem[]>([]);
-  const [panel, setPanel] = useState<{ deal: Deal; tab: 'Overview' | 'Diligence' } | null>(null);
+  const [panel, setPanel] = useState<{ deal: Deal; tab: Tab } | null>(null);
 
   const load = () => Promise.all([
     fetch('/api/deals').then(r => r.json()),
     fetch('/api/dd/overview').then(r => r.json()),
-  ]).then(([all, dd]: [Deal[], { deals: { id: number }[]; items: DdItem[] }]) => {
+  ]).then(([all, dd]: [Deal[], { deals: { id: number }[]; items: DdItem[]; construction: DdItem[] }]) => {
     setDeals(all);
     setInDd(new Set(dd.deals.map(d => d.id)));
-    setItems(dd.items || []);
+    // Diligence lines (list dd) and construction lines (list cm) side by side.
+    setItems([...(dd.items || []), ...(dd.construction || [])]);
   });
 
   useEffect(() => { load(); }, []);
@@ -69,7 +70,7 @@ export default function Dashboard() {
 
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-  const open = (deal: Deal, tab: 'Overview' | 'Diligence') => setPanel({ deal, tab });
+  const open = (deal: Deal, tab: Tab) => setPanel({ deal, tab });
 
   const markDone = async (id: number) => {
     setItems(prev => prev.map(i => (i.id === id ? { ...i, status: 'done' } : i)));
@@ -117,7 +118,7 @@ export default function Dashboard() {
           SPC Fees = acquisition + construction + leasing. * from the deal&apos;s synced model; others estimated (1.35% acq · 4% of capex at 15% of price · 1% of rent at price × YoC). Passive co-invests earn none.
         </p>
 
-        <ToDos deals={pending} items={items} onOpen={d => open(d, 'Diligence')} onDone={markDone} />
+        <ToDos deals={[...pending, ...groups[1].deals]} items={items} onOpen={d => open(d, d.stage === 'Closed' ? 'Construction' : 'Diligence')} onDone={markDone} />
       </div>
 
       {panel && (
@@ -134,7 +135,7 @@ export default function Dashboard() {
   );
 }
 
-function GroupRows({ group, items, onOpen }: { group: Group; items: DdItem[]; onOpen: (d: Deal, tab: 'Overview' | 'Diligence') => void }) {
+function GroupRows({ group, items, onOpen }: { group: Group; items: DdItem[]; onOpen: (d: Deal, tab: Tab) => void }) {
   const closed = group.title === 'Closed';
   const sum = (f: (d: Deal) => number) => group.deals.reduce((s, d) => s + f(d), 0);
   return (
@@ -152,7 +153,8 @@ function GroupRows({ group, items, onOpen }: { group: Group; items: DdItem[]; on
         const f = computeFees(d);
         const ddDays = daysUntil(d.dd_expiry);
         const closeDays = daysUntil(d.close_date);
-        const checklist = items.filter(i => i.deal_id === d.id && i.section !== OWNERSHIP_SECTION && i.status !== 'na');
+        // Deals in diligence show the diligence checklist; closed deals their construction checklist.
+        const checklist = items.filter(i => i.deal_id === d.id && i.list === (closed ? 'cm' : 'dd') && i.section !== OWNERSHIP_SECTION && i.status !== 'na');
         const done = checklist.filter(i => i.status === 'done').length;
         const ret = d.irr != null ? `${fmtNum(d.irr * 100, 1)}% IRR` : d.yoc_target ? `${fmtNum(d.yoc_target * 100, 1)}% YoC` : '—';
         return (
@@ -184,8 +186,8 @@ function GroupRows({ group, items, onOpen }: { group: Group; items: DdItem[]; on
               ) : <span className="text-gray-400">{d.close_days ? `${d.close_days} days after DD` : '—'}</span>}
             </td>
             <td className="py-1.5 px-3">
-              {!closed && checklist.length > 0 ? (
-                <button onClick={() => onOpen(d, 'Diligence')} className="flex items-center gap-1.5 group" title="Open the diligence checklist">
+              {checklist.length > 0 ? (
+                <button onClick={() => onOpen(d, closed ? 'Construction' : 'Diligence')} className="flex items-center gap-1.5 group" title={closed ? 'Open the construction checklist' : 'Open the diligence checklist'}>
                   <span className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                     <span className="block h-full bg-navy rounded-full" style={{ width: `${Math.round((done / checklist.length) * 100)}%` }} />
                   </span>
@@ -223,20 +225,21 @@ function ToDos({ deals, items, onOpen, onDone }: {
   onOpen: (d: Deal) => void;
   onDone: (id: number) => void;
 }) {
-  const withTodos = deals.filter(d => items.some(i => i.deal_id === d.id));
+  const listFor = (d: Deal) => (d.stage === 'Closed' ? 'cm' : 'dd');
+  const withTodos = deals.filter(d => items.some(i => i.deal_id === d.id && i.list === listFor(d)));
   if (!withTodos.length) return null;
-  const sectionRank = (s: string) => DD_SECTIONS.indexOf(s);
+  const sectionRank = (s: string) => DD_SECTIONS.indexOf(s) + CM_SECTIONS.indexOf(s);
 
   return (
     <div>
       <div className="flex items-baseline justify-between mb-2">
-        <h2 className="text-[10px] uppercase tracking-[0.15em] font-semibold text-gray-700">Diligence To-Dos</h2>
+        <h2 className="text-[10px] uppercase tracking-[0.15em] font-semibold text-gray-700">To-Dos</h2>
         <Link href="/diligence" className="text-[11px] text-navy hover:underline">Full checklist →</Link>
       </div>
       <div className="grid grid-cols-2 gap-3">
         {withTodos.map(d => {
           const openItems = items
-            .filter(i => i.deal_id === d.id && i.section !== OWNERSHIP_SECTION && (i.status === 'open' || i.status === 'in_progress'))
+            .filter(i => i.deal_id === d.id && i.list === listFor(d) && i.section !== OWNERSHIP_SECTION && (i.status === 'open' || i.status === 'in_progress'))
             .sort((a, b) =>
               (a.due_date || '9999').localeCompare(b.due_date || '9999')
               || (a.status === 'in_progress' ? 0 : 1) - (b.status === 'in_progress' ? 0 : 1)
@@ -248,7 +251,7 @@ function ToDos({ deals, items, onOpen, onDone }: {
             <div key={d.id} className="bg-white rounded-lg border border-gray-200">
               <button onClick={() => onOpen(d)} className="w-full flex items-baseline justify-between px-3 py-2 border-b border-gray-100 hover:bg-gray-50 text-left">
                 <span className="text-xs font-semibold text-gray-900">{d.address || d.name}</span>
-                <span className="text-[10px] text-gray-400">{openItems.length} open · ownership docs {omDone}/{om.length}</span>
+                <span className="text-[10px] text-gray-400">{openItems.length} open · {listFor(d) === 'cm' ? 'construction' : `diligence · ownership docs ${omDone}/${om.length}`}</span>
               </button>
               <ul className="divide-y divide-gray-50">
                 {openItems.slice(0, TODOS_PER_DEAL).map(i => {

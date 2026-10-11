@@ -146,12 +146,14 @@ async function initSchema(db: Client) {
       FOREIGN KEY (diligence_id) REFERENCES diligence(id)
     );
 
-    -- Diligence checklist (SPC Diligence Checklist template, see lib/dd-template.ts).
-    -- One row per checklist line per deal; rows are created from the template the first
-    -- time a deal's checklist is opened. status: open | in_progress | done | na.
+    -- Deal checklists (see lib/dd-template.ts). list 'dd' = SPC Diligence Checklist, created
+    -- from the template the first time a deal's checklist is opened; list 'cm' = Construction
+    -- Oversight Checklist, started by hand. One row per line per deal.
+    -- status: open | in_progress | done | na.
     CREATE TABLE IF NOT EXISTS dd_items (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       deal_id INTEGER NOT NULL,
+      list TEXT NOT NULL DEFAULT 'dd',      -- dd | cm
       item_key TEXT NOT NULL,               -- template key, or custom-<n> for added rows
       section TEXT NOT NULL,
       grp TEXT,                             -- sub-heading (Ownership Materials only)
@@ -464,6 +466,10 @@ async function initSchema(db: Client) {
   // email_files.rules_version: which filing rules decided a row (see lib/mail-filing.ts).
   const efCols = (await db.execute('PRAGMA table_info(email_files)')).rows.map(r => String(r.name));
   if (!efCols.includes('rules_version')) await db.execute('ALTER TABLE email_files ADD COLUMN rules_version INTEGER DEFAULT 0');
+
+  // dd_items.list: diligence vs construction checklist.
+  const ddCols = (await db.execute('PRAGMA table_info(dd_items)')).rows.map(r => String(r.name));
+  if (!ddCols.includes('list')) await db.execute("ALTER TABLE dd_items ADD COLUMN list TEXT NOT NULL DEFAULT 'dd'");
 
   // One-time normalization: old seed data stored YoC as percentages (8.2 = 8.2%).
   // New data stores as decimals (0.082). Any value > 1 is legacy percentage form.

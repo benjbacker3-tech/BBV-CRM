@@ -5,6 +5,7 @@ import { Deal, fmt } from '@/lib/utils';
 import OverviewTab from './deal-tabs/OverviewTab';
 import ContactsTab from './deal-tabs/ContactsTab';
 import DiligenceTab from './deal-tabs/DiligenceTab';
+import ConstructionTab from './deal-tabs/ConstructionTab';
 import LOITab from './deal-tabs/LOITab';
 import NapkinMathTab from './deal-tabs/NapkinMathTab';
 import DocumentsTab from './deal-tabs/DocumentsTab';
@@ -17,8 +18,8 @@ interface Props {
   initialTab?: Tab;
 }
 
-const TABS = ['Overview', 'Documents', 'Contacts', 'Diligence', 'LOI', 'Napkin Math'] as const;
-type Tab = (typeof TABS)[number];
+const TABS = ['Overview', 'Documents', 'Contacts', 'Diligence', 'Construction', 'LOI', 'Napkin Math'] as const;
+export type Tab = (typeof TABS)[number];
 
 export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete, initialTab = 'Overview' }: Props) {
   const [tab, setTab] = useState<Tab>(initialTab);
@@ -62,12 +63,12 @@ export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete, ini
       </div>
 
       {/* Tab bar */}
-      <div className="flex border-b border-gray-100 dark:border-gray-700 px-5 shrink-0">
+      <div className="flex border-b border-gray-100 dark:border-gray-700 px-3 shrink-0 overflow-x-auto">
         {TABS.map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`px-3 py-2.5 text-xs font-medium border-b-2 transition-colors ${
+            className={`px-2.5 py-2.5 text-xs font-medium border-b-2 transition-colors whitespace-nowrap ${
               tab === t
                 ? 'border-amber text-amber'
                 : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
@@ -84,6 +85,7 @@ export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete, ini
         {tab === 'Documents' && <DocumentsTab deal={deal} onUpdate={onUpdate} />}
         {tab === 'Contacts' && <ContactsTab dealId={deal.id} />}
         {tab === 'Diligence' && <DiligenceTab deal={deal} />}
+        {tab === 'Construction' && <ConstructionTab deal={deal} />}
         {tab === 'LOI' && <LOITab deal={deal} />}
         {tab === 'Napkin Math' && <NapkinMathTab deal={deal} />}
       </div>

@@ -110,6 +110,70 @@ export const DD_TEMPLATE: TemplateItem[] = [
 
 export const DD_SECTIONS = [...checklist.map(([s]) => s), OWNERSHIP_SECTION];
 
+// Construction Oversight Checklist, from the workbook's "Construction Mgmt" sheet. Lines
+// pulled from a specific construction contract go under CONTRACT_SECTION.
+export const CONTRACT_SECTION = 'Contract Items';
+
+const construction: [section: string, items: [key: string, label: string][]][] = [
+  ['Pre-Con', [
+    ['cm_budget', 'Bid and finalize contractor budget'],
+    ['cm_contract', 'Executed Contract'],
+    ['cm_start', 'Start Date'],
+    ['cm_est_completion', 'Est. Completion Date'],
+    ['cm_draw_structure', 'Draw / Pay Structure'],
+    ['cm_gc_insurance', 'GC Insurance'],
+    ['cm_permits', 'Permits'],
+    ['cm_lien_forms', 'Lien Waiver Forms + W-9 on File'],
+    ['cm_draw_setup', 'Draw Process Set Up with Lender'],
+    ['cm_ntp', 'Notice to Proceed Issued'],
+  ]],
+  ['Weekly Oversight', [
+    ['cm_weekly_report', 'GC Weekly Report'],
+    ['cm_timing', 'Timing vs UW'],
+    ['cm_site_visit', 'Site Visit (every 2-4 weeks)'],
+  ]],
+  ['Monthly Payments', [
+    ['cm_payapp_received', 'Pay App Received (by the 5th)'],
+    ['cm_payapp_checked', 'Pay App Checked vs. SOV & % Complete'],
+    ['cm_cond_waivers', 'Conditional Lien Waivers - GC + Subs'],
+    ['cm_lender_inspection', 'Lender Inspection Ordered / Complete'],
+    ['cm_draw_request', 'Draw Request Submitted'],
+    ['cm_draw_funded', 'Draw Funded'],
+    ['cm_gc_paid', 'GC Paid / Unconditional Waivers Collected'],
+    ['cm_bva', 'Budget vs. Actual + Cost to Complete'],
+    ['cm_contingency', 'Contingency Balance'],
+    ['cm_partner_update', 'Partner Update Sent'],
+  ]],
+  ['Change Orders', [
+    ['cm_co_log', 'CO Log Current'],
+    ['cm_co_written', 'Priced & Approved in Writing Before Work Starts'],
+    ['cm_co_notify', 'Lender / Equity Notified if Over Threshold'],
+    ['cm_co_contingency', 'Charged to Contingency & Tracked'],
+  ]],
+  ['Closeout', [
+    ['cm_sc_cert', 'Substantial Completion Certificate'],
+    ['cm_punch', 'Punch List Complete'],
+    ['cm_co_cert', 'Certificate of Occupancy'],
+    ['cm_asbuilts', 'As-Builts, O&Ms, Warranties Received'],
+    ['cm_final_waivers', 'Final Unconditional Lien Waivers - All Tiers'],
+    ['cm_retainage', 'Retainage Released'],
+    ['cm_final_recon', 'Final Budget Reconciliation'],
+    ['cm_capitalized', 'Costs Capitalized / Fixed Asset Entry'],
+    ['cm_builders_risk', "Builder's Risk to Permanent Insurance"],
+    ['cm_turnover', 'Turnover to Property Management'],
+    ['cm_rent_commence', 'Tenant Delivery / Rent Commencement'],
+    ['cm_warranty_walk', '11-Month Warranty Walk Scheduled'],
+  ]],
+];
+
+export const CM_TEMPLATE: TemplateItem[] = construction.flatMap(([section, items]) => items.map(([key, label]) => ({ key, section, label })));
+
+export const CM_SECTIONS = [CONTRACT_SECTION, ...construction.map(([s]) => s)];
+
+export type ChecklistList = 'dd' | 'cm';
+export const listOfSection = (section: string): ChecklistList | null =>
+  DD_SECTIONS.includes(section) ? 'dd' : CM_SECTIONS.includes(section) ? 'cm' : null;
+
 // The Outlook sync still writes the older diligence/diligence_items tables by category.
 // Those notes show under the matching checklist line.
 export const LEGACY_CATEGORY_KEY: Record<string, string> = {
@@ -140,6 +204,7 @@ export const COST_CATEGORIES = [
 export interface DdItem {
   id: number;
   deal_id: number;
+  list: ChecklistList;
   item_key: string;
   section: string;
   grp: string | null;

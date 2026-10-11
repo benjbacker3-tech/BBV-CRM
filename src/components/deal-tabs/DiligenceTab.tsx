@@ -140,7 +140,7 @@ export default function DiligenceTab({ deal }: { deal: Deal }) {
   );
 }
 
-function Progress({ label, done, total, pct }: { label: string; done: number; total: number; pct: number }) {
+export function Progress({ label, done, total, pct }: { label: string; done: number; total: number; pct: number }) {
   return (
     <div>
       <div className="flex justify-between items-baseline mb-1">
@@ -154,7 +154,7 @@ function Progress({ label, done, total, pct }: { label: string; done: number; to
   );
 }
 
-function ChecklistSection({ section, dealId, rows, legacy, onSave, onChanged }: {
+export function ChecklistSection({ section, dealId, rows, legacy, onSave, onChanged }: {
   section: string;
   dealId: number;
   rows: DdItem[];
