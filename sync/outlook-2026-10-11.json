@@ -1,0 +1,133 @@
+{
+  "as_of": "2026-10-11",
+  "source": "Outlook review of ben@sandpiperre.com (read-only), 2026-10-09 → 2026-10-11. Automated run; no LOI search. Light weekend mail.",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "name": "10275 E 106th",
+        "address": "10275 E 106th Ave",
+        "city": "Brighton",
+        "market": "Denver",
+        "acreage": 2.05,
+        "asking_price": 4000000,
+        "stage": "Under Contract",
+        "dd_expiry": "2026-10-31",
+        "close_date": "2026-11-09",
+        "deposit": 20000
+      },
+      "status": [
+        "Retrade open: Ben asked 10/7 for $250K cut to $3.75M; seller (Boyle/Westbrook) countered $70K and cites Zero Carbon (tenant) as a $4M cash backup. Ben's 10/8 models assume a $100K cut. No new retrade mail since 10/8. Price not final; CRM keeps $4.0M.",
+        "Capital: CentrePoint JV 90/10; draft CPP-SPC Holdco JV OA under review. Debt: First Interstate via Essex. Essex (Matt Perigard) 10/9 updated needs list: org docs + guarantor items are the priority to get loan docs out sooner; OA may take longer.",
+        "Entities/legal: SP Brighton IOS LLC formed — Burke (Stacey Clement) sent the file-stamped Colorado Articles of Organization 10/9. Lease Assignment: Ben told Wormser Casey (Nick Michel) 10/9 no review needed; he is handling seller counsel's draft himself.",
+        "Ben owes (FIB needs list 10/9): signed OA, Articles, EIN form; Ben guarantor K1s + 2025 tax return extension; ALTA certified to First Interstate Bank; PMA; tenant estoppel/SNDA; tenant financials (3 FYE + YTD). CentrePoint owes its EIN form + org chart. Also: retrade response; lease assignment comments; final ALTA go-ahead to AEI.",
+        "Waiting on: AEI draft ZAR review (received 10/8); tenant SNDA/estoppel; JV docs; seller demo/RTU completion; Ryan tax estimate.",
+        "Risks: retrade with a $4M cash backup buyer; tenant credit; water district restriction + unreleased 2018 O&G lease."
+      ]
+    },
+    {
+      "key": "1862 Ives",
+      "aliases": ["1962 Ives"],
+      "fields": {
+        "name": "1862 Ives",
+        "address": "1862 Ives Ave",
+        "city": "Kent",
+        "market": "Seattle / Tacoma",
+        "sf": 60000,
+        "acreage": 5.19,
+        "asking_price": 6550000,
+        "stage": "Negotiating PSA",
+        "dd_days": 60,
+        "close_days": 30,
+        "deposit": 50000
+      },
+      "status": [
+        "Seller: Magnum Venus Products (CBRE: Steve & Ryan Brunette). Buyer counsel: Stephen Schuster (Burke). Buyer broker: Taylor Hudson, NAI (3% paid by Sandpiper).",
+        "PSA $6.55M, $800K env escrow, 60 DD / 30 close. Burke's revised draft sent to CBRE 10/8. No seller signature seen as of 10/11.",
+        "DD vendors on hold until PSA signed: Contour ALTA agreement 26-207 awaiting Ben's e-signature; Mackenzie contract 2260484.00 DocuSign reminder 10/10 (unsigned). Brett Conway on PTO through 10/16.",
+        "Still open from before (no new mail): BNSF easement timing; GeoEngineers soil-vapor + covenant answers; City of Kent records request W083543 (~10/15)."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "name": "6371 Nesbitt",
+        "address": "6371 Nesbitt Rd",
+        "city": "Madison",
+        "market": "Wisconsin",
+        "asking_price": 3450000,
+        "stage": "Closed",
+        "close_date": "2026-09-11"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Verona IOS LLC. Lender: Sunwest. GC: TJK ($907,220; substantial completion 12/2). TJK asked 10/7 what pay-request format to use.",
+        "First Student lease (1 ac north parcel): signed lease mailed USPS to Verona IOS LLC (Attn Aviv) per YardFlow 10/8; receipt not confirmed in mail. Oakbrook holding First Student payment-setup forms until it arrives.",
+        "Roof: Tilsen proposal for back shop roof signed 10/1; likely a winter job. Tilsen needs Verona IOS mailing address.",
+        "Capital call: Ben's $15,733 received 9/24. HighPoint (Michelle Goss) 10/9: Roy Harel's funds received ($18,967 per schedule (inferred)). Aviv Rubin $52,300 not yet confirmed received.",
+        "Leasing/other: Oakbrook short-listed for a national tenant for the main building (9/23). Opex estimate pending (insurance $16,181.25/yr). Adams Outdoor easement agreements awaiting Oren's comments."
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "deal": "10275 E 106th",
+      "name": "Matt Perigard",
+      "firm": "Essex Real Estate Capital",
+      "email": "mperigard@essexreca.com",
+      "phone": "240.426.8797",
+      "notes": "Role: Associate, Essex; runs the First Interstate needs list (106th)."
+    },
+    {
+      "type": "broker",
+      "name": "Marty Maier",
+      "firm": "DAUM Commercial Real Estate Services",
+      "email": "mmaier@daumcommercial.com",
+      "phone": "602.575.2321",
+      "markets": "Phoenix",
+      "notes": "Associate Vice President, Phoenix. Sent off-market sale 4187 W Kitty Hawk Way (RotorWay International) 10/9."
+    }
+  ],
+  "tasks": [
+    {
+      "contact_email": "mperigard@essexreca.com",
+      "type": "email",
+      "due_date": "2026-10-13",
+      "note": "106th: send FIB org docs (Articles filed 10/9, EIN form, signed OA when ready) + guarantor K1s and 2025 extension"
+    },
+    {
+      "contact_email": "mmaier@daumcommercial.com",
+      "type": "email",
+      "due_date": "2026-10-14",
+      "note": "Reply re interest in 4187 W Kitty Hawk Way off-market sale (RotorWay); ask for price, SF, acreage"
+    }
+  ],
+  "contact_log": [
+    {
+      "contact_email": "mperigard@essexreca.com",
+      "type": "email",
+      "date": "2026-10-09",
+      "note": "Updated FIB needs list for 106th; org docs + guarantor items prioritized."
+    },
+    {
+      "contact_email": "nick@wormsercasey.com",
+      "type": "email",
+      "date": "2026-10-09",
+      "note": "Ben: no need for Wormser Casey to review the 106th Lease Assignment; Ben handling it."
+    },
+    {
+      "contact_email": "Michelle@highpointcre.com",
+      "type": "email",
+      "date": "2026-10-09",
+      "note": "Nesbitt capital call: Roy Harel's funds received."
+    },
+    {
+      "contact_email": "mmaier@daumcommercial.com",
+      "type": "email",
+      "date": "2026-10-09",
+      "note": "Sent 4187 W Kitty Hawk Way (RotorWay International) for sale off-market."
+    }
+  ],
+  "diligence": [],
+  "comps": [],
+  "lois": []
+}
