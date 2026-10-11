@@ -1,0 +1,965 @@
+{
+  "as_of": "2026-10-09",
+  "source": "Outlook review of ben@sandpiperre.com (read-only), 2026-10-08 → 2026-10-09. Automated run; no LOI search.",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "name": "10275 E 106th",
+        "address": "10275 E 106th Ave",
+        "city": "Brighton",
+        "market": "Denver",
+        "acreage": 2.05,
+        "asking_price": 4000000,
+        "stage": "Under Contract",
+        "dd_expiry": "2026-10-31",
+        "close_date": "2026-11-09",
+        "deposit": 20000
+      },
+      "status": [
+        "Retrade open: Ben asked 10/7 for $250K cut to $3.75M; seller (Boyle/Westbrook) countered $70K and cites Zero Carbon (tenant) as a $4M cash backup. Ben's 10/8 models assume a $100K cut: sent to Essex at that number and to investors (Eric Johnson, Anthony) at $3.9M. Price not final; CRM keeps $4.0M.",
+        "Capital: CentrePoint JV 90/10; draft CPP-SPC Holdco JV OA under review (Ben: no 1.0% CPP acq fee on SPC; Ben funds at least 3 of SPC's 10%). Debt: First Interstate via Essex (Cooper Williams); loan docs expected week of 10/19 (Essex 10/8); Ben aims to finish equity docs first.",
+        "Entities/legal: Burke (Schuster / Stacey Clement) forming SP Brighton IOS LLC and handling PSA assignment (BWMS address, CSC as registered agent, 10/8). Wormser Casey (Nick Michel) on the Zero Carbon lease assignment; seller counsel Craig Johnson's draft Lease Assignment (10/8) is with Ben for review.",
+        "Ben owes: retrade response; lease assignment comments; FIB needs list (liquidity statements, 2025 return, org docs, PMA, estoppel/SNDA with buyer entity as Landlord); final ALTA go-ahead to AEI; loop Red Cedar into AppFolio.",
+        "Waiting on: AEI draft ZAR review (received 10/8); tenant SNDA; JV docs; seller demo/RTU completion; Ryan tax estimate.",
+        "Risks: retrade with a $4M cash backup buyer; tenant credit; water district restriction + unreleased 2018 O&G lease."
+      ]
+    },
+    {
+      "key": "1862 Ives",
+      "aliases": [
+        "1962 Ives"
+      ],
+      "fields": {
+        "name": "1862 Ives",
+        "address": "1862 Ives Ave",
+        "city": "Kent",
+        "market": "Seattle / Tacoma",
+        "sf": 60000,
+        "acreage": 5.19,
+        "asking_price": 6550000,
+        "stage": "Negotiating PSA",
+        "dd_days": 60,
+        "close_days": 30,
+        "deposit": 50000
+      },
+      "status": [
+        "Seller: Magnum Venus Products (CBRE: Steve & Ryan Brunette). Buyer counsel: Stephen Schuster (Burke). Buyer broker: Taylor Hudson, NAI (3% paid by Sandpiper).",
+        "PSA $6.55M, $800K env escrow, 60 DD / 30 close. Burke's revised draft (§4.9 indemnity, §7.15) after the 10/8 attorney call; Ben approved and sent it to CBRE 10/8. Waiting on seller signature.",
+        "DD vendors on hold until PSA signed: Contour Engineering ALTA agreement 26-207 awaiting Ben's e-signature (reminder 10/9); Mackenzie DD/pre-app contract (Ben told Mackenzie 10/8 he expects an executed PSA shortly). Brett Conway on PTO through 10/16.",
+        "Still open from before (no new mail): BNSF easement timing; GeoEngineers soil-vapor + covenant answers; City of Kent records request W083543 (~10/15)."
+      ]
+    },
+    {
+      "key": "724 Taylor",
+      "fields": {
+        "name": "724 Taylor",
+        "address": "724 W Taylor Ave",
+        "city": "Meridian",
+        "market": "Boise",
+        "sf": 44600,
+        "acreage": 8.1,
+        "asking_price": 5000040,
+        "stage": "Closed"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Taylor IOS LLC + RBNB 69th LLC (TIC). Partners: Nublock (Roy Harel), RBN (Aviv Rubin, Mitch Veremeychik). Counsel: Oren Fishman.",
+        "S-Bar GC agreement executed 9/28 (Rev 2.1: ~$780K base + ~$230K options). Mobilized; demo underway (9/30).",
+        "Invoice #01 (26-047-RBN-TAYLOR-01): Ben asked HighPoint to pay 10/8; Michelle Goss confirmed 10/8 it is in process.",
+        "Insurance: IMA (Lorenzo Vasquez) 10/9 says S-Bar's updated COIs still lack the Auto Liability additional-insured endorsement and the GL primary & non-contributory endorsement; otherwise sufficient.",
+        "Open: lender contractor consent / scope summary (no update seen)."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "name": "6371 Nesbitt",
+        "address": "6371 Nesbitt Rd",
+        "city": "Madison",
+        "market": "Wisconsin",
+        "asking_price": 3450000,
+        "stage": "Closed",
+        "close_date": "2026-09-11"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Verona IOS LLC. Lender: Sunwest. GC: TJK ($907,220; substantial completion 12/2). TJK asked 10/7 what pay-request format to use.",
+        "First Student lease (1 ac north parcel): per YardFlow (Rafi Katz, tenant side) 10/8, First Student mailed the signed lease via USPS from Cincinnati to Verona IOS LLC, 2401 E 2nd Ave Unit 300, Denver (Attn Aviv); not yet received. Ben asked to call First Student directly; contact available 9–11am CT 10/9. Oakbrook holding First Student payment-setup forms until the signed lease arrives.",
+        "Roof: Tilsen proposal for back shop roof (ballasted EPDM) signed 10/1; likely a winter job. Tilsen needs Verona IOS mailing address.",
+        "Capital call (Highpoint, 10/7): Ben's $15,733 received 9/24. Roy replied 10/8 'sent this morning' (presumably his $18,967 (inferred)); Aviv $52,300 not confirmed.",
+        "Leasing/other: Oakbrook short-listed for a national tenant for the main building (9/23). Opex estimate pending (insurance $16,181.25/yr). Per Mar security install created 10/7. Adams Outdoor easement agreements awaiting Oren's comments."
+      ]
+    },
+    {
+      "key": "18050 Keith Harrow",
+      "fields": {
+        "name": "18050 Keith Harrow",
+        "address": "18050 Keith Harrow Blvd",
+        "city": "Houston",
+        "market": "Houston",
+        "stage": "Dead"
+      },
+      "status": [
+        "DEAD (terminated 9/8). Earnest money dispute resolved: signed Notice of Release, and North Star Title wired $49,500 to Sandpiper on 9/23. The balance is likely the independent consideration (inferred).",
+        "Close-out: pay LandTech survey invoice 61070 (ACH details received 9/29; paid status not confirmed); Burke August billing (10/1); Porter Firm bill (9/24). EPS Phase I paid 9/23."
+      ]
+    },
+    {
+      "key": "22014 Bostian",
+      "aliases": [
+        "8624 219th",
+        "8624 218th"
+      ],
+      "insert_only": true,
+      "fields": {
+        "name": "22014 Bostian",
+        "address": "22014 Bostian Rd",
+        "city": "Woodinville",
+        "market": "Seattle / Tacoma",
+        "acreage": 9.48,
+        "asking_price": 19000000,
+        "stage": "Tracking"
+      },
+      "status": [
+        "Off-market via Andrew Kemmerer (Burr Temkin) 10/8: 9.48 ac, ask $19.0M. Income $75K/mo; ~3 yrs lease left. Ben: tough cap rate, 'probably lower teens'. SP passed."
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "deal": "10275 E 106th",
+      "type": "owner",
+      "name": "Patrick Boyle",
+      "firm": "Precision Ventures LLC",
+      "email": "pboylet5853@gmail.com"
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Craig Johnson",
+      "firm": "Johnson & Ytterberg, P.C.",
+      "email": "cjohnson@cdjlaw.com",
+      "notes": "Role: seller counsel (106th). Office hours Tue–Thu 9–3."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Cooper Williams",
+      "firm": "Essex Real Estate Capital",
+      "email": "cwilliams@essexreca.com",
+      "notes": "Role: debt advisor, First Interstate loan (106th)."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Stephen Schuster",
+      "firm": "Burke, Warren, MacKay & Serritella",
+      "email": "SSchuster@burkelaw.com"
+    },
+    {
+      "deal": "1862 Ives",
+      "type": "broker",
+      "name": "Steven Brunette",
+      "firm": "CBRE",
+      "email": "Steven.Brunette@cbre.com"
+    },
+    {
+      "deal": "724 Taylor",
+      "name": "Michelle Goss",
+      "firm": "HighPoint CRE",
+      "email": "Michelle@highpointcre.com",
+      "notes": "Role: accounting/asset management (Taylor + Nesbitt payments, capital calls)."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Graham Schroeder",
+      "firm": "Tilsen Roofing",
+      "email": "graham@tilsenroofing.com",
+      "notes": "Role: roofer (Nesbitt shop roof)."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Oren Fishman",
+      "firm": "Fishman PC",
+      "email": "oren@fishmanlawgroup.com"
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "type": "broker",
+      "name": "Rafi Katz",
+      "firm": "YardFlow",
+      "email": "rafi@getyardflow.com",
+      "phone": "(301) 602-5786",
+      "notes": "Founder, YardFlow; tenant-side contact for First Student (Nesbitt north-parcel lease)."
+    },
+    {
+      "type": "broker",
+      "name": "Mike Viehmann",
+      "firm": "Newmark",
+      "email": "mike.viehmann@nmrk.com",
+      "phone": "720-391-8292",
+      "markets": "Denver",
+      "notes": "SIOR, Managing Director. Listing 6591 Brighton Blvd, Commerce City (10/8)."
+    }
+  ],
+  "tasks": [
+    {
+      "contact_email": "pboylet5853@gmail.com",
+      "type": "call",
+      "due_date": "2026-10-12",
+      "note": "106th: respond to seller's $70K retrade counter (asked $250K; model assumes $100K)"
+    },
+    {
+      "contact_email": "cjohnson@cdjlaw.com",
+      "type": "email",
+      "due_date": "2026-10-13",
+      "note": "106th: comments on seller's draft Zero Carbon Lease Assignment (with Nick Michel)"
+    },
+    {
+      "contact_email": "cwilliams@essexreca.com",
+      "type": "email",
+      "due_date": "2026-10-14",
+      "note": "106th: FIB needs — liquidity stmts, 2025 return, SP Brighton IOS org docs, PMA, estoppel/SNDA (buyer as Landlord)"
+    },
+    {
+      "contact_email": "SSchuster@burkelaw.com",
+      "type": "email",
+      "due_date": "2026-10-13",
+      "note": "106th: finish SP Brighton IOS LLC + PSA assignment; review CPP-SPC Holdco JV OA (acq fee, co-invest)"
+    },
+    {
+      "contact_email": "Michelle@highpointcre.com",
+      "type": "email",
+      "due_date": "2026-10-12",
+      "note": "724 Taylor: confirm S-Bar invoice #01 paid"
+    },
+    {
+      "contact_email": "graham@tilsenroofing.com",
+      "type": "email",
+      "due_date": "2026-10-09",
+      "note": "Nesbitt: send Verona IOS LLC mailing address for roof warranty registration"
+    },
+    {
+      "contact_email": "oren@fishmanlawgroup.com",
+      "type": "email",
+      "due_date": "2026-10-14",
+      "note": "Nesbitt: comments on Adams easement purchase agreements (Word sent 10/2)"
+    },
+    {
+      "contact_email": "rafi@getyardflow.com",
+      "type": "call",
+      "due_date": "2026-10-09",
+      "note": "Nesbitt: call First Student contact (via Rafi, 9–11am CT) re signed lease mailed USPS to Aviv; get it by email"
+    },
+    {
+      "contact_email": "Steven.Brunette@cbre.com",
+      "type": "call",
+      "due_date": "2026-10-13",
+      "note": "Ives: follow up on seller signature of revised PSA (sent 10/8); then sign Contour ALTA (26-207) + Mackenzie contracts"
+    }
+  ],
+  "contact_log": [
+    {
+      "contact_email": "Steven.Brunette@cbre.com",
+      "type": "email",
+      "date": "2026-10-08",
+      "note": "Ben sent Burke's revised Ives PSA (post attorney call) to CBRE for seller."
+    },
+    {
+      "contact_email": "Michelle@highpointcre.com",
+      "type": "email",
+      "date": "2026-10-08",
+      "note": "S-Bar invoice #01 received and in process."
+    },
+    {
+      "contact_email": "rafi@getyardflow.com",
+      "type": "email",
+      "date": "2026-10-08",
+      "note": "First Student mailed signed Nesbitt lease via USPS to Verona IOS (Attn Aviv); Ben asked for a contact to call."
+    },
+    {
+      "contact_email": "mike.viehmann@nmrk.com",
+      "type": "email",
+      "date": "2026-10-08",
+      "note": "Ben asked pricing on 6591 Brighton Blvd (2.08 ac, 6,652 SF); asking $19,000/mo NNN."
+    }
+  ],
+  "diligence": [
+    {
+      "deal": "10275 E 106th",
+      "category": "zoning",
+      "vendor": "AEI",
+      "items": [
+        [
+          "PZR ordered 9/17",
+          "complete"
+        ],
+        [
+          "Draft ZAR received 10/8 — review",
+          "in-progress"
+        ]
+      ]
+    },
+    {
+      "deal": "1862 Ives",
+      "category": "survey",
+      "vendor": "Contour Engineering",
+      "items": [
+        [
+          "ALTA Survey Agreement 26-207 — awaiting Ben's e-signature (hold until PSA signed)",
+          "pending"
+        ]
+      ]
+    },
+    {
+      "deal": "724 Taylor",
+      "category": "contractor",
+      "vendor": "S-Bar",
+      "items": [
+        [
+          "GC agreement executed 9/28",
+          "complete"
+        ],
+        [
+          "Demo underway (9/30)",
+          "in-progress"
+        ],
+        [
+          "Invoice #01 payment (HighPoint processing 10/8)",
+          "in-progress"
+        ],
+        [
+          "COI: auto AI endorsement + GL primary & non-contributory (IMA 10/9)",
+          "pending"
+        ]
+      ]
+    }
+  ],
+  "comps": [
+    {
+      "kind": "availability",
+      "market": "Denver",
+      "address": "6591 Brighton Blvd",
+      "city": "Commerce City",
+      "submarket": null,
+      "status": "Available",
+      "sf": 6652,
+      "acres": 2.08,
+      "rent_monthly": 19000,
+      "broker": "Newmark - Mike Viehmann",
+      "zoning": "I-3",
+      "notes": "Shop + yard; asking $19,000/mo NNN (Viehmann reply 10/8). Full renovation underway (paint, office, loading doors, fencing). Near I-270/I-76.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbGAAA=",
+      "source_note": "Newmark new listing blast 10/8 + rate reply — Mike Viehmann"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "2326 Airport Way South",
+      "city": "Seattle",
+      "status": "Available",
+      "available_date": null,
+      "sf": 21580,
+      "acres": 1.92,
+      "rent_monthly": 90326,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#1. Asking $1.08/land SF/mo + NNN. Paved and fenced cross dock facility.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "2418 Airport Way South",
+      "city": "Seattle",
+      "status": "Available",
+      "available_date": null,
+      "sf": 19783,
+      "acres": 1.59,
+      "rent_monthly": 46404,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#2. Asking $0.67/land SF/mo + NNN. Paved and fenced lot with significant shop and office space.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "2437 6th Avenue South",
+      "city": "Seattle",
+      "status": "Available",
+      "available_date": null,
+      "sf": 3524,
+      "acres": 0.92,
+      "rent_monthly": 24045,
+      "yard": "Gravel",
+      "fence": null,
+      "lit": null,
+      "doors": null,
+      "notes": "#3. Asking $0.60/land SF/mo + NNN. Small shop with adjacent graveled parking.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "720 South Forest Street (Former Budget Rent a Car)",
+      "city": "Seattle",
+      "status": "Available",
+      "available_date": null,
+      "sf": 11500,
+      "acres": 0.99,
+      "rent_monthly": 28031,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": "Oversized grade-level doors",
+      "notes": "#4. Asking $0.65/land SF/mo + NNN. Short-term sublease with 5-year option.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "2958 6th Avenue South (Alaskan Copper)",
+      "city": "Seattle",
+      "status": "Available",
+      "available_date": null,
+      "sf": 15236,
+      "acres": 3,
+      "rent_monthly": 52272,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#5. Asking $0.40/land SF/mo + NNN. Paved and fenced yard with cross dock building and shop.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "3453 4th Avenue South",
+      "city": "Seattle",
+      "status": "Available",
+      "available_date": null,
+      "sf": 1980,
+      "acres": 1.54,
+      "rent_monthly": 40249,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#6. Asking $0.60/land SF/mo + NNN. Sublease; small shop/office mid-site.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "5801 East Marginal Way South (Emerald City Yards)",
+      "city": "Seattle",
+      "status": "Available",
+      "available_date": null,
+      "sf": 57000,
+      "acres": 12.76,
+      "rent_monthly": 333495,
+      "yard": null,
+      "fence": null,
+      "lit": null,
+      "doors": null,
+      "notes": "#7. Asking $0.60/land SF/mo + NNN. Heavy power; demisable to 2 AC; shop and 50k SF warehouse available.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "7245 West Marginal Way SW (The Jones Maritime Building)",
+      "city": "Seattle",
+      "status": "Available",
+      "available_date": null,
+      "sf": 148000,
+      "acres": 2,
+      "rent_monthly": 34848,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#8. Asking $0.40/land SF/mo + NNN. Fenced and graveled yard with functional warehouse.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "3600 South 124th Street (Intergate Technology Park)",
+      "city": "Tukwila",
+      "status": "Available",
+      "available_date": null,
+      "sf": 9900,
+      "acres": 4.5,
+      "rent_monthly": 78408,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#9. Asking $0.40/land SF/mo + NNN. North Tukwila.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "12855 48th Avenue South (Prologis Park Tukwila 7)",
+      "city": "Tukwila",
+      "status": "Available",
+      "available_date": null,
+      "sf": null,
+      "acres": 12.4,
+      "rent_monthly": 243065,
+      "yard": null,
+      "fence": null,
+      "lit": null,
+      "doors": "127 door cutouts",
+      "notes": "#10. Asking $0.45/land SF/mo + NNN. Large cross dock building; shop SF printed as '10,7767' (unclear).",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "6440 South 143rd Street",
+      "city": "Tukwila",
+      "status": "Available",
+      "available_date": null,
+      "sf": 8200,
+      "acres": 1.59,
+      "rent_monthly": 27704,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#11. Asking $0.40/land SF/mo + NNN. Suited for cross dock user.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "17300 West Valley Highway (Pacific NW Sales & Recovery Bldg)",
+      "city": "Tukwila",
+      "status": "Available",
+      "available_date": null,
+      "sf": 21025,
+      "acres": 1.61,
+      "rent_monthly": 39975,
+      "yard": null,
+      "fence": null,
+      "lit": null,
+      "doors": null,
+      "notes": "#12. Asking $0.57/land SF/mo + NNN. Also for sale ($8,900,000; $102.67/SF); concrete tilt-up with 1+ AC excess yard.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "20245 84th Avenue (Lift 84th)",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 7033,
+      "acres": 2.17,
+      "rent_monthly": 41591,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": "Oversized grade-level doors",
+      "notes": "#13. Asking $0.44/land SF/mo + NNN.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "7800 South 206th Street",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 20629,
+      "acres": 4.52,
+      "rent_monthly": 88601,
+      "yard": "Paved",
+      "fence": true,
+      "lit": true,
+      "doors": null,
+      "notes": "#14. Asking $0.45/land SF/mo + NNN. Class A IOS; heavy power; 15,000 SF covered storage; 4,645 SF two-story office.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "8130 South 216th Street (R & L Carriers Bldg)",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 29000,
+      "acres": 4.23,
+      "rent_monthly": 84759,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#15. Asking $0.46/land SF/mo + NNN. Cross dock; landlord seeking 5-year deal.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "8021 South 222nd Street",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 6904,
+      "acres": 4.95,
+      "rent_monthly": 90561,
+      "yard": "Paved/Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#16. Asking $0.42/land SF/mo + NNN. Fully fenced and secured.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "760 North Central Avenue (Dowell Bldg)",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 8754,
+      "acres": 1,
+      "rent_monthly": 11761,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#17. Asking $0.27/land SF/mo + NNN. Building with excess parking; Central Ave frontage.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "24300 Pacific Highway South",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 3800,
+      "acres": 7,
+      "rent_monthly": 64033,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#18. Asking $0.21/land SF/mo + NNN. Small service shop.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "24432-24600 Pacific Highway South (Former Pacific Fleet Sales)",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 3844,
+      "acres": 1.86,
+      "rent_monthly": 32409,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#19. Asking $0.40/land SF/mo + NNN. Shop and office; also for sale ($4,000,000; $49.37/SF).",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "25220 Pacific Highway South",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 5000,
+      "acres": 0.99,
+      "rent_monthly": 18112,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#20. Asking $0.42/land SF/mo + NNN. New project under construction; to be delivered paved and fenced.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "7226 South 262nd Street",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 18231,
+      "acres": 5.1,
+      "rent_monthly": 124407,
+      "yard": "Paved",
+      "fence": true,
+      "lit": true,
+      "doors": null,
+      "notes": "#21. Asking $0.56/land SF/mo + NNN. Cross dock; truck repair shop on north of site.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "7915 South 261st Street (Realterm Kent IOS)",
+      "city": "Kent",
+      "status": "Available",
+      "available_date": null,
+      "sf": 23740,
+      "acres": 4.5,
+      "rent_monthly": 88209,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#22. Asking $0.45/land SF/mo + NNN. Three existing buildings.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "21 49th Street NW",
+      "city": "Auburn",
+      "status": "Available",
+      "available_date": null,
+      "sf": 2466,
+      "acres": 0.75,
+      "rent_monthly": 14048,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#23. Asking $0.43/land SF/mo + NNN. Small contractor yard; also for sale ($3,072,000; $55.10/SF).",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "1201 37th Street NW",
+      "city": "Auburn",
+      "status": "Available",
+      "available_date": null,
+      "sf": 7536,
+      "acres": 5.36,
+      "rent_monthly": 81719,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#24. Asking $0.35/land SF/mo + NNN. Demisable to 2.31 AC.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "3705 West Valley Highway North",
+      "city": "Auburn",
+      "status": "Available",
+      "available_date": null,
+      "sf": 48349,
+      "acres": 4.5,
+      "rent_monthly": 88209,
+      "yard": "Paved/Gravel",
+      "fence": null,
+      "lit": null,
+      "doors": null,
+      "notes": "#25. Asking $0.45/land SF/mo + NNN. Large industrial campus; also for sale ($16,000,000; $65.71/SF).",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "47 37th Street NE (Auburn Logistics II)",
+      "city": "Auburn",
+      "status": "Available",
+      "available_date": null,
+      "sf": 24474,
+      "acres": 4.5,
+      "rent_monthly": 92129,
+      "yard": "Paved",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#26. Asking $0.47/land SF/mo + NNN. Trucking yard.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "214 21st Street SE",
+      "city": "Auburn",
+      "status": "Available",
+      "available_date": "2027-01-01",
+      "sf": 26920,
+      "acres": 2.15,
+      "rent_monthly": 39335,
+      "yard": null,
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#27. Asking $0.42/land SF/mo + NNN. Significant shop space; also for sale ($5,500,000; $58.73/SF). Survey shows $39,493.89/mo; formula gives $39,335.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "300 Birch Street (Milton Truck Yard)",
+      "city": "Milton",
+      "status": "Available",
+      "available_date": null,
+      "sf": 5000,
+      "acres": 2.08,
+      "rent_monthly": 29900,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#28. Asking $0.33/land SF/mo + NNN. Small truck shop.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "938 Butte Avenue SE (Zenith IOS 938 Butte)",
+      "city": "Pacific",
+      "status": "Available",
+      "available_date": "2026-11-01",
+      "sf": 13780,
+      "acres": 4.11,
+      "rent_monthly": 51919,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#29. Asking $0.29/land SF/mo + NNN. Shop with drive-through access.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "1614-1620 Lincoln Avenue (CenterPoint Yard)",
+      "city": "Tacoma",
+      "status": "Available",
+      "available_date": null,
+      "sf": 13478,
+      "acres": 7.07,
+      "rent_monthly": 98550,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#30. Asking $0.32/land SF/mo + NNN. Demisable to 3 AC; Port of Tacoma.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "824 West Valley Highway East",
+      "city": "Edgewood",
+      "status": "Available",
+      "available_date": null,
+      "sf": 1800,
+      "acres": 1,
+      "rent_monthly": 13068,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#31. Asking $0.30/land SF/mo + NNN.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "1217 140th Avenue Court East",
+      "city": "Sumner",
+      "status": "Available",
+      "available_date": null,
+      "sf": 7350,
+      "acres": 5.72,
+      "rent_monthly": 69766,
+      "yard": "Paved/Gravel",
+      "fence": true,
+      "lit": true,
+      "doors": null,
+      "notes": "#32. Asking $0.28/land SF/mo + NNN. Available now; GL building.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "1503 Thornton Avenue SW",
+      "city": "Pacific",
+      "status": "Available",
+      "available_date": null,
+      "sf": 3000,
+      "acres": 2.4,
+      "rent_monthly": 43908,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#33. Asking $0.42/land SF/mo + NNN. 3k SF shop.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    },
+    {
+      "kind": "availability",
+      "market": "Seattle",
+      "address": "1001 East 26th Street",
+      "city": "Tacoma",
+      "status": "Available",
+      "available_date": null,
+      "sf": 3500,
+      "acres": 0.96,
+      "rent_monthly": 8364,
+      "yard": "Gravel",
+      "fence": true,
+      "lit": null,
+      "doors": null,
+      "notes": "#34. Asking $0.20/land SF/mo + NNN. Small shop.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAAA0bBbPAAA=",
+      "source_note": "KBC Seattle IOS market survey Q4 2026 (10/8) — John Broom (KBC Advisors)"
+    }
+  ],
+  "lois": []
+}
