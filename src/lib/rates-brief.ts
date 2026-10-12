@@ -43,6 +43,8 @@ export interface SpotRow {
 }
 
 export interface NewsItem { tag: string; h: string; p: string; src: string; url?: string }
+// "Top 5 today": short headlines or things to be mindful of, most important first.
+export interface TopItem { tag?: string; h: string; p?: string; url?: string }
 export interface BoardGroup { g: string; rows: { n: string; t: string; p: number; c: number | null; d: string }[] }
 export interface SportsItem { lg: string; d: string; h: string; p: string; src?: string; url?: string }
 
@@ -53,6 +55,7 @@ export interface RatesBrief {
   headline: string;
   dateline: string;
   ustDate: string;
+  top?: TopItem[];      // CRM tab only; the hosted page ignores it
   tape: TapeRow[];
   key: KeyRate[];
   fhlb: string;         // may contain simple HTML (<b>, <br>)

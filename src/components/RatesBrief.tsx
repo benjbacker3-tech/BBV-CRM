@@ -26,6 +26,8 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         {B.dateline && <p className="page-sub">{B.dateline}</p>}
       </header>
 
+      {B.top && B.top.length > 0 && <TopFive items={B.top.slice(0, 5)} />}
+
       {B.tape?.length > 0 && (
         <Section title="Markets" sub="close · day · 1 year">
           <div className="grid grid-cols-1 min-[460px]:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -154,6 +156,33 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         />
       )}
     </div>
+  );
+}
+
+function TopFive({ items }: { items: NonNullable<Brief['top']> }) {
+  return (
+    <section className="card overflow-hidden">
+      <div className="card-header !py-2.5 bg-navy/[0.03] dark:bg-blue-900/10">
+        <h2 className="text-xs uppercase tracking-[0.12em] font-bold text-navy dark:text-blue-300">Top 5 today</h2>
+        <span className="text-[10px] text-slate-400">headlines &amp; things to be mindful of</span>
+      </div>
+      <ol className="divide-y divide-slate-100 dark:divide-slate-800">
+        {items.map((t, i) => (
+          <li key={i} className="flex gap-3 px-4 py-2.5">
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-navy text-[11px] font-semibold text-white dark:bg-blue-300 dark:text-slate-900">{i + 1}</span>
+            <div className="min-w-0">
+              <p className="text-[13.5px] font-semibold leading-snug text-slate-900 dark:text-slate-100">
+                {t.tag && <span className="pill pill-navy mr-2 align-[1px]">{t.tag}</span>}
+                {t.url ? (
+                  <a href={t.url} target="_blank" rel="noopener noreferrer" className="hover:text-navy dark:hover:text-blue-300 underline decoration-slate-300 dark:decoration-slate-600 underline-offset-2">{t.h}</a>
+                ) : t.h}
+              </p>
+              {t.p && <p className="mt-0.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{t.p}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 

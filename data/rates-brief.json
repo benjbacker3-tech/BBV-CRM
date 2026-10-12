@@ -2,6 +2,37 @@
   "headline": "Stocks rose about 0.6% Friday to cap a record-setting week, while the 10-year ticked up 2bp to 5.24% and container rates slipped 2%.",
   "dateline": "Monday, October 12, 2026 · closes as of Fri Oct 9",
   "ustDate": "Oct 9, 2026",
+  "top": [
+    {
+      "tag": "Rates",
+      "h": "CPI lands Wednesday with the 10-year at 5.24%",
+      "p": "Long yields are near multidecade highs; a hot print pushes IOS acquisition and refinance costs higher.",
+      "url": "https://bnnbloomberg.ca/markets/2026/10/09/us-futures-are-rising-as-crude-prices-retreat-from-recent-gains"
+    },
+    {
+      "tag": "Fed",
+      "h": "Fed meets Oct 27–28; minutes lean toward another hike",
+      "p": "Most officials see one more hike by year-end, so higher-for-longer keeps pressure on cap rates.",
+      "url": "https://www.fxstreet.com/news/fed-minutes-set-to-provide-some-insight-into-the-timing-of-next-rate-hikes-202610071400"
+    },
+    {
+      "tag": "Debt",
+      "h": "About $875B of CRE debt matures this year into rising rates",
+      "p": "Owners refinancing 3–4% loans face much higher costs: expect more forced sellers and wider spreads on levered IOS.",
+      "url": "https://thecrereport.substack.com/p/the-fed-is-hiking-into-the-cre-maturity"
+    },
+    {
+      "tag": "Earnings",
+      "h": "Equipment-rental Q3: United Rentals Oct 21, Herc around Oct 27",
+      "p": "Rental branches are core IOS tenants, so these reports are the next read on yard demand."
+    },
+    {
+      "tag": "Freight",
+      "h": "Flatbed is the tightest truck board, up 28% y/y; diesel prints Oct 14",
+      "p": "Construction and equipment freight fills contractor yards; diesel is still about $2.49/gal above a year ago.",
+      "url": "https://dat.com/blog/flatbed-report-tightest-board-of-the-three-holds-its-edge-into-october"
+    }
+  ],
   "tape": [
     {
       "n": "S&P 500",
