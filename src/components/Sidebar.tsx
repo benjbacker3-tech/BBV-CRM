@@ -11,7 +11,7 @@ const navItems = [
   { href: '/documents', label: 'Documents', icon: DocumentsIcon },
   { href: '/capital', label: 'Capital', icon: CapitalIcon },
   { href: '/assets', label: 'Assets', icon: AssetsIcon },
-  { href: '/rates-brief', label: 'Rates Brief', icon: RatesIcon },
+  { href: '/rates-brief', label: 'Daily Brief', icon: RatesIcon },
   { href: '/settings', label: 'Settings', icon: SettingsIcon },
 ];
 

@@ -1,7 +1,8 @@
 {
-  "headline": "Stocks rose about 0.6% Friday to cap a record-setting week, while the 10-year ticked up 2bp to 5.24% and container rates slipped 2%.",
+  "headline": "The 10-year ends the week at 5.24%, up 110bp in a year, with CPI on Wednesday and a Fed meeting that leans toward another hike.",
   "dateline": "Monday, October 12, 2026 · closes as of Fri Oct 9",
   "ustDate": "Oct 9, 2026",
+  "bluf": "Financing costs are the story. The 10-year ended the week at 5.24%, up 110bp in a year, and Wednesday's CPI plus an Oct 27–28 Fed meeting that the minutes say leans toward another hike keep pressure on rates into your 10275 E 106th closing. Tenant demand is holding: flatbed, the construction and equipment segment, is the tightest truck board, while container rates eased.",
   "top": [
     {
       "tag": "Rates",
@@ -31,6 +32,72 @@
       "h": "Flatbed is the tightest truck board, up 28% y/y; diesel prints Oct 14",
       "p": "Construction and equipment freight fills contractor yards; diesel is still about $2.49/gal above a year ago.",
       "url": "https://dat.com/blog/flatbed-report-tightest-board-of-the-three-holds-its-edge-into-october"
+    }
+  ],
+  "econ": [
+    {
+      "n": "Fed funds target",
+      "v": "3.75–4.00%",
+      "prior": null,
+      "d": "Raised in Sep · next meeting Oct 27–28",
+      "dir": "up",
+      "good": false,
+      "why": "Minutes lean toward another hike by year-end."
+    },
+    {
+      "n": "Inflation expectations, 1-yr (UMich)",
+      "v": "4.7%",
+      "prior": null,
+      "d": "Released Oct 9",
+      "dir": "up",
+      "good": false,
+      "why": "Raises the odds of a hot CPI and higher long yields."
+    },
+    {
+      "n": "Initial jobless claims",
+      "v": "197,000",
+      "prior": null,
+      "d": "Week ended Oct 3",
+      "dir": "down",
+      "good": null,
+      "why": "Few layoffs: healthy tenants, but keeps the Fed hawkish."
+    }
+  ],
+  "cal": [
+    {
+      "d": "2026-10-13",
+      "tag": "Rates",
+      "e": "SOFR for Oct 9 publishes",
+      "why": "delayed a day by Monday's bond-market holiday"
+    },
+    {
+      "d": "2026-10-14",
+      "tag": "Economy",
+      "e": "CPI",
+      "why": "first inflation read since the September hike; a hot print pushes yields up"
+    },
+    {
+      "d": "2026-10-14",
+      "tag": "Freight",
+      "e": "EIA weekly diesel price",
+      "why": "fuel is about $2.49/gal above a year ago"
+    },
+    {
+      "d": "2026-10-21",
+      "tag": "Earnings",
+      "e": "United Rentals Q3 results (call Oct 22)",
+      "why": "first read on equipment-rental demand"
+    },
+    {
+      "d": "2026-10-27",
+      "tag": "Fed",
+      "e": "FOMC meeting, Oct 27–28",
+      "why": "minutes lean toward another hike"
+    },
+    {
+      "d": "2026-10-27",
+      "tag": "Earnings",
+      "e": "Herc Holdings Q3 results (expected)"
     }
   ],
   "tape": [
@@ -193,7 +260,6 @@
       "d1y": -25
     }
   ],
-  "fhlb": "<b>FHLB Topeka advances:</b> Awaiting first FHLB Topeka rate email. The mailbox could not be checked this run.",
   "freight": [
     {
       "n": "Diesel, U.S. avg (EIA)",
@@ -228,7 +294,7 @@
       "why": "Assessment of Oct 8. Shanghai–Los Angeles fell 3% to $7,624 and Shanghai–New York 2% to $10,220, a modest easing in import costs after Golden Week."
     }
   ],
-  "also": "Baltic Dry 3,002 (−2.2%, Oct 6, lowest since late August) · Initial jobless claims 197,000 for the week ended Oct 3 · Tender rejections about 14% (NTG, Oct 7) · Freightos FBX, NRF Port Tracker, Cass, ATA tonnage: no new figures confirmed this run.",
+  "also": "Baltic Dry 3,002 (−2.2%, Oct 6, lowest since late August) · Freightos FBX, NRF Port Tracker, Cass, ATA tonnage: no new figures confirmed this run.",
   "rota": [
     {
       "d": "Mon",
@@ -283,48 +349,6 @@
   },
   "news": [
     {
-      "tag": "Rates",
-      "h": "10-year ends the week at 5.24%; mortgage rates highest in nearly three years",
-      "p": "University of Michigan one-year inflation expectations rose to 4.7%. Sticky long yields keep IOS acquisition and refinance math tight heading into Wednesday's CPI.",
-      "src": "AP via BNN Bloomberg · Oct 9",
-      "url": "https://bnnbloomberg.ca/markets/2026/10/09/us-futures-are-rising-as-crude-prices-retreat-from-recent-gains"
-    },
-    {
-      "tag": "Rates",
-      "h": "Fed minutes: most officials see another hike by year-end",
-      "p": "The September hike to 3.75–4.00% was unanimous; next meeting Oct 27–28. Higher-for-longer keeps pressure on IOS cap rates and refinancing math.",
-      "src": "FXStreet · Oct 7",
-      "url": "https://www.fxstreet.com/news/fed-minutes-set-to-provide-some-insight-into-the-timing-of-next-rate-hikes-202610071400"
-    },
-    {
-      "tag": "Rates",
-      "h": "The Fed is hiking into a CRE maturity wall",
-      "p": "About $875B of CRE debt matures this year, and owners refinancing 3–4% loans face much higher costs. Expect more forced sellers and wider spreads on levered IOS.",
-      "src": "The CRE Report · Oct 6",
-      "url": "https://thecrereport.substack.com/p/the-fed-is-hiking-into-the-cre-maturity"
-    },
-    {
-      "tag": "Freight",
-      "h": "LMI jumps to 70.2 as transportation capacity contracts for a 10th month",
-      "p": "Transportation prices at 92.7 and capacity at 34.4 mean a tight truck market, which supports demand for trailer, truck and container storage yards.",
-      "src": "FreightWaves · Oct 6",
-      "url": "https://www.freightwaves.com/?p=582467"
-    },
-    {
-      "tag": "Freight",
-      "h": "Drewry WCI falls 2% to $4,351; Shanghai–LA down 3% to $7,624",
-      "p": "Transpacific rates are easing from highs but remain elevated, keeping chassis and container storage near ports in demand.",
-      "src": "DCN · Oct 9",
-      "url": "https://www.thedcn.com.au/news/world-container-index-8-october-2026"
-    },
-    {
-      "tag": "Trucking",
-      "h": "DAT: flatbed is the tightest board heading into October",
-      "p": "Flatbed linehaul is up 28% y/y with a load-to-truck ratio of 44. Construction and industrial freight is what fills contractor and equipment yards.",
-      "src": "DAT · Oct 6",
-      "url": "https://dat.com/blog/flatbed-report-tightest-board-of-the-three-holds-its-edge-into-october"
-    },
-    {
       "tag": "Trucking",
       "h": "Tender rejections near 14%; about 16 carriers in bankruptcy or restructuring",
       "p": "Capacity is leaving, which firms up rates but raises default risk among small-carrier tenants.",
@@ -339,13 +363,6 @@
       "url": "https://supplychaindive.com/news/ustr-initiates-next-stage-of-usmca-review/832285"
     },
     {
-      "tag": "Rental",
-      "h": "Wells Fargo reiterates Buy on United Rentals and Herc",
-      "p": "The Street still sees upside after Herc's slide from $156 to $124; equipment-rental branches are core IOS tenants, so Q3 reports (URI Oct 21, HRI ~Oct 27) are the next demand read.",
-      "src": "MarketBeat · Oct 9",
-      "url": "https://www.marketbeat.com/stocks/NYSE/HRI/"
-    },
-    {
       "tag": "Materials",
       "h": "Martin Marietta at a new 52-week low; Citi trims target",
       "p": "Aggregates names keep falling with long rates despite solid pricing. Public infrastructure work still supports equipment and materials yards.",
@@ -353,7 +370,7 @@
       "url": "https://www.marketbeat.com/instant-alerts/filing-martin-marietta-materials-inc-mlm-shares-sold-by-congress-asset-management-co-2026-10-07/"
     }
   ],
-  "foot": "Sources: NY Fed via global-rates.com and the NY Fed API (SOFR, latest Oct 8; references Sep 8, Apr 8 and Oct 8, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 9; references Sep 9, Apr 9 and Oct 9, 2025); FHLB Topeka Rates by Email (not checked this run); AP via La Nación (Oct 9, 2026 index closes) and via MarketBeat (Oct 9, 2025 closes); Investing.com and YCharts (VIX); AP wrap via BNN Bloomberg (market context); stockanalysis.com history and MarketBeat (sector closes, ratings and results); EIA (diesel); DAT; Trading Economics and FreightWaves (LMI, Baltic Dry); Drewry via DCN; NTG Freight; FXStreet, Supply Chain Dive, The CRE Report.<br>Notes: Index Day % computed from AP point changes. VIX 1Y n/a (no dated Oct 9, 2025 close). Equipment-rental 1Y % n/a: no dated Oct 9, 2025 closes were found. WSC Oct 9 close n/a. Oct 12 is a bond-market holiday, so Oct 9 SOFR publishes Oct 13. DAT figures are week 40 (week 41 report not found). FHLB Topeka mailbox could not be checked this run. Chart keeps 5 years of history for the page's 5Y toggle.",
+  "foot": "Sources: NY Fed via global-rates.com and the NY Fed API (SOFR, latest Oct 8; references Sep 8, Apr 8 and Oct 8, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 9; references Sep 9, Apr 9 and Oct 9, 2025); AP via La Nación (Oct 9, 2026 index closes) and via MarketBeat (Oct 9, 2025 closes); Investing.com and YCharts (VIX); AP wrap via BNN Bloomberg (market context); stockanalysis.com history and MarketBeat (sector closes, ratings and results); EIA (diesel); DAT; Trading Economics and FreightWaves (LMI, Baltic Dry); Drewry via DCN; NTG Freight; FXStreet, Supply Chain Dive, The CRE Report.<br>Notes: Index Day % computed from AP point changes. VIX 1Y n/a (no dated Oct 9, 2025 close). Equipment-rental 1Y % n/a: no dated Oct 9, 2025 closes were found. WSC Oct 9 close n/a. Oct 12 is a bond-market holiday, so Oct 9 SOFR publishes Oct 13. DAT figures are week 40 (week 41 report not found). Chart keeps 5 years of history for the page's 5Y toggle.",
   "sports": [],
   "series": [
     [

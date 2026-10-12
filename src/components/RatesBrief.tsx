@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, KeyRate, has, safeHtml } from '@/lib/rates-brief';
+import { RatesBrief as Brief, TapeRow, EconRow, CalItem, DealDate, has, safeHtml, marketRows, rateLevels } from '@/lib/rates-brief';
 import { RANGES, Range, LINES, Line, ChartModel, toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
+import { useDealDates } from '@/lib/use-deal-dates';
 import RatesBriefPrint from './RatesBriefPrint';
 
 // Colors: for rates and diesel a rise is bad (red); for stocks a rise is good (green).
@@ -11,18 +12,38 @@ const UP_GOOD = 'text-emerald-700 dark:text-emerald-400';
 const FLAT = 'text-slate-500 dark:text-slate-400';
 const rateCls = (x: number | null | undefined) => (x == null || x === 0 ? FLAT : x > 0 ? UP_BAD : UP_GOOD);
 const stockCls = (x: number | null | undefined) => (x == null || x === 0 ? FLAT : x > 0 ? UP_GOOD : UP_BAD);
+export const econCls = (r: EconRow) => (r.good == null ? FLAT : r.good ? UP_GOOD : UP_BAD);
+export const ARROW = { up: '▲', down: '▼', flat: '▬' } as const;
 
 const MINUS = '−';
 const pct = (x: number, d = 2) => `${x > 0 ? '+' : x < 0 ? MINUS : ''}${Math.abs(x).toFixed(d)}%`;
 const money = (p: number) => '$' + p.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
+// Week ahead = the brief's events + your CRM dates, from today forward, by date.
+export function weekAhead(cal: CalItem[] | undefined, mine: DealDate[], days = 21): { d: string; items: (CalItem | DealDate)[] }[] {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const end = new Date(today); end.setDate(end.getDate() + days);
+  const iso = (d: Date) => d.toISOString().slice(0, 10);
+  const all = [...(cal || []), ...mine].filter(i => i.d && i.d >= iso(today) && i.d <= iso(end));
+  all.sort((a, b) => a.d.localeCompare(b.d));
+  const out: { d: string; items: (CalItem | DealDate)[] }[] = [];
+  for (const i of all) { const g = out[out.length - 1]; if (g && g.d === i.d) g.items.push(i); else out.push({ d: i.d, items: [i] }); }
+  return out;
+}
+export const dayLabel = (iso: string) =>
+  new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
 export default function RatesBrief({ data: B }: { data: Brief }) {
+  const mine = useDealDates();
+  const markets = marketRows(B);
+  const week = weekAhead(B.cal, mine);
+
   return (
     <>
     <div className="page !max-w-[1100px] !px-4 sm:!px-8 space-y-8 print:hidden">
       <header className="pb-4 border-b-2 border-navy dark:border-blue-300">
         <div className="flex items-start justify-between gap-3">
-          <p className="eyebrow">Sandpiper Capital LLC · Rates Brief</p>
+          <p className="eyebrow !text-navy dark:!text-blue-300 font-semibold">Sandpiper Daily Brief</p>
           <button onClick={() => window.print()} className="btn-secondary !py-1 shrink-0" title="Print a 2-page brief (Letter)">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 9V3h12v6M6 18H4a1 1 0 01-1-1v-6a2 2 0 012-2h14a2 2 0 012 2v6a1 1 0 01-1 1h-2M6 14h12v7H6z" /></svg>
             Print
@@ -34,32 +55,73 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         {B.dateline && <p className="page-sub">{B.dateline}</p>}
       </header>
 
+      {has(B.bluf) && (
+        <section className="rounded-xl border-l-4 border-navy dark:border-blue-300 bg-white dark:bg-slate-900 shadow-[0_1px_2px_rgba(15,23,42,0.04)] px-5 py-4">
+          <p className="text-[10px] uppercase tracking-[0.14em] font-bold text-navy dark:text-blue-300 mb-1">Bottom line</p>
+          <p className="text-[15px] leading-relaxed text-slate-800 dark:text-slate-200">{B.bluf}</p>
+        </section>
+      )}
+
       {B.top && B.top.length > 0 && <TopFive items={B.top.slice(0, 5)} />}
 
-      {B.tape?.length > 0 && (
+      {B.econ && B.econ.length > 0 && (
+        <Section title="Economy" sub="latest reading · prior · what it means">
+          <div className="card overflow-x-auto">
+            <table className="table-clean">
+              <thead><tr><th>Indicator</th><th className="!text-right">Latest</th><th className="!text-right">Prior</th><th>Period</th><th>Read</th></tr></thead>
+              <tbody>
+                {B.econ.map(r => (
+                  <tr key={r.n} className="row">
+                    <td className="font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">{r.n}</td>
+                    <td className={`num font-semibold whitespace-nowrap ${econCls(r)}`}>
+                      {r.dir && <span className="mr-1 text-[9px] align-[1px]">{ARROW[r.dir]}</span>}{has(r.v) ? r.v : 'n/a'}
+                    </td>
+                    <td className="num text-slate-500 whitespace-nowrap">{has(r.prior) ? r.prior : '—'}</td>
+                    <td className="text-[11px] text-slate-500 whitespace-nowrap">{r.d || ''}</td>
+                    <td className="text-xs leading-relaxed text-slate-600 dark:text-slate-300 min-w-[260px]">{r.why}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Section>
+      )}
+
+      {(B.key?.length > 0 || B.series?.length > 1) && (
+        <Section title="Rates & credit" sub="levels and changes in basis points · red = rates up">
+          {B.key?.length > 0 && <KeyRatesTable B={B} />}
+          {B.series?.length > 1 && <div className="mt-3"><YieldChart series={B.series} latest={B.ustDate} /></div>}
+        </Section>
+      )}
+
+      {markets.length > 0 && (
         <Section title="Markets" sub="close · day · 1 year">
-          <div className="grid grid-cols-1 min-[460px]:grid-cols-2 lg:grid-cols-4 gap-3">
-            {B.tape.map(t => <TapeCard key={t.n} t={t} />)}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {markets.map(t => <MarketCard key={t.n} t={t} />)}
           </div>
         </Section>
       )}
 
-      {B.key?.length > 0 && (
-        <Section title="Key rates" sub="Δ in basis points">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            {B.key.map(k => <KeyCard key={k.n} k={k} />)}
+      {week.length > 0 && (
+        <Section title="Week ahead" sub="next three weeks · releases, earnings and your deadlines">
+          <div className="card divide-y divide-slate-100 dark:divide-slate-800">
+            {week.map(g => (
+              <div key={g.d} className="grid grid-cols-[92px_1fr] gap-3 px-4 py-2.5">
+                <p className="text-xs font-semibold text-slate-900 dark:text-slate-100 pt-0.5">{dayLabel(g.d)}</p>
+                <ul className="space-y-1">
+                  {g.items.map((i, k) => (
+                    <li key={k} className="text-[13px] leading-snug text-slate-800 dark:text-slate-200">
+                      {i.tag && <span className={`pill mr-2 ${i.tag === 'Your deals' || i.tag === 'Construction' ? 'pill-amber' : 'pill-navy'}`}>{i.tag}</span>}
+                      {i.e}
+                      {i.why && <span className="text-slate-500 dark:text-slate-400"> — {i.why}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </Section>
       )}
-
-      {B.series?.length > 1 && <YieldChart series={B.series} latest={B.ustDate} />}
-
-      <Section title="FHLB Topeka" sub="advance rates">
-        <div
-          className="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 px-4 py-3 text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 [&_b]:text-slate-800 dark:[&_b]:text-slate-100"
-          dangerouslySetInnerHTML={{ __html: safeHtml(B.fhlb) || 'n/a' }}
-        />
-      </Section>
 
       {(B.freight?.length > 0 || has(B.also)) && (
         <Section title="Freight & supply chain" sub="this week's releases">
@@ -85,16 +147,7 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
       )}
 
       {B.spot && (
-        <Section title="Sector spotlight" sub={B.spot.g}>
-          {B.rota?.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {B.rota.map(r => (
-                <span key={r.d} className={r.on ? 'pill bg-navy text-white ring-navy dark:bg-blue-300 dark:text-slate-900 dark:ring-blue-300' : 'pill pill-slate'}>
-                  <b className={r.on ? '' : 'text-slate-400'}>{r.d}</b> {r.g}
-                </span>
-              ))}
-            </div>
-          )}
+        <Section title="Sector spotlight" sub={[B.rota?.find(r => r.on)?.d, B.spot.g].filter(Boolean).join(' · ')}>
           <div className="card divide-y divide-slate-100 dark:divide-slate-800">
             {(B.spot.rows || []).map(r => (
               <div key={r.t} className="px-4 py-3">
@@ -164,7 +217,7 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         />
       )}
     </div>
-    <RatesBriefPrint data={B} />
+    <RatesBriefPrint data={B} mine={mine} />
     </>
   );
 }
@@ -174,7 +227,7 @@ function TopFive({ items }: { items: NonNullable<Brief['top']> }) {
     <section className="card overflow-hidden">
       <div className="card-header !py-2.5 bg-navy/[0.03] dark:bg-blue-900/10">
         <h2 className="text-xs uppercase tracking-[0.12em] font-bold text-navy dark:text-blue-300">Top 5 today</h2>
-        <span className="text-[10px] text-slate-400">headlines &amp; things to be mindful of</span>
+        <span className="text-[10px] text-slate-400">key judgments</span>
       </div>
       <ol className="divide-y divide-slate-100 dark:divide-slate-800">
         {items.map((t, i) => (
@@ -193,6 +246,47 @@ function TopFive({ items }: { items: NonNullable<Brief['top']> }) {
         ))}
       </ol>
     </section>
+  );
+}
+
+function KeyRatesTable({ B }: { B: Brief }) {
+  return (
+    <div className="card overflow-x-auto">
+      <table className="table-clean">
+        <thead>
+          <tr>
+            <th>Rate</th><th className="!text-right">Now</th><th className="!text-right">1M ago</th><th className="!text-right">6M ago</th><th className="!text-right">1Y ago</th>
+            <th className="!text-right">Δ1M</th><th className="!text-right">Δ6M</th><th className="!text-right">Δ1Y</th><th className="!text-right">As of</th>
+          </tr>
+        </thead>
+        <tbody>
+          {B.key.map(k => {
+            const lv = rateLevels(B, k);
+            return (
+              <tr key={k.n} className="row">
+                <td className="font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">{k.n}</td>
+                <td className="num font-semibold text-slate-900 dark:text-slate-100">{k.cur != null ? `${k.cur.toFixed(2)}%` : 'n/a'}</td>
+                {[lv[1], lv[2], lv[3]].map((v, i) => <td key={i} className="num text-slate-500">{v ?? '—'}</td>)}
+                {[k.d1m, k.d6m, k.d1y].map((v, i) => <td key={'d' + i} className={`num font-semibold ${v != null ? rateCls(v) : FLAT}`}>{v != null ? bp(v) : 'n/a'}</td>)}
+                <td className="num text-[11px] text-slate-500">{has(k.asof) ? k.asof : '—'}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function MarketCard({ t }: { t: TapeRow }) {
+  const color = t.rate ? rateCls : stockCls;
+  return (
+    <div className="card px-3.5 py-2.5" title={t.why}>
+      <p className="stat-label">{t.n}</p>
+      <p className="text-[16px] font-semibold font-mono tabular-nums text-slate-900 dark:text-slate-100">{has(t.v) ? t.v : 'n/a'}</p>
+      <Changes items={[['Day', t.ctext, color(t.c)], ['1Y', t.ytext, color(t.y)]]} />
+      {t.why && <p className="mt-1 text-[11px] leading-snug text-slate-500 dark:text-slate-400 line-clamp-2">{t.why}</p>}
+    </div>
   );
 }
 
@@ -224,41 +318,6 @@ function Changes({ items }: { items: [string, string | null | undefined, string]
   return (
     <div className="flex flex-wrap gap-x-3 font-mono tabular-nums text-[11px]">
       {shown.map(([l, v, c]) => <Labeled key={l} label={l} value={v as string} cls={c} />)}
-    </div>
-  );
-}
-
-function TapeCard({ t }: { t: TapeRow }) {
-  const color = t.rate ? rateCls : stockCls;
-  return (
-    <div className="card px-4 py-3 flex flex-col gap-1">
-      <p className="stat-label">
-        {t.n}{t.asof && <span className="ml-1.5 normal-case tracking-normal text-slate-400">as of {t.asof}</span>}
-      </p>
-      <p className="text-[17px] font-semibold font-mono tabular-nums text-slate-900 dark:text-slate-100">{has(t.v) ? t.v : 'n/a'}</p>
-      <Changes items={[['Day', t.ctext, color(t.c)], ['1Y', t.ytext, color(t.y)]]} />
-      {t.why && <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{t.why}</p>}
-    </div>
-  );
-}
-
-function KeyCard({ k }: { k: KeyRate }) {
-  const deltas: [string, number | null][] = [['1M', k.d1m], ['6M', k.d6m], ['1Y', k.d1y]];
-  return (
-    <div className="card px-4 py-3.5">
-      <p className="stat-label">{k.n}</p>
-      <p className="mt-0.5 text-2xl font-semibold font-mono tabular-nums text-slate-900 dark:text-slate-100">
-        {k.cur != null ? `${k.cur.toFixed(2)}%` : 'n/a'}
-      </p>
-      <div className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 font-mono tabular-nums text-[11px]">
-        {deltas.map(([l, v]) => (
-          <span key={l} className="contents">
-            <span className="font-sans text-slate-400">Δ{l}</span>
-            <span className={v != null ? rateCls(v) : 'text-slate-400'}>{v != null ? `${bp(v)}bp` : 'n/a'}</span>
-          </span>
-        ))}
-      </div>
-      {has(k.asof) && <p className="mt-2 text-[10px] text-slate-400">as of {k.asof}</p>}
     </div>
   );
 }

@@ -1,6 +1,7 @@
-// Morning Rates Brief data (data/rates-brief.json). The "Morning Rates Brief" scheduled task
+// Sandpiper Daily Brief data (data/rates-brief.json). The "Morning Rates Brief" scheduled task
 // rewrites that file every weekday with the same object it publishes to the hosted page
-// (the JSON assigned to `const B = ` there). Keys and shape must stay as below.
+// (the JSON assigned to `const B = ` there). Keys and shape must stay as below; the
+// CRM-only keys (bluf, top, econ, cal) are ignored by the hosted page.
 
 export interface TapeRow {
   n: string;            // name, e.g. "S&P 500"
@@ -43,8 +44,20 @@ export interface SpotRow {
 }
 
 export interface NewsItem { tag: string; h: string; p: string; src: string; url?: string }
-// "Top 5 today": short headlines or things to be mindful of, most important first.
+// "Top 5 today": key judgments, most important first.
 export interface TopItem { tag?: string; h: string; p?: string; url?: string }
+// Economy snapshot: one row per indicator.
+export interface EconRow {
+  n: string;            // indicator, e.g. "CPI, y/y"
+  v: string;            // latest reading as displayed
+  prior?: string | null;
+  d?: string;           // period / release date of the latest reading, e.g. "Sep · Oct 15"
+  why?: string;         // one-line read for an IOS investor
+  dir?: 'up' | 'down' | 'flat' | null; // direction vs prior
+  good?: boolean | null; // is that direction good for IOS (green) or bad (red)? null = neutral
+}
+// Week ahead: dated events. `d` is an ISO date (YYYY-MM-DD).
+export interface CalItem { d: string; e: string; why?: string; tag?: string }
 export interface BoardGroup { g: string; rows: { n: string; t: string; p: number; c: number | null; d: string }[] }
 export interface SportsItem { lg: string; d: string; h: string; p: string; src?: string; url?: string }
 
@@ -55,10 +68,13 @@ export interface RatesBrief {
   headline: string;
   dateline: string;
   ustDate: string;
-  top?: TopItem[];      // CRM tab only; the hosted page ignores it
+  bluf?: string;        // bottom line up front: 2-3 sentences
+  top?: TopItem[];
+  econ?: EconRow[];
+  cal?: CalItem[];
   tape: TapeRow[];
   key: KeyRate[];
-  fhlb: string;         // may contain simple HTML (<b>, <br>)
+  fhlb?: string;        // retired Oct 2026; no longer shown
   freight: FreightRow[];
   also: string;
   rota: { d: string; g: string; on?: boolean }[];
@@ -74,6 +90,31 @@ export interface RatesBrief {
 
 // "n/a", null, undefined and "" all mean "no value".
 export const has = (v: unknown): boolean => v != null && v !== '' && v !== 'n/a';
+
+// Each figure appears once: the 10Y lives in Rates & credit and diesel in Freight, so the
+// markets strip leaves out tape rows that repeat a key rate or a freight measure.
+export function marketRows(B: RatesBrief): TapeRow[] {
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const keyTok = (B.key || []).map(k => k.n.split(' ')[0].toLowerCase());
+  const freight = (B.freight || []).map(f => norm(f.n));
+  return (B.tape || []).filter(t => {
+    const first = t.n.split(' ')[0].toLowerCase();
+    if (keyTok.includes(first) && /treasury|sofr/i.test(t.n)) return false;
+    if (freight.includes(norm(t.n))) return false;
+    return true;
+  });
+}
+
+// Your own dates from the CRM, merged into the week ahead.
+export interface DealDate { d: string; e: string; why?: string; tag: string }
+
+// Key rates with their levels 1M / 6M / 1Y ago, from the brief's rate table when present.
+export function rateLevels(B: RatesBrief, k: KeyRate): (string | null)[] {
+  const rtab = (B.rtab || []) as { n?: string; v?: string[] }[];
+  const tok = k.n.split(' ')[0];
+  const row = rtab.find(r => r.n && r.v && r.n.split(' ')[0] === tok);
+  return row?.v ? [0, 1, 2, 3].map(i => row.v?.[i] ?? null) : [k.cur != null ? k.cur.toFixed(2) : null, null, null, null];
+}
 
 // The brief's text fields carry a little trusted markup (bold, line breaks, links).
 // Keep only those tags so nothing else can render.
