@@ -11,14 +11,16 @@ const navItems = [
   { href: '/documents', label: 'Documents', icon: DocumentsIcon },
   { href: '/capital', label: 'Capital', icon: CapitalIcon },
   { href: '/assets', label: 'Assets', icon: AssetsIcon },
+  { href: '/rates-brief', label: 'Rates Brief', icon: RatesIcon },
   { href: '/settings', label: 'Settings', icon: SettingsIcon },
 ];
 
-export default function Sidebar() {
+// Below md the sidebar is off-canvas: AppShell opens it from the top bar's menu button.
+export default function Sidebar({ open = false, onNavigate }: { open?: boolean; onNavigate?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <aside className="w-56 bg-navy text-white flex flex-col shrink-0 h-screen">
+    <aside className={`w-56 bg-navy text-white flex flex-col shrink-0 h-screen fixed inset-y-0 left-0 z-50 transition-transform md:static md:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className="px-5 py-5 border-b border-navy-lighter">
         <h1 className="text-lg font-semibold tracking-tight text-white">
           Sandpiper Capital
@@ -32,6 +34,7 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onNavigate}
               className={`flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-colors ${
                 active
                   ? 'bg-white/10 text-white font-medium'
@@ -48,6 +51,14 @@ export default function Sidebar() {
         <p className="text-[11px] text-slate-500">Sandpiper Capital LLC</p>
       </div>
     </aside>
+  );
+}
+
+function RatesIcon({ active }: { active: boolean }) {
+  return (
+    <svg className={`w-4 h-4 ${active ? 'text-white' : 'text-slate-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 17l6-6 4 4 8-8M14 7h7v7" />
+    </svg>
   );
 }
 

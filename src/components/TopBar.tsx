@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { ThemeToggle } from './ThemeProvider';
 
-export default function TopBar() {
+export default function TopBar({ onMenu }: { onMenu?: () => void }) {
   const router = useRouter();
   const [user, setUser] = useState<{ username: string; displayName: string } | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,7 +30,10 @@ export default function TopBar() {
   };
 
   return (
-    <header className="flex items-center justify-end px-6 h-12 border-b border-slate-200/70 dark:border-slate-800 shrink-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
+    <header className="flex items-center justify-between md:justify-end px-4 md:px-6 h-12 border-b border-slate-200/70 dark:border-slate-800 shrink-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
+      <button onClick={onMenu} className="md:hidden p-1.5 -ml-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Open menu">
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
       <div className="flex items-center gap-2">
         <button
           onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
