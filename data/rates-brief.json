@@ -39,13 +39,29 @@
       "v": "3.75–4.00%",
       "d": "raised in Sep",
       "good": false
+    },
+    {
+      "n": "Mfg PMI (S&P Global)",
+      "v": "55.9",
+      "d": "Sep final; Aug 53.9",
+      "good": true
     }
   ],
   "cal": [
     {
+      "d": "2026-10-05",
+      "tag": "Economy",
+      "e": "ISM services PMI (Sep)",
+      "act": "54.9",
+      "cons": "55",
+      "prior": "55.4",
+      "good": null,
+      "why": "Services still expanding, a touch below forecast"
+    },
+    {
       "d": "2026-10-07",
       "tag": "Fed",
-      "e": "FOMC minutes (September meeting)",
+      "e": "FOMC minutes (Sep meeting)",
       "act": null,
       "cons": null,
       "prior": null,
@@ -55,37 +71,80 @@
     {
       "d": "2026-10-08",
       "tag": "Economy",
-      "e": "Initial jobless claims (week ended Oct 3)",
-      "act": "197,000",
-      "cons": null,
-      "prior": null,
+      "e": "Initial jobless claims (wk Oct 3)",
+      "act": "197K",
+      "cons": "200K",
+      "prior": "199K",
       "good": null,
-      "why": "Few layoffs; keeps the Fed hawkish"
+      "why": "Below forecast: tight labor keeps the Fed hawkish"
     },
     {
       "d": "2026-10-09",
       "tag": "Economy",
-      "e": "UMich 1-yr inflation expectations",
-      "act": "4.7%",
-      "cons": null,
-      "prior": null,
+      "e": "UMich consumer sentiment (Oct prelim)",
+      "act": "46.3",
+      "cons": "47.6",
+      "prior": "48.1",
       "good": false,
-      "why": "Rose; raises the odds of a hot CPI"
+      "why": "Weaker consumer; 1-yr inflation expectations up to 4.7% from 4.6%"
     },
     {
       "d": "2026-10-14",
       "tag": "Economy",
-      "e": "CPI",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "First inflation read since the September hike"
+      "e": "CPI, y/y (Sep)",
+      "cons": "3.7%",
+      "prior": "3.4%",
+      "why": "A hotter print would push long yields higher"
+    },
+    {
+      "d": "2026-10-14",
+      "tag": "Economy",
+      "e": "Core CPI, y/y (Sep)",
+      "cons": "2.5%",
+      "prior": "2.4%",
+      "why": "What the Fed watches for its next move"
+    },
+    {
+      "d": "2026-10-15",
+      "tag": "Economy",
+      "e": "PPI, m/m (Sep)",
+      "cons": "0.5%",
+      "prior": "0.4%",
+      "why": "Pipeline costs for materials and equipment"
+    },
+    {
+      "d": "2026-10-15",
+      "tag": "Economy",
+      "e": "Retail sales, m/m (Sep)",
+      "cons": "0.3%",
+      "prior": "1.2%",
+      "why": "Goods demand drives freight and yard use"
+    },
+    {
+      "d": "2026-10-15",
+      "tag": "Economy",
+      "e": "Initial jobless claims (wk Oct 10)",
+      "cons": "200K",
+      "prior": "197K",
+      "why": "Any rise would ease Fed pressure"
+    },
+    {
+      "d": "2026-10-16",
+      "tag": "Economy",
+      "e": "Industrial production, m/m (Sep)",
+      "cons": "0.4%",
+      "prior": "0.0%",
+      "why": "Factory output behind industrial tenant demand"
     },
     {
       "d": "2026-10-21",
       "tag": "Earnings",
       "e": "United Rentals Q3 results (call Oct 22)"
+    },
+    {
+      "d": "2026-10-23",
+      "tag": "Economy",
+      "e": "UMich consumer sentiment (Oct final)"
     },
     {
       "d": "2026-10-27",
@@ -140,8 +199,8 @@
       "v": "14.84",
       "c": -3.7,
       "ctext": "−3.70%",
-      "y": null,
-      "ytext": "n/a",
+      "y": -9.7,
+      "ytext": "−9.7%",
       "why": "Eased as stocks rose; the volatility gauge closed below 15 for the week's finish (Investing.com/YCharts close)."
     },
     {
@@ -292,7 +351,7 @@
       "why": "Assessment of Oct 8. Shanghai–Los Angeles fell 3% to $7,624 and Shanghai–New York 2% to $10,220, a modest easing in import costs after Golden Week."
     }
   ],
-  "also": "Baltic Dry 3,002 (−2.2%, Oct 6, lowest since late August) · Freightos FBX, NRF Port Tracker, Cass, ATA tonnage: no new figures confirmed this run.",
+  "also": "Baltic Dry 3,002 (−2.2%, Oct 6, lowest since late August)",
   "rota": [
     {
       "d": "Mon",
@@ -324,7 +383,7 @@
         "t": "URI",
         "p": 1056.37,
         "c": 0.59,
-        "y": null,
+        "y": 7.7,
         "u": "Wells Fargo kept its Buy rating on Oct 9. Q2 EPS of $12.76 beat the $11.53 consensus on 11.8% revenue growth, and 2026 guidance was raised in August; Q3 results come Oct 21 with the call Oct 22."
       },
       {
@@ -332,16 +391,16 @@
         "t": "HRI",
         "p": 123.52,
         "c": -0.28,
-        "y": null,
+        "y": 1.4,
         "u": "Wells Fargo kept its Buy rating on Oct 9. Shares are down from $156 in late August despite a big Q2 beat (EPS $1.43 vs $0.76 expected, revenue +20%); the consensus target of about $178 sits ~44% above the price. Q3 results expected around Oct 27."
       },
       {
         "n": "WillScot",
         "t": "WSC",
-        "p": null,
-        "c": null,
-        "y": null,
-        "u": "Oct 9 close not confirmed (last confirmed: $16.85 on Oct 8, MarketBeat), down from about $20 in early September. Q2 EPS of $0.28 beat by 3¢ on 3.9% revenue growth; consensus is Hold with a $27 target, and Q3 results are expected around Nov 5."
+        "p": 17.07,
+        "c": 1.31,
+        "y": -23.7,
+        "u": "Down from about $20 in early September. Q2 EPS of $0.28 beat by 3¢ on 3.9% revenue growth; consensus is Hold with a $27 target, and Q3 results are expected around Nov 5."
       }
     ]
   },

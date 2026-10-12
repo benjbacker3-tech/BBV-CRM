@@ -11,14 +11,13 @@ import { ChartSvg, datesAhead, dayLabel } from './RatesBrief';
 //            (last week's releases vs expectations | this week's), rates & credit
 //            (table, standing readings, chart beside a markets list).
 //   Page 2 · what's coming and tenant demand: coming up (Fed, releases, earnings 1–3 weeks out),
-//            freight, sector spotlight, what's moving, sources.
+//            freight, sector spotlight, what's moving. No sources section (personal brief).
 // The sheets are a fixed size (not the screen's responsive layout) and kept off-screen until
 // printing. Type never shrinks below its set size (MIN_SCALE = 1); a light day scales up to
 // fill the page. A heavy day is trimmed instead, least useful first:
 //   page 1: shorter chart, then shortest; calendar notes off; Top 5 notes to 1 line
-//   page 2: source notes to 3 lines; week-ahead explanations off; sector notes 2 lines;
-//           freight notes 3 lines; sources to a one-line pointer; then the lowest
-//           headlines, two at a time, down to 4
+//   page 2: coming-up explanations off; sector notes 2 lines; freight notes 3 lines;
+//           then the lowest headlines, two at a time, down to 4
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 1.3;
@@ -68,7 +67,7 @@ export default function RatesBriefPrint({ data: B }: { data: Brief }) {
   }, []);
 
   const P1_MAX = 4;
-  const P2_FIXED = 5;
+  const P2_FIXED = 3;
   const p2Max = P2_FIXED + Math.max(0, Math.ceil((newsAll - 4) / 2));
   const onOverflow1 = useCallback(() => setP1Level(l => Math.min(l + 1, P1_MAX)), []);
   const onOverflow2 = useCallback(() => setP2Level(l => Math.min(l + 1, p2Max)), [p2Max]);
@@ -82,7 +81,7 @@ export default function RatesBriefPrint({ data: B }: { data: Brief }) {
         <PageOne B={B} level={p1Level} />
       </Sheet>
       <Sheet page={2} footer={datelineShort} onOverflow={onOverflow2} deps={[B, p2Level, epoch]}>
-        <PageTwo B={B} newsMax={newsMax} footClamp={p2Level >= 1} calWhy={p2Level < 2} spotClamp={p2Level >= 3} freightClamp={p2Level >= 4} footOff={p2Level >= 5} />
+        <PageTwo B={B} newsMax={newsMax} calWhy={p2Level < 1} spotClamp={p2Level >= 2} freightClamp={p2Level >= 3} />
       </Sheet>
     </div>
   );
@@ -237,7 +236,7 @@ function PageOne({ B, level }: { B: Brief; level: number }) {
             <div>
               <p className="text-[9.5px] text-slate-500"><b className="text-slate-700">Treasury yields, past year:</b> <span className="font-mono">{c.moves}</span></p>
               <ChartSvg c={c} fixedHeight={false} print label="2-, 5- and 10-year Treasury yields, past year" />
-              <p className="text-[9px] text-slate-500">Source: U.S. Treasury daily par yield curve. Latest: {B.ustDate || 'n/a'}.</p>
+              <p className="text-[9px] text-slate-500">Treasury par yields, daily · latest {B.ustDate}</p>
             </div>
           ) : <div />}
           {markets.length > 0 && (
@@ -270,18 +269,23 @@ function CalPrint({ title, rows, released, notes }: { title: string; rows: CalIt
             </tr>
           </thead>
           <tbody>
-            {rows.map((i, k) => (
+            {rows.map((i, k) => {
+              const event = !has(i.act) && !has(i.cons) && !has(i.prior);
+              return (
               <tr key={k} className="border-b border-slate-100 align-top">
                 <td className="py-[3px] pr-1 text-[10.5px] leading-snug text-slate-900">
                   <span className="text-[9px] font-semibold text-slate-500">{dayLabel(i.d).replace(/,.*/, '')} </span>
                   <span className="font-semibold">{i.e}</span>
-                  {notes && i.why && <span className="block text-[9.5px] text-slate-600">{i.why}</span>}
+                  {!event && notes && i.why && <span className="block text-[9.5px] text-slate-600">{i.why}</span>}
                 </td>
+                {event ? <td colSpan={released ? 3 : 2} className="py-[3px] pl-1 text-right text-[9.5px] italic text-slate-600">{i.why}</td> : <>
                 {released && <td className={`py-[3px] pl-1 text-right font-mono text-[10.5px] font-bold whitespace-nowrap ${i.good == null ? 'text-slate-900' : i.good ? GREEN : RED}`}>{has(i.act) ? i.act : '—'}</td>}
                 <td className="py-[3px] pl-1 text-right font-mono text-[10px] whitespace-nowrap text-slate-600">{has(i.cons) ? i.cons : '—'}</td>
                 <td className="py-[3px] pl-1 text-right font-mono text-[10px] whitespace-nowrap text-slate-500">{has(i.prior) ? i.prior : '—'}</td>
+                </>}
               </tr>
-            ))}
+              );
+            })}
           </tbody>
         </table>
       )}
@@ -336,8 +340,8 @@ function RatesTable({ B }: { B: Brief }) {
 
 // ── Page 2 · what's coming and tenant demand ───────────────────────────
 
-function PageTwo({ B, newsMax, footClamp, calWhy, spotClamp, freightClamp, footOff }: {
-  B: Brief; newsMax: number; footClamp: boolean; calWhy: boolean; spotClamp: boolean; freightClamp: boolean; footOff: boolean;
+function PageTwo({ B, newsMax, calWhy, spotClamp, freightClamp }: {
+  B: Brief; newsMax: number; calWhy: boolean; spotClamp: boolean; freightClamp: boolean;
 }) {
   const news = (B.news || []).slice(0, newsMax);
   const dropped = (B.news?.length ?? 0) - news.length;
@@ -461,15 +465,6 @@ function PageTwo({ B, newsMax, footClamp, calWhy, spotClamp, freightClamp, footO
         </>
       )}
 
-      {has(B.foot) && footOff && (
-        <p className="mt-3 border-t border-slate-200 pt-1.5 text-[9px] italic text-slate-400">Sources and notes for every figure are on the CRM Daily Brief tab.</p>
-      )}
-      {has(B.foot) && !footOff && (
-        <>
-          <p className={`mt-3 border-t border-slate-200 pt-1.5 text-[9px] leading-snug text-slate-500 ${footClamp ? 'line-clamp-3' : ''}`} dangerouslySetInnerHTML={{ __html: safeHtml(B.foot) }} />
-          {footClamp && <p className="text-[9px] italic text-slate-400">Full sources and notes are on the CRM Daily Brief tab.</p>}
-        </>
-      )}
     </div>
   );
 }

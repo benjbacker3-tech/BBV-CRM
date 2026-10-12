@@ -186,12 +186,6 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         </Section>
       )}
 
-      {has(B.foot) && (
-        <footer
-          className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px] leading-relaxed text-slate-400 [&_a]:text-slate-500 [&_a]:underline"
-          dangerouslySetInnerHTML={{ __html: safeHtml(B.foot) }}
-        />
-      )}
     </div>
     <RatesBriefPrint data={B} />
     </>
@@ -213,18 +207,23 @@ function CalTable({ title, rows, released }: { title: string; rows: CalItem[]; r
             </tr>
           </thead>
           <tbody>
-            {rows.map((i, k) => (
+            {rows.map((i, k) => {
+              const event = !has(i.act) && !has(i.cons) && !has(i.prior);
+              return (
               <tr key={k} className="row align-top">
                 <td className="whitespace-nowrap text-[11px] text-slate-500">{dayLabel(i.d)}</td>
                 <td className="text-[12.5px] text-slate-800 dark:text-slate-200">
                   <span className="font-medium">{i.e}</span>
-                  {i.why && <span className="block text-[11px] text-slate-500 dark:text-slate-400">{i.why}</span>}
+                  {!event && i.why && <span className="block text-[11px] text-slate-500 dark:text-slate-400">{i.why}</span>}
                 </td>
+                {event ? <td colSpan={released ? 3 : 2} className="text-[11px] italic text-slate-500 dark:text-slate-400">{i.why}</td> : <>
                 {released && <td className={`num font-semibold whitespace-nowrap ${i.good == null ? 'text-slate-900 dark:text-slate-100' : i.good ? UP_GOOD : UP_BAD}`}>{has(i.act) ? i.act : '—'}</td>}
                 <td className="num whitespace-nowrap text-slate-600 dark:text-slate-300">{has(i.cons) ? i.cons : '—'}</td>
                 <td className="num whitespace-nowrap text-slate-500">{has(i.prior) ? i.prior : '—'}</td>
+                </>}
               </tr>
-            ))}
+              );
+            })}
           </tbody>
         </table>
       )}
@@ -499,7 +498,7 @@ function YieldChart({ series, latest }: { series: Brief['series']; latest: strin
           </div>
         )}
       </div>
-      <p className="mt-2 text-[10px] text-slate-400">Source: U.S. Department of the Treasury, daily par yield curve. Latest: {latest || 'n/a'}.</p>
+      <p className="mt-2 text-[10px] text-slate-400">Treasury par yields, daily · latest {latest}</p>
     </section>
   );
 }
