@@ -1,20 +1,21 @@
 'use client';
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, DealDate, has, safeHtml, marketRows, rateLevels } from '@/lib/rates-brief';
+import { RatesBrief as Brief, TapeRow, DealDate, CalItem, has, safeHtml, marketRows, rateLevels, splitCalendar } from '@/lib/rates-brief';
 import { toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
-import { ChartSvg, weekAhead, dayLabel, ARROW } from './RatesBrief';
+import { ChartSvg, datesAhead, dayLabel } from './RatesBrief';
 
 // Two-page Letter printout of the Sandpiper Daily Brief, laid out like a daily intelligence
 // brief: bottom line first, key judgments, then short sections, each figure shown once.
-//   Page 1 · the economy and the cost of capital: bottom line, Top 5, economy, rates &
-//            credit (table + chart), markets strip.
-//   Page 2 · what's coming and tenant demand: week ahead (with the CRM's own deadlines),
+//   Page 1 · the economy and the cost of capital: bottom line, Top 5, economic calendar
+//            (last week's releases vs expectations | this week's), rates & credit
+//            (table, standing readings, chart beside a markets list).
+//   Page 2 · what's coming and tenant demand: your deadlines & later dates (CRM + calendar),
 //            freight, sector spotlight, what's moving, sources.
 // The sheets are a fixed size (not the screen's responsive layout) and kept off-screen until
 // printing. Type never shrinks below its set size (MIN_SCALE = 1); a light day scales up to
 // fill the page. A heavy day is trimmed instead, least useful first:
-//   page 1: shorter chart, then shortest; economy notes to 1 line; Top 5 notes to 1 line
+//   page 1: shorter chart, then shortest; calendar notes off; Top 5 notes to 1 line
 //   page 2: source notes to 3 lines; week-ahead explanations off; sector notes 2 lines;
 //           freight notes 3 lines; sources to a one-line pointer; then the lowest
 //           headlines, two at a time, down to 4
@@ -49,13 +50,12 @@ export default function RatesBriefPrint({ data: B, mine }: { data: Brief; mine: 
   const newsAll = B.news?.length ?? 0;
   const [p1Level, setP1Level] = useState(0);
   const [p2Level, setP2Level] = useState(0);
-  useEffect(() => { setP1Level(0); setP2Level(0); }, [B, mine]);
-  // Trims only ever step up, so a fit measured with fallback fonts (wider) would over-trim.
-  // Start over once the real fonts are in.
+  // Trims only ever step up, so whenever the content or the fonts change, start the fit over.
+  // Bumping `epoch` makes both sheets measure again even when a level was already 0.
   const [epoch, setEpoch] = useState(0);
-  useEffect(() => {
-    document.fonts?.ready.then(() => { setP1Level(0); setP2Level(0); setEpoch(e => e + 1); }).catch(() => {});
-  }, []);
+  const restart = useCallback(() => { setP1Level(0); setP2Level(0); setEpoch(e => e + 1); }, []);
+  useEffect(() => { restart(); }, [B, mine, restart]);
+  useEffect(() => { document.fonts?.ready.then(restart).catch(() => {}); }, [restart]);
 
   // Print light even when the CRM is in dark mode.
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function RatesBriefPrint({ data: B, mine }: { data: Brief; mine: 
       <Sheet page={1} footer={datelineShort} onOverflow={onOverflow1} deps={[B, p1Level, epoch]}>
         <PageOne B={B} level={p1Level} />
       </Sheet>
-      <Sheet page={2} footer={datelineShort} onOverflow={onOverflow2} deps={[B, mine, p2Level, epoch]}>
+      <Sheet page={2} footer={datelineShort} onOverflow={onOverflow2} deps={[B, p2Level, epoch]}>
         <PageTwo B={B} mine={mine} newsMax={newsMax} footClamp={p2Level >= 1} calWhy={p2Level < 2} spotClamp={p2Level >= 3} freightClamp={p2Level >= 4} footOff={p2Level >= 5} />
       </Sheet>
     </div>
@@ -172,7 +172,8 @@ function Chg({ label, text, cls }: { label: string; text?: string | null; cls: s
 
 function PageOne({ B, level }: { B: Brief; level: number }) {
   const chartH = level === 0 ? 235 : level === 1 ? 200 : 170;
-  const econClamp = level >= 3 ? 'line-clamp-1' : '';
+  const calNotes = level < 3;
+  const cal = splitCalendar(B.cal);
   const topClamp = level >= 4 ? 'line-clamp-1' : '';
   const D = useMemo(() => inRange(toPoints(B.series || []), '1y'), [B.series]);
   const c = useMemo(() => chartModel(D, '1y', 470, chartH, true), [D, chartH]);
@@ -207,25 +208,13 @@ function PageOne({ B, level }: { B: Brief; level: number }) {
         </>
       )}
 
-      {B.econ && B.econ.length > 0 && (
+      {(cal.last.length > 0 || cal.next.length > 0) && (
         <>
-          <H2 sub="latest · prior · what it means">Economy</H2>
-          <table className="w-full border-collapse">
-            <tbody>
-              {B.econ.map(r => (
-                <tr key={r.n} className="border-b border-slate-100 align-top">
-                  <td className="w-[2.35in] py-1 pr-2 text-[11px] font-semibold leading-snug text-slate-900">
-                    {r.n}{r.d && <span className="block text-[9px] font-normal text-slate-500">{r.d}</span>}
-                  </td>
-                  <td className={`w-[0.85in] py-1 pr-2 text-right font-mono text-[12px] font-bold ${r.good == null ? 'text-slate-900' : r.good ? GREEN : RED}`}>
-                    {r.dir && <span className="mr-0.5 text-[8px] align-[1px]">{ARROW[r.dir]}</span>}{has(r.v) ? r.v : 'n/a'}
-                  </td>
-                  <td className="w-[0.75in] py-1 pr-3 text-right font-mono text-[10.5px] text-slate-500">{has(r.prior) ? r.prior : '—'}</td>
-                  <td className={`py-1 text-[10.5px] leading-snug text-slate-700 ${econClamp}`}>{r.why}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <H2 sub="last week's releases vs expectations · what's due this week">Economic calendar</H2>
+          <div className="grid grid-cols-2 gap-4">
+            <CalPrint title="Last week · released" rows={cal.last} released notes={calNotes} />
+            <CalPrint title="This week · expected" rows={cal.next} notes={calNotes} />
+          </div>
         </>
       )}
 
@@ -233,6 +222,17 @@ function PageOne({ B, level }: { B: Brief; level: number }) {
         <>
           <H2 sub="levels and changes in basis points · red = rates up">Rates &amp; credit</H2>
           <RatesTable B={B} />
+          {B.econ && B.econ.length > 0 && (
+            <p className="mt-1 text-[10.5px] text-slate-700">
+              {B.econ.map((r, i) => (
+                <span key={r.n} className="whitespace-nowrap">
+                  {i > 0 && <span className="mx-1.5 text-slate-300">·</span>}
+                  <span className="text-slate-500">{r.n}</span> <b className={`font-mono ${r.good == null ? 'text-slate-900' : r.good ? GREEN : RED}`}>{has(r.v) ? r.v : 'n/a'}</b>
+                  {r.d && <span className="text-slate-500"> ({r.d})</span>}
+                </span>
+              ))}
+            </p>
+          )}
         </>
       )}
       {(c || markets.length > 0) && (
@@ -253,6 +253,41 @@ function PageOne({ B, level }: { B: Brief; level: number }) {
             </div>
           )}
         </div>
+      )}
+    </div>
+  );
+}
+
+function CalPrint({ title, rows, released, notes }: { title: string; rows: CalItem[]; released?: boolean; notes: boolean }) {
+  const th = 'py-[3px] text-[8.5px] font-semibold uppercase tracking-[0.05em] text-slate-500';
+  return (
+    <div>
+      <p className="mb-0.5 text-[10px] font-bold text-slate-700">{title}</p>
+      {rows.length === 0 ? <p className="text-[10px] text-slate-400">Nothing scheduled.</p> : (
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-slate-200">
+              <th className={`${th} text-left`}>Release</th>
+              {released && <th className={`${th} text-right`}>Actual</th>}
+              <th className={`${th} text-right`}>Exp.</th>
+              <th className={`${th} text-right`}>Prior</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((i, k) => (
+              <tr key={k} className="border-b border-slate-100 align-top">
+                <td className="py-[3px] pr-1 text-[10.5px] leading-snug text-slate-900">
+                  <span className="text-[9px] font-semibold text-slate-500">{dayLabel(i.d).replace(/,.*/, '')} </span>
+                  <span className="font-semibold">{i.e}</span>
+                  {notes && i.why && <span className="block text-[9.5px] text-slate-600">{i.why}</span>}
+                </td>
+                {released && <td className={`py-[3px] pl-1 text-right font-mono text-[10.5px] font-bold whitespace-nowrap ${i.good == null ? 'text-slate-900' : i.good ? GREEN : RED}`}>{has(i.act) ? i.act : '—'}</td>}
+                <td className="py-[3px] pl-1 text-right font-mono text-[10px] whitespace-nowrap text-slate-600">{has(i.cons) ? i.cons : '—'}</td>
+                <td className="py-[3px] pl-1 text-right font-mono text-[10px] whitespace-nowrap text-slate-500">{has(i.prior) ? i.prior : '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
@@ -310,14 +345,14 @@ function PageTwo({ B, mine, newsMax, footClamp, calWhy, spotClamp, freightClamp,
 }) {
   const news = (B.news || []).slice(0, newsMax);
   const dropped = (B.news?.length ?? 0) - news.length;
-  const week = weekAhead(B.cal, mine);
+  const week = datesAhead(splitCalendar(B.cal).later, mine);
   return (
     <div>
       <Masthead B={B} />
 
       {week.length > 0 && (
         <>
-          <H2 sub="next three weeks · releases, earnings and your deadlines">Week ahead</H2>
+          <H2 sub="next three weeks · from the CRM and the calendar">Your deadlines &amp; later dates</H2>
           <div className="columns-2 gap-5">
             {week.map(g => (
               <div key={g.d} className="grid break-inside-avoid grid-cols-[66px_1fr] gap-2 border-t border-slate-100 py-1">

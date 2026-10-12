@@ -46,7 +46,8 @@ export interface SpotRow {
 export interface NewsItem { tag: string; h: string; p: string; src: string; url?: string }
 // "Top 5 today": key judgments, most important first.
 export interface TopItem { tag?: string; h: string; p?: string; url?: string }
-// Economy snapshot: one row per indicator.
+// Standing readings that aren't weekly releases (Fed funds target, mortgage rate, ...),
+// shown as one compact line under Rates & credit. `why` is optional.
 export interface EconRow {
   n: string;            // indicator, e.g. "CPI, y/y"
   v: string;            // latest reading as displayed
@@ -56,8 +57,14 @@ export interface EconRow {
   dir?: 'up' | 'down' | 'flat' | null; // direction vs prior
   good?: boolean | null; // is that direction good for IOS (green) or bad (red)? null = neutral
 }
-// Week ahead: dated events. `d` is an ISO date (YYYY-MM-DD).
-export interface CalItem { d: string; e: string; why?: string; tag?: string }
+// Economic calendar: dated releases and events. `d` is an ISO date (YYYY-MM-DD).
+// Released items carry `act` (actual) next to `cons` (consensus) and `prior`;
+// upcoming items carry `cons` and `prior`. `good` colors the actual for an IOS
+// investor (true = good, false = bad, null = neutral).
+export interface CalItem {
+  d: string; e: string; why?: string; tag?: string;
+  act?: string | null; cons?: string | null; prior?: string | null; good?: boolean | null;
+}
 export interface BoardGroup { g: string; rows: { n: string; t: string; p: number; c: number | null; d: string }[] }
 export interface SportsItem { lg: string; d: string; h: string; p: string; src?: string; url?: string }
 
@@ -105,7 +112,19 @@ export function marketRows(B: RatesBrief): TapeRow[] {
   });
 }
 
-// Your own dates from the CRM, merged into the week ahead.
+// Splits the calendar around today: released last week, due this week, and later.
+export function splitCalendar(cal: CalItem[] | undefined, now = new Date()) {
+  const day = (offset: number) => { const d = new Date(now); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + offset); return d.toISOString().slice(0, 10); };
+  const today = day(0), weekAgo = day(-8), weekOut = day(7), later = day(21);
+  const items = [...(cal || [])].filter(i => i.d).sort((a, b) => a.d.localeCompare(b.d));
+  return {
+    last: items.filter(i => i.d < today && i.d >= weekAgo),
+    next: items.filter(i => i.d >= today && i.d <= weekOut),
+    later: items.filter(i => i.d > weekOut && i.d <= later),
+  };
+}
+
+// Your own dates from the CRM, merged into the later dates.
 export interface DealDate { d: string; e: string; why?: string; tag: string }
 
 // Key rates with their levels 1M / 6M / 1Y ago, from the brief's rate table when present.

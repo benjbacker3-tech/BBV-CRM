@@ -2,11 +2,11 @@
   "headline": "The 10-year ends the week at 5.24%, up 110bp in a year, with CPI on Wednesday and a Fed meeting that leans toward another hike.",
   "dateline": "Monday, October 12, 2026 · closes as of Fri Oct 9",
   "ustDate": "Oct 9, 2026",
-  "bluf": "Financing costs are the story. The 10-year ended the week at 5.24%, up 110bp in a year, and Wednesday's CPI plus an Oct 27–28 Fed meeting that the minutes say leans toward another hike keep pressure on rates into your 10275 E 106th closing. Tenant demand is holding: flatbed, the construction and equipment segment, is the tightest truck board, while container rates eased.",
+  "bluf": "Financing costs stay the story into your 10275 E 106th closing: Wednesday's CPI and the Oct 27–28 Fed meeting are the next tests for long rates. Tenant demand is holding, with flatbed (the construction and equipment segment) the tightest truck board and container rates easing.",
   "top": [
     {
       "tag": "Rates",
-      "h": "CPI lands Wednesday with the 10-year at 5.24%",
+      "h": "CPI on Wednesday is this week's biggest rate risk",
       "p": "Long yields are near multidecade highs; a hot print pushes IOS acquisition and refinance costs higher.",
       "url": "https://bnnbloomberg.ca/markets/2026/10/09/us-futures-are-rising-as-crude-prices-retreat-from-recent-gains"
     },
@@ -29,8 +29,8 @@
     },
     {
       "tag": "Freight",
-      "h": "Flatbed is the tightest truck board, up 28% y/y; diesel prints Oct 14",
-      "p": "Construction and equipment freight fills contractor yards; diesel is still about $2.49/gal above a year ago.",
+      "h": "Flatbed is the tightest truck board, up 28% y/y",
+      "p": "Construction and equipment freight is what fills contractor and equipment yards.",
       "url": "https://dat.com/blog/flatbed-report-tightest-board-of-the-three-holds-its-edge-into-october"
     }
   ],
@@ -38,61 +38,60 @@
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "prior": null,
-      "d": "Raised in Sep · next meeting Oct 27–28",
-      "dir": "up",
-      "good": false,
-      "why": "Minutes lean toward another hike by year-end."
-    },
-    {
-      "n": "Inflation expectations, 1-yr (UMich)",
-      "v": "4.7%",
-      "prior": null,
-      "d": "Released Oct 9",
-      "dir": "up",
-      "good": false,
-      "why": "Raises the odds of a hot CPI and higher long yields."
-    },
-    {
-      "n": "Initial jobless claims",
-      "v": "197,000",
-      "prior": null,
-      "d": "Week ended Oct 3",
-      "dir": "down",
-      "good": null,
-      "why": "Few layoffs: healthy tenants, but keeps the Fed hawkish."
+      "d": "raised in Sep",
+      "good": false
     }
   ],
   "cal": [
     {
-      "d": "2026-10-13",
-      "tag": "Rates",
-      "e": "SOFR for Oct 9 publishes",
-      "why": "delayed a day by Monday's bond-market holiday"
+      "d": "2026-10-07",
+      "tag": "Fed",
+      "e": "FOMC minutes (September meeting)",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Most officials see another hike by year-end"
+    },
+    {
+      "d": "2026-10-08",
+      "tag": "Economy",
+      "e": "Initial jobless claims (week ended Oct 3)",
+      "act": "197,000",
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Few layoffs; keeps the Fed hawkish"
+    },
+    {
+      "d": "2026-10-09",
+      "tag": "Economy",
+      "e": "UMich 1-yr inflation expectations",
+      "act": "4.7%",
+      "cons": null,
+      "prior": null,
+      "good": false,
+      "why": "Rose; raises the odds of a hot CPI"
     },
     {
       "d": "2026-10-14",
       "tag": "Economy",
       "e": "CPI",
-      "why": "first inflation read since the September hike; a hot print pushes yields up"
-    },
-    {
-      "d": "2026-10-14",
-      "tag": "Freight",
-      "e": "EIA weekly diesel price",
-      "why": "fuel is about $2.49/gal above a year ago"
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "First inflation read since the September hike"
     },
     {
       "d": "2026-10-21",
       "tag": "Earnings",
-      "e": "United Rentals Q3 results (call Oct 22)",
-      "why": "first read on equipment-rental demand"
+      "e": "United Rentals Q3 results (call Oct 22)"
     },
     {
       "d": "2026-10-27",
       "tag": "Fed",
-      "e": "FOMC meeting, Oct 27–28",
-      "why": "minutes lean toward another hike"
+      "e": "FOMC meeting, Oct 27–28"
     },
     {
       "d": "2026-10-27",

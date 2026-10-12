@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, EconRow, CalItem, DealDate, has, safeHtml, marketRows, rateLevels } from '@/lib/rates-brief';
+import { RatesBrief as Brief, TapeRow, EconRow, CalItem, DealDate, has, safeHtml, marketRows, rateLevels, splitCalendar } from '@/lib/rates-brief';
 import { RANGES, Range, LINES, Line, ChartModel, toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
 import { useDealDates } from '@/lib/use-deal-dates';
 import RatesBriefPrint from './RatesBriefPrint';
@@ -19,12 +19,12 @@ const MINUS = '−';
 const pct = (x: number, d = 2) => `${x > 0 ? '+' : x < 0 ? MINUS : ''}${Math.abs(x).toFixed(d)}%`;
 const money = (p: number) => '$' + p.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-// Week ahead = the brief's events + your CRM dates, from today forward, by date.
-export function weekAhead(cal: CalItem[] | undefined, mine: DealDate[], days = 21): { d: string; items: (CalItem | DealDate)[] }[] {
+// Your deadlines (next three weeks) merged with the calendar's later dates, by date.
+export function datesAhead(later: CalItem[], mine: DealDate[], days = 21): { d: string; items: (CalItem | DealDate)[] }[] {
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const end = new Date(today); end.setDate(end.getDate() + days);
   const iso = (d: Date) => d.toISOString().slice(0, 10);
-  const all = [...(cal || []), ...mine].filter(i => i.d && i.d >= iso(today) && i.d <= iso(end));
+  const all = [...later, ...mine].filter(i => i.d && i.d >= iso(today) && i.d <= iso(end));
   all.sort((a, b) => a.d.localeCompare(b.d));
   const out: { d: string; items: (CalItem | DealDate)[] }[] = [];
   for (const i of all) { const g = out[out.length - 1]; if (g && g.d === i.d) g.items.push(i); else out.push({ d: i.d, items: [i] }); }
@@ -36,7 +36,8 @@ export const dayLabel = (iso: string) =>
 export default function RatesBrief({ data: B }: { data: Brief }) {
   const mine = useDealDates();
   const markets = marketRows(B);
-  const week = weekAhead(B.cal, mine);
+  const cal = splitCalendar(B.cal);
+  const ahead = datesAhead(cal.later, mine);
 
   return (
     <>
@@ -64,25 +65,11 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
 
       {B.top && B.top.length > 0 && <TopFive items={B.top.slice(0, 5)} />}
 
-      {B.econ && B.econ.length > 0 && (
-        <Section title="Economy" sub="latest reading · prior · what it means">
-          <div className="card overflow-x-auto">
-            <table className="table-clean">
-              <thead><tr><th>Indicator</th><th className="!text-right">Latest</th><th className="!text-right">Prior</th><th>Period</th><th>Read</th></tr></thead>
-              <tbody>
-                {B.econ.map(r => (
-                  <tr key={r.n} className="row">
-                    <td className="font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">{r.n}</td>
-                    <td className={`num font-semibold whitespace-nowrap ${econCls(r)}`}>
-                      {r.dir && <span className="mr-1 text-[9px] align-[1px]">{ARROW[r.dir]}</span>}{has(r.v) ? r.v : 'n/a'}
-                    </td>
-                    <td className="num text-slate-500 whitespace-nowrap">{has(r.prior) ? r.prior : '—'}</td>
-                    <td className="text-[11px] text-slate-500 whitespace-nowrap">{r.d || ''}</td>
-                    <td className="text-xs leading-relaxed text-slate-600 dark:text-slate-300 min-w-[260px]">{r.why}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {(cal.last.length > 0 || cal.next.length > 0) && (
+        <Section title="Economic calendar" sub="last week's releases vs expectations · what's due this week">
+          <div className="grid gap-4 lg:grid-cols-2">
+            <CalTable title="Last week · released" rows={cal.last} released />
+            <CalTable title="This week · expected" rows={cal.next} />
           </div>
         </Section>
       )}
@@ -90,6 +77,7 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
       {(B.key?.length > 0 || B.series?.length > 1) && (
         <Section title="Rates & credit" sub="levels and changes in basis points · red = rates up">
           {B.key?.length > 0 && <KeyRatesTable B={B} />}
+          {B.econ && B.econ.length > 0 && <Standing rows={B.econ} />}
           {B.series?.length > 1 && <div className="mt-3"><YieldChart series={B.series} latest={B.ustDate} /></div>}
         </Section>
       )}
@@ -102,10 +90,10 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         </Section>
       )}
 
-      {week.length > 0 && (
-        <Section title="Week ahead" sub="next three weeks · releases, earnings and your deadlines">
+      {ahead.length > 0 && (
+        <Section title="Your deadlines & later dates" sub="next three weeks · from the CRM and the calendar">
           <div className="card divide-y divide-slate-100 dark:divide-slate-800">
-            {week.map(g => (
+            {ahead.map(g => (
               <div key={g.d} className="grid grid-cols-[92px_1fr] gap-3 px-4 py-2.5">
                 <p className="text-xs font-semibold text-slate-900 dark:text-slate-100 pt-0.5">{dayLabel(g.d)}</p>
                 <ul className="space-y-1">
@@ -219,6 +207,56 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
     </div>
     <RatesBriefPrint data={B} mine={mine} />
     </>
+  );
+}
+
+// One side of the economic calendar. Released rows show actual vs expected vs prior.
+function CalTable({ title, rows, released }: { title: string; rows: CalItem[]; released?: boolean }) {
+  return (
+    <div className="card overflow-x-auto">
+      <div className="card-header !py-2"><p className="text-[11px] font-semibold text-slate-700 dark:text-slate-200">{title}</p></div>
+      {rows.length === 0 ? <p className="px-4 py-3 text-xs text-slate-400">Nothing scheduled.</p> : (
+        <table className="table-clean">
+          <thead>
+            <tr>
+              <th>Day</th><th>Release</th>
+              {released && <th className="!text-right">Actual</th>}
+              <th className="!text-right">Expected</th><th className="!text-right">Prior</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((i, k) => (
+              <tr key={k} className="row align-top">
+                <td className="whitespace-nowrap text-[11px] text-slate-500">{dayLabel(i.d)}</td>
+                <td className="text-[12.5px] text-slate-800 dark:text-slate-200">
+                  <span className="font-medium">{i.e}</span>
+                  {i.why && <span className="block text-[11px] text-slate-500 dark:text-slate-400">{i.why}</span>}
+                </td>
+                {released && <td className={`num font-semibold whitespace-nowrap ${i.good == null ? 'text-slate-900 dark:text-slate-100' : i.good ? UP_GOOD : UP_BAD}`}>{has(i.act) ? i.act : '—'}</td>}
+                <td className="num whitespace-nowrap text-slate-600 dark:text-slate-300">{has(i.cons) ? i.cons : '—'}</td>
+                <td className="num whitespace-nowrap text-slate-500">{has(i.prior) ? i.prior : '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
+
+// Standing readings (Fed funds target and the like) as one compact line.
+function Standing({ rows }: { rows: EconRow[] }) {
+  return (
+    <p className="mt-2 text-xs text-slate-600 dark:text-slate-300">
+      {rows.map((r, i) => (
+        <span key={r.n} className="whitespace-nowrap">
+          {i > 0 && <span className="mx-2 text-slate-300">·</span>}
+          <span className="text-slate-500">{r.n}</span>{' '}
+          <b className={`font-mono ${econCls(r)}`}>{has(r.v) ? r.v : 'n/a'}</b>
+          {r.d && <span className="text-slate-400"> ({r.d})</span>}
+        </span>
+      ))}
+    </p>
   );
 }
 
