@@ -1,7 +1,7 @@
 // Sandpiper Daily Brief data (data/rates-brief.json). The "Morning Rates Brief" scheduled task
 // rewrites that file every weekday with the same object it publishes to the hosted page
 // (the JSON assigned to `const B = ` there). Keys and shape must stay as below; the
-// CRM-only keys (bluf, top, econ, cal) are ignored by the hosted page.
+// CRM-only keys (top, econ, cal) are ignored by the hosted page.
 
 export interface TapeRow {
   n: string;            // name, e.g. "S&P 500"
@@ -75,7 +75,7 @@ export interface RatesBrief {
   headline: string;
   dateline: string;
   ustDate: string;
-  bluf?: string;        // bottom line up front: 2-3 sentences
+  bluf?: string;        // retired Oct 2026; no longer shown
   top?: TopItem[];
   econ?: EconRow[];
   cal?: CalItem[];
@@ -124,8 +124,6 @@ export function splitCalendar(cal: CalItem[] | undefined, now = new Date()) {
   };
 }
 
-// Your own dates from the CRM, merged into the later dates.
-export interface DealDate { d: string; e: string; why?: string; tag: string }
 
 // Key rates with their levels 1M / 6M / 1Y ago, from the brief's rate table when present.
 export function rateLevels(B: RatesBrief, k: KeyRate): (string | null)[] {

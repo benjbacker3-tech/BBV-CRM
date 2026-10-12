@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, EconRow, CalItem, DealDate, has, safeHtml, marketRows, rateLevels, splitCalendar } from '@/lib/rates-brief';
+import { RatesBrief as Brief, TapeRow, EconRow, CalItem, has, safeHtml, marketRows, rateLevels, splitCalendar } from '@/lib/rates-brief';
 import { RANGES, Range, LINES, Line, ChartModel, toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
-import { useDealDates } from '@/lib/use-deal-dates';
 import RatesBriefPrint from './RatesBriefPrint';
 
 // Colors: for rates and diesel a rise is bad (red); for stocks a rise is good (green).
@@ -19,14 +18,11 @@ const MINUS = '−';
 const pct = (x: number, d = 2) => `${x > 0 ? '+' : x < 0 ? MINUS : ''}${Math.abs(x).toFixed(d)}%`;
 const money = (p: number) => '$' + p.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-// Your deadlines (next three weeks) merged with the calendar's later dates, by date.
-export function datesAhead(later: CalItem[], mine: DealDate[], days = 21): { d: string; items: (CalItem | DealDate)[] }[] {
-  const today = new Date(); today.setHours(0, 0, 0, 0);
-  const end = new Date(today); end.setDate(end.getDate() + days);
-  const iso = (d: Date) => d.toISOString().slice(0, 10);
-  const all = [...later, ...mine].filter(i => i.d && i.d >= iso(today) && i.d <= iso(end));
+// The calendar's later dates (beyond this week), grouped by date.
+export function datesAhead(later: CalItem[]): { d: string; items: CalItem[] }[] {
+  const all = [...later];
   all.sort((a, b) => a.d.localeCompare(b.d));
-  const out: { d: string; items: (CalItem | DealDate)[] }[] = [];
+  const out: { d: string; items: CalItem[] }[] = [];
   for (const i of all) { const g = out[out.length - 1]; if (g && g.d === i.d) g.items.push(i); else out.push({ d: i.d, items: [i] }); }
   return out;
 }
@@ -34,10 +30,9 @@ export const dayLabel = (iso: string) =>
   new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 
 export default function RatesBrief({ data: B }: { data: Brief }) {
-  const mine = useDealDates();
   const markets = marketRows(B);
   const cal = splitCalendar(B.cal);
-  const ahead = datesAhead(cal.later, mine);
+  const ahead = datesAhead(cal.later);
 
   return (
     <>
@@ -55,13 +50,6 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         </h1>
         {B.dateline && <p className="page-sub">{B.dateline}</p>}
       </header>
-
-      {has(B.bluf) && (
-        <section className="rounded-xl border-l-4 border-navy dark:border-blue-300 bg-white dark:bg-slate-900 shadow-[0_1px_2px_rgba(15,23,42,0.04)] px-5 py-4">
-          <p className="text-[10px] uppercase tracking-[0.14em] font-bold text-navy dark:text-blue-300 mb-1">Bottom line</p>
-          <p className="text-[15px] leading-relaxed text-slate-800 dark:text-slate-200">{B.bluf}</p>
-        </section>
-      )}
 
       {B.top && B.top.length > 0 && <TopFive items={B.top.slice(0, 5)} />}
 
@@ -91,7 +79,7 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
       )}
 
       {ahead.length > 0 && (
-        <Section title="Your deadlines & later dates" sub="next three weeks · from the CRM and the calendar">
+        <Section title="Coming up" sub="Fed, releases and earnings one to three weeks out">
           <div className="card divide-y divide-slate-100 dark:divide-slate-800">
             {ahead.map(g => (
               <div key={g.d} className="grid grid-cols-[92px_1fr] gap-3 px-4 py-2.5">
@@ -99,7 +87,7 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
                 <ul className="space-y-1">
                   {g.items.map((i, k) => (
                     <li key={k} className="text-[13px] leading-snug text-slate-800 dark:text-slate-200">
-                      {i.tag && <span className={`pill mr-2 ${i.tag === 'Your deals' || i.tag === 'Construction' ? 'pill-amber' : 'pill-navy'}`}>{i.tag}</span>}
+                      {i.tag && <span className={`pill mr-2 pill-navy`}>{i.tag}</span>}
                       {i.e}
                       {i.why && <span className="text-slate-500 dark:text-slate-400"> — {i.why}</span>}
                     </li>
@@ -205,7 +193,7 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         />
       )}
     </div>
-    <RatesBriefPrint data={B} mine={mine} />
+    <RatesBriefPrint data={B} />
     </>
   );
 }

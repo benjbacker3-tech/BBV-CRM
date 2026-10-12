@@ -1,16 +1,16 @@
 'use client';
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, DealDate, CalItem, has, safeHtml, marketRows, rateLevels, splitCalendar } from '@/lib/rates-brief';
+import { RatesBrief as Brief, TapeRow, CalItem, has, safeHtml, marketRows, rateLevels, splitCalendar } from '@/lib/rates-brief';
 import { toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
 import { ChartSvg, datesAhead, dayLabel } from './RatesBrief';
 
 // Two-page Letter printout of the Sandpiper Daily Brief, laid out like a daily intelligence
-// brief: bottom line first, key judgments, then short sections, each figure shown once.
-//   Page 1 · the economy and the cost of capital: bottom line, Top 5, economic calendar
+// brief: headline first, key judgments, then short sections, each figure shown once.
+//   Page 1 · the economy and the cost of capital: headline, Top 5, economic calendar
 //            (last week's releases vs expectations | this week's), rates & credit
 //            (table, standing readings, chart beside a markets list).
-//   Page 2 · what's coming and tenant demand: your deadlines & later dates (CRM + calendar),
+//   Page 2 · what's coming and tenant demand: coming up (Fed, releases, earnings 1–3 weeks out),
 //            freight, sector spotlight, what's moving, sources.
 // The sheets are a fixed size (not the screen's responsive layout) and kept off-screen until
 // printing. Type never shrinks below its set size (MIN_SCALE = 1); a light day scales up to
@@ -46,7 +46,7 @@ const PRINT_CSS = `
 }
 `;
 
-export default function RatesBriefPrint({ data: B, mine }: { data: Brief; mine: DealDate[] }) {
+export default function RatesBriefPrint({ data: B }: { data: Brief }) {
   const newsAll = B.news?.length ?? 0;
   const [p1Level, setP1Level] = useState(0);
   const [p2Level, setP2Level] = useState(0);
@@ -54,7 +54,7 @@ export default function RatesBriefPrint({ data: B, mine }: { data: Brief; mine: 
   // Bumping `epoch` makes both sheets measure again even when a level was already 0.
   const [epoch, setEpoch] = useState(0);
   const restart = useCallback(() => { setP1Level(0); setP2Level(0); setEpoch(e => e + 1); }, []);
-  useEffect(() => { restart(); }, [B, mine, restart]);
+  useEffect(() => { restart(); }, [B, restart]);
   useEffect(() => { document.fonts?.ready.then(restart).catch(() => {}); }, [restart]);
 
   // Print light even when the CRM is in dark mode.
@@ -82,7 +82,7 @@ export default function RatesBriefPrint({ data: B, mine }: { data: Brief; mine: 
         <PageOne B={B} level={p1Level} />
       </Sheet>
       <Sheet page={2} footer={datelineShort} onOverflow={onOverflow2} deps={[B, p2Level, epoch]}>
-        <PageTwo B={B} mine={mine} newsMax={newsMax} footClamp={p2Level >= 1} calWhy={p2Level < 2} spotClamp={p2Level >= 3} freightClamp={p2Level >= 4} footOff={p2Level >= 5} />
+        <PageTwo B={B} newsMax={newsMax} footClamp={p2Level >= 1} calWhy={p2Level < 2} spotClamp={p2Level >= 3} freightClamp={p2Level >= 4} footOff={p2Level >= 5} />
       </Sheet>
     </div>
   );
@@ -182,11 +182,7 @@ function PageOne({ B, level }: { B: Brief; level: number }) {
     <div>
       <Masthead B={B} />
 
-      <div className="mt-2.5 border-l-[3px] border-[#1E3A5F] bg-slate-50 px-3 py-2">
-        <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-[#1E3A5F]">Bottom line</p>
-        <p className="text-[15px] font-bold leading-snug text-slate-900">{B.headline}</p>
-        {has(B.bluf) && <p className="mt-0.5 text-[11.5px] leading-snug text-slate-800">{B.bluf}</p>}
-      </div>
+      <h1 className="mt-2 text-[18px] font-bold leading-snug text-slate-900">{B.headline}</h1>
 
       {B.top && B.top.length > 0 && (
         <>
@@ -340,19 +336,19 @@ function RatesTable({ B }: { B: Brief }) {
 
 // ── Page 2 · what's coming and tenant demand ───────────────────────────
 
-function PageTwo({ B, mine, newsMax, footClamp, calWhy, spotClamp, freightClamp, footOff }: {
-  B: Brief; mine: DealDate[]; newsMax: number; footClamp: boolean; calWhy: boolean; spotClamp: boolean; freightClamp: boolean; footOff: boolean;
+function PageTwo({ B, newsMax, footClamp, calWhy, spotClamp, freightClamp, footOff }: {
+  B: Brief; newsMax: number; footClamp: boolean; calWhy: boolean; spotClamp: boolean; freightClamp: boolean; footOff: boolean;
 }) {
   const news = (B.news || []).slice(0, newsMax);
   const dropped = (B.news?.length ?? 0) - news.length;
-  const week = datesAhead(splitCalendar(B.cal).later, mine);
+  const week = datesAhead(splitCalendar(B.cal).later);
   return (
     <div>
       <Masthead B={B} />
 
       {week.length > 0 && (
         <>
-          <H2 sub="next three weeks · from the CRM and the calendar">Your deadlines &amp; later dates</H2>
+          <H2 sub="Fed, releases and earnings one to three weeks out">Coming up</H2>
           <div className="columns-2 gap-5">
             {week.map(g => (
               <div key={g.d} className="grid break-inside-avoid grid-cols-[66px_1fr] gap-2 border-t border-slate-100 py-1">
@@ -361,7 +357,7 @@ function PageTwo({ B, mine, newsMax, footClamp, calWhy, spotClamp, freightClamp,
                   {g.items.map((i, k) => (
                     <p key={k} className="text-[10.5px] leading-snug text-slate-800">
                       {i.tag && (
-                        <span className={`mr-1.5 text-[9px] font-bold uppercase tracking-[0.06em] ${i.tag === 'Your deals' || i.tag === 'Construction' ? 'text-[#B54708]' : 'text-[#1E3A5F]'}`}>{i.tag}</span>
+                        <span className={`mr-1.5 text-[9px] font-bold uppercase tracking-[0.06em] text-[#1E3A5F]`}>{i.tag}</span>
                       )}
                       <span className="font-semibold">{i.e}</span>
                       {calWhy && i.why && <span className="text-slate-600"> — {i.why}</span>}
