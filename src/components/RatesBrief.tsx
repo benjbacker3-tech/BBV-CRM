@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { RatesBrief as Brief, TapeRow, KeyRate, has, safeHtml } from '@/lib/rates-brief';
+import { RANGES, Range, LINES, Line, ChartModel, toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
+import RatesBriefPrint from './RatesBriefPrint';
 
 // Colors: for rates and diesel a rise is bad (red); for stocks a rise is good (green).
 const UP_BAD = 'text-red-700 dark:text-red-400';
@@ -11,15 +13,21 @@ const rateCls = (x: number | null | undefined) => (x == null || x === 0 ? FLAT :
 const stockCls = (x: number | null | undefined) => (x == null || x === 0 ? FLAT : x > 0 ? UP_GOOD : UP_BAD);
 
 const MINUS = '−';
-const bp = (x: number) => (x > 0 ? `+${x}` : x < 0 ? `${MINUS}${Math.abs(x)}` : '0');
 const pct = (x: number, d = 2) => `${x > 0 ? '+' : x < 0 ? MINUS : ''}${Math.abs(x).toFixed(d)}%`;
 const money = (p: number) => '$' + p.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 export default function RatesBrief({ data: B }: { data: Brief }) {
   return (
-    <div className="page !max-w-[1100px] !px-4 sm:!px-8 space-y-8">
+    <>
+    <div className="page !max-w-[1100px] !px-4 sm:!px-8 space-y-8 print:hidden">
       <header className="pb-4 border-b-2 border-navy dark:border-blue-300">
-        <p className="eyebrow">Sandpiper Capital LLC · Rates Brief</p>
+        <div className="flex items-start justify-between gap-3">
+          <p className="eyebrow">Sandpiper Capital LLC · Rates Brief</p>
+          <button onClick={() => window.print()} className="btn-secondary !py-1 shrink-0" title="Print a 2-page brief (Letter)">
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 9V3h12v6M6 18H4a1 1 0 01-1-1v-6a2 2 0 012-2h14a2 2 0 012 2v6a1 1 0 01-1 1h-2M6 14h12v7H6z" /></svg>
+            Print
+          </button>
+        </div>
         <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 leading-snug [text-wrap:balance]">
           {B.headline || 'No brief yet'}
         </h1>
@@ -156,6 +164,8 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         />
       )}
     </div>
+    <RatesBriefPrint data={B} />
+    </>
   );
 }
 
@@ -282,24 +292,60 @@ function Board({ board }: { board: NonNullable<Brief['board']> }) {
 
 // ── 2Y / 5Y / 10Y chart ────────────────────────────────────────────────
 
-const RANGES = {
-  '2w': { days: 14, label: '2 weeks' },
-  '6m': { months: 6, label: '6 months' },
-  '1y': { months: 12, label: 'year' },
-  '5y': { months: 60, label: '5 years' },
-} as const;
-type Range = keyof typeof RANGES;
 const RANGE_KEY = 'crm-rates-range';
 
-// Series styling: 10Y darkest. Light / dark-mode classes.
-const LINES = [
-  { k: 3, name: '10-year', short: '10Y', stroke: 'stroke-[#1E3A5F] dark:stroke-[#E2EBF7]', fill: 'fill-[#1E3A5F] dark:fill-[#E2EBF7]', w: 2.2 },
-  { k: 2, name: '5-year', short: '5Y', stroke: 'stroke-[#4F80BD] dark:stroke-[#6FA0DB]', fill: 'fill-[#4F80BD] dark:fill-[#6FA0DB]', w: 1.8 },
-  { k: 1, name: '2-year', short: '2Y', stroke: 'stroke-[#9DB8D9] dark:stroke-[#3F6591]', fill: 'fill-slate-500 dark:fill-[#6FA0DB]', w: 1.8 },
-] as const;
-const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-interface Pt { d: Date; v: [number | null, number | null, number | null, number | null] }
+// The chart drawing itself, shared with the printout. `hoverX` draws the crosshair.
+export function ChartSvg({ c, label, hoverX, onMove, onLeave, fixedHeight = true, print = false }: {
+  c: ChartModel;
+  label: string;
+  hoverX?: number | null;
+  onMove?: (ev: React.PointerEvent<SVGSVGElement>) => void;
+  onLeave?: () => void;
+  fixedHeight?: boolean;
+  print?: boolean;   // fixed light colors, independent of the CRM's dark mode
+}) {
+  const { W, H, m, y, grid, ticks, paths, ends } = c;
+  // On screen, colors follow the theme through classes; in print they are fixed.
+  const gridLine = print ? { stroke: '#E2E8F0' } : { className: 'stroke-slate-200 dark:stroke-slate-700' };
+  const axisText = print ? { fill: '#64748B' } : { className: 'fill-slate-500 dark:fill-slate-400' };
+  const halo = print ? { fill: '#64748B', stroke: '#FFFFFF' } : { className: 'fill-slate-500 dark:fill-slate-400 stroke-white dark:stroke-slate-900' };
+  const lineProps = (s: Line) => (print ? { stroke: s.hex } : { className: s.stroke });
+  const labelProps = (s: Line) => (print ? { fill: s.k === 1 ? '#64748B' : s.hex } : { className: s.fill });
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`} width="100%" height={fixedHeight ? H : undefined} className="block overflow-visible"
+      role="img" aria-label={label} onPointerMove={onMove} onPointerLeave={onLeave}
+    >
+      {grid.map((v, i) => (
+        <line key={v} x1={m.l} x2={W - m.r} y1={y(v)} y2={y(v)} {...gridLine} strokeWidth={1} strokeDasharray={i === 0 ? undefined : '2 3'} />
+      ))}
+      {ticks.map((t, i) => (
+        <g key={i}>
+          <line x1={t.x} x2={t.x} y1={H - m.b} y2={H - m.b + 4} stroke="#94A3B8" />
+          <text x={t.x} y={H - m.b + 16} textAnchor="middle" {...axisText} fontSize={10.5}>{t.label}</text>
+        </g>
+      ))}
+      {paths.slice().reverse().map(({ s, segs }) => segs.map((pts, i) => (
+        <polyline key={s.k + '-' + i} points={pts} fill="none" {...lineProps(s)} strokeWidth={s.w} strokeLinejoin="round" strokeLinecap="round" />
+      )))}
+      {grid.map((v, i) => (
+        <text key={'l' + v} x={m.l} y={y(v) - 4} fontSize={10.5} {...halo} fontFamily="JetBrains Mono, monospace" strokeWidth={3} paintOrder="stroke">
+          {v.toFixed(2)}{i === grid.length - 1 ? '%' : ''}
+        </text>
+      ))}
+      {ends.map(e => (
+        <g key={'e' + e.s.k}>
+          <circle cx={e.x} cy={e.y} r={3} {...(print ? { fill: e.s.hex, stroke: '#FFFFFF' } : { className: `${e.s.fill} stroke-white dark:stroke-slate-900` })} strokeWidth={1.5} />
+          <line x1={e.x + 4} x2={e.x + 10} y1={e.y} y2={e.ly} {...lineProps(e.s)} />
+          <text x={e.x + 12} y={e.ly + 4} fontSize={11} fontWeight={600} {...labelProps(e.s)}>
+            {e.s.name} <tspan fontFamily="JetBrains Mono, monospace">{e.v.toFixed(2)}%</tspan>
+          </text>
+        </g>
+      ))}
+      {hoverX != null && <line x1={hoverX} x2={hoverX} y1={m.t} y2={H - m.b} stroke="#94A3B8" strokeDasharray="2 2" />}
+    </svg>
+  );
+}
 
 function YieldChart({ series, latest }: { series: Brief['series']; latest: string }) {
   const [range, setRange] = useState<Range>('1y');
@@ -318,78 +364,21 @@ function YieldChart({ series, latest }: { series: Brief['series']; latest: strin
   }, []);
   const pick = (r: Range) => { setRange(r); setHover(null); try { localStorage.setItem(RANGE_KEY, r); } catch { /* ignore */ } };
 
-  const all = useMemo<Pt[]>(() => series
-    .filter(r => r && r[0])
-    .map(r => ({ d: new Date(r[0] + 'T12:00:00'), v: [null, r[1], r[2], r[3]] as Pt['v'] }))
-    .sort((a, b) => a.d.getTime() - b.d.getTime()), [series]);
-
-  const D = useMemo(() => {
-    if (!all.length) return [];
-    const end = all[all.length - 1].d;
-    const start = new Date(end);
-    const R = RANGES[range];
-    if ('days' in R) start.setDate(start.getDate() - R.days); else start.setMonth(start.getMonth() - R.months);
-    return all.filter(p => p.d >= start);
-  }, [all, range]);
-
-  if (D.length < 2) return null;
-
+  const all = useMemo(() => toPoints(series), [series]);
+  const D = useMemo(() => inRange(all, range), [all, range]);
   const narrow = width < 520;
-  const W = width, H = narrow ? 260 : 330;
-  const m = { l: 4, r: narrow ? 92 : 112, t: 18, b: 26 };
-  let lo = Infinity, hi = -Infinity;
-  D.forEach(p => LINES.forEach(s => { const v = p.v[s.k]; if (v != null) { lo = Math.min(lo, v); hi = Math.max(hi, v); } }));
-  const span = hi - lo;
-  const step = span > 3 ? 1 : span > 1 ? 0.5 : span > 0.4 ? 0.25 : 0.1;
-  lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step; if (hi - lo < step * 2) hi += step;
-  const t0 = D[0].d.getTime(), t1 = D[D.length - 1].d.getTime();
-  const x = (d: Date) => m.l + ((d.getTime() - t0) / (t1 - t0)) * (W - m.l - m.r);
-  const y = (v: number) => m.t + ((hi - v) / (hi - lo)) * (H - m.t - m.b);
-
-  const gridLines: number[] = [];
-  for (let v = lo; v <= hi + 1e-9; v += step) gridLines.push(+v.toFixed(4));
-
-  // x-axis ticks
-  const ticks: { x: number; label: string }[] = [];
-  if (range === '2w') {
-    D.forEach((p, i) => { const j = D.length - 1 - i; if (i > 0 && j % (narrow ? 3 : 2) === 0) ticks.push({ x: x(p.d), label: `${MON[p.d.getMonth()]} ${p.d.getDate()}` }); });
-  } else if (range === '5y') {
-    let ly = -1; D.forEach(p => { const yr = p.d.getFullYear(); if (yr !== ly) { if (ly !== -1) ticks.push({ x: x(p.d), label: String(yr) }); ly = yr; } });
-  } else {
-    let last = -1; const every = range === '1y' ? (narrow ? 3 : 2) : 1;
-    D.forEach(p => { const mo = p.d.getMonth(); if (mo !== last) { if (last !== -1 && mo % every === 0) ticks.push({ x: x(p.d), label: MON[mo] + (mo === 0 ? ` '${String(p.d.getFullYear()).slice(2)}` : '') }); last = mo; } });
-  }
-
-  // Polyline per series; a null value breaks the line.
-  const paths = LINES.map(s => {
-    const segs: string[][] = [[]];
-    D.forEach(p => { const v = p.v[s.k]; if (v == null) { if (segs[segs.length - 1].length) segs.push([]); } else segs[segs.length - 1].push(`${x(p.d).toFixed(1)},${y(v).toFixed(1)}`); });
-    return { s, segs: segs.filter(g => g.length > 1) };
-  });
-
-  // End labels, pushed apart so they don't overlap.
-  const lastWith = (k: number) => [...D].reverse().find(p => p.v[k] != null);
-  const ends = LINES.map(s => { const p = lastWith(s.k); return p ? { s, x: x(p.d), y: y(p.v[s.k] as number), v: p.v[s.k] as number, ly: 0 } : null })
-    .filter((e): e is NonNullable<typeof e> => !!e)
-    .sort((a, b) => a.y - b.y);
-  ends.forEach((e, i) => { e.ly = i > 0 && e.y - ends[i - 1].ly < 15 ? ends[i - 1].ly + 15 : e.y; });
-
-  // Change over the selected range, for the subtitle.
-  const first = D[0], lastP = D[D.length - 1];
-  const moves = LINES.slice().reverse().map(s => {
-    const a = first.v[s.k], b = lastP.v[s.k];
-    return a != null && b != null ? `${s.short} ${bp(Math.round((b - a) * 100))}bp` : null;
-  }).filter(Boolean).join(' · ');
+  const c = useMemo(() => chartModel(D, range, width, narrow ? 260 : 330, narrow), [D, range, width, narrow]);
+  if (!c) return null;
 
   const onMove = (ev: React.PointerEvent<SVGSVGElement>) => {
     const r = ev.currentTarget.getBoundingClientRect();
-    const px = (ev.clientX - r.left) * (W / r.width);
+    const px = (ev.clientX - r.left) * (c.W / r.width);
     let best = 0, bd = Infinity;
-    D.forEach((p, i) => { const dd = Math.abs(x(p.d) - px); if (dd < bd) { bd = dd; best = i; } });
+    D.forEach((p, i) => { const dd = Math.abs(c.x(p.d) - px); if (dd < bd) { bd = dd; best = i; } });
     setHover(best);
   };
   const hp = hover != null ? D[hover] : null;
-  const hx = hp ? x(hp.d) : 0;
+  const hx = hp ? c.x(hp.d) : null;
 
   return (
     <section className="card px-4 sm:px-5 py-4">
@@ -397,7 +386,7 @@ function YieldChart({ series, latest }: { series: Brief['series']; latest: strin
         <div>
           <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Treasury yields: 2-, 5- and 10-year</h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Over the last {RANGES[range].label}: <span className="font-mono">{moves}</span>
+            Over the last {RANGES[range].label}: <span className="font-mono">{c.moves}</span>
           </p>
         </div>
         <div className="segmented" role="group" aria-label="Chart range">
@@ -408,43 +397,14 @@ function YieldChart({ series, latest }: { series: Brief['series']; latest: strin
       </div>
 
       <div ref={box} className="relative w-full mt-3">
-        <svg
-          viewBox={`0 0 ${W} ${H}`} width="100%" height={H} className="block overflow-visible"
-          role="img" aria-label={`Line chart of 2-, 5- and 10-year Treasury yields over the last ${RANGES[range].label}`}
-          onPointerMove={onMove} onPointerLeave={() => setHover(null)}
-        >
-          {gridLines.map((v, i) => (
-            <line key={v} x1={m.l} x2={W - m.r} y1={y(v)} y2={y(v)} className="stroke-slate-200 dark:stroke-slate-700" strokeWidth={1} strokeDasharray={i === 0 ? undefined : '2 3'} />
-          ))}
-          {ticks.map((t, i) => (
-            <g key={i}>
-              <line x1={t.x} x2={t.x} y1={H - m.b} y2={H - m.b + 4} className="stroke-slate-400" />
-              <text x={t.x} y={H - m.b + 16} textAnchor="middle" className="fill-slate-500 dark:fill-slate-400" fontSize={10.5}>{t.label}</text>
-            </g>
-          ))}
-          {paths.slice().reverse().map(({ s, segs }) => segs.map((g, i) => (
-            <polyline key={s.k + '-' + i} points={g.join(' ')} fill="none" className={s.stroke} strokeWidth={s.w} strokeLinejoin="round" strokeLinecap="round" />
-          )))}
-          {gridLines.map((v, i) => (
-            <text key={'l' + v} x={m.l} y={y(v) - 4} fontSize={10.5} className="fill-slate-500 dark:fill-slate-400 stroke-white dark:stroke-slate-900 font-mono" strokeWidth={3} paintOrder="stroke">
-              {v.toFixed(2)}{i === gridLines.length - 1 ? '%' : ''}
-            </text>
-          ))}
-          {ends.map(e => (
-            <g key={'e' + e.s.k}>
-              <circle cx={e.x} cy={e.y} r={3} className={`${e.s.fill} stroke-white dark:stroke-slate-900`} strokeWidth={1.5} />
-              <line x1={e.x + 4} x2={e.x + 10} y1={e.y} y2={e.ly} className={e.s.stroke} />
-              <text x={e.x + 12} y={e.ly + 4} fontSize={11} fontWeight={600} className={e.s.fill}>
-                {e.s.name} <tspan className="font-mono">{e.v.toFixed(2)}%</tspan>
-              </text>
-            </g>
-          ))}
-          {hp && <line x1={hx} x2={hx} y1={m.t} y2={H - m.b} className="stroke-slate-400" strokeDasharray="2 2" />}
-        </svg>
-        {hp && (
+        <ChartSvg
+          c={c} hoverX={hx} onMove={onMove} onLeave={() => setHover(null)}
+          label={`Line chart of 2-, 5- and 10-year Treasury yields over the last ${RANGES[range].label}`}
+        />
+        {hp && hx != null && (
           <div
             className="absolute top-1 pointer-events-none card !rounded-md px-2 py-1.5 text-[11px] whitespace-nowrap shadow-md"
-            style={hx / W > 0.6 ? { right: `${((W - hx) / W) * 100 + 1}%` } : { left: `${(hx / W) * 100 + 1}%` }}
+            style={hx / c.W > 0.6 ? { right: `${((c.W - hx) / c.W) * 100 + 1}%` } : { left: `${(hx / c.W) * 100 + 1}%` }}
           >
             <b className="text-slate-800 dark:text-slate-100">{hp.d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</b>
             <br />

@@ -24,9 +24,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     <>
       <Sidebar open={navOpen} onNavigate={() => setNavOpen(false)} />
       {navOpen && <div className="fixed inset-0 z-40 bg-slate-900/40 md:hidden" onClick={() => setNavOpen(false)} />}
-      <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
+      <div className="flex-1 min-w-0 flex flex-col overflow-hidden print:block print:overflow-visible">
         <TopBar onMenu={() => setNavOpen(true)} />
-        <main className="flex-1 overflow-auto">{children}</main>
+        <main className="flex-1 overflow-auto print:overflow-visible">{children}</main>
       </div>
       <CommandBar />
       <QuickAddButton />

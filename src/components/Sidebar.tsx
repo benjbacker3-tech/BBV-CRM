@@ -20,7 +20,7 @@ export default function Sidebar({ open = false, onNavigate }: { open?: boolean; 
   const pathname = usePathname();
 
   return (
-    <aside className={`w-56 bg-navy text-white flex flex-col shrink-0 h-screen fixed inset-y-0 left-0 z-50 transition-transform md:static md:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}>
+    <aside className={`w-56 bg-navy text-white flex flex-col shrink-0 h-screen fixed inset-y-0 left-0 z-50 transition-transform md:static md:translate-x-0 print:hidden ${open ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className="px-5 py-5 border-b border-navy-lighter">
         <h1 className="text-lg font-semibold tracking-tight text-white">
           Sandpiper Capital

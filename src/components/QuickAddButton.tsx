@@ -18,7 +18,7 @@ export default function QuickAddButton() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-6 right-6 z-50 print:hidden">
         <button
           onClick={() => setModalOpen(true)}
           title="New Deal (N)"
