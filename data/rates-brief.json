@@ -1,72 +1,69 @@
 {
-  "headline": "The 10-year ends the week at 5.24%, up 110bp in a year, with CPI on Wednesday and a Fed meeting that leans toward another hike.",
-  "dateline": "Monday, October 12, 2026 · closes as of Fri Oct 9",
-  "ustDate": "Oct 9, 2026",
+  "headline": "The 10-year eased 3bp to 5.21% after the holiday as markets waited for today's September CPI, expected to show inflation rising to 3.6% from 3.4% two weeks before a Fed meeting where most officials lean toward another hike.",
+  "dateline": "Wednesday, October 14, 2026 · closes as of Tue Oct 13",
+  "ustDate": "Oct 13, 2026",
   "top": [
     {
       "tag": "Rates",
-      "h": "CPI on Wednesday is this week's biggest rate risk",
-      "p": "Long yields are near multidecade highs; a hot print pushes IOS acquisition and refinance costs higher.",
-      "url": "https://bnnbloomberg.ca/markets/2026/10/09/us-futures-are-rising-as-crude-prices-retreat-from-recent-gains"
+      "h": "September CPI at 8:30 ET: consensus 3.6% y/y, core 0.2% m/m",
+      "p": "It is the last inflation read before the Oct 27–28 Fed meeting; a hot core print would push long yields, and IOS borrowing costs, higher again.",
+      "url": "https://tradingeconomics.com/united-states/calendar"
     },
     {
       "tag": "Fed",
-      "h": "Fed meets Oct 27–28; minutes lean toward another hike",
-      "p": "Most officials see one more hike by year-end, so higher-for-longer keeps pressure on cap rates.",
-      "url": "https://www.fxstreet.com/news/fed-minutes-set-to-provide-some-insight-into-the-timing-of-next-rate-hikes-202610071400"
+      "h": "Markets price roughly 75–85% odds of another hike by December",
+      "p": "October itself is seen as a hawkish hold (about 16–18% hike odds), so SOFR-priced floating debt likely resets higher by year-end rather than this month.",
+      "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-october-2026"
     },
     {
       "tag": "Debt",
-      "h": "About $875B of CRE debt matures this year into rising rates",
-      "p": "Owners refinancing 3–4% loans face much higher costs: expect more forced sellers and wider spreads on levered IOS.",
-      "url": "https://thecrereport.substack.com/p/the-fed-is-hiking-into-the-cre-maturity"
+      "h": "Dimon flags high inflation and rising rates as JPMorgan slips",
+      "p": "Big-bank caution on asset prices and rates is a signal for loan pricing and leverage on new IOS acquisitions this quarter.",
+      "url": "https://www.bnnbloomberg.ca/markets/2026/10/13/wall-street-mixed-in-early-trading-as-big-us-banks-report-earnings-chip-stocks-fall-again/"
     },
     {
       "tag": "Earnings",
-      "h": "Equipment-rental Q3: United Rentals Oct 21, Herc around Oct 27",
-      "p": "Rental branches are core IOS tenants, so these reports are the next read on yard demand."
+      "h": "J.B. Hunt and Prologis report Q3 Thursday",
+      "p": "The first hard read on how diesel is hitting carrier margins and on industrial leasing and rents heading into 2027.",
+      "url": "https://talkbusiness.net/2026/10/j-b-hunt-q3-earnings-revenue-to-rise-analysts-say/"
     },
     {
-      "tag": "Freight",
-      "h": "Flatbed is the tightest truck board, up 28% y/y",
-      "p": "Construction and equipment freight is what fills contractor and equipment yards.",
-      "url": "https://dat.com/blog/flatbed-report-tightest-board-of-the-three-holds-its-edge-into-october"
+      "tag": "Earnings",
+      "h": "Vulcan and Builders FirstSource report Oct 29, alongside GDP and PCE",
+      "p": "Analysts have cut Vulcan targets for two weeks running, a sign of softer construction volumes that drive contractor-yard demand.",
+      "url": "https://stockanalysis.com/stocks/vmc/"
     }
   ],
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "raised in Sep",
+      "d": "raised 25bp Sep 16",
       "good": false
     },
     {
-      "n": "Mfg PMI (S&P Global)",
-      "v": "55.9",
-      "d": "Sep final; Aug 53.9",
-      "good": true
+      "n": "30-yr mortgage",
+      "v": "7.40%",
+      "d": "Freddie Mac, Oct 8; next Oct 15",
+      "good": false
+    },
+    {
+      "n": "Dollar index",
+      "v": "102.2",
+      "d": "Oct 13, from 102.6",
+      "good": null
     }
   ],
   "cal": [
     {
-      "d": "2026-10-05",
-      "tag": "Economy",
-      "e": "ISM services PMI (Sep)",
-      "act": "54.9",
-      "cons": "55",
-      "prior": "55.4",
-      "good": null,
-      "why": "Services still expanding, a touch below forecast"
-    },
-    {
       "d": "2026-10-07",
       "tag": "Fed",
-      "e": "FOMC minutes (Sep meeting)",
+      "e": "FOMC minutes (Sep 15–16 meeting)",
       "act": null,
       "cons": null,
       "prior": null,
-      "good": null,
-      "why": "Most officials see another hike by year-end"
+      "good": false,
+      "why": "Most officials saw another hike by year-end as likely"
     },
     {
       "d": "2026-10-08",
@@ -75,144 +72,294 @@
       "act": "197K",
       "cons": "200K",
       "prior": "199K",
-      "good": null,
-      "why": "Below forecast: tight labor keeps the Fed hawkish"
+      "good": true,
+      "why": "Layoffs stay low, steady tenant demand"
     },
     {
       "d": "2026-10-09",
       "tag": "Economy",
-      "e": "UMich consumer sentiment (Oct prelim)",
+      "e": "UMich sentiment, prelim (Oct)",
       "act": "46.3",
       "cons": "47.6",
       "prior": "48.1",
       "good": false,
-      "why": "Weaker consumer; 1-yr inflation expectations up to 4.7% from 4.6%"
+      "why": "Lowest since May; 1-yr inflation expectations rose to 4.7% from 4.6%"
+    },
+    {
+      "d": "2026-10-13",
+      "tag": "Economy",
+      "e": "NFIB small business optimism (Sep)",
+      "act": "97.9",
+      "cons": "98",
+      "prior": "98.7",
+      "good": false,
+      "why": "Small firms, typical yard tenants, a bit gloomier"
+    },
+    {
+      "d": "2026-10-13",
+      "tag": "Economy",
+      "e": "Existing home sales (Sep)",
+      "act": "3.99M",
+      "cons": "3.95M",
+      "prior": "3.93M",
+      "good": true,
+      "why": "Housing turnover edged up despite 7%+ mortgages"
     },
     {
       "d": "2026-10-14",
       "tag": "Economy",
       "e": "CPI, y/y (Sep)",
-      "cons": "3.7%",
+      "act": null,
+      "cons": "3.6%",
       "prior": "3.4%",
-      "why": "A hotter print would push long yields higher"
+      "good": null,
+      "why": "Key inflation test before the Oct 28 Fed decision"
     },
     {
       "d": "2026-10-14",
       "tag": "Economy",
-      "e": "Core CPI, y/y (Sep)",
-      "cons": "2.5%",
-      "prior": "2.4%",
-      "why": "What the Fed watches for its next move"
+      "e": "Core CPI, m/m (Sep)",
+      "act": null,
+      "cons": "0.2%",
+      "prior": "0.3%",
+      "good": null,
+      "why": "Shows whether energy costs are spreading into core prices"
+    },
+    {
+      "d": "2026-10-14",
+      "tag": "Fed",
+      "e": "Beige Book",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Regional read on demand, hiring and prices"
     },
     {
       "d": "2026-10-15",
       "tag": "Economy",
       "e": "PPI, m/m (Sep)",
+      "act": null,
       "cons": "0.5%",
       "prior": "0.4%",
-      "why": "Pipeline costs for materials and equipment"
+      "good": null,
+      "why": "Pipeline inflation, including freight and materials"
     },
     {
       "d": "2026-10-15",
       "tag": "Economy",
       "e": "Retail sales, m/m (Sep)",
+      "act": null,
       "cons": "0.3%",
       "prior": "1.2%",
-      "why": "Goods demand drives freight and yard use"
+      "good": null,
+      "why": "Consumer demand drives warehouse and freight volumes"
     },
     {
       "d": "2026-10-15",
       "tag": "Economy",
       "e": "Initial jobless claims (wk Oct 10)",
+      "act": null,
       "cons": "200K",
       "prior": "197K",
-      "why": "Any rise would ease Fed pressure"
+      "good": null,
+      "why": "Watch for any rise in layoffs"
+    },
+    {
+      "d": "2026-10-15",
+      "tag": "Economy",
+      "e": "Philly Fed manufacturing (Oct)",
+      "act": null,
+      "cons": "28.4",
+      "prior": "37.8",
+      "good": null,
+      "why": "Factory demand for industrial space and freight"
+    },
+    {
+      "d": "2026-10-15",
+      "tag": "Earnings",
+      "e": "J.B. Hunt Q3 (after close)",
+      "act": null,
+      "cons": "$1.81 EPS",
+      "prior": "$1.76",
+      "good": null,
+      "why": "Fuel squeeze on intermodal and truckload margins"
+    },
+    {
+      "d": "2026-10-15",
+      "tag": "Earnings",
+      "e": "Prologis Q3",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "First read on industrial leasing and rents"
     },
     {
       "d": "2026-10-16",
       "tag": "Economy",
       "e": "Industrial production, m/m (Sep)",
+      "act": null,
       "cons": "0.4%",
       "prior": "0.0%",
-      "why": "Factory output behind industrial tenant demand"
+      "good": null,
+      "why": "Factory output feeds yard and freight demand"
+    },
+    {
+      "d": "2026-10-16",
+      "tag": "Fed",
+      "e": "Fed Chair Warsh speaks",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Last big signal before the pre-meeting blackout"
     },
     {
       "d": "2026-10-21",
       "tag": "Earnings",
-      "e": "United Rentals Q3 results (call Oct 22)"
+      "e": "Knight-Swift Q3 (after close)",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Truckload pricing and capacity"
+    },
+    {
+      "d": "2026-10-22",
+      "tag": "Earnings",
+      "e": "United Rentals Q3 call",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Equipment-rental demand, a core IOS tenant"
     },
     {
       "d": "2026-10-23",
       "tag": "Economy",
-      "e": "UMich consumer sentiment (Oct final)"
+      "e": "UMich sentiment, final (Oct)",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Confirms the slide in consumer mood and inflation expectations"
     },
     {
-      "d": "2026-10-27",
+      "d": "2026-10-28",
       "tag": "Fed",
-      "e": "FOMC meeting, Oct 27–28"
+      "e": "FOMC decision",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Hike or hold from 3.75–4.00%"
     },
     {
-      "d": "2026-10-27",
+      "d": "2026-10-28",
       "tag": "Earnings",
-      "e": "Herc Holdings Q3 results (expected)"
+      "e": "Old Dominion Q3 (before open)",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "LTL volumes and pricing"
+    },
+    {
+      "d": "2026-10-29",
+      "tag": "Economy",
+      "e": "GDP Q3 advance; PCE (Sep)",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Growth and the Fed's preferred inflation gauge"
+    },
+    {
+      "d": "2026-10-29",
+      "tag": "Earnings",
+      "e": "Vulcan, Builders FirstSource Q3",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Aggregates pricing and housing-driven lumber demand"
+    },
+    {
+      "d": "2026-10-29",
+      "tag": "Earnings",
+      "e": "Saia Q3",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "LTL demand and terminal expansion"
+    },
+    {
+      "d": "2026-11-02",
+      "tag": "Economy",
+      "e": "ISM manufacturing PMI (Oct)",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Factory demand and prices paid"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,811.54",
-      "c": 0.59,
-      "ctext": "+0.59%",
-      "y": 16,
-      "ytext": "+16.0%",
-      "why": "First gain since Tuesday's record high, closing out a record-setting week. Humana jumped 11.6% on Medicare Advantage ratings, and tower owners Crown Castle (+15.6%) and American Tower (+9.3%) rallied after SpaceX announced a spectrum purchase."
+      "v": "7,805.45",
+      "c": -0.02,
+      "ctext": "−0.02%",
+      "y": 17.3,
+      "ytext": "+17.3%",
+      "why": "Finished just below last week's record as mixed bank earnings offset falling chip stocks."
     },
     {
       "n": "Dow",
-      "v": "51,654.95",
-      "c": 0.83,
-      "ctext": "+0.83%",
-      "y": 11.4,
-      "ytext": "+11.4%",
-      "why": "Best of the big three on broad gains, even as wireless carriers sank on the threat of a new SpaceX competitor (Verizon −8.7%, AT&T −9.8%, T-Mobile −13.3%)."
+      "v": "51,670.10",
+      "c": -0.35,
+      "ctext": "−0.35%",
+      "y": 12.2,
+      "ytext": "+12.2%",
+      "why": "Bank results weighed: Wells Fargo fell 3.1% and JPMorgan 0.9%."
     },
     {
       "n": "Nasdaq",
-      "v": "27,366.17",
-      "c": 0.64,
-      "ctext": "+0.64%",
-      "y": 18.9,
-      "ytext": "+18.9%",
-      "why": "Recovered part of Thursday's 1.25% chip-led drop, rising with the broader market; up 0.6% for the week."
+      "v": "27,204.38",
+      "c": -0.15,
+      "ctext": "−0.15%",
+      "y": 19.9,
+      "ytext": "+19.9%",
+      "why": "Chips fell on AI-valuation worries and China's CXMT; Micron dropped 3.6%."
     },
     {
       "n": "Russell 2000",
-      "v": "2,806.98",
-      "c": 0.46,
-      "ctext": "+0.46%",
-      "y": 13.7,
-      "ytext": "+13.7%",
-      "why": "Small caps gained on the day but still finished the week down 0.9%, lagging as long yields held near multidecade highs (AP)."
+      "v": "2,783.37",
+      "c": -0.4,
+      "ctext": "−0.40%",
+      "y": 13.1,
+      "ytext": "+13.1%",
+      "why": "Fell 0.4%, more than the large-cap indexes, with the 10-year above 5.2%."
     },
     {
       "n": "VIX",
-      "v": "14.84",
-      "c": -3.7,
-      "ctext": "−3.70%",
-      "y": -9.7,
-      "ytext": "−9.7%",
-      "why": "Eased as stocks rose; the volatility gauge closed below 15 for the week's finish (Investing.com/YCharts close)."
+      "v": "15.27",
+      "c": 0.39,
+      "ctext": "+0.39%",
+      "why": "Barely moved on a flat, mixed day ahead of CPI."
     },
     {
       "n": "10Y Treasury",
-      "v": "5.24%",
+      "v": "5.21%",
       "rate": true,
-      "c": 2,
-      "ctext": "+2bp",
-      "y": 110,
-      "ytext": "+110bp",
-      "asof": "Oct 9",
-      "why": "Treasury par yield, up 2bp after intraday swings; it recently touched its highest level since 2002. UMich one-year inflation expectations rose to 4.7%, and the 30-year mortgage rate is at its highest in nearly three years."
+      "c": -3,
+      "ctext": "−3bp",
+      "y": 116,
+      "ytext": "+116bp",
+      "asof": "Oct 13",
+      "why": "Eased from Friday's 5.24% as bonds reopened after Columbus Day, ahead of CPI."
     },
     {
       "n": "Diesel, U.S. avg (EIA)",
@@ -222,7 +369,7 @@
       "ctext": "−$0.183 w/w",
       "y": 1,
       "ytext": "+$2.488",
-      "why": "Week of Oct 5, released Oct 6. A second straight weekly drop, but still about two-thirds above a year ago; next print Oct 14."
+      "why": "Week of Oct 5; the Oct 13 print is due Wednesday after the holiday."
     }
   ],
   "key": [
@@ -230,91 +377,91 @@
       "n": "SOFR",
       "cur": 3.87,
       "d1m": 23,
-      "d6m": 28,
-      "d1y": -25,
-      "asof": "Oct 8"
+      "d6m": 30,
+      "d1y": -26,
+      "asof": "Oct 9"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.8,
-      "d1m": 37,
-      "d6m": 102,
-      "d1y": 120,
-      "asof": "Oct 9"
+      "cur": 4.79,
+      "d1m": 16,
+      "d6m": 101,
+      "d1y": 127,
+      "asof": "Oct 13"
     },
     {
       "n": "5Y Treasury",
-      "cur": 5.02,
-      "d1m": 41,
-      "d6m": 111,
-      "d1y": 128,
-      "asof": "Oct 9"
+      "cur": 5,
+      "d1m": 22,
+      "d6m": 108,
+      "d1y": 135,
+      "asof": "Oct 13"
     },
     {
       "n": "10Y Treasury",
-      "cur": 5.24,
-      "d1m": 41,
-      "d6m": 95,
-      "d1y": 110,
-      "asof": "Oct 9"
+      "cur": 5.21,
+      "d1m": 25,
+      "d6m": 91,
+      "d1y": 116,
+      "asof": "Oct 13"
     }
   ],
   "rcols": [
-    "Oct 9 '26",
-    "Sep 9 '26",
-    "Apr 9 '26",
-    "Oct 9 '25"
+    "Oct 13 '26",
+    "Sep 11 '26",
+    "Apr 13 '26",
+    "Oct 10 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.80",
-        "4.43",
+        "4.79",
+        "4.63",
         "3.78",
-        "3.60"
+        "3.52"
       ],
-      "d1m": 37,
-      "d1y": 120
+      "d1m": 16,
+      "d1y": 127
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "5.02",
-        "4.61",
-        "3.91",
-        "3.74"
+        "5.00",
+        "4.78",
+        "3.92",
+        "3.65"
       ],
-      "d1m": 41,
-      "d1y": 128
+      "d1m": 22,
+      "d1y": 135
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "5.24",
-        "4.83",
-        "4.29",
-        "4.14"
+        "5.21",
+        "4.96",
+        "4.30",
+        "4.05"
       ],
-      "d1m": 41,
-      "d1y": 110
+      "d1m": 25,
+      "d1y": 116
     },
     {
-      "grp": "SOFR · dates Oct 8 '26 / Sep 8 '26 / Apr 8 '26 / Oct 8 '25"
+      "grp": "SOFR · dates Oct 9 '26 / Sep 9 '26 / Apr 9 '26 / Oct 9 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
         "3.87",
         "3.64",
-        "3.59",
-        "4.12"
+        "3.57",
+        "4.13"
       ],
       "d1m": 23,
-      "d1y": -25
+      "d1y": -26
     }
   ],
   "freight": [
@@ -324,39 +471,36 @@
       "pl": "Week",
       "pc": "−$0.183",
       "y": "+$2.488",
-      "why": "Week of Oct 5, released Oct 6. Relief for carrier tenants, but fuel is still about $2.49/gal above last year; next print Oct 14."
+      "why": "Week of Oct 5, released Oct 6; the holiday-delayed Oct 13 print is due today. Fuel is still about two-thirds above last year, the main cost squeezing small-carrier tenants."
     },
     {
-      "n": "DAT spot, flatbed (linehaul)",
-      "v": "$2.65/mi",
+      "n": "DAT spot, dry van (all-in)",
+      "v": "$3.12/mi",
       "pl": "Week",
-      "pc": "+6¢ (+2.2%)",
-      "y": "+28.2%",
-      "why": "Week 40, posted Oct 6 (the latest weekly report found). Flatbed, the construction and equipment segment, is the tightest board, with a load-to-truck ratio of 44.1 vs 30.0 a year ago; van linehaul rose 12¢ to $2.25."
+      "pc": "+3¢",
+      "y": "+35% (linehaul)",
+      "why": "Week of Oct 4–10, reported Oct 13. Reefer rose 3¢ to $3.68 and flatbed eased 2¢ to $3.68, while van load-to-truck fell to 10.5 from 13.7 (6.3 a year ago)."
     },
     {
       "n": "Logistics Managers' Index",
       "v": "70.2",
       "pl": "Month",
       "pc": "+3.6",
-      "y": "n/a",
-      "why": "September, released Oct 6, the second-highest reading in four years. Transportation prices hit 92.7 and warehousing capacity contracted to 39.3, so overflow trailers and equipment keep pushing toward outdoor yards."
+      "why": "September, released Oct 6. Warehousing capacity fell 14.2 points to 39.3, the fastest contraction since March 2022, which pushes overflow trailers and equipment toward outdoor yards."
     },
     {
       "n": "Drewry WCI, 40ft",
       "v": "$4,351",
       "pl": "Week",
       "pc": "−2%",
-      "y": "n/a",
-      "why": "Assessment of Oct 8. Shanghai–Los Angeles fell 3% to $7,624 and Shanghai–New York 2% to $10,220, a modest easing in import costs after Golden Week."
+      "why": "Oct 8. Golden Week softened demand: Shanghai–LA fell 3% to $7,624; Drewry expects stable rates this week."
     }
   ],
-  "also": "Baltic Dry 3,002 (−2.2%, Oct 6, lowest since late August)",
+  "also": "Baltic Dry 2,801 (−51, Oct 13; +38.5% y/y) · LMI transportation prices 92.7 and transportation capacity 34.4, the 10th straight month of contraction (Sep) · Domestic intermodal volume about +8% y/y (week of Oct 5).",
   "rota": [
     {
       "d": "Mon",
-      "g": "Equipment rental",
-      "on": true
+      "g": "Equipment rental"
     },
     {
       "d": "Tue",
@@ -364,7 +508,8 @@
     },
     {
       "d": "Wed",
-      "g": "Building materials"
+      "g": "Building materials",
+      "on": true
     },
     {
       "d": "Thu",
@@ -376,59 +521,83 @@
     }
   ],
   "spot": {
-    "g": "Equipment rental",
+    "g": "Building materials",
     "rows": [
       {
-        "n": "United Rentals",
-        "t": "URI",
-        "p": 1056.37,
-        "c": 0.59,
-        "y": 7.7,
-        "u": "Wells Fargo kept its Buy rating on Oct 9. Q2 EPS of $12.76 beat the $11.53 consensus on 11.8% revenue growth, and 2026 guidance was raised in August; Q3 results come Oct 21 with the call Oct 22."
+        "n": "Vulcan Materials",
+        "t": "VMC",
+        "p": 243.54,
+        "c": -0.66,
+        "u": "Analysts keep cutting targets (JPMorgan to $300 Oct 13, RBC to $256, UBS to $326); Q3 results Oct 29 before the open, after a $0.52 dividend declared Oct 9."
       },
       {
-        "n": "Herc Holdings",
-        "t": "HRI",
-        "p": 123.52,
-        "c": -0.28,
-        "y": 1.4,
-        "u": "Wells Fargo kept its Buy rating on Oct 9. Shares are down from $156 in late August despite a big Q2 beat (EPS $1.43 vs $0.76 expected, revenue +20%); the consensus target of about $178 sits ~44% above the price. Q3 results expected around Oct 27."
+        "n": "Martin Marietta",
+        "t": "MLM",
+        "p": 472.4,
+        "c": -1,
+        "u": "Q2 revenue rose 21% to a record $1.95B and it raised 2026 revenue guidance to $7.2–7.4B, though earnings from continuing operations fell 12%."
       },
       {
-        "n": "WillScot",
-        "t": "WSC",
-        "p": 17.07,
-        "c": 1.31,
-        "y": -23.7,
-        "u": "Down from about $20 in early September. Q2 EPS of $0.28 beat by 3¢ on 3.9% revenue growth; consensus is Hold with a $27 target, and Q3 results are expected around Nov 5."
+        "n": "Builders FirstSource",
+        "t": "BLDR",
+        "p": 51.71,
+        "c": -0.82,
+        "u": "Down about 22% since missing Q2 estimates and cutting guidance on Jul 30; Q3 call is Oct 29 with consensus EPS of $1.16 on $3.8B revenue."
+      },
+      {
+        "n": "CRH",
+        "t": "CRH",
+        "p": 80.14,
+        "c": -1.12,
+        "u": "Q2 revenue rose 6% to $10.8B and adjusted EBITDA 7% to $2.6B; it reaffirmed 2026 EPS guidance of $5.60–6.05."
       }
     ]
   },
   "news": [
     {
       "tag": "Trucking",
-      "h": "Tender rejections near 14%; about 16 carriers in bankruptcy or restructuring",
-      "p": "Capacity is leaving, which firms up rates but raises default risk among small-carrier tenants.",
-      "src": "NTG Freight · Oct 7",
-      "url": "https://ntgfreight.com/resources/weekly-freight-trends-october-5-9-2026"
+      "h": "Tender rejections near 14%, seen topping 20% by December",
+      "p": "Carriers are refusing peak-season commitments at current rates; tighter capacity supports carrier tenants' ability to pay yard rent.",
+      "src": "Transportation Insight · Oct 9",
+      "url": "https://transportationinsight.com/resources/transportation-industry-trends-october-5-9-2026/"
     },
     {
-      "tag": "Trade",
-      "h": "USTR opens the next stage of the USMCA review",
-      "p": "Comments are due Jan 12, 2027, and the U.S.–Canada tariff dispute continues. Cross-border lanes (Laredo, Detroit, Buffalo) drive IOS demand along border corridors.",
-      "src": "Supply Chain Dive · Oct 7",
-      "url": "https://supplychaindive.com/news/ustr-initiates-next-stage-of-usmca-review/832285"
+      "tag": "Freight",
+      "h": "Long Beach imports projected about 50% above last year for three weeks",
+      "p": "A surge ahead of the January tariff-truce deadline adds near-term demand for container, chassis and overflow storage near the ports; NRF's 2027 outlook is due within days.",
+      "src": "Transportation Insight · Oct 9",
+      "url": "https://transportationinsight.com/resources/transportation-industry-trends-october-5-9-2026/"
     },
     {
-      "tag": "Materials",
-      "h": "Martin Marietta at a new 52-week low; Citi trims target",
-      "p": "Aggregates names keep falling with long rates despite solid pricing. Public infrastructure work still supports equipment and materials yards.",
-      "src": "MarketBeat · Oct 7",
-      "url": "https://www.marketbeat.com/instant-alerts/filing-martin-marietta-materials-inc-mlm-shares-sold-by-congress-asset-management-co-2026-10-07/"
+      "tag": "Trucking",
+      "h": "Old Dominion's 4.9% rate increase takes effect; FedEx and DHL set 5.9% for 2027",
+      "p": "Carriers are passing fuel and labor costs to shippers, which protects margins for the LTL and parcel operators that lease terminals and yards.",
+      "src": "Transportation Insight · Oct 9",
+      "url": "https://transportationinsight.com/resources/transportation-industry-trends-october-5-9-2026/"
+    },
+    {
+      "tag": "Trucking",
+      "h": "Chicago carrier Midwest Expedited files Chapter 11",
+      "p": "The 95-truck fleet is the latest small-carrier failure as diesel stays above $6; check tenant credit and deposits on yard leases.",
+      "src": "Newsweek · Oct 7",
+      "url": "https://newsweek.com/nationwide-trucking-company-files-for-bankruptcy-amid-diesel-price-shock-12536548"
+    },
+    {
+      "tag": "Debt",
+      "h": "Banks hold a record $3.1T of the $6.3T in U.S. CRE debt",
+      "p": "Banks are 47% of the market (Q2, MBA data), so their appetite sets terms for most IOS acquisition loans.",
+      "src": "Wolf Street · Oct 8",
+      "url": "https://wolfstreet.com/2026/10/08/status-of-the-commercial-real-estate-debt-and-who-owns-it-in-2026/"
+    },
+    {
+      "tag": "Fuel",
+      "h": "Brent slips 0.9% to $105.69 amid Iran-war uncertainty",
+      "p": "Crude above $100 keeps diesel elevated, the biggest cost pressure on trucking and yard tenants.",
+      "src": "AP via BNN Bloomberg · Oct 13",
+      "url": "https://www.bnnbloomberg.ca/markets/2026/10/13/wall-street-mixed-in-early-trading-as-big-us-banks-report-earnings-chip-stocks-fall-again/"
     }
   ],
-  "foot": "Sources: NY Fed via global-rates.com and the NY Fed API (SOFR, latest Oct 8; references Sep 8, Apr 8 and Oct 8, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 9; references Sep 9, Apr 9 and Oct 9, 2025); AP via La Nación (Oct 9, 2026 index closes) and via MarketBeat (Oct 9, 2025 closes); Investing.com and YCharts (VIX); AP wrap via BNN Bloomberg (market context); stockanalysis.com history and MarketBeat (sector closes, ratings and results); EIA (diesel); DAT; Trading Economics and FreightWaves (LMI, Baltic Dry); Drewry via DCN; NTG Freight; FXStreet, Supply Chain Dive, The CRE Report.<br>Notes: Index Day % computed from AP point changes. VIX 1Y n/a (no dated Oct 9, 2025 close). Equipment-rental 1Y % n/a: no dated Oct 9, 2025 closes were found. WSC Oct 9 close n/a. Oct 12 is a bond-market holiday, so Oct 9 SOFR publishes Oct 13. DAT figures are week 40 (week 41 report not found). Chart keeps 5 years of history for the page's 5Y toggle.",
-  "sports": [],
+  "foot": "Sources: NY Fed API (SOFR, latest Oct 9; references Sep 9, Apr 9 and Oct 9, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 13; references Sep 11, Apr 13 and Oct 10, 2025); AP via La Nación and BNN Bloomberg (Oct 13, 2026 closes and wrap) and via MarketBeat (Oct 13, 2025 closes); Investing.com (VIX); stockanalysis.com (building-materials closes and Vulcan news); SEC filings (MLM, CRH Q2); Earnings Whispers and Finviz (earnings dates); Trading Economics (calendar, consensus, dollar index, Baltic Dry); Freddie Mac; Federal Reserve; Admiral Markets (hike odds); EIA; DAT via AJOT; LMI via FreightWaves; Drewry via DCN; Transportation Insight; Newsweek; Wolf Street.<br>Notes: SOFR for Oct 13 publishes this morning and Oct 12 was a holiday, so SOFR is Oct 9. 10Y 1Y change uses Oct 10, 2025 (Oct 13, 2025 was a bond-market holiday). VIX 1Y and building-materials 1Y % left out (no dated Oct 2025 closes found; CBOE history file loaded only partially). Day % for stocks from stockanalysis prior closes. Housing starts (Oct 20) left out of the calendar: no consensus published. EIA's Oct 13 diesel not out at build time. WTI left out: no dated settlement found. Chart keeps 5 years of history for the 5Y toggle.",
   "series": [
     [
       "2021-10-12",
@@ -7923,6 +8092,12 @@
       4.8,
       5.02,
       5.24
+    ],
+    [
+      "2026-10-13",
+      4.79,
+      5,
+      5.21
     ]
   ]
 }
