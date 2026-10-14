@@ -44,8 +44,21 @@ export interface SpotRow {
 }
 
 export interface NewsItem { tag: string; h: string; p: string; src: string; url?: string }
-// "Top 5 today": key judgments, most important first.
+// "Top 5 today": key judgments, most important first. Retired Oct 14, 2026 for `rundown`.
 export interface TopItem { tag?: string; h: string; p?: string; url?: string }
+// "The Rundown": 5–7 newsletter-style items, most important first. `h` is a bold lead-in,
+// `p` two or three sentences of context and the so-what. Replaces Top 5 and What's moving.
+export interface RundownItem { tag?: string; h: string; p: string; url?: string; src?: string }
+// The daily deep dive: one structural topic or trend, chosen each day for a broad investor.
+export interface DeepDive {
+  kicker?: string;      // topic label, e.g. "Private credit"
+  title: string;
+  dek?: string;         // one-sentence summary under the title
+  body: string[];       // paragraphs; may carry simple markup (<b>, <i>, <a>)
+  table?: { cap?: string; cols: string[]; rows: string[][] };
+  watch?: string[];     // what to watch next, short lines
+  src?: string;         // sources, one line
+}
 // Standing readings that aren't weekly releases (Fed funds target, mortgage rate, ...),
 // shown as one compact line under Rates & credit. `why` is optional.
 export interface EconRow {
@@ -71,25 +84,42 @@ export interface SportsItem { lg: string; d: string; h: string; p: string; src?:
 // [ISO date, 2Y, 5Y, 10Y] — about 5 years of daily Treasury par yields.
 export type SeriesRow = [string, number | null, number | null, number | null];
 
+// Page 3, "Investor's Corner": a well-known investor's ideas, story or writing, half to a full
+// page. Written in the brief's own words; at most one short quote, attributed.
+export interface Reading {
+  kind: string;         // Bio, Story, Thoughts or Reading
+  who: string;          // e.g. "Howard Marks"
+  title: string;
+  dek?: string;
+  body: string[];       // paragraphs; may carry simple markup
+  quote?: { text: string; src: string };
+  takeaways?: string[]; // what it means for an investor today, short lines
+  src?: string;         // where to read more
+}
+
 export interface RatesBrief {
   headline: string;
   dateline: string;
   ustDate: string;
   bluf?: string;        // retired Oct 2026; no longer shown
-  top?: TopItem[];
+  top?: TopItem[];      // retired Oct 14, 2026; shown only when `rundown` is missing
+  rundown?: RundownItem[];
+  dive?: DeepDive;
+  reading?: Reading;    // page 3
   econ?: EconRow[];
   cal?: CalItem[];
-  tape: TapeRow[];
+  tape: TapeRow[];      // markets: S&P 500, Dow, Nasdaq, oil, dollar (+10Y and diesel, shown elsewhere)
   key: KeyRate[];
   fhlb?: string;        // retired Oct 2026; no longer shown
   freight: FreightRow[];
   also: string;
-  rota: { d: string; g: string; on?: boolean }[];
-  spot: { g: string; rows: SpotRow[] };
-  news: NewsItem[];
-  foot: string;         // may contain simple HTML (<br>, <a>)
+  rota?: { d: string; g: string; on?: boolean }[];  // retired Oct 14, 2026 (stock spotlight)
+  spot?: { g: string; rows: SpotRow[] };            // retired Oct 14, 2026
+  news?: NewsItem[];    // retired Oct 14, 2026; folded into `rundown`
+  foot: string;         // may contain simple HTML (<br>, <a>); not shown in the CRM
   board?: BoardGroup[];
   sports?: SportsItem[];
+  sport?: string;       // one line of sports, shown last
   series: SeriesRow[];
   rcols?: string[];
   rtab?: unknown[];
@@ -110,6 +140,18 @@ export function marketRows(B: RatesBrief): TapeRow[] {
     if (freight.includes(norm(t.n))) return false;
     return true;
   });
+}
+
+// The Rundown, falling back to an older file's Top 5.
+export function rundownOf(B: RatesBrief): RundownItem[] {
+  if (B.rundown?.length) return B.rundown;
+  return (B.top || []).map(t => ({ tag: t.tag, h: t.h, p: t.p || '', url: t.url }));
+}
+
+// The sports line, falling back to the older multi-item sports list.
+export function sportOf(B: RatesBrief): string {
+  if (has(B.sport)) return B.sport as string;
+  return (B.sports || []).map(s => `${s.lg}: ${s.h}`).join(' · ');
 }
 
 // Splits the calendar around today: released last week, due this week, and later.

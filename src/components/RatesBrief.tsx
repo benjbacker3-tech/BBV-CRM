@@ -1,10 +1,14 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, EconRow, CalItem, has, safeHtml, marketRows, rateLevels, splitCalendar } from '@/lib/rates-brief';
+import { RatesBrief as Brief, TapeRow, EconRow, CalItem, DeepDive, Reading, RundownItem, has, safeHtml, marketRows, rateLevels, splitCalendar, rundownOf, sportOf } from '@/lib/rates-brief';
 import { RANGES, Range, LINES, Line, ChartModel, toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
 import RatesBriefPrint from './RatesBriefPrint';
 
+// Sandpiper Daily Brief, a morning investor update in a newsletter voice:
+//   rates (SOFR, Treasuries, 10Y chart) and markets up top, then The Rundown (5–7 items),
+//   the deep dive (one structural topic a day), a compact economic calendar, freight, sports,
+//   and Investor's Corner (a well-known investor's story or ideas; page 3 in print).
 // Colors: for rates and diesel a rise is bad (red); for stocks a rise is good (green).
 const UP_BAD = 'text-red-700 dark:text-red-400';
 const UP_GOOD = 'text-emerald-700 dark:text-emerald-400';
@@ -13,10 +17,6 @@ const rateCls = (x: number | null | undefined) => (x == null || x === 0 ? FLAT :
 const stockCls = (x: number | null | undefined) => (x == null || x === 0 ? FLAT : x > 0 ? UP_GOOD : UP_BAD);
 export const econCls = (r: EconRow) => (r.good == null ? FLAT : r.good ? UP_GOOD : UP_BAD);
 export const ARROW = { up: '▲', down: '▼', flat: '▬' } as const;
-
-const MINUS = '−';
-const pct = (x: number, d = 2) => `${x > 0 ? '+' : x < 0 ? MINUS : ''}${Math.abs(x).toFixed(d)}%`;
-const money = (p: number) => '$' + p.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 // The calendar's later dates (beyond this week), grouped by date.
 export function datesAhead(later: CalItem[]): { d: string; items: CalItem[] }[] {
@@ -28,11 +28,15 @@ export function datesAhead(later: CalItem[]): { d: string; items: CalItem[] }[] 
 }
 export const dayLabel = (iso: string) =>
   new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+export const shortDay = (iso: string) =>
+  new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
 export default function RatesBrief({ data: B }: { data: Brief }) {
   const markets = marketRows(B);
   const cal = splitCalendar(B.cal);
   const ahead = datesAhead(cal.later);
+  const rundown = rundownOf(B);
+  const sport = sportOf(B);
 
   return (
     <>
@@ -51,148 +55,181 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         {B.dateline && <p className="page-sub">{B.dateline}</p>}
       </header>
 
-      {B.top && B.top.length > 0 && <TopFive items={B.top.slice(0, 5)} />}
-
-      {(cal.last.length > 0 || cal.next.length > 0) && (
-        <Section title="Economic calendar" sub="last week's releases vs expectations · what's due this week">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <CalTable title="Last week · released" rows={cal.last} released />
-            <CalTable title="This week · expected" rows={cal.next} />
-          </div>
-        </Section>
-      )}
-
       {(B.key?.length > 0 || B.series?.length > 1) && (
-        <Section title="Rates & credit" sub="levels and changes in basis points · red = rates up">
-          {B.key?.length > 0 && <KeyRatesTable B={B} />}
-          {B.econ && B.econ.length > 0 && <Standing rows={B.econ} />}
-          {B.series?.length > 1 && <div className="mt-3"><YieldChart series={B.series} latest={B.ustDate} /></div>}
+        <Section title="Rates" sub="basis points · red = rates up">
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-start">
+            <div>
+              {B.key?.length > 0 && <KeyRatesTable B={B} />}
+              {B.econ && B.econ.length > 0 && <Standing rows={B.econ} />}
+            </div>
+            {B.series?.length > 1 && <YieldChart series={B.series} latest={B.ustDate} />}
+          </div>
         </Section>
       )}
 
       {markets.length > 0 && (
         <Section title="Markets" sub="close · day · 1 year">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 min-[460px]:grid-cols-2 lg:grid-cols-5 gap-3">
             {markets.map(t => <MarketCard key={t.n} t={t} />)}
           </div>
         </Section>
       )}
 
-      {ahead.length > 0 && (
-        <Section title="Coming up" sub="Fed, releases and earnings one to three weeks out">
-          <div className="card divide-y divide-slate-100 dark:divide-slate-800">
-            {ahead.map(g => (
-              <div key={g.d} className="grid grid-cols-[92px_1fr] gap-3 px-4 py-2.5">
-                <p className="text-xs font-semibold text-slate-900 dark:text-slate-100 pt-0.5">{dayLabel(g.d)}</p>
-                <ul className="space-y-1">
-                  {g.items.map((i, k) => (
-                    <li key={k} className="text-[13px] leading-snug text-slate-800 dark:text-slate-200">
-                      {i.tag && <span className={`pill mr-2 pill-navy`}>{i.tag}</span>}
-                      {i.e}
-                      {i.why && <span className="text-slate-500 dark:text-slate-400"> — {i.why}</span>}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+      {rundown.length > 0 && <Rundown items={rundown.slice(0, 7)} />}
+
+      {B.dive && B.dive.title && <Dive d={B.dive} />}
+
+      {(cal.last.length > 0 || cal.next.length > 0) && (
+        <Section title="Economic calendar" sub="last week vs expectations · this week">
+          <div className="grid gap-4 lg:grid-cols-2">
+            <CalTable title="Last week · released" rows={cal.last} released />
+            <CalTable title="This week · expected" rows={cal.next} />
           </div>
+          {ahead.length > 0 && (
+            <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+              <span className="font-semibold text-slate-800 dark:text-slate-100">Further out: </span>
+              {ahead.map((g, i) => (
+                <span key={g.d}>{i > 0 && <span className="mx-1.5 text-slate-300">·</span>}<b className="font-semibold">{shortDay(g.d)}</b> {g.items.map(x => x.e).join('; ')}</span>
+              ))}
+            </p>
+          )}
         </Section>
       )}
 
       {(B.freight?.length > 0 || has(B.also)) && (
-        <Section title="Freight & supply chain" sub="this week's releases">
+        <Section title="Freight & supply chain">
           {B.freight?.length > 0 && (
-            <div className="grid grid-cols-1 min-[460px]:grid-cols-2 lg:grid-cols-4 gap-3">
-              {B.freight.map(f => (
-                <div key={f.n} className="card px-4 py-3 flex flex-col gap-1">
-                  <p className="stat-label">{f.n}</p>
-                  <p className="text-[17px] font-semibold font-mono tabular-nums text-slate-900 dark:text-slate-100">{has(f.v) ? f.v : 'n/a'}</p>
-                  <Changes items={[[f.pl || 'Chg', has(f.pc) ? f.pc : null, FLAT], ['1Y', has(f.y) ? f.y : null, FLAT]]} />
-                  {f.why && <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{f.why}</p>}
-                </div>
-              ))}
+            <div className="card overflow-x-auto">
+              <table className="table-clean">
+                <thead><tr><th>Measure</th><th className="!text-right">Latest</th><th className="!text-right">Change</th><th className="!text-right">1Y</th><th>What it says</th></tr></thead>
+                <tbody>
+                  {B.freight.map(f => (
+                    <tr key={f.n} className="row align-top">
+                      <td className="font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">{f.n}</td>
+                      <td className="num font-semibold text-slate-900 dark:text-slate-100 whitespace-nowrap">{f.v}</td>
+                      <td className="num whitespace-nowrap text-slate-600 dark:text-slate-300">{has(f.pc) ? <>{f.pc} <span className="text-[10px] text-slate-400">{f.pl}</span></> : ''}</td>
+                      <td className="num whitespace-nowrap text-slate-600 dark:text-slate-300">{has(f.y) ? f.y : ''}</td>
+                      <td className="text-xs leading-snug text-slate-600 dark:text-slate-300 min-w-[220px]">{f.why}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
           {has(B.also) && (
-            <p className="mt-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
-              <span className="font-semibold text-slate-700 dark:text-slate-200">Also on the board: </span>
+            <p className="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+              <span className="font-semibold text-slate-700 dark:text-slate-200">Also: </span>
               <span dangerouslySetInnerHTML={{ __html: safeHtml(B.also) }} />
             </p>
           )}
         </Section>
       )}
 
-      {B.spot && (
-        <Section title="Sector spotlight" sub={[B.rota?.find(r => r.on)?.d, B.spot.g].filter(Boolean).join(' · ')}>
-          <div className="card divide-y divide-slate-100 dark:divide-slate-800">
-            {(B.spot.rows || []).map(r => (
-              <div key={r.t} className="px-4 py-3">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                    {r.n}<span className="ml-1.5 font-mono text-[11px] font-normal text-slate-500">{r.t}</span>
-                  </p>
-                  <div className="flex items-baseline gap-4 font-mono tabular-nums text-xs">
-                    <span className="text-slate-800 dark:text-slate-200">
-                      {r.p != null ? money(r.p) : <span className="text-slate-400">close n/a</span>}
-                      {r.asof && <span className="ml-1.5 font-sans text-[10px] text-slate-400">{r.asof}</span>}
-                    </span>
-                    <Labeled label="Day" value={r.c != null ? pct(r.c) : 'n/a'} cls={stockCls(r.c)} />
-                    <Labeled label="1Y" value={r.y != null ? pct(r.y, 1) : 'n/a'} cls={stockCls(r.y)} />
-                  </div>
-                </div>
-                {r.u && <p className="mt-1 text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 max-w-[72ch]">{r.u}</p>}
-              </div>
-            ))}
-          </div>
-          {B.board && B.board.length > 0 && <Board board={B.board} />}
-        </Section>
+      {has(sport) && (
+        <p className="border-t border-slate-200 dark:border-slate-800 pt-3 text-[13px] text-slate-600 dark:text-slate-300">
+          <span className="mr-2 text-xs uppercase tracking-[0.12em] font-bold text-navy dark:text-blue-300">Sports</span>
+          <span dangerouslySetInnerHTML={{ __html: safeHtml(sport) }} />
+        </p>
       )}
-
-      {B.news?.length > 0 && (
-        <Section title="What's moving">
-          <div className="card divide-y divide-slate-100 dark:divide-slate-800">
-            {B.news.map((n, i) => (
-              <article key={i} className="px-4 py-3 grid grid-cols-1 sm:grid-cols-[110px_1fr] gap-1 sm:gap-4">
-                <div><span className="pill pill-navy">{n.tag}</span></div>
-                <div>
-                  <h3 className="text-sm font-semibold leading-snug text-slate-900 dark:text-slate-100 [text-wrap:balance]">
-                    {n.url ? (
-                      <a href={n.url} target="_blank" rel="noopener noreferrer" className="hover:text-navy dark:hover:text-blue-300 underline decoration-slate-300 dark:decoration-slate-600 underline-offset-2 hover:decoration-navy">
-                        {n.h}
-                      </a>
-                    ) : n.h}
-                  </h3>
-                  {n.p && <p className="mt-1 text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 max-w-[70ch]">{n.p}</p>}
-                  {n.src && <p className="mt-1 text-[11px] text-slate-400">{n.src}</p>}
-                </div>
-              </article>
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {B.sports && B.sports.length > 0 && (
-        <Section title="Sports" sub="scores · talking points">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {B.sports.map((s, i) => (
-              <div key={i} className="card px-4 py-3">
-                <p className="stat-label">{s.lg} · {s.d}</p>
-                <p className="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100">{s.h}</p>
-                <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">{s.p}</p>
-                {s.url && <a href={s.url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-[11px] text-slate-400 hover:text-navy">{s.src || 'Source'}</a>}
-              </div>
-            ))}
-          </div>
-        </Section>
-      )}
-
+      {B.reading && B.reading.title && <Corner r={B.reading} />}
     </div>
     <RatesBriefPrint data={B} />
     </>
   );
 }
 
-// One side of the economic calendar. Released rows show actual vs expected vs prior.
+function Rundown({ items }: { items: RundownItem[] }) {
+  return (
+    <Section title="The Rundown" sub="what matters this morning">
+      <ol className="space-y-4">
+        {items.map((t, i) => (
+          <li key={i} className="flex gap-3">
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-navy text-xs font-semibold text-white dark:bg-blue-300 dark:text-slate-900">{i + 1}</span>
+            <div className="min-w-0 max-w-[78ch]">
+              <p className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">
+                {t.tag && <span className="mr-2 text-[10px] font-bold uppercase tracking-[0.1em] text-navy dark:text-blue-300">{t.tag}</span>}
+                <b className="font-semibold text-slate-900 dark:text-slate-100">{t.h}</b>{' '}
+                <span dangerouslySetInnerHTML={{ __html: safeHtml(t.p) }} />
+                {t.url && (
+                  <a href={t.url} target="_blank" rel="noopener noreferrer" className="ml-1.5 whitespace-nowrap text-xs text-slate-400 hover:text-navy dark:hover:text-blue-300 underline underline-offset-2">
+                    {t.src || 'source'}
+                  </a>
+                )}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Section>
+  );
+}
+
+function Corner({ r }: { r: Reading }) {
+  return (
+    <Section title="Investor's Corner" sub={[r.kind, r.who].filter(Boolean).join(' · ')}>
+      <article className="card px-5 py-5 sm:px-7">
+        <h3 className="text-lg sm:text-xl font-semibold leading-snug tracking-tight text-slate-900 dark:text-slate-100 [text-wrap:balance]">{r.title}</h3>
+        {r.dek && <p className="mt-1 text-sm italic text-slate-500 dark:text-slate-400">{r.dek}</p>}
+        {r.quote && (
+          <blockquote className="my-4 border-l-4 border-navy dark:border-blue-300 pl-4">
+            <p className="font-serif text-lg italic leading-snug text-slate-800 dark:text-slate-200">“{r.quote.text}”</p>
+            <p className="mt-1 text-xs text-slate-500">{r.quote.src}</p>
+          </blockquote>
+        )}
+        <div className="mt-3 space-y-3 max-w-[78ch]">
+          {r.body.map((p, i) => <p key={i} className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+        </div>
+        {r.takeaways && r.takeaways.length > 0 && (
+          <div className="mt-4 rounded-md bg-slate-50 dark:bg-slate-800/50 px-4 py-3">
+            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-navy dark:text-blue-300">For today&apos;s investor</p>
+            <ul className="mt-1 list-disc pl-4 space-y-0.5 text-[13px] text-slate-700 dark:text-slate-300">
+              {r.takeaways.map((t, i) => <li key={i} dangerouslySetInnerHTML={{ __html: safeHtml(t) }} />)}
+            </ul>
+          </div>
+        )}
+        {r.src && <p className="mt-3 text-[11px] text-slate-400">{r.src}</p>}
+      </article>
+    </Section>
+  );
+}
+
+function Dive({ d }: { d: DeepDive }) {
+  return (
+    <Section title="Deep dive" sub={d.kicker}>
+      <article className="card px-5 py-5 sm:px-7">
+        <h3 className="text-lg sm:text-xl font-semibold leading-snug tracking-tight text-slate-900 dark:text-slate-100 [text-wrap:balance]">{d.title}</h3>
+        {d.dek && <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{d.dek}</p>}
+        <div className="mt-3 space-y-3 max-w-[78ch]">
+          {d.body.map((p, i) => <p key={i} className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+        </div>
+        {d.table && d.table.rows.length > 0 && (
+          <div className="mt-4 overflow-x-auto">
+            {d.table.cap && <p className="mb-1 text-xs font-semibold text-slate-600 dark:text-slate-300">{d.table.cap}</p>}
+            <table className="table-clean">
+              <thead><tr>{d.table.cols.map((c, i) => <th key={i} className={i > 0 ? '!text-right' : ''}>{c}</th>)}</tr></thead>
+              <tbody>
+                {d.table.rows.map((r, i) => (
+                  <tr key={i} className="row">{r.map((c, j) => <td key={j} className={j > 0 ? 'num' : 'font-medium text-slate-900 dark:text-slate-100'}>{c}</td>)}</tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {d.watch && d.watch.length > 0 && (
+          <div className="mt-4 rounded-md bg-slate-50 dark:bg-slate-800/50 px-4 py-3">
+            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-navy dark:text-blue-300">What to watch</p>
+            <ul className="mt-1 list-disc pl-4 space-y-0.5 text-[13px] text-slate-700 dark:text-slate-300">
+              {d.watch.map((w, i) => <li key={i} dangerouslySetInnerHTML={{ __html: safeHtml(w) }} />)}
+            </ul>
+          </div>
+        )}
+        {d.src && <p className="mt-3 text-[11px] text-slate-400">{d.src}</p>}
+      </article>
+    </Section>
+  );
+}
+
+// One side of the economic calendar: actual vs expected vs prior, no notes.
 function CalTable({ title, rows, released }: { title: string; rows: CalItem[]; released?: boolean }) {
   return (
     <div className="card overflow-x-auto">
@@ -203,23 +240,20 @@ function CalTable({ title, rows, released }: { title: string; rows: CalItem[]; r
             <tr>
               <th>Day</th><th>Release</th>
               {released && <th className="!text-right">Actual</th>}
-              <th className="!text-right">Expected</th><th className="!text-right">Prior</th>
+              <th className="!text-right">Exp.</th><th className="!text-right">Prior</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((i, k) => {
               const event = !has(i.act) && !has(i.cons) && !has(i.prior);
               return (
-              <tr key={k} className="row align-top">
-                <td className="whitespace-nowrap text-[11px] text-slate-500">{dayLabel(i.d)}</td>
-                <td className="text-[12.5px] text-slate-800 dark:text-slate-200">
-                  <span className="font-medium">{i.e}</span>
-                  {!event && i.why && <span className="block text-[11px] text-slate-500 dark:text-slate-400">{i.why}</span>}
-                </td>
+              <tr key={k} className="row align-top" title={i.why}>
+                <td className="whitespace-nowrap text-[11px] text-slate-500">{dayLabel(i.d).replace(/,.*/, '')}</td>
+                <td className="text-[12.5px] font-medium text-slate-800 dark:text-slate-200">{i.e}</td>
                 {event ? <td colSpan={released ? 3 : 2} className="text-[11px] italic text-slate-500 dark:text-slate-400">{i.why}</td> : <>
-                {released && <td className={`num font-semibold whitespace-nowrap ${i.good == null ? 'text-slate-900 dark:text-slate-100' : i.good ? UP_GOOD : UP_BAD}`}>{has(i.act) ? i.act : '—'}</td>}
-                <td className="num whitespace-nowrap text-slate-600 dark:text-slate-300">{has(i.cons) ? i.cons : '—'}</td>
-                <td className="num whitespace-nowrap text-slate-500">{has(i.prior) ? i.prior : '—'}</td>
+                {released && <td className={`num font-semibold whitespace-nowrap ${i.good == null ? 'text-slate-900 dark:text-slate-100' : i.good ? UP_GOOD : UP_BAD}`}>{has(i.act) ? i.act : ''}</td>}
+                <td className="num whitespace-nowrap text-slate-600 dark:text-slate-300">{has(i.cons) ? i.cons : ''}</td>
+                <td className="num whitespace-nowrap text-slate-500">{has(i.prior) ? i.prior : ''}</td>
                 </>}
               </tr>
               );
@@ -234,43 +268,16 @@ function CalTable({ title, rows, released }: { title: string; rows: CalItem[]; r
 // Standing readings (Fed funds target and the like) as one compact line.
 function Standing({ rows }: { rows: EconRow[] }) {
   return (
-    <p className="mt-2 text-xs text-slate-600 dark:text-slate-300">
+    <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
       {rows.map((r, i) => (
         <span key={r.n} className="whitespace-nowrap">
           {i > 0 && <span className="mx-2 text-slate-300">·</span>}
           <span className="text-slate-500">{r.n}</span>{' '}
-          <b className={`font-mono ${econCls(r)}`}>{has(r.v) ? r.v : 'n/a'}</b>
+          <b className={`font-mono ${econCls(r)}`}>{r.v}</b>
           {r.d && <span className="text-slate-400"> ({r.d})</span>}
         </span>
       ))}
     </p>
-  );
-}
-
-function TopFive({ items }: { items: NonNullable<Brief['top']> }) {
-  return (
-    <section className="card overflow-hidden">
-      <div className="card-header !py-2.5 bg-navy/[0.03] dark:bg-blue-900/10">
-        <h2 className="text-xs uppercase tracking-[0.12em] font-bold text-navy dark:text-blue-300">Top 5 today</h2>
-        <span className="text-[10px] text-slate-400">key judgments</span>
-      </div>
-      <ol className="divide-y divide-slate-100 dark:divide-slate-800">
-        {items.map((t, i) => (
-          <li key={i} className="flex gap-3 px-4 py-2.5">
-            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-navy text-[11px] font-semibold text-white dark:bg-blue-300 dark:text-slate-900">{i + 1}</span>
-            <div className="min-w-0">
-              <p className="text-[13.5px] font-semibold leading-snug text-slate-900 dark:text-slate-100">
-                {t.tag && <span className="pill pill-navy mr-2 align-[1px]">{t.tag}</span>}
-                {t.url ? (
-                  <a href={t.url} target="_blank" rel="noopener noreferrer" className="hover:text-navy dark:hover:text-blue-300 underline decoration-slate-300 dark:decoration-slate-600 underline-offset-2">{t.h}</a>
-                ) : t.h}
-              </p>
-              {t.p && <p className="mt-0.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{t.p}</p>}
-            </div>
-          </li>
-        ))}
-      </ol>
-    </section>
   );
 }
 
@@ -280,8 +287,8 @@ function KeyRatesTable({ B }: { B: Brief }) {
       <table className="table-clean">
         <thead>
           <tr>
-            <th>Rate</th><th className="!text-right">Now</th><th className="!text-right">1M ago</th><th className="!text-right">6M ago</th><th className="!text-right">1Y ago</th>
-            <th className="!text-right">Δ1M</th><th className="!text-right">Δ6M</th><th className="!text-right">Δ1Y</th><th className="!text-right">As of</th>
+            <th>Rate</th><th className="!text-right">Now</th><th className="!text-right">1Y ago</th>
+            <th className="!text-right">Δ1M</th><th className="!text-right">Δ6M</th><th className="!text-right">Δ1Y</th>
           </tr>
         </thead>
         <tbody>
@@ -289,11 +296,12 @@ function KeyRatesTable({ B }: { B: Brief }) {
             const lv = rateLevels(B, k);
             return (
               <tr key={k.n} className="row">
-                <td className="font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">{k.n}</td>
-                <td className="num font-semibold text-slate-900 dark:text-slate-100">{k.cur != null ? `${k.cur.toFixed(2)}%` : 'n/a'}</td>
-                {[lv[1], lv[2], lv[3]].map((v, i) => <td key={i} className="num text-slate-500">{v ?? '—'}</td>)}
-                {[k.d1m, k.d6m, k.d1y].map((v, i) => <td key={'d' + i} className={`num font-semibold ${v != null ? rateCls(v) : FLAT}`}>{v != null ? bp(v) : 'n/a'}</td>)}
-                <td className="num text-[11px] text-slate-500">{has(k.asof) ? k.asof : '—'}</td>
+                <td className="font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">
+                  {k.n}{has(k.asof) && <span className="ml-1.5 text-[10px] font-normal text-slate-400">{k.asof}</span>}
+                </td>
+                <td className="num font-semibold text-slate-900 dark:text-slate-100">{k.cur != null ? `${k.cur.toFixed(2)}%` : ''}</td>
+                <td className="num text-slate-500">{lv[3] ?? ''}</td>
+                {[k.d1m, k.d6m, k.d1y].map((v, i) => <td key={'d' + i} className={`num font-semibold ${rateCls(v)}`}>{v != null ? bp(v) : ''}</td>)}
               </tr>
             );
           })}
@@ -306,11 +314,11 @@ function KeyRatesTable({ B }: { B: Brief }) {
 function MarketCard({ t }: { t: TapeRow }) {
   const color = t.rate ? rateCls : stockCls;
   return (
-    <div className="card px-3.5 py-2.5" title={t.why}>
+    <div className="card px-3.5 py-3">
       <p className="stat-label">{t.n}</p>
-      <p className="text-[16px] font-semibold font-mono tabular-nums text-slate-900 dark:text-slate-100">{has(t.v) ? t.v : 'n/a'}</p>
+      <p className="text-[17px] font-semibold font-mono tabular-nums text-slate-900 dark:text-slate-100">{t.v}</p>
       <Changes items={[['Day', t.ctext, color(t.c)], ['1Y', t.ytext, color(t.y)]]} />
-      {t.why && <p className="mt-1 text-[11px] leading-snug text-slate-500 dark:text-slate-400 line-clamp-2">{t.why}</p>}
+      {t.why && <p className="mt-1.5 text-xs leading-snug text-slate-600 dark:text-slate-300">{t.why}</p>}
     </div>
   );
 }
@@ -331,45 +339,18 @@ function Labeled({ label, value, cls }: { label: string; value: string; cls: str
   return (
     <span className="whitespace-nowrap">
       <i className="not-italic font-sans text-[10px] uppercase tracking-wide text-slate-400 mr-1">{label}</i>
-      <span className={value === 'n/a' ? 'text-slate-400' : cls}>{value}</span>
+      <span className={cls}>{value}</span>
     </span>
   );
 }
 
-// [label, displayed value or null, color class]
+// [label, displayed value or null, color class]; values that are missing are left out.
 function Changes({ items }: { items: [string, string | null | undefined, string][] }) {
   const shown = items.filter(([, v]) => has(v));
-  if (!shown.length) return <p className="text-[11px] text-slate-400">no change data</p>;
+  if (!shown.length) return null;
   return (
     <div className="flex flex-wrap gap-x-3 font-mono tabular-nums text-[11px]">
       {shown.map(([l, v, c]) => <Labeled key={l} label={l} value={v as string} cls={c} />)}
-    </div>
-  );
-}
-
-function Board({ board }: { board: NonNullable<Brief['board']> }) {
-  return (
-    <div className="card overflow-x-auto mt-4">
-      <table className="table-clean">
-        <thead><tr><th>All sectors</th><th className="!text-right">Close</th><th className="!text-right">Day</th><th className="!text-right">As of</th></tr></thead>
-        <tbody>
-          {board.map(g => {
-            const cs = g.rows.filter(r => r.c != null).map(r => r.c as number);
-            const avg = cs.length ? cs.reduce((a, b) => a + b, 0) / cs.length : null;
-            return [
-              <tr key={g.g} className="group-row"><td colSpan={2}>{g.g}</td><td className={`num ${stockCls(avg)}`}>{avg != null ? `avg ${pct(avg)}` : ''}</td><td /></tr>,
-              ...g.rows.map(r => (
-                <tr key={g.g + r.t} className="row">
-                  <td>{r.n}<span className="ml-1.5 font-mono text-[11px] text-slate-500">{r.t}</span></td>
-                  <td className="num">{money(r.p)}</td>
-                  <td className={`num ${stockCls(r.c)}`}>{r.c != null ? pct(r.c) : ''}</td>
-                  <td className="num text-slate-500">{r.d}</td>
-                </tr>
-              )),
-            ];
-          })}
-        </tbody>
-      </table>
     </div>
   );
 }

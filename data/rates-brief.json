@@ -2,38 +2,113 @@
   "headline": "The 10-year eased 3bp to 5.21% after the holiday as markets waited for today's September CPI, expected to show inflation rising to 3.6% from 3.4% two weeks before a Fed meeting where most officials lean toward another hike.",
   "dateline": "Wednesday, October 14, 2026 · closes as of Tue Oct 13",
   "ustDate": "Oct 13, 2026",
-  "top": [
+  "rundown": [
     {
-      "tag": "Rates",
-      "h": "September CPI at 8:30 ET: consensus 3.6% y/y, core 0.2% m/m",
-      "p": "It is the last inflation read before the Oct 27–28 Fed meeting; a hot core print would push long yields, and IOS borrowing costs, higher again.",
-      "url": "https://tradingeconomics.com/united-states/calendar"
+      "tag": "Inflation",
+      "h": "It's CPI day.",
+      "p": "September's consumer price report lands at 8:30 ET, and economists expect inflation to tick up to 3.6% from 3.4%, with core prices up 0.2% on the month. It's the last big inflation read before the Fed meets Oct 27–28, so a hot number could send the 10-year, already at 5.21%, back toward its highs.",
+      "url": "https://tradingeconomics.com/united-states/calendar",
+      "src": "Trading Economics"
     },
     {
       "tag": "Fed",
-      "h": "Markets price roughly 75–85% odds of another hike by December",
-      "p": "October itself is seen as a hawkish hold (about 16–18% hike odds), so SOFR-priced floating debt likely resets higher by year-end rather than this month.",
-      "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-october-2026"
+      "h": "The market expects one more hike, just not yet.",
+      "p": "Traders price roughly 75–85% odds of another increase by December, but only about 16–18% for October, so the consensus is a hawkish hold this month. Anything floating off SOFR (3.87%) likely resets higher by year-end.",
+      "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-october-2026",
+      "src": "Admiral Markets"
     },
     {
-      "tag": "Debt",
-      "h": "Dimon flags high inflation and rising rates as JPMorgan slips",
-      "p": "Big-bank caution on asset prices and rates is a signal for loan pricing and leverage on new IOS acquisitions this quarter.",
-      "url": "https://www.bnnbloomberg.ca/markets/2026/10/13/wall-street-mixed-in-early-trading-as-big-us-banks-report-earnings-chip-stocks-fall-again/"
+      "tag": "Banks",
+      "h": "Bank earnings got a cool reception.",
+      "p": "Jamie Dimon flagged high inflation and rising rates as the risks to watch, and the big banks lagged on Tuesday. Their tone matters beyond their own stocks: banks are now the biggest lender to commercial real estate (see the deep dive).",
+      "url": "https://www.bnnbloomberg.ca/markets/2026/10/13/wall-street-mixed-in-early-trading-as-big-us-banks-report-earnings-chip-stocks-fall-again/",
+      "src": "AP via BNN Bloomberg"
+    },
+    {
+      "tag": "Freight",
+      "h": "Truck capacity is getting tight heading into peak season.",
+      "p": "Carriers are rejecting about 14% of contracted loads, and that could top 20% by December. Imports are surging too: Long Beach volume is projected about 50% above last year for the next three weeks as shippers front-run the January tariff-truce deadline.",
+      "url": "https://transportationinsight.com/resources/transportation-industry-trends-october-5-9-2026/",
+      "src": "Transportation Insight"
+    },
+    {
+      "tag": "Trucking",
+      "h": "Carriers are raising prices, and the weak ones are failing.",
+      "p": "Old Dominion's 4.9% rate increase just took effect, and FedEx and DHL set 5.9% for 2027. Meanwhile Chicago's Midwest Expedited, a 95-truck fleet, filed Chapter 11 as diesel holds above $6, a reminder that small-carrier credit is fragile.",
+      "url": "https://newsweek.com/nationwide-trucking-company-files-for-bankruptcy-amid-diesel-price-shock-12536548",
+      "src": "Newsweek"
     },
     {
       "tag": "Earnings",
-      "h": "J.B. Hunt and Prologis report Q3 Thursday",
-      "p": "The first hard read on how diesel is hitting carrier margins and on industrial leasing and rents heading into 2027.",
-      "url": "https://talkbusiness.net/2026/10/j-b-hunt-q3-earnings-revenue-to-rise-analysts-say/"
-    },
-    {
-      "tag": "Earnings",
-      "h": "Vulcan and Builders FirstSource report Oct 29, alongside GDP and PCE",
-      "p": "Analysts have cut Vulcan targets for two weeks running, a sign of softer construction volumes that drive contractor-yard demand.",
-      "url": "https://stockanalysis.com/stocks/vmc/"
+      "h": "Real-economy earnings start Thursday.",
+      "p": "J.B. Hunt and Prologis report Thursday, the first hard read on how fuel costs are hitting carrier margins and where industrial rents are heading into 2027. Vulcan and Builders FirstSource follow Oct 29, the same day as Q3 GDP and PCE inflation.",
+      "url": "https://talkbusiness.net/2026/10/j-b-hunt-q3-earnings-revenue-to-rise-analysts-say/",
+      "src": "Talk Business"
     }
   ],
+  "dive": {
+    "kicker": "Credit",
+    "title": "Banks are back in commercial real estate",
+    "dek": "Two years after CRE was the asset class lenders wanted to shrink, banks are again growing their loan books, and they now hold nearly half the market.",
+    "body": [
+      "U.S. commercial real estate debt reached <b>$6.3 trillion</b> in the second quarter, by Mortgage Bankers Association figures: $5.1 trillion on income-producing property and $1.41 trillion on land and other non-income property. Banks hold a record <b>$3.1 trillion</b> of it, about 47%. Fannie Mae and Freddie Mac hold $1.17 trillion and insurers $815 billion, with CMBS and CLOs behind them.",
+      "The shift is in the flow, not just the stock. Big banks grew CRE balances sharply in the second quarter (table), the Fed counts about $3 trillion of bank CRE loans in June, up 3% from a year earlier, and new CRE lending hit $455 billion in the first quarter, up 80% year over year. Lenders that spent 2023–24 cutting exposure are competing for deals again as fears about office losses have faded.",
+      "Why it matters: when banks set the price of most CRE credit, their mood moves the whole market. Right now that mood is mixed. Rates are high (the 10-year is above 5.2%), and Dimon is warning about inflation, yet loan books are growing. For borrowers, that means credit is available but priced off a higher base. A Fed hike by December, which markets now favor, would push floating-rate bank loans up again, while any pullback in bank appetite after Q3 earnings would leave CMBS, insurers and private credit to fill the gap at wider spreads."
+    ],
+    "table": {
+      "cap": "Bank CRE loan growth, Q2 2026",
+      "cols": [
+        "Bank",
+        "CRE balances"
+      ],
+      "rows": [
+        [
+          "Truist",
+          "+25%"
+        ],
+        [
+          "PNC",
+          "+15%"
+        ],
+        [
+          "Bank of America",
+          "+8%"
+        ],
+        [
+          "U.S. Bancorp",
+          "+8%"
+        ]
+      ]
+    },
+    "watch": [
+      "Bank Q3 calls this week and next: is CRE loan growth holding up?",
+      "The Oct 28 Fed decision, and whether a December hike stays the base case",
+      "Any widening in CMBS spreads if banks turn cautious"
+    ],
+    "src": "Sources: Wolf Street (MBA data), Oct 8, 2026; CRE Daily, Jul 27, 2026; AP."
+  },
+  "reading": {
+    "kind": "Bio",
+    "who": "Howard Marks",
+    "title": "Howard Marks and the memo Warren Buffett opens first",
+    "dek": "How a bond manager's client letters became the most-read investment writing on Wall Street, and what they say about a market like this one.",
+    "quote": {
+      "text": "You can't predict. You can prepare.",
+      "src": "Howard Marks, a recurring line in his memos"
+    },
+    "body": [
+      "Howard Marks didn't set out to be a writer. After Wharton and a Chicago MBA, he spent the 1970s and early '80s at Citicorp, where he was handed a then-unloved corner of the market: high-yield bonds. He moved to TCW in 1985 and in 1995 left with several colleagues, including Bruce Karsh, to found <b>Oaktree Capital</b>, which grew into one of the largest credit and distressed-debt investors in the world. Brookfield bought a majority stake in 2019.",
+      "In 1990 he started sending clients occasional memos explaining how he thought about markets. They were plain-spoken, often funny, and largely about psychology rather than forecasts. They found a wider audience in January 2000, when <i>bubble.com</i> argued that tech stocks had detached from reality, just before the Nasdaq collapsed. Buffett has said that when a Marks memo arrives, it's the first thing he reads.",
+      "His core ideas are simple to state and hard to practice. Markets move in cycles driven by swings in investor mood, from euphoria to despair and back. You can't know when a cycle will turn, but you can tell roughly where you are by watching how eager people are to take risk. And risk is highest when it feels lowest, because that's when prices leave no margin for error. He calls the discipline \"second-level thinking\": not asking whether something is good, but whether it's better than what the price already assumes.",
+      "Oaktree's defining moment came in 2008. Having raised a large distressed-debt fund in advance, Marks and Karsh bought heavily that fall as credit markets froze, on the logic that the world either ends (in which case nothing matters) or it doesn't (in which case this is the time to buy). His two books, <i>The Most Important Thing</i> (2011) and <i>Mastering the Market Cycle</i> (2018), distill the memos."
+    ],
+    "takeaways": [
+      "Ask where we are in the cycle. With the 10-year above 5.2% and banks lending again, money is costly but available, so judge it by how eager lenders are, not by the level of rates alone.",
+      "Leave room for being wrong. Underwrite deals to survive another hike, not just the base case.",
+      "Credit gets interesting when others are forced to sell. Keep dry powder for the next dislocation."
+    ],
+    "src": "Read more: Howard Marks's memos are free at oaktreecapital.com/insights."
+  },
   "econ": [
     {
       "n": "Fed funds target",
@@ -46,12 +121,6 @@
       "v": "7.40%",
       "d": "Freddie Mac, Oct 8; next Oct 15",
       "good": false
-    },
-    {
-      "n": "Dollar index",
-      "v": "102.2",
-      "d": "Oct 13, from 102.6",
-      "good": null
     }
   ],
   "cal": [
@@ -335,20 +404,23 @@
       "why": "Chips fell on AI-valuation worries and China's CXMT; Micron dropped 3.6%."
     },
     {
-      "n": "Russell 2000",
-      "v": "2,783.37",
-      "c": -0.4,
-      "ctext": "−0.40%",
-      "y": 13.1,
-      "ytext": "+13.1%",
-      "why": "Fell 0.4%, more than the large-cap indexes, with the 10-year above 5.2%."
+      "n": "Brent crude",
+      "v": "$105.69",
+      "rate": true,
+      "c": -0.9,
+      "ctext": "−0.9%",
+      "y": null,
+      "why": "Slipped on uncertainty over the Iran war; above $100 keeps diesel high.",
+      "asof": "Oct 13"
     },
     {
-      "n": "VIX",
-      "v": "15.27",
-      "c": 0.39,
-      "ctext": "+0.39%",
-      "why": "Barely moved on a flat, mixed day ahead of CPI."
+      "n": "Dollar index",
+      "v": "102.2",
+      "c": -0.4,
+      "ctext": "−0.4%",
+      "y": null,
+      "why": "Eased from 102.6 as the 10-year dipped ahead of CPI.",
+      "asof": "Oct 13"
     },
     {
       "n": "10Y Treasury",
@@ -497,106 +569,6 @@
     }
   ],
   "also": "Baltic Dry 2,801 (−51, Oct 13; +38.5% y/y) · LMI transportation prices 92.7 and transportation capacity 34.4, the 10th straight month of contraction (Sep) · Domestic intermodal volume about +8% y/y (week of Oct 5).",
-  "rota": [
-    {
-      "d": "Mon",
-      "g": "Equipment rental"
-    },
-    {
-      "d": "Tue",
-      "g": "Trucking & logistics"
-    },
-    {
-      "d": "Wed",
-      "g": "Building materials",
-      "on": true
-    },
-    {
-      "d": "Thu",
-      "g": "Industrial REITs"
-    },
-    {
-      "d": "Fri",
-      "g": "Week's biggest mover"
-    }
-  ],
-  "spot": {
-    "g": "Building materials",
-    "rows": [
-      {
-        "n": "Vulcan Materials",
-        "t": "VMC",
-        "p": 243.54,
-        "c": -0.66,
-        "u": "Analysts keep cutting targets (JPMorgan to $300 Oct 13, RBC to $256, UBS to $326); Q3 results Oct 29 before the open, after a $0.52 dividend declared Oct 9."
-      },
-      {
-        "n": "Martin Marietta",
-        "t": "MLM",
-        "p": 472.4,
-        "c": -1,
-        "u": "Q2 revenue rose 21% to a record $1.95B and it raised 2026 revenue guidance to $7.2–7.4B, though earnings from continuing operations fell 12%."
-      },
-      {
-        "n": "Builders FirstSource",
-        "t": "BLDR",
-        "p": 51.71,
-        "c": -0.82,
-        "u": "Down about 22% since missing Q2 estimates and cutting guidance on Jul 30; Q3 call is Oct 29 with consensus EPS of $1.16 on $3.8B revenue."
-      },
-      {
-        "n": "CRH",
-        "t": "CRH",
-        "p": 80.14,
-        "c": -1.12,
-        "u": "Q2 revenue rose 6% to $10.8B and adjusted EBITDA 7% to $2.6B; it reaffirmed 2026 EPS guidance of $5.60–6.05."
-      }
-    ]
-  },
-  "news": [
-    {
-      "tag": "Trucking",
-      "h": "Tender rejections near 14%, seen topping 20% by December",
-      "p": "Carriers are refusing peak-season commitments at current rates; tighter capacity supports carrier tenants' ability to pay yard rent.",
-      "src": "Transportation Insight · Oct 9",
-      "url": "https://transportationinsight.com/resources/transportation-industry-trends-october-5-9-2026/"
-    },
-    {
-      "tag": "Freight",
-      "h": "Long Beach imports projected about 50% above last year for three weeks",
-      "p": "A surge ahead of the January tariff-truce deadline adds near-term demand for container, chassis and overflow storage near the ports; NRF's 2027 outlook is due within days.",
-      "src": "Transportation Insight · Oct 9",
-      "url": "https://transportationinsight.com/resources/transportation-industry-trends-october-5-9-2026/"
-    },
-    {
-      "tag": "Trucking",
-      "h": "Old Dominion's 4.9% rate increase takes effect; FedEx and DHL set 5.9% for 2027",
-      "p": "Carriers are passing fuel and labor costs to shippers, which protects margins for the LTL and parcel operators that lease terminals and yards.",
-      "src": "Transportation Insight · Oct 9",
-      "url": "https://transportationinsight.com/resources/transportation-industry-trends-october-5-9-2026/"
-    },
-    {
-      "tag": "Trucking",
-      "h": "Chicago carrier Midwest Expedited files Chapter 11",
-      "p": "The 95-truck fleet is the latest small-carrier failure as diesel stays above $6; check tenant credit and deposits on yard leases.",
-      "src": "Newsweek · Oct 7",
-      "url": "https://newsweek.com/nationwide-trucking-company-files-for-bankruptcy-amid-diesel-price-shock-12536548"
-    },
-    {
-      "tag": "Debt",
-      "h": "Banks hold a record $3.1T of the $6.3T in U.S. CRE debt",
-      "p": "Banks are 47% of the market (Q2, MBA data), so their appetite sets terms for most IOS acquisition loans.",
-      "src": "Wolf Street · Oct 8",
-      "url": "https://wolfstreet.com/2026/10/08/status-of-the-commercial-real-estate-debt-and-who-owns-it-in-2026/"
-    },
-    {
-      "tag": "Fuel",
-      "h": "Brent slips 0.9% to $105.69 amid Iran-war uncertainty",
-      "p": "Crude above $100 keeps diesel elevated, the biggest cost pressure on trucking and yard tenants.",
-      "src": "AP via BNN Bloomberg · Oct 13",
-      "url": "https://www.bnnbloomberg.ca/markets/2026/10/13/wall-street-mixed-in-early-trading-as-big-us-banks-report-earnings-chip-stocks-fall-again/"
-    }
-  ],
   "foot": "Sources: NY Fed API (SOFR, latest Oct 9; references Sep 9, Apr 9 and Oct 9, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 13; references Sep 11, Apr 13 and Oct 10, 2025); AP via La Nación and BNN Bloomberg (Oct 13, 2026 closes and wrap) and via MarketBeat (Oct 13, 2025 closes); Investing.com (VIX); stockanalysis.com (building-materials closes and Vulcan news); SEC filings (MLM, CRH Q2); Earnings Whispers and Finviz (earnings dates); Trading Economics (calendar, consensus, dollar index, Baltic Dry); Freddie Mac; Federal Reserve; Admiral Markets (hike odds); EIA; DAT via AJOT; LMI via FreightWaves; Drewry via DCN; Transportation Insight; Newsweek; Wolf Street.<br>Notes: SOFR for Oct 13 publishes this morning and Oct 12 was a holiday, so SOFR is Oct 9. 10Y 1Y change uses Oct 10, 2025 (Oct 13, 2025 was a bond-market holiday). VIX 1Y and building-materials 1Y % left out (no dated Oct 2025 closes found; CBOE history file loaded only partially). Day % for stocks from stockanalysis prior closes. Housing starts (Oct 20) left out of the calendar: no consensus published. EIA's Oct 13 diesel not out at build time. WTI left out: no dated settlement found. Chart keeps 5 years of history for the 5Y toggle.",
   "series": [
     [
@@ -8099,5 +8071,20 @@
       5,
       5.21
     ]
-  ]
+  ],
+  "log": {
+    "dive": [
+      {
+        "d": "2026-10-14",
+        "t": "Banks are back in commercial real estate"
+      }
+    ],
+    "corner": [
+      {
+        "d": "2026-10-14",
+        "who": "Howard Marks",
+        "kind": "Bio"
+      }
+    ]
+  }
 }
