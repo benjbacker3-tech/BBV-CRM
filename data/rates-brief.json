@@ -1,125 +1,124 @@
 {
-  "headline": "The 10-year eased 3bp to 5.21% after the holiday as markets waited for today's September CPI, expected to show inflation rising to 3.6% from 3.4% two weeks before a Fed meeting where most officials lean toward another hike.",
-  "dateline": "Wednesday, October 14, 2026 · closes as of Tue Oct 13",
-  "ustDate": "Oct 13, 2026",
+  "headline": "September inflation came in hotter than expected at 3.7%, and traders now give the Fed better odds of hiking again on Oct 28.",
+  "dateline": "Thursday, October 15, 2026 · closes as of Wed Oct 14",
+  "ustDate": "Oct 14, 2026",
   "rundown": [
     {
       "tag": "Inflation",
-      "h": "It's CPI day.",
-      "p": "September's consumer price report lands at 8:30 ET, and economists expect inflation to tick up to 3.6% from 3.4%, with core prices up 0.2% on the month. It's the last big inflation read before the Fed meets Oct 27–28, so a hot number could send the 10-year, already at 5.21%, back toward its highs.",
-      "url": "https://tradingeconomics.com/united-states/calendar",
-      "src": "Trading Economics"
+      "h": "Gas did most of the damage in September's CPI.",
+      "p": "Energy prices jumped 5.2% in the month, and gasoline is up 34.2% from a year ago. Core prices, which strip out food and energy, rose 0.3%, a tick above the 0.2% forecast, lifting the annual core rate to 2.6% from 2.4%. The Fed's real worry is whether fuel costs start seeping into everything else.",
+      "url": "https://www.bls.gov/news.release/cpi.nr0.htm",
+      "src": "BLS · Oct 14"
     },
     {
       "tag": "Fed",
-      "h": "The market expects one more hike, just not yet.",
-      "p": "Traders price roughly 75–85% odds of another increase by December, but only about 16–18% for October, so the consensus is a hawkish hold this month. Anything floating off SOFR (3.87%) likely resets higher by year-end.",
-      "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-october-2026",
-      "src": "Admiral Markets"
+      "h": "Hike odds for Oct 28 jumped after the report.",
+      "p": "Traders lifted the odds of a hike at this month's meeting to about 33%, from about 20% before the data; by Thursday morning they had eased to roughly 27%. New York Fed President John Williams said one more hike may be appropriate this year. A hold is still the base case, but the bar for one is getting higher.",
+      "url": "https://rallies.ai/news/dollar-gains-wall-street-stocks-fall-after-hot-inflation-data-8719f1a32b46f0b2",
+      "src": "Rallies.ai; Trading Economics · Oct 14–15"
+    },
+    {
+      "tag": "Economy",
+      "h": "The Beige Book describes an economy that's jogging, not running.",
+      "p": "Only 2 of the Fed's 12 districts reported moderate growth; 4 saw slight gains and 3 saw no change. Consumer spending was flat in most districts and leaned on high earners, and every district cited higher oil prices. Five said firms are trimming staff through attrition as AI lifts productivity, a quiet drag on hiring.",
+      "url": "https://www.federalreserve.gov/monetarypolicy/beigebook202610-summary.htm",
+      "src": "Federal Reserve · Oct 14"
     },
     {
       "tag": "Banks",
-      "h": "Bank earnings got a cool reception.",
-      "p": "Jamie Dimon flagged high inflation and rising rates as the risks to watch, and the big banks lagged on Tuesday. Their tone matters beyond their own stocks: banks are now the biggest lender to commercial real estate (see the deep dive).",
-      "url": "https://www.bnnbloomberg.ca/markets/2026/10/13/wall-street-mixed-in-early-trading-as-big-us-banks-report-earnings-chip-stocks-fall-again/",
-      "src": "AP via BNN Bloomberg"
-    },
-    {
-      "tag": "Freight",
-      "h": "Truck capacity is getting tight heading into peak season.",
-      "p": "Carriers are rejecting about 14% of contracted loads, and that could top 20% by December. Imports are surging too: Long Beach volume is projected about 50% above last year for the next three weeks as shippers front-run the January tariff-truce deadline.",
-      "url": "https://transportationinsight.com/resources/transportation-industry-trends-october-5-9-2026/",
-      "src": "Transportation Insight"
-    },
-    {
-      "tag": "Trucking",
-      "h": "Carriers are raising prices, and the weak ones are failing.",
-      "p": "Old Dominion's 4.9% rate increase just took effect, and FedEx and DHL set 5.9% for 2027. Meanwhile Chicago's Midwest Expedited, a 95-truck fleet, filed Chapter 11 as diesel holds above $6, a reminder that small-carrier credit is fragile.",
-      "url": "https://newsweek.com/nationwide-trucking-company-files-for-bankruptcy-amid-diesel-price-shock-12536548",
-      "src": "Newsweek"
+      "h": "Trading desks carried the big banks' third quarter.",
+      "p": "Goldman's profit rose 29% to $5.29 billion on a 72% jump in equities trading, and Citi's climbed about 40%. JPMorgan earned $15.3 billion, up about 6% but short of the $16.3 billion forecast. Busy markets are paying the bills; the question for borrowers is whether lending appetite holds up as rates climb.",
+      "url": "https://beinsure.com/news/us-banks-report-mixed-q3-2026-earnings-as-trading-results-diverge/",
+      "src": "Beinsure · Oct 13–14"
     },
     {
       "tag": "Earnings",
-      "h": "Real-economy earnings start Thursday.",
-      "p": "J.B. Hunt and Prologis report Thursday, the first hard read on how fuel costs are hitting carrier margins and where industrial rents are heading into 2027. Vulcan and Builders FirstSource follow Oct 29, the same day as Q3 GDP and PCE inflation.",
+      "h": "J.B. Hunt reports tonight, with fuel costs in the spotlight.",
+      "p": "Analysts expect $1.81 a share on revenue of $3.59 billion, up 17.5% from a year ago. The company already warned in September, and Stephens expects earnings to fall 5–10% from the second quarter on driver and fuel costs. It's an early read on how carriers are absorbing expensive diesel.",
       "url": "https://talkbusiness.net/2026/10/j-b-hunt-q3-earnings-revenue-to-rise-analysts-say/",
-      "src": "Talk Business"
+      "src": "Talk Business · Oct 9"
     }
   ],
   "dive": {
-    "kicker": "Credit",
-    "title": "Banks are back in commercial real estate",
-    "dek": "Two years after CRE was the asset class lenders wanted to shrink, banks are again growing their loan books, and they now hold nearly half the market.",
+    "kicker": "Private credit",
+    "title": "Private credit's record year, on both sides of the ledger",
+    "dek": "Defaults are at an all-time high and fund investors want out, but the money keeps coming in.",
     "body": [
-      "U.S. commercial real estate debt reached <b>$6.3 trillion</b> in the second quarter, by Mortgage Bankers Association figures: $5.1 trillion on income-producing property and $1.41 trillion on land and other non-income property. Banks hold a record <b>$3.1 trillion</b> of it, about 47%. Fannie Mae and Freddie Mac hold $1.17 trillion and insurers $815 billion, with CMBS and CLOs behind them.",
-      "The shift is in the flow, not just the stock. Big banks grew CRE balances sharply in the second quarter (table), the Fed counts about $3 trillion of bank CRE loans in June, up 3% from a year earlier, and new CRE lending hit $455 billion in the first quarter, up 80% year over year. Lenders that spent 2023–24 cutting exposure are competing for deals again as fears about office losses have faded.",
-      "Why it matters: when banks set the price of most CRE credit, their mood moves the whole market. Right now that mood is mixed. Rates are high (the 10-year is above 5.2%), and Dimon is warning about inflation, yet loan books are growing. For borrowers, that means credit is available but priced off a higher base. A Fed hike by December, which markets now favor, would push floating-rate bank loans up again, while any pullback in bank appetite after Q3 earnings would leave CMBS, insurers and private credit to fill the gap at wider spreads."
+      "Private credit has had a strange 2026. Fitch's U.S. private credit default rate hit <b>6.3%</b> over the 12 months through August, a record, up from 6.1% in July and above 6% every month since April. Meanwhile managers raised about <b>$190 billion</b> in the first half, 53% more than a year earlier. Lenders are cashing record checks and logging record defaults at the same time.",
+      "Look at <i>how</i> these loans are defaulting. Nearly half of Fitch's trailing-year default events (47%) were interest deferrals or swaps into payment-in-kind (PIK) interest, which means the borrower pays with more debt instead of cash. Another 41% were maturity extensions under stress. Actual bankruptcies and liquidations made up just 4%. So the stress is mostly being pushed into the future rather than written off. The Boston Fed estimates PIK now accounts for roughly 9.8% of BDC loans, up from about 5–6% in early 2022.",
+      "The trouble is concentrated where real estate investors should be paying attention. <b>Industrial and manufacturing</b> borrowers defaulted at 9.9% in August, up from 5.2% a year earlier, and transportation and distribution had two of the month's 14 default events. Small companies are hit hardest: borrowers with under $25 million of EBITDA are defaulting at 12%. Those are the mid-sized fleet, equipment and contractor businesses that rent yards and small industrial space, and their floating-rate debt isn't getting any cheaper.",
+      "The liquidity side is calmer but still awkward. In the third quarter, redemption requests at non-traded BDCs averaged 9.8% of shares, down from 10.3% in Q2 but still roughly double the usual 5% quarterly cap. Blackstone's $77 billion BCRED got $4.3 billion of requests and paid out the standard 5%. Blue Owl Technology Income Corp. saw requests worth 39% of its shares. The picture improves if PIK loans start paying cash again and defaults roll over; it gets worse if PIK keeps climbing, more funds hit their gates, or energy costs push more small industrial borrowers past the point of extend-and-pretend."
     ],
     "table": {
-      "cap": "Bank CRE loan growth, Q2 2026",
+      "cap": "Private credit stress gauges",
       "cols": [
-        "Bank",
-        "CRE balances"
+        "Metric",
+        "Latest",
+        "Prior"
       ],
       "rows": [
         [
-          "Truist",
-          "+25%"
+          "Fitch U.S. private credit default rate (TTM)",
+          "6.3% (Aug '26)",
+          "6.1% (Jul '26)"
         ],
         [
-          "PNC",
-          "+15%"
+          "Industrial & manufacturing default rate",
+          "9.9% (Aug '26)",
+          "5.2% (Aug '25)"
         ],
         [
-          "Bank of America",
-          "+8%"
+          "Borrowers <$25M EBITDA default rate",
+          "12.0% (Aug '26)",
+          "12.3% (Jul '26)"
         ],
         [
-          "U.S. Bancorp",
-          "+8%"
+          "Non-traded BDC redemption requests (avg, % of shares)",
+          "9.8% (Q3 '26)",
+          "10.3% (Q2 '26)"
+        ],
+        [
+          "Private credit fundraising",
+          "$190B (H1 '26)",
+          "+53% vs H1 '25"
         ]
       ]
     },
     "watch": [
-      "Bank Q3 calls this week and next: is CRE loan growth holding up?",
-      "The Oct 28 Fed decision, and whether a December hike stays the base case",
-      "Any widening in CMBS spreads if banks turn cautious"
+      "Fitch's September default reading: does it break 6.3%?",
+      "Whether the PIK share of BDC loans keeps rising in Q3 filings",
+      "Q4 redemption requests at BCRED and Blue Owl's BDCs against the 5% cap"
     ],
-    "src": "Sources: Wolf Street (MBA data), Oct 8, 2026; CRE Daily, Jul 27, 2026; AP."
+    "src": "Sources: Fitch Ratings via Benzinga/Webull and Investment Executive (Sep 14, 2026); Fitch via InvestmentNews (Oct 13, 2026); Tradingpedia (Sep 3, 2026); With Intelligence and Boston Fed via InvestmentNews (Aug 10, 2026)."
   },
   "reading": {
-    "kind": "Bio",
-    "who": "Howard Marks",
-    "title": "Howard Marks and the memo Warren Buffett opens first",
-    "dek": "How a bond manager's client letters became the most-read investment writing on Wall Street, and what they say about a market like this one.",
+    "kind": "Story",
+    "who": "Sam Zell",
+    "title": "Sam Zell sells the top: the Grave Dancer's greatest exit",
+    "dek": "In February 2007, a man famous for buying wreckage sold America's biggest office landlord for about $39 billion, just before the music stopped.",
+    "body": "<p>Most investors are remembered for what they bought. Sam Zell may be best remembered for something he sold. In February 2007, funds managed by Blackstone completed their purchase of Equity Office Properties, the office empire Zell had started in 1976, for roughly <b>$39 billion</b>, or $55.50 a share. It was the largest leveraged buyout ever at the time. Within about a year and a half, the credit markets that had paid for it were coming apart.</p><p>The odd part is that Zell made his name doing the opposite. In 1976 he wrote an article called <i>The Grave Dancer</i>, and the nickname followed him for the rest of his career. The idea was simple and a little morbid: when developers were choking on high interest rates and buildings were going cheap, Zell showed up as the buyer. He bought what other people had to sell, again and again through the mid-1970s recession. His instincts went back a long way. Born in Chicago in 1941 to Jewish parents who had fled Poland months earlier, he was managing apartment buildings in Ann Arbor while still a student at the University of Michigan.</p><p>So why would a buyer of distress turn seller at the peak? Because the contrarian rule isn't to always buy. It's to lean against the crowd when the crowd is paying too much or too little. By early 2007 money was cheap and plentiful, and buyers were lining up. Equity Office set off a bidding war between Blackstone and Vornado Realty Trust that the New York Times ranked as the fiercest buyout fight since RJR Nabisco in 1988, and the competition reportedly added up to $3 billion to the price. When a grave dancer finds himself at a party, he doesn't stay to admire the decorations. He collects the check. Zell personally netted about $1 billion, PBS and the AP reported.</p><p>What happened next shows how hot things had gotten. Blackstone didn't plan to sit on the whole portfolio. In the same month it closed, it sold eight buildings to affiliates of Harry Macklowe for about $7 billion. In April 2007 it sold the Washington, D.C. portfolio to Beacon Capital Partners for $6.5 billion. The buyer of the biggest deal in history was flipping pieces of it at once, at prices that only made sense in a world of easy credit. It kept selling for years, including a $3.5 billion Silicon Valley portfolio to Hudson Pacific in 2014.</p><p>Zell wasn't infallible, and the story is better for admitting it. In December 2007 he took control of Tribune in a leveraged deal financed almost entirely with debt. A year later the company filed what was then the largest bankruptcy in U.S. media history. The same man who read the cycle perfectly as a seller missed it as a buyer, a reminder that discipline has to be applied every time, not just remembered.</p><p>Zell died in May 2023 at 81. What he left investors is less a formula than a habit: notice who is eager, notice who is desperate, and ask which side of that trade you want to be on.</p>",
     "quote": {
-      "text": "You can't predict. You can prepare.",
-      "src": "Howard Marks, a recurring line in his memos"
+      "text": "I'm a professional opportunist.",
+      "src": "Sam Zell, to The Associated Press"
     },
-    "body": [
-      "Howard Marks didn't set out to be a writer. After Wharton and a Chicago MBA, he spent the 1970s and early '80s at Citicorp, where he was handed a then-unloved corner of the market: high-yield bonds. He moved to TCW in 1985 and in 1995 left with several colleagues, including Bruce Karsh, to found <b>Oaktree Capital</b>, which grew into one of the largest credit and distressed-debt investors in the world. Brookfield bought a majority stake in 2019.",
-      "In 1990 he started sending clients occasional memos explaining how he thought about markets. They were plain-spoken, often funny, and largely about psychology rather than forecasts. They found a wider audience in January 2000, when <i>bubble.com</i> argued that tech stocks had detached from reality, just before the Nasdaq collapsed. Buffett has said that when a Marks memo arrives, it's the first thing he reads.",
-      "His core ideas are simple to state and hard to practice. Markets move in cycles driven by swings in investor mood, from euphoria to despair and back. You can't know when a cycle will turn, but you can tell roughly where you are by watching how eager people are to take risk. And risk is highest when it feels lowest, because that's when prices leave no margin for error. He calls the discipline \"second-level thinking\": not asking whether something is good, but whether it's better than what the price already assumes.",
-      "Oaktree's defining moment came in 2008. Having raised a large distressed-debt fund in advance, Marks and Karsh bought heavily that fall as credit markets froze, on the logic that the world either ends (in which case nothing matters) or it doesn't (in which case this is the time to buy). His two books, <i>The Most Important Thing</i> (2011) and <i>Mastering the Market Cycle</i> (2018), distill the memos."
-    ],
     "takeaways": [
-      "Ask where we are in the cycle. With the 10-year above 5.2% and banks lending again, money is costly but available, so judge it by how eager lenders are, not by the level of rates alone.",
-      "Leave room for being wrong. Underwrite deals to survive another hike, not just the base case.",
-      "Credit gets interesting when others are forced to sell. Keep dry powder for the next dislocation."
+      "Stocks are still near records and buyers are eager. Zell's lesson is that a crowded bidding room is often the best time to sell.",
+      "With the 10-year back near its highest level since 2007, deals that only work with cheap debt deserve a hard second look.",
+      "Higher rates squeeze overleveraged owners, and that pressure creates the forced sellers a grave dancer waits for. Keep some dry powder."
     ],
-    "src": "Read more: Howard Marks's memos are free at oaktreecapital.com/insights."
+    "src": "Read more: Wikipedia, \"Sam Zell\" and \"Equity Office Properties Trust\"; PBS NewsHour/AP obituary (May 18, 2023); Commercial Observer obituary."
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "raised 25bp Sep 16",
+      "d": "raised 25bp Sep 16; next decision Oct 28",
       "good": false
     },
     {
       "n": "30-yr mortgage",
       "v": "7.40%",
-      "d": "Freddie Mac, Oct 8; next Oct 15",
+      "d": "Freddie Mac, Oct 8; MBA contract rate 7.50% (wk to Oct 9)",
       "good": false
     }
   ],
@@ -131,8 +130,8 @@
       "act": null,
       "cons": null,
       "prior": null,
-      "good": false,
-      "why": "Most officials saw another hike by year-end as likely"
+      "good": null,
+      "why": "Split on energy versus demand as hike driver"
     },
     {
       "d": "2026-10-08",
@@ -142,7 +141,7 @@
       "cons": "200K",
       "prior": "199K",
       "good": true,
-      "why": "Layoffs stay low, steady tenant demand"
+      "why": "Layoffs stay low"
     },
     {
       "d": "2026-10-09",
@@ -152,7 +151,7 @@
       "cons": "47.6",
       "prior": "48.1",
       "good": false,
-      "why": "Lowest since May; 1-yr inflation expectations rose to 4.7% from 4.6%"
+      "why": "Lowest since May"
     },
     {
       "d": "2026-10-13",
@@ -162,7 +161,7 @@
       "cons": "98",
       "prior": "98.7",
       "good": false,
-      "why": "Small firms, typical yard tenants, a bit gloomier"
+      "why": "Small firms a bit gloomier"
     },
     {
       "d": "2026-10-13",
@@ -172,27 +171,17 @@
       "cons": "3.95M",
       "prior": "3.93M",
       "good": true,
-      "why": "Housing turnover edged up despite 7%+ mortgages"
+      "why": "Turnover edged up despite 7%+ mortgages"
     },
     {
       "d": "2026-10-14",
-      "tag": "Economy",
+      "tag": "Inflation",
       "e": "CPI, y/y (Sep)",
-      "act": null,
+      "act": "3.7%",
       "cons": "3.6%",
       "prior": "3.4%",
-      "good": null,
-      "why": "Key inflation test before the Oct 28 Fed decision"
-    },
-    {
-      "d": "2026-10-14",
-      "tag": "Economy",
-      "e": "Core CPI, m/m (Sep)",
-      "act": null,
-      "cons": "0.2%",
-      "prior": "0.3%",
-      "good": null,
-      "why": "Shows whether energy costs are spreading into core prices"
+      "good": false,
+      "why": "Energy drove the beat"
     },
     {
       "d": "2026-10-14",
@@ -202,17 +191,17 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Regional read on demand, hiring and prices"
+      "why": "Modest growth, faster price gains"
     },
     {
       "d": "2026-10-15",
-      "tag": "Economy",
+      "tag": "Inflation",
       "e": "PPI, m/m (Sep)",
       "act": null,
       "cons": "0.5%",
       "prior": "0.4%",
       "good": null,
-      "why": "Pipeline inflation, including freight and materials"
+      "why": "Pipeline inflation after the hot CPI"
     },
     {
       "d": "2026-10-15",
@@ -222,7 +211,7 @@
       "cons": "0.3%",
       "prior": "1.2%",
       "good": null,
-      "why": "Consumer demand drives warehouse and freight volumes"
+      "why": "Is the consumer slowing?"
     },
     {
       "d": "2026-10-15",
@@ -232,7 +221,17 @@
       "cons": "200K",
       "prior": "197K",
       "good": null,
-      "why": "Watch for any rise in layoffs"
+      "why": "Any rise in layoffs"
+    },
+    {
+      "d": "2026-10-15",
+      "tag": "Economy",
+      "e": "Empire State manufacturing (Oct)",
+      "act": null,
+      "cons": "10.3",
+      "prior": "7.6",
+      "good": null,
+      "why": "New York factory activity"
     },
     {
       "d": "2026-10-15",
@@ -242,37 +241,7 @@
       "cons": "28.4",
       "prior": "37.8",
       "good": null,
-      "why": "Factory demand for industrial space and freight"
-    },
-    {
-      "d": "2026-10-15",
-      "tag": "Earnings",
-      "e": "J.B. Hunt Q3 (after close)",
-      "act": null,
-      "cons": "$1.81 EPS",
-      "prior": "$1.76",
-      "good": null,
-      "why": "Fuel squeeze on intermodal and truckload margins"
-    },
-    {
-      "d": "2026-10-15",
-      "tag": "Earnings",
-      "e": "Prologis Q3",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "First read on industrial leasing and rents"
-    },
-    {
-      "d": "2026-10-16",
-      "tag": "Economy",
-      "e": "Industrial production, m/m (Sep)",
-      "act": null,
-      "cons": "0.4%",
-      "prior": "0.0%",
-      "good": null,
-      "why": "Factory output feeds yard and freight demand"
+      "why": "Seen cooling from a strong September"
     },
     {
       "d": "2026-10-16",
@@ -282,27 +251,17 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Last big signal before the pre-meeting blackout"
+      "why": "Last big signal before the blackout"
     },
     {
-      "d": "2026-10-21",
-      "tag": "Earnings",
-      "e": "Knight-Swift Q3 (after close)",
+      "d": "2026-10-16",
+      "tag": "Economy",
+      "e": "Industrial production, m/m (Sep)",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "0.4%",
+      "prior": "0.0%",
       "good": null,
-      "why": "Truckload pricing and capacity"
-    },
-    {
-      "d": "2026-10-22",
-      "tag": "Earnings",
-      "e": "United Rentals Q3 call",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "Equipment-rental demand, a core IOS tenant"
+      "why": "Factory output rebound expected"
     },
     {
       "d": "2026-10-23",
@@ -312,7 +271,17 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Confirms the slide in consumer mood and inflation expectations"
+      "why": "Consumer mood and inflation expectations"
+    },
+    {
+      "d": "2026-10-27",
+      "tag": "Economy",
+      "e": "Conference Board consumer confidence (Oct)",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Second read on consumer mood"
     },
     {
       "d": "2026-10-28",
@@ -325,16 +294,6 @@
       "why": "Hike or hold from 3.75–4.00%"
     },
     {
-      "d": "2026-10-28",
-      "tag": "Earnings",
-      "e": "Old Dominion Q3 (before open)",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "LTL volumes and pricing"
-    },
-    {
       "d": "2026-10-29",
       "tag": "Economy",
       "e": "GDP Q3 advance; PCE (Sep)",
@@ -343,26 +302,6 @@
       "prior": null,
       "good": null,
       "why": "Growth and the Fed's preferred inflation gauge"
-    },
-    {
-      "d": "2026-10-29",
-      "tag": "Earnings",
-      "e": "Vulcan, Builders FirstSource Q3",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "Aggregates pricing and housing-driven lumber demand"
-    },
-    {
-      "d": "2026-10-29",
-      "tag": "Earnings",
-      "e": "Saia Q3",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "LTL demand and terminal expansion"
     },
     {
       "d": "2026-11-02",
@@ -378,198 +317,205 @@
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,805.45",
-      "c": -0.02,
-      "ctext": "−0.02%",
-      "y": 17.3,
-      "ytext": "+17.3%",
-      "why": "Finished just below last week's record as mixed bank earnings offset falling chip stocks."
+      "v": "7,718.94",
+      "c": -1.11,
+      "ctext": "−1.11%",
+      "y": 16.2,
+      "ytext": "+16.2%",
+      "why": "Fell as the inflation surprise lifted Fed hike bets, with AI stocks the heaviest drag.",
+      "asof": "Oct 14"
     },
     {
       "n": "Dow",
-      "v": "51,670.10",
-      "c": -0.35,
-      "ctext": "−0.35%",
-      "y": 12.2,
-      "ytext": "+12.2%",
-      "why": "Bank results weighed: Wells Fargo fell 3.1% and JPMorgan 0.9%."
+      "v": "51,621.48",
+      "c": -0.09,
+      "ctext": "−0.09%",
+      "y": 11.6,
+      "ytext": "+11.6%",
+      "why": "Held nearly flat as gains in healthcare, consumer staples and energy offset the tech selloff.",
+      "asof": "Oct 14"
     },
     {
       "n": "Nasdaq",
-      "v": "27,204.38",
-      "c": -0.15,
-      "ctext": "−0.15%",
-      "y": 19.9,
-      "ytext": "+19.9%",
-      "why": "Chips fell on AI-valuation worries and China's CXMT; Micron dropped 3.6%."
+      "v": "26,692.87",
+      "c": -1.88,
+      "ctext": "−1.88%",
+      "y": 18.5,
+      "ytext": "+18.5%",
+      "why": "Worst of the three: chip and AI stocks slid on fears higher rates will slow data-center spending.",
+      "asof": "Oct 14"
     },
     {
       "n": "Brent crude",
-      "v": "$105.69",
+      "v": "$106.06",
       "rate": true,
-      "c": -0.9,
-      "ctext": "−0.9%",
+      "c": 0.35,
+      "ctext": "+0.35%",
       "y": null,
-      "why": "Slipped on uncertainty over the Iran war; above $100 keeps diesel high.",
-      "asof": "Oct 13"
+      "ytext": null,
+      "why": "Edged higher as Iran-war shipping risks around the Strait of Hormuz kept supply worries alive.",
+      "asof": "Oct 14"
     },
     {
       "n": "Dollar index",
-      "v": "102.2",
-      "c": -0.4,
-      "ctext": "−0.4%",
+      "v": "102.55",
+      "c": 0.35,
+      "ctext": "+0.35%",
       "y": null,
-      "why": "Eased from 102.6 as the 10-year dipped ahead of CPI.",
-      "asof": "Oct 13"
+      "ytext": null,
+      "why": "Touched its highest since April 2025 intraday as hotter inflation raised odds of more Fed tightening.",
+      "asof": "Oct 14"
     },
     {
       "n": "10Y Treasury",
-      "v": "5.21%",
+      "v": "5.19%",
       "rate": true,
-      "c": -3,
-      "ctext": "−3bp",
+      "c": -2,
+      "ctext": "−2bp",
       "y": 116,
       "ytext": "+116bp",
-      "asof": "Oct 13",
-      "why": "Eased from Friday's 5.24% as bonds reopened after Columbus Day, ahead of CPI."
+      "asof": "Oct 14",
+      "why": "Slipped even as shorter yields rose, flattening the curve as markets bet the Fed acts sooner."
     },
     {
       "n": "Diesel, U.S. avg (EIA)",
-      "v": "$6.199/gal",
+      "v": "$6.179/gal",
       "rate": true,
       "c": -1,
-      "ctext": "−$0.183 w/w",
+      "ctext": "−$0.020 w/w",
       "y": 1,
-      "ytext": "+$2.488",
-      "why": "Week of Oct 5; the Oct 13 print is due Wednesday after the holiday."
+      "ytext": "+$2.514",
+      "asof": "Oct 12",
+      "why": "Weekly EIA average, released Oct 14."
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.87,
-      "d1m": 23,
-      "d6m": 30,
+      "cur": 3.89,
+      "d1m": 27,
+      "d6m": 26,
       "d1y": -26,
-      "asof": "Oct 9"
+      "asof": "Oct 13"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.79,
-      "d1m": 16,
-      "d6m": 101,
-      "d1y": 127,
-      "asof": "Oct 13"
+      "cur": 4.82,
+      "d1m": 17,
+      "d6m": 106,
+      "d1y": 134,
+      "asof": "Oct 14"
     },
     {
       "n": "5Y Treasury",
       "cur": 5,
-      "d1m": 22,
-      "d6m": 108,
-      "d1y": 135,
-      "asof": "Oct 13"
+      "d1m": 20,
+      "d6m": 113,
+      "d1y": 140,
+      "asof": "Oct 14"
     },
     {
       "n": "10Y Treasury",
-      "cur": 5.21,
-      "d1m": 25,
-      "d6m": 91,
+      "cur": 5.19,
+      "d1m": 22,
+      "d6m": 93,
       "d1y": 116,
-      "asof": "Oct 13"
+      "asof": "Oct 14"
     }
   ],
   "rcols": [
-    "Oct 13 '26",
-    "Sep 11 '26",
-    "Apr 13 '26",
-    "Oct 10 '25"
+    "Oct 14 '26",
+    "Sep 14 '26",
+    "Apr 14 '26",
+    "Oct 14 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.79",
-        "4.63",
-        "3.78",
-        "3.52"
+        "4.82",
+        "4.65",
+        "3.76",
+        "3.48"
       ],
-      "d1m": 16,
-      "d1y": 127
+      "d1m": 17,
+      "d1y": 134
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
         "5.00",
-        "4.78",
-        "3.92",
-        "3.65"
+        "4.80",
+        "3.87",
+        "3.60"
       ],
-      "d1m": 22,
-      "d1y": 135
+      "d1m": 20,
+      "d1y": 140
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "5.21",
-        "4.96",
-        "4.30",
-        "4.05"
+        "5.19",
+        "4.97",
+        "4.26",
+        "4.03"
       ],
-      "d1m": 25,
+      "d1m": 22,
       "d1y": 116
     },
     {
-      "grp": "SOFR · dates Oct 9 '26 / Sep 9 '26 / Apr 9 '26 / Oct 9 '25"
+      "grp": "SOFR · dates Oct 13 '26 / Sep 11 '26 / Apr 13 '26 / Oct 10 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.87",
-        "3.64",
-        "3.57",
-        "4.13"
+        "3.89",
+        "3.62",
+        "3.63",
+        "4.15"
       ],
-      "d1m": 23,
+      "d1m": 27,
       "d1y": -26
     }
   ],
   "freight": [
     {
       "n": "Diesel, U.S. avg (EIA)",
-      "v": "$6.199/gal",
+      "v": "$6.179/gal",
       "pl": "Week",
-      "pc": "−$0.183",
-      "y": "+$2.488",
-      "why": "Week of Oct 5, released Oct 6; the holiday-delayed Oct 13 print is due today. Fuel is still about two-thirds above last year, the main cost squeezing small-carrier tenants."
+      "pc": "−$0.020",
+      "y": "+$2.514",
+      "why": "Week of Oct 12, out Oct 14; a second straight weekly dip."
     },
     {
-      "n": "DAT spot, dry van (all-in)",
-      "v": "$3.12/mi",
-      "pl": "Week",
-      "pc": "+3¢",
-      "y": "+35% (linehaul)",
-      "why": "Week of Oct 4–10, reported Oct 13. Reefer rose 3¢ to $3.68 and flatbed eased 2¢ to $3.68, while van load-to-truck fell to 10.5 from 13.7 (6.3 a year ago)."
-    },
-    {
-      "n": "Logistics Managers' Index",
-      "v": "70.2",
+      "n": "DAT spot, dry van",
+      "v": "$3.01/mi",
       "pl": "Month",
-      "pc": "+3.6",
-      "why": "September, released Oct 6. Warehousing capacity fell 14.2 points to 39.3, the fastest contraction since March 2022, which pushes overflow trailers and equipment toward outdoor yards."
+      "pc": "+12¢",
+      "y": "+96¢",
+      "why": "September, out Oct 13; reefer spot $3.62 now tops its $3.58 contract rate."
     },
     {
-      "n": "Drewry WCI, 40ft",
-      "v": "$4,351",
-      "pl": "Week",
-      "pc": "−2%",
-      "why": "Oct 8. Golden Week softened demand: Shanghai–LA fell 3% to $7,624; Drewry expects stable rates this week."
+      "n": "Baltic Dry Index",
+      "v": "2,667",
+      "pl": "Day",
+      "pc": "−4.8%",
+      "y": null,
+      "why": "Oct 14; eighth straight drop, lowest since July 29, as capesize fell 9.1%."
     }
   ],
-  "also": "Baltic Dry 2,801 (−51, Oct 13; +38.5% y/y) · LMI transportation prices 92.7 and transportation capacity 34.4, the 10th straight month of contraction (Sep) · Domestic intermodal volume about +8% y/y (week of Oct 5).",
-  "foot": "Sources: NY Fed API (SOFR, latest Oct 9; references Sep 9, Apr 9 and Oct 9, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 13; references Sep 11, Apr 13 and Oct 10, 2025); AP via La Nación and BNN Bloomberg (Oct 13, 2026 closes and wrap) and via MarketBeat (Oct 13, 2025 closes); Investing.com (VIX); stockanalysis.com (building-materials closes and Vulcan news); SEC filings (MLM, CRH Q2); Earnings Whispers and Finviz (earnings dates); Trading Economics (calendar, consensus, dollar index, Baltic Dry); Freddie Mac; Federal Reserve; Admiral Markets (hike odds); EIA; DAT via AJOT; LMI via FreightWaves; Drewry via DCN; Transportation Insight; Newsweek; Wolf Street.<br>Notes: SOFR for Oct 13 publishes this morning and Oct 12 was a holiday, so SOFR is Oct 9. 10Y 1Y change uses Oct 10, 2025 (Oct 13, 2025 was a bond-market holiday). VIX 1Y and building-materials 1Y % left out (no dated Oct 2025 closes found; CBOE history file loaded only partially). Day % for stocks from stockanalysis prior closes. Housing starts (Oct 20) left out of the calendar: no consensus published. EIA's Oct 13 diesel not out at build time. WTI left out: no dated settlement found. Chart keeps 5 years of history for the 5Y toggle.",
+  "also": "Gasoline $4.331/gal U.S. avg (EIA, Oct 12; +$1.270 y/y) · DAT flatbed spot $3.61/mi in September (+$1.11 y/y), contract van $3.24.",
+  "sport": "The Brewers beat the Dodgers 7–4 Monday to take a 2–0 NLCS lead; Game 3 was Wednesday night in Los Angeles.",
+  "rota": [],
+  "spot": {
+    "g": "",
+    "rows": []
+  },
+  "news": [],
+  "foot": "Sources: NY Fed API (SOFR, latest Oct 13; references Sep 11, Apr 13 and Oct 10, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 14; references Sep 14, Apr 14 and Oct 14, 2025); AP via ABC News (Oct 14, 2026 closes) and via MarketBeat (Oct 2025 closes); Rallies.ai (precise day % moves, Brent settle, Fed odds); Trading Economics (calendar, consensus, dollar index, Baltic Dry); BLS (CPI); Federal Reserve (Beige Book); Freddie Mac and MBA via Trading Economics; Beinsure (bank earnings); Talk Business (J.B. Hunt); EIA; DAT via Finviz; Fitch via Benzinga, Investment Executive and InvestmentNews; Tradingpedia; Wikipedia, PBS/AP and Commercial Observer (Investor's Corner); theScore (NLCS).<br>Notes: SOFR for Oct 14 publishes this morning, so SOFR is Oct 13; its 1M reference uses Sep 11 (Sep 13 was a Sunday) and its 1Y reference Oct 10, 2025 (Oct 13, 2025 was a holiday). Oct 14, 2025 index closes were derived from AP's Oct 15, 2025 closes minus that day's point changes. Oil is Brent because no dated WTI settlement was found. Brent and dollar-index 1Y changes left out: Trading Economics' year-over-year figures are dated Oct 15, not Oct 14 (Brent's +71% also lacked a second source). Dollar index close is Trading Economics' prior-session value; its day change matches Rallies.ai. Drewry WCI left out (DCN page failed). NLCS Game 3 result not found at build time. Freddie Mac's Oct 15 mortgage survey publishes at noon ET. Housing starts (Oct 20) left out of the calendar: no consensus published. Chart keeps 5 years of history for the 5Y toggle.",
   "series": [
     [
       "2021-10-12",
@@ -8070,6 +8016,12 @@
       4.79,
       5,
       5.21
+    ],
+    [
+      "2026-10-14",
+      4.82,
+      5,
+      5.19
     ]
   ],
   "log": {
@@ -8077,6 +8029,10 @@
       {
         "d": "2026-10-14",
         "t": "Banks are back in commercial real estate"
+      },
+      {
+        "d": "2026-10-15",
+        "t": "Private credit's record year, on both sides of the ledger"
       }
     ],
     "corner": [
@@ -8084,6 +8040,11 @@
         "d": "2026-10-14",
         "who": "Howard Marks",
         "kind": "Bio"
+      },
+      {
+        "d": "2026-10-15",
+        "who": "Sam Zell",
+        "kind": "Story"
       }
     ]
   }
