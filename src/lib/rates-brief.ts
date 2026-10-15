@@ -142,10 +142,20 @@ export function marketRows(B: RatesBrief): TapeRow[] {
   });
 }
 
+// The routine writes this file unattended, so list fields are read defensively: a string
+// becomes paragraphs (split on blank lines), anything else that isn't a list becomes [].
+// One malformed field must never fail the build.
+export function list<T = string>(v: unknown): T[] {
+  if (Array.isArray(v)) return v.filter(x => x != null && x !== '') as T[];
+  if (typeof v === 'string' && v.trim()) return v.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean) as T[];
+  return [];
+}
+
 // The Rundown, falling back to an older file's Top 5.
 export function rundownOf(B: RatesBrief): RundownItem[] {
-  if (B.rundown?.length) return B.rundown;
-  return (B.top || []).map(t => ({ tag: t.tag, h: t.h, p: t.p || '', url: t.url }));
+  const r = list<RundownItem>(B.rundown).filter(x => typeof x === 'object' && x.h);
+  if (r.length) return r;
+  return list<TopItem>(B.top).map(t => ({ tag: t.tag, h: t.h, p: t.p || '', url: t.url }));
 }
 
 // The sports line, falling back to the older multi-item sports list.

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, CalItem, DeepDive, Reading, RundownItem, has, safeHtml, marketRows, rateLevels, splitCalendar, rundownOf, sportOf } from '@/lib/rates-brief';
+import { RatesBrief as Brief, TapeRow, CalItem, DeepDive, Reading, RundownItem, has, safeHtml, marketRows, rateLevels, splitCalendar, rundownOf, sportOf, list } from '@/lib/rates-brief';
 import { toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
 import { ChartSvg, datesAhead, dayLabel, shortDay } from './RatesBrief';
 
@@ -372,28 +372,28 @@ function DivePrint({ d, watch, table }: { d: DeepDive; watch: boolean; table: bo
       <h3 className="text-[16px] font-bold leading-snug text-slate-900">{d.title}</h3>
       {d.dek && <p className="text-[11px] italic leading-snug text-slate-600">{d.dek}</p>}
       <div className="mt-1.5 space-y-1.5">
-        {d.body.map((p, i) => <p key={i} className="text-[11.5px] leading-[1.45] text-slate-800" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+        {list<string>(d.body).map((p, i) => <p key={i} className="text-[11.5px] leading-[1.45] text-slate-800" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
       </div>
-      {((table && d.table && d.table.rows.length > 0) || (watch && d.watch && d.watch.length > 0)) && (
+      {((table && d.table && list(d.table.rows).length > 0) || (watch && list(d.watch).length > 0)) && (
         <div className="mt-2 grid grid-cols-2 gap-4 items-start">
-          {table && d.table && d.table.rows.length > 0 ? (
+          {table && d.table && list(d.table.rows).length > 0 ? (
             <div>
               {d.table.cap && <p className="mb-0.5 text-[9.5px] font-bold text-slate-700">{d.table.cap}</p>}
               <table className="w-full border-collapse">
-                <thead><tr className="border-b border-slate-200">{d.table.cols.map((c, i) => <th key={i} className={`py-[2px] text-[8.5px] font-semibold uppercase tracking-[0.05em] text-slate-500 ${i ? 'text-right' : 'text-left'}`}>{c}</th>)}</tr></thead>
+                <thead><tr className="border-b border-slate-200">{list<string>(d.table.cols).map((c, i) => <th key={i} className={`py-[2px] text-[8.5px] font-semibold uppercase tracking-[0.05em] text-slate-500 ${i ? 'text-right' : 'text-left'}`}>{c}</th>)}</tr></thead>
                 <tbody>
-                  {d.table.rows.map((r, i) => (
-                    <tr key={i} className="border-b border-slate-100">{r.map((c, j) => <td key={j} className={`py-[2px] text-[10px] ${j ? 'text-right font-mono' : 'font-semibold text-slate-900'}`}>{c}</td>)}</tr>
+                  {list<string[]>(d.table.rows).map((r, i) => (
+                    <tr key={i} className="border-b border-slate-100">{list<string>(r).map((c, j) => <td key={j} className={`py-[2px] text-[10px] ${j ? 'text-right font-mono' : 'font-semibold text-slate-900'}`}>{c}</td>)}</tr>
                   ))}
                 </tbody>
               </table>
             </div>
           ) : <div />}
-          {watch && d.watch && d.watch.length > 0 ? (
+          {watch && list(d.watch).length > 0 ? (
             <div className="rounded bg-slate-50 px-2.5 py-1.5">
               <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-[#1E3A5F]">What to watch</p>
               <ul className="mt-0.5 list-disc space-y-0.5 pl-3.5 text-[10.5px] leading-snug text-slate-700">
-                {d.watch.map((w, i) => <li key={i} dangerouslySetInnerHTML={{ __html: safeHtml(w) }} />)}
+                {list<string>(d.watch).map((w, i) => <li key={i} dangerouslySetInnerHTML={{ __html: safeHtml(w) }} />)}
               </ul>
             </div>
           ) : <div />}
@@ -458,13 +458,13 @@ function PageThree({ B, r, level }: { B: Brief; r: Reading; level: number }) {
         </blockquote>
       )}
       <div className="mt-1.5 space-y-1.5">
-        {r.body.map((p, i) => <p key={i} className="text-[11.5px] leading-[1.5] text-slate-800" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+        {list<string>(r.body).map((p, i) => <p key={i} className="text-[11.5px] leading-[1.5] text-slate-800" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
       </div>
-      {level < 1 && r.takeaways && r.takeaways.length > 0 && (
+      {level < 1 && list(r.takeaways).length > 0 && (
         <div className="mt-2.5 rounded bg-slate-50 px-3 py-2">
           <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-[#1E3A5F]">For today&apos;s investor</p>
           <ul className="mt-0.5 list-disc space-y-0.5 pl-3.5 text-[10.5px] leading-snug text-slate-700">
-            {r.takeaways.map((t, i) => <li key={i} dangerouslySetInnerHTML={{ __html: safeHtml(t) }} />)}
+            {list<string>(r.takeaways).map((t, i) => <li key={i} dangerouslySetInnerHTML={{ __html: safeHtml(t) }} />)}
           </ul>
         </div>
       )}
