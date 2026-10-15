@@ -7,9 +7,10 @@ const ENCODER = new TextEncoder();
 
 // Single-user login for Sandpiper Capital LLC.
 // Lowercased usernames for case-insensitive login. Set CRM_PASSWORD in Vercel to replace
-// the short default password without a code change.
+// the short default password without a code change. Trimmed, since a pasted value can carry
+// a stray space or line break.
 export const USERS: Record<string, string> = {
-  ben: process.env.CRM_PASSWORD || 'SAB',
+  ben: (process.env.CRM_PASSWORD || 'SAB').trim(),
 };
 
 // Pretty-print name for display (capitalized)
@@ -68,6 +69,6 @@ export async function verifySession(token: string | undefined): Promise<{ userna
 export function validateCredentials(username: string, password: string): string | null {
   const u = (username || '').trim().toLowerCase();
   if (!u || !USERS[u]) return null;
-  if (USERS[u] !== password) return null;
+  if (USERS[u] !== (password || '').trim()) return null;
   return u;
 }
