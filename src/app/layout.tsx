@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased flex h-screen overflow-hidden bg-slate-50 dark:bg-[#0b0e14] print:block print:h-auto print:overflow-visible print:bg-white">
+      <body className="antialiased flex h-screen overflow-hidden bg-slate-50 dark:bg-slate-950 print:block print:h-auto print:overflow-visible print:bg-white">
         <ThemeProvider>
           <AppShell>{children}</AppShell>
         </ThemeProvider>

@@ -265,19 +265,18 @@ function CalTable({ title, rows, released }: { title: string; rows: CalItem[]; r
   );
 }
 
-// Standing readings (Fed funds target and the like) as one compact line.
+// Standing readings (Fed funds target and the like), one per line under the rates table.
 function Standing({ rows }: { rows: EconRow[] }) {
   return (
-    <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
-      {rows.map((r, i) => (
-        <span key={r.n} className="whitespace-nowrap">
-          {i > 0 && <span className="mx-2 text-slate-300">·</span>}
+    <ul className="mt-3 space-y-1 text-xs leading-snug text-slate-600 dark:text-slate-300">
+      {rows.map(r => (
+        <li key={r.n}>
           <span className="text-slate-500">{r.n}</span>{' '}
           <b className={`font-mono ${econCls(r)}`}>{r.v}</b>
-          {r.d && <span className="text-slate-400"> ({r.d})</span>}
-        </span>
+          {r.d && <span className="text-slate-400"> · {r.d}</span>}
+        </li>
       ))}
-    </p>
+    </ul>
   );
 }
 

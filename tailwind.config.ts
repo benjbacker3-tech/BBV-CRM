@@ -12,6 +12,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Grays: the whole app uses `slate-*`, so redefining it here restyles every page at once.
+        // A neutral (not blue-tinted) scale, a step darker in the mid-tones than Tailwind's
+        // slate/zinc for crisper text on white. 950 is the sidebar charcoal.
+        slate: {
+          50: '#F7F7F8',
+          100: '#EFEFF1',
+          200: '#E3E3E6',
+          300: '#CBCBD0',
+          400: '#8F8F98',
+          500: '#64646D',
+          600: '#4B4B53',
+          700: '#37373D',
+          800: '#242428',
+          900: '#18181B',
+          950: '#0E0E10',
+        },
         // Navy is the sole accent. Kept as the deep brand color for the sidebar,
         // primary buttons, active nav states, and header emphasis. Everything
         // else in the UI reads on white with slate/gray text.
