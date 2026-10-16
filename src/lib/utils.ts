@@ -182,3 +182,9 @@ export interface ActivityEntry {
   metadata: string | null;
   created_at: string;
 }
+
+// Opens the deal's address in Google Earth on the web (3D view, history and measuring there).
+export function googleEarthUrl(d: Pick<Deal, 'address' | 'name' | 'city' | 'state'>): string | null {
+  const place = [d.address || d.name, d.city, d.state].filter(Boolean).join(', ');
+  return place ? `https://earth.google.com/web/search/${encodeURIComponent(place)}` : null;
+}
