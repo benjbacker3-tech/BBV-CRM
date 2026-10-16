@@ -120,6 +120,7 @@ export interface Deal {
   model_name: string | null;
   model_modified: string | null;
   model_synced_at: string | null;
+  napkin?: string | null;           // saved Napkin Math (JSON, lib/napkin.ts)
   created_at: string;
 }
 

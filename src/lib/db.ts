@@ -89,6 +89,7 @@ async function initSchema(db: Client) {
       model_name TEXT,
       model_modified TEXT,
       model_synced_at TEXT,
+      napkin TEXT,                          -- saved Napkin Math (JSON, lib/napkin.ts)
       created_at TEXT DEFAULT (datetime('now'))
     );
 
@@ -456,6 +457,7 @@ async function initSchema(db: Client) {
     { name: 'model_name', def: 'TEXT' },
     { name: 'model_modified', def: 'TEXT' },
     { name: 'model_synced_at', def: 'TEXT' },
+    { name: 'napkin', def: 'TEXT' },              // saved Napkin Math (JSON, lib/napkin.ts)
   ];
   for (const col of dealColsToAdd) {
     if (!dealColNames.includes(col.name)) {

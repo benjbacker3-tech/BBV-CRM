@@ -83,7 +83,7 @@ export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete, ini
         {tab === 'Contacts' && <ContactsTab dealId={deal.id} />}
         {tab === 'Diligence / CM' && <DiligenceCmTab deal={deal} />}
         {tab === 'LOI' && <LOITab deal={deal} />}
-        {tab === 'Napkin Math' && <NapkinMathTab deal={deal} />}
+        {tab === 'Napkin Math' && <NapkinMathTab deal={deal} onUpdate={onUpdate} />}
       </div>
 
       {/* Confirm delete overlay */}

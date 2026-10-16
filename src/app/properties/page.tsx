@@ -2,6 +2,7 @@
 
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import { Deal, Stage, STAGES } from '@/lib/utils';
+import { savedNapkin } from '@/lib/napkin';
 import DealDetailPanel from '@/components/DealDetailPanel';
 
 const SQFT_PER_ACRE = 43560;
@@ -174,7 +175,21 @@ export default function PropertiesPage() {
     const landSF = (d.acreage || 0) * SQFT_PER_ACRE;
     const far = landSF > 0 ? (d.sf || 0) / landSF : 0;
     const plf = landSF > 0 ? (d.asking_price || 0) / landSF : 0;
-    return { ...d, far, plf };
+    // Where the synced model is blank, fall back to the deal's saved Napkin Math (shown muted).
+    const n = savedNapkin(d.napkin)?.out;
+    const est = {
+      irr: d.irr == null && n?.irr != null,
+      em: d.em == null && n?.em != null,
+      basis: !d.all_in_basis && !!n?.totalCap,
+      equity: !d.equity_required && !!n?.equity,
+    };
+    return {
+      ...d, far, plf, est,
+      irr: est.irr ? n!.irr : d.irr,
+      em: est.em ? n!.em : d.em,
+      all_in_basis: est.basis ? n!.totalCap : d.all_in_basis,
+      equity_required: est.equity ? n!.equity : d.equity_required,
+    };
   });
 
   return (
@@ -213,7 +228,7 @@ export default function PropertiesPage() {
           <div>
             <p className="eyebrow">Sandpiper Capital LLC · Acquisition Pipeline</p>
             <h1 className="page-title">Pipeline</h1>
-            <p className="page-sub">Active deals by stage, with specs, basis and returns from each deal&apos;s latest model.</p>
+            <p className="page-sub">Active deals by stage, with specs, basis and returns from each deal&apos;s latest model. <span className="italic text-slate-400">Gray italic</span> = Napkin Math estimate, until a model syncs.</p>
           </div>
           <div className="flex flex-wrap items-center justify-end gap-2">
             {importResult && <span className="text-[11px] text-slate-500 dark:text-slate-400 mr-1 max-w-xs">{importResult}</span>}
@@ -328,10 +343,10 @@ export default function PropertiesPage() {
                           <Td align="right">{fmtPct0(d.occupancy || 0)}</Td>
                           <Td align="right">{fmtMoney(d.asking_price || 0)}</Td>
                           <Td align="right">{fmtMoney2(d.plf)}</Td>
-                          <Td align="right">{fmtPct1(d.irr ?? 0)}</Td>
-                          <Td align="right">{fmtMult(d.em)}</Td>
-                          <Td align="right">{fmtMoney(d.all_in_basis ?? 0)}</Td>
-                          <Td align="right">{fmtMoney(d.equity_required || 0)}</Td>
+                          <Td align="right" est={d.est.irr}>{fmtPct1(d.irr ?? 0)}</Td>
+                          <Td align="right" est={d.est.em}>{fmtMult(d.em)}</Td>
+                          <Td align="right" est={d.est.basis}>{fmtMoney(d.all_in_basis ?? 0)}</Td>
+                          <Td align="right" est={d.est.equity}>{fmtMoney(d.equity_required || 0)}</Td>
                         </tr>
                       );
                     }
@@ -396,7 +411,7 @@ export default function PropertiesPage() {
   );
 }
 
-type EnrichedDeal = Deal & { far: number; plf: number };
+type EnrichedDeal = Deal & { far: number; plf: number; est: { irr: boolean; em: boolean; basis: boolean; equity: boolean } };
 
 // Cluster subtotal row — weighted averages for ratio columns, sums for absolute
 // columns. Weights: SF-weighted for occupancy; land-SF-weighted for FAR / $ PLF;
@@ -452,8 +467,9 @@ function Th({ children, align = 'right' }: { children: React.ReactNode; align?: 
   );
 }
 
-function Td({ children, align = 'right', font, bold, muted, mono }: {
+function Td({ children, align = 'right', font, bold, muted, mono, est }: {
   children: React.ReactNode;
+  est?: boolean;          // a Napkin Math estimate, not from the deal's model
   align?: 'left' | 'right';
   font?: 'sans' | 'mono';
   bold?: boolean;
@@ -464,12 +480,14 @@ function Td({ children, align = 'right', font, bold, muted, mono }: {
     ? '!text-slate-900 dark:!text-slate-100 font-semibold'
     : muted
       ? '!text-slate-400 dark:!text-slate-500'
-      : '';
+      : est
+        ? '!text-slate-400 italic'
+        : '';
   const useMono = mono || font !== 'sans';
   const alignClass = useMono && align === 'right' ? 'num' : align === 'left' ? 'text-left' : 'text-right';
   const fontClass = useMono ? 'font-mono tabular-nums' : '';
   return (
-    <td className={`whitespace-nowrap ${alignClass} ${fontClass} ${textClass}`}>
+    <td className={`whitespace-nowrap ${alignClass} ${fontClass} ${textClass}`} title={est ? 'Napkin Math estimate (no model yet)' : undefined}>
       {children}
     </td>
   );
