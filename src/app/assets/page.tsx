@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Deal, fmt, fmtNum } from '@/lib/utils';
+import Link from 'next/link';
+import { Deal, fmt, fmtNum, shortDate } from '@/lib/utils';
+import { PersonalProperty } from '@/lib/personal';
 
 export default function AssetsPage() {
   const [deals, setDeals] = useState<Deal[]>([]);
@@ -60,6 +62,58 @@ export default function AssetsPage() {
           <AssetCard key={d.id} deal={d} underContract />
         ))}
         {underContract.length === 0 && <p className="text-xs italic text-slate-400">No deals under contract.</p>}
+      </div>
+
+      <PersonalSection />
+    </div>
+  );
+}
+
+type PersonalSummary = PersonalProperty & {
+  month: string;
+  checkin: { rent_received: number; mortgage_paid: number; completed_at: string | null } | null;
+  utilitiesOwed: number;
+  nextReminder: { name: string; due_date: string } | null;
+};
+
+// Ben's own properties (Clayton, Emerson): listed here for one login, but kept apart from the
+// Sandpiper figures above and everywhere else.
+function PersonalSection() {
+  const [props, setProps] = useState<PersonalSummary[] | null>(null);
+  useEffect(() => { fetch('/api/personal').then(r => r.json()).then(setProps).catch(() => setProps([])); }, []);
+  if (!props || props.length === 0) return null;
+  return (
+    <div className="mt-10 border-t border-dashed border-slate-300 pt-6">
+      <h2 className="section-label mb-1">Personal <span className="count">{props.length}</span></h2>
+      <p className="mb-3 text-[11px] text-slate-400">Private. Not part of Sandpiper Capital: excluded from the totals above, the Dashboard, exports, search and share links.</p>
+      <div className="grid gap-3 md:grid-cols-2">
+        {props.map(p => {
+          const c = p.checkin;
+          const step = (done: boolean | undefined, label: string) => (
+            <span className={`pill ${done ? 'pill-green' : 'pill-slate'}`}>{done ? '✓ ' : ''}{label}</span>
+          );
+          return (
+            <Link key={p.slug} href={`/assets/personal/${p.slug}`} className="card block px-4 py-3.5 transition-colors hover:border-slate-300">
+              <div className="flex items-baseline justify-between gap-2">
+                <p className="text-sm font-semibold text-slate-900">{p.name}</p>
+                <p className="text-[11px] text-slate-400">{p.entity}</p>
+              </div>
+              <p className="text-xs text-slate-500">{p.address}</p>
+              <div className="mt-2 grid grid-cols-3 gap-2 font-mono text-xs tabular-nums">
+                <div><p className="stat-label">Value</p>{fmt(p.est_value)}</div>
+                <div><p className="stat-label">Loan</p>{fmt(p.loan_balance)}</div>
+                <div><p className="stat-label">Rent</p>{fmt(p.tenant_rent)}/mo</div>
+              </div>
+              <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
+                {step(!!c?.rent_received, 'Rent')}
+                {step(!!c?.mortgage_paid, 'Mortgage')}
+                {step(!!c?.completed_at, 'Month done')}
+                {p.utilitiesOwed > 0 && <span className="pill pill-amber">Utilities owed {fmt(p.utilitiesOwed)}</span>}
+              </div>
+              {p.nextReminder && <p className="mt-2 text-[11px] text-slate-500">Next: {p.nextReminder.name} · {shortDate(p.nextReminder.due_date)}</p>}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

@@ -428,6 +428,89 @@ async function initSchema(db: Client) {
       created_at TEXT DEFAULT (datetime('now'))
     );
     CREATE INDEX IF NOT EXISTS ix_auth_failures ON auth_failures(created_at);
+
+    -- Personal properties (Clayton, Emerson): Ben's own holdings, moved here from the old
+    -- property-accounting app. Kept in their own tables, outside every Sandpiper total,
+    -- export, search and share link. Ids are text (carried over from the old app).
+    CREATE TABLE IF NOT EXISTS personal_properties (
+      id TEXT PRIMARY KEY,
+      slug TEXT UNIQUE NOT NULL,
+      name TEXT NOT NULL,
+      address TEXT,
+      entity TEXT,
+      est_value REAL DEFAULT 0,
+      loan_balance REAL DEFAULT 0,
+      loan_servicer TEXT,
+      loan_servicer_url TEXT,
+      loan_number TEXT,
+      loan_rate REAL,
+      loan_payment REAL DEFAULT 0,
+      loan_matures TEXT,
+      bank_name TEXT,
+      bank_last_four TEXT,
+      tenant_name TEXT,
+      tenant_rent REAL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS personal_utility_bills (
+      id TEXT PRIMARY KEY,
+      property_id TEXT NOT NULL,
+      month TEXT NOT NULL,                  -- YYYY-MM
+      utility_type TEXT NOT NULL,           -- water | trash | stormwater
+      amount_paid REAL,
+      date_paid TEXT,
+      amount_recharged REAL,
+      date_recharged TEXT,
+      recharge_method TEXT,
+      notes TEXT,
+      UNIQUE(property_id, month, utility_type)
+    );
+    CREATE TABLE IF NOT EXISTS personal_checkins (
+      id TEXT PRIMARY KEY,
+      property_id TEXT NOT NULL,
+      month TEXT NOT NULL,                  -- YYYY-MM
+      rent_received INTEGER DEFAULT 0,
+      rent_received_date TEXT,
+      rent_amount REAL,
+      mortgage_paid INTEGER DEFAULT 0,
+      mortgage_paid_date TEXT,
+      notes TEXT,
+      completed_at TEXT,
+      UNIQUE(property_id, month)
+    );
+    CREATE TABLE IF NOT EXISTS personal_reminders (
+      id TEXT PRIMARY KEY,
+      property_id TEXT NOT NULL,
+      name TEXT NOT NULL,
+      due_date TEXT NOT NULL,
+      category TEXT DEFAULT 'Other',
+      amount REAL,
+      recurring INTEGER DEFAULT 0,
+      recur_months INTEGER,
+      notes TEXT,
+      dismissed INTEGER DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS personal_transactions (
+      id TEXT PRIMARY KEY,
+      property_id TEXT NOT NULL,
+      date TEXT NOT NULL,
+      description TEXT NOT NULL,
+      category TEXT NOT NULL,
+      type TEXT NOT NULL,                   -- Income | Expense
+      amount REAL NOT NULL,
+      source TEXT,                          -- checkin | utility:<month>:<type> | note-payment | NULL (imported)
+      notes TEXT
+    );
+    CREATE INDEX IF NOT EXISTS ix_personal_tx ON personal_transactions(property_id, date);
+    -- Payments on the note Dan owes on Emerson (old app: dan_payments).
+    CREATE TABLE IF NOT EXISTS personal_note_payments (
+      id TEXT PRIMARY KEY,
+      date TEXT NOT NULL,
+      amount REAL NOT NULL,
+      principal REAL NOT NULL,
+      interest REAL NOT NULL,
+      balance_after REAL NOT NULL,
+      created_at TEXT DEFAULT ''
+    );
   `);
 
   // Migrate deals: add missing columns on existing DBs
