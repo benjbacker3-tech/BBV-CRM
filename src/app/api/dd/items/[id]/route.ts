@@ -20,8 +20,10 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const v = body[k];
     return typeof v === 'string' && k !== 'status' ? (v.trim() || null) : v;
   });
+  // A due date set by hand is kept when the contract dates change (see lib/contract-server).
+  const manual = 'due_date' in body ? ', due_auto = 0' : '';
   await run(
-    `UPDATE dd_items SET ${keys.map(k => `${k} = ?`).join(', ')}, updated_at = datetime('now') WHERE id = ?`,
+    `UPDATE dd_items SET ${keys.map(k => `${k} = ?`).join(', ')}${manual}, updated_at = datetime('now') WHERE id = ?`,
     [...values, params.id],
   );
   if (body.status && body.status !== before.status) {

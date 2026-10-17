@@ -91,7 +91,7 @@ export default function DealDetailPanel({ deal, onClose, onUpdate, onDelete, ini
         {tab === 'Overview' && <OverviewTab deal={deal} onUpdate={onUpdate} />}
         {tab === 'Documents' && <DocumentsTab deal={deal} onUpdate={onUpdate} />}
         {tab === 'Contacts' && <ContactsTab dealId={deal.id} />}
-        {tab === 'Diligence / CM' && <DiligenceCmTab deal={deal} />}
+        {tab === 'Diligence / CM' && <DiligenceCmTab deal={deal} onUpdate={onUpdate} />}
         {tab === 'LOI' && <LOITab deal={deal} />}
         {tab === 'Napkin Math' && <NapkinMathTab deal={deal} onUpdate={onUpdate} />}
       </div>

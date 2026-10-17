@@ -124,6 +124,10 @@ export interface Deal {
   lat?: number | null;              // map pin
   lng?: number | null;
   geo?: 'census' | 'osm' | 'manual' | 'none' | null;   // osm = approximate
+  psa_effective?: string | null;    // PSA effective date (lib/contract-terms.ts)
+  em_days?: number | null;
+  em_business?: number | null;
+  deposit_2?: number | null;
   created_at: string;
 }
 

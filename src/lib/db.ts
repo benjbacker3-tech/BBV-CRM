@@ -599,6 +599,10 @@ async function initSchema(db: Client) {
     { name: 'lat', def: 'REAL' },                 // map pin (Map tab)
     { name: 'lng', def: 'REAL' },
     { name: 'geo', def: 'TEXT' },                 // 'census' or 'osm' (looked up; osm is approximate), 'manual' (placed by hand) or 'none' (not found)
+    { name: 'psa_effective', def: 'TEXT' },       // PSA effective date: anchors the contract timeline
+    { name: 'em_days', def: 'INTEGER' },          // earnest money due this many days after effective
+    { name: 'em_business', def: 'INTEGER' },      // ... counted in business days (1) or calendar days (0)
+    { name: 'deposit_2', def: 'REAL' },           // additional deposit, due when DD expires
   ];
   for (const col of dealColsToAdd) {
     if (!dealColNames.includes(col.name)) {
@@ -613,6 +617,9 @@ async function initSchema(db: Client) {
   // dd_items.list: diligence vs construction checklist.
   const ddCols = (await db.execute('PRAGMA table_info(dd_items)')).rows.map(r => String(r.name));
   if (!ddCols.includes('list')) await db.execute("ALTER TABLE dd_items ADD COLUMN list TEXT NOT NULL DEFAULT 'dd'");
+  // dd_items.due_auto: 1 = due date set from the contract timeline (lib/contract-terms.ts), so it
+  // moves when the contract dates do; a date set by hand is 0 and never overwritten.
+  if (!ddCols.includes('due_auto')) await db.execute('ALTER TABLE dd_items ADD COLUMN due_auto INTEGER DEFAULT 0');
 
   // One-time normalization: old seed data stored YoC as percentages (8.2 = 8.2%).
   // New data stores as decimals (0.082). Any value > 1 is legacy percentage form.

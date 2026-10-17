@@ -3,6 +3,7 @@ import { get, run } from '@/lib/db';
 import { logActivity } from '@/lib/activity';
 import { graphConfigured } from '@/lib/graph';
 import { organizeDeal } from '@/lib/cleanup';
+import { CONTRACT_FIELDS, applyContractDates } from '@/lib/contract-server';
 
 export const maxDuration = 60;
 
@@ -23,6 +24,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const setClause = keys.map(k => `${k} = ?`).join(', ');
   const values = keys.map(k => body[k]);
   await run(`UPDATE deals SET ${setClause} WHERE id = ?`, [...values, params.id]);
+
+  // Contract terms changed: move the DD expiry, closing date and checklist due dates with them.
+  if (CONTRACT_FIELDS.some(k => k in body)) await applyContractDates(Number(params.id));
 
   const deal = await get('SELECT * FROM deals WHERE id = ?', [params.id]);
 

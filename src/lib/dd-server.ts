@@ -1,4 +1,5 @@
 import { all, batch } from './db';
+import { applyContractDates } from './contract-server';
 import { DD_TEMPLATE, CM_TEMPLATE, DdItem, DdCost, LEGACY_CATEGORY_KEY, ChecklistList, TemplateItem } from './dd-template';
 
 const TEMPLATES: Record<ChecklistList, TemplateItem[]> = { dd: DD_TEMPLATE, cm: CM_TEMPLATE };
@@ -20,6 +21,8 @@ export async function ensureChecklist(dealIds: number[], list: ChecklistList = '
     sql: 'INSERT OR IGNORE INTO dd_items (deal_id, list, item_key, section, grp, label, sort) VALUES (?, ?, ?, ?, ?, ?, ?)',
     args: [t.dealId, list, t.key, t.section, t.grp ?? null, t.label, t.sort],
   })));
+  // New diligence lines get their due dates from the deal's contract dates, if it has them.
+  if (list === 'dd') for (const id of Array.from(new Set(missing.map(t => t.dealId)))) await applyContractDates(id);
 }
 
 export async function checklistItems(dealIds: number[], list: ChecklistList = 'dd'): Promise<DdItem[]> {
