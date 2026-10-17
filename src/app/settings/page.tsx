@@ -156,6 +156,42 @@ export default function SettingsPage() {
 OPENPHONE_NUMBER_ID=PNxxxxxx`}
         </pre>
       </div>
+
+      <Backups />
+    </div>
+  );
+}
+
+type Backup = { file: string; webUrl: string; tables: number; rows: number; bytes: number; pruned: number; at: string };
+
+// Nightly database backup to OneDrive (Sandpiper/Backups/CRM), with a manual "Back up now".
+function Backups() {
+  const [last, setLast] = useState<Backup | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+  useEffect(() => { fetch('/api/backup').then(r => r.json()).then(d => setLast(d.last)).catch(() => {}); }, []);
+  const now = async () => {
+    setBusy(true);
+    setErr(null);
+    const r = await fetch('/api/backup', { method: 'POST' }).then(x => x.json()).catch(() => ({ error: 'Network error' }));
+    if (r.error) setErr(r.error); else setLast(r);
+    setBusy(false);
+  };
+  return (
+    <div className="card card-body mt-4">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <h3 className="section-label mb-1">Backups</h3>
+          <p className="text-xs text-slate-500">Every night at 3am the whole database is saved to OneDrive (Sandpiper / Backups / CRM). The last 30 days are kept, plus one per month for a year.</p>
+        </div>
+        <button onClick={now} disabled={busy} className="btn-secondary shrink-0">{busy ? 'Backing up…' : 'Back up now'}</button>
+      </div>
+      <p className="mt-2 text-xs text-slate-600">
+        {last
+          ? <>Last backup <b>{new Date(last.at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</b>: {last.rows.toLocaleString()} records in {last.tables} tables, {(last.bytes / 1024).toFixed(0)} KB · <a href={last.webUrl} target="_blank" rel="noopener noreferrer" className="text-navy underline">{last.file}</a></>
+          : 'No backup yet.'}
+      </p>
+      {err && <p className="mt-1 text-xs text-red-600">{err}</p>}
     </div>
   );
 }
