@@ -258,6 +258,22 @@ export async function messagesWithAttachments(since: string, nextLink?: string):
   return { messages: page.value, nextLink: page['@odata.nextLink'] };
 }
 
+// Every message received at or after `since` (with or without attachments), oldest first.
+// Used by the broker-lead scan (lib/leads.ts). Pass the returned nextLink back in to continue.
+export async function messagesSince(since: string, nextLink?: string): Promise<{ messages: (MailMessage & { hasAttachments: boolean })[]; nextLink?: string }> {
+  const url = nextLink ?? `${mailbox()}/messages?$filter=${encodeURIComponent(`receivedDateTime ge ${since}`)}&$orderby=receivedDateTime asc&$select=${MSG_FIELDS},hasAttachments&$top=50`;
+  const page = await graph<{ value: (MailMessage & { hasAttachments: boolean })[]; '@odata.nextLink'?: string }>(url, { headers: IMMUTABLE });
+  return { messages: page.value, nextLink: page['@odata.nextLink'] };
+}
+
+// A message's body as plain text (Graph converts HTML), capped at `max` characters.
+export async function messageText(messageId: string, max = 20_000): Promise<string> {
+  const m = await graph<{ body?: { content?: string } }>(`${mailbox()}/messages/${encodeURIComponent(messageId)}?$select=body`, {
+    headers: { ...IMMUTABLE, Prefer: `${IMMUTABLE.Prefer}, outlook.body-content-type="text"` },
+  });
+  return (m.body?.content || '').slice(0, max);
+}
+
 export async function messageAttachments(messageId: string): Promise<MailAttachment[]> {
   const res = await graph<{ value: MailAttachment[] }>(`${mailbox()}/messages/${encodeURIComponent(messageId)}/attachments?$select=id,name,contentType,size,isInline`, { headers: IMMUTABLE });
   return res.value;

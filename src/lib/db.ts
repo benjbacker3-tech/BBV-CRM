@@ -531,6 +531,38 @@ async function initSchema(db: Client) {
       created_at TEXT DEFAULT (datetime('now'))
     );
     CREATE INDEX IF NOT EXISTS ix_asset_items_deal ON asset_items(deal_id, kind);
+
+    -- Broker leads: offering emails found in the mailbox (lib/leads.ts), parsed for address,
+    -- price and size, waiting for Ben to add them to the Pipeline or dismiss them. One row per
+    -- listing; a repeat blast of the same listing bumps times_seen instead of adding a row.
+    CREATE TABLE IF NOT EXISTS leads (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      message_id TEXT UNIQUE NOT NULL,
+      conversation_id TEXT,
+      received_at TEXT NOT NULL,
+      sender_name TEXT,
+      sender_email TEXT,
+      firm TEXT,
+      subject TEXT,
+      preview TEXT,
+      web_link TEXT,
+      attachments TEXT,                     -- JSON array of attachment names
+      why TEXT,                             -- what made it a lead (subject / attachment)
+      address TEXT,
+      city TEXT,
+      state TEXT,
+      price REAL,
+      acres REAL,
+      sf REAL,
+      cap_rate REAL,
+      status TEXT DEFAULT 'new' CHECK(status IN ('new','kept','dismissed')),
+      deal_id INTEGER,                      -- the Tracking deal created from it
+      match_deal_id INTEGER,                -- an existing deal at the same address
+      times_seen INTEGER DEFAULT 1,
+      last_seen_at TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS ix_leads_status ON leads(status, received_at);
   `);
 
   // Migrate deals: add missing columns on existing DBs
