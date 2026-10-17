@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { Deal, fmt, fmtNum, daysUntil, ddPill, shortDate } from '@/lib/utils';
 import { DdItem, OWNERSHIP_SECTION } from '@/lib/dd-template';
 import DealDetailPanel, { Tab } from '@/components/DealDetailPanel';
+import Link from 'next/link';
+import { AssetItem, TONE_PILL, dateStatus } from '@/lib/asset-bulletin';
 
 // SPC's default fee stack when SPC is the sponsor (source: CentrePoint term sheet).
 // A deal where SPC isn't a sponsor (co-invest, passive LP) doesn't earn these.
@@ -128,6 +130,8 @@ export default function Dashboard() {
         <p className="mt-2 text-[10px] leading-relaxed text-slate-400">
           SPC Fees = acquisition + construction + leasing. * from the deal&apos;s synced model; others estimated (1.35% acq · 4% of capex at 15% of price · 1% of rent at price × YoC). Passive co-invests earn none.
         </p>
+
+        <AssetDates />
       </div>
 
       {panel && (
@@ -280,6 +284,40 @@ function LoadingSkeleton() {
         {[...Array(4)].map((_, i) => <div key={i} className="stat h-20 animate-pulse" />)}
       </div>
       <div className="card h-64 animate-pulse" />
+    </div>
+  );
+}
+
+type DueItem = AssetItem & { deal_name: string; deal_address: string | null };
+
+// Owned-asset bulletin dates that need attention (overdue or inside their lead window), with the
+// next few after them so the card is never empty once dates exist.
+function AssetDates() {
+  const [data, setData] = useState<{ upcoming: DueItem[]; next: DueItem[] } | null>(null);
+  useEffect(() => { fetch('/api/assets/items?upcoming=1').then(r => r.json()).then(setData).catch(() => {}); }, []);
+  if (!data || (data.upcoming.length === 0 && data.next.length === 0)) return null;
+  const shown = data.upcoming.length ? data.upcoming : data.next.slice(0, 3);
+  return (
+    <div className="card mt-6">
+      <div className="card-header">
+        <p className="card-title">Owned assets · {data.upcoming.length ? 'coming up' : 'next dates'}</p>
+        {data.upcoming.length > 0 && <span className="count">{data.upcoming.length}</span>}
+      </div>
+      <ul className="divide-y divide-slate-100">
+        {shown.map(x => {
+          const s = dateStatus(x);
+          return (
+            <li key={x.id}>
+              <Link href={`/assets/${x.deal_id}`} className="flex items-center gap-3 px-4 py-2.5 text-[13px] hover:bg-slate-50">
+                <span className={`pill ${TONE_PILL[s.tone]} w-[72px] shrink-0 justify-center`}>{s.label}</span>
+                <span className="font-medium text-slate-900">{x.title}</span>
+                <span className="text-slate-500">· {x.deal_address || x.deal_name}</span>
+                <span className="ml-auto font-mono text-xs text-slate-500">{shortDate(x.due_date)}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

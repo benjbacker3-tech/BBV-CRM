@@ -4,9 +4,12 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Deal, fmt, fmtNum, shortDate } from '@/lib/utils';
 import { PersonalProperty } from '@/lib/personal';
+import { AssetItem, TONE_PILL, dateStatus } from '@/lib/asset-bulletin';
 
 export default function AssetsPage() {
   const [deals, setDeals] = useState<Deal[]>([]);
+  const [dates, setDates] = useState<UpcomingDate[]>([]);
+  useEffect(() => { fetch('/api/assets/items?upcoming=1').then(r => r.json()).then(d => setDates(d.next || [])).catch(() => {}); }, []);
 
   useEffect(() => {
     fetch('/api/deals').then(r => r.json()).then((all: Deal[]) => {
@@ -50,7 +53,7 @@ export default function AssetsPage() {
       <h2 className="section-label mb-2">Owned Assets <span className="count">{closed.length}</span></h2>
       <div className="space-y-3 mb-6">
         {closed.map(d => (
-          <AssetCard key={d.id} deal={d} />
+          <AssetCard key={d.id} deal={d} dates={dates.filter(x => x.deal_id === d.id)} />
         ))}
         {closed.length === 0 && <p className="text-xs italic text-slate-400">No closed assets yet.</p>}
       </div>
@@ -119,12 +122,17 @@ function PersonalSection() {
   );
 }
 
-function AssetCard({ deal: d, underContract }: { deal: Deal; underContract?: boolean }) {
+type UpcomingDate = AssetItem & { deal_name: string };
+
+function AssetCard({ deal: d, underContract, dates = [] }: { deal: Deal; underContract?: boolean; dates?: UpcomingDate[] }) {
   const ownership = d.ownership_pct ?? 100;
   const proRataPrice = d.asking_price * (ownership / 100);
+  const Wrap = ({ children }: { children: React.ReactNode }) => underContract
+    ? <div className="card card-body">{children}</div>
+    : <Link href={`/assets/${d.id}`} className="card card-body block transition-colors hover:border-slate-300">{children}</Link>;
 
   return (
-    <div className="card card-body">
+    <Wrap>
       <div className="flex items-center justify-between gap-3 mb-3">
         <div className="flex items-baseline gap-2">
           <h3 className="text-[13px] font-semibold text-slate-900 dark:text-slate-100">{d.address}</h3>
@@ -149,7 +157,19 @@ function AssetCard({ deal: d, underContract }: { deal: Deal; underContract?: boo
         )}
         <Stat label={underContract ? 'DD Expiry' : 'Close Date'} value={(underContract ? d.dd_expiry : d.close_date) || '—'} />
       </div>
-    </div>
+      {!underContract && (
+        <div className="mt-3 flex flex-wrap items-center gap-1.5 border-t border-slate-100 pt-3 text-[11px]">
+          <span className="font-semibold uppercase tracking-wider text-slate-400">Bulletin</span>
+          {dates.length === 0
+            ? <span className="text-slate-400">No upcoming dates. Open to add lease, insurance and tax dates →</span>
+            : dates.slice(0, 3).map(x => {
+              const s = dateStatus(x);
+              return <span key={x.id} className={`pill ${TONE_PILL[s.tone]}`}>{x.title} · {s.label}</span>;
+            })}
+          {dates.length > 3 && <span className="text-slate-400">+{dates.length - 3} more</span>}
+        </div>
+      )}
+    </Wrap>
   );
 }
 

@@ -511,6 +511,26 @@ async function initSchema(db: Client) {
       balance_after REAL NOT NULL,
       created_at TEXT DEFAULT ''
     );
+
+    -- Asset bulletin for Sandpiper's closed deals: key dates (lease, insurance, tax, loan
+    -- renewals) and running notes. The property manager handles day-to-day items; this is
+    -- what Ben needs to see coming. A recurring date rolls forward when marked done.
+    CREATE TABLE IF NOT EXISTS asset_items (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      deal_id INTEGER NOT NULL,
+      kind TEXT NOT NULL CHECK(kind IN ('date','note')),
+      category TEXT DEFAULT 'Other',        -- Lease, Insurance, Tax, Loan, Entity, Property, Other
+      title TEXT NOT NULL DEFAULT '',
+      body TEXT,                            -- note text, or details for a date
+      due_date TEXT,                        -- YYYY-MM-DD; null = date not set yet
+      recur_months INTEGER,                 -- repeats every N months; null = one-time
+      lead_days INTEGER DEFAULT 60,         -- start flagging this many days ahead
+      last_done TEXT,                       -- when a recurring date was last marked done
+      done_at TEXT,                         -- one-time date completed (hidden from upcoming)
+      pinned INTEGER DEFAULT 0,             -- notes: keep at the top
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS ix_asset_items_deal ON asset_items(deal_id, kind);
   `);
 
   // Migrate deals: add missing columns on existing DBs
