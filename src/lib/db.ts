@@ -90,6 +90,9 @@ async function initSchema(db: Client) {
       model_modified TEXT,
       model_synced_at TEXT,
       napkin TEXT,                          -- saved Napkin Math (JSON, lib/napkin.ts)
+      lat REAL,                             -- map pin (Map tab)
+      lng REAL,
+      geo TEXT,                             -- 'census' or 'osm' (looked up; osm is approximate), 'manual' (placed by hand) or 'none' (not found)
       created_at TEXT DEFAULT (datetime('now'))
     );
 
@@ -458,6 +461,9 @@ async function initSchema(db: Client) {
     { name: 'model_modified', def: 'TEXT' },
     { name: 'model_synced_at', def: 'TEXT' },
     { name: 'napkin', def: 'TEXT' },              // saved Napkin Math (JSON, lib/napkin.ts)
+    { name: 'lat', def: 'REAL' },                 // map pin (Map tab)
+    { name: 'lng', def: 'REAL' },
+    { name: 'geo', def: 'TEXT' },                 // 'census' or 'osm' (looked up; osm is approximate), 'manual' (placed by hand) or 'none' (not found)
   ];
   for (const col of dealColsToAdd) {
     if (!dealColNames.includes(col.name)) {

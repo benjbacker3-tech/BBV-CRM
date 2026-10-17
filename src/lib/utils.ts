@@ -121,6 +121,9 @@ export interface Deal {
   model_modified: string | null;
   model_synced_at: string | null;
   napkin?: string | null;           // saved Napkin Math (JSON, lib/napkin.ts)
+  lat?: number | null;              // map pin
+  lng?: number | null;
+  geo?: 'census' | 'osm' | 'manual' | 'none' | null;   // osm = approximate
   created_at: string;
 }
 
@@ -183,8 +186,25 @@ export interface ActivityEntry {
   created_at: string;
 }
 
-// Opens the deal's address in Google Earth on the web (3D view, history and measuring there).
-export function googleEarthUrl(d: Pick<Deal, 'address' | 'name' | 'city' | 'state'>): string | null {
+// Opens the deal in Google Earth on the web (3D view, history and measuring there): at its map
+// pin when it has one, otherwise by searching its address.
+export function googleEarthUrl(d: Pick<Deal, 'address' | 'name' | 'city' | 'state' | 'lat' | 'lng'>): string | null {
+  if (d.lat != null && d.lng != null) return `https://earth.google.com/web/@${d.lat},${d.lng},0a,600d,35y,0h,45t,0r`;
   const place = [d.address || d.name, d.city, d.state].filter(Boolean).join(', ');
   return place ? `https://earth.google.com/web/search/${encodeURIComponent(place)}` : null;
 }
+
+// Cities → US state code (fallback when `state` isn't stored on the deal; also used for map lookups).
+// Populated from the addresses we already have in the pipeline; adding a new
+// city just falls through to no-state (—).
+export const CITY_STATE: Record<string, string> = {
+  denver: 'CO', 'commerce city': 'CO', englewood: 'CO', 'north las vegas': 'NV',
+  brighton: 'CO', henderson: 'CO', kent: 'WA', tacoma: 'WA', puyallup: 'WA',
+  seattle: 'WA', meridian: 'ID', 'las vegas': 'NV', phoenix: 'AZ', madison: 'WI',
+  houston: 'TX',
+};
+export const inferState = (d: { state?: string | null; city?: string; market?: string }): string => {
+  if (d.state) return d.state;
+  const key = (d.city || '').trim().toLowerCase();
+  return CITY_STATE[key] || '';
+};

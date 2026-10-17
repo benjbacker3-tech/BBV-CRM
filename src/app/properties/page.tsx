@@ -3,6 +3,7 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import { Deal, Stage, STAGES } from '@/lib/utils';
 import { savedNapkin } from '@/lib/napkin';
+import { inferState } from '@/lib/utils';
 import DealDetailPanel from '@/components/DealDetailPanel';
 
 const SQFT_PER_ACRE = 43560;
@@ -19,20 +20,6 @@ const REPORT_SECTIONS: { label: string; stages: Stage[]; subtotal: boolean; clus
   { label: 'Tracking',        stages: ['Tracking'],        subtotal: false },
 ];
 
-// Cities → US state code (fallback when `state` isn't stored on the deal itself).
-// Populated from the addresses we already have in the pipeline; adding a new
-// city just falls through to no-state (—).
-const CITY_STATE: Record<string, string> = {
-  denver: 'CO', 'commerce city': 'CO', englewood: 'CO', 'north las vegas': 'NV',
-  brighton: 'CO', henderson: 'CO', kent: 'WA', tacoma: 'WA', puyallup: 'WA',
-  seattle: 'WA', meridian: 'ID', 'las vegas': 'NV', phoenix: 'AZ', madison: 'WI',
-  houston: 'TX',
-};
-const inferState = (d: { state?: string | null; city?: string; market?: string }): string => {
-  if (d.state) return d.state;
-  const key = (d.city || '').trim().toLowerCase();
-  return CITY_STATE[key] || '';
-};
 
 const nf0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
 const nf2 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
