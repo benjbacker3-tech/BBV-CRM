@@ -7,7 +7,6 @@ Institutional-quality CRM for industrial outdoor storage (IOS) real estate inves
 - **Pipeline Kanban** — 6-stage deal flow (Tracking → LOI Submitted → PSA Negotiation → Under Contract → Closed → Dead) with drag-and-drop, DD countdown chips, and pinned deals
 - **Deal Detail Panel** — Overview, Contacts, Diligence tracker (7 categories), LOI generator with PDF export, Napkin Math calculator (YoC, cash-on-cash)
 - **Contacts CRM** — Broker/owner tracking with warmth ratings, tasks, contact log, sortable table
-- **OpenPhone Integration** — Auto-syncs calls and SMS into the contact log every 15 minutes
 - **Global Search** — Cmd+K / Ctrl+K command bar across deals, contacts, and tasks
 - **Activity Feed** — Live reverse-chronological feed of all actions, polled every 30s
 - **Morning Email Digest** — Daily 7 AM briefing via Resend (overdue tasks, DD expirations, stale deals)
@@ -40,8 +39,6 @@ Open http://localhost:3000.
 Create `.env.local`:
 
 ```
-OPENPHONE_API_KEY=your_key_here
-OPENPHONE_NUMBER_ID=PNxxxxxxx
 RESEND_API_KEY=re_xxxxxxx
 ```
 

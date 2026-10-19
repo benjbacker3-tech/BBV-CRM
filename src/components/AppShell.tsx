@@ -6,7 +6,6 @@ import Sidebar from './Sidebar';
 import TopBar from './TopBar';
 import CommandBar from './CommandBar';
 import QuickAddButton from './QuickAddButton';
-import OpenPhoneSync from './OpenPhoneSync';
 
 const FULLSCREEN_PATHS = new Set<string>(['/login']);
 
@@ -30,7 +29,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </div>
       <CommandBar />
       <QuickAddButton />
-      <OpenPhoneSync />
     </>
   );
 }

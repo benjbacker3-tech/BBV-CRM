@@ -302,22 +302,6 @@ async function initSchema(db: Client) {
       data TEXT
     );
 
-    CREATE TABLE IF NOT EXISTS openphone_sync (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      last_sync_at TEXT,
-      status TEXT CHECK(status IN ('ok','error')) DEFAULT 'ok',
-      error_message TEXT,
-      calls_synced INTEGER DEFAULT 0,
-      messages_synced INTEGER DEFAULT 0
-    );
-
-    CREATE TABLE IF NOT EXISTS openphone_settings (
-      id INTEGER PRIMARY KEY CHECK(id = 1),
-      sync_enabled INTEGER DEFAULT 1,
-      track_personal INTEGER DEFAULT 0,
-      personal_number TEXT DEFAULT '317-750-0007'
-    );
-
     CREATE TABLE IF NOT EXISTS activity_log (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       entity_type TEXT NOT NULL,
@@ -660,12 +644,6 @@ async function initSchema(db: Client) {
   }
   if (!colNames.includes('source')) {
     await db.execute("ALTER TABLE contact_log ADD COLUMN source TEXT DEFAULT 'manual'");
-  }
-
-  // Seed openphone_settings if empty
-  const settingsCount = await db.execute('SELECT COUNT(*) as c FROM openphone_settings');
-  if (Number(settingsCount.rows[0].c) === 0) {
-    await db.execute("INSERT INTO openphone_settings (id, sync_enabled, track_personal, personal_number) VALUES (1, 1, 0, '317-750-0007')");
   }
 
   // Deals are loaded via /api/seed-pipeline from the latest Acq Pipeline xlsx.
