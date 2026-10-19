@@ -1,42 +1,48 @@
 'use client';
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, CalItem, DeepDive, Reading, RundownItem, has, safeHtml, marketRows, rateLevels, splitCalendar, rundownOf, sportOf, list } from '@/lib/rates-brief';
+import { RatesBrief as Brief, TapeRow, DeepDive, FocusItem, Reading, RundownItem, World, has, safeHtml, marketRows, rundownOf, sportOf, list, paras, calendarFrom } from '@/lib/rates-brief';
 import { toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
-import { ChartSvg, datesAhead, dayLabel, shortDay } from './RatesBrief';
+import { ChartSvg, shortDay } from './RatesBrief';
 
-// Two-page Letter printout of the Sandpiper Daily Brief, a morning investor newsletter.
-//   Page 1 · the numbers and the news: headline, rates (table + 10Y chart), markets strip
-//            with a line on each move, The Rundown (5–7 items).
-//   Page 2 · the deep dive (one structural topic), compact economic calendar (last week |
-//            this week, plus further-out dates), freight table, one line of sports.
+// Three-page Letter printout of the Sandpiper Daily Brief (layout of Oct 19, 2026).
+//   Page 1 · the numbers and the news: headline, rates (four cards + 1-year 2Y/5Y/10Y chart),
+//            Fed funds / mortgage line, markets table, The Rundown, freight tiles, sports line.
+//   Page 2 · deep dive (two-column body, table + what to watch), Data in focus (release,
+//            chart, expert reads), calendar (this week | later).
+//   Page 3 · World Desk (lead story, hotspot tracker, central bank watch, real policy rates),
+//            then Investor's Corner.
+// Never printed: `also`, `foot`, `world.src`, the deep dive's `dek`, and the retired rota / spot / news.
+// Every section drops out when its key is missing, so older files (no `world`, no `focus`) still print.
 // The sheets are a fixed size and kept off-screen until printing. Type never shrinks below its
-// set size (MIN_SCALE = 1); a light day scales up to fill the page. A heavy day is trimmed,
-// least useful first:
-//   page 1: shorter chart, then shortest; market notes to 2 lines; rundown notes to 3 lines;
-//           then the 7th rundown item
-//   page 2: freight notes to 2 lines; further-out dates off; freight notes to 1 line;
-//           deep-dive watch list off; its table off
-//   page 3 (Investor's Corner, when there is one): takeaways off, then the pull quote. It scales up
-//           only a little, so a half-page piece reads as a half page.
+// set size (MIN_SCALE = 1); a light day scales up a little to fill the page. A heavy day is
+// trimmed, least useful first:
+//   page 1: shorter chart; market notes to 1 line; rundown notes to 3 lines; freight notes to
+//           2 lines; then the 7th rundown item
+//   page 2: "Later" to 6 rows; expert reads to 2; deep-dive watch list off; its table off;
+//           the focus chart off
+//   page 3: takeaways off; World Desk views off; pull quote off; central banks to 4
 
 const MIN_SCALE = 1;
-const MAX_SCALE = 1.3;
+const MAX_SCALE = 1.2;
 
 // Light-only colors (the printout is always on white paper).
+const NAVY = '#1E3A5F';
 const RED = 'text-[#B42318]', GREEN = 'text-[#067647]', GRAY = 'text-slate-500';
 const rateCls = (x: number | null | undefined) => (x == null || x === 0 ? GRAY : x > 0 ? RED : GREEN);
 const stockCls = (x: number | null | undefined) => (x == null || x === 0 ? GRAY : x > 0 ? GREEN : RED);
 
 const PRINT_CSS = `
-@page { size: letter; margin: 0.4in; }
+@page { size: letter; margin: 0.35in; }
 .rbp-root { position: fixed; left: -10000px; top: 0; visibility: hidden; pointer-events: none; }
-.rbp-sheet { width: 7.7in; height: 10.15in; position: relative; overflow: hidden; background: #fff; color: #0f172a;
-  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-.rbp-sheet + .rbp-sheet { break-before: page; }
-.rbp-body { position: absolute; left: 0; right: 0; top: 0; bottom: 0.26in; overflow: hidden; }
+.rbp-sheet { width: 7.8in; height: 10.28in; position: relative; overflow: hidden; background: #fff; color: #0f172a;
+  font-family: Inter, system-ui, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.rbp-sheet:not(:last-child) { break-after: page; }
+.rbp-body { position: absolute; left: 0; right: 0; top: 0; bottom: 0.22in; overflow: hidden; }
 .rbp-fit { transform-origin: top left; }
 .rbp-root a { color: inherit; text-decoration: none; }
+.rbp-cols { column-count: 2; column-gap: 0.22in; }
+.rbp-cols p { break-inside: avoid-column; margin: 0 0 4px; }
 @media print {
   .rbp-root { position: static; visibility: visible; }
   html, body { background: #fff !important; }
@@ -45,14 +51,14 @@ const PRINT_CSS = `
 
 const P1_MAX = 5;
 const P2_MAX = 5;
-const P3_MAX = 2;
+const P3_MAX = 4;
 
 export default function RatesBriefPrint({ data: B }: { data: Brief }) {
   const [p1Level, setP1Level] = useState(0);
   const [p2Level, setP2Level] = useState(0);
   const [p3Level, setP3Level] = useState(0);
   // Trims only ever step up, so whenever the content or the fonts change, start the fit over.
-  // Bumping `epoch` makes both sheets measure again even when a level was already 0.
+  // Bumping `epoch` makes every sheet measure again even when a level was already 0.
   const [epoch, setEpoch] = useState(0);
   const restart = useCallback(() => { setP1Level(0); setP2Level(0); setP3Level(0); setEpoch(e => e + 1); }, []);
   useEffect(() => { restart(); }, [B, restart]);
@@ -72,7 +78,8 @@ export default function RatesBriefPrint({ data: B }: { data: Brief }) {
   const onOverflow2 = useCallback(() => setP2Level(l => Math.min(l + 1, P2_MAX)), []);
   const onOverflow3 = useCallback(() => setP3Level(l => Math.min(l + 1, P3_MAX)), []);
   const reading = B.reading && B.reading.title ? B.reading : null;
-  const pages = reading ? 3 : 2;
+  const world = B.world && B.world.lead && B.world.lead.title ? B.world : null;
+  const pages = reading || world ? 3 : 2;
   const datelineShort = (B.dateline || '').split('·')[0].trim();
 
   return (
@@ -84,9 +91,9 @@ export default function RatesBriefPrint({ data: B }: { data: Brief }) {
       <Sheet page={2} pages={pages} footer={datelineShort} onOverflow={onOverflow2} deps={[B, p2Level, epoch]}>
         <PageTwo B={B} level={p2Level} />
       </Sheet>
-      {reading && (
-        <Sheet page={3} pages={pages} maxScale={1.08} footer={datelineShort} onOverflow={onOverflow3} deps={[B, p3Level, epoch]}>
-          <PageThree B={B} r={reading} level={p3Level} />
+      {pages === 3 && (
+        <Sheet page={3} pages={pages} maxScale={1.1} footer={datelineShort} onOverflow={onOverflow3} deps={[B, p3Level, epoch]}>
+          <PageThree B={B} w={world} r={reading} level={p3Level} />
         </Sheet>
       )}
     </div>
@@ -133,7 +140,7 @@ function Sheet({ page, pages, maxScale = MAX_SCALE, footer, onOverflow, deps, ch
       <div ref={body} className="rbp-body">
         <div ref={fit} className="rbp-fit">{children}</div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 flex justify-between border-t border-slate-200 pt-1 text-[9px] text-slate-400">
+      <div className="absolute bottom-0 left-0 right-0 flex justify-between border-t border-slate-200 pt-0.5 text-[8px] text-slate-400">
         <span>Sandpiper Capital LLC · Daily Brief{footer ? ` · ${footer}` : ''}</span>
         <span>Page {page} of {pages}</span>
       </div>
@@ -143,32 +150,31 @@ function Sheet({ page, pages, maxScale = MAX_SCALE, footer, onOverflow, deps, ch
 
 function H2({ children, sub }: { children: React.ReactNode; sub?: string }) {
   return (
-    <h2 className="mb-1.5 mt-3 flex items-baseline gap-2 border-b-[1.5px] border-[#1E3A5F]/25 pb-1 text-[11px] font-bold uppercase tracking-[0.12em] text-[#1E3A5F]">
+    <h2 className="mb-1 mt-2.5 flex items-baseline gap-2 border-b border-slate-300 pb-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#1E3A5F]">
       {children}
-      {sub && <span className="text-[9.5px] font-medium normal-case tracking-normal text-slate-500">{sub}</span>}
+      {sub && <span className="text-[8.5px] font-medium normal-case tracking-normal text-slate-500">{sub}</span>}
     </h2>
   );
 }
 
-const LABEL = 'text-[9px] font-semibold uppercase tracking-[0.08em] text-slate-500';
+const LABEL = 'text-[7.5px] font-semibold uppercase tracking-[0.08em] text-slate-500';
+const TXT = 'text-[9.5px] leading-[1.42] text-slate-800';
+const html = (s: string | null | undefined) => ({ __html: safeHtml(s) });
 
 function Masthead({ B }: { B: Brief }) {
   return (
-    <div className="border-b-2 border-[#1E3A5F] pb-2">
-      <div className="flex items-baseline justify-between gap-4">
-        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1E3A5F]">Sandpiper <span className="text-slate-900">Daily Brief</span></p>
-        <p className="text-right text-[10.5px] text-slate-600">{B.dateline}</p>
-      </div>
+    <div className="flex items-baseline justify-between gap-4 border-b-2 border-[#1E3A5F] pb-1">
+      <p className="text-[9.5px] font-bold uppercase tracking-[0.2em] text-[#1E3A5F]">Sandpiper <span className="text-slate-900">Daily Brief</span></p>
+      <p className="text-right text-[9px] text-slate-600">{B.dateline}</p>
     </div>
   );
 }
 
-function Chg({ label, text, cls }: { label: string; text?: string | null; cls: string }) {
-  if (!has(text)) return null;
+function Chg({ label, v, cls }: { label: string; v: string; cls: string }) {
   return (
-    <span className="mr-2.5 whitespace-nowrap">
-      <span className="font-sans text-[9px] font-semibold uppercase text-slate-400">{label} </span>
-      <span className={`font-semibold ${cls}`}>{text}</span>
+    <span className="whitespace-nowrap">
+      <span className="font-sans text-[7.5px] font-semibold uppercase text-slate-400">{label} </span>
+      <span className={`font-semibold ${cls}`}>{v}</span>
     </span>
   );
 }
@@ -176,299 +182,452 @@ function Chg({ label, text, cls }: { label: string; text?: string | null; cls: s
 // ── Page 1 · the numbers and the news ──────────────────────────────────
 
 function PageOne({ B, level }: { B: Brief; level: number }) {
-  const chartH = level === 0 ? 215 : level === 1 ? 185 : 160;
+  const chartH = level === 0 ? 150 : 125;
   const D = useMemo(() => inRange(toPoints(B.series || []), '1y'), [B.series]);
-  const c = useMemo(() => chartModel(D, '1y', 430, chartH, true), [D, chartH]);
-  const markets = marketRows(B);
+  const c = useMemo(() => chartModel(D, '1y', 400, chartH, true), [D, chartH]);
+  const keys = list<Brief['key'][number]>(B.key);
+  const econ = list<NonNullable<Brief['econ']>[number]>(B.econ);
+  const markets = marketRows(B).filter(t => !/^10Y Treasury/i.test(t.n) && !/^Diesel/i.test(t.n));
   const rundown = rundownOf(B).slice(0, level >= 5 ? 6 : 7);
+  const freight = list<Brief['freight'][number]>(B.freight).slice(0, 3);
+  const sport = sportOf(B);
   return (
     <div>
       <Masthead B={B} />
-      <h1 className="mt-2 text-[18px] font-bold leading-snug text-slate-900">{B.headline}</h1>
+      {has(B.headline) && <h1 className="mt-1.5 text-[14.5px] font-bold leading-snug text-slate-900">{B.headline}</h1>}
 
-      {(B.key?.length > 0 || c) && (
+      {(keys.length > 0 || c) && (
         <>
           <H2 sub="basis points · red = rates up">Rates</H2>
-          <div className="grid grid-cols-[1fr_1.3fr] gap-4 items-start">
-            <div>
-              {B.key?.length > 0 && <RatesTable B={B} />}
-              {B.econ && B.econ.length > 0 && (
-                <div className="mt-1.5 space-y-0.5">
-                  {B.econ.map(r => (
-                    <p key={r.n} className="text-[10.5px] leading-snug text-slate-700">
-                      <span className="text-slate-500">{r.n}</span>{' '}
-                      <b className={`font-mono ${r.good == null ? 'text-slate-900' : r.good ? GREEN : RED}`}>{r.v}</b>
-                      {r.d && <span className="text-slate-500"> ({r.d})</span>}
-                    </p>
-                  ))}
+          <div className="grid grid-cols-[1fr_1.15fr] items-start gap-3">
+            <div className="grid grid-cols-2 gap-1.5">
+              {keys.map(k => (
+                <div key={k.n} className="rounded border border-slate-200 px-2 py-1">
+                  <p className={LABEL}>{k.n}</p>
+                  <p className="font-mono text-[14px] font-semibold leading-tight text-slate-900">{k.cur != null ? `${k.cur.toFixed(2)}%` : '—'}</p>
+                  <p className="mt-0.5 flex gap-2 font-mono text-[9px]">
+                    {([['1M', k.d1m], ['6M', k.d6m], ['1Y', k.d1y]] as const).map(([l, v]) => v != null && <Chg key={l} label={l} v={bp(v)} cls={rateCls(v)} />)}
+                  </p>
+                  {has(k.asof) && <p className="text-[7.5px] text-slate-400">{k.asof}</p>}
                 </div>
-              )}
+              ))}
             </div>
             {c && (
               <div>
-                <p className="text-[9.5px] text-slate-500"><b className="text-slate-700">Treasury yields, past year:</b> <span className="font-mono">{c.moves}</span></p>
+                <p className="text-[8.5px] text-slate-500"><b className="text-slate-700">Treasury yields, past year:</b> <span className="font-mono">{c.moves}</span></p>
                 <ChartSvg c={c} fixedHeight={false} print label="2-, 5- and 10-year Treasury yields, past year" />
-                <p className="text-[9px] text-slate-500">Treasury par yields, daily · latest {B.ustDate}</p>
+                {has(B.ustDate) && <p className="text-[7.5px] text-slate-400">Treasury par yields, daily · latest {B.ustDate}</p>}
               </div>
             )}
           </div>
+          {econ.length > 0 && (
+            <p className="mt-1 text-[9.5px] leading-snug text-slate-700">
+              {econ.map((r, i) => (
+                <span key={r.n}>
+                  {i > 0 && <span className="mx-1.5 text-slate-300">·</span>}
+                  <span className="text-slate-500">{r.n}</span>{' '}
+                  <b className={`font-mono ${r.good == null ? 'text-slate-900' : r.good ? GREEN : RED}`}>{r.v}</b>
+                  {r.d && <span className="text-slate-500"> ({r.d})</span>}
+                </span>
+              ))}
+            </p>
+          )}
         </>
       )}
 
       {markets.length > 0 && (
         <>
           <H2 sub="close · day · 1 year">Markets</H2>
-          <div className="grid gap-px overflow-hidden rounded border border-slate-200 bg-slate-200" style={{ gridTemplateColumns: `repeat(${Math.min(markets.length, 5)}, minmax(0, 1fr))` }}>
-            {markets.slice(0, 5).map(t => <MarketCell key={t.n} t={t} clamp={level >= 3} />)}
-          </div>
+          <table className="w-full border-collapse">
+            <tbody>
+              {markets.map(t => <MarketRow key={t.n} t={t} clamp={level >= 2} />)}
+            </tbody>
+          </table>
         </>
       )}
 
       {rundown.length > 0 && (
         <>
           <H2 sub="what matters this morning">The Rundown</H2>
-          <ol className="space-y-[7px]">
-            {rundown.map((t, i) => <RundownRow key={i} t={t} n={i + 1} clamp={level >= 4} />)}
+          <ol className="space-y-[5px]">
+            {rundown.map((t, i) => <RundownRow key={i} t={t} n={i + 1} clamp={level >= 3} />)}
           </ol>
         </>
       )}
-    </div>
-  );
-}
 
-function RundownRow({ t, n, clamp }: { t: RundownItem; n: number; clamp: boolean }) {
-  return (
-    <li className="flex gap-2">
-      <span className="mt-[1px] flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full bg-[#1E3A5F] text-[10px] font-bold text-white">{n}</span>
-      <p className={`min-w-0 text-[11.5px] leading-[1.42] text-slate-700 ${clamp ? 'line-clamp-3' : ''}`}>
-        {t.tag && <span className="mr-1.5 text-[8.5px] font-bold uppercase tracking-[0.08em] text-[#1E3A5F]">{t.tag}</span>}
-        <b className="font-semibold text-slate-900">{t.h}</b>{' '}
-        <span dangerouslySetInnerHTML={{ __html: safeHtml(t.p) }} />
-      </p>
-    </li>
-  );
-}
-
-function MarketCell({ t, clamp }: { t: TapeRow; clamp: boolean }) {
-  const cls = t.rate ? rateCls : stockCls;
-  return (
-    <div className="bg-white px-2 py-1.5">
-      <p className={LABEL}>{t.n}</p>
-      <p className="font-mono text-[13.5px] font-semibold leading-tight text-slate-900">{t.v}</p>
-      <p className="font-mono text-[10px]">
-        <Chg label="Day" text={t.ctext} cls={cls(t.c)} />
-        <Chg label="1Y" text={t.ytext} cls={cls(t.y)} />
-      </p>
-      {t.why && <p className={`mt-0.5 text-[9.5px] leading-snug text-slate-700 ${clamp ? 'line-clamp-2' : ''}`}>{t.why}</p>}
-    </div>
-  );
-}
-
-function RatesTable({ B }: { B: Brief }) {
-  const th = 'px-1.5 py-1 text-right text-[8.5px] font-semibold uppercase tracking-[0.05em] text-slate-500';
-  const td = 'px-1.5 py-[3px] text-right font-mono text-[11px]';
-  return (
-    <table className="w-full border-collapse overflow-hidden rounded border border-slate-200">
-      <thead className="bg-slate-50">
-        <tr>
-          <th className={`${th} !text-left`}>Rate</th><th className={th}>Now</th><th className={th}>1Y ago</th>
-          <th className={`${th} border-l border-slate-200`}>Δ1M</th><th className={th}>Δ6M</th><th className={th}>Δ1Y</th>
-        </tr>
-      </thead>
-      <tbody>
-        {B.key.map(k => {
-          const lv = rateLevels(B, k);
-          return (
-            <tr key={k.n} className="border-t border-slate-100">
-              <td className="px-1.5 py-[3px] text-[11px] font-semibold leading-tight text-slate-900">
-                {k.n.replace(' Treasury', ' UST')}
-                {has(k.asof) && <span className="block text-[8.5px] font-normal text-slate-400">{k.asof}</span>}
-              </td>
-              <td className={`${td} font-bold text-slate-900`}>{k.cur != null ? `${k.cur.toFixed(2)}%` : ''}</td>
-              <td className={`${td} text-slate-500`}>{lv[3] ?? ''}</td>
-              {[k.d1m, k.d6m, k.d1y].map((v, i) => (
-                <td key={'d' + i} className={`${td} font-semibold ${i === 0 ? 'border-l border-slate-200' : ''} ${rateCls(v)}`}>{v != null ? bp(v) : ''}</td>
-              ))}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
-}
-
-// ── Page 2 · deep dive, calendar, freight ──────────────────────────────
-
-function PageTwo({ B, level }: { B: Brief; level: number }) {
-  const cal = splitCalendar(B.cal);
-  const ahead = level >= 2 ? [] : datesAhead(cal.later);
-  const sport = sportOf(B);
-  return (
-    <div>
-      <Masthead B={B} />
-
-      {B.dive && B.dive.title && <DivePrint d={B.dive} watch={level < 4} table={level < 5} />}
-
-      {(cal.last.length > 0 || cal.next.length > 0) && (
-        <>
-          <H2 sub="last week vs expectations · this week">Economic calendar</H2>
-          <div className="grid grid-cols-2 gap-4">
-            <CalPrint title="Last week · released" rows={cal.last} released />
-            <CalPrint title="This week · expected" rows={cal.next} />
-          </div>
-          {ahead.length > 0 && (
-            <p className="mt-1 text-[10px] leading-snug text-slate-700">
-              <b className="text-slate-900">Further out: </b>
-              {ahead.map((g, i) => (
-                <span key={g.d}>{i > 0 && <span className="mx-1 text-slate-300">·</span>}<b className="font-semibold">{shortDay(g.d)}</b> {g.items.map(x => x.e).join('; ')}</span>
-              ))}
-            </p>
-          )}
-        </>
-      )}
-
-      {(B.freight?.length > 0 || has(B.also)) && (
+      {freight.length > 0 && (
         <>
           <H2>Freight &amp; supply chain</H2>
-          {B.freight?.length > 0 && (
-            <table className="w-full border-collapse">
-              <tbody>
-                {B.freight.map(f => (
-                  <tr key={f.n} className="border-b border-slate-100 align-top">
-                    <td className="w-[24%] py-[3px] pr-2 text-[10.5px] font-semibold leading-snug text-slate-900">{f.n}</td>
-                    <td className="py-[3px] pr-2 text-right font-mono text-[11px] font-semibold whitespace-nowrap text-slate-900">{f.v}</td>
-                    <td className="py-[3px] pr-2 text-right font-mono text-[10px] whitespace-nowrap text-slate-600">
-                      {has(f.pc) && <>{f.pc} <span className="font-sans text-[8.5px] text-slate-400">{f.pl}</span></>}
-                      {has(f.y) && <span className="block">{f.y} <span className="font-sans text-[8.5px] text-slate-400">1Y</span></span>}
-                    </td>
-                    <td className="py-[3px] text-[10px] leading-snug text-slate-700"><div className={level >= 3 ? 'line-clamp-1' : level >= 1 ? 'line-clamp-2' : ''}>{f.why}</div></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-          {has(B.also) && (
-            <p className="mt-1 text-[10px] leading-snug text-slate-600">
-              <b className="text-slate-900">Also: </b><span dangerouslySetInnerHTML={{ __html: safeHtml(B.also) }} />
-            </p>
-          )}
+          <div className="grid gap-px overflow-hidden rounded border border-slate-200 bg-slate-200" style={{ gridTemplateColumns: `repeat(${freight.length}, minmax(0, 1fr))` }}>
+            {freight.map(f => (
+              <div key={f.n} className="bg-white px-2 py-1">
+                <p className={LABEL}>{f.n}</p>
+                <p className="font-mono text-[12px] font-semibold leading-tight text-slate-900">{f.v}</p>
+                <p className="flex gap-2 font-mono text-[9px] text-slate-600">
+                  {has(f.pc) && <Chg label={f.pl || 'Chg'} v={f.pc as string} cls="text-slate-700" />}
+                  {has(f.y) && <Chg label="1Y" v={f.y as string} cls="text-slate-700" />}
+                </p>
+                {has(f.why) && <p className={`mt-0.5 text-[8.5px] leading-snug text-slate-600 ${level >= 4 ? 'line-clamp-2' : ''}`}>{f.why}</p>}
+              </div>
+            ))}
+          </div>
         </>
       )}
 
       {has(sport) && (
-        <p className="mt-3 border-t border-slate-200 pt-1.5 text-[10.5px] leading-snug text-slate-700">
-          <b className="mr-1.5 text-[9px] uppercase tracking-[0.1em] text-[#1E3A5F]">Sports</b>
-          <span dangerouslySetInnerHTML={{ __html: safeHtml(sport) }} />
+        <p className="mt-2 border-t border-slate-200 pt-1 text-[9.5px] leading-snug text-slate-700">
+          <b className="mr-1.5 text-[8px] uppercase tracking-[0.1em] text-[#1E3A5F]">Sports</b>
+          <span dangerouslySetInnerHTML={html(sport)} />
         </p>
       )}
     </div>
   );
 }
 
+function MarketRow({ t, clamp }: { t: TapeRow; clamp: boolean }) {
+  const cls = t.rate ? rateCls : stockCls;
+  return (
+    <tr className="border-b border-slate-100 align-top">
+      <td className="w-[13%] py-[2px] pr-2 text-[9.5px] font-semibold text-slate-900">{t.n}</td>
+      <td className="w-[11%] py-[2px] pr-2 text-right font-mono text-[10px] font-semibold text-slate-900 whitespace-nowrap">{t.v}</td>
+      <td className="w-[13%] py-[2px] pr-2 font-mono text-[9px] whitespace-nowrap">{has(t.ctext) && <Chg label="Day" v={t.ctext as string} cls={cls(t.c)} />}</td>
+      <td className="w-[11%] py-[2px] pr-2 font-mono text-[9px] whitespace-nowrap">{has(t.ytext) && <Chg label="1Y" v={t.ytext as string} cls={cls(t.y)} />}</td>
+      <td className="py-[2px] text-[9px] leading-snug text-slate-700"><div className={clamp ? 'line-clamp-1' : ''}>{t.why}</div></td>
+    </tr>
+  );
+}
+
+function RundownRow({ t, n, clamp }: { t: RundownItem; n: number; clamp: boolean }) {
+  return (
+    <li className="flex gap-1.5">
+      <span className="mt-[1px] flex h-[14px] w-[14px] shrink-0 items-center justify-center rounded-full bg-[#1E3A5F] text-[8.5px] font-bold text-white">{n}</span>
+      <p className={`min-w-0 ${TXT} ${clamp ? 'line-clamp-3' : ''}`}>
+        {t.tag && <span className="mr-1 text-[7.5px] font-bold uppercase tracking-[0.08em] text-[#1E3A5F]">{t.tag}</span>}
+        <b className="font-semibold text-slate-900">{t.h}</b>{' '}
+        <span dangerouslySetInnerHTML={html(t.p)} />
+      </p>
+    </li>
+  );
+}
+
+// ── Page 2 · deep dive, data in focus, calendar ────────────────────────
+
+function PageTwo({ B, level }: { B: Brief; level: number }) {
+  const cal = calendarFrom(B.cal, B.dateline);
+  const later = level >= 1 ? cal.later.slice(0, 6) : cal.later;
+  const focus = list<FocusItem>(B.focus?.items).filter(f => typeof f === 'object' && f.title);
+  return (
+    <div>
+      <Masthead B={B} />
+
+      {B.dive && B.dive.title && <DivePrint d={B.dive} watch={level < 3} table={level < 4} />}
+
+      {focus.length > 0 && (
+        <>
+          <H2 sub="the numbers that mattered, and what experts make of them">Data in focus</H2>
+          <div className="space-y-2">
+            {focus.map((f, i) => <FocusPrint key={i} f={f} experts={level >= 2 ? 2 : 99} chart={level < 5} />)}
+          </div>
+        </>
+      )}
+
+      {(cal.week.length > 0 || later.length > 0) && (
+        <>
+          <H2 sub="consensus · prior">Calendar</H2>
+          <div className="grid grid-cols-2 items-start gap-4">
+            {cal.week.length > 0 && (
+              <CalTable title="This week" head={['Date', 'Release', 'Cons.', 'Prior']} rows={cal.week.map(i => [
+                shortDay(i.d), i.e, has(i.cons) ? i.cons as string : '', has(i.prior) ? i.prior as string : '',
+              ])} />
+            )}
+            {later.length > 0 && (
+              <CalTable title="Later" head={['Date', 'Event', 'Why']} rows={later.map(i => [shortDay(i.d), i.e, i.why || ''])} />
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function CalTable({ title, head, rows }: { title: string; head: string[]; rows: string[][] }) {
+  const th = 'py-[2px] pr-1.5 text-left text-[7.5px] font-semibold uppercase tracking-[0.05em] text-slate-500';
+  return (
+    <div>
+      <p className="mb-0.5 text-[9px] font-bold text-slate-700">{title}</p>
+      <table className="w-full border-collapse">
+        <thead><tr className="border-b border-slate-300">{head.map((h, i) => <th key={i} className={`${th} ${i >= 2 && head.length === 4 ? '!text-right' : ''}`}>{h}</th>)}</tr></thead>
+        <tbody>
+          {rows.map((r, k) => (
+            <tr key={k} className="border-b border-slate-100 align-top">
+              <td className="py-[2px] pr-1.5 font-mono text-[8.5px] font-semibold whitespace-nowrap text-[#1E3A5F]">{r[0]}</td>
+              <td className="py-[2px] pr-1.5 text-[9px] font-medium leading-snug text-slate-900">{r[1]}</td>
+              {head.length === 4
+                ? <>
+                    <td className="py-[2px] pl-1 text-right font-mono text-[9px] whitespace-nowrap text-slate-700">{r[2]}</td>
+                    <td className="py-[2px] pl-1 text-right font-mono text-[9px] whitespace-nowrap text-slate-500">{r[3]}</td>
+                  </>
+                : <td className="py-[2px] text-[8.5px] leading-snug text-slate-600">{r[2]}</td>}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function DivePrint({ d, watch, table }: { d: DeepDive; watch: boolean; table: boolean }) {
+  const rows = d.table ? list<string[]>(d.table.rows) : [];
+  const w = list<string>(d.watch);
+  const showTable = table && rows.length > 0, showWatch = watch && w.length > 0;
   return (
     <>
       <H2 sub={d.kicker}>Deep dive</H2>
-      <h3 className="text-[16px] font-bold leading-snug text-slate-900">{d.title}</h3>
-      {d.dek && <p className="text-[11px] italic leading-snug text-slate-600">{d.dek}</p>}
-      <div className="mt-1.5 space-y-1.5">
-        {list<string>(d.body).map((p, i) => <p key={i} className="text-[11.5px] leading-[1.45] text-slate-800" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+      <h3 className="text-[13.5px] font-bold leading-snug text-slate-900">{d.title}</h3>
+      <div className={`rbp-cols mt-1 ${TXT}`}>
+        {paras(d.body).map((p, i) => <p key={i} dangerouslySetInnerHTML={html(p)} />)}
       </div>
-      {((table && d.table && list(d.table.rows).length > 0) || (watch && list(d.watch).length > 0)) && (
-        <div className="mt-2 grid grid-cols-2 gap-4 items-start">
-          {table && d.table && list(d.table.rows).length > 0 ? (
+      {(showTable || showWatch) && (
+        <div className={`mt-1 grid items-start gap-3 ${showTable && showWatch ? 'grid-cols-[1.5fr_1fr]' : 'grid-cols-1'}`}>
+          {showTable && d.table && (
             <div>
-              {d.table.cap && <p className="mb-0.5 text-[9.5px] font-bold text-slate-700">{d.table.cap}</p>}
+              {d.table.cap && <p className="mb-0.5 text-[8.5px] font-bold text-slate-700">{d.table.cap}</p>}
               <table className="w-full border-collapse">
-                <thead><tr className="border-b border-slate-200">{list<string>(d.table.cols).map((c, i) => <th key={i} className={`py-[2px] text-[8.5px] font-semibold uppercase tracking-[0.05em] text-slate-500 ${i ? 'text-right' : 'text-left'}`}>{c}</th>)}</tr></thead>
+                <thead><tr className="border-b border-slate-300">{list<string>(d.table.cols).map((c, i) => <th key={i} className="py-[2px] pr-1.5 text-left text-[7.5px] font-semibold uppercase tracking-[0.05em] text-slate-500">{c}</th>)}</tr></thead>
                 <tbody>
-                  {list<string[]>(d.table.rows).map((r, i) => (
-                    <tr key={i} className="border-b border-slate-100">{list<string>(r).map((c, j) => <td key={j} className={`py-[2px] text-[10px] ${j ? 'text-right font-mono' : 'font-semibold text-slate-900'}`}>{c}</td>)}</tr>
+                  {rows.map((r, i) => (
+                    <tr key={i} className="border-b border-slate-100 align-top">{list<string>(r).map((c, j) => <td key={j} className={`py-[2px] pr-1.5 text-[8.5px] leading-snug ${j === 0 ? 'font-semibold text-slate-900' : j === 1 ? 'font-mono text-slate-800' : 'text-slate-500'}`}>{c}</td>)}</tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          ) : <div />}
-          {watch && list(d.watch).length > 0 ? (
-            <div className="rounded bg-slate-50 px-2.5 py-1.5">
-              <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-[#1E3A5F]">What to watch</p>
-              <ul className="mt-0.5 list-disc space-y-0.5 pl-3.5 text-[10.5px] leading-snug text-slate-700">
-                {list<string>(d.watch).map((w, i) => <li key={i} dangerouslySetInnerHTML={{ __html: safeHtml(w) }} />)}
+          )}
+          {showWatch && (
+            <div className="rounded border border-slate-200 bg-slate-50 px-2 py-1">
+              <p className="text-[7.5px] font-bold uppercase tracking-[0.1em] text-[#1E3A5F]">What to watch</p>
+              <ul className="mt-0.5 list-disc space-y-0.5 pl-3 text-[8.5px] leading-snug text-slate-700">
+                {w.map((x, i) => <li key={i} dangerouslySetInnerHTML={html(x)} />)}
               </ul>
             </div>
-          ) : <div />}
+          )}
         </div>
       )}
     </>
   );
 }
 
-function CalPrint({ title, rows, released }: { title: string; rows: CalItem[]; released?: boolean }) {
-  const th = 'py-[2px] text-[8.5px] font-semibold uppercase tracking-[0.05em] text-slate-500';
+function FocusPrint({ f, experts, chart }: { f: FocusItem; experts: number; chart: boolean }) {
+  const pts = (f.chart ? list<[string, number]>(f.chart.pts) : []).filter(p => Array.isArray(p) && typeof p[1] === 'number');
+  const ex = list<NonNullable<FocusItem['experts']>[number]>(f.experts).slice(0, experts);
+  const showChart = chart && pts.length > 1;
   return (
     <div>
-      <p className="mb-0.5 text-[10px] font-bold text-slate-700">{title}</p>
-      {rows.length === 0 ? <p className="text-[10px] text-slate-400">Nothing scheduled.</p> : (
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="border-b border-slate-200">
-              <th className={`${th} text-left`}>Release</th>
-              {released && <th className={`${th} text-right`}>Actual</th>}
-              <th className={`${th} text-right`}>Exp.</th>
-              <th className={`${th} text-right`}>Prior</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((i, k) => {
-              const event = !has(i.act) && !has(i.cons) && !has(i.prior);
-              return (
-              <tr key={k} className="border-b border-slate-100 align-top">
-                <td className="py-[2px] pr-1 text-[10px] leading-snug text-slate-900">
-                  <span className="text-[8.5px] font-semibold text-slate-500">{dayLabel(i.d).replace(/,.*/, '')} </span>
-                  <span className="font-semibold">{i.e}</span>
-                </td>
-                {event ? <td colSpan={released ? 3 : 2} className="py-[2px] pl-1 text-right text-[9px] italic leading-snug text-slate-600">{i.why}</td> : <>
-                {released && <td className={`py-[2px] pl-1 text-right font-mono text-[10px] font-bold whitespace-nowrap ${i.good == null ? 'text-slate-900' : i.good ? GREEN : RED}`}>{has(i.act) ? i.act : ''}</td>}
-                <td className="py-[2px] pl-1 text-right font-mono text-[10px] whitespace-nowrap text-slate-600">{has(i.cons) ? i.cons : ''}</td>
-                <td className="py-[2px] pl-1 text-right font-mono text-[10px] whitespace-nowrap text-slate-500">{has(i.prior) ? i.prior : ''}</td>
-                </>}
-              </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <p className="text-[11px] font-bold leading-snug text-slate-900">
+        {f.tag && <span className="mr-1.5 text-[7.5px] font-bold uppercase tracking-[0.08em] text-[#1E3A5F]">{f.tag}</span>}
+        {f.title}
+      </p>
+      {(has(f.act) || has(f.cons) || has(f.prior)) && (
+        <p className="mt-0.5 flex gap-3 font-mono text-[9.5px]">
+          {f.rel && <span className="font-sans text-[8.5px] text-slate-500">{f.rel}</span>}
+          {has(f.act) && <Chg label="Actual" v={f.act as string} cls={f.good == null ? 'text-slate-900' : f.good ? GREEN : RED} />}
+          {has(f.cons) && <Chg label="Consensus" v={f.cons as string} cls="text-slate-700" />}
+          {has(f.prior) && <Chg label="Prior" v={f.prior as string} cls="text-slate-500" />}
+        </p>
       )}
+      <div className={`mt-1 grid items-start gap-3 ${showChart ? 'grid-cols-[1.75fr_1fr]' : 'grid-cols-1'}`}>
+        <div className={`space-y-1 ${TXT}`}>
+          {paras(f.body).map((p, i) => <p key={i} dangerouslySetInnerHTML={html(p)} />)}
+        </div>
+        {showChart && (
+          <div>
+            {f.chart?.t && <p className="text-[8px] font-semibold text-slate-600">{f.chart.t}</p>}
+            <MiniLine pts={pts} unit={f.chart?.unit || ''} />
+          </div>
+        )}
+      </div>
+      {ex.length > 0 && (
+        <ul className="mt-1 space-y-0.5 text-[9px] leading-snug text-slate-700">
+          {ex.map((e, i) => (
+            <li key={i} className="border-l-2 border-slate-200 pl-1.5">
+              <b className="text-slate-900">{e.who}:</b> <span dangerouslySetInnerHTML={html(e.view)} />
+              {e.src && <span className="text-[8px] text-slate-400"> ({e.src})</span>}
+            </li>
+          ))}
+        </ul>
+      )}
+      {has(f.lean) && <p className="mt-1 text-[9px] italic leading-snug text-slate-600"><b className="not-italic text-slate-800">Where forecasters lean:</b> {f.lean}</p>}
     </div>
   );
 }
 
-// ── Page 3 · Investor's Corner ─────────────────────────────────────────
+// A small line chart for a "Data in focus" release: points left to right, latest value labeled.
+function MiniLine({ pts, unit }: { pts: [string, number][]; unit: string }) {
+  const W = 230, H = 105, m = { l: 24, r: 30, t: 8, b: 14 };
+  const vals = pts.map(p => p[1]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  const pad = (hi - lo || 1) * 0.15; lo -= pad; hi += pad;
+  const x = (i: number) => m.l + (i / (pts.length - 1)) * (W - m.l - m.r);
+  const y = (v: number) => m.t + ((hi - v) / (hi - lo)) * (H - m.t - m.b);
+  const grid = [lo + pad, (lo + hi) / 2, hi - pad];
+  const last = pts[pts.length - 1];
+  const fmtV = (v: number) => `${+v.toFixed(2)}${unit}`;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" role="img" aria-label="Release history">
+      {grid.map((g, i) => (
+        <g key={i}>
+          <line x1={m.l} x2={W - m.r} y1={y(g)} y2={y(g)} stroke="#E2E8F0" strokeWidth={0.75} />
+          <text x={m.l - 3} y={y(g) + 3} textAnchor="end" fontSize={7} fill="#64748B">{+g.toFixed(1)}</text>
+        </g>
+      ))}
+      <polyline points={pts.map((p, i) => `${x(i).toFixed(1)},${y(p[1]).toFixed(1)}`).join(' ')} fill="none" stroke={NAVY} strokeWidth={1.6} strokeLinejoin="round" />
+      <circle cx={x(pts.length - 1)} cy={y(last[1])} r={2.5} fill={NAVY} stroke="#fff" strokeWidth={1} />
+      <text x={x(pts.length - 1) + 4} y={y(last[1]) + 3} fontSize={8} fontWeight={700} fill={NAVY} fontFamily="JetBrains Mono, monospace">{fmtV(last[1])}</text>
+      <text x={m.l} y={H - 3} fontSize={7} fill="#64748B">{pts[0][0]}</text>
+      <text x={W - m.r} y={H - 3} fontSize={7} fill="#64748B" textAnchor="end">{last[0]}</text>
+    </svg>
+  );
+}
 
-function PageThree({ B, r, level }: { B: Brief; r: Reading; level: number }) {
+// ── Page 3 · World Desk and Investor's Corner ──────────────────────────
+
+const TREND: Record<string, string> = { esc: 'text-[#B42318] border-[#B42318]', eas: 'text-[#067647] border-[#067647]', std: 'text-slate-500 border-slate-400' };
+
+function PageThree({ B, w, r, level }: { B: Brief; w: World | null; r: Reading | null; level: number }) {
   return (
     <div>
       <Masthead B={B} />
-      <H2 sub={[r.kind, r.who].filter(Boolean).join(' · ')}>Investor&apos;s Corner</H2>
-      <h3 className="text-[17px] font-bold leading-snug text-slate-900">{r.title}</h3>
-      {r.dek && <p className="text-[11.5px] italic leading-snug text-slate-600">{r.dek}</p>}
-      {r.quote && level < 2 && (
-        <blockquote className="my-2 border-l-[3px] border-[#1E3A5F] pl-3">
-          <p className="font-serif text-[13px] italic leading-snug text-slate-800">“{r.quote.text}”</p>
-          <p className="mt-0.5 text-[9.5px] text-slate-500">{r.quote.src}</p>
-        </blockquote>
-      )}
-      <div className="mt-1.5 space-y-1.5">
-        {list<string>(r.body).map((p, i) => <p key={i} className="text-[11.5px] leading-[1.5] text-slate-800" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+      {w && <WorldPrint w={w} views={level < 2} cbMax={level >= 4 ? 4 : 99} />}
+      {r && <CornerPrint r={r} takeaways={level < 1} quote={level < 3} />}
+    </div>
+  );
+}
+
+function WorldPrint({ w, views, cbMax }: { w: World; views: boolean; cbMax: number }) {
+  const lead = w.lead!;
+  const vs = list<NonNullable<NonNullable<World['lead']>['views']>[number]>(lead.views).slice(0, 2);
+  const hot = list<NonNullable<World['hot']>[number]>(w.hot).filter(h => typeof h === 'object' && h.r);
+  const cb = list<NonNullable<World['cb']>[number]>(w.cb).filter(c => typeof c === 'object' && c.bank).slice(0, cbMax);
+  const real = w.real && list<[string, number]>(w.real.pts).filter(p => Array.isArray(p) && typeof p[1] === 'number');
+  const th = 'py-[2px] pr-2 text-left text-[7.5px] font-semibold uppercase tracking-[0.05em] text-slate-500';
+  return (
+    <>
+      <H2>World Desk</H2>
+      {lead.kicker && <p className="text-[7.5px] font-bold uppercase tracking-[0.12em] text-[#1E3A5F]">{lead.kicker}</p>}
+      <h3 className="text-[13.5px] font-bold leading-snug text-slate-900">{lead.title}</h3>
+      <div className={`rbp-cols mt-1 ${TXT}`}>
+        {paras(lead.body).map((p, i) => <p key={i} dangerouslySetInnerHTML={html(p)} />)}
       </div>
-      {level < 1 && list(r.takeaways).length > 0 && (
-        <div className="mt-2.5 rounded bg-slate-50 px-3 py-2">
-          <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-[#1E3A5F]">For today&apos;s investor</p>
-          <ul className="mt-0.5 list-disc space-y-0.5 pl-3.5 text-[10.5px] leading-snug text-slate-700">
-            {list<string>(r.takeaways).map((t, i) => <li key={i} dangerouslySetInnerHTML={{ __html: safeHtml(t) }} />)}
-          </ul>
+      {has(lead.reach) && (
+        <p className="mt-1 rounded-r border-l-[3px] border-[#1E3A5F] bg-slate-50 px-2 py-1 text-[9px] leading-snug text-slate-700"
+          dangerouslySetInnerHTML={html(`<b>How it reaches you:</b> ${lead.reach}`)} />
+      )}
+      {views && vs.length > 0 && (
+        <div className="mt-1 grid grid-cols-2 gap-3">
+          {vs.map((v, i) => (
+            <p key={i} className="border-l-2 border-slate-200 pl-1.5 text-[9px] leading-snug text-slate-700">
+              <b className="text-slate-900">{v.who}:</b> <span dangerouslySetInnerHTML={html(v.view)} />
+            </p>
+          ))}
         </div>
       )}
-      {r.src && <p className="mt-2 text-[9.5px] text-slate-500">{r.src}</p>}
-    </div>
+
+      {hot.length > 0 && (
+        <>
+          <p className="mb-0.5 mt-2 text-[8.5px] font-bold uppercase tracking-[0.1em] text-[#1E3A5F]">Hotspot tracker</p>
+          <table className="w-full border-collapse">
+            <thead><tr className="border-b border-slate-300">{['Region', 'What changed', 'Trend', 'Market channel', 'Next date'].map(h => <th key={h} className={th}>{h}</th>)}</tr></thead>
+            <tbody>
+              {hot.map((h, i) => (
+                <tr key={i} className="border-b border-slate-100 align-top text-[8.5px] leading-snug">
+                  <td className="w-[13%] py-[2px] pr-2 font-semibold text-slate-900">{h.r}</td>
+                  <td className="py-[2px] pr-2 text-slate-700">{h.chg}</td>
+                  <td className="w-[15%] py-[2px] pr-2">
+                    <span className={`inline-block rounded-[3px] border px-1 py-px text-[7px] font-bold uppercase tracking-[0.05em] ${TREND[h.tc || 'std'] || TREND.std}`}>{h.trend}</span>
+                  </td>
+                  <td className="w-[19%] py-[2px] pr-2 text-slate-700">{h.ch}</td>
+                  <td className="w-[15%] py-[2px] text-slate-700">{h.next}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+
+      {(cb.length > 0 || (real && real.length > 0)) && (
+        <div className="mt-2 grid grid-cols-2 items-start gap-4">
+          {cb.length > 0 ? (
+            <div>
+              <p className="mb-0.5 text-[8.5px] font-bold uppercase tracking-[0.1em] text-[#1E3A5F]">Central bank watch <span className="ml-1 font-medium normal-case tracking-normal text-slate-500">next 3 weeks, ex-Fed</span></p>
+              <ul>
+                {cb.map((c, i) => (
+                  <li key={i} className="grid grid-cols-[38px_1fr] gap-1.5 border-b border-slate-100 py-[2px] text-[8.5px] leading-snug text-slate-700">
+                    <span className="font-mono font-semibold text-[#1E3A5F]">{/^\d{4}-\d{2}-\d{2}$/.test(c.d) ? shortDay(c.d) : c.d}</span>
+                    <span><b className="text-slate-900">{c.bank}</b>, {c.rate}: {c.exp}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : <div />}
+          {real && real.length > 0 && (
+            <div>
+              <p className="mb-0.5 text-[8.5px] font-bold uppercase tracking-[0.1em] text-[#1E3A5F]">{w.real?.t || "Who's really tight?"} <span className="ml-1 font-medium normal-case tracking-normal text-slate-500">policy rate minus CPI</span></p>
+              <RealBars pts={real} />
+              <p className="text-[7.5px] text-slate-400">0 = rates match inflation</p>
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
+
+// Horizontal bars from a zero line: names on the left, signed values at each bar's end.
+function RealBars({ pts }: { pts: [string, number][] }) {
+  const row = 13, W = 300, L = 58, pad = 30;
+  const H = pts.length * row + 2;
+  const lo = Math.min(0, ...pts.map(p => p[1])), hi = Math.max(0, ...pts.map(p => p[1]));
+  const x = (v: number) => L + pad + ((v - lo) / (hi - lo || 1)) * (W - L - 2 * pad);
+  const z = x(0);
+  const sign = (v: number) => (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" role="img" aria-label="Real policy rates by country">
+      {pts.map(([n, v], i) => {
+        const yy = i * row + 1, x0 = Math.min(z, x(v)), bw = Math.abs(x(v) - z);
+        return (
+          <g key={n}>
+            <text x={L - 4} y={yy + row / 2 + 3} textAnchor="end" fontSize={8} fill="#334155">{n}</text>
+            <rect x={x0} y={yy + 2} width={Math.max(bw, 0.5)} height={row - 4} fill={NAVY} fillOpacity={v >= 0 ? 1 : 0.4} />
+            <text x={v >= 0 ? x(v) + 3 : x(v) - 3} y={yy + row / 2 + 3} textAnchor={v >= 0 ? 'start' : 'end'} fontSize={7.5} fontWeight={600} fill="#0F172A" fontFamily="JetBrains Mono, monospace">{sign(v)}</text>
+          </g>
+        );
+      })}
+      <line x1={z} x2={z} y1={0} y2={H} stroke="#64748B" strokeWidth={0.75} />
+    </svg>
+  );
+}
+
+function CornerPrint({ r, takeaways, quote }: { r: Reading; takeaways: boolean; quote: boolean }) {
+  const t = list<string>(r.takeaways);
+  return (
+    <>
+      <H2 sub={[r.kind, r.who].filter(Boolean).join(' · ')}>Investor&apos;s Corner</H2>
+      <h3 className="text-[13.5px] font-bold leading-snug text-slate-900">{r.title}</h3>
+      {r.dek && <p className="text-[9.5px] italic leading-snug text-slate-600">{r.dek}</p>}
+      {quote && r.quote && r.quote.text && (
+        <blockquote className="my-1 border-l-[3px] border-[#1E3A5F] pl-2">
+          <p className="font-serif text-[11px] italic leading-snug text-slate-800">“{r.quote.text}”</p>
+          {r.quote.src && <p className="text-[8px] text-slate-500">{r.quote.src}</p>}
+        </blockquote>
+      )}
+      <div className={`rbp-cols mt-1 ${TXT}`}>
+        {paras(r.body).map((p, i) => <p key={i} dangerouslySetInnerHTML={html(p)} />)}
+      </div>
+      {takeaways && t.length > 0 && (
+        <ul className="mt-1 list-disc space-y-0.5 pl-3.5 text-[9px] leading-snug text-slate-700">
+          {t.map((x, i) => <li key={i} dangerouslySetInnerHTML={html(x)} />)}
+        </ul>
+      )}
+      {r.src && <p className="mt-1 text-[7.5px] text-slate-400">{r.src}</p>}
+    </>
   );
 }

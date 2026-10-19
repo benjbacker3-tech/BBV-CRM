@@ -97,6 +97,26 @@ export interface Reading {
   src?: string;         // where to read more
 }
 
+// "Data in focus": the week's most important release(s), with a small chart and expert reads.
+export interface FocusItem {
+  tag?: string; title: string; rel?: string;
+  act?: string | null; cons?: string | null; prior?: string | null; good?: boolean | null;
+  chart?: { t?: string; unit?: string; pts: [string, number][]; src?: string };
+  body: string | string[];   // HTML paragraphs
+  experts?: { who: string; view: string; url?: string; src?: string }[];
+  lean?: string;
+  src?: string;
+}
+// "World Desk" (from Oct 20, 2026): one lead geopolitical story, a hotspot tracker, foreign
+// central banks over the next three weeks, and real policy rates. `src` is not shown in the CRM.
+export interface World {
+  lead?: { kicker?: string; title: string; body: string | string[]; reach?: string; views?: { who: string; view: string; url?: string; src?: string }[] };
+  hot?: { r: string; chg: string; trend: string; tc?: 'esc' | 'eas' | 'std' | string; ch: string; next: string }[];
+  cb?: { d: string; bank: string; rate: string; exp: string }[];
+  real?: { t?: string; pts: [string, number][] };
+  src?: string;
+}
+
 export interface RatesBrief {
   headline: string;
   dateline: string;
@@ -105,6 +125,8 @@ export interface RatesBrief {
   top?: TopItem[];      // retired Oct 14, 2026; shown only when `rundown` is missing
   rundown?: RundownItem[];
   dive?: DeepDive;
+  focus?: { items?: FocusItem[] };
+  world?: World;        // between focus and reading; missing before Oct 20, 2026
   reading?: Reading;    // page 3
   econ?: EconRow[];
   cal?: CalItem[];
@@ -149,6 +171,24 @@ export function list<T = string>(v: unknown): T[] {
   if (Array.isArray(v)) return v.filter(x => x != null && x !== '') as T[];
   if (typeof v === 'string' && v.trim()) return v.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean) as T[];
   return [];
+}
+
+// Paragraphs of a body field: a list, or one HTML string of <p>s (or blank-line separated).
+export function paras(v: unknown): string[] {
+  if (typeof v === 'string' && /<\/?p\b/i.test(v)) return v.split(/<\/p>/i).map(x => x.replace(/<p\b[^>]*>/gi, '').trim()).filter(Boolean);
+  return list<string>(v);
+}
+
+// The calendar as of the brief's own date: "this week" is the dateline through 7 days later,
+// "later" everything after. Past rows are dropped.
+export function calendarFrom(cal: CalItem[] | undefined, dateline: string) {
+  const m = (dateline || '').match(/([A-Z][a-z]+ \d{1,2}, \d{4})/);
+  const base = m ? new Date(m[1] + ' 12:00') : new Date();
+  const at = isNaN(base.getTime()) ? new Date() : base;
+  const iso = (off: number) => { const d = new Date(at); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + off); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+  const today = iso(0), weekOut = iso(7);
+  const items = list<CalItem>(cal).filter(i => typeof i === 'object' && i.d && i.d >= today).sort((a, b) => a.d.localeCompare(b.d));
+  return { week: items.filter(i => i.d <= weekOut), later: items.filter(i => i.d > weekOut) };
 }
 
 // The Rundown, falling back to an older file's Top 5.
