@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { all, get, run } from '@/lib/db';
-import { addTx } from '@/lib/personal-server';
-import { NOTE, NotePayment, newId, noteSchedule, round2 } from '@/lib/personal';
+import { all } from '@/lib/db';
+import { logNotePayment } from '@/lib/personal-audit';
+import { NOTE, NotePayment, noteSchedule, round2 } from '@/lib/personal';
 
 // Dan's note on Emerson: payments logged so far, the balance, and the full schedule.
 export async function GET() {
@@ -19,24 +19,11 @@ export async function GET() {
   });
 }
 
-// Logs a payment: interest on the running balance, the rest to principal. The interest is
-// also written to Emerson's ledger as income.
+// Logs a payment (interest on the running balance, the rest to principal; the interest also
+// goes to Emerson's ledger as income). Same path as a statement line filed as Dan's note.
 export async function POST(req: NextRequest) {
   const body = await req.json();
   if (!/^\d{4}-\d{2}-\d{2}$/.test(body.date || '')) return NextResponse.json({ error: 'Date is required' }, { status: 400 });
-  const last = await get<NotePayment>('SELECT * FROM personal_note_payments ORDER BY date DESC LIMIT 1');
-  const balance = last ? last.balance_after : NOTE.principal;
-  const amount = Number(body.amount) || NOTE.monthly;
-  const interest = balance * (NOTE.rate / 12);
-  const principal = amount - interest;
-  await run('INSERT INTO personal_note_payments (id, date, amount, principal, interest, balance_after, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
-    [newId(), body.date, amount, round2(principal), round2(interest), round2(Math.max(0, balance - principal)), new Date().toISOString()]);
-  const emerson = await get<{ id: string }>("SELECT id FROM personal_properties WHERE slug = 'emerson'");
-  if (emerson) {
-    await addTx(emerson.id, {
-      date: body.date, description: 'Dan Equity Loan - Interest', category: 'Dan payback', type: 'Income', amount: interest, source: 'dan-payment',
-      notes: `Interest of $${amount.toFixed(2)} payment. Principal: $${principal.toFixed(2)}`,
-    });
-  }
+  await logNotePayment(body.date, Number(body.amount) || NOTE.monthly);
   return NextResponse.json({ ok: true }, { status: 201 });
 }

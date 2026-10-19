@@ -517,6 +517,76 @@ async function initSchema(db: Client) {
       balance_after REAL NOT NULL,
       created_at TEXT DEFAULT ''
     );
+    -- Monthly audit (lib/personal-audit.ts). What each month should hold: rent in, mortgage
+    -- out, Dan's payment, utility bills. amount NULL = varies. match = words that spot it on a
+    -- bank statement, comma separated.
+    CREATE TABLE IF NOT EXISTS personal_expected (
+      id TEXT PRIMARY KEY,
+      property_id TEXT NOT NULL,
+      label TEXT NOT NULL,
+      type TEXT NOT NULL,                   -- Income | Expense
+      category TEXT NOT NULL,               -- ledger category; "Dan's note" = a note payment
+      amount REAL,
+      every_months INTEGER DEFAULT 1,
+      start_month TEXT,                     -- YYYY-MM; NULL = always
+      end_month TEXT,
+      match TEXT,
+      sort INTEGER DEFAULT 0
+    );
+    -- Bank statements imported (CSV, or PDF read by Claude), and their lines. A line is linked
+    -- to an existing ledger entry, posted as a new one, or waiting for a category.
+    CREATE TABLE IF NOT EXISTS personal_statement_imports (
+      id TEXT PRIMARY KEY,
+      property_id TEXT NOT NULL,
+      file_name TEXT,
+      kind TEXT,                            -- csv | pdf
+      first_date TEXT,
+      last_date TEXT,
+      lines INTEGER DEFAULT 0,
+      added INTEGER DEFAULT 0,
+      closing_balance REAL,
+      balanced INTEGER,                     -- 1 = running balances add up, 0 = they don't, NULL = no balances
+      imported_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE TABLE IF NOT EXISTS personal_statement_lines (
+      id TEXT PRIMARY KEY,
+      property_id TEXT NOT NULL,
+      import_id TEXT,
+      date TEXT NOT NULL,
+      description TEXT NOT NULL,
+      amount REAL NOT NULL,                 -- + money in, - money out
+      balance REAL,
+      fingerprint TEXT NOT NULL,
+      category TEXT,
+      status TEXT NOT NULL DEFAULT 'new',   -- new | posted | linked
+      tx_id TEXT,
+      UNIQUE(property_id, fingerprint)
+    );
+    CREATE INDEX IF NOT EXISTS ix_personal_lines ON personal_statement_lines(property_id, date);
+    -- Learned: a statement description → its category, so next month's import sorts itself.
+    CREATE TABLE IF NOT EXISTS personal_rules (
+      property_id TEXT NOT NULL,
+      pattern TEXT NOT NULL,
+      category TEXT NOT NULL,
+      PRIMARY KEY (property_id, pattern)
+    );
+    -- An expected line Ben marked as not applying to a month (e.g. rent waived).
+    CREATE TABLE IF NOT EXISTS personal_audit_skips (
+      property_id TEXT NOT NULL,
+      month TEXT NOT NULL,
+      expected_id TEXT NOT NULL,
+      note TEXT,
+      PRIMARY KEY (property_id, month, expected_id)
+    );
+    -- Tax year: the 1098 mortgage interest and the document checklist.
+    CREATE TABLE IF NOT EXISTS personal_tax_years (
+      property_id TEXT NOT NULL,
+      year TEXT NOT NULL,
+      mortgage_interest REAL,
+      docs TEXT,                            -- JSON {doc name: {done, note}}
+      notes TEXT,
+      PRIMARY KEY (property_id, year)
+    );
 
     -- Asset bulletin for Sandpiper's closed deals: key dates (lease, insurance, tax, loan
     -- renewals) and running notes. The property manager handles day-to-day items; this is
@@ -646,8 +716,57 @@ async function initSchema(db: Client) {
     await db.execute("ALTER TABLE contact_log ADD COLUMN source TEXT DEFAULT 'manual'");
   }
 
+  await migratePersonalAudit(db);
+
   // Deals are loaded via /api/seed-pipeline from the latest Acq Pipeline xlsx.
   // No auto-seed on empty — the dashboard just shows "0 active deals" until
   // the user (or the seed endpoint) inserts real ones.
 }
 
+
+// One-time move of Clayton and Emerson to the monthly-audit design (Oct 19, 2026):
+// - seed each property's expected monthly lines from its terms;
+// - give owner contributions, owner draws and transfers their own categories, so they stay out
+//   of rental income and expenses;
+// - retire the monthly mortgage / rent / Dan reminders (the audit checks those every month).
+// Months before this were kept in the old app without a monthly check; the audit starts here.
+const TRACKING_START = '2026-01';
+async function migratePersonalAudit(db: Client) {
+  const done = await db.execute("SELECT value FROM app_state WHERE key = 'personal_audit_v1'");
+  if (done.rows.length) return;
+  const props = (await db.execute('SELECT id, slug, tenant_name, tenant_rent, loan_payment FROM personal_properties')).rows;
+  // What Dan actually pays (his latest payment), else the schedule amount.
+  const lastNote = (await db.execute('SELECT amount FROM personal_note_payments ORDER BY date DESC LIMIT 1')).rows[0];
+  const danPays = lastNote ? Number(lastNote.amount) : 1941.93;
+  for (const p of props) {
+    const has = await db.execute({ sql: 'SELECT COUNT(*) AS n FROM personal_expected WHERE property_id = ?', args: [p.id as string] });
+    if (Number(has.rows[0].n)) continue;
+    const rows: [string, string, string, number | null, string | null, string | null, string][] = p.slug === 'clayton'
+      ? [
+          ['Rent from Chelsea', 'Income', 'Rent', Number(p.tenant_rent) || null, null, null, 'chelsea,venmo'],
+          // The payment changed with the escrow analysis in Sep 2026.
+          ['Mortgage (Lakeview / Carrington)', 'Expense', 'Mortgage', 2483.18, null, '2026-08', 'lakeview,carrington,valon,mortgage'],
+          ['Mortgage (Lakeview / Carrington)', 'Expense', 'Mortgage', Number(p.loan_payment) || null, '2026-09', null, 'lakeview,carrington,valon,mortgage'],
+          ['Denver Water bill', 'Expense', 'Water', null, null, null, 'denver water'],
+        ]
+      : [
+          ['Rent from Luke', 'Income', 'Rent', 4475, null, '2026-10', 'luke,sprague'],
+          ['Rent from Luke', 'Income', 'Rent', 4800, '2026-11', null, 'luke,sprague'],
+          ['Mortgage (EverBank)', 'Expense', 'Mortgage', 4466.99, null, '2026-08', 'everbank,loancare,mortgage'],
+          ['Mortgage (EverBank)', 'Expense', 'Mortgage', Number(p.loan_payment) || null, '2026-09', null, 'everbank,loancare,mortgage'],
+          ["Dan's note payment", 'Income', "Dan's note", danPays, null, null, 'dan'],
+          ['Denver Water bill', 'Expense', 'Water', null, null, null, 'denver water'],
+        ];
+    let sort = 0;
+    for (const [label, type, category, amount, start, end, match] of rows) {
+      await db.execute({
+        sql: 'INSERT INTO personal_expected (id, property_id, label, type, category, amount, every_months, start_month, end_month, match, sort) VALUES (?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?)',
+        args: [`exp-${p.slug}-${sort}`, p.id as string, label, type, category, amount, start ?? TRACKING_START, end, match, sort++],
+      });
+    }
+  }
+  await db.execute("UPDATE personal_transactions SET category = 'Owner contribution' WHERE category = 'Other' AND type = 'Income' AND description LIKE 'Owner contribution%'");
+  await db.execute("UPDATE personal_transactions SET category = 'Owner draw' WHERE category = 'Other' AND type = 'Expense' AND description LIKE 'Owner draw%'");
+  await db.execute("UPDATE personal_reminders SET dismissed = 1 WHERE recurring = 1 AND COALESCE(recur_months, 1) = 1 AND category IN ('Mortgage', 'Rent', 'Dan payback')");
+  await db.execute("INSERT INTO app_state (key, value, updated_at) VALUES ('personal_audit_v1', 'done', datetime('now'))");
+}

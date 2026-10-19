@@ -3,8 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { RatesBrief as Brief, TapeRow, DeepDive, FocusItem, Reading, RundownItem, World, has, safeHtml, marketRows, rundownOf, sportOf, list, paras, calendarFrom } from '@/lib/rates-brief';
 import { toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
-import { ChartSvg, shortDay, KIND_LABEL, dueTone } from './RatesBrief';
-import type { MyDate } from '@/lib/my-dates';
+import { ChartSvg, shortDay } from './RatesBrief';
 
 // Three-page Letter printout of the Sandpiper Daily Brief (layout of Oct 19, 2026).
 //   Page 1 · the numbers and the news: headline, rates (four cards + 1-year 2Y/5Y/10Y chart),
@@ -19,7 +18,7 @@ import type { MyDate } from '@/lib/my-dates';
 // set size (MIN_SCALE = 1); a light day scales up a little to fill the page. A heavy day is
 // trimmed, least useful first:
 //   page 1: shorter chart; market notes to 1 line; rundown notes to 3 lines; freight notes to
-//           2 lines; the 7th rundown item; then "Your dates" to 4 lines
+//           2 lines; then the 7th rundown item
 //   page 2: "Later" to 6 rows; expert reads to 2; deep-dive watch list off; its table off;
 //           the focus chart off
 //   page 3: takeaways off; World Desk views off; pull quote off; central banks to 4
@@ -50,11 +49,11 @@ const PRINT_CSS = `
 }
 `;
 
-const P1_MAX = 6;
+const P1_MAX = 5;
 const P2_MAX = 5;
 const P3_MAX = 4;
 
-export default function RatesBriefPrint({ data: B, dates = null }: { data: Brief; dates?: MyDate[] | null }) {
+export default function RatesBriefPrint({ data: B }: { data: Brief }) {
   const [p1Level, setP1Level] = useState(0);
   const [p2Level, setP2Level] = useState(0);
   const [p3Level, setP3Level] = useState(0);
@@ -62,7 +61,7 @@ export default function RatesBriefPrint({ data: B, dates = null }: { data: Brief
   // Bumping `epoch` makes every sheet measure again even when a level was already 0.
   const [epoch, setEpoch] = useState(0);
   const restart = useCallback(() => { setP1Level(0); setP2Level(0); setP3Level(0); setEpoch(e => e + 1); }, []);
-  useEffect(() => { restart(); }, [B, dates, restart]);
+  useEffect(() => { restart(); }, [B, restart]);
   useEffect(() => { document.fonts?.ready.then(restart).catch(() => {}); }, [restart]);
 
   // Print light even when the CRM is in dark mode.
@@ -86,8 +85,8 @@ export default function RatesBriefPrint({ data: B, dates = null }: { data: Brief
   return (
     <div className="rbp-root" aria-hidden data-levels={`${p1Level},${p2Level},${p3Level},${epoch}`}>
       <style>{PRINT_CSS}</style>
-      <Sheet page={1} pages={pages} footer={datelineShort} onOverflow={onOverflow1} deps={[B, dates, p1Level, epoch]}>
-        <PageOne B={B} dates={dates} level={p1Level} />
+      <Sheet page={1} pages={pages} footer={datelineShort} onOverflow={onOverflow1} deps={[B, p1Level, epoch]}>
+        <PageOne B={B} level={p1Level} />
       </Sheet>
       <Sheet page={2} pages={pages} footer={datelineShort} onOverflow={onOverflow2} deps={[B, p2Level, epoch]}>
         <PageTwo B={B} level={p2Level} />
@@ -182,7 +181,7 @@ function Chg({ label, v, cls }: { label: string; v: string; cls: string }) {
 
 // ── Page 1 · the numbers and the news ──────────────────────────────────
 
-function PageOne({ B, dates, level }: { B: Brief; dates: MyDate[] | null; level: number }) {
+function PageOne({ B, level }: { B: Brief; level: number }) {
   const chartH = level === 0 ? 150 : 125;
   const D = useMemo(() => inRange(toPoints(B.series || []), '1y'), [B.series]);
   const c = useMemo(() => chartModel(D, '1y', 400, chartH, true), [D, chartH]);
@@ -196,7 +195,6 @@ function PageOne({ B, dates, level }: { B: Brief; dates: MyDate[] | null; level:
     <div>
       <Masthead B={B} />
       {has(B.headline) && <h1 className="mt-1.5 text-[14.5px] font-bold leading-snug text-slate-900">{B.headline}</h1>}
-      {dates && dates.length > 0 && <DatesPrint dates={dates} max={level >= 6 ? 4 : 8} />}
 
       {(keys.length > 0 || c) && (
         <>
@@ -282,27 +280,6 @@ function PageOne({ B, dates, level }: { B: Brief; dates: MyDate[] | null; level:
           <span dangerouslySetInnerHTML={html(sport)} />
         </p>
       )}
-    </div>
-  );
-}
-
-// "Your dates": Ben's deadlines for the next 7 days, two columns, most urgent first.
-function DatesPrint({ dates, max }: { dates: MyDate[]; max: number }) {
-  const shown = dates.slice(0, max);
-  return (
-    <div className="mt-1.5 rounded border border-slate-200 bg-slate-50 px-2 py-1">
-      <p className="text-[7.5px] font-bold uppercase tracking-[0.12em] text-[#1E3A5F]">Your dates · next 7 days{dates.length > max ? ` · ${dates.length - max} more in the CRM` : ''}</p>
-      <ul className="mt-0.5 grid grid-cols-2 gap-x-4">
-        {shown.map((d, i) => {
-          const tone = dueTone(d.date);
-          return (
-            <li key={i} className="flex gap-1.5 truncate text-[9px] leading-[1.45] text-slate-800">
-              <span className={`w-[42px] shrink-0 font-mono font-semibold ${tone === 'over' ? RED : tone === 'today' ? 'text-[#B54708]' : 'text-[#1E3A5F]'}`}>{tone === 'over' ? 'overdue' : tone === 'today' ? 'today' : shortDay(d.date)}</span>
-              <span className="truncate"><span className="text-[7.5px] font-semibold uppercase text-slate-500">{KIND_LABEL[d.kind]} </span><b>{d.where}</b> · {d.what}</span>
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 }

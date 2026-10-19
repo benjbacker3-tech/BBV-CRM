@@ -1,15 +1,15 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
 import { PersonalReminder, REMINDER_CATEGORIES, fmtDay, todayIso, usd } from '@/lib/personal';
 import { daysUntil } from '@/lib/utils';
 
 const EMPTY = { name: '', due_date: todayIso(), amount: '', category: 'Other', recurring: false, recur_months: 1, notes: '' };
 
-// Upcoming bills and to-dos. Dismissing a recurring one schedules the next.
-export default function Reminders() {
-  const { slug } = useParams<{ slug: string }>();
+// Key dates and one-off to-dos for a personal property (lease end, insurance renewal, tax due,
+// "invoice the tenant"). Monthly payments aren't here: the monthly audit checks those.
+// Dismissing a recurring one schedules the next.
+export default function PersonalKeyDates({ slug }: { slug: string }) {
   const [items, setItems] = useState<PersonalReminder[] | null>(null);
   const [adding, setAdding] = useState(false);
   const [form, setForm] = useState(EMPTY);
@@ -43,10 +43,10 @@ export default function Reminders() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h1 className="page-title">Reminders</h1>
-        <button onClick={() => setAdding(a => !a)} className="btn-primary">+ Add</button>
+        <p className="section-label">Key dates &amp; to-dos</p>
+        <button onClick={() => setAdding(a => !a)} className="btn-secondary !py-1 !text-xs">+ Add</button>
       </div>
 
       {adding && (
@@ -65,11 +65,11 @@ export default function Reminders() {
             </div>
             <div className="sm:col-span-2"><label className="field-label">Notes</label><input value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })} className="field" /></div>
           </div>
-          <div className="flex gap-2"><button onClick={add} className="btn-primary">Add reminder</button><button onClick={() => setAdding(false)} className="btn-ghost">Cancel</button></div>
+          <div className="flex gap-2"><button onClick={add} className="btn-primary">Add</button><button onClick={() => setAdding(false)} className="btn-ghost">Cancel</button></div>
         </div>
       )}
 
-      {items === null ? <p className="text-xs text-slate-400">Loading…</p> : items.length === 0 ? <p className="py-8 text-center text-sm text-slate-400">No active reminders.</p> : (
+      {items === null ? <p className="text-xs text-slate-400">Loading…</p> : items.length === 0 ? <p className="py-4 text-sm text-slate-400">Nothing coming up.</p> : (
         <div className="space-y-2">
           {items.map(r => {
             const u = urgency(r.due_date);

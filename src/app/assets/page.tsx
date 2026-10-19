@@ -73,8 +73,8 @@ export default function AssetsPage() {
 }
 
 type PersonalSummary = PersonalProperty & {
-  month: string;
-  checkin: { rent_received: number; mortgage_paid: number; completed_at: string | null } | null;
+  audit: { lastClosed: string | null; needsLook: number; ready: number };
+  ytd: { net: number; cash: number; rents: number };
   utilitiesOwed: number;
   nextReminder: { name: string; due_date: string } | null;
 };
@@ -91,10 +91,6 @@ function PersonalSection() {
       <p className="mb-3 text-[11px] text-slate-400">Private. Not part of Sandpiper Capital: excluded from the totals above, the Dashboard, exports, search and share links.</p>
       <div className="grid gap-3 md:grid-cols-2">
         {props.map(p => {
-          const c = p.checkin;
-          const step = (done: boolean | undefined, label: string) => (
-            <span className={`pill ${done ? 'pill-green' : 'pill-slate'}`}>{done ? '✓ ' : ''}{label}</span>
-          );
           return (
             <Link key={p.slug} href={`/assets/personal/${p.slug}`} className="card block px-4 py-3.5 transition-colors hover:border-slate-300">
               <div className="flex items-baseline justify-between gap-2">
@@ -103,14 +99,14 @@ function PersonalSection() {
               </div>
               <p className="text-xs text-slate-500">{p.address}</p>
               <div className="mt-2 grid grid-cols-3 gap-2 font-mono text-xs tabular-nums">
-                <div><p className="stat-label">Value</p>{fmt(p.est_value)}</div>
-                <div><p className="stat-label">Loan</p>{fmt(p.loan_balance)}</div>
                 <div><p className="stat-label">Rent</p>{fmt(p.tenant_rent)}/mo</div>
+                <div><p className="stat-label">Net income YTD</p>{fmt(p.ytd.net)}</div>
+                <div><p className="stat-label">Cash flow YTD</p>{fmt(p.ytd.cash)}</div>
               </div>
               <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
-                {step(!!c?.rent_received, 'Rent')}
-                {step(!!c?.mortgage_paid, 'Mortgage')}
-                {step(!!c?.completed_at, 'Month done')}
+                <span className="pill pill-green">{p.audit.lastClosed ? `Audited through ${new Date(p.audit.lastClosed + '-01T00:00:00').toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}` : 'No months closed yet'}</span>
+                {p.audit.needsLook > 0 && <span className="pill pill-amber">{p.audit.needsLook} month{p.audit.needsLook === 1 ? '' : 's'} need a look</span>}
+                {p.audit.ready > 0 && <span className="pill pill-slate">{p.audit.ready} ready to close</span>}
                 {p.utilitiesOwed > 0 && <span className="pill pill-amber">Utilities owed {fmt(p.utilitiesOwed)}</span>}
               </div>
               {p.nextReminder && <p className="mt-2 text-[11px] text-slate-500">Next: {p.nextReminder.name} · {shortDate(p.nextReminder.due_date)}</p>}

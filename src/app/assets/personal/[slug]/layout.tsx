@@ -4,23 +4,23 @@ import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 import { PERSONAL_SLUGS } from '@/lib/personal';
 
-// Personal properties (Clayton, Emerson): private, outside every Sandpiper total.
+// Personal properties (Clayton, Emerson): private, outside every Sandpiper total. Cash-flowing
+// rentals that need a monthly audit and clean numbers at tax time.
 export default function PersonalLayout({ children }: { children: React.ReactNode }) {
   const { slug } = useParams<{ slug: string }>();
   const pathname = usePathname();
   const base = `/assets/personal/${slug}`;
   const tabs = [
-    { href: base, label: 'This Month' },
-    { href: `${base}/utilities`, label: 'Utilities' },
-    { href: `${base}/reminders`, label: 'Reminders' },
-    { href: `${base}/ledger`, label: 'Ledger' },
+    { href: base, label: 'Monthly audit' },
+    { href: `${base}/tax`, label: 'Tax year' },
+    { href: `${base}/property`, label: 'Property' },
     slug === 'emerson' ? { href: `${base}/note`, label: "Dan's Note" } : { href: `${base}/ownership`, label: 'Ownership' },
   ];
 
   if (!(PERSONAL_SLUGS as readonly string[]).includes(slug)) return <div className="page"><p className="page-sub">Not found.</p></div>;
 
   return (
-    <div className="page !max-w-[980px]">
+    <div className="page !max-w-[1100px]">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="eyebrow"><Link href="/assets" className="hover:text-navy">Assets</Link> · Personal · private</p>

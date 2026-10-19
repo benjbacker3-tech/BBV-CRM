@@ -6,6 +6,7 @@ import { DdItem, OWNERSHIP_SECTION } from '@/lib/dd-template';
 import DealDetailPanel, { Tab } from '@/components/DealDetailPanel';
 import Link from 'next/link';
 import { AssetItem, TONE_PILL, dateStatus } from '@/lib/asset-bulletin';
+import YourDates from '@/components/YourDates';
 
 // SPC's default fee stack when SPC is the sponsor (source: CentrePoint term sheet).
 // A deal where SPC isn't a sponsor (co-invest, passive LP) doesn't earn these.
@@ -104,6 +105,8 @@ export default function Dashboard() {
             <p className="stat-sub">One-time · plus {fmt(totals.amFee)}/yr AM</p>
           </div>
         </div>
+
+        <YourDates className="mb-6" />
 
         <div className="card overflow-x-auto">
           <table className="table-clean">

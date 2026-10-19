@@ -1,12 +1,9 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import Link from 'next/link';
 import { RatesBrief as Brief, TapeRow, EconRow, CalItem, DeepDive, FocusItem, Reading, RundownItem, World, has, safeHtml, marketRows, rateLevels, splitCalendar, rundownOf, sportOf, list, paras } from '@/lib/rates-brief';
 import { RANGES, Range, LINES, Line, ChartModel, toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
 import RatesBriefPrint, { ChartInk, MiniLine, RealBars, TREND } from './RatesBriefPrint';
-import type { MyDate } from '@/lib/my-dates';
-import { fmt } from '@/lib/utils';
 
 // Sandpiper Daily Brief, a morning investor update in a newsletter voice:
 //   rates (SOFR, Treasuries, 10Y chart) and markets up top, then The Rundown (5–7 items),
@@ -42,7 +39,6 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
   const rundown = rundownOf(B);
   const sport = sportOf(B);
   const focusItems = list<FocusItem>(B.focus?.items).filter(f => typeof f === 'object' && f.title);
-  const dates = useMyDates();
 
   return (
     <>
@@ -60,8 +56,6 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         </h1>
         {B.dateline && <p className="page-sub">{B.dateline}</p>}
       </header>
-
-      {dates && <YourDates dates={dates} />}
 
       {(B.key?.length > 0 || B.series?.length > 1) && (
         <Section title="Rates" sub="basis points · red = rates up">
@@ -144,7 +138,7 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
       {B.world && B.world.lead && B.world.lead.title && <WorldDesk w={B.world} />}
       {B.reading && B.reading.title && <Corner r={B.reading} />}
     </div>
-    <RatesBriefPrint data={B} dates={dates} />
+    <RatesBriefPrint data={B} />
     </>
   );
 }
@@ -200,52 +194,6 @@ function Corner({ r }: { r: Reading }) {
         )}
         {r.src && <p className="mt-3 text-[11px] text-slate-400">{r.src}</p>}
       </article>
-    </Section>
-  );
-}
-
-// Ben's own deadlines for the next 7 days, from the CRM (not part of the brief's JSON).
-export function useMyDates(): MyDate[] | null {
-  const [dates, setDates] = useState<MyDate[] | null>(null);
-  useEffect(() => {
-    const d = new Date();
-    const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-    fetch(`/api/brief/dates?today=${today}`).then(r => (r.ok ? r.json() : null)).then(j => setDates(j?.dates ?? [])).catch(() => setDates([]));
-  }, []);
-  return dates;
-}
-export const KIND_LABEL: Record<MyDate['kind'], string> = { deal: 'Deal', checklist: 'Diligence', asset: 'Asset', personal: 'Personal', task: 'Follow-up' };
-export function dueTone(iso: string): 'over' | 'today' | 'soon' {
-  const t = new Date(); t.setHours(0, 0, 0, 0);
-  const n = Math.round((new Date(iso + 'T00:00:00').getTime() - t.getTime()) / 86_400_000);
-  return n < 0 ? 'over' : n === 0 ? 'today' : 'soon';
-}
-
-function YourDates({ dates }: { dates: MyDate[] }) {
-  const [all, setAll] = useState(false);
-  const shown = all ? dates : dates.slice(0, 8);
-  return (
-    <Section title="Your dates" sub="next 7 days · from the CRM">
-      {dates.length === 0 ? <p className="text-sm text-slate-500">Nothing due in the next 7 days.</p> : (
-        <ul className="card divide-y divide-slate-100 dark:divide-slate-800">
-          {shown.map((d, i) => {
-            const tone = dueTone(d.date);
-            return (
-              <li key={i}>
-                <Link href={d.href} className="flex items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                  <span className={`pill w-[72px] shrink-0 justify-center font-mono ${tone === 'over' ? 'pill-red' : tone === 'today' ? 'pill-amber' : 'pill-slate'}`}>{tone === 'over' ? 'overdue' : tone === 'today' ? 'today' : shortDay(d.date)}</span>
-                  <span className="w-[70px] shrink-0 text-[10px] font-bold uppercase tracking-[0.08em] text-navy dark:text-blue-300">{KIND_LABEL[d.kind]}</span>
-                  <span className="min-w-0 flex-1 truncate text-slate-800 dark:text-slate-200"><b className="font-semibold">{d.where}</b> · {d.what}</span>
-                  {d.amount ? <span className="font-mono text-xs text-slate-500">{fmt(d.amount)}</span> : null}
-                </Link>
-              </li>
-            );
-          })}
-          {dates.length > 8 && (
-            <li><button onClick={() => setAll(a => !a)} className="w-full px-4 py-2 text-left text-xs font-medium text-navy dark:text-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">{all ? 'Show fewer' : `Show ${dates.length - 8} more`}</button></li>
-          )}
-        </ul>
-      )}
     </Section>
   );
 }

@@ -50,7 +50,7 @@ export async function myDates(today: string, days = 7): Promise<MyDate[]> {
   const personal = await all<{ slug: string | null; pname: string | null; name: string; due_date: string; amount: number | null }>(
     `SELECT p.slug, p.name AS pname, r.name, r.due_date, r.amount FROM personal_reminders r LEFT JOIN personal_properties p ON p.id = r.property_id
      WHERE r.dismissed = 0 AND r.due_date <= ? ORDER BY r.due_date`, [end]);
-  for (const p of personal) out.push({ date: p.due_date, kind: 'personal', what: p.name, where: p.pname || 'Personal', amount: p.amount, href: p.slug ? `/assets/personal/${p.slug}/reminders` : '/assets' });
+  for (const p of personal) out.push({ date: p.due_date, kind: 'personal', what: p.name, where: p.pname || 'Personal', amount: p.amount, href: p.slug ? `/assets/personal/${p.slug}/property` : '/assets' });
 
   // Contact follow-ups: one row for overdue, one for this week.
   const tasks = await all<{ late: number; n: number; first: string }>(

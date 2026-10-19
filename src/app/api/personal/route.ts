@@ -1,20 +1,33 @@
 import { NextResponse } from 'next/server';
 import { all } from '@/lib/db';
-import { PersonalProperty, currentMonth } from '@/lib/personal';
+import { PersonalProperty, currentMonth, round2 } from '@/lib/personal';
+import { auditYear, taxYear, utilitiesOwed } from '@/lib/personal-audit';
 
-// The personal properties with this month's status, for the Assets page.
+export const dynamic = 'force-dynamic';
+
+// The personal properties for the Assets page: audit progress this year, year-to-date numbers,
+// utilities the tenant owes, and the next key date.
 export async function GET() {
-  const month = currentMonth();
+  const year = currentMonth().slice(0, 4);
   const props = await all<PersonalProperty>('SELECT * FROM personal_properties ORDER BY slug');
   const out = [];
   for (const p of props) {
-    const [checkin] = await all<{ rent_received: number; mortgage_paid: number; completed_at: string | null }>(
-      'SELECT rent_received, mortgage_paid, completed_at FROM personal_checkins WHERE property_id = ? AND month = ?', [p.id, month]);
-    const [owed] = await all<{ owed: number | null }>(
-      'SELECT SUM(COALESCE(amount_paid, 0) - COALESCE(amount_recharged, 0)) AS owed FROM personal_utility_bills WHERE property_id = ?', [p.id]);
-    const [next] = await all<{ name: string; due_date: string }>(
-      'SELECT name, due_date FROM personal_reminders WHERE property_id = ? AND dismissed = 0 ORDER BY due_date LIMIT 1', [p.id]);
-    out.push({ ...p, month, checkin: checkin ?? null, utilitiesOwed: Math.round((owed?.owed ?? 0) * 100) / 100, nextReminder: next ?? null });
+    const [months, tax, owed, next] = await Promise.all([
+      auditYear(p, year), taxYear(p, year), utilitiesOwed(p.id),
+      all<{ name: string; due_date: string }>('SELECT name, due_date FROM personal_reminders WHERE property_id = ? AND dismissed = 0 ORDER BY due_date LIMIT 1', [p.id]),
+    ]);
+    const closed = months.filter(m => m.state === 'closed').map(m => m.month);
+    out.push({
+      ...p,
+      audit: {
+        lastClosed: closed[closed.length - 1] ?? null,
+        needsLook: months.filter(m => m.state === 'issues').length,
+        ready: months.filter(m => m.state === 'ready').length,
+      },
+      ytd: { net: tax.net, cash: tax.cash.net, rents: tax.rents },
+      utilitiesOwed: round2(owed.reduce((s, o) => s + Math.max(0, o.owed), 0)),
+      nextReminder: next[0] ?? null,
+    });
   }
   return NextResponse.json(out);
 }

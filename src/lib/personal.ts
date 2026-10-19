@@ -91,3 +91,53 @@ export function noteSchedule() {
 }
 
 export const newId = () => (globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+
+// ── Monthly audit and tax year (Oct 19, 2026) ─────────────────────────────
+// The ledger (personal_transactions) is the record. Bank statement lines feed it; the monthly
+// audit checks each month's ledger against what the property should do (personal_expected);
+// the tax year sums it into a Schedule E view.
+
+export const NOTE_CATEGORY = "Dan's note";      // a statement line that is one of Dan's payments
+// Every category a ledger entry or statement line can take. The sign of the amount sets
+// Income vs Expense; Water/Trash/Stormwater as Income are tenant recharges.
+export const LEDGER_CATEGORIES = [
+  'Rent', 'Mortgage', 'Water', 'Trash', 'Stormwater', 'Property tax', 'Insurance', 'Maintenance', 'Bank fees', 'Other',
+  'Owner contribution', 'Owner draw', 'Transfer',
+] as const;
+// Money moving between Ben and the property's account, not rental income or expense.
+export const NON_OPERATING = new Set(['Owner contribution', 'Owner draw', 'Transfer']);
+export const UTILITY_CATEGORIES = new Set(['Water', 'Trash', 'Stormwater']);
+// Entries recorded from the 1098 or paid by the servicer out of escrow: in the tax view, not in
+// bank cash flow (the bank only sees the full mortgage payment).
+export const ESCROW_SOURCES = new Set(['1098', 'servicer-escrow']);
+
+export interface Expected {
+  id: string; label: string; type: 'Income' | 'Expense'; category: string; amount: number | null;
+  every_months: number; start_month: string | null; end_month: string | null; match: string | null; sort: number;
+}
+export interface StatementLine {
+  id: string; date: string; description: string; amount: number; balance: number | null;
+  category: string | null; status: 'new' | 'posted' | 'linked'; tx_id: string | null; import_id: string | null;
+}
+export type AuditStatus = 'ok' | 'differs' | 'missing' | 'skipped' | 'upcoming';
+export interface AuditRow { expected: Expected; status: AuditStatus; actual: number | null; date: string | null; note?: string | null }
+export type MonthState = 'closed' | 'issues' | 'ready' | 'open' | 'future' | 'empty';
+export interface AuditMonth {
+  month: string; state: MonthState; rows: AuditRow[]; lines: StatementLine[]; uncategorized: number;
+  closedAt: string | null; notes: string | null; income: number; expense: number;
+}
+
+export function monthIndex(m: string): number { const [y, mo] = m.split('-').map(Number); return y * 12 + (mo - 1); }
+export function expectedIn(e: Expected, month: string): boolean {
+  if (e.start_month && month < e.start_month) return false;
+  if (e.end_month && month > e.end_month) return false;
+  const every = Math.max(1, e.every_months || 1);
+  return every === 1 || (monthIndex(month) - monthIndex(e.start_month || month)) % every === 0;
+}
+export const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+// Documents to gather for the CPA each year.
+export function taxDocList(slug: string): string[] {
+  const common = ['Mortgage 1098', 'Property tax statement', 'Insurance declarations page', 'Bank statements (all 12 months)', 'Lease(s) in effect'];
+  return slug === 'clayton' ? [...common, 'TB Capital partnership return / K-1'] : [...common, "Dan's note: interest received"];
+}
