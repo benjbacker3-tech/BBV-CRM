@@ -1,14 +1,18 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { RatesBrief as Brief, TapeRow, EconRow, CalItem, DeepDive, Reading, RundownItem, has, safeHtml, marketRows, rateLevels, splitCalendar, rundownOf, sportOf, list } from '@/lib/rates-brief';
+import Link from 'next/link';
+import { RatesBrief as Brief, TapeRow, EconRow, CalItem, DeepDive, FocusItem, Reading, RundownItem, World, has, safeHtml, marketRows, rateLevels, splitCalendar, rundownOf, sportOf, list, paras } from '@/lib/rates-brief';
 import { RANGES, Range, LINES, Line, ChartModel, toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
-import RatesBriefPrint from './RatesBriefPrint';
+import RatesBriefPrint, { ChartInk, MiniLine, RealBars, TREND } from './RatesBriefPrint';
+import type { MyDate } from '@/lib/my-dates';
+import { fmt } from '@/lib/utils';
 
 // Sandpiper Daily Brief, a morning investor update in a newsletter voice:
 //   rates (SOFR, Treasuries, 10Y chart) and markets up top, then The Rundown (5–7 items),
 //   the deep dive (one structural topic a day), a compact economic calendar, freight, sports,
-//   and Investor's Corner (a well-known investor's story or ideas; page 3 in print).
+//   Data in focus, World Desk, and Investor's Corner (a well-known investor's story or ideas).
+//   In print: page 1 numbers and news, page 2 deep dive / focus / calendar, page 3 World Desk + Corner.
 // Colors: for rates and diesel a rise is bad (red); for stocks a rise is good (green).
 const UP_BAD = 'text-red-700 dark:text-red-400';
 const UP_GOOD = 'text-emerald-700 dark:text-emerald-400';
@@ -37,6 +41,8 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
   const ahead = datesAhead(cal.later);
   const rundown = rundownOf(B);
   const sport = sportOf(B);
+  const focusItems = list<FocusItem>(B.focus?.items).filter(f => typeof f === 'object' && f.title);
+  const dates = useMyDates();
 
   return (
     <>
@@ -54,6 +60,8 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
         </h1>
         {B.dateline && <p className="page-sub">{B.dateline}</p>}
       </header>
+
+      {dates && <YourDates dates={dates} />}
 
       {(B.key?.length > 0 || B.series?.length > 1) && (
         <Section title="Rates" sub="basis points · red = rates up">
@@ -78,6 +86,8 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
       {rundown.length > 0 && <Rundown items={rundown.slice(0, 7)} />}
 
       {B.dive && B.dive.title && <Dive d={B.dive} />}
+
+      {focusItems.length > 0 && <Focus items={focusItems} />}
 
       {(cal.last.length > 0 || cal.next.length > 0) && (
         <Section title="Economic calendar" sub="last week vs expectations · this week">
@@ -131,9 +141,10 @@ export default function RatesBrief({ data: B }: { data: Brief }) {
           <span dangerouslySetInnerHTML={{ __html: safeHtml(sport) }} />
         </p>
       )}
+      {B.world && B.world.lead && B.world.lead.title && <WorldDesk w={B.world} />}
       {B.reading && B.reading.title && <Corner r={B.reading} />}
     </div>
-    <RatesBriefPrint data={B} />
+    <RatesBriefPrint data={B} dates={dates} />
     </>
   );
 }
@@ -177,7 +188,7 @@ function Corner({ r }: { r: Reading }) {
           </blockquote>
         )}
         <div className="mt-3 space-y-3 max-w-[78ch]">
-          {list<string>(r.body).map((p, i) => <p key={i} className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+          {paras(r.body).map((p, i) => <p key={i} className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
         </div>
         {list(r.takeaways).length > 0 && (
           <div className="mt-4 rounded-md bg-slate-50 dark:bg-slate-800/50 px-4 py-3">
@@ -193,6 +204,192 @@ function Corner({ r }: { r: Reading }) {
   );
 }
 
+// Ben's own deadlines for the next 7 days, from the CRM (not part of the brief's JSON).
+export function useMyDates(): MyDate[] | null {
+  const [dates, setDates] = useState<MyDate[] | null>(null);
+  useEffect(() => {
+    const d = new Date();
+    const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    fetch(`/api/brief/dates?today=${today}`).then(r => (r.ok ? r.json() : null)).then(j => setDates(j?.dates ?? [])).catch(() => setDates([]));
+  }, []);
+  return dates;
+}
+export const KIND_LABEL: Record<MyDate['kind'], string> = { deal: 'Deal', checklist: 'Diligence', asset: 'Asset', personal: 'Personal', task: 'Follow-up' };
+export function dueTone(iso: string): 'over' | 'today' | 'soon' {
+  const t = new Date(); t.setHours(0, 0, 0, 0);
+  const n = Math.round((new Date(iso + 'T00:00:00').getTime() - t.getTime()) / 86_400_000);
+  return n < 0 ? 'over' : n === 0 ? 'today' : 'soon';
+}
+
+function YourDates({ dates }: { dates: MyDate[] }) {
+  const [all, setAll] = useState(false);
+  const shown = all ? dates : dates.slice(0, 8);
+  return (
+    <Section title="Your dates" sub="next 7 days · from the CRM">
+      {dates.length === 0 ? <p className="text-sm text-slate-500">Nothing due in the next 7 days.</p> : (
+        <ul className="card divide-y divide-slate-100 dark:divide-slate-800">
+          {shown.map((d, i) => {
+            const tone = dueTone(d.date);
+            return (
+              <li key={i}>
+                <Link href={d.href} className="flex items-center gap-3 px-4 py-2 text-[13px] hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                  <span className={`pill w-[72px] shrink-0 justify-center font-mono ${tone === 'over' ? 'pill-red' : tone === 'today' ? 'pill-amber' : 'pill-slate'}`}>{tone === 'over' ? 'overdue' : tone === 'today' ? 'today' : shortDay(d.date)}</span>
+                  <span className="w-[70px] shrink-0 text-[10px] font-bold uppercase tracking-[0.08em] text-navy dark:text-blue-300">{KIND_LABEL[d.kind]}</span>
+                  <span className="min-w-0 flex-1 truncate text-slate-800 dark:text-slate-200"><b className="font-semibold">{d.where}</b> · {d.what}</span>
+                  {d.amount ? <span className="font-mono text-xs text-slate-500">{fmt(d.amount)}</span> : null}
+                </Link>
+              </li>
+            );
+          })}
+          {dates.length > 8 && (
+            <li><button onClick={() => setAll(a => !a)} className="w-full px-4 py-2 text-left text-xs font-medium text-navy dark:text-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800/50">{all ? 'Show fewer' : `Show ${dates.length - 8} more`}</button></li>
+          )}
+        </ul>
+      )}
+    </Section>
+  );
+}
+
+// Chart colors that follow the CRM's light / dark theme (set on the wrapper as CSS variables).
+const SCREEN_INK: ChartInk = { line: 'var(--rb-line)', text: 'var(--rb-text)', grid: 'var(--rb-grid)', strong: 'var(--rb-strong)' };
+const INK_VARS = '[--rb-line:#1E3A5F] [--rb-text:#64748B] [--rb-grid:#E2E8F0] [--rb-strong:#0F172A] dark:[--rb-line:#93C5FD] dark:[--rb-text:#94A3B8] dark:[--rb-grid:#334155] dark:[--rb-strong:#F1F5F9]';
+const BODY = 'text-[15px] leading-relaxed text-slate-700 dark:text-slate-300';
+
+function Focus({ items }: { items: FocusItem[] }) {
+  return (
+    <Section title="Data in focus" sub="the numbers that mattered, and what experts make of them">
+      <div className="space-y-4">
+        {items.map((f, i) => {
+          const pts = (f.chart ? list<[string, number]>(f.chart.pts) : []).filter(p => Array.isArray(p) && typeof p[1] === 'number');
+          const experts = list<NonNullable<FocusItem['experts']>[number]>(f.experts);
+          return (
+            <article key={i} className="card px-5 py-5 sm:px-7">
+              {f.tag && <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-navy dark:text-blue-300">{f.tag}</p>}
+              <h3 className="text-lg font-semibold leading-snug tracking-tight text-slate-900 dark:text-slate-100 [text-wrap:balance]">{f.title}</h3>
+              {(has(f.act) || has(f.cons) || has(f.prior)) && (
+                <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                  {f.rel && <span className="text-slate-500">{f.rel}</span>}
+                  {has(f.act) && <Labeled label="Actual" value={f.act as string} cls={f.good == null ? 'text-slate-900 dark:text-slate-100' : f.good ? UP_GOOD : UP_BAD} />}
+                  {has(f.cons) && <Labeled label="Consensus" value={f.cons as string} cls="text-slate-700 dark:text-slate-300" />}
+                  {has(f.prior) && <Labeled label="Prior" value={f.prior as string} cls={FLAT} />}
+                </p>
+              )}
+              <div className={`mt-3 grid gap-5 items-start ${pts.length > 1 ? 'lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]' : ''}`}>
+                <div className="space-y-3 max-w-[78ch]">
+                  {paras(f.body).map((p, j) => <p key={j} className={BODY} dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+                </div>
+                {pts.length > 1 && (
+                  <div className={INK_VARS}>
+                    {f.chart?.t && <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">{f.chart.t}</p>}
+                    <MiniLine pts={pts} unit={f.chart?.unit || ''} ink={SCREEN_INK} />
+                    {f.chart?.src && <p className="mt-1 text-[10px] text-slate-400">{f.chart.src}</p>}
+                  </div>
+                )}
+              </div>
+              {experts.length > 0 && (
+                <ul className="mt-4 space-y-2">
+                  {experts.map((e, j) => (
+                    <li key={j} className="border-l-2 border-slate-200 dark:border-slate-700 pl-3 text-[13px] leading-snug text-slate-700 dark:text-slate-300">
+                      <b className="text-slate-900 dark:text-slate-100">{e.who}:</b> <span dangerouslySetInnerHTML={{ __html: safeHtml(e.view) }} />
+                      {e.url ? <a href={e.url} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-xs text-slate-400 underline underline-offset-2">{e.src || 'source'}</a>
+                        : e.src ? <span className="ml-1.5 text-xs text-slate-400">{e.src}</span> : null}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {has(f.lean) && <p className="mt-3 text-[13px] italic text-slate-600 dark:text-slate-400"><b className="not-italic text-slate-800 dark:text-slate-200">Where forecasters lean:</b> {f.lean}</p>}
+              {f.src && <p className="mt-3 text-[11px] text-slate-400">{f.src}</p>}
+            </article>
+          );
+        })}
+      </div>
+    </Section>
+  );
+}
+
+// World Desk: lead geopolitical story, hotspot tracker, foreign central banks, real policy rates.
+// `w.src` stays out of the CRM, like `foot`.
+function WorldDesk({ w }: { w: World }) {
+  const lead = w.lead!;
+  const views = list<NonNullable<NonNullable<World['lead']>['views']>[number]>(lead.views);
+  const hot = list<NonNullable<World['hot']>[number]>(w.hot).filter(h => typeof h === 'object' && h.r);
+  const cb = list<NonNullable<World['cb']>[number]>(w.cb).filter(c => typeof c === 'object' && c.bank);
+  const real = w.real ? list<[string, number]>(w.real.pts).filter(p => Array.isArray(p) && typeof p[1] === 'number') : [];
+  const sub = 'ml-1.5 text-[10px] font-medium normal-case tracking-normal text-slate-400';
+  const h4 = 'mb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-navy dark:text-blue-300';
+  return (
+    <Section title="World Desk" sub={lead.kicker}>
+      <article className="card px-5 py-5 sm:px-7">
+        <h3 className="text-lg sm:text-xl font-semibold leading-snug tracking-tight text-slate-900 dark:text-slate-100 [text-wrap:balance]">{lead.title}</h3>
+        <div className="mt-3 space-y-3 max-w-[78ch]">
+          {paras(lead.body).map((p, i) => <p key={i} className={BODY} dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+        </div>
+        {has(lead.reach) && (
+          <p className="mt-3 rounded-r-md border-l-[3px] border-navy dark:border-blue-300 bg-slate-50 dark:bg-slate-800/50 px-4 py-2.5 text-[13px] leading-snug text-slate-700 dark:text-slate-300"
+            dangerouslySetInnerHTML={{ __html: safeHtml(`<b>How it reaches you:</b> ${lead.reach}`) }} />
+        )}
+        {views.length > 0 && (
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            {views.map((v, i) => (
+              <p key={i} className="border-l-2 border-slate-200 dark:border-slate-700 pl-3 text-[13px] leading-snug text-slate-700 dark:text-slate-300">
+                <b className="text-slate-900 dark:text-slate-100">{v.who}:</b> <span dangerouslySetInnerHTML={{ __html: safeHtml(v.view) }} />
+                {v.url && <a href={v.url} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-xs text-slate-400 underline underline-offset-2">{v.src || 'source'}</a>}
+              </p>
+            ))}
+          </div>
+        )}
+
+        {hot.length > 0 && (
+          <div className="mt-6">
+            <p className={h4}>Hotspot tracker</p>
+            <div className="overflow-x-auto">
+              <table className="table-clean">
+                <thead><tr><th>Region</th><th>What changed</th><th>Trend</th><th>Market channel</th><th>Next date</th></tr></thead>
+                <tbody>
+                  {hot.map((h, i) => (
+                    <tr key={i} className="row align-top">
+                      <td className="font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">{h.r}</td>
+                      <td className="text-[13px] leading-snug min-w-[220px]">{h.chg}</td>
+                      <td><span className={`inline-block whitespace-nowrap rounded border px-1.5 py-px text-[9px] font-bold uppercase tracking-[0.06em] ${TREND[h.tc || 'std'] || TREND.std}`}>{h.trend}</span></td>
+                      <td className="text-[13px] leading-snug min-w-[140px]">{h.ch}</td>
+                      <td className="text-[13px] leading-snug min-w-[120px]">{h.next}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {(cb.length > 0 || real.length > 0) && (
+          <div className="mt-6 grid gap-6 lg:grid-cols-2 items-start">
+            {cb.length > 0 && (
+              <div>
+                <p className={h4}>Central bank watch<span className={sub}>next 3 weeks, ex-Fed</span></p>
+                <ul>
+                  {cb.map((c, i) => (
+                    <li key={i} className="grid grid-cols-[56px_1fr] gap-2 border-b border-slate-100 dark:border-slate-800 py-1.5 text-[13px] text-slate-700 dark:text-slate-300">
+                      <span className="font-mono text-xs font-semibold text-navy dark:text-blue-300">{/^\d{4}-\d{2}-\d{2}$/.test(c.d) ? shortDay(c.d) : c.d}</span>
+                      <span><b className="text-slate-900 dark:text-slate-100">{c.bank}</b>, {c.rate}: {c.exp}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {real.length > 0 && (
+              <div className={INK_VARS}>
+                <p className={h4}>{w.real?.t || "Who's really tight?"}<span className={sub}>policy rate minus CPI</span></p>
+                <RealBars pts={real} ink={SCREEN_INK} />
+                <p className="mt-1 text-[10px] text-slate-400">0 = rates match inflation</p>
+              </div>
+            )}
+          </div>
+        )}
+      </article>
+    </Section>
+  );
+}
+
 function Dive({ d }: { d: DeepDive }) {
   return (
     <Section title="Deep dive" sub={d.kicker}>
@@ -200,7 +397,7 @@ function Dive({ d }: { d: DeepDive }) {
         <h3 className="text-lg sm:text-xl font-semibold leading-snug tracking-tight text-slate-900 dark:text-slate-100 [text-wrap:balance]">{d.title}</h3>
         {d.dek && <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{d.dek}</p>}
         <div className="mt-3 space-y-3 max-w-[78ch]">
-          {list<string>(d.body).map((p, i) => <p key={i} className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
+          {paras(d.body).map((p, i) => <p key={i} className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: safeHtml(p) }} />)}
         </div>
         {d.table && list(d.table.rows).length > 0 && (
           <div className="mt-4 overflow-x-auto">

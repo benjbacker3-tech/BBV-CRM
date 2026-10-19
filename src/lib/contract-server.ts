@@ -6,6 +6,7 @@ import { OWNERSHIP_SECTION } from './dd-template';
 import { checklistDue, readTerms, timeline, Found } from './contract-terms';
 import { DriveItem, children, download, graphConfigured } from './graph';
 import { findDealFolder } from './deal-docs';
+import { aiConfigured, extract, pdfBlock } from './ai';
 
 export const CONTRACT_FIELDS = ['psa_effective', 'dd_days', 'close_days', 'em_days', 'em_business', 'deposit', 'deposit_2'] as const;
 
@@ -64,12 +65,63 @@ export async function pdfText(bytes: ArrayBuffer): Promise<string> {
   return Array.isArray(text) ? text.join('\n') : text;
 }
 
-export interface PsaRead { file: { name: string; webUrl: string } | null; scanned: boolean; found: Found; error?: string }
+export interface PsaRead { file: { name: string; webUrl: string } | null; scanned: boolean; found: Found; via?: 'claude' | 'rules'; note?: string; error?: string }
 
+// Claude reads the PDF itself (so signed scans work too); the text rules are the fallback when
+// no API key is set, the file is too big to send, or the call fails.
 export async function readDealPsa(deal: Deal): Promise<PsaRead> {
   const psa = await findPsa(deal);
   if (!psa) return { file: null, scanned: false, found: {} };
-  const text = await pdfText(await download(psa.id));
+  const bytes = await download(psa.id);
+  const file = { name: psa.name, webUrl: psa.webUrl };
+  let note: string | undefined;
+  if (aiConfigured() && bytes.byteLength < 25 * 1024 * 1024) {
+    try {
+      return { file, scanned: false, found: await readTermsWithClaude(bytes), via: 'claude' };
+    } catch (e) {
+      note = `Claude couldn't read it (${e instanceof Error ? e.message : String(e)}); used the text rules instead.`;
+    }
+  }
+  const text = await pdfText(bytes);
   const scanned = text.replace(/\s/g, '').length < 500;   // a scan has no text layer
-  return { file: { name: psa.name, webUrl: psa.webUrl }, scanned, found: scanned ? {} : readTerms(text) };
+  return { file, scanned, found: scanned ? {} : readTerms(text), via: 'rules', note };
+}
+
+const TERM = (type: 'string' | 'number' | 'boolean', what: string) => ({
+  type: ['object', 'null'],
+  description: `${what} Null if the contract doesn't state it (a blank form field counts as not stated).`,
+  properties: { value: { type }, quote: { type: 'string', description: 'The exact sentence or clause it comes from, under 40 words.' } },
+  required: ['value', 'quote'],
+});
+const PSA_SCHEMA = {
+  properties: {
+    psa_effective: TERM('string', 'Effective date as YYYY-MM-DD, only if a date is actually filled in.'),
+    dd_days: TERM('number', 'Length of the inspection / due diligence / feasibility period, in days after the effective date.'),
+    close_days: TERM('number', 'Closing: days after the END of the inspection period.'),
+    close_days_after_effective: TERM('number', 'Closing: days after the EFFECTIVE DATE, when the contract counts it that way instead.'),
+    em_amount: TERM('number', 'Initial earnest money deposit, in dollars.'),
+    em_days: TERM('number', 'Earnest money is due this many days after the effective date.'),
+    em_business: TERM('boolean', 'True if the earnest money days are business days.'),
+    price: TERM('number', 'Purchase price, in dollars.'),
+  },
+  required: ['psa_effective', 'dd_days', 'close_days', 'close_days_after_effective', 'em_amount', 'em_days', 'em_business', 'price'],
+};
+
+async function readTermsWithClaude(bytes: ArrayBuffer): Promise<Found> {
+  const raw = await extract<Record<string, { value: unknown; quote: string } | null>>({
+    model: 'careful',
+    system: 'You read U.S. commercial real estate purchase and sale agreements and report their key business terms exactly as written. Amendments in the same file override the original terms; use the amended value and quote the amendment. Never guess: if a term is blank or not stated, return null.',
+    content: [pdfBlock(bytes), { type: 'text', text: 'Report the key terms of this purchase agreement.' }],
+    schema: PSA_SCHEMA,
+  });
+  const found: Found = {};
+  const num = (v: unknown) => (typeof v === 'number' && isFinite(v) && v >= 0 ? v : null);
+  for (const [k, t] of Object.entries(raw || {})) {
+    if (!t || t.value == null) continue;
+    const quote = String(t.quote || '').slice(0, 300);
+    if (k === 'psa_effective') { if (typeof t.value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(t.value)) found.psa_effective = { value: t.value, quote }; }
+    else if (k === 'em_business') { if (typeof t.value === 'boolean') found.em_business = { value: t.value, quote }; }
+    else if (k in PSA_SCHEMA.properties) { const v = num(t.value); if (v != null) (found as Record<string, unknown>)[k] = { value: v, quote }; }
+  }
+  return found;
 }

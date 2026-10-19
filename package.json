@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/check-brief.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:brief": "node scripts/check-brief.mjs",
+    "check:page": "node scripts/page-check.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

@@ -1,0 +1,10 @@
+# One line ending everywhere (LF), whatever the OS or editor. Windows tools read LF fine;
+# this stops files flipping between CRLF and LF from one edit to the next.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.png binary
+*.pdf binary
+*.gz binary

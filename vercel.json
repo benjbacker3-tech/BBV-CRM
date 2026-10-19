@@ -1,6 +1,7 @@
 {
   "crons": [
     { "path": "/api/cron/mail-filing", "schedule": "0 13 * * *" },
+    { "path": "/api/cron/leads", "schedule": "15 13 * * *" },
     { "path": "/api/cron/backup", "schedule": "0 9 * * *" }
   ]
 }

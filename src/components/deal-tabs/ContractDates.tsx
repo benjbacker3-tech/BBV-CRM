@@ -28,7 +28,7 @@ export default function ContractDates({ deal, onSaved }: { deal: Deal; onSaved: 
   });
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
-  const [read, setRead] = useState<{ file: { name: string; webUrl: string } | null; scanned: boolean; found: Found; error?: string } | null>(null);
+  const [read, setRead] = useState<{ file: { name: string; webUrl: string } | null; scanned: boolean; found: Found; via?: 'claude' | 'rules'; note?: string; error?: string } | null>(null);
   const [reading, setReading] = useState(false);
 
   const ms = useMemo(() => timeline({
@@ -136,7 +136,7 @@ export default function ContractDates({ deal, onSaved }: { deal: Deal; onSaved: 
                 : Object.keys(read.found).length === 0 ? <p className="text-slate-600">Read <a href={read.file.webUrl} target="_blank" rel="noopener noreferrer" className="underline">{read.file.name}</a> but couldn&apos;t find the terms in its text (state forms keep them in fill-in fields). Enter them by hand.</p>
                 : (
                   <>
-                    <p className="mb-1.5 text-slate-600">From <a href={read.file.webUrl} target="_blank" rel="noopener noreferrer" className="underline">{read.file.name}</a>. Check each against the quote, then use it:</p>
+                    <p className="mb-1.5 text-slate-600">From <a href={read.file.webUrl} target="_blank" rel="noopener noreferrer" className="underline">{read.file.name}</a>{read.via === 'claude' ? ', read by Claude' : ''}. Check each against the quote, then use it:</p>
                     <ul className="space-y-1.5">
                       {Object.entries(read.found).map(([k, v]) => (
                         <li key={k} className="flex items-start gap-2">
@@ -151,6 +151,7 @@ export default function ContractDates({ deal, onSaved }: { deal: Deal; onSaved: 
                     </ul>
                   </>
                 )}
+              {read.note && <p className="mt-1.5 text-[11px] text-slate-500">{read.note}</p>}
             </div>
           )}
         </div>

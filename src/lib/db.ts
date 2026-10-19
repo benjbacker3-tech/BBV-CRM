@@ -46,6 +46,28 @@ export async function batch(statements: InStatement[]): Promise<void> {
   await db.batch(statements);
 }
 
+// A table's column names, read once per server instance.
+const _columns = new Map<string, Set<string>>();
+export async function columnsOf(table: string): Promise<Set<string>> {
+  let cols = _columns.get(table);
+  if (!cols) {
+    cols = new Set((await all<{ name: string }>(`PRAGMA table_info("${table.replace(/"/g, '')}")`)).map(c => String(c.name)));
+    _columns.set(table, cols);
+  }
+  return cols;
+}
+
+// UPDATE from a request body, keeping only keys that are real columns of the table (never `id`),
+// so a body can't name arbitrary SQL. Returns the keys that were written.
+export async function updateFromBody(table: string, body: Record<string, unknown>, where: string, whereArgs: (string | number | null)[]): Promise<string[]> {
+  const cols = await columnsOf(table);
+  const keys = Object.keys(body || {}).filter(k => k !== 'id' && cols.has(k));
+  if (!keys.length) return [];
+  const v = (x: unknown) => (x !== null && typeof x === 'object' ? JSON.stringify(x) : x === undefined ? null : x);
+  await run(`UPDATE "${table}" SET ${keys.map(k => `"${k}" = ?`).join(', ')} WHERE ${where}`, [...keys.map(k => v(body[k])), ...whereArgs] as InArgs);
+  return keys;
+}
+
 async function initSchema(db: Client) {
   await db.executeMultiple(`
     CREATE TABLE IF NOT EXISTS deals (

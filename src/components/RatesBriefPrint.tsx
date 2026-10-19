@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { RatesBrief as Brief, TapeRow, DeepDive, FocusItem, Reading, RundownItem, World, has, safeHtml, marketRows, rundownOf, sportOf, list, paras, calendarFrom } from '@/lib/rates-brief';
 import { toPoints, inRange, chartModel, bp } from '@/lib/rates-chart';
-import { ChartSvg, shortDay } from './RatesBrief';
+import { ChartSvg, shortDay, KIND_LABEL, dueTone } from './RatesBrief';
+import type { MyDate } from '@/lib/my-dates';
 
 // Three-page Letter printout of the Sandpiper Daily Brief (layout of Oct 19, 2026).
 //   Page 1 · the numbers and the news: headline, rates (four cards + 1-year 2Y/5Y/10Y chart),
@@ -18,7 +19,7 @@ import { ChartSvg, shortDay } from './RatesBrief';
 // set size (MIN_SCALE = 1); a light day scales up a little to fill the page. A heavy day is
 // trimmed, least useful first:
 //   page 1: shorter chart; market notes to 1 line; rundown notes to 3 lines; freight notes to
-//           2 lines; then the 7th rundown item
+//           2 lines; the 7th rundown item; then "Your dates" to 4 lines
 //   page 2: "Later" to 6 rows; expert reads to 2; deep-dive watch list off; its table off;
 //           the focus chart off
 //   page 3: takeaways off; World Desk views off; pull quote off; central banks to 4
@@ -49,11 +50,11 @@ const PRINT_CSS = `
 }
 `;
 
-const P1_MAX = 5;
+const P1_MAX = 6;
 const P2_MAX = 5;
 const P3_MAX = 4;
 
-export default function RatesBriefPrint({ data: B }: { data: Brief }) {
+export default function RatesBriefPrint({ data: B, dates = null }: { data: Brief; dates?: MyDate[] | null }) {
   const [p1Level, setP1Level] = useState(0);
   const [p2Level, setP2Level] = useState(0);
   const [p3Level, setP3Level] = useState(0);
@@ -61,7 +62,7 @@ export default function RatesBriefPrint({ data: B }: { data: Brief }) {
   // Bumping `epoch` makes every sheet measure again even when a level was already 0.
   const [epoch, setEpoch] = useState(0);
   const restart = useCallback(() => { setP1Level(0); setP2Level(0); setP3Level(0); setEpoch(e => e + 1); }, []);
-  useEffect(() => { restart(); }, [B, restart]);
+  useEffect(() => { restart(); }, [B, dates, restart]);
   useEffect(() => { document.fonts?.ready.then(restart).catch(() => {}); }, [restart]);
 
   // Print light even when the CRM is in dark mode.
@@ -85,8 +86,8 @@ export default function RatesBriefPrint({ data: B }: { data: Brief }) {
   return (
     <div className="rbp-root" aria-hidden data-levels={`${p1Level},${p2Level},${p3Level},${epoch}`}>
       <style>{PRINT_CSS}</style>
-      <Sheet page={1} pages={pages} footer={datelineShort} onOverflow={onOverflow1} deps={[B, p1Level, epoch]}>
-        <PageOne B={B} level={p1Level} />
+      <Sheet page={1} pages={pages} footer={datelineShort} onOverflow={onOverflow1} deps={[B, dates, p1Level, epoch]}>
+        <PageOne B={B} dates={dates} level={p1Level} />
       </Sheet>
       <Sheet page={2} pages={pages} footer={datelineShort} onOverflow={onOverflow2} deps={[B, p2Level, epoch]}>
         <PageTwo B={B} level={p2Level} />
@@ -181,7 +182,7 @@ function Chg({ label, v, cls }: { label: string; v: string; cls: string }) {
 
 // ── Page 1 · the numbers and the news ──────────────────────────────────
 
-function PageOne({ B, level }: { B: Brief; level: number }) {
+function PageOne({ B, dates, level }: { B: Brief; dates: MyDate[] | null; level: number }) {
   const chartH = level === 0 ? 150 : 125;
   const D = useMemo(() => inRange(toPoints(B.series || []), '1y'), [B.series]);
   const c = useMemo(() => chartModel(D, '1y', 400, chartH, true), [D, chartH]);
@@ -195,6 +196,7 @@ function PageOne({ B, level }: { B: Brief; level: number }) {
     <div>
       <Masthead B={B} />
       {has(B.headline) && <h1 className="mt-1.5 text-[14.5px] font-bold leading-snug text-slate-900">{B.headline}</h1>}
+      {dates && dates.length > 0 && <DatesPrint dates={dates} max={level >= 6 ? 4 : 8} />}
 
       {(keys.length > 0 || c) && (
         <>
@@ -280,6 +282,27 @@ function PageOne({ B, level }: { B: Brief; level: number }) {
           <span dangerouslySetInnerHTML={html(sport)} />
         </p>
       )}
+    </div>
+  );
+}
+
+// "Your dates": Ben's deadlines for the next 7 days, two columns, most urgent first.
+function DatesPrint({ dates, max }: { dates: MyDate[]; max: number }) {
+  const shown = dates.slice(0, max);
+  return (
+    <div className="mt-1.5 rounded border border-slate-200 bg-slate-50 px-2 py-1">
+      <p className="text-[7.5px] font-bold uppercase tracking-[0.12em] text-[#1E3A5F]">Your dates · next 7 days{dates.length > max ? ` · ${dates.length - max} more in the CRM` : ''}</p>
+      <ul className="mt-0.5 grid grid-cols-2 gap-x-4">
+        {shown.map((d, i) => {
+          const tone = dueTone(d.date);
+          return (
+            <li key={i} className="flex gap-1.5 truncate text-[9px] leading-[1.45] text-slate-800">
+              <span className={`w-[42px] shrink-0 font-mono font-semibold ${tone === 'over' ? RED : tone === 'today' ? 'text-[#B54708]' : 'text-[#1E3A5F]'}`}>{tone === 'over' ? 'overdue' : tone === 'today' ? 'today' : shortDay(d.date)}</span>
+              <span className="truncate"><span className="text-[7.5px] font-semibold uppercase text-slate-500">{KIND_LABEL[d.kind]} </span><b>{d.where}</b> · {d.what}</span>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
@@ -460,8 +483,12 @@ function FocusPrint({ f, experts, chart }: { f: FocusItem; experts: number; char
   );
 }
 
+// Chart colors: fixed hex for print; the screen passes CSS variables so dark mode works.
+export interface ChartInk { line: string; text: string; grid: string; strong: string }
+const PRINT_INK: ChartInk = { line: NAVY, text: '#64748B', grid: '#E2E8F0', strong: '#0F172A' };
+
 // A small line chart for a "Data in focus" release: points left to right, latest value labeled.
-function MiniLine({ pts, unit }: { pts: [string, number][]; unit: string }) {
+export function MiniLine({ pts, unit, ink = PRINT_INK }: { pts: [string, number][]; unit: string; ink?: ChartInk }) {
   const W = 230, H = 105, m = { l: 24, r: 30, t: 8, b: 14 };
   const vals = pts.map(p => p[1]);
   let lo = Math.min(...vals), hi = Math.max(...vals);
@@ -475,22 +502,22 @@ function MiniLine({ pts, unit }: { pts: [string, number][]; unit: string }) {
     <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" role="img" aria-label="Release history">
       {grid.map((g, i) => (
         <g key={i}>
-          <line x1={m.l} x2={W - m.r} y1={y(g)} y2={y(g)} stroke="#E2E8F0" strokeWidth={0.75} />
-          <text x={m.l - 3} y={y(g) + 3} textAnchor="end" fontSize={7} fill="#64748B">{+g.toFixed(1)}</text>
+          <line x1={m.l} x2={W - m.r} y1={y(g)} y2={y(g)} stroke={ink.grid} strokeWidth={0.75} />
+          <text x={m.l - 3} y={y(g) + 3} textAnchor="end" fontSize={7} fill={ink.text}>{+g.toFixed(1)}</text>
         </g>
       ))}
-      <polyline points={pts.map((p, i) => `${x(i).toFixed(1)},${y(p[1]).toFixed(1)}`).join(' ')} fill="none" stroke={NAVY} strokeWidth={1.6} strokeLinejoin="round" />
-      <circle cx={x(pts.length - 1)} cy={y(last[1])} r={2.5} fill={NAVY} stroke="#fff" strokeWidth={1} />
-      <text x={x(pts.length - 1) + 4} y={y(last[1]) + 3} fontSize={8} fontWeight={700} fill={NAVY} fontFamily="JetBrains Mono, monospace">{fmtV(last[1])}</text>
-      <text x={m.l} y={H - 3} fontSize={7} fill="#64748B">{pts[0][0]}</text>
-      <text x={W - m.r} y={H - 3} fontSize={7} fill="#64748B" textAnchor="end">{last[0]}</text>
+      <polyline points={pts.map((p, i) => `${x(i).toFixed(1)},${y(p[1]).toFixed(1)}`).join(' ')} fill="none" stroke={ink.line} strokeWidth={1.6} strokeLinejoin="round" />
+      <circle cx={x(pts.length - 1)} cy={y(last[1])} r={2.5} fill={ink.line} stroke="none" strokeWidth={1} />
+      <text x={x(pts.length - 1) + 4} y={y(last[1]) + 3} fontSize={8} fontWeight={700} fill={ink.line} fontFamily="JetBrains Mono, monospace">{fmtV(last[1])}</text>
+      <text x={m.l} y={H - 3} fontSize={7} fill={ink.text}>{pts[0][0]}</text>
+      <text x={W - m.r} y={H - 3} fontSize={7} fill={ink.text} textAnchor="end">{last[0]}</text>
     </svg>
   );
 }
 
 // ── Page 3 · World Desk and Investor's Corner ──────────────────────────
 
-const TREND: Record<string, string> = { esc: 'text-[#B42318] border-[#B42318]', eas: 'text-[#067647] border-[#067647]', std: 'text-slate-500 border-slate-400' };
+export const TREND: Record<string, string> = { esc: 'text-[#B42318] border-[#B42318]', eas: 'text-[#067647] border-[#067647]', std: 'text-slate-500 border-slate-400' };
 
 function PageThree({ B, w, r, level }: { B: Brief; w: World | null; r: Reading | null; level: number }) {
   return (
@@ -582,7 +609,7 @@ function WorldPrint({ w, views, cbMax }: { w: World; views: boolean; cbMax: numb
 }
 
 // Horizontal bars from a zero line: names on the left, signed values at each bar's end.
-function RealBars({ pts }: { pts: [string, number][] }) {
+export function RealBars({ pts, ink = PRINT_INK }: { pts: [string, number][]; ink?: ChartInk }) {
   const row = 13, W = 300, L = 58, pad = 30;
   const H = pts.length * row + 2;
   const lo = Math.min(0, ...pts.map(p => p[1])), hi = Math.max(0, ...pts.map(p => p[1]));
@@ -595,13 +622,13 @@ function RealBars({ pts }: { pts: [string, number][] }) {
         const yy = i * row + 1, x0 = Math.min(z, x(v)), bw = Math.abs(x(v) - z);
         return (
           <g key={n}>
-            <text x={L - 4} y={yy + row / 2 + 3} textAnchor="end" fontSize={8} fill="#334155">{n}</text>
-            <rect x={x0} y={yy + 2} width={Math.max(bw, 0.5)} height={row - 4} fill={NAVY} fillOpacity={v >= 0 ? 1 : 0.4} />
-            <text x={v >= 0 ? x(v) + 3 : x(v) - 3} y={yy + row / 2 + 3} textAnchor={v >= 0 ? 'start' : 'end'} fontSize={7.5} fontWeight={600} fill="#0F172A" fontFamily="JetBrains Mono, monospace">{sign(v)}</text>
+            <text x={L - 4} y={yy + row / 2 + 3} textAnchor="end" fontSize={8} fill={ink.text}>{n}</text>
+            <rect x={x0} y={yy + 2} width={Math.max(bw, 0.5)} height={row - 4} fill={ink.line} fillOpacity={v >= 0 ? 1 : 0.4} />
+            <text x={v >= 0 ? x(v) + 3 : x(v) - 3} y={yy + row / 2 + 3} textAnchor={v >= 0 ? 'start' : 'end'} fontSize={7.5} fontWeight={600} fill={ink.strong} fontFamily="JetBrains Mono, monospace">{sign(v)}</text>
           </g>
         );
       })}
-      <line x1={z} x2={z} y1={0} y2={H} stroke="#64748B" strokeWidth={0.75} />
+      <line x1={z} x2={z} y1={0} y2={H} stroke={ink.text} strokeWidth={0.75} />
     </svg>
   );
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { get, run } from '@/lib/db';
+import { get, run, updateFromBody } from '@/lib/db';
 import { logActivity } from '@/lib/activity';
 import { graphConfigured } from '@/lib/graph';
 import { organizeDeal } from '@/lib/cleanup';
@@ -20,10 +20,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const body = await req.json();
   const old = await get<Record<string, unknown>>('SELECT * FROM deals WHERE id = ?', [params.id]);
 
-  const keys = Object.keys(body);
-  const setClause = keys.map(k => `${k} = ?`).join(', ');
-  const values = keys.map(k => body[k]);
-  await run(`UPDATE deals SET ${setClause} WHERE id = ?`, [...values, params.id]);
+  await updateFromBody('deals', body, 'id = ?', [params.id]);
 
   // Contract terms changed: move the DD expiry, closing date and checklist due dates with them.
   if (CONTRACT_FIELDS.some(k => k in body)) await applyContractDates(Number(params.id));

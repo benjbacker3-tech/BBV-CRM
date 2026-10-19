@@ -1,12 +1,15 @@
 // Broker leads: scan new mail for offering emails and keep them as leads for Ben to add to
 // the Pipeline or dismiss (Leads tab). Runs with the daily email cron and on "Check email".
 // Detection and parsing live in lib/lead-parse.ts; this file is the mailbox walk and storage.
+// With ANTHROPIC_API_KEY set, Claude reads each candidate email: it drops ones that aren't
+// really a property for sale or lease and fills the address and numbers the rules missed.
 import { all, get, run } from './db';
 import { CITY_STATE } from './utils';
 import { sameAddress } from './model-parse';
 import { fromBen } from './mail-filing';
 import { junkFolderId, messageAttachments, messageText, messagesSince } from './graph';
-import { firmOf, isLead, parseLead } from './lead-parse';
+import { ParsedLead, firmOf, isLead, parseLead } from './lead-parse';
+import { aiConfigured, extract } from './ai';
 
 const SINCE_KEY = 'leads_since';
 const LOCK_KEY = 'leads_lock';
@@ -73,7 +76,13 @@ export async function scanLeads(budgetMs = 30_000): Promise<LeadScan> {
           if (!verdict.lead) continue;
 
           const body = await messageText(msg.id).catch(() => msg.bodyPreview || '');
-          const p = parseLead(msg.subject || '', body, names, knownCities);
+          let p = parseLead(msg.subject || '', body, names, knownCities);
+          let why = verdict.why;
+          if (aiConfigured()) {
+            const ai = await readLeadWithClaude(msg.subject || '', body, names, msg.from?.emailAddress?.name || '').catch(() => null);
+            if (ai && !ai.is_listing) continue;    // a newsletter, market report, or reply that only looks like a lead
+            if (ai) { p = mergeLead(ai, p); if (ai.summary) why = ai.summary; }
+          }
 
           // The same listing again: count it, don't add it. Same thread or same address always
           // counts. A matching subject only counts from the same sender within 30 days when
@@ -104,7 +113,7 @@ export async function scanLeads(budgetMs = 30_000): Promise<LeadScan> {
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [msg.id, msg.conversationId, msg.receivedDateTime, msg.from?.emailAddress?.name ?? null, msg.from?.emailAddress?.address ?? null,
               firmOf(msg.from?.emailAddress?.address), msg.subject, (body || msg.bodyPreview || '').replace(/\s+/g, ' ').trim().slice(0, 600), msg.webLink,
-              JSON.stringify(names), verdict.why, p.address, p.city, p.state, p.price, p.acres, p.sf, p.cap_rate, match?.id ?? null, msg.receivedDateTime],
+              JSON.stringify(names), why, p.address, p.city, p.state, p.price, p.acres, p.sf, p.cap_rate, match?.id ?? null, msg.receivedDateTime],
           );
           result.added++;
         } catch (e) {
@@ -120,4 +129,50 @@ export async function scanLeads(budgetMs = 30_000): Promise<LeadScan> {
   } finally {
     await run('DELETE FROM app_state WHERE key = ?', [LOCK_KEY]);
   }
+}
+
+// ── Claude ─────────────────────────────────────────────────────────────
+
+type AiLead = ParsedLead & { is_listing: boolean; summary: string | null };
+const n = (d: string) => ({ type: ['number', 'null'], description: d });
+const t = (d: string) => ({ type: ['string', 'null'], description: d });
+const LEAD_SCHEMA = {
+  properties: {
+    is_listing: { type: 'boolean', description: 'True only if the email offers a specific property (or portfolio) for sale or lease. False for newsletters, market reports, event invites, requirements/wanted ads, and replies with no offering.' },
+    summary: t('One line, under 15 words: what is offered, e.g. "2.5-acre IOS yard, 8,000 SF shop, off-market".'),
+    address: t('Street address of the property, e.g. "6550 Interstate Blvd". Null if none is given.'),
+    city: t('City.'),
+    state: t('Two-letter state.'),
+    price: n('Asking price in dollars. Null if unpriced or "call for offers".'),
+    acres: n('Land area in acres.'),
+    sf: n('Building area in square feet.'),
+    cap_rate: n('Cap rate as a percent, e.g. 7.75.'),
+  },
+  required: ['is_listing', 'summary', 'address', 'city', 'state', 'price', 'acres', 'sf', 'cap_rate'],
+};
+
+async function readLeadWithClaude(subject: string, body: string, attachments: string[], sender: string): Promise<AiLead> {
+  const text = [`From: ${sender}`, `Subject: ${subject}`, attachments.length ? `Attachments: ${attachments.join(', ')}` : '', '', body.slice(0, 12_000)].filter(x => x !== '').join('\n');
+  return extract<AiLead>({
+    model: 'quick',
+    system: 'You triage a commercial real estate investor\'s inbox (industrial outdoor storage, small-bay industrial, truck yards). Read a broker email and say whether it offers a property, and pull the property facts exactly as stated. Never guess numbers.',
+    content: [{ type: 'text', text }],
+    schema: LEAD_SCHEMA,
+    maxTokens: 600,
+  });
+}
+
+// Claude's facts win; the rules fill anything Claude left empty.
+function mergeLead(ai: AiLead, rules: ParsedLead): ParsedLead {
+  const num = (v: unknown) => (typeof v === 'number' && isFinite(v) && v > 0 ? v : null);
+  const str = (v: unknown) => (typeof v === 'string' && v.trim() ? v.trim() : null);
+  return {
+    address: str(ai.address) ?? rules.address,
+    city: str(ai.city) ?? rules.city,
+    state: (str(ai.state)?.toUpperCase().slice(0, 2)) ?? rules.state,
+    price: num(ai.price) ?? rules.price,
+    acres: num(ai.acres) ?? rules.acres,
+    sf: num(ai.sf) ?? rules.sf,
+    cap_rate: num(ai.cap_rate) ?? rules.cap_rate,
+  };
 }

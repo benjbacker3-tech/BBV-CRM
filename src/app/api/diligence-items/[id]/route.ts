@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { get, run } from '@/lib/db';
+import { get, updateFromBody } from '@/lib/db';
 import { logActivity } from '@/lib/activity';
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const body = await req.json();
-  const keys = Object.keys(body);
-  const setClause = keys.map(k => `${k} = ?`).join(', ');
-  const values = keys.map(k => body[k]);
-  await run(`UPDATE diligence_items SET ${setClause} WHERE id = ?`, [...values, params.id]);
+  await updateFromBody('diligence_items', body, 'id = ?', [params.id]);
   if (body.status) {
     const item = await get<{ label: string; deal_id: number }>(
       `SELECT di.label, d.deal_id FROM diligence_items di JOIN diligence d ON di.diligence_id = d.id WHERE di.id = ?`,
