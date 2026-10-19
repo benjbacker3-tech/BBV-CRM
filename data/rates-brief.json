@@ -189,6 +189,144 @@
       }
     ]
   },
+  "world": {
+    "lead": {
+      "kicker": "Iran · Strait of Hormuz",
+      "title": "Mines in Hormuz keep the oil risk premium alive",
+      "body": "<p>Iran's Revolutionary Guards said over the weekend that two oil tankers, each carrying about 2 million barrels of crude, caught fire after hitting naval mines in the Strait of Hormuz. Iranian state media said the ships had switched off their tracking and used a route Iran hadn't authorized; the incidents have not been independently confirmed. That follows six vessels attacked in or near the strait on Oct 11, the most in a single day since the war began in late February.</p><p>Diplomacy is stuck. On Oct 18 Foreign Minister Araghchi said Iran's offer to reopen the strait within seven days still stands, while President Trump posted that the U.S. could \"soon finish the job.\" Iran wants ships to seek its permission before transiting, and the U.S. keeps up a naval counter-blockade of Iranian oil exports. Russia's foreign minister Lavrov is due in Tehran today.</p>",
+      "reach": "Mostly through oil and diesel. Crude and product exports via Hormuz and alternative routes fell to about 9.5 million barrels a day last week from a 14 million September average (Kpler data via IBTimes, Oct 19), and the IEA warned Oct 15 that diesel tightness could last into the first half of 2027.",
+      "views": [
+        {
+          "who": "Matt Smith, analyst, Kpler",
+          "view": "Sees Iran and the Houthis stepping up attacks to keep oil prices high ahead of the U.S. midterms.",
+          "url": "https://www.ibtimes.sg/irans-strait-hormuz-attacks-put-oil-prices-trumps-midterm-hopes-risk-95310",
+          "src": "IBTimes · Oct 19"
+        },
+        {
+          "who": "Tim Hawkins, U.S. Central Command spokesman",
+          "view": "Said Iran's effort to close the strait is failing, with about 97% of ships seeking to transit getting through unharmed.",
+          "url": "https://www.foxnews.com/live-news/us-iran-war-peace-talks-oil-strait-hormuz-trump-october-18",
+          "src": "Fox News · Oct 18"
+        }
+      ]
+    },
+    "hot": [
+      {
+        "r": "Iran / Hormuz",
+        "chg": "IRGC says two crude tankers hit mines (Oct 17–18) after a record six ships were attacked Oct 11; Iran's 7-day reopening offer stands.",
+        "trend": "Escalating at sea",
+        "tc": "esc",
+        "ch": "Oil, diesel, war-risk insurance",
+        "next": "Lavrov in Tehran, Oct 19"
+      },
+      {
+        "r": "Israel / Iran",
+        "chg": "Netanyahu said Oct 18 he has told security agencies to work toward toppling Iran's government.",
+        "trend": "Escalating",
+        "tc": "esc",
+        "ch": "Oil risk premium",
+        "next": "Israel election, Oct 27"
+      },
+      {
+        "r": "Russia / Ukraine",
+        "chg": "Ukraine resumed strikes on Russian refineries, including Ryazan, after the Oct 11 energy truce broke down (Forbes, Oct 17).",
+        "trend": "Escalating",
+        "tc": "esc",
+        "ch": "Diesel and fuel exports",
+        "next": "Peace talks resumption"
+      },
+      {
+        "r": "China / U.S. trade",
+        "chg": "Truce holding: China not enforcing rare-earth controls, U.S. not raising tariffs; each side alleges non-compliance (Oct 12).",
+        "trend": "Steady",
+        "tc": "std",
+        "ch": "Tariffs, rare earths, chips",
+        "next": "Shenzhen talks expected in November"
+      }
+    ],
+    "cb": [
+      {
+        "d": "2026-10-20",
+        "bank": "PBoC (1Y loan prime rate)",
+        "rate": "3.00%",
+        "exp": "Hold; consensus and TE forecast"
+      },
+      {
+        "d": "2026-10-28",
+        "bank": "Bank of Canada",
+        "rate": "2.25%",
+        "exp": "TE sees 2.50% by quarter-end"
+      },
+      {
+        "d": "2026-10-29",
+        "bank": "ECB (refi rate)",
+        "rate": "2.65%",
+        "exp": "Hold at 2.65% (TE); 2.90% by quarter-end"
+      },
+      {
+        "d": "2026-10-30",
+        "bank": "Bank of Japan",
+        "rate": "1.25%",
+        "exp": "Hold (TE forecast)"
+      },
+      {
+        "d": "2026-11-03",
+        "bank": "Reserve Bank of Australia",
+        "rate": "4.60%",
+        "exp": "Hold (TE forecast)"
+      },
+      {
+        "d": "2026-11-05",
+        "bank": "Bank of England",
+        "rate": "3.75%",
+        "exp": "Split: TE calendar 4%, quarter-end 3.75%"
+      },
+      {
+        "d": "2026-11-05",
+        "bank": "Banxico",
+        "rate": "6.50%",
+        "exp": "Hold through quarter-end (TE)"
+      }
+    ],
+    "real": {
+      "t": "Who's really tight?",
+      "pts": [
+        [
+          "Mexico",
+          3.05
+        ],
+        [
+          "China",
+          2.1
+        ],
+        [
+          "UK",
+          0.65
+        ],
+        [
+          "U.S.",
+          0.3
+        ],
+        [
+          "India",
+          -0.04
+        ],
+        [
+          "Japan",
+          -0.65
+        ],
+        [
+          "Canada",
+          -0.85
+        ],
+        [
+          "Euro area",
+          -1.15
+        ]
+      ]
+    },
+    "src": "Sources: Al Jazeera (Oct 18); Fox News live blog (Oct 18); IBTimes (Oct 19); Forbes (Oct 17); Manila Times (Oct 12); Trading Economics country interest-rate pages and G20 interest-rate and inflation lists (fetched Oct 19)."
+  },
   "reading": {
     "kind": "Reading",
     "who": "Benjamin Graham",
@@ -221,16 +359,6 @@
     }
   ],
   "cal": [
-    {
-      "d": "2026-10-19",
-      "tag": "Housing",
-      "e": "NAHB homebuilder sentiment (Oct)",
-      "act": null,
-      "cons": "32",
-      "prior": "32",
-      "good": null,
-      "why": "Builder mood at 7% mortgages"
-    },
     {
       "d": "2026-10-20",
       "tag": "Housing",
@@ -403,38 +531,16 @@
       "ytext": null,
       "why": "Middle East tensions and attacks on shipping threatened Gulf supply; Brent briefly touched $110, its first visit since May.",
       "asof": "Oct 16"
-    },
-    {
-      "n": "10Y Treasury",
-      "v": "5.09%",
-      "rate": true,
-      "c": -1,
-      "ctext": "−1bp",
-      "y": 110,
-      "ytext": "+110bp",
-      "why": "Held near 5.10% as investors weighed hot inflation data against the tech selloff.",
-      "asof": "Oct 16"
-    },
-    {
-      "n": "Diesel, U.S. avg (EIA)",
-      "v": "$6.179/gal",
-      "rate": true,
-      "c": -1,
-      "ctext": "−$0.020 w/w",
-      "y": 1,
-      "ytext": "+$2.514",
-      "why": "Weekly EIA average for Oct 12, released Oct 14; next print Oct 20.",
-      "asof": "Oct 12"
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.89,
-      "d1m": 25,
-      "d6m": 17,
-      "d1y": -40,
-      "asof": "Oct 15"
+      "cur": 3.88,
+      "d1m": 26,
+      "d6m": 21,
+      "d1y": -42,
+      "asof": "Oct 16"
     },
     {
       "n": "2Y Treasury",
@@ -505,18 +611,18 @@
       "d1y": 110
     },
     {
-      "grp": "SOFR · dates Oct 15 '26 / Sep 15 '26 / Apr 15 '26 / Oct 15 '25"
+      "grp": "SOFR · dates Oct 16 '26 / Sep 16 '26 / Apr 16 '26 / Oct 16 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.89",
-        "3.64",
-        "3.72",
-        "4.29"
+        "3.88",
+        "3.62",
+        "3.67",
+        "4.30"
       ],
-      "d1m": 25,
-      "d1y": -40
+      "d1m": 26,
+      "d1y": -42
     }
   ],
   "freight": [
@@ -545,15 +651,9 @@
       "why": "Oct 16; dry-bulk shipping rates kept sliding into the weekend."
     }
   ],
-  "also": "Drewry Shanghai–LA $7,884 (+3%) and Shanghai–New York $10,075 (−1%), Oct 15.",
+  "also": "",
   "sport": "The Rays beat the Guardians 3–1 Sunday behind seven strong innings from Drew Rasmussen to take a 3–2 ALCS lead; Game 6 is tonight, and the winner meets Milwaukee in the World Series.",
-  "rota": [],
-  "spot": {
-    "g": "",
-    "rows": []
-  },
-  "news": [],
-  "foot": "Sources: NY Fed API (SOFR, latest Oct 15; references Sep 15, Apr 15 and Oct 15, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 16; references Sep 16, Apr 16 and Oct 16, 2025); AP via La Nación (Oct 16, 2026 closes) and MarketBeat (Oct 16, 2025 closes; 1Y % computed); AP via BNN Bloomberg and La Nación (why lines); ts2.tech and The Star/Reuters (Brent settle, cross-checked against Monday's quoted drop); Trading Economics (CPI, calendar, Baltic Dry); Vantage Markets and Benzinga (FedWatch); TheStreet Pro and InvestmentNews (reactions only; no numbers used from TheStreet); Regions via Finviz; Stockti (earnings dates); DAT via GlobeNewswire; EIA; Drewry via DCN; NBC Washington (ALCS); deep dive and Investor's Corner sources listed in those sections.<br>Notes: SOFR for Oct 16 publishes this morning. Dollar index left out: no dated Oct 16 close found (only near-close/intraday levels around 101.8). No dated WTI settle for Oct 16, so Brent is shown; Brent 1Y change not found. Drewry WCI 1Y change not stated. CPI chart history is a secondary compilation (SimianX) of BLS data; Oct 2025 CPI was not published. DAT weekly spot rates for mid-October not found; September monthly figures used in the Rundown. Mortgage rate is last Thursday's Freddie Mac survey. Chart keeps 5 years of history for the 5Y toggle.",
+  "foot": "Sources: NY Fed API (SOFR, latest Oct 16; references Sep 16, Apr 16 and Oct 16, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 16; references Sep 16, Apr 16 and Oct 16, 2025); AP via La Nación (Oct 16, 2026 closes) and MarketBeat (Oct 16, 2025 closes; 1Y % computed); AP via BNN Bloomberg and La Nación (why lines); ts2.tech and The Star/Reuters (Brent settle, cross-checked against Monday's quoted drop); Trading Economics (CPI, calendar, Baltic Dry); Vantage Markets and Benzinga (FedWatch); TheStreet Pro and InvestmentNews (reactions only; no numbers used from TheStreet); Regions via Finviz; Stockti (earnings dates); DAT via GlobeNewswire; EIA; Drewry via DCN; NBC Washington (ALCS); deep dive and Investor's Corner sources listed in those sections.<br>Notes: Dollar index left out: no dated Oct 16 close found (only near-close/intraday levels around 101.8). No dated WTI settle for Oct 16, so Brent is shown; Brent 1Y change not found. Drewry WCI 1Y change not stated. CPI chart history is a secondary compilation (SimianX) of BLS data; Oct 2025 CPI was not published. DAT weekly spot rates for mid-October not found; September monthly figures used in the Rundown. Mortgage rate is last Thursday's Freddie Mac survey. Chart keeps 5 years of history for the 5Y toggle.<br>Late-day update (run started 1:46pm MT): upgraded to the v10 layout with the World Desk; SOFR refreshed to Oct 16; NAHB dropped from the calendar (released this morning); 10Y and diesel removed from the markets strip (they live under Rates and Freight). World Desk: real rates use the Fed's 4.00% top and Euro-area MRO 2.65%; Japan and UK CPI are August (September not yet listed); Euro-area September CPI 3.8% is per Trading Economics' list, a jump from 3.3% in August. War-risk insurance has no October figure. Tanker mine strikes are per IRGC claims, not independently confirmed.",
   "series": [
     [
       "2021-10-12",
@@ -8119,6 +8219,12 @@
       {
         "d": "2026-10-19",
         "t": "September CPI: gasoline pushed headline inflation to 3.7%, core edged up to 2.6%"
+      }
+    ],
+    "world": [
+      {
+        "d": "2026-10-19",
+        "t": "Mines in Hormuz keep the oil risk premium alive"
       }
     ]
   }
