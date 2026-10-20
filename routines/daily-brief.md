@@ -15,7 +15,7 @@ HARD DEADLINE — ON-TIME DELIVERY BEATS COMPLETENESS. This runs ~5:25am Mountai
 - Subagents: give each one a hard budget ("stop after ~8 minutes or ~15 tool calls and return whatever you have, marking gaps"). Tell them the same PROVENANCE rule. If a subagent hasn't returned by 6:25am Mountain, build without it (leave out what it was gathering; footer note).
 - By 6:30am Mountain start building the brief with whatever you have. By 6:45am Mountain it MUST be pushed, even if some items had to be left out.
 - Prefer the "worked unattended" sources below.
-- This is an unattended run: it ENDS the moment you end your turn, and nothing wakes you up again. Never end your turn to "wait" for subagents. Launch them in the foreground (not in the background), or if any run in the background, keep working and check on them until every one has returned or been abandoned; only end your turn after step 4 of Publish is done.
+- This is an unattended run: it ENDS the moment you end your turn, and nothing wakes you up again. Never end your turn to "wait" for subagents. Launch them in the foreground (not in the background), or if any run in the background, keep working and check on them until every one has returned or been abandoned; only end your turn after step 6 of Publish (the email and report) is done.
 - If this run starts after the deadline (a manual or late run), still build and push the brief; say so first in your report.
 
 Previous brief: read data/rates-brief.json at the start. It is the last published brief: use its `series` (append new business days, keep 5 years), its `log` (topic history), and its values as the prior business day for checks. Never shorten `series`.
