@@ -75,7 +75,13 @@ Publish:
 5. Email (only if step 4 succeeded; otherwise skip it and push-notify Ben "Daily Brief email held: page not published" with the reason). Send ONE email with the Microsoft 365 connector (outlook_send_mail) from ben@sandpiperre.com:
    - To: ben@sandpiperre.com. BCC: dhops15@yahoo.com, ramseycooper5@gmail.com, hleonard@boxcardevelopment.com
    - Subject: Sandpiper Daily Brief — <Weekday, Month D>
-   - HTML body, nothing else: a link "Read today's brief →" to the share link https://claude.ai/artifact/Wd3PvvJXXoVXAXFK1SFagv (the link the group can open; same page as the url in step 4); a blank line; one quote in italics; "— <Author>, <short descriptor>"; a blank line; "— Ben".
+   - Plain-text body (bodyType "text"; the connector strips HTML fonts, and plain text shows in each reader's normal email font), exactly this shape and nothing else:
+     Today's brief: https://claude.ai/artifact/Wd3PvvJXXoVXAXFK1SFagv
+     (blank line)
+     "<quote>"
+     — <Author>, <short descriptor> (<source, year>)
+     (blank line)
+     — Ben
    - The quote: for a group of hard-working young investors; theme discipline, work ethic or perseverance (rotate). It must be real and correctly attributed: confirm it with WebSearch on a reliable source (Wikiquote's sourced section, a book, a primary interview); if the attribution is disputed or only on quote-aggregator sites, pick another. Popular versions are often paraphrases (e.g. Munger's "learning machines" line): copy the wording from the primary text or transcript, not from a quote site. Quote it exactly; one to three sentences; no clichés. No repeats: check the last ~30 sends (outlook_email_search, query "Sandpiper Daily Brief", sender ben@sandpiperre.com) and don't reuse a quote or author.
    - Send exactly once; if it errors, retry once, then push-notify Ben with the error. The email waits for nothing else: if the brief was pushed late, still send it.
 6. Report the dateline, the headline and the deep-dive, Data in focus, World Desk and Investor's Corner topics, the page publish result, and the quote and send result. If the push happened after 6:45am Mountain, a whole section had to be left out, or the push, page or email failed, say so first. In those cases also send one short push notification with the reason.
