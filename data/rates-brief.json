@@ -1,58 +1,51 @@
 {
-  "headline": "September inflation ran hot, yet bonds rallied anyway: the 10-year ended the week at 5.09%, 22bp below its Oct 5 peak.",
-  "dateline": "Monday, October 19, 2026 · closes as of Fri Oct 16",
-  "ustDate": "Oct 16, 2026",
+  "headline": "Bond yields climbed around the world on Monday, pushing the 10-year Treasury back to 5.15% a week before the Fed meets.",
+  "dateline": "Tuesday, October 20, 2026 · closes as of Mon Oct 19",
+  "ustDate": "Oct 19, 2026",
   "rundown": [
     {
       "tag": "Fed",
-      "h": "Warsh kept his cards close before next week's meeting.",
-      "p": "Speaking to finance officials in Bangkok on Friday, Fed Chair Warsh said he doesn't prejudge meetings and that September's hike removed \"a dose of accommodation.\" He gave no hint on Oct 28. Markets still lean toward a December move: odds of a hike by then were about 89% as of Oct 16.",
-      "url": "https://www.thestar.com.my/business/business-news/2026/10/16/fed039s-warsh-gives-no-hint-on-october-policy-decision",
-      "src": "The Star (Reuters); Vantage Markets · Oct 16"
+      "h": "Markets see a pause next week, then a December hike.",
+      "p": "CME FedWatch pricing put the odds of a hold on Oct 28 at about 85% as of Oct 16, while the odds of a December hike stood near 93.5% on Oct 20. For borrowers, a pause buys weeks, not relief.",
+      "url": "https://tradingpedia.com/2026/10/20/swiss-franc-rises-as-traders-reevaluate-fed-rate-path",
+      "src": "Tradingpedia; Invezz (CME FedWatch) · Oct 16–20"
     },
     {
-      "tag": "Credit",
-      "h": "AI's borrowing binge is showing up in credit spreads.",
-      "p": "Mohamed El-Erian flagged that CoreWeave's credit spread spiked to 1,200bp, calling it either a warning sign for tech or a classic overshoot. The Nasdaq lost 4.5% on the week and the S&P 500 2%, while the Dow finished higher. For lenders and allocators, watch whether stress in AI-infrastructure debt spreads to other high-yield borrowers.",
-      "url": "https://benzinga.com/markets/equities/26/10/62431980/stock-market-today-dow-jones-sp-500-futures-rise-as-scott-bessent-links-september-inflation-to-energy-shock-rcat-eslt-stld-in-focus",
-      "src": "Benzinga · Oct 19"
-    },
-    {
-      "tag": "Energy",
-      "h": "Washington waived Russia sanctions to keep diesel flowing.",
-      "p": "President Trump signed an order Friday waiving key sanctions and tariffs under the new Graham Act, after a deal with Putin to import Russian diesel; Secretary of State Rubio said the White House will take up to 60 days to assess the economic impact. Brent fell $1.43 to $108.43 in early Monday trade. Cheaper diesel would ease the biggest cost line for truckers.",
-      "url": "https://www.thestar.com.my/business/business-news/2026/10/19/oil-slips-as-trump039s-sanction-waiver-may-lead-to-more-russian-fuel-supplies",
-      "src": "The Star (Reuters) · Oct 19"
+      "tag": "Economy",
+      "h": "Shoppers spent more in September, mostly at the pump.",
+      "p": "Retail sales rose 0.8% in September, well above the 0.3% forecast, and August was revised up to 1.3%. But gas station sales jumped 6.4%, sales excluding gasoline rose just 0.2%, and the control group that feeds GDP edged up only 0.1%. Fuel is crowding out other spending, a soft spot for retail tenants.",
+      "url": "https://tradingeconomics.com/united-states/retail-sales",
+      "src": "Trading Economics · Oct 15"
     },
     {
       "tag": "Banks",
-      "h": "Regions shows banks lending into the CRE gap.",
-      "p": "Regions Financial earned $0.71 a share in Q3, up 16% from a year ago, and net charge-offs fell to 0.29% of loans from 0.42% in Q2. Investor real estate loans grew 9.3% y/y, which management tied to multifamily bridge loans as high long rates stall permanent financing. Fifth Third, Zions and Western Alliance report today; KeyCorp Tuesday; Huntington Thursday.",
-      "url": "https://finviz.com/news/403470/regions-reports-earnings-of-611-million-and-eps-of-071-in-3q-2026",
-      "src": "Regions via Finviz; Stockti · Oct 16"
+      "h": "Bank stocks keep sliding even as credit stays clean.",
+      "p": "The KBW Nasdaq Bank Index has fallen six straight weeks, down 11% since early September, the longest losing streak for big-bank stocks since summer 2008. Results tell a calmer story: Fifth Third's net charge-offs were 0.31% of loans, and Zions' fell to $3 million from $56 million a year earlier. Investors seem to be pricing the rate outlook, not loan losses.",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-dow-sp-500-nasdaq-futures-mixed-amid-volatile-week-112734828.html",
+      "src": "Yahoo Finance; Fifth Third, Zions releases · Oct 19"
     },
     {
       "tag": "Earnings",
-      "h": "A heavy week for earnings, from Netflix to the railroads.",
-      "p": "Tesla, Netflix, GM and Capital One are due Tuesday, IBM and Texas Instruments Wednesday, and Procter & Gamble, Union Pacific, Norfolk Southern, PulteGroup and NVR Thursday, with American Express and Exxon Mobil on Friday. The railroads and homebuilders give a read on freight volumes and housing demand with mortgages above 7%.",
-      "url": "https://stockti.com/earnings-calendar/oct-19-23-2026",
-      "src": "Stockti earnings calendar · Oct 19"
+      "h": "KeyCorp beat on profit, with record revenue.",
+      "p": "KeyCorp earned $0.51 a share in the third quarter, up 24% from a year ago and ahead of the roughly $0.46 expected, on record revenue of $2.04 billion, a hair below the $2.05 billion consensus. Net interest margin was 2.95%, and Key bought back $320 million of stock. Shares edged up before the open.",
+      "url": "http://www.prnewswire.com/news-releases/keycorp-reports-third-quarter-2026-net-income-of-537-million-or-0-51-per-diluted-common-share-diluted-eps-increased-24-year-over-year-302913241.html",
+      "src": "KeyCorp via PR Newswire; Investing.com · Oct 20"
     },
     {
-      "tag": "Trucking",
-      "h": "Diesel topped $6 a gallon for a full month.",
-      "p": "DAT says September's national diesel average hit $6.291, the first monthly average above $6. Spot dry van averaged $3.01 a mile, up $0.96 from a year ago, and reefer spot set a monthly record at $3.62, even as reefer load volume fell 10% y/y. DAT's Dean Croke says rates usually take three to four weeks to catch up with diesel.",
-      "url": "https://finviz.com/news/401824/dat-truckload-rates-rise-in-september-as-diesel-tops-6-a-gallon",
-      "src": "DAT via GlobeNewswire · Oct 13"
+      "tag": "Earnings",
+      "h": "Netflix reports tonight; Tesla follows on Wednesday.",
+      "p": "Netflix reports after today's close, with analysts looking for about $0.82 a share and a read on ad revenue and free cash flow. Tesla reports Oct 21, not today, after third-quarter deliveries of 486,532 beat forecasts by about 5%; its capital spending is estimated near $7.5 billion, versus $2.3 billion a year earlier.",
+      "url": "https://www.ig.com/uk/news-and-trade-ideas/earnings-lookahead---netflix--meta---tesla-261019",
+      "src": "IG; Proactive Investors · Oct 19"
     }
   ],
   "dive": {
-    "kicker": "Power",
-    "title": "The grid is the new bottleneck",
-    "dek": "Data centers are bidding for electricity faster than the grid can build it, and the bill is landing in capacity prices and power rates.",
-    "body": "<p>The U.S. is using more electricity than ever. In its October 6 Short-Term Energy Outlook, the EIA projects consumption of <b>11.75 billion kWh per day in 2026</b>, up from 11.49 in 2025, rising to 11.94 in 2027. Third-quarter use ran about <b>4% above a year earlier</b>, helped by a record-hot summer, and EIA expects commercial and industrial demand, the bucket that includes data centers, to grow close to 3% in 2027.</p><p>Supply isn't keeping pace, and prices show it. EIA forecasts wholesale power will average <b>$52/MWh in 2026, 11% above 2025</b>, with prices in PJM, the grid from Illinois to New Jersey that holds the densest cluster of data centers, up <b>41%</b>. Residential rates are on track to rise <b>5.3% to 18.21¢/kWh</b>. PJM's July capacity auction for 2028/29 cleared at the regulator-imposed cap of <b>$325/MW-day</b>, worth $16.4 billion, and still came up <b>6,831 MW short</b> of its reliability target. PJM's independent market monitor puts about <b>$6.3 billion</b> of that cost on planned data centers, a bill every ratepayer shares.</p><p>Texas shows how far requests run ahead of reality. Reports on ERCOT's large-load queue put it at roughly 474 GW, mostly data centers, more than five times the grid's record peak of about 91 GW set July 22. Only a sliver has cleared the gates to connect, and regulators are now sorting real projects from speculative ones. Utilities are answering with record spending: investor-owned utilities have signaled <b>at least $1.4 trillion</b> of capital spending through 2030, up from a $1.1 trillion five-year plan a year earlier.</p><p>For investors and managers, the upshot is that power, not land, increasingly decides where big projects get built and when. Sites with secured interconnection command a premium, utility capex needs financing at today's rates, and every other commercial tenant feels it in rising power bills. What would change the picture: faster interconnection reform, a wave of new gas and storage capacity, or AI spending slowing enough to thin out the queue.</p>",
+    "kicker": "Industrial",
+    "title": "Warehouses are filling faster than builders can add them",
+    "dek": "After two years of oversupply, U.S. industrial demand has beaten new construction for two straight quarters, and developers are breaking ground again.",
+    "body": "<p>The warehouse glut is clearing. Cushman & Wakefield's third-quarter report, out Oct 12, puts national industrial vacancy at <b>6.8%</b>, 20bp below its late-2025 peak and the lowest since the end of 2024. Tenants absorbed a net <b>76.6 million sq ft</b> in the quarter, the most since early 2023, while about 64 million sq ft was completed. New leasing topped 200 million sq ft for a second straight quarter, and big-box space of 500,000 sq ft or more saw vacancy drop 280bp from a year earlier to 7.4%.</p><p>The biggest landlord says the same. Prologis reported period-end occupancy of <b>95.6%</b> on Oct 15, signed about 60 million sq ft of leases, and narrowed its 2026 core FFO guidance to $6.25–$6.29 a share. Its CEO said customers are running lean on inventory and that excess space in their networks has largely been absorbed. Rents on new leases there came in 38% above the expiring ones on a net effective basis.</p><p>The catch is that the easy rent gains are fading and supply is coming back. Yardi Matrix data through August show in-place rents up 5.4% from a year ago, but the gap between new-lease and in-place rents has shrunk to <b>$0.88 a sq ft</b>, from $2.45 two years ago. Cushman counts about 324 million sq ft under construction, up 23% from a year earlier and the most since mid-2024, and Yardi's tally of 2026 starts is the highest since 2022. Import volumes add another question: the NRF expects October imports up 8.5% from a year ago, then a 1% decline in November as the stretched-out peak season ends.</p><p>For owners and lenders, a tighter market supports values and refinancing even with a 10-year above 5%. Firms measure vacancy differently, so the direction matters more than the level. What would change the picture: a 2027 wave of completions from today's starts, a slowdown in imports and consumer spending, or the other big brokers' third-quarter numbers failing to confirm the decline.</p>",
     "table": {
-      "cap": "Power demand, by the numbers",
+      "cap": "Industrial real estate, by the numbers",
       "cols": [
         "Measure",
         "Figure",
@@ -60,56 +53,56 @@
       ],
       "rows": [
         [
-          "U.S. power use, 2026 forecast",
-          "11.75B kWh/day (2025: 11.49B)",
-          "EIA STEO, Oct 6"
+          "U.S. industrial vacancy, Q3",
+          "6.8% (late-2025 peak ~7.0%)",
+          "Cushman & Wakefield, Oct 12"
         ],
         [
-          "Wholesale power, 2026 avg",
-          "$52/MWh, +11%; PJM +41%",
-          "EIA STEO, Oct 6"
+          "Net absorption, Q3",
+          "76.6M sq ft, best since Q1 2023",
+          "Cushman & Wakefield, Oct 12"
         ],
         [
-          "Residential price, 2026",
-          "18.21¢/kWh, +5.3%",
-          "EIA STEO, Oct 6"
+          "Under construction",
+          "~324M sq ft, +23% y/y",
+          "Cushman & Wakefield, Oct 12"
         ],
         [
-          "PJM capacity, 2028/29",
-          "$325/MW-day (cap); 6,831 MW short",
-          "PJM, Jul 14"
+          "Prologis occupancy, Q3",
+          "95.6%; new-lease rents +38%",
+          "Prologis, Oct 15"
         ],
         [
-          "Data centers' share of PJM cost",
-          "~$6.3B",
-          "Market monitor via IIR, Jul 17"
+          "New-lease premium over in-place rent",
+          "$0.88/sq ft (2 yrs ago $2.45)",
+          "Yardi Matrix via CRE Daily, Oct 1"
         ],
         [
-          "Utility capex through 2030",
-          "≥$1.4T (prior plan $1.1T)",
-          "E&E News, Apr 15"
+          "U.S. imports, 2026 forecast",
+          "25.8M TEU, +1.4%",
+          "NRF Global Port Tracker, Oct 8"
         ]
       ]
     },
     "watch": [
-      "November EIA Short-Term Energy Outlook: updated power demand and price forecasts.",
-      "December: PJM's 2029/30 capacity auction; another clear at the cap would extend the squeeze.",
-      "Dec 10 and Dec 17: ERCOT reports on which queued large loads are real, then presents them to Texas regulators."
+      "Late October: CBRE, JLL and Colliers national Q3 reports; do they confirm the vacancy drop?",
+      "Early November: NRF's next Port Tracker, the first test of the forecast import decline.",
+      "Yardi Matrix's next national report: is the new-lease premium still shrinking?"
     ],
-    "src": "Sources: EIA STEO and press release (Oct 6, 2026); PJM (Jul 14, 2026); Industrial Info Resources (Jul 17, 2026); Global Data Center Hub (ERCOT queue, Aug 26, 2026); E&E News (Apr 15, 2026)."
+    "src": "Sources: Cushman & Wakefield Q3 2026 U.S. Industrial MarketBeat (Oct 12, 2026); Prologis Q3 2026 results (Oct 15, 2026); Yardi Matrix via CRE Daily (Oct 1, 2026); NRF/Hackett Global Port Tracker (Oct 8, 2026)."
   },
   "focus": {
     "items": [
       {
         "tag": "Inflation",
-        "title": "September CPI: gasoline pushed headline inflation to 3.7%, core edged up to 2.6%",
-        "rel": "CPI, Sep",
-        "act": "3.7%",
-        "cons": "3.6%",
-        "prior": "3.4%",
+        "title": "September PPI: producer prices jumped 1.3%, the annual rate hit 6.3%",
+        "rel": "PPI final demand, Sep",
+        "act": "1.3%",
+        "cons": "0.5%",
+        "prior": "0.5%",
         "good": false,
         "chart": {
-          "t": "CPI, % change from a year earlier",
+          "t": "PPI final demand, % change from a year earlier",
           "unit": "%",
           "pts": [
             [
@@ -117,131 +110,129 @@
               3.0
             ],
             [
+              "Oct '25",
+              2.8
+            ],
+            [
               "Nov '25",
-              2.7
+              3.1
             ],
             [
               "Dec '25",
-              2.7
+              3.1
             ],
             [
               "Jan '26",
-              2.4
+              3.0
             ],
             [
               "Feb '26",
-              2.4
+              3.4
             ],
             [
               "Mar '26",
-              3.3
+              4.3
             ],
             [
               "Apr '26",
-              3.8
+              5.7
             ],
             [
               "May '26",
-              4.2
+              5.9
             ],
             [
               "Jun '26",
-              3.5
+              5.6
             ],
             [
               "Jul '26",
-              3.4
+              4.9
             ],
             [
               "Aug '26",
-              3.4
+              5.6
             ],
             [
               "Sep '26",
-              3.7
+              6.3
             ]
           ],
-          "src": "Source: BLS via SimianX compilation (Oct 2025 not published, shutdown); Aug–Sep 2026 confirmed by Trading Economics."
+          "src": "Source: BLS via FRED (series PPIFIS, index levels; year-over-year changes computed)."
         },
-        "body": "<p>Consumer prices rose 0.6% in September, in line with forecasts and the biggest monthly gain in five months, lifting the annual rate to 3.7% from 3.4%, above the 3.6% consensus. Core CPI, which excludes food and energy, rose 0.3% for the month against a 0.2% forecast and 2.6% from a year earlier, up from 2.4%.</p><p>Energy did most of the work: gasoline jumped 9.1% in the month and accounted for more than half of the headline increase, leaving it 34.2% higher than a year ago, while fuel oil is up 74.2% y/y. Shelter inflation firmed to 3.2% y/y from 3.0%, and services to 3.2% from 3.1%. Food cooled to 2.5% from 2.7%. Used cars, airfares, apparel and medical care rose; communication fell.</p><p>Markets moved, then reversed. Futures-implied odds of an October hike jumped to about 47% right after the release, then fell to roughly 16% by Friday and 14.9% early Monday. The 2-year Treasury rose to 4.82% on release day, then slipped to 4.74% by Friday's close.</p>",
+        "body": "<p>Producer prices for final demand rose 1.3% in September, against a 0.5% consensus and 0.5% in August, the biggest monthly gain since 2022. The annual rate climbed to 6.3% from 5.6%, its highest since December 2022. Excluding food and energy, prices rose 0.7% for the month and 5.0% from a year earlier, up from 3.0% in September 2025.</p><p>Goods prices rose 2.6% in the month, the most since the series began in 2009, led by energy (+10.8%) and gasoline (+20.3%). Services rose 0.8%, with wholesale margins for machinery and vehicles up 3.9%. Further up the pipeline, processed intermediate goods were 14.1% higher than a year earlier and unprocessed goods 21.5% higher.</p><p>Bonds rallied anyway on release day: the 2-year yield fell 5bp to 4.77% and the 10-year 9bp to 5.10%, a move Sigro Research tied mostly to a falling term premium.</p>",
         "experts": [
           {
-            "who": "Bank of America economists",
-            "view": "Kept their call for an October hike, arguing the price gains were broad rather than one-offs.",
-            "url": "https://pro.thestreet.com/market-commentary/hot-cpi-puts-october-rate-hike-back-in-play",
-            "src": "TheStreet Pro · Oct 14"
+            "who": "Brian Wesbury and Robert Stein, First Trust",
+            "view": "Said energy explained more than 40% of the jump, but prices outside energy also rose 0.7%, a sign that fuel costs are spreading through the economy.",
+            "url": "https://www.ftportfolios.com/Commentary/EconomicResearch/2026/10/15/the-producer-price-index-ppi-rose-1.3percent-in-september",
+            "src": "First Trust · Oct 15"
           },
           {
-            "who": "Anna Wong, Bloomberg Economics",
-            "view": "Expects the Fed to hold for the rest of the year and sees the jump in owners' equivalent rent as possibly a one-month aberration.",
-            "url": "https://pro.thestreet.com/market-commentary/hot-cpi-puts-october-rate-hike-back-in-play",
-            "src": "TheStreet Pro · Oct 14"
-          },
-          {
-            "who": "Scott Bessent, Treasury Secretary",
-            "view": "Called September's reading an energy shock that should ease once the Iran conflict is resolved.",
-            "url": "https://benzinga.com/markets/equities/26/10/62431980/stock-market-today-dow-jones-sp-500-futures-rise-as-scott-bessent-links-september-inflation-to-energy-shock-rcat-eslt-stld-in-focus",
-            "src": "Benzinga · Oct 19"
+            "who": "Oren Klachkin, Nationwide",
+            "view": "Argued the report backs up September's CPI in showing inflation moving the wrong way for the Fed.",
+            "url": "https://www.axios.com/2026/10/15/fed-inflation-ppi-warsh",
+            "src": "Axios · Oct 15"
           }
         ],
-        "lean": "Bank of America expects an October hike; Goldman Sachs and Northlight's Chris Zaccarelli see December instead; Bloomberg Economics expects a hold.",
-        "src": "Sources: Trading Economics (CPI release, Oct 14); Vantage Markets (FedWatch path, Oct 19); Benzinga (Oct 19); U.S. Treasury (yields); TheStreet Pro and InvestmentNews (reactions)."
+        "lean": "The economists quoted read the print as inflation broadening; rate markets largely looked through it on the day.",
+        "src": "Sources: Trading Economics (PPI release, Oct 15); First Trust (components, Oct 15); FRED PPIFIS (Oct 15); Sigro Research (yields, Oct 16); Axios (Oct 15)."
       }
     ]
   },
   "world": {
     "lead": {
       "kicker": "Iran · Strait of Hormuz",
-      "title": "Mines in Hormuz keep the oil risk premium alive",
-      "body": "<p>Iran's Revolutionary Guards said over the weekend that two oil tankers, each carrying about 2 million barrels of crude, caught fire after hitting naval mines in the Strait of Hormuz. Iranian state media said the ships had switched off their tracking and used a route Iran hadn't authorized; the incidents have not been independently confirmed. That follows six vessels attacked in or near the strait on Oct 11, the most in a single day since the war began in late February.</p><p>Diplomacy is stuck. On Oct 18 Foreign Minister Araghchi said Iran's offer to reopen the strait within seven days still stands, while President Trump posted that the U.S. could \"soon finish the job.\" Iran wants ships to seek its permission before transiting, and the U.S. keeps up a naval counter-blockade of Iranian oil exports. Russia's foreign minister Lavrov is due in Tehran today.</p>",
-      "reach": "Mostly through oil and diesel. Crude and product exports via Hormuz and alternative routes fell to about 9.5 million barrels a day last week from a 14 million September average (Kpler data via IBTimes, Oct 19), and the IEA warned Oct 15 that diesel tightness could last into the first half of 2027.",
+      "title": "Iran widens its threats from tankers to undersea cables",
+      "body": "<p>Iran raised the stakes beyond shipping over the weekend. On Oct 18 security chief Mohsen Rezaei warned that data centers, undersea cables and AI facilities could be targets if the U.S. and Israel resume strikes, and on Oct 19 a Revolutionary Guards spokesman pointed to seven major cables running under the strait. The Guards also said another tanker caught fire after hitting a mine, and Iran's new strait authority has put 122 ships on a blacklist. U.S. Central Command said a container ship, the GFS Pride, sank under tow after being hit by an Iranian projectile.</p><p>Diplomacy is busier but has produced nothing concrete. Russia's Lavrov met Iran's president and foreign minister in Tehran on Oct 19, and Pakistan's army chief, Gen. Asim Munir, travels there today as a U.S.–Iran go-between. Qatar says talks are ongoing.</p>",
+      "reach": "Still mainly through oil and fuel. Energy Secretary Wright said Gulf oil flows are back to about 80% of pre-war levels (Oct 19), but refined products remain tight; dated Brent, the physical benchmark, was near $117, almost $16 below a week earlier (Bloomberg via Rigzone, Oct 19).",
       "views": [
         {
-          "who": "Matt Smith, analyst, Kpler",
-          "view": "Sees Iran and the Houthis stepping up attacks to keep oil prices high ahead of the U.S. midterms.",
-          "url": "https://www.ibtimes.sg/irans-strait-hormuz-attacks-put-oil-prices-trumps-midterm-hopes-risk-95310",
-          "src": "IBTimes · Oct 19"
+          "who": "ING commodities strategists",
+          "view": "See the market pricing in a substantial risk premium because the situation is so volatile.",
+          "url": "https://uk.finance.yahoo.com/news/oil-prices-top-110-traders-080649612.html",
+          "src": "Yahoo Finance UK · Oct 20"
         },
         {
-          "who": "Tim Hawkins, U.S. Central Command spokesman",
-          "view": "Said Iran's effort to close the strait is failing, with about 97% of ships seeking to transit getting through unharmed.",
-          "url": "https://www.foxnews.com/live-news/us-iran-war-peace-talks-oil-strait-hormuz-trump-october-18",
-          "src": "Fox News · Oct 18"
+          "who": "June Goh, senior oil analyst, Sparta Commodities",
+          "view": "Thinks a weak global economy limits how much higher prices can go, and expects Brent to stay roughly range-bound around $100.",
+          "url": "https://www.rigzone.com/news/wire/oil_prices_hover_near_fivemonth_high-19-oct-2026-184878-article/",
+          "src": "Rigzone (Bloomberg) · Oct 19"
         }
       ]
     },
     "hot": [
       {
         "r": "Iran / Hormuz",
-        "chg": "IRGC says two crude tankers hit mines (Oct 17–18) after a record six ships were attacked Oct 11; Iran's 7-day reopening offer stands.",
-        "trend": "Escalating at sea",
+        "chg": "Oct 19: IRGC flags seven undersea cables as possible targets; 122 ships blacklisted; another tanker reported mined.",
+        "trend": "Escalating",
         "tc": "esc",
-        "ch": "Oil, diesel, war-risk insurance",
-        "next": "Lavrov in Tehran, Oct 19"
+        "ch": "Oil, shipping, data cables",
+        "next": "Munir in Tehran, Oct 20"
       },
       {
         "r": "Israel / Iran",
-        "chg": "Netanyahu said Oct 18 he has told security agencies to work toward toppling Iran's government.",
+        "chg": "Oct 19: Defense Secretary Hegseth met Netanyahu privately, per Axios; Netanyahu vows to remove the Iranian threat.",
         "trend": "Escalating",
         "tc": "esc",
         "ch": "Oil risk premium",
         "next": "Israel election, Oct 27"
       },
       {
-        "r": "Russia / Ukraine",
-        "chg": "Ukraine resumed strikes on Russian refineries, including Ryazan, after the Oct 11 energy truce broke down (Forbes, Oct 17).",
+        "r": "Saudi / Houthis",
+        "chg": "Oct 19: Houthi missile and drone attacks on Saudi Arabia continued; Riyadh's Kingdom Centre sent staff home.",
         "trend": "Escalating",
         "tc": "esc",
-        "ch": "Diesel and fuel exports",
-        "next": "Peace talks resumption"
+        "ch": "Gulf supply, Red Sea shipping",
+        "next": "Qatar regional defense pact"
       },
       {
-        "r": "China / U.S. trade",
-        "chg": "Truce holding: China not enforcing rare-earth controls, U.S. not raising tariffs; each side alleges non-compliance (Oct 12).",
-        "trend": "Steady",
-        "tc": "std",
-        "ch": "Tariffs, rare earths, chips",
-        "next": "Shenzhen talks expected in November"
+        "r": "Russia / U.S. sanctions",
+        "chg": "Rubio said Oct 19 the White House will take up to 60 days to assess Trump's Russia sanctions waiver.",
+        "trend": "Sanctions easing",
+        "tc": "eas",
+        "ch": "Diesel, Russian fuel exports",
+        "next": "60-day sanctions review"
       }
     ],
     "cb": [
@@ -249,25 +240,25 @@
         "d": "2026-10-20",
         "bank": "PBoC (1Y loan prime rate)",
         "rate": "3.00%",
-        "exp": "Hold; consensus and TE forecast"
+        "exp": "Held 1Y and 5Y (3.50%) today"
       },
       {
         "d": "2026-10-28",
         "bank": "Bank of Canada",
         "rate": "2.25%",
-        "exp": "TE sees 2.50% by quarter-end"
+        "exp": "Consensus hold; TE sees 2.50% by quarter-end"
       },
       {
         "d": "2026-10-29",
         "bank": "ECB (refi rate)",
         "rate": "2.65%",
-        "exp": "Hold at 2.65% (TE); 2.90% by quarter-end"
+        "exp": "TE sees 2.90% by quarter-end"
       },
       {
         "d": "2026-10-30",
         "bank": "Bank of Japan",
         "rate": "1.25%",
-        "exp": "Hold (TE forecast)"
+        "exp": "Hold (TE forecast); new outlook report"
       },
       {
         "d": "2026-11-03",
@@ -279,13 +270,13 @@
         "d": "2026-11-05",
         "bank": "Bank of England",
         "rate": "3.75%",
-        "exp": "Split: TE calendar 4%, quarter-end 3.75%"
+        "exp": "Previews expect a hawkish hold"
       },
       {
         "d": "2026-11-05",
         "bank": "Banxico",
         "rate": "6.50%",
-        "exp": "Hold through quarter-end (TE)"
+        "exp": "Hold (TE); risks tilted upward"
       }
     ],
     "real": {
@@ -325,24 +316,20 @@
         ]
       ]
     },
-    "src": "Sources: Al Jazeera (Oct 18); Fox News live blog (Oct 18); IBTimes (Oct 19); Forbes (Oct 17); Manila Times (Oct 12); Trading Economics country interest-rate pages and G20 interest-rate and inflation lists (fetched Oct 19)."
+    "src": "Sources: Fox News live blog (Oct 19–20); CBS News live updates (Oct 19); Rigzone/Bloomberg (Oct 19); Yahoo Finance UK (Oct 20); Trading Economics country interest-rate pages and G20 interest-rate and inflation lists (fetched Oct 20)."
   },
   "reading": {
-    "kind": "Reading",
-    "who": "Benjamin Graham",
-    "title": "Meet Mr. Market",
-    "dek": "Graham's best-known allegory, from The Intelligent Investor, is a guide to using price swings instead of being pushed around by them.",
-    "body": "<p><b>Benjamin Graham</b> (1894–1976) is often called the father of value investing. Born Benjamin Grossbaum in London, he grew up in New York and taught investing at Columbia Business School for years, where Warren Buffett was one of his students. With David Dodd he wrote <i>Security Analysis</i> (1934), a founding text of the field, and from 1936 until he retired in 1956 he ran the Graham-Newman fund with Jerome Newman. In 1949 he published a shorter, plainer book for non-professionals, <i>The Intelligent Investor</i>, and revised it several times; the last revision, in 1973, drew on Buffett's input, and an annotated edition with commentary by Jason Zweig followed in 2003.</p><p>The book's most famous idea is the allegory in chapter 8, on market fluctuations. Imagine you own a small stake in a private business. Your partner, <b>Mr. Market</b>, turns up every day and names a price at which he'll buy your share or sell you his. Some days he's euphoric and asks far too much. Other days he's gloomy and will sell for almost nothing. His moods have little to do with how the business is actually doing.</p><p>The point is that his offer is an <i>option, not an instruction</i>. You can take it when it suits you and ignore it when it doesn't. The real mistake is letting his mood set your view of what you own. Sell in a panic because he did, or chase a price because he's excited, and you've handed your judgment to the least reliable person in the room. Graham's investor watches the business itself, its earnings, balance sheet and dividends, rather than the daily quote.</p><p>There's comfort in the chapter, too. Graham argued that an investor holding sound assets who isn't forced to sell isn't really harmed by falling prices, and that a falling price can be an opportunity. What matters is keeping price and value separate. That discipline pairs with the other chapter Buffett singles out, on the <i>margin of safety</i>: buy only when the price sits comfortably below a conservative estimate of value, so mistakes and bad luck don't sink you.</p><p>Why reread it now? Last week Mr. Market swung from pricing an October Fed hike as a near coin flip to barely considering it, while chip stocks fell sharply in a single session. Graham's framework won't say where markets go next. It asks a simpler question: what are you being paid, and what are you being asked to pay? With a 10-year Treasury near 5%, a safe yield is a real alternative, and a rich price on any asset, stock or building, shrinks the margin of safety.</p>",
-    "quote": {
-      "text": "By far the best book on investing ever written.",
-      "src": "Warren Buffett, on The Intelligent Investor"
-    },
+    "kind": "Story",
+    "who": "John Templeton",
+    "title": "A Dollar a Share, and a World at War",
+    "dek": "In 1939, as Europe went to war, a 26-year-old Templeton borrowed $10,000 and bought shares in every NYSE company trading for a dollar or less.",
+    "body": "<p>In the late summer of 1939, as Germany's invasion of Poland plunged Europe into war, American investors had every reason to avoid stocks. A decade of depression had already flattened markets, and now a second global conflict loomed. A 26-year-old money manager from Tennessee named <b>John Templeton</b> read the same headlines and reached the opposite conclusion. He borrowed $10,000 and told his broker to buy 100 shares of every company on the New York Stock Exchange trading at a dollar or less.</p><p>The order swept up 104 companies, and many were in miserable shape: by most accounts, more than 30 were already in bankruptcy. Templeton was not betting that each business was sound. His bet was that the whole basket was priced for catastrophe. If war revived American industry, as he expected, demand for steel, railcars and manufactured goods would lift even the weakest names, and the stocks priced for failure had the most room to rebound. Where others saw only risk, he saw lopsided odds.</p><p>He was right. As wartime production ramped up, the portfolio rallied. Only four of the 104 holdings ended up worthless, and within a few years the stake had roughly quadrupled, to around $40,000, according to accounts of the trade. Sources differ on exactly when he sold, but the lesson was clear: buying broadly at the moment of deepest gloom had paid off handsomely.</p><p>The trade became the founding legend of a remarkable career. Templeton, a Yale graduate and Rhodes Scholar at Oxford's Balliol College, launched the Templeton Growth Fund in 1954 and became one of the first prominent American managers to hunt for bargains around the world rather than at home alone. He renounced his U.S. citizenship in 1964, later settled full-time in the Bahamas, and in 1992 sold his fund business to the Franklin group for $440 million. Knighted in 1987 for his philanthropy, he also created the Templeton Prize, and he died in Nassau in 2008 at 95.</p><p>His enduring idea, usually summarized as buying when pessimism peaks, was less about bravado than discipline. Templeton diversified widely, accepted that some bets would fail, and insisted on prices low enough that the survivors would more than cover the losers. The 1939 order captured all three principles at once: <i>breadth</i>, <i>humility</i> and <i>price</i>. It remains a template investors revisit whenever fear, rather than fundamentals, seems to be setting prices. The hard part, then as now, is acting while the news is still getting worse instead of waiting for an all-clear.</p>",
     "takeaways": [
-      "A 5% 10-year sets a real hurdle: an expensive asset has to beat a safe yield, not just its peers.",
-      "Fed-odds whiplash makes Mr. Market moody; treat the swings as offers you can take or ignore.",
-      "High valuations thin the margin of safety, so ask for a wider discount before buying."
+      "War headlines are setting oil prices again; Templeton asked what fear had already priced in.",
+      "After the AI selloff, his lesson is breadth: many cheap bets, not one hero pick.",
+      "A 5%-plus 10-year raises the bar: a bargain has to beat a safe yield."
     ],
-    "src": "Read more: Benjamin Graham, The Intelligent Investor (revised edition with commentary by Jason Zweig, 2003), chapter 8; Wikipedia entries on Graham and the book."
+    "src": "Read more: Wikipedia, \"John Templeton\"; ShareScope, \"The two best trades of the 20th century\" (2023); 2008 obituaries (AP, UPI)."
   },
   "econ": [
     {
@@ -354,7 +341,7 @@
     {
       "n": "30-yr mortgage",
       "v": "7.40%",
-      "d": "Freddie Mac, Oct 15; next update Oct 22",
+      "d": "Freddie Mac, Oct 15 (year ago 6.27%); next update Oct 22",
       "good": false
     }
   ],
@@ -364,7 +351,7 @@
       "tag": "Housing",
       "e": "Housing starts (Sep)",
       "act": null,
-      "cons": "1.31M",
+      "cons": "1.30M",
       "prior": "1.275M",
       "good": null,
       "why": "New supply pipeline"
@@ -390,16 +377,6 @@
       "why": "Layoffs still low?"
     },
     {
-      "d": "2026-10-22",
-      "tag": "Economy",
-      "e": "Leading indicators (Sep)",
-      "act": null,
-      "cons": "−0.2%",
-      "prior": "−0.1%",
-      "good": null,
-      "why": "Recession signal check"
-    },
-    {
       "d": "2026-10-23",
       "tag": "Economy",
       "e": "S&P flash manufacturing PMI (Oct)",
@@ -414,7 +391,7 @@
       "tag": "Economy",
       "e": "S&P flash services PMI (Oct)",
       "act": null,
-      "cons": "57.9",
+      "cons": "58.0",
       "prior": "58.8",
       "good": null,
       "why": "Services momentum and prices"
@@ -432,12 +409,22 @@
     {
       "d": "2026-10-27",
       "tag": "Economy",
-      "e": "Durable goods orders (Sep)",
+      "e": "Durable goods orders, m/m (Sep)",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "−0.2%",
+      "prior": "0.0%",
       "good": null,
       "why": "Business investment read"
+    },
+    {
+      "d": "2026-10-27",
+      "tag": "Economy",
+      "e": "Consumer confidence (Oct)",
+      "act": null,
+      "cons": "80",
+      "prior": "81.9",
+      "good": null,
+      "why": "Household mood amid fuel costs"
     },
     {
       "d": "2026-10-28",
@@ -447,7 +434,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Hike or hold"
+      "why": "Hold now, hike later?"
     },
     {
       "d": "2026-10-29",
@@ -470,14 +457,14 @@
       "why": "Fed's preferred inflation gauge"
     },
     {
-      "d": "2026-11-02",
-      "tag": "Economy",
-      "e": "ISM manufacturing (Oct)",
+      "d": "2026-11-03",
+      "tag": "Policy",
+      "e": "Midterm elections",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Factory activity and prices paid"
+      "why": "Fiscal and tariff path"
     },
     {
       "d": "2026-11-06",
@@ -488,49 +475,69 @@
       "prior": null,
       "good": null,
       "why": "Labor market strength"
+    },
+    {
+      "d": "2026-11-10",
+      "tag": "Inflation",
+      "e": "CPI (Oct)",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Is energy inflation spreading?"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,659.44",
-      "c": -1.09,
-      "ctext": "−1.09%",
-      "y": 15.5,
-      "ytext": "+15.5%",
-      "why": "Fell as another leg down in chip and big-tech stocks fed doubts about how long the AI spending boom can last.",
-      "asof": "Oct 16"
+      "v": "7,690.73",
+      "c": 0.41,
+      "ctext": "+0.41%",
+      "y": 15.4,
+      "ytext": "+15.4%",
+      "why": "Edged up as AI and tech stocks bounced back from last week's steep losses, though most other stocks slipped.",
+      "asof": "Oct 19"
     },
     {
       "n": "Dow",
-      "v": "52,002.41",
-      "c": -0.34,
-      "ctext": "−0.34%",
-      "y": 13.2,
-      "ytext": "+13.2%",
-      "why": "Held up best as banks and energy names such as JPMorgan, Exxon and Chevron offset part of the tech slide.",
-      "asof": "Oct 16"
+      "v": "51,966.03",
+      "c": -0.07,
+      "ctext": "−0.07%",
+      "y": 12.5,
+      "ytext": "+12.5%",
+      "why": "Slipped as most stocks outside tech edged lower; European indexes fell more than 1% and bond yields rose worldwide.",
+      "asof": "Oct 19"
     },
     {
       "n": "Nasdaq",
-      "v": "26,140.03",
-      "c": -2.15,
-      "ctext": "−2.15%",
-      "y": 15.9,
-      "ytext": "+15.9%",
-      "why": "Chipmakers led the drop, with Micron down 5.6%, Intel 5.8% and AMD about 6%, on AI spending and financing worries.",
-      "asof": "Oct 16"
+      "v": "26,430.89",
+      "c": 1.11,
+      "ctext": "+1.11%",
+      "y": 16.5,
+      "ytext": "+16.5%",
+      "why": "Led the rebound as chip and AI stocks recovered part of last week's 4.5% drop.",
+      "asof": "Oct 19"
     },
     {
-      "n": "Brent crude",
-      "v": "$109.86",
+      "n": "WTI crude",
+      "v": "$103.66",
       "rate": true,
-      "c": 3.7,
-      "ctext": "+3.7%",
+      "c": 2.2,
+      "ctext": "+2.2%",
       "y": null,
       "ytext": null,
-      "why": "Middle East tensions and attacks on shipping threatened Gulf supply; Brent briefly touched $110, its first visit since May.",
-      "asof": "Oct 16"
+      "why": "The expiring November contract hit its highest close since Sept. 15 on Mideast supply risks; the more-active December slipped 0.5%.",
+      "asof": "Oct 19"
+    },
+    {
+      "n": "Dollar index",
+      "v": "101.98",
+      "c": 0.14,
+      "ctext": "+0.14%",
+      "y": null,
+      "ytext": null,
+      "why": "Edged up as Treasury yields rose worldwide, with traders positioning ahead of the Fed's Oct 28 decision.",
+      "asof": "Oct 19"
     }
   ],
   "key": [
@@ -544,71 +551,71 @@
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.74,
-      "d1m": 0,
-      "d6m": 96,
-      "d1y": 133,
-      "asof": "Oct 16"
+      "cur": 4.77,
+      "d1m": 1,
+      "d6m": 106,
+      "d1y": 131,
+      "asof": "Oct 19"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.89,
-      "d1m": 3,
-      "d6m": 98,
-      "d1y": 134,
-      "asof": "Oct 16"
+      "cur": 4.94,
+      "d1m": 8,
+      "d6m": 110,
+      "d1y": 135,
+      "asof": "Oct 19"
     },
     {
       "n": "10Y Treasury",
-      "cur": 5.09,
-      "d1m": 8,
-      "d6m": 77,
-      "d1y": 110,
-      "asof": "Oct 16"
+      "cur": 5.15,
+      "d1m": 14,
+      "d6m": 89,
+      "d1y": 113,
+      "asof": "Oct 19"
     }
   ],
   "rcols": [
-    "Oct 16 '26",
-    "Sep 16 '26",
-    "Apr 16 '26",
-    "Oct 16 '25"
+    "Oct 19 '26",
+    "Sep 18 '26",
+    "Apr 17 '26",
+    "Oct 17 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.74",
-        "4.74",
-        "3.78",
-        "3.41"
+        "4.77",
+        "4.76",
+        "3.71",
+        "3.46"
       ],
-      "d1m": 0,
-      "d1y": 133
+      "d1m": 1,
+      "d1y": 131
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.89",
+        "4.94",
         "4.86",
-        "3.91",
-        "3.55"
+        "3.84",
+        "3.59"
       ],
-      "d1m": 3,
-      "d1y": 134
+      "d1m": 8,
+      "d1y": 135
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "5.09",
+        "5.15",
         "5.01",
-        "4.32",
-        "3.99"
+        "4.26",
+        "4.02"
       ],
-      "d1m": 8,
-      "d1y": 110
+      "d1m": 14,
+      "d1y": 113
     },
     {
       "grp": "SOFR · dates Oct 16 '26 / Sep 16 '26 / Apr 16 '26 / Oct 16 '25"
@@ -627,12 +634,20 @@
   ],
   "freight": [
     {
+      "n": "Baltic Dry Index",
+      "v": "2,546",
+      "pl": "Day",
+      "pc": "+1.39%",
+      "y": "+22.9%",
+      "why": "Oct 19; bounced after a 14% weekly drop, still down 25% in a month."
+    },
+    {
       "n": "Diesel, U.S. avg (EIA)",
       "v": "$6.179/gal",
       "pl": "Week",
       "pc": "−$0.020",
       "y": "+$2.514",
-      "why": "Week of Oct 12, out Oct 14; next print Oct 20."
+      "why": "Week of Oct 12, out Oct 14; next print due today."
     },
     {
       "n": "Drewry WCI, 40ft",
@@ -640,20 +655,12 @@
       "pl": "Week",
       "pc": "+3%",
       "y": null,
-      "why": "Oct 15; Asia–Europe led, Shanghai–Rotterdam up 6% to $3,522."
-    },
-    {
-      "n": "Baltic Dry Index",
-      "v": "2,511",
-      "pl": "Day",
-      "pc": "−1.34%",
-      "y": "+21.4%",
-      "why": "Oct 16; dry-bulk shipping rates kept sliding into the weekend."
+      "why": "Oct 15; Shanghai–LA up 3% to $7,884; next reading Oct 22."
     }
   ],
   "also": "",
-  "sport": "The Rays beat the Guardians 3–1 Sunday behind seven strong innings from Drew Rasmussen to take a 3–2 ALCS lead; Game 6 is tonight, and the winner meets Milwaukee in the World Series.",
-  "foot": "Sources: NY Fed API (SOFR, latest Oct 16; references Sep 16, Apr 16 and Oct 16, 2025); U.S. Treasury daily par yield curve CSV (latest Oct 16; references Sep 16, Apr 16 and Oct 16, 2025); AP via La Nación (Oct 16, 2026 closes) and MarketBeat (Oct 16, 2025 closes; 1Y % computed); AP via BNN Bloomberg and La Nación (why lines); ts2.tech and The Star/Reuters (Brent settle, cross-checked against Monday's quoted drop); Trading Economics (CPI, calendar, Baltic Dry); Vantage Markets and Benzinga (FedWatch); TheStreet Pro and InvestmentNews (reactions only; no numbers used from TheStreet); Regions via Finviz; Stockti (earnings dates); DAT via GlobeNewswire; EIA; Drewry via DCN; NBC Washington (ALCS); deep dive and Investor's Corner sources listed in those sections.<br>Notes: Dollar index left out: no dated Oct 16 close found (only near-close/intraday levels around 101.8). No dated WTI settle for Oct 16, so Brent is shown; Brent 1Y change not found. Drewry WCI 1Y change not stated. CPI chart history is a secondary compilation (SimianX) of BLS data; Oct 2025 CPI was not published. DAT weekly spot rates for mid-October not found; September monthly figures used in the Rundown. Mortgage rate is last Thursday's Freddie Mac survey. Chart keeps 5 years of history for the 5Y toggle.<br>Late-day update (run started 1:46pm MT): upgraded to the v10 layout with the World Desk; SOFR refreshed to Oct 16; NAHB dropped from the calendar (released this morning); 10Y and diesel removed from the markets strip (they live under Rates and Freight). World Desk: real rates use the Fed's 4.00% top and Euro-area MRO 2.65%; Japan and UK CPI are August (September not yet listed); Euro-area September CPI 3.8% is per Trading Economics' list, a jump from 3.3% in August. War-risk insurance has no October figure. Tanker mine strikes are per IRGC claims, not independently confirmed.",
+  "sport": "The 49ers beat the Commanders 23–17 on Monday Night Football, sacking Jayden Daniels on the final play; Christian McCaffrey ran for two touchdowns as San Francisco moved to 6–0.",
+  "foot": "Sources: U.S. Treasury daily par yield curve CSV (latest Oct 19; references Sep 18, Apr 17 and Oct 17, 2025 from series); NY Fed API (SOFR still latest Oct 16 at build time; prior deltas carried); AP via La Nación (Oct 19 closes and why lines); AP via MarketBeat search results (Oct 17, 2025 closes; 1Y % computed); Rigzone/Bloomberg (WTI Nov settle Oct 19); Investing.com historical data (dollar index Oct 19 close); Trading Economics (PPI, retail sales, calendar, Baltic Dry, G20 lists, central banks); First Trust; FRED; Sigro Research; Axios; Tradingpedia and Invezz (FedWatch, secondary); Yahoo Finance; Fifth Third, Zions and KeyCorp releases; IG and Proactive (earnings); EIA; Drewry via DCN; West Hawaii Today (MNF).<br>Notes: WTI shown is the expiring November contract ($103.66, +2.2%); the December contract settled $98.54. WTI and dollar-index 1Y changes left out (only live year-over-year quotes found, not dated closes). Dollar 'why' line is drawn from the global yield rise (AP), not a dollar-specific story. Index 1Y-ago closes come from search snippets of AP tables. FedWatch odds are secondary reports, not CME directly; Axios (Klachkin) seen via search snippet. EIA diesel Oct 19 print not yet posted at build time; Drewry Oct 22 not out. NAHB Oct (29) left out: single unconfirmed source. ALCS status conflicted across sources, so MNF used for sport. World Desk real rates: Fed 4.00% top, Euro-area MRO 2.65%; Japan and UK CPI are August; Canada CPI updated to September (3.1%). Tanker mine strike per IRGC claim, not independently confirmed. Cushman snippet-only data (inland share, AI leasing) not used.",
   "series": [
     [
       "2021-10-12",
@@ -8172,6 +8179,12 @@
       4.74,
       4.89,
       5.09
+    ],
+    [
+      "2026-10-19",
+      4.77,
+      4.94,
+      5.15
     ]
   ],
   "log": {
@@ -8191,6 +8204,10 @@
       {
         "d": "2026-10-19",
         "t": "The grid is the new bottleneck"
+      },
+      {
+        "d": "2026-10-20",
+        "t": "Warehouses are filling faster than builders can add them"
       }
     ],
     "corner": [
@@ -8213,18 +8230,31 @@
         "d": "2026-10-19",
         "who": "Benjamin Graham",
         "kind": "Reading"
+      },
+      {
+        "d": "2026-10-20",
+        "who": "John Templeton",
+        "kind": "Story"
       }
     ],
     "focus": [
       {
         "d": "2026-10-19",
         "t": "September CPI: gasoline pushed headline inflation to 3.7%, core edged up to 2.6%"
+      },
+      {
+        "d": "2026-10-20",
+        "t": "September PPI: producer prices jumped 1.3%, the annual rate hit 6.3%"
       }
     ],
     "world": [
       {
         "d": "2026-10-19",
         "t": "Mines in Hormuz keep the oil risk premium alive"
+      },
+      {
+        "d": "2026-10-20",
+        "t": "Iran widens its threats from tankers to undersea cables"
       }
     ]
   }
