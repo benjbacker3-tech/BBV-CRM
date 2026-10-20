@@ -60,3 +60,6 @@ sandpiper.db*
 logs/
 
 .vercel
+
+# Daily Brief page rendered by scripts/render-brief-html.mjs
+/.brief/
