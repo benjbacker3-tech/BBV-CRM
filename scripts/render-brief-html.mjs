@@ -1,6 +1,7 @@
 // Renders data/rates-brief.json as the standalone three-page Daily Brief web page that is
 // published to Ben's shared brief link (the page the morning email points to).
 //
+//   node scripts/check-brief.mjs --page   (how the morning routine runs it: check, then render)
 //   node scripts/render-brief-html.mjs [in.json] [out.html]
 //   defaults: data/rates-brief.json -> .brief/daily-brief.html (git-ignored)
 //
@@ -8,8 +9,9 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 
-const inFile = process.argv[2] || 'data/rates-brief.json';
-const outFile = process.argv[3] || '.brief/daily-brief.html';
+const args = process.argv.slice(2).filter(a => !a.startsWith('--'));
+const inFile = args[0] || 'data/rates-brief.json';
+const outFile = args[1] || '.brief/daily-brief.html';
 const B = JSON.parse(readFileSync(inFile, 'utf8'));
 
 // ---------- helpers ----------

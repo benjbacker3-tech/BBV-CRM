@@ -2,13 +2,17 @@
 // written unattended each weekday; if it's malformed the build stops here with a plain reason
 // and Vercel keeps serving the last good deploy, instead of failing somewhere inside Next.
 //
-//   node scripts/check-brief.mjs [path]      (default data/rates-brief.json)
+//   node scripts/check-brief.mjs [path]          (default data/rates-brief.json)
+//   node scripts/check-brief.mjs --page          also renders the shared brief page
+//                                                 (.brief/daily-brief.html) after a passing check
 //
 // Only checks what the CRM needs to render. Text fields may be strings or lists (the CRM reads
 // both), so those aren't policed here.
 import { readFileSync } from 'node:fs';
 
-const file = process.argv[2] || 'data/rates-brief.json';
+const args = process.argv.slice(2);
+const file = args.find(a => !a.startsWith('--')) || 'data/rates-brief.json';
+const renderPage = args.includes('--page');
 const problems = [];
 let B;
 try {
@@ -41,3 +45,4 @@ if (problems.length) {
   process.exit(1);
 }
 console.log(`Daily Brief check: ok (${B.dateline})`);
+if (renderPage) await import('./render-brief-html.mjs');
