@@ -1,282 +1,279 @@
 {
-  "headline": "Investors sold AI stocks and bought bonds Thursday, pulling the 10-year Treasury yield down 17bp to 4.96%, its first close under 5% in a month.",
-  "dateline": "Friday, October 23, 2026 · closes as of Thu Oct 22",
-  "ustDate": "Oct 22, 2026",
+  "headline": "Oil jumped nearly 4% Friday to $103 on fears the U.S. will resume strikes on Iran, and the 10-year Treasury yield climbed back to 5.00% ahead of Wednesday's Fed decision.",
+  "dateline": "Monday, October 26, 2026 · closes as of Fri Oct 23",
+  "ustDate": "Oct 23, 2026",
   "rundown": [
     {
       "tag": "Fed",
-      "h": "Traders all but wrote off a hike next week.",
-      "p": "After Thursday's bond rally, futures put the odds of a quarter-point Fed hike on Oct 28 at just 10.5%. Pricing for the rest of the year still leans toward one more increase, with about a 22% chance of no further hike in 2026. For borrowers, the 2-year's 16bp drop to 4.65% is the cleanest read on how fast those expectations moved.",
-      "url": "https://investrade.com/market-review-october-22-2026/",
-      "src": "Investrade; investingLive · Oct 22"
-    },
-    {
-      "tag": "Tech",
-      "h": "Chip stocks had their roughest day in months.",
-      "p": "The PHLX Semiconductor Index fell more than 6% to 10,690, sitting just above its 200-day average, and the tech sector ETF lost 3.3% while consumer staples gained more than 3%. Lam Research's light guidance hit chip-equipment names. It's a sharp reversal from Wednesday's AI-hardware rally, and a reminder of how much of the market's gain rides on one theme.",
-      "url": "https://investrade.com/market-review-october-22-2026/",
-      "src": "Investrade · Oct 22"
+      "h": "The Fed is expected to sit tight Wednesday.",
+      "p": "CME FedWatch put the odds of a hold at Wednesday's decision at about 88% as of Monday, after September's hike to 3.75–4.00%. The bigger question is December: FedWatch showed about 71% odds of another quarter-point hike as of Friday's close. Chair Kevin Warsh's press conference is where markets will look for that signal.",
+      "url": "https://www.heygotrade.com/en/news/weekly-economic-outlook-2026-10-26/",
+      "src": "Gotrade; CappNotes · Oct 23–26"
     },
     {
       "tag": "Earnings",
-      "h": "Old-economy earnings mostly came in solid.",
-      "p": "Texas Instruments posted $6.06 billion in sales and guided the fourth quarter to a $6.05 billion midpoint, above the $5.73 billion consensus. Honeywell beat on earnings and raised full-year guidance to $8.40–8.45 a share, Lockheed's backlog hit a record $292 billion, and Valero earned a record $23.90 a share. Intel reports next Thursday, Oct 29.",
-      "url": "https://investrade.com/market-review-october-22-2026/",
-      "src": "Investrade · Oct 22"
+      "h": "Big Tech's spending plans face their test this week.",
+      "p": "Microsoft and Alphabet report Wednesday after the close, and Amazon and Intel follow Thursday. Analysts expect Alphabet revenue near $127.9 billion and Amazon near $202.2 billion, with hyperscaler capex running about $800 billion this year. The season so far is strong: FactSet had Q3 S&P 500 earnings on pace for about 29.5% growth with 24% of companies reported.",
+      "url": "https://www.heygotrade.com/en/news/weekly-economic-outlook-2026-10-26/",
+      "src": "Gotrade; FactSet · Oct 23–26"
     },
     {
-      "tag": "Housing",
-      "h": "Builders are feeling 7% mortgages; Washington may step in.",
-      "p": "PulteGroup's revenue of $3.97 billion missed the $4.15 billion expected as closings fell 9%. The administration is reportedly drafting an executive order on mortgage costs covering mortgage insurance, refinancing, and USDA and VA loans. Any relief would land in a market where the 30-year rate is still above 7%, and housing stocks rallied Thursday as yields fell.",
-      "url": "https://investrade.com/market-review-october-22-2026/",
-      "src": "Investrade · Oct 22"
+      "tag": "Credit",
+      "h": "CoreWeave's debt now trades like distressed credit.",
+      "p": "The AI cloud provider's five-year credit default swaps reached 1,129bp Friday, above the 1,000bp level usually read as distressed. Morgan Stanley cut its price target to $70 and UBS to $105, and the stock slipped 2.5%. Investment-grade bond fund LQD fell 0.41% on the day, so the stress is showing up mainly in the AI borrowers, not broadly.",
+      "url": "https://cappnotes.substack.com/p/closing-look-friday-october-23-2026",
+      "src": "CappNotes (CNBC data) · Oct 23"
     },
     {
-      "tag": "Markets",
-      "h": "Investors are bailing on single stocks at a record pace.",
-      "p": "Bank of America said its clients pulled a record net $14.8 billion from individual stocks, while Goldman Sachs said hedge funds' short leverage is in the 99th percentile of the past five years. Heavy short positioning can fuel sharp rebounds, but together the flows show professionals and individuals alike growing more defensive with indexes near records.",
-      "url": "https://investrade.com/market-review-october-22-2026/",
-      "src": "Investrade · Oct 22"
+      "tag": "Trade",
+      "h": "Washington quietly rolled back some Canada tariffs.",
+      "p": "The administration exempted a list of Canadian goods, including blueberries, potatoes, apples and some packaging and refrigeration machinery, from the 50% duties imposed after talks broke down in late August. A White House fact sheet said new tariffs on certain valves, carpets and waste products will offset them. A separate lawsuit filed Oct 20 challenges the Canada tariffs outright.",
+      "url": "https://www.nbcnews.com/business/economy/trump-cancels-canada-tariffs-susan-collins-rcna605270",
+      "src": "NBC News · Oct 23"
     },
     {
-      "tag": "Economy",
-      "h": "Layoffs still aren't showing up in the claims data.",
-      "p": "Initial jobless claims fell to 194,000 last week, below the 200,000 expected, and the four-week average eased to 197,750. Continuing claims rose to 1.728 million from 1.703 million, a sign that people who lose jobs are taking longer to find new ones. A firm job market gives the Fed less reason to rush toward cuts.",
-      "url": "https://investinglive.com/news/investinglive-americas-fx-news-wrap-22-oct-nasdaq-sinks-as-ai-worries-bite-treasury-yields-tumble/",
-      "src": "investingLive; Investrade · Oct 22"
+      "tag": "Consumer",
+      "h": "Diesel costs are landing on discount retailers.",
+      "p": "Wells Fargo warned Friday that high diesel prices could squeeze dollar stores, which run large truck fleets and serve price-sensitive shoppers. Dollar General fell 4.6% and Ollie's 5.3%. It's a reminder that the fuel shock works like a tax on low-income households and on any business that moves goods by truck.",
+      "url": "https://cappnotes.substack.com/p/closing-look-friday-october-23-2026",
+      "src": "CappNotes · Oct 23"
     }
   ],
   "dive": {
-    "kicker": "CMBS",
-    "title": "Apartments are now the problem child in CMBS",
-    "dek": "CMBS delinquency hit its highest level since 2020 in September, and the newest pressure is coming from multifamily, not office.",
-    "body": "<p>For three years the commercial mortgage story was about office towers. September's numbers say the stress has spread. Trepp's overall CMBS delinquency rate rose to <b>8.02%</b> from 7.85% in August, the highest since late 2020. Office is still the worst sector at 12.16%, but it's just below January's record 12.34%. The sharper move came from apartments: multifamily delinquency jumped 35bp in a month to <b>8.04%</b>, up from 6.59% a year earlier and now above the overall rate.</p><p>Special servicing, where troubled loans go to be worked out, tells the same story. Trepp's special servicing rate reached 11.49% in September, the highest since February 2013 and up 84bp from a year earlier. New transfers totaled $2.65 billion across 42 loans, 57% of it office, led by One SoHo Square ($512.8 million) and a Starwood regional mall portfolio ($436.9 million). Trepp said five large single-asset, single-borrower loans drove much of the delinquency increase. Industrial remains the clean corner at 1.14%, though that's double the 0.56% of a year ago.</p><p>The spread beyond office matters because apartments have long been treated as the safe corner of commercial real estate. Lodging delinquency also rose, by 34bp to 6.18%. Retail, at 6.58%, was the only major sector that improved over the year.</p><p>There is one hopeful sign: resolutions, meaning payoffs, modifications and liquidations, rose 237% in September to $1.95 billion from $579.7 million in August. KBRA, which tracks its own rated deals, puts its distress rate at 10.3%, down 31bp from a year earlier even as its conduit distress rate rose. If resolutions stay high and rates keep easing, the pipeline drains. If floating-rate apartment loans keep defaulting, lenders will tighten terms across property types, including industrial.</p>",
+    "kicker": "Trade flows",
+    "title": "Imports just had a record month. The hangover is next.",
+    "dek": "Lower tariffs, a looming truce deadline and the fuel shock pulled record cargo through Southern California in September, and forecasters expect a sharp fade into winter.",
+    "body": [
+      "<p>September was a blockbuster for U.S. ports. Descartes counted <b>2.55 million TEU</b> of containerized imports, up 10.3% from a year earlier and the highest September on record; the gain pushed 2026's year-to-date total above 2025's for the first time. The Port of Los Angeles handled 1.04 million TEU, its best month ever, and Long Beach moved 997,177 TEU, up 25% and also an all-time record. China came roaring back: imports from China rose 21.2% to 924,454 TEU, lifting its share to 36.3% from 34.0% in August.</p>",
+      "<p>Three things drove the surge. Tariffs on Chinese goods are lower than a year ago, and importers worried the U.S.-China truce would lapse this fall (it has since been extended to Jan 10, 2027). Second, the Middle East war raised fuel costs and pushed cargo off all-water routes through a drought-limited Panama Canal and toward West Coast ports with rail links. Third, retailers restocked early. LA's Gene Seroka named all three.</p>",
+      "<p>The catch is timing. NRF's Global Port Tracker, from Oct 8, expects imports to hold up in October (+8.5% y/y) and then slip 1% in November, with full-year 2026 volume up just 1.4% at 25.8 million TEU. Seroka expects LA's October volume near 900,000 TEU, down from 1.04 million. Gulf Coast imports already fell 14.8% in September, and Vietnam has become LA's number-two trading partner as China's share of the port's business fell to about 40% from 60%.</p>",
+      "<p>For warehouse owners, the lesson is to separate pulses from trend. Front-loading fills port-adjacent space fast and flatters leasing for a quarter or two, but forecast declines in November and January show how quickly it reverses. The relative winner may be Southern California: as long as diesel stays high and the canal stays shallow, rail-served West Coast gateways keep gaining share.</p>"
+    ],
     "table": {
-      "cap": "CMBS credit, September 2026",
+      "cap": "U.S. imports, September 2026",
       "cols": [
         "Measure",
-        "Sep 2026",
-        "Comparison"
+        "Sept 2026",
+        "Change y/y"
       ],
       "rows": [
         [
-          "Trepp overall delinquency",
-          "8.02%",
-          "7.85% in Aug"
+          "U.S. container imports (Descartes)",
+          "2,546,261 TEU",
+          "+10.3%"
         ],
         [
-          "Office delinquency",
-          "12.16%",
-          "12.34% record (Jan); 11.13% yr ago"
+          "Imports from China (Descartes)",
+          "924,454 TEU",
+          "+21.2%"
         ],
         [
-          "Multifamily delinquency",
-          "8.04%",
-          "6.59% yr ago"
+          "Port of Long Beach, total",
+          "997,177 TEU",
+          "+25.0%"
         ],
         [
-          "Industrial delinquency",
-          "1.14%",
-          "0.56% yr ago"
+          "Port of LA, loaded imports",
+          "545,696 TEU",
+          "+19%"
         ],
         [
-          "Special servicing rate",
-          "11.49%",
-          "Highest since Feb 2013"
-        ],
-        [
-          "KBRA distress rate",
-          "10.3%",
-          "−31bp y/y; office 17.6%"
+          "NRF forecast, November",
+          "2.00M TEU",
+          "−1%"
         ]
       ]
     },
     "watch": [
-      "KBRA's October loan performance report, due around Oct 30.",
-      "Trepp's October delinquency report in early November.",
-      "FOMC on Oct 28: refinancing math for floating-rate loans."
+      "Mid-November: LA and Long Beach October volumes, tested against Seroka's ~900,000 TEU call.",
+      "Nov 27: China's suspended ban on gallium, germanium and antimony exports to the U.S. lapses.",
+      "Jan 10, 2027: the extended U.S.-China truce expires; watch for another front-loading wave."
     ],
-    "src": "Sources: Scotsman Guide citing Trepp (Oct 6); CRE Daily citing Trepp special servicing (Oct 14); KBRA CMBS Loan Performance Trends (Sep 30); U.S. Treasury yields (Oct 22)."
+    "src": "Sources: Descartes via AJOT and Container News (Oct 8); Maritime Executive (Oct 9); FreightWaves (Oct 13, 16); NRF Global Port Tracker (Oct 8); Supply Chain Dive (Sep 24); China Briefing."
   },
   "focus": {
     "items": [
       {
-        "tag": "Pipeline",
-        "title": "October Philly Fed: activity cooled to 20.9, but factories raised their own prices faster",
-        "rel": "Philadelphia Fed manufacturing index, Oct",
-        "act": "20.9",
-        "cons": "28.4",
-        "prior": "37.8",
-        "good": null,
+        "tag": "Consumers",
+        "title": "October UMich sentiment: 48.0, as year-ahead inflation expectations rose to 4.7%",
+        "rel": "University of Michigan consumer sentiment, Oct final",
+        "act": "48.0",
+        "cons": "46.3",
+        "prior": "48.1",
+        "good": false,
         "chart": {
-          "t": "Philly Fed prices paid index (diffusion)",
+          "t": "UMich consumer sentiment index",
           "unit": "",
           "pts": [
             [
               "Nov '24",
-              28.1
+              71.8
             ],
             [
               "Dec '24",
-              31.5
+              74.0
             ],
             [
               "Jan '25",
-              34.6
+              71.7
             ],
             [
               "Feb '25",
-              41.0
+              64.7
             ],
             [
               "Mar '25",
-              46.9
+              57.0
             ],
             [
               "Apr '25",
-              50.4
+              52.2
             ],
             [
               "May '25",
-              58.1
+              52.2
             ],
             [
               "Jun '25",
-              39.2
+              60.7
             ],
             [
               "Jul '25",
-              56.0
+              61.7
             ],
             [
               "Aug '25",
-              64.3
+              58.2
             ],
             [
               "Sep '25",
-              47.9
+              55.1
             ],
             [
               "Oct '25",
-              51.3
+              53.6
             ],
             [
               "Nov '25",
-              58.9
+              51.0
             ],
             [
               "Dec '25",
-              49.3
+              52.9
             ],
             [
               "Jan '26",
-              46.9
+              56.4
             ],
             [
               "Feb '26",
-              38.9
+              56.6
             ],
             [
               "Mar '26",
-              44.7
+              53.3
             ],
             [
               "Apr '26",
-              59.3
+              49.8
             ],
             [
               "May '26",
-              47.9
+              44.8
             ],
             [
               "Jun '26",
-              53.2
+              49.5
             ],
             [
               "Jul '26",
-              53.9
+              55.2
             ],
             [
               "Aug '26",
-              40.9
+              51.7
             ],
             [
               "Sep '26",
-              48.6
+              48.1
             ],
             [
               "Oct '26",
-              43.2
+              48.0
             ]
           ],
-          "src": "Source: Philadelphia Fed via FRED (PPCDFSA066MSFRBPHI)."
+          "src": "Source: University of Michigan via FRED (UMCSENT); Oct '26 from the UMich release."
         },
-        "body": "<p>The Philadelphia Fed's manufacturing index fell to 20.9 in October from 37.8, short of the 28.4 consensus and the slowest expansion since June. New orders dropped to 4.3 from 29.2, shipments to 15.3 from 27.7 and unfilled orders to 2.4 from 20.4. Employment slipped to 9.1 and the workweek to 7.5, its lowest since June.</p><p>On prices, the input gauge eased to 43.2 from 48.6, with more than 43% of firms reporting higher costs and none reporting lower ones. The prices-received index rose to 40.1 from 31.3, its highest since May 2025, and more than 41% of firms said they raised their own prices. Over the past two years prices paid has ranged from 28.1 (Nov 2024) to 64.3 (Aug 2025).</p><p>Six-month expectations cooled: future activity fell to 33.0, the lowest since January, while future prices paid (62.9) and received (62.1) stayed well above long-run averages. The 10-year yield fell and the curve flattened on the day, despite a hotter-than-expected PPI released at the same time.</p>",
+        "body": [
+          "<p>The University of Michigan's final October sentiment index came in at 48.0, revised up from the preliminary 46.3 and above the 46.3 consensus, but a tenth below September's 48.1. It is down from 53.6 in October 2025 and sits near the record low of 44.8 set in May 2026. Trading Economics described it as the lowest level in five months.</p>",
+          "<p>The two halves moved in opposite directions. Current conditions fell to 46.7 from 50.9 (the preliminary 44.7 was an all-time low), driven by an 18% drop in buying conditions for durable goods. Expectations rose to 48.8 from 46.3. Year-ahead inflation expectations climbed to 4.7% from 4.6%, and long-run expectations to 3.5% from 3.4%; the long-run gauge had held at 3.3% for three months before September.</p>",
+          "<p>Treasury yields rose about 4bp on release day, with the 2-year at 4.69% and the 10-year at 5.00%, though the move came alongside Friday's oil jump and wasn't tied to the survey in coverage.</p>"
+        ],
         "experts": [
           {
-            "who": "Giuseppe Dellamotta, market analyst, investingLive",
-            "view": "The report shows a clear slowdown in factory activity even though the index is still positive, and markets appear to be starting to worry about growth.",
-            "url": "https://investinglive.com/news/us-october-philly-fed-business-index-20-9-vs-28-4-expected/",
-            "src": "investingLive · Oct 15"
+            "who": "Joanne Hsu, director, UMich Surveys of Consumers",
+            "view": "Sentiment was essentially unchanged from September, and worries about purchasing power remain the main thing shaping how consumers see the economy.",
+            "url": "https://www.sca.isr.umich.edu/",
+            "src": "University of Michigan · Oct 23"
           }
         ],
-        "src": "Sources: Trading Economics (Philly Fed, Oct 15); investingLive (Oct 15); Kitco (Oct 15); FRED."
+        "src": "Sources: University of Michigan Surveys of Consumers (Oct 23); Trading Economics; FRED (UMCSENT); U.S. Treasury par yields."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Iran · Strait of Hormuz",
-      "title": "Washington talks of a long war as Iran claims new tanker hits",
-      "body": "<p>Iran's Revolutionary Guard said Thursday it struck four vessels using the U.S.-endorsed southern route through the Gulf and that three more hit mines, then claimed Friday it had disabled seven tankers near Hormuz. None of the claims had been independently confirmed, but the UAE reported an oil spill from a tanker on Oct 23 and closed beaches in Umm Al Quwain. U.S. UN Ambassador Mike Waltz told the Financial Times the war could last another year and that the Navy can hold its blockade of Iranian ports indefinitely.</p><p>On the Saudi side, Aramco ordered staff out of its Dhahran headquarters after this week's drone attacks. CEO Amin Nasser said flows on the East-West pipeline to the Red Sea port of Yanbu, which bypasses Hormuz, have risen to 7 million barrels a day from 2 million. European and regional foreign ministers met in Istanbul Friday; a UK statement said Hormuz traffic remains sharply below pre-war levels.</p>",
-      "reach": "Through oil and fuel costs. Brent settled up 4% at $113.17 on Oct 22, its highest since May 18, and traded near $114 early Oct 23; renewed strike threats after the Nov 3 midterms keep the risk premium in place.",
+      "kicker": "Iran · Gulf",
+      "title": "Qatar steps in as Houthi strikes widen the war's oil front",
+      "body": "<p>Qatari mediators travelled to Tehran on Sunday to support de-escalation between Washington and Iran, and oil prices eased early Monday on the news. No outcome has been announced, and Iran's Mehr News has denied that Tehran sent any offer to the U.S. or to earlier mediator Pakistan. The diplomacy follows Houthi claims of strikes Oct 22–24 on Yanbu, Rabigh, the East-West Pipeline and King Khalid Airport; the Saudi-led coalition said it shot down two missiles on Oct 24.</p><p>The Saudi pipeline matters because it is the main route around Hormuz, now carrying about 7 million barrels a day to the Red Sea. Hormuz itself is still close to shut: IMF PortWatch counted four transits on Oct 18, against a pre-crisis norm of about 85 a day.</p>",
+      "reach": "Through oil and shipping costs. Brent was $114.51 early Monday (Oct 26), down 1.9%, after its highest settle since April on Friday; a VLCC from the Gulf to China cost about $1.2 million a day in early October versus about $80,000 a year earlier.",
       "views": [
         {
-          "who": "Rebecca Babin, senior energy trader, CIBC Private Wealth",
-          "view": "Ongoing attacks and the chance of a new escalation after the midterms are putting a floor under oil prices.",
-          "url": "https://www.rigzone.com/news/wire/oil_surges_4_after_deadly_saudi_attacks-22-oct-2026-184912-article/",
-          "src": "Rigzone/Bloomberg · Oct 22"
+          "who": "Vandana Hari, founder, Vanda Insights",
+          "view": "Fears of renewed hostilities have eased for now, but the relief may be short-lived, with price risks still tilted higher and post-midterm strikes not ruled out.",
+          "url": "https://grafa.com/en/news/united-states/oil-prices-fall-iran-diplomacy-saudi-supply-risks",
+          "src": "Grafa · Oct 26"
         },
         {
-          "who": "President Trump, on Truth Social",
-          "view": "He accused Iran of inventing ship hits and mines to push oil prices up before the midterm elections.",
-          "url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-oil-gas-prices-strait-of-hormuz-midterms/",
-          "src": "CBS News live updates · Oct 22"
+          "who": "Fatih Birol, executive director, International Energy Agency",
+          "view": "He sees no credible path back to normal energy markets in 2027 while Hormuz and Bab el-Mandeb remain disrupted.",
+          "url": "https://discoveryalert.com/news/oil-prices-brent-qatari-mediators-tehran-october-2026/",
+          "src": "Discovery Alert · Oct 26"
         }
       ]
     },
     "hot": [
       {
         "r": "Iran / Hormuz",
-        "chg": "Oct 22–23: IRGC claims hits on four ships and seven tankers disabled, unconfirmed; UAE reports a tanker oil spill.",
-        "trend": "Escalating at sea",
-        "tc": "esc",
-        "ch": "Oil, tanker insurance, freight",
+        "chg": "Oct 22: Iranian state TV said seven tankers were struck or hit mines; AP could not confirm.",
+        "trend": "Talks, no deal",
+        "tc": "std",
+        "ch": "Oil, tanker rates, insurance",
         "next": "U.S. midterms, Nov 3"
       },
       {
-        "r": "Saudi Arabia / Houthis",
-        "chg": "Oct 23: Aramco evacuated its Dhahran HQ; East-West pipeline flows to Yanbu raised to 7M bpd.",
+        "r": "Saudi / Houthis",
+        "chg": "Oct 22–24: Houthis claimed strikes on Yanbu, Rabigh and the East-West Pipeline; two missiles intercepted Oct 24.",
         "trend": "Escalating",
         "tc": "esc",
-        "ch": "Brent, Red Sea exports",
-        "next": "Strikes on Yanbu bypass route"
+        "ch": "Hormuz bypass, Brent, Red Sea",
+        "next": "Post-midterm strike window, Nov 3"
       },
       {
-        "r": "U.S. vs. Iran",
-        "chg": "Oct 23: Waltz says the war could last a year; Trump and Netanyahu renewed post-midterm strike threats.",
+        "r": "Russia / Ukraine",
+        "chg": "Oct 23–25: Russia fired about 30 ballistic missiles at Ukraine's energy grid; Ukraine downed 119 of 153 drones.",
         "trend": "Escalating",
         "tc": "esc",
-        "ch": "Oil risk premium, dollar",
-        "next": "Third carrier arrival, late Nov"
+        "ch": "Diesel, European gas and power",
+        "next": "Lukoil waiver review, mid-Dec"
       },
       {
-        "r": "Russia / sanctions",
-        "chg": "Oct 15: Treasury extended Lukoil's service-station and Bulgaria licences to Apr 24, 2027.",
-        "trend": "Sanctions easing",
-        "tc": "eas",
-        "ch": "Diesel, refined products",
-        "next": "60-day waiver review, mid-Dec"
+        "r": "U.S. / China",
+        "chg": "Sep 24: trade truce extended to Jan 10, 2027; no new steps reported since.",
+        "trend": "Steady",
+        "tc": "std",
+        "ch": "Rare earths, tech, soybeans, yuan",
+        "next": "Gallium ban suspension ends Nov 27"
       }
     ],
     "cb": [
@@ -284,43 +281,37 @@
         "d": "2026-10-28",
         "bank": "Bank of Canada",
         "rate": "2.25%",
-        "exp": "Unsettled: reports split between hold and hike"
+        "exp": "Hike to 2.50% (consensus and TE forecast)"
       },
       {
         "d": "2026-10-29",
         "bank": "ECB (refi rate)",
         "rate": "2.65%",
-        "exp": "Hold (Reuters poll); December hike expected"
+        "exp": "Hold (TE); ~2.90% seen by quarter-end"
       },
       {
         "d": "2026-10-30",
         "bank": "Bank of Japan",
         "rate": "1.25%",
-        "exp": "Hold likely; December hike is base case"
+        "exp": "Hold (consensus and TE forecast)"
       },
       {
         "d": "2026-11-03",
         "bank": "Reserve Bank of Australia",
         "rate": "4.60%",
-        "exp": "Split: CBA, ANZ see +25bp; markets lean hold"
-      },
-      {
-        "d": "2026-11-04",
-        "bank": "Riksbank",
-        "rate": "1.75%",
-        "exp": "TE sees 2.00% by quarter-end"
+        "exp": "TE sees 4.85% by quarter-end"
       },
       {
         "d": "2026-11-05",
         "bank": "Bank of England",
         "rate": "3.75%",
-        "exp": "Goldman sees +25bp; three voted hike in Sept"
+        "exp": "Hike to 4.00% (consensus and TE forecast)"
       },
       {
         "d": "2026-11-05",
-        "bank": "Norges Bank",
-        "rate": "4.50%",
-        "exp": "Hold (TE); ready to tighten if needed"
+        "bank": "Banxico",
+        "rate": "6.50%",
+        "exp": "TE sees a hold at 6.50%"
       }
     ],
     "real": {
@@ -360,36 +351,36 @@
         ]
       ]
     },
-    "src": "Sources: CBS News live updates (Oct 22–23); Rigzone/Bloomberg (Oct 22); Oilprice.com (Oct 23); Trading Economics G20 rates and CPI (Oct 23); Reuters poll via TMGM (Oct 8); CommBank (RBA); Global Banking & Finance (Goldman on BoE); investingLive (BoC, Oct 22)."
+    "src": "Sources: Grafa (Oct 26); Discovery Alert (Oct 26, citing LSEG, Lloyd's List, Marsh); AP via PBS/NBC; Ukrinform; Supply Chain Dive; China Briefing; Trading Economics country pages and G20 lists (Oct 26)."
   },
   "reading": {
-    "kind": "Story",
-    "who": "John Bogle",
-    "title": "Bogle's Folly: the fund nobody wanted",
-    "dek": "In 1976 Jack Bogle launched the first index mutual fund to a chorus of skeptics, and proved that keeping costs low is the surest edge in investing.",
+    "kind": "Thoughts",
+    "who": "Jeremy Grantham",
+    "title": "Two Sigmas and a Long Way Down",
+    "dek": "Jeremy Grantham's bubble rule is simple: once prices stretch two standard deviations above trend, gravity has always won in the end.",
     "body": [
-      "<p>On August 31, 1976, a fund almost nobody seemed to want opened for business. John C. Bogle, who had spent roughly two decades rising through Wellington Management before being ousted over a merger he later regretted, was betting on a radical idea: instead of paying managers to pick winners, simply own the whole S&amp;P 500 and charge as little as possible. He called it the <b>First Index Investment Trust</b>. Skeptics had a less flattering name for it: <i>Bogle's Folly</i>.</p>",
-      "<p>The roots went back to 1951, when Bogle's Princeton thesis, <i>The Economic Role of the Investment Company</i>, identified costs as a drag on fund performance. A quarter-century later he finally had a vehicle to act on that insight. His newly formed Vanguard Group had an unusual design: the company is owned by the funds it runs, and therefore by their shareholders, so there was no outside owner demanding a slice of the fees. Even so, Wellington's board still had to approve the index fund before it could launch.</p>",
-      "<p>The launch was a flop. Bogle hoped the underwriting would bring in $50 million to $150 million; it raised a little more than $11 million, a result he himself described in the bluntest terms. The banks handling the offering suggested scrapping the fund altogether. Bogle refused. His logic was plain arithmetic: investors as a group earn the market's return before costs, so a low-fee fund that owns the entire market should, over long stretches, finish ahead of most investors paying for active management.</p>",
-      "<p>Time proved him right, though slowly; the advantage built through patient compounding rather than any single dazzling year. The fund, now called the <b>Vanguard 500 Index Fund</b>, started with annual operating expenses of 0.43%; today its Admiral Shares charge 0.04% and its ETF shares 0.03%. Vanguard grew into a giant with roughly $13.3 trillion in global assets as of 2025, and indexing went from punchline to the default choice for millions of savers. Bogle, who died in 2019 at 89, spent his later years preaching the same message in books such as <i>The Little Book of Common Sense Investing</i>.</p>",
-      "<p>The enduring lesson is that costs are the one part of investing you fully control. Returns are uncertain; fees are guaranteed. A percentage point a year sounds trivial, but compounded over decades it can eat a large share of an investor's ending wealth. Bogle never promised to beat the market. He promised to stop losing to the middlemen, and that turned out to be enough.</p>"
+      "<p>Jeremy Grantham has spent decades as the guy at the party quietly checking where the exits are. The British-born investor, who studied economics at the University of Sheffield and earned a Harvard MBA in 1966, co-founded Boston money manager <b>GMO</b>, where he is chief investment strategist. His reputation rests on a few well-timed refusals: he sidestepped Japan's late-1980s mania, skipped the dot-com party, and kept his distance from the mid-2000s housing boom.</p>",
+      "<p>The framework behind those calls is almost boringly simple. Take an asset's long-term price trend and measure how far today's price has drifted from it in standard deviations, or \"sigma.\" GMO calls anything <b>two sigma above trend a bubble</b>. Grantham admits the cutoff is arbitrary, but it is a useful line in the sand. In a purely random world, a 2-sigma move would show up about once every 44 years. Because people get carried away, GMO's data suggests it happens closer to once every 35.</p>",
+      "<p>Then comes the part that makes the framework bite. By GMO's count, every 2-sigma equity bubble in developed markets over the past century eventually deflated <i>all the way</i> back to its old trend. Not partway. All the way. A handful went further, to 3 sigma, which Grantham calls a <b>superbubble</b>: US stocks in 1929 and 2000, Japan in 1989, plus housing in the US in 2006 and in Japan in 1989. All five went back to trend, and the higher they climbed, the longer and more painful the trip down.</p>",
+      "<p>His logic has two parts. First, a higher price today means lower returns later. You can eat the cake now or slowly over the years, but not both. Second, superbubbles tend to give warning signs: prices start rising two or three times faster than normal, the most speculative stocks begin to lag while blue chips keep climbing, and investors start behaving in plainly wild ways. The exceptions GMO found, roughly a tenth of the cases, were mostly commodities and a few emerging markets, not developed-market stocks.</p>",
+      "<p>The catch is timing, and Grantham's critics bring it up a lot. Bubbles can stay inflated far longer than a bear's patience or a client's. His January 2022 letter put the S&P 500 near 4,700 against a trend of about 2,500. The index has since blown well past both. The framework tells you roughly <i>where</i> gravity is pulling. It is much worse at telling you <i>when</i> gravity will win.</p>"
     ],
     "quote": {
-      "text": "An abject failure.",
-      "src": "John Bogle, on the fund's 1976 offering (via Vanguard)"
+      "text": "We humans do crazy very well indeed!",
+      "src": "Jeremy Grantham, GMO, \"Let the Wild Rumpus Begin,\" January 2022"
     },
     "takeaways": [
-      "Days like Thursday's tech slide are when owning everything cheaply earns its keep.",
-      "With T-bills above 4%, a 1% fee would eat a quarter of the yield.",
-      "War headlines tempt trading; a low-cost index removes the urge to guess."
+      "With the S&P near 7,620, ask how far prices sit above trend, not just near records.",
+      "Narrow, AI-led leadership while speculative names lag is one of Grantham's late-bubble signs.",
+      "A 5% 10-year Treasury raises the bar that high starting prices must clear."
     ],
-    "src": "Read more: Vanguard, \"50 years, 50 facts: Indexing since 1976\"; Wikipedia, \"John C. Bogle\"."
+    "src": "Read more: Jeremy Grantham, \"Let the Wild Rumpus Begin\" (GMO, Jan. 20, 2022), gmo.com"
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "raised 25bp Sep 16; next decision Oct 28",
+      "d": "raised 25bp Sep 16; decision Wed, Oct 28",
       "good": false
     },
     {
@@ -401,31 +392,11 @@
   ],
   "cal": [
     {
-      "d": "2026-10-23",
-      "tag": "Economy",
-      "e": "S&P flash manufacturing PMI (Oct)",
-      "act": null,
-      "cons": "55.5",
-      "prior": "55.9",
-      "good": null,
-      "why": "Factory momentum"
-    },
-    {
-      "d": "2026-10-23",
-      "tag": "Economy",
-      "e": "S&P flash services PMI (Oct)",
-      "act": null,
-      "cons": "58.0",
-      "prior": "58.8",
-      "good": null,
-      "why": "Services momentum and prices"
-    },
-    {
       "d": "2026-10-27",
       "tag": "Economy",
       "e": "Durable goods orders, m/m (Sep)",
       "act": null,
-      "cons": "0.6%",
+      "cons": "1.5%",
       "prior": "0.0%",
       "good": null,
       "why": "Business investment read"
@@ -435,10 +406,20 @@
       "tag": "Economy",
       "e": "Consumer confidence (Oct)",
       "act": null,
-      "cons": "80.5",
+      "cons": "81",
       "prior": "81.9",
       "good": null,
       "why": "Household mood amid fuel costs"
+    },
+    {
+      "d": "2026-10-27",
+      "tag": "Housing",
+      "e": "New home sales (Sep)",
+      "act": null,
+      "cons": "0.65M",
+      "prior": "0.684M",
+      "good": null,
+      "why": "Builders versus 7% mortgages"
     },
     {
       "d": "2026-10-28",
@@ -455,7 +436,7 @@
       "tag": "Economy",
       "e": "GDP, Q3 advance (annualized)",
       "act": null,
-      "cons": "3.0%",
+      "cons": "3.2%",
       "prior": "2.2%",
       "good": null,
       "why": "Growth through the oil shock"
@@ -502,13 +483,13 @@
     },
     {
       "d": "2026-11-04",
-      "tag": "Rates",
-      "e": "Treasury quarterly refunding announcement",
+      "tag": "Economy",
+      "e": "ISM services (Oct)",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Auction sizes drive long yields"
+      "why": "Services demand and prices"
     },
     {
       "d": "2026-11-06",
@@ -518,7 +499,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Labor market strength"
+      "why": "Labor market after 29K September gain"
     },
     {
       "d": "2026-11-10",
@@ -544,146 +525,146 @@
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,663.43",
-      "c": -1.21,
-      "ctext": "−1.21%",
-      "y": 14.4,
-      "ytext": "+14.4%",
-      "why": "Had its worst day since July as renewed doubts about AI spending after Meta's results dragged tech lower.",
-      "asof": "Oct 22"
+      "v": "7,623.68",
+      "c": -0.52,
+      "ctext": "−0.52%",
+      "y": 13.1,
+      "ytext": "+13.1%",
+      "why": "Three of every four stocks fell as oil jumped on fears of renewed U.S. strikes on Iran; energy hit a record.",
+      "asof": "Oct 23"
     },
     {
       "n": "Dow",
-      "v": "52,867.98",
-      "c": 0.02,
-      "ctext": "+0.02%",
-      "y": 13.5,
-      "ytext": "+13.5%",
-      "why": "Finished flat as gains in consumer staples and other defensive names offset the tech slide.",
-      "asof": "Oct 22"
+      "v": "52,215.16",
+      "c": -1.23,
+      "ctext": "−1.23%",
+      "y": 11.7,
+      "ytext": "+11.7%",
+      "why": "Financials and industrials led the slide: American Express fell 3.7% on job-cut news and Caterpillar 2.4%.",
+      "asof": "Oct 23"
     },
     {
       "n": "Nasdaq",
-      "v": "26,008.86",
-      "c": -2.6,
-      "ctext": "−2.60%",
-      "y": 14.4,
-      "ytext": "+14.4%",
-      "why": "Worst day since June: Meta fell about 7% on its spending plans and CoreWeave dropped 10%.",
-      "asof": "Oct 22"
+      "v": "25,955.34",
+      "c": -0.21,
+      "ctext": "−0.21%",
+      "y": 13.1,
+      "ytext": "+13.1%",
+      "why": "Chip stocks limited the damage after Thursday's rout, with Micron up 2.5% and AMD and Intel up 1.7%.",
+      "asof": "Oct 23"
     },
     {
       "n": "WTI crude",
-      "v": "$99.47",
+      "v": "$103.27",
       "rate": true,
-      "c": 2.39,
-      "ctext": "+2.39%",
-      "y": null,
-      "ytext": null,
-      "why": "Settled at a five-month high on a report the U.S. and Israel may renew strikes on Iran after the midterms.",
-      "asof": "Oct 22"
+      "c": 3.82,
+      "ctext": "+3.82%",
+      "y": 67.1,
+      "ytext": "+67.1%",
+      "why": "Jumped as Trump said Washington isn't negotiating with Tehran and Houthi attacks forced evacuations in Saudi Arabia.",
+      "asof": "Oct 23"
     },
     {
       "n": "Dollar index",
-      "v": "101.61",
-      "c": -0.08,
-      "ctext": "−0.08%",
+      "v": "101.81",
+      "c": 0.2,
+      "ctext": "+0.20%",
       "y": null,
       "ytext": null,
-      "why": "Held near three-week lows as AI jitters and Iran tensions sent money into the yen and Swiss franc.",
-      "asof": "Oct 22"
+      "why": "Edged up as the oil jump pushed the 10-year yield back toward 5% ahead of an expected Fed hold.",
+      "asof": "Oct 23"
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.88,
+      "cur": 3.9,
       "d1m": 3,
-      "d6m": 25,
-      "d1y": -35,
-      "asof": "Oct 21"
+      "d6m": 26,
+      "d1y": -31,
+      "asof": "Oct 22"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.65,
-      "d1m": -6,
+      "cur": 4.69,
+      "d1m": -16,
       "d6m": 86,
-      "d1y": 120,
-      "asof": "Oct 22"
+      "d1y": 121,
+      "asof": "Oct 23"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.78,
-      "d1m": -5,
-      "d6m": 87,
-      "d1y": 122,
-      "asof": "Oct 22"
+      "cur": 4.82,
+      "d1m": -17,
+      "d6m": 86,
+      "d1y": 121,
+      "asof": "Oct 23"
     },
     {
       "n": "10Y Treasury",
-      "cur": 4.96,
-      "d1m": 0,
+      "cur": 5.0,
+      "d1m": -11,
       "d6m": 66,
       "d1y": 99,
-      "asof": "Oct 22"
+      "asof": "Oct 23"
     }
   ],
   "rcols": [
-    "Oct 22 '26",
-    "Sep 22 '26",
-    "Apr 22 '26",
-    "Oct 22 '25"
+    "Oct 23 '26",
+    "Sep 23 '26",
+    "Apr 23 '26",
+    "Oct 23 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.65",
-        "4.71",
-        "3.79",
-        "3.45"
+        "4.69",
+        "4.85",
+        "3.83",
+        "3.48"
       ],
-      "d1m": -6,
-      "d1y": 120
+      "d1m": -16,
+      "d1y": 121
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.78",
-        "4.83",
-        "3.91",
-        "3.56"
+        "4.82",
+        "4.99",
+        "3.96",
+        "3.61"
       ],
-      "d1m": -5,
-      "d1y": 122
+      "d1m": -17,
+      "d1y": 121
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "4.96",
-        "4.96",
-        "4.30",
-        "3.97"
+        "5.00",
+        "5.11",
+        "4.34",
+        "4.01"
       ],
-      "d1m": 0,
+      "d1m": -11,
       "d1y": 99
     },
     {
-      "grp": "SOFR · dates Oct 21 '26 / Sep 21 '26 / Apr 21 '26 / Oct 21 '25"
+      "grp": "SOFR · dates Oct 22 '26 / Sep 22 '26 / Apr 22 '26 / Oct 22 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.88",
-        "3.85",
-        "3.63",
-        "4.23"
+        "3.90",
+        "3.87",
+        "3.64",
+        "4.21"
       ],
       "d1m": 3,
-      "d1y": -35
+      "d1y": -31
     }
   ],
   "freight": [
@@ -701,20 +682,20 @@
       "pl": "Week",
       "pc": "+2%",
       "y": null,
-      "why": "Oct 22; Shanghai–LA up 2% to $8,007."
+      "why": "Oct 22; Shanghai–New York up 1% to $10,166."
     },
     {
       "n": "Baltic Dry Index",
-      "v": "2,693",
+      "v": "2,660",
       "pl": "Day",
-      "pc": "+0.49%",
-      "y": "+30.9%",
-      "why": "Oct 22; fourth straight gain, still down 21% in a month."
+      "pc": "−1.23%",
+      "y": "+33.6%",
+      "why": "Oct 23; ended a four-day streak, still up 5.9% on the week."
     }
   ],
   "also": "",
-  "sport": "Thursday Night Football: the Bears beat the Patriots 30–24 at Soldier Field as Caleb Williams threw for 308 yards and two TDs; Chicago is 5–2.",
-  "foot": "Sources: U.S. Treasury daily par yield curve CSV (latest Oct 22; references Sep 22, Apr 22 and Oct 22, 2025 from series); NY Fed API (SOFR latest Oct 21; references Sep 21, Apr 21, Oct 21, 2025); AP via La Nacion (Oct 22 closes); AP figures via search (Oct 22, 2025 closes, consistent with AP Oct 21, 2025 table; 1Y % computed); Rigzone/Bloomberg (WTI $99.47 and Brent settles); Trading Economics (dollar, Baltic Dry, calendar, Philly Fed, G20 lists); investingLive; Investrade; Freddie Mac via FRED; EIA; Drewry via DCN; ESPN (via search); CBS News; Oilprice.com; Scotsman Guide; CRE Daily; KBRA; Vanguard; Wikipedia (Bogle).<br>Notes: Dollar 101.61 is TE's previous-close figure (change vs 101.69 computed); TE's Oct 22 news said 'around 101.7'. WTI and dollar 1Y changes left out (no dated year-ago closes). 10Y move: Treasury 5.13 to 4.96 (CNBC said biggest one-day drop since Mar 2023; Investrade said since Aug 2025, so the claim was left out). Fed hike odds 10.5% per Investrade; FedWatch not fetched. Drewry WCI no year-ago figure. Data in focus: only one named expert reaction found for the Philly Fed; Oct 23 PMIs/UMich not released at run time (cons/prior shown). Calendar: durable goods consensus now 0.6% per TE (yesterday's -0.2% was TE's own forecast). World Desk: BoJ, Riksbank and Norges expectations carried from prior briefs; BoC expectations conflicting (Polymarket ~82% hold earlier vs an Oct 22 report of ~80% hike odds); IRGC ship-hit claims unconfirmed; Hormuz traffic conflicting (Kpler/Bloomberg say crude exports back to pre-war, UK says sharply down); 'third carrier' next date carried from Oct 22 brief. Real rates: Euro area uses the 2.65% refi rate; all CPI Sep. Dive: Trepp figures via trade press; Trepp year-ago overall rate disputed (7.55% vs 7.23%), so no y/y shown. Bogle: Vanguard founding year differs by source, left out.",
+  "sport": "World Series Game 2: the Brewers rallied from a 4–0 first-inning hole to beat the Rays 5–4 Saturday and lead 2–0; Game 3 is tonight in Tampa Bay.",
+  "foot": "Sources: U.S. Treasury daily par yield curve CSV (latest Oct 23; references Sep 23, Apr 23 and Oct 23, 2025 from series); NY Fed API (SOFR latest Oct 22; references Sep 22, Apr 22, Oct 22, 2025); AP via La Nacion and BNN Bloomberg (Oct 23 closes and wrap); AP via MarketBeat (Oct 24, 2025 closes and changes, used to derive Oct 23, 2025 closes; S&P matches EXANTE); CNBC, Reuters, Rigzone (WTI $103.27, Brent $116.72); SunSirs (WTI $61.79 on Oct 23, 2025); Investing.com (DXY 101.81); CappNotes; Gotrade; NBC News; FactSet; EIA; Drewry via DCN; Trading Economics (Baltic Dry, calendar, UMich, central banks, G20 lists); University of Michigan; FRED; Freddie Mac; Descartes, NRF, Maritime Executive, FreightWaves; Grafa; Discovery Alert; ESPN; GMO; Wikipedia (Grantham).<br>Notes: Index 1Y changes computed from derived Oct 23, 2025 closes. WTI 1Y +67% (above 60%) cross-checked against TE's live ~+65% 12-month change. Dollar 1Y change left out (no dated year-ago close); no source gave a Friday-specific dollar reason, so the line cites the yield and Fed context from the AP wrap. Fed odds: FedWatch ~88% hold per Gotrade (Oct 26); December hike ~71% per CappNotes (Oct 23) vs ~80% per FXEmpire via Gotrade. Data in focus: UMich consensus is TE's 46.3; only one named expert reaction found; flash PMI price components unavailable. Calendar: PCE and GDP both Oct 29 per TE; ISM manufacturing has no consensus yet. World Desk: Qatari visit outcome unconfirmed; Houthi damage claims unconfirmed; Lukoil waiver review date carried from the Oct 23 brief; Riksbank and Norges Bank left out of cb (no fresh expectation fetched). Real rates: Euro area uses the 2.65% refi rate; all CPI Sep. Sports from ESPN listing via search. Grantham: GMO founding year not confirmed, left out.",
   "series": [
     [
       "2021-10-12",
@@ -8257,6 +8238,12 @@
       4.65,
       4.78,
       4.96
+    ],
+    [
+      "2026-10-23",
+      4.69,
+      4.82,
+      5.0
     ]
   ],
   "log": {
@@ -8292,6 +8279,10 @@
       {
         "d": "2026-10-23",
         "t": "Apartments are now the problem child in CMBS"
+      },
+      {
+        "d": "2026-10-26",
+        "t": "Imports just had a record month. The hangover is next."
       }
     ],
     "corner": [
@@ -8334,6 +8325,11 @@
         "d": "2026-10-23",
         "who": "John Bogle",
         "kind": "Story"
+      },
+      {
+        "d": "2026-10-26",
+        "who": "Jeremy Grantham",
+        "kind": "Thoughts"
       }
     ],
     "focus": [
@@ -8356,6 +8352,10 @@
       {
         "d": "2026-10-23",
         "t": "October Philly Fed: activity cooled to 20.9, but factories raised their own prices faster"
+      },
+      {
+        "d": "2026-10-26",
+        "t": "October UMich sentiment: 48.0, as year-ahead inflation expectations rose to 4.7%"
       }
     ],
     "world": [
@@ -8378,6 +8378,10 @@
       {
         "d": "2026-10-23",
         "t": "Washington talks of a long war as Iran claims new tanker hits"
+      },
+      {
+        "d": "2026-10-26",
+        "t": "Qatar steps in as Houthi strikes widen the war's oil front"
       }
     ]
   }
