@@ -1,270 +1,236 @@
 {
-  "headline": "Stocks rebounded Monday on a tech rally, but the 10-year Treasury held at 5.00% and markets still price a December Fed hike going into Wednesday's decision.",
-  "dateline": "Tuesday, October 27, 2026 \u00b7 closes as of Mon Oct 26",
-  "ustDate": "Oct 26, 2026",
+  "headline": "It's Fed day: a hold is expected at 2pm ET, with the 10-year parked just under 5% and oil back below $100.",
+  "dateline": "Wednesday, October 28, 2026 · closes as of Tue Oct 27",
+  "ustDate": "Oct 27, 2026",
   "rundown": [
     {
       "tag": "Fed",
-      "h": "Wall Street expects a hawkish hold on Wednesday.",
-      "p": "CME FedWatch put the odds of no change Wednesday near 90% as of Monday. December is the live meeting: hike odds there range from about 73% to above 80% across reports. A Reuters poll found nearly 60% of economists expect the hiking cycle to peak at 4.00\u20134.25%. With no new dot plot, Chair Warsh's press conference carries the signal.",
+      "h": "The Fed decides at 2pm; December is the real question.",
+      "p": "Consensus and Trading Economics both expect the Fed to hold its target at 3.75–4.00% today. As of Monday, CME FedWatch put the odds of no change near 90%, while December hike odds ran from about 73% to above 80% depending on the report. There's no new dot plot this time, so Chair Warsh's press conference carries the signal.",
       "url": "https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-october-2026",
-      "src": "Kiplinger; Reuters via YourNews \u00b7 Oct 26"
+      "src": "Trading Economics; Kiplinger · Oct 26–28"
     },
     {
       "tag": "Rates",
-      "h": "Buyers came back for two-year Treasurys.",
-      "p": "Monday's two-year note auction sold at a 4.708% high yield, down from 4.787% at the prior two-year sale. The five-year auction follows today and the seven-year Thursday; the last five-year cleared at 5.033%. Treasury's quarterly refunding announcement on Nov 4 will show whether it plans to lean harder on longer-dated debt, a key input for the 10-year.",
-      "url": "https://tradingeconomics.com/united-states/calendar",
-      "src": "Trading Economics \u00b7 Oct 26\u201327"
+      "h": "The five-year auction cleared 19bp cheaper for Uncle Sam.",
+      "p": "Treasury sold $70 billion of five-year notes Tuesday at a 4.845% high yield, down from 5.033% at the prior five-year sale, with demand of 2.33 times the amount offered versus 2.21 last time. Paired with Monday's solid two-year sale, the message is that buyers show up below 5%. The seven-year auction Thursday completes the week.",
+      "url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Note&days=10",
+      "src": "TreasuryDirect; investingLive · Oct 27"
     },
     {
-      "tag": "AI",
-      "h": "Anthropic's IPO filing puts real numbers on AI.",
-      "p": "Anthropic's public S-1, for a Nasdaq listing under the ticker \"ANT,\" showed $16.3 billion of revenue in the six months to June, versus $4.6 billion for all of 2025. It also showed an $80.7 billion net loss, mostly accounting charges, and a commitment to spend up to $120.5 billion on SpaceXAI computing through 2029. About a fifth of revenue came from two customers.",
-      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-october-26-dow-sp-500-nasdaq-101153035.html",
-      "src": "Yahoo Finance \u00b7 Oct 26"
+      "tag": "Credit",
+      "h": "Wall Street wrote a $63 billion check for AI chips.",
+      "p": "A bank consortium and Blackstone are providing $63 billion of financing tied to Anthropic's use of Broadcom technology. Earlier reporting described a $42 billion senior secured tranche syndicated by banks and an $18 billion junior piece led by Blackstone, which committed $9 billion itself. It's a big test of how much AI buildout lenders will fund off contracted chip demand.",
+      "url": "https://www.advisorperspectives.com/articles/2026/10/02/banks-amass-60-billion-broadcoms-ai-chip",
+      "src": "Trading Economics · Oct 27; Advisor Perspectives/Bloomberg · Oct 2"
     },
     {
-      "tag": "Capital",
-      "h": "Meta wants up to $95 billion of new equity.",
-      "p": "Meta plans to raise $35 billion through underwritten offerings, about $22.5 billion of Class A stock and $12.5 billion of preferred, then up to $60 billion more through an at-the-market program. Nvidia, AMD and Broadcom indicated they may buy up to $5 billion of the common. It's notable that a cash-rich giant is funding the AI buildout with stock, not just debt.",
-      "url": "https://www.cnbc.com/2026/10/26/meta-stock-offering-ai.html",
-      "src": "CNBC; Yahoo Finance \u00b7 Oct 26"
+      "tag": "Earnings",
+      "h": "Big Tech reports into a hawkish Fed week.",
+      "p": "Alphabet and Microsoft report after the bell today, a few hours after the Fed decision, with Amazon due this week. Meta's $25 billion share sale drew orders about five times the deal size, yet the stock fell 1.6% Tuesday, and Oracle rose 3.6% after widening its OpenAI partnership. Spending plans matter more than profits: capex guidance drives chip, power and data-center demand.",
+      "url": "https://tradingeconomics.com/united-states/stock-market",
+      "src": "Trading Economics · Oct 27–28"
     },
     {
-      "tag": "Labor",
-      "h": "Microsoft offered buyouts to about 60,000 employees.",
-      "p": "The voluntary offer covers roughly 27% of Microsoft's 223,000 workers, at vice-president level and below in the U.S., Canada, the UK and India. The company said it doesn't expect anywhere near that many to accept; an earlier round drew about 30% uptake. Microsoft reports quarterly results Wednesday after the close, alongside Alphabet, with Amazon on Thursday.",
-      "url": "https://www.nbcnews.com/business/corporations/microsoft-offers-buyouts-60000-employees-rcna605765",
-      "src": "NBC News; CNBC \u00b7 Oct 26"
+      "tag": "Industrials",
+      "h": "Grid and freight names posted earnings beats.",
+      "p": "Tuesday's earnings mostly beat forecasts: GE Vernova earned $4.81 a share, Vertiv $2.21, Phillips 66 $14.08 and Old Dominion Freight Line $1.65, all above forecasts, while Boston Scientific and American Electric Power missed. Grid-equipment makers keep riding data-center power demand, and a beat at a less-than-truckload carrier fits the tight-freight story.",
+      "url": "https://tradingeconomics.com/united-states/stock-market",
+      "src": "Trading Economics · Oct 27"
     },
     {
-      "tag": "Trade",
-      "h": "A U.S.\u2013Canada deal may be getting closer.",
-      "p": "White House economic adviser Kevin Hassett said Sunday the two countries are nearing an accord, and Reuters reported that relief from Section 232 steel and auto tariffs is under discussion. Politics is a factor: an AP-NORC poll found 64% of Americans say the president has gone too far on tariffs, and Axios reports Republicans are on the defensive a week before the midterms.",
-      "url": "https://www.axios.com/2026/10/26/trump-tariffs-midterms-republicans",
-      "src": "Axios; Supply Chain Dive \u00b7 Oct 26"
+      "tag": "Economy",
+      "h": "Factory orders beat, but core capex cooled.",
+      "p": "September durable goods orders rose 1.8% against a 1.5% consensus, lifted by a 28.4% jump in civilian aircraft. Strip out the planes and the picture softens: orders excluding transportation rose 0.5%, and core capital goods orders, the business-investment proxy, rose 0.5% versus 0.7% expected, after 1.6% in August. The Atlanta Fed's GDPNow for Q3 slipped to 3.4% from 3.5%.",
+      "url": "https://tradingeconomics.com/united-states/durable-goods-orders",
+      "src": "Trading Economics · Oct 27"
     }
   ],
   "dive": {
-    "kicker": "Trucking",
-    "title": "The freight market is tight because the trucks are leaving",
-    "dek": "Diesel above $6, tougher enforcement and pricier insurance are pushing small carriers out, and rates are rising even though freight volumes have barely moved.",
-    "body": "<p>Truckload rates are climbing, but not because America is suddenly shipping a lot more stuff. It's because there are fewer trucks. FreightWaves' SONAR data put tender rejections, the share of contracted loads carriers turn down, near <b>14%</b> in early October, roughly three times the 4\u20136% range of 2023\u201325. Over three years rejections are up 268% while truckload volume is up just 9%. Regionally it's sharper: 18.6% in the Midwest and 20.3% in the Northwest as of Oct 10, against 7.6% and 6.2% a year earlier.</p><p>The squeeze starts at the pump. AAA's diesel average hit a record of about $6.53 a gallon on Sept 21\u201322, up from about $3.70 a year earlier, and has stayed above $6 since early September. Small fleets pay for fuel within days but often wait 60\u201390 days to get paid for loads. At least 16 trucking and transport companies filed for bankruptcy between late August and Sept 21, mostly fleets of under 115 trucks. For-hire tractor counts fell by about 51,000 in August alone, and net authority revocations turned negative for the first time since at least 2019. Regulation adds to the drain: English-proficiency enforcement sidelines about 2,700 drivers a month, and a non-domiciled CDL rule could affect up to 194,000 over time.</p><p>Shippers are feeling it. Cass's truckload linehaul index rose 11.3% from a year earlier in August, the biggest gain since June 2022, while shipments rose just 2.1%, the first increase in 42 months. Dry-van contract rates averaged $2.69 a mile in the third quarter, up from $2.32 in 2024\u201325. Carriers aren't getting rich, though: the cushion between contract rates and non-fuel operating costs shrank to about 26 cents a mile in 2025 from about $1.01 in 2022.</p><p>For owners of truck yards and outdoor storage, it cuts both ways. Small carriers are a big share of that tenant base, and their credit is weakening. But tight capacity tends to push shippers toward drop trailers and extra yard space, and bigger fleets often scoop up the equipment of failed rivals. The picture would change fast if Hormuz reopened and diesel broke lower, if regulators eased enforcement, or if consumer demand cracked going into the holidays.</p>",
+    "kicker": "Housing",
+    "title": "Housing found its inventory. Then it lost its buyers.",
+    "dek": "With 30-year mortgages above 7%, signed contracts fell sharply in September, even as supply quietly heads back toward normal.",
+    "body": "<p>The housing market has finally fixed its inventory problem. Unfortunately, it did it by running out of buyers. Freddie Mac's 30-year fixed rate averaged <b>7.32%</b> in the week to Oct 22. That's down from 7.40% a week earlier but more than a full point above the 6.19% of a year ago. The MBA's 30-year contract rate hit about 7.5% in early October, its highest since November 2023, and its purchase index fell to 139.3 from 145.1 in the week to Oct 9.</p><p>The forward-looking data is the ugly part. NAR's pending home sales index, which tracks signed contracts, fell <b>7.3%</b> in September to 66.0 and was down 11.3% from a year earlier, according to the Oct 20 release. Closed existing-home sales actually rose 1.5% to a 3.99 million annual pace, but most of those contracts were signed before rates jumped. First Trust notes that sales have hovered around 4 million a year since COVID, versus roughly 5.25 million before it.</p><p>Meanwhile, supply is quietly recovering. Existing-home inventory is at its highest since the pandemic, and months' supply reached <b>4.8</b>, close to the 5.0 that NAR treats as a balanced market. The median existing-home price of $417,500 was up just 1.3% from a year ago. Builders are already blinking. Census data out Tuesday showed the median new-home price at <b>$400,400</b>, down 3.9% from a year earlier and below the existing-home median, with 8.4 months of supply; new-home sales slipped 0.6% to a 676,000 pace.</p><p>For investors, housing now moves almost entirely with rates. Prices aren't cracking so much as going sideways while incomes catch up: First Trust says wage growth has outpaced median price gains since early 2025. That's affordability repair, just in slow motion. But mortgage rates track the 10-year Treasury, so any thaw depends on the bond market more than the housing market. Builders with margin to cut and lenders hungry for purchase loans will feel a turn first, in either direction.</p>",
     "table": {
-      "cap": "Trucking: fewer trucks, higher prices",
+      "cap": "Housing at 7%+ mortgage rates",
       "cols": [
-        "Measure",
+        "Metric",
         "Latest",
-        "Comparison"
+        "Year ago / y/y",
+        "As of"
       ],
       "rows": [
         [
-          "Tender rejections, national (SONAR)",
-          "~13.8% (Oct 10)",
-          "4\u20136% range in 2023\u201325"
+          "30-yr fixed mortgage (Freddie Mac)",
+          "7.32%",
+          "6.19%",
+          "Week of Oct 22"
         ],
         [
-          "For-hire tractor count, August",
-          "\u221251,000",
-          "Net revocations negative, first since 2019"
+          "Pending home sales index (NAR)",
+          "66.0",
+          "−11.3% y/y",
+          "Sep (rel. Oct 20)"
         ],
         [
-          "Spot rate incl. fuel, per mile",
-          "$3.42 (Sep)",
-          "~$2.40 a year earlier"
+          "Existing-home sales, annual pace",
+          "3.99M",
+          "−2.2% y/y",
+          "Sep (rel. Oct 13)"
         ],
         [
-          "Dry-van contract linehaul, Q3",
-          "$2.69/mile",
-          "$2.32 in 2024\u201325"
+          "Median existing-home price",
+          "$417,500",
+          "+1.3% y/y",
+          "Sep (rel. Oct 13)"
         ],
         [
-          "Cass truckload linehaul index, Aug",
-          "+11.3% y/y",
-          "Biggest gain since Jun 2022"
+          "Median new-home price",
+          "$400,400",
+          "−3.9% y/y",
+          "Sep (rel. Oct 27)"
         ],
         [
-          "Trucking bankruptcies, late Aug\u2013Sep 21",
-          "At least 16",
-          "Mostly fleets under 115 trucks"
+          "New-home months' supply",
+          "8.4",
+          "8.2",
+          "Sep (rel. Oct 27)"
         ]
       ]
     },
     "watch": [
-      "November\u2013December peak season: whether rejections push past 14% nationally.",
-      "Mid-November: Cass Freight Index for October, after August's first shipment gain in 42 months.",
-      "Any reopening of Hormuz, the fastest route to cheaper diesel."
+      "Thu Oct 29: Freddie Mac's weekly rate. A second straight dip from 7.40% would be the first relief.",
+      "Today, 2pm ET: the Fed's tone. Mortgage rates take their cue from the 10-year.",
+      "Wed Nov 25: October new-home sales. Do builder price cuts revive demand?"
     ],
-    "src": "Sources: FreightWaves/SONAR (Sep 14, 21, 22; Oct 7, 9, 10); Cass Information Systems via FreightWaves; ATRI via FreightWaves; Newsweek (Oct); AAA."
+    "src": "Sources: Freddie Mac PMMS (Oct 22); NAR (Oct 20); First Trust/NAR (Oct 13); U.S. Census Bureau/HUD (Oct 27); TrendForce DataTrack/MBA (Oct 15)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Prices",
-        "title": "October Dallas Fed survey: Texas factories' raw-material prices index hit 55.3, highest in two years",
-        "rel": "Dallas Fed Texas Manufacturing Outlook Survey, Oct",
-        "good": false,
+        "tag": "Consumers",
+        "title": "October consumer confidence jumped to 91.7, crushing the 81 forecast",
+        "rel": "Conference Board Consumer Confidence Index, Oct",
+        "act": "91.7",
+        "cons": "81",
+        "prior": "84.2",
+        "good": true,
         "chart": {
-          "t": "Dallas Fed raw materials prices paid index (diffusion, SA)",
+          "t": "Conference Board Consumer Confidence Index (1985=100)",
           "unit": "",
           "pts": [
             [
-              "Nov '24",
-              30.4
-            ],
-            [
-              "Dec '24",
-              12.7
-            ],
-            [
-              "Jan '25",
-              17.5
-            ],
-            [
-              "Feb '25",
-              34.9
-            ],
-            [
-              "Mar '25",
-              37.8
-            ],
-            [
-              "Apr '25",
-              48.8
-            ],
-            [
-              "May '25",
-              40.8
-            ],
-            [
-              "Jun '25",
-              43.1
-            ],
-            [
-              "Jul '25",
-              41.8
-            ],
-            [
-              "Aug '25",
-              43.4
-            ],
-            [
-              "Sep '25",
-              42.8
-            ],
-            [
               "Oct '25",
-              32.9
+              95.5
             ],
             [
               "Nov '25",
-              34.6
+              92.9
             ],
             [
               "Dec '25",
-              35.2
+              89.1
             ],
             [
               "Jan '26",
-              37.1
+              84.5
             ],
             [
               "Feb '26",
-              31.7
+              91.2
             ],
             [
               "Mar '26",
-              32.7
+              91.8
             ],
             [
               "Apr '26",
-              37.0
+              92.8
             ],
             [
               "May '26",
-              42.7
+              90.6
             ],
             [
               "Jun '26",
-              42.4
+              92.2
             ],
             [
               "Jul '26",
-              41.3
+              90.8
             ],
             [
               "Aug '26",
-              44.1
+              89.4
             ],
             [
               "Sep '26",
-              52.2
+              84.2
             ],
             [
               "Oct '26",
-              55.3
+              91.7
             ]
           ],
-          "src": "Source: Federal Reserve Bank of Dallas via FRED (PRMSAMFRBDAL)."
+          "src": "Source: The Conference Board via Trading Economics, investingLive, FedPrimeRate and TrendForce (mix of first and revised prints)."
         },
-        "body": "<p>The Dallas Fed's October survey of Texas manufacturers, released Monday, showed the general business activity index rising to 13.4 from 9.8 in September, against a series average of 0.3. Trading Economics had forecast 7; no consensus was published. The price gauges did the talking: raw materials prices paid rose to 55.3 from 52.2, nearly double its 28.1 long-run average and the highest reading since at least late 2024. Finished-goods prices received rose to 29.9 from 27.6.</p><p>Activity cooled underneath the headline. Production fell to 15.8 from 29.5 and new orders to 9.3 from 30.7, while employment eased to 11.6. Wages and benefits dropped to 20.8 from 27.4. Firms expect costs to keep rising: the six-month raw-materials outlook was 51.7. One transportation-equipment maker said fuel and domestic input costs are holding back a freight recovery.</p><p>The national picture matches. S&P Global's October flash PMI, out Oct 23, showed output prices at 59.8, the highest since August 2022, and the slowest supplier deliveries since July 2022.</p>",
+        "body": "<p>The Conference Board's index rose 7.5 points to 91.7 in October, released Tuesday, against a consensus of 81. September was revised up to 84.2 from 81.9. The Present Situation index climbed 8.6 points to 120.4 and the Expectations index rose 6.9 points to 72.6, still below the 80 level the Board has long flagged as a recession signal. Over the past year the index has ranged from 84.2 to 95.5, with lows in January and September.</p><p>Labor perceptions improved: 26.7% of consumers said jobs were plentiful, up from 24.3%, while 21.4% said jobs were hard to get, unchanged. Net views of current business conditions turned positive at +3.6 from −1.2. Twelve-month inflation expectations eased to 5.8%, but consumers still expect higher interest rates over the next year, and write-in mentions of prices, groceries, oil and diesel rose.</p>",
         "experts": [
           {
-            "who": "Chris Williamson, chief business economist, S&P Global Market Intelligence",
-            "view": "The renewed oil-price surge is feeding through to a wide range of goods and services, and supply bottlenecks and growing backlogs are making it easier for firms to pass on costs.",
-            "url": "https://www.galvnews.com/news_reuters/business/us-business-activity-cools-in-october-strong-demand-fueling-price-pressures/article_248b6841-b138-5fbc-9de5-a97d5a04257e.html",
-            "src": "Reuters via Galveston County Daily News \u00b7 Oct 23"
+            "who": "Fergus McCormick, senior economist, The Conference Board",
+            "view": "The rebound came mainly from consumers' brighter read on current and expected business conditions.",
+            "url": "https://www.conference-board.org/topics/consumer-confidence",
+            "src": "The Conference Board · Oct 27"
           }
         ],
-        "src": "Sources: Federal Reserve Bank of Dallas (Oct 26); FRED (PRMSAMFRBDAL); Trading Economics; S&P Global flash PMI via Reuters and investingLive (Oct 23)."
+        "src": "Sources: The Conference Board (Oct 27); Trading Economics calendar (Oct 27)."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Iran \u00b7 Strait of Hormuz",
-      "title": "Envoys converge on Tehran as Oman floats a Hormuz outline",
-      "body": "<p>Saudi Defense Minister Prince Khalid bin Salman, Pakistan's army chief Gen. Asim Munir and Turkish intelligence chief Ibrahim Kalin met Iran's leaders in Tehran on Monday, a day after Qatari mediators arrived. The four countries agreed in a joint statement to keep talking about regional security. Oman said its own talks with Tehran produced an outline for a temporary arrangement to restore free navigation through Hormuz. Diplomats describe a Qatari package in which Iran reopens the strait and the U.S. lifts its blockade of Iranian ports; the sticking point is who goes first.</p><p>The ground hasn't caught up. The IRGC declared Hormuz closed Monday to vessels that don't comply with its rules, and the Houthis claimed new strikes on Saudi East-West pipeline pumping stations, which Riyadh hasn't confirmed. President Trump said it's \"decision time\" between a deal and finishing the war.</p>",
-      "reach": "Through oil and shipping. Brent's December contract settled at $115.81 Monday (Oct 26), down 0.8%, and Hormuz is still handling about 4 transits a day against roughly 85 before the war, per IMF PortWatch data.",
+      "kicker": "Iran · Strait of Hormuz",
+      "title": "Tehran restates its terms as Washington weighs a post-midterm strike",
+      "body": "<p>The diplomatic shuttle into Tehran produced talk, not a deal. After Monday's meetings with Saudi, Turkish and Pakistani envoys, Iran's Security Council chief briefed Supreme Leader Mojtaba Khamenei, who, per state media, restated Iran's conditions for ending the war. A day earlier, security official Ali Bagheri Kani said Washington must meet seven conditions before Tehran will even consider negotiating. Oman's foreign minister floated a non-aggression pact among all eight Gulf states, and the UK and France announced a mine-hunting drone mission for Hormuz, but only once fighting stops.</p><p>Meanwhile, the Wall Street Journal reported the U.S. told Gulf allies to prepare for a brief but intense campaign against Iran after the Nov 3 midterms. The Houthis claimed a missile strike on Saudi Arabia's Ras Tanura refinery, which Riyadh hasn't confirmed, and Saudi air defenses intercepted missiles aimed at Taif and Riyadh Tuesday night.</p>",
+      "reach": "Through oil and shipping. Brent settled at $113.88 on Oct 27, down 1.67% as diplomacy trimmed the risk premium, after a $116.72 settle Oct 23; Lloyd's List Intelligence counts at least 28 attacks or incidents near Hormuz in October, the war's worst month.",
       "views": [
         {
-          "who": "Badr Albusaidi, Oman's foreign minister",
-          "view": "The navigation outline from Oman's talks with Iran could work, but only if both Washington and Tehran make compromises.",
-          "url": "https://coincentral.com/oil-prices-swing-as-iran-talks-meet-houthi-attacks-on-saudi-arabia",
-          "src": "CoinCentral \u00b7 Oct 27"
+          "who": "Bjarne Schieldrop, chief commodities analyst, SEB",
+          "view": "Crude still carries a significant risk premium because U.S. or Israeli strikes on Iran remain possible in the coming weeks.",
+          "url": "https://www.investing.com/news/commodities-news/oil-falls-almost-2-as-middle-east-talks-help-ease-supply-worries-4974185",
+          "src": "Reuters via Investing.com · Oct 27"
         },
         {
-          "who": "Fatih Birol, executive director, International Energy Agency",
-          "view": "Even with diplomacy under way, energy markets are unlikely to return to pre-war conditions in 2027.",
-          "url": "https://coincentral.com/oil-prices-swing-as-iran-talks-meet-houthi-attacks-on-saudi-arabia",
-          "src": "CoinCentral \u00b7 Oct 27"
+          "who": "UBS commodity strategists",
+          "view": "Brent should hold near $110 through year-end, up from their earlier $100 call, with shipping risk rising if U.S. naval support wavers.",
+          "url": "https://www.investing.com/news/commodities-news/oil-falls-almost-2-as-middle-east-talks-help-ease-supply-worries-4974185",
+          "src": "Reuters via Investing.com · Oct 27"
         }
       ]
     },
     "hot": [
       {
         "r": "Iran / Hormuz",
-        "chg": "Oct 26: Saudi, Pakistani and Turkish envoys met in Tehran; IRGC declared the strait closed to non-compliant ships.",
-        "trend": "Talks, no deal",
-        "tc": "std",
-        "ch": "Oil, tanker rates, insurance",
+        "chg": "Oct 27: Khamenei restated war-end conditions after envoy talks; WSJ says U.S. readying a short post-midterm campaign.",
+        "trend": "Talks stall, strike risk up",
+        "tc": "esc",
+        "ch": "Brent, tankers, war-risk insurance",
         "next": "U.S. midterms, Nov 3"
       },
       {
         "r": "Saudi / Houthis",
-        "chg": "Oct 26: Houthis claimed hits on East-West pipeline pumping stations; coalition says it struck launchers in Yemen.",
+        "chg": "Oct 27: Houthis claimed a hit on Ras Tanura (unconfirmed); Saudis intercepted missiles at Taif and Riyadh.",
         "trend": "Escalating",
         "tc": "esc",
-        "ch": "Hormuz bypass, Brent, Red Sea",
+        "ch": "Saudi exports, Brent",
         "next": "OPEC+ meeting, Nov 1"
       },
       {
-        "r": "Russia / Ukraine",
-        "chg": "Oct 16\u201319: Russian strikes hit 28 energy facilities, cutting power to about 550,000 households; energy truce collapsed.",
-        "trend": "Escalating",
-        "tc": "esc",
-        "ch": "Diesel, European gas and power",
+        "r": "Russia / Iran",
+        "chg": "Oct 27: Putin and Iran's Pezeshkian discussed joint oil and gas projects at a gas forum in Moscow.",
+        "trend": "Steady",
+        "tc": "std",
+        "ch": "Diesel, Urals, European gas",
         "next": "Lukoil waiver review, mid-Dec"
       },
       {
@@ -299,19 +265,13 @@
         "d": "2026-11-03",
         "bank": "Reserve Bank of Australia",
         "rate": "4.60%",
-        "exp": "Hold (TE forecast); 4.85% seen by year-end"
+        "exp": "Hold (TE forecast)"
       },
       {
         "d": "2026-11-05",
         "bank": "Bank of England",
         "rate": "3.75%",
-        "exp": "Hike to 4.00% (TE calendar)"
-      },
-      {
-        "d": "2026-11-05",
-        "bank": "Banxico",
-        "rate": "6.50%",
-        "exp": "Hold at 6.50% (TE forecast)"
+        "exp": "Hike to 4.00% (consensus and TE forecast)"
       }
     ],
     "real": {
@@ -351,30 +311,30 @@
         ]
       ]
     },
-    "src": "Sources: CoinCentral (Oct 27, citing Investing.com, WSJ); Pomegra; Al Arabiya/Reuters (Oct 25); Xinhua via The Star (Oct 27); Kyiv Independent; PBS/AP; investingLive; Trading Economics country pages and G20 lists (Oct 27)."
+    "src": "Sources: Reuters via Investing.com (Oct 27); Gulf News (Oct 27); Fox News live blog (Oct 27–28); Lloyd's List Intelligence (Oct 22); Trading Economics country pages and G20 lists (Oct 27–28)."
   },
   "reading": {
-    "kind": "Reading",
-    "who": "Warren Buffett",
-    "title": "Buffett's 2008 op-ed: buying into the panic",
-    "dek": "In October 2008, with markets in free fall, Warren Buffett told the world he was moving his personal money into U.S. stocks, and he was early.",
-    "body": "<p>Rewind to mid-October 2008. Banks were wobbling, credit markets had seized up, and the S&P 500 sat roughly 40% below its 2007 peak. Into that gloom, on <b>Oct. 16, 2008</b>, the New York Times published a short opinion piece from Warren Buffett with a title that doubled as a trade confirmation: <i>Buy American. I Am.</i></p><p>The headline news was personal. Buffett explained that his own account, kept separate from the Berkshire Hathaway shares he had pledged to charity, had held nothing but U.S. government bonds. Now he was buying American stocks. And if prices stayed attractive, he said, his non-Berkshire net worth would soon be entirely in U.S. equities. For a famously patient investor, that was the financial equivalent of standing up in a quiet room and clapping.</p><p>What makes the piece worth rereading is how little it sugarcoated. Buffett called the financial situation a mess, at home and abroad. He predicted unemployment would keep rising and the headlines would stay frightening. He even admitted he had no idea whether stocks would be higher or lower a month or a year later. His bet was narrower and sturdier: markets tend to turn up well before the economy or the mood does, so waiting for good news usually means paying up for it. He also restated the rule he is best known for, about leaning in when everyone else is scared.</p><p>So how did the call age? In the short run, badly. The S&P 500 kept sliding, dropping roughly another 28% before bottoming on <b>March 9, 2009</b>, near 677. Anyone who followed him that week sat on a painful paper loss for months. But a year after the op-ed, the index was up about 20%, and the recession was later dated as ending in June 2009. One analysis found that $10,000 put into an S&P 500 index fund at the Oct. 17 close, with dividends reinvested, eventually grew more than elevenfold.</p><p>The lesson is not that Buffett nailed the bottom. He said plainly that he couldn't, and he didn't. The lesson is that price and mood are different things, and the gap between them is where long-term returns get made. The op-ed itself is short, plain-spoken and readable over one coffee. Find it in the New York Times opinion archive (it ran in print on Oct. 17, 2008), then pair it with Berkshire Hathaway's 2008 shareholder letter, written after the crash.</p>",
+    "kind": "Bio",
+    "who": "Ray Dalio",
+    "title": "Ray Dalio: the bet that built the Principles",
+    "dek": "A wrong call on Mexico's 1982 default nearly ended Bridgewater and reshaped how Dalio invests.",
+    "body": "<p>Ray Dalio was born on August 8, 1949, in Jackson Heights, Queens. He studied finance at C.W. Post College of Long Island University and earned an MBA from Harvard Business School in 1973. After working as a clerk on the New York Stock Exchange, he joined Shearson Hayden Stone in 1974 as a futures trader and broker, and was let go that same year after striking his boss at a New Year's Eve party.</p><p>In 1975 he started <b>Bridgewater Associates</b>, initially run out of his two-bedroom New York apartment. By the early 1980s he had concluded that the U.S. had lent more to foreign countries than they could ever repay, and he positioned for a debt crisis that would sink markets. Mexico did default in 1982, but stocks rallied and monetary policy eased instead. The miss was severe enough that Dalio borrowed $4,000 from his father to cover family bills.</p><p>What he took from the episode was humility rather than timidity. He began writing down the criteria behind each decision before acting, a habit that grew into his <i>Principles</i>, self-published in 2011 and released as <i>Principles: Life &amp; Work</i> in 2017. He also became an evangelist for diversification, arguing that a portfolio built from roughly fifteen good, uncorrelated return streams can cut risk sharply without giving up return. Bridgewater launched its Pure Alpha strategy in 1991 and the All Weather fund in 1996.</p><p>Bridgewater opened an office in Westport, Connecticut, in 1981 and by 2005 had become the world's largest hedge fund. Its culture of radical transparency drew admirers and critics alike, including a 2023 book by journalist Rob Copeland that Dalio rejected as fiction. He stepped down as co-CEO in 2017, handed control to the board in 2022, and sold his last shares in 2025. He joined the Giving Pledge in 2011.</p><p>His later books keep circling the subject that nearly broke him: debt. <i>Principles for Navigating Big Debt Crises</i> (2018), <i>The Changing World Order</i> (2021) and <i>How Countries Go Broke</i> (2025) all take on how borrowing builds up and how policymakers respond. The 1982 lesson is the thread: being right about the imbalance is not the same as being right about the timing, and a single concentrated bet can cost you the chance to be proven right later.</p>",
     "quote": {
-      "text": "Be fearful when others are greedy, and be greedy when others are fearful.",
-      "src": "Warren Buffett, \"Buy American. I Am.\", The New York Times, Oct. 16, 2008"
+      "text": "That changed my approach to everything.",
+      "src": "Ray Dalio, quoted in Fortune (Aug. 13, 2025)"
     },
     "takeaways": [
-      "His rule cuts both ways: with the S&P near 7,680, ask who's greedy now.",
-      "With the 10-year at 5%, bonds compete with stocks again, so price matters more.",
-      "Oil above $100 and Fed meetings are headlines; Buffett bought valuations, not news."
+      "A 5% 10-year says debt matters; Dalio's lesson says timing still humbles conviction.",
+      "Oil near $100 favors uncorrelated exposures over one big macro bet.",
+      "If the Fed hikes, size positions to survive being early, not just right."
     ],
-    "src": "Read more: \"Buy American. I Am.\" by Warren Buffett, The New York Times, Oct. 16, 2008 (nytimes.com/2008/10/17/opinion/17buffett.html)"
+    "src": "Read more: Ray Dalio, Principles: Life & Work (2017); Wikipedia, \"Ray Dalio\"; Fortune, Aug. 13, 2025."
   },
   "econ": [
     {
       "n": "Fed funds target",
-      "v": "3.75\u20134.00%",
-      "d": "raised 25bp Sep 16; decision Wed, Oct 28",
+      "v": "3.75–4.00%",
+      "d": "raised 25bp Sep 16; decision today, 2pm ET",
       "good": false
     },
     {
@@ -386,26 +346,6 @@
   ],
   "cal": [
     {
-      "d": "2026-10-27",
-      "tag": "Economy",
-      "e": "Durable goods orders, m/m (Sep)",
-      "act": null,
-      "cons": "1.5%",
-      "prior": "0.0%",
-      "good": null,
-      "why": "Business investment read"
-    },
-    {
-      "d": "2026-10-27",
-      "tag": "Economy",
-      "e": "Consumer confidence (Oct)",
-      "act": null,
-      "cons": "81",
-      "prior": "81.9",
-      "good": null,
-      "why": "Household mood amid fuel costs"
-    },
-    {
       "d": "2026-10-28",
       "tag": "Fed",
       "e": "FOMC rate decision (upper bound)",
@@ -413,7 +353,7 @@
       "cons": "4.00%",
       "prior": "4.00%",
       "good": null,
-      "why": "Hold expected; watch December signals"
+      "why": "Hold expected; December hike signals"
     },
     {
       "d": "2026-10-29",
@@ -446,14 +386,14 @@
       "why": "Wage pressure check"
     },
     {
-      "d": "2026-10-30",
-      "tag": "Economy",
-      "e": "Chicago PMI (Oct)",
+      "d": "2026-11-03",
+      "tag": "Labor",
+      "e": "JOLTS job openings (Sep)",
       "act": null,
-      "cons": "55.5",
-      "prior": "58.8",
+      "cons": "7.06M",
+      "prior": "7.079M",
       "good": null,
-      "why": "Midwest factory momentum"
+      "why": "Labor demand cooling?"
     },
     {
       "d": "2026-11-03",
@@ -468,10 +408,10 @@
     {
       "d": "2026-11-04",
       "tag": "Economy",
-      "e": "ISM services (Oct)",
+      "e": "ISM services PMI (Oct)",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "54.5",
+      "prior": "54.9",
       "good": null,
       "why": "Services demand and prices"
     },
@@ -493,7 +433,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Labor market after 29K September gain"
+      "why": "Payrolls after a 29K September gain"
     },
     {
       "d": "2026-11-10",
@@ -514,171 +454,161 @@
       "prior": null,
       "good": null,
       "why": "Pipeline price pressure"
-    },
-    {
-      "d": "2026-11-17",
-      "tag": "Economy",
-      "e": "Retail sales (Oct)",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "Consumer spending under $6 diesel"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,676.77",
-      "c": 0.7,
-      "ctext": "+0.70%",
-      "y": 13.0,
-      "ytext": "+13.0%",
-      "why": "Tech led a rebound after two straight weekly losses; Tesla jumped about 6% on a Barclays upgrade.",
-      "asof": "Oct 26"
+      "v": "7,722.60",
+      "c": 0.6,
+      "ctext": "+0.60%",
+      "y": 12.3,
+      "ytext": "+12.3%",
+      "why": "A handful of big AI stocks outweighed declines in most of the index, with Treasury yields steady ahead of the Fed.",
+      "asof": "Oct 27"
     },
     {
       "n": "Dow",
-      "v": "52,361.58",
-      "c": 0.28,
-      "ctext": "+0.28%",
-      "y": 10.9,
-      "ytext": "+10.9%",
-      "why": "Rose with the broader market but lagged the tech-heavy indexes ahead of a week packed with earnings.",
-      "asof": "Oct 26"
+      "v": "52,377.57",
+      "c": 0.03,
+      "ctext": "+0.03%",
+      "y": 10.2,
+      "ytext": "+10.2%",
+      "why": "Barely budged: Caterpillar and Goldman gained, but Boeing sank almost 11% after a bigger-than-expected quarterly loss.",
+      "asof": "Oct 27"
     },
     {
       "n": "Nasdaq",
-      "v": "26,169.38",
-      "c": 0.82,
-      "ctext": "+0.82%",
-      "y": 12.8,
-      "ytext": "+12.8%",
-      "why": "Led the gains as Nvidia, Broadcom and Micron rallied on renewed AI optimism; Lumentum rose 10%.",
-      "asof": "Oct 26"
+      "v": "26,477.81",
+      "c": 1.18,
+      "ctext": "+1.18%",
+      "y": 12.0,
+      "ytext": "+12.0%",
+      "why": "Chipmakers led the rebound, with Broadcom up 4%, while Amazon and Alphabet rose ahead of their earnings.",
+      "asof": "Oct 27"
     },
     {
       "n": "WTI crude",
-      "v": "$101.76",
+      "v": "$99.90",
       "rate": true,
-      "c": -1.46,
-      "ctext": "\u22121.46%",
-      "y": 65.1,
-      "ytext": "+65.1%",
-      "why": "Slipped on hopes that diplomacy in Tehran could ease U.S.\u2013Iran hostilities.",
-      "asof": "Oct 26"
+      "c": -1.83,
+      "ctext": "−1.83%",
+      "y": 62.9,
+      "ytext": "+62.9%",
+      "why": "Fell a second day on reports that Qatari mediators handed Iran a new draft agreement.",
+      "asof": "Oct 27"
     },
     {
       "n": "Dollar index",
-      "v": "101.96",
-      "c": 0.15,
-      "ctext": "+0.15%",
+      "v": "102.32",
+      "c": 0.35,
+      "ctext": "+0.35%",
       "y": null,
       "ytext": null,
-      "why": "Rose for a second session ahead of Wednesday's Fed decision, with a December hike still largely priced.",
-      "asof": "Oct 26"
+      "why": "Rose a third straight session to a two-week high as investors turned cautious before this week's central bank decisions.",
+      "asof": "Oct 27"
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.92,
-      "d1m": 5,
+      "cur": 3.93,
+      "d1m": 3,
       "d6m": 27,
-      "d1y": -32,
-      "asof": "Oct 23"
+      "d1y": -31,
+      "asof": "Oct 26"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.68,
-      "d1m": -13,
-      "d6m": 90,
-      "d1y": 120,
-      "asof": "Oct 26"
+      "cur": 4.7,
+      "d1m": -11,
+      "d6m": 92,
+      "d1y": 122,
+      "asof": "Oct 27"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.84,
-      "d1m": -14,
-      "d6m": 92,
-      "d1y": 123,
-      "asof": "Oct 26"
+      "cur": 4.82,
+      "d1m": -16,
+      "d6m": 88,
+      "d1y": 121,
+      "asof": "Oct 27"
     },
     {
       "n": "10Y Treasury",
-      "cur": 5.0,
-      "d1m": -17,
-      "d6m": 69,
+      "cur": 4.99,
+      "d1m": -18,
+      "d6m": 64,
       "d1y": 98,
-      "asof": "Oct 26"
+      "asof": "Oct 27"
     }
   ],
   "rcols": [
-    "Oct 26 '26",
+    "Oct 27 '26",
     "Sep 25 '26",
-    "Apr 24 '26",
-    "Oct 24 '25"
+    "Apr 27 '26",
+    "Oct 27 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.68",
+        "4.70",
         "4.81",
         "3.78",
         "3.48"
       ],
-      "d1m": -13,
-      "d1y": 120
+      "d1m": -11,
+      "d1y": 122
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.84",
+        "4.82",
         "4.98",
-        "3.92",
+        "3.94",
         "3.61"
       ],
-      "d1m": -14,
-      "d1y": 123
+      "d1m": -16,
+      "d1y": 121
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "5.00",
+        "4.99",
         "5.17",
-        "4.31",
-        "4.02"
+        "4.35",
+        "4.01"
       ],
-      "d1m": -17,
+      "d1m": -18,
       "d1y": 98
     },
     {
-      "grp": "SOFR \u00b7 dates Oct 23 '26 / Sep 23 '26 / Apr 23 '26 / Oct 23 '25"
+      "grp": "SOFR · dates Oct 26 '26 / Sep 25 '26 / Apr 24 '26 / Oct 24 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.92",
-        "3.87",
-        "3.65",
+        "3.93",
+        "3.90",
+        "3.66",
         "4.24"
       ],
-      "d1m": 5,
-      "d1y": -32
+      "d1m": 3,
+      "d1y": -31
     }
   ],
   "freight": [
     {
       "n": "Diesel, U.S. avg (EIA)",
-      "v": "$6.276/gal",
+      "v": "$6.352/gal",
       "pl": "Week",
-      "pc": "+$0.097",
-      "y": "+$2.656",
-      "why": "Week of Oct 19, out Oct 20; next print due Oct 27."
+      "pc": "+$0.076",
+      "y": "+$2.634",
+      "why": "Week of Oct 26, out Oct 27; a third straight weekly rise."
     },
     {
       "n": "Drewry WCI, 40ft",
@@ -686,20 +616,20 @@
       "pl": "Week",
       "pc": "+2%",
       "y": null,
-      "why": "Oct 22; Shanghai\u2013Los Angeles up 2% to $8,007."
+      "why": "Oct 22; next print due Oct 29."
     },
     {
       "n": "Baltic Dry Index",
-      "v": "2,628",
+      "v": "2,603",
       "pl": "Day",
-      "pc": "\u22121.20%",
+      "pc": "−0.95%",
       "y": "+33%",
-      "why": "Oct 26; a second straight daily dip after a four-day climb."
+      "why": "Oct 27; down 20% over the past month."
     }
   ],
   "also": "",
-  "sport": "World Series Game 3: the Brewers routed the Rays 10\u20131, scoring a record eight two-out runs in the fifth; Milwaukee leads 3\u20130 and can clinch tonight.",
-  "foot": "Sources: U.S. Treasury daily par yield curve CSV (latest Oct 26; references Sep 25, Apr 24 and Oct 24, 2025 from series, nearest prior business days); NY Fed API (SOFR latest Oct 23; references Sep 23, Apr 23, Oct 23, 2025); AP via KRMG (Oct 26 closes); AP via InsuranceNewsNet/MarketBeat (Oct 24, 2025 closes); Xinhua via The Star (WTI $101.76, Brent $115.81 settles Oct 26); Finviz (WTI $61.62, Oct 24, 2025); Trading Economics (DXY, Baltic Dry, calendar, Dallas Fed, central banks, G20 lists); Yahoo Finance; Fool; CNBC; NBC News; Axios; Supply Chain Dive; Kiplinger; YourNews/Reuters; EIA; Drewry; Dallas Fed; FRED; S&P Global via Reuters; Freddie Mac; FreightWaves/SONAR; Cass; ATRI; Newsweek; CoinCentral; Pomegra; Al Arabiya; Kyiv Independent; CNN/Yahoo Sports; Webull retrospective (Buffett op-ed).<br>Notes: Index 1Y changes vs Oct 24, 2025 closes (Oct 26, 2025 was a Sunday). WTI 1Y +65% (above 60%) cross-checked against TE's ~+65% 12-month change. Dollar: TE's previous close 101.96 used (Tapeboard showed 102.04); 1Y change left out (no dated year-ago close; TE live 12-month +3.6%). FedWatch odds from search summaries of CNBC/Kiplinger/Reuters; December hike odds range 73%\u201382% by source. EIA diesel for week of Oct 26 not yet out at run time. Data in focus: no consensus published for the Dallas Fed index (TE forecast 7), so act/cons/prior omitted; only one named expert reaction found, on the flash PMI. Calendar: new home sales (Sep, today; cons 0.65M, prior 0.684M) and ISM manufacturing (Nov 2, no consensus) left off for space. World Desk: Oman outline and Qatari package details from secondary reports; Houthi claims unconfirmed by Riyadh; no Russia/Ukraine update after Oct 19 found; Lukoil review date carried. Real rates unchanged from Oct 26 (all CPI Sep). Buffett: NYT page failed to fetch; facts confirmed via a Webull retrospective and search.",
+  "sport": "World Series Game 4: the Rays stayed alive, beating the Brewers 4–3 in 12 innings Tuesday; Milwaukee still leads the series 3–1.",
+  "foot": "Sources: U.S. Treasury daily par yield curve CSV (latest Oct 27; references Sep 25, Apr 27 and Oct 27, 2025 from series, nearest prior business days); NY Fed API (SOFR latest Oct 26; references Sep 25, Apr 24, Oct 24, 2025); AP via La Nación (Oct 27 closes); AP via InsuranceNewsNet (Oct 27, 2025 closes); Xinhua via The Star (WTI $99.90, Brent $113.88 settles Oct 27; WTI $61.31 Oct 27, 2025); Trading Economics (DXY, Baltic Dry, stock-market wrap, calendar, central banks, G20 lists); TreasuryDirect; EIA; Drewry via DCN; Freddie Mac; NAR; Census; First Trust; Reuters via Investing.com; Gulf News; Fox News; Lloyd's List; Baseball-Reference; Wikipedia and Fortune (Dalio).<br>Notes: WTI 1Y +62.9% (above 60%) cross-checked against TE's ~+68% 12-month change. Dollar: TE previous close 102.32 vs 101.96 Monday; 1Y change left out (no dated year-ago close). SOFR for Oct 27 not yet published at run time. Banxico left out of central banks (TE meeting date unclear). Boeing loss figures not found. Data in focus: only the Conference Board's own economist found commenting on the October confidence print; no outside expert reactions located. Chart mixes first and revised prints; Aug '26 value from TrendForce. Market reaction to the release not found. FedWatch odds are Monday's (no newer summary found). Calendar: Sep goods trade, MBA and EIA rows dated Oct 28 not treated as released.",
   "series": [
     [
       "2021-10-12",
@@ -8254,6 +8184,12 @@
       4.68,
       4.84,
       5.0
+    ],
+    [
+      "2026-10-27",
+      4.7,
+      4.82,
+      4.99
     ]
   ],
   "log": {
@@ -8297,6 +8233,10 @@
       {
         "d": "2026-10-27",
         "t": "The freight market is tight because the trucks are leaving"
+      },
+      {
+        "d": "2026-10-28",
+        "t": "Housing found its inventory. Then it lost its buyers."
       }
     ],
     "corner": [
@@ -8349,6 +8289,11 @@
         "d": "2026-10-27",
         "who": "Warren Buffett",
         "kind": "Reading"
+      },
+      {
+        "d": "2026-10-28",
+        "who": "Ray Dalio",
+        "kind": "Bio"
       }
     ],
     "focus": [
@@ -8379,6 +8324,10 @@
       {
         "d": "2026-10-27",
         "t": "October Dallas Fed survey: Texas factories' raw-material prices index hit 55.3, highest in two years"
+      },
+      {
+        "d": "2026-10-28",
+        "t": "October consumer confidence jumped to 91.7, crushing the 81 forecast"
       }
     ],
     "world": [
@@ -8409,6 +8358,10 @@
       {
         "d": "2026-10-27",
         "t": "Envoys converge on Tehran as Oman floats a Hormuz outline"
+      },
+      {
+        "d": "2026-10-28",
+        "t": "Tehran restates its terms as Washington weighs a post-midterm strike"
       }
     ]
   }
