@@ -1,261 +1,298 @@
 {
-  "headline": "The Fed held, but two officials wanted a hike, so markets now see December as the real decision and the 10-year is back above 5%.",
-  "dateline": "Thursday, October 29, 2026 · closes as of Wed Oct 28",
-  "ustDate": "Oct 28, 2026",
+  "headline": "Growth ran hot at 3.4% and inflation stayed sticky, but an AI-earnings rout sent money into bonds and pulled the 10-year back below 5%.",
+  "dateline": "Friday, October 30, 2026 · closes as of Thu Oct 29",
+  "ustDate": "Oct 29, 2026",
   "rundown": [
     {
-      "tag": "Fed",
-      "h": "A 10–2 hold, with both dissenters wanting a hike.",
-      "p": "The Fed kept its target at 3.75–4.00% Wednesday, its first pause since September's hike. Governor Lisa Cook and Cleveland Fed President Beth Hammack dissented for a quarter-point increase. Chair Warsh offered no December guidance, saying he doesn't believe in it outside a crisis, yet futures still price roughly an 85% chance of a hike on Dec 9.",
-      "url": "https://admiralmarkets.com/analytics/traders-blog/warsh-press-conference-october-2026",
-      "src": "Admiral Markets; Yahoo Finance · Oct 28"
+      "tag": "Earnings",
+      "h": "Alphabet lost about $482 billion in one session.",
+      "p": "Alphabet's record one-day drop erased roughly $482 billion of market value Thursday, per Yahoo Finance, the second-largest single-day loss for a U.S. stock after Nvidia's in January 2025. Analysts pointed to capital spending running near 40% of quarterly revenue and doubts over when AI outlays pay off. It remains the fourth-largest company, worth more than $3.4 trillion.",
+      "url": "https://finance.yahoo.com/markets/article/alphabet-heads-for-a-500-billion-drop-in-market-value-the-biggest-in-its-history-134824763.html",
+      "src": "Yahoo Finance · Oct 29"
     },
     {
       "tag": "Earnings",
-      "h": "Microsoft beat and spent less than feared.",
-      "p": "Microsoft's quarterly revenue rose 19% to $92.28 billion, ahead of the $90.69 billion expected, and Azure cloud sales grew 48% versus about 44% forecast. Capital spending came in at $45.2 billion, short of the roughly $51 billion analysts penciled in, which nudged chip stocks lower late. The shares rose about 4% after hours.",
-      "url": "https://siliconangle.com/2026/10/28/microsofts-stock-rises-on-solid-earnings-and-revenue-beat-with-azure-growing-48/",
-      "src": "SiliconANGLE; CNBC · Oct 28"
+      "h": "Amazon's cloud sped up, but the cash went out faster.",
+      "p": "Amazon's third-quarter sales rose 12% to $201.9 billion and AWS grew 39% to $46.0 billion, its fastest pace in nearly five years. It kept its roughly $220 billion 2026 capital spending plan, and trailing free cash flow swung to an outflow of $42.4 billion from a $14.8 billion inflow. Shares fell about 6% after hours, after closing down 4.25%.",
+      "url": "https://www.fool.com/investing/2026/10/29/aws-jumps-39-as-amazons-cash-flow-sinks-rapid-earn/",
+      "src": "Motley Fool · Oct 29"
+    },
+    {
+      "tag": "Industrials",
+      "h": "Caterpillar beat estimates and still had its worst day since 2020.",
+      "p": "Caterpillar slid 9.3% Thursday, per Bloomberg, its steepest one-day drop since March 2020, even after adjusted earnings of $7.20 a share on $20.68 billion of revenue topped forecasts. Investors fixated on a call for only modest fourth-quarter growth despite a record backlog. The stock, a big winner of the AI power buildout, is down nearly 40% from its June peak.",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-29/caterpillar-tops-estimates-as-ai-power-demand-fuels-growth",
+      "src": "Bloomberg; Yahoo Finance · Oct 29"
     },
     {
       "tag": "Earnings",
-      "h": "Alphabet stumbled on a paper loss and cash burn.",
-      "p": "Alphabet earned $2.12 a share against roughly $3.01 expected, dragged down by an $8.7 billion loss on equity stakes, and posted negative free cash flow of about $9 billion. Google Cloud revenue more than doubled to $30.7 billion. Shares fell about 9% after hours. Amazon and Apple report after today's close.",
-      "url": "https://fortune.com/2026/10/28/alphabet-google-stock-drops-cloud-revenue-doubles-free-cash-flow-negative/",
-      "src": "Fortune; CNBC · Oct 28"
-    },
-    {
-      "tag": "Rates",
-      "h": "The curve steepened after the decision.",
-      "p": "Treasury's official closes show the 2-year down 3 basis points to 4.67% Wednesday while the 10-year rose 6 to 5.05% and the 30-year to 5.37%. Short rates eased on a Fed that held; long rates rose on inflation risk. Treasury sells $44 billion of seven-year notes today, after this week's two- and five-year sales.",
-      "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610",
-      "src": "U.S. Treasury; Barchart · Oct 28"
-    },
-    {
-      "tag": "Fed",
-      "h": "Fewer rate meetings are coming in 2027.",
-      "p": "Warsh said that starting in 2027 the Fed will hold six rate-setting meetings a year instead of eight, with two meetings devoted to strategy. Fewer decision days mean each one carries more weight, and markets will lean harder on speeches and data between meetings. He also said politics played no role in this week's decision.",
-      "url": "https://finance.yahoo.com/economy/policy/live/fed-meeting-live-updates-interest-rates-held-steady-in-split-vote-warsh-says-politics-played-no-role-ahead-of-midterm-elections-191946928.html",
-      "src": "Yahoo Finance; Fed press conference · Oct 28"
+      "h": "Intel's outlook sank the stock after hours.",
+      "p": "Intel guided fourth-quarter revenue to $15 billion to $16 billion, below the $17.07 billion expected, with adjusted earnings of 25 cents against 43 cents. It cited a PC slump it expects to last into the first half of 2027, higher memory costs and an incident at its Israel plant worth about $600 million in lost revenue. Shares fell roughly 16% to 23% after hours.",
+      "url": "https://www.capitalbrief.com/briefing/intel-shares-plunge-on-weak-q4-outlook-supply-disruptions-2b4a5abd-f37e-4741-bf60-0cfcdb5e1fd2/",
+      "src": "Capital Brief; investingLive · Oct 29"
     },
     {
       "tag": "Energy",
-      "h": "U.S. crude stocks fell for a fourth straight week.",
-      "p": "EIA data showed commercial crude inventories down 1.9 million barrels in the week to Oct 23, the fourth draw in a row, while gasoline stocks rose 3.9 million barrels. Tighter crude and fuller gasoline tanks point to refiners running hard. Lower U.S. stocks leave less of a cushion if Gulf supply takes another hit.",
-      "url": "https://financefeeds.com/brent-crude-oil-price-114-20-thursday-vance-iran-letter-gdp-pce-day-bull-120-bear-108/",
-      "src": "EIA via FinanceFeeds · Oct 29"
+      "h": "Big Oil is cashing in; Exxon and Chevron report today.",
+      "p": "BP's third-quarter underlying profit hit $8.5 billion, up from $2.2 billion a year earlier and well above the $6.19 billion expected, as its refining margin jumped to $46.70 a barrel from $29.60 in the second quarter. Exxon Mobil and Chevron report this morning. The World Bank's new forecast has Brent averaging $92 this year, about $23 below Thursday's settle.",
+      "url": "https://leprivatebanker.com/2026/10/30/oil-heads-for-fourth-monthly-gain-as-houthi-strikes-on-saudi-sites-outweigh-diplomacy-hopes/",
+      "src": "Reuters via The Private Banker · Oct 30"
+    },
+    {
+      "tag": "Deals",
+      "h": "ADT agreed to go private at a 46% premium.",
+      "p": "Home-security company ADT agreed to be bought by Thrive Holdings for $10 a share in cash, about $7.6 billion of equity value and $15.3 billion including debt, a 45.6% premium to its Oct 27 close. The deal is expected to close in the first quarter of 2027, pending shareholder and antitrust approval, and would take ADT private.",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001703056/000119312526437123/d572133dex991.htm",
+      "src": "ADT 8-K · Oct 29"
     }
   ],
   "dive": {
-    "kicker": "Credit",
-    "title": "Bankruptcies are sliding down the size ladder",
-    "dek": "Big-company filings sit near a 16-year high, but the fastest growth is now among small businesses.",
-    "body": "<p>Corporate bankruptcies haven't spiked; they've spread. S&amp;P Global Market Intelligence counted <b>372</b> large U.S. bankruptcy filings in the first half of 2026, one more than a year earlier and the most for a first half since 2010. Industrials led with 50 filings, ahead of consumer discretionary at 35 and healthcare at 26. That's the sector that rents the most warehouse and flex space.</p><p>The newer story is further down the ladder. Epiq AACER and the American Bankruptcy Institute count <b>25,467</b> commercial filings through September, up 7% from a year earlier. Subchapter V elections, the streamlined Chapter 11 route built for small businesses, jumped <b>46%</b> to 2,442. September alone showed 276 of them, up 38%. ABI pointed to persistent inflation, elevated borrowing costs and economic uncertainty. Those are the shops that fill multi-tenant industrial parks and small-bay buildings.</p><p>At the top end, the picture is elevated rather than worsening. Cornerstone Research counted 100 large filings (assets over $100 million) in the 12 months to June 30, down 15% from 117 but 22% above the 2005–2025 average of 82. Mega filings over $1 billion fell to 28 from 32, still above the 23 average. Reduced demand was cited in 73% of mega cases and high interest rates in 38%; tariffs came up in five. Over the same stretch the S&amp;P BDC index, a proxy for listed private-credit lenders, fell more than 20%.</p><p>What would change the picture: the inputs have gotten worse since those counts closed. The Fed hiked in September, the 10-year is above 5% and diesel is up $2.63 a gallon from a year ago. If small-business filings keep rising at a 40%-plus clip into year-end, tenant credit becomes a real underwriting line item, not a footnote. A flat or falling October count, and steady credit spreads, would argue the stress is contained.</p>",
+    "kicker": "Insurance",
+    "title": "Your building is getting cheaper to insure. Your tenant's trucks are not.",
+    "dek": "Commercial insurance prices are splitting in two: property rates are falling by double digits while liability keeps climbing.",
+    "body": "<p>For once, an insurance story that isn't all bad news. Marsh's Global Insurance Market Index, out Oct. 21, shows global commercial rates fell <b>5%</b> in the third quarter, the ninth quarterly decline in a row. The U.S. composite slipped just <b>1%</b>, and that small number hides a big split: U.S. property rates fell <b>10%</b> (after <b>13%</b> in the second quarter), while U.S. casualty rose <b>6%</b> and risk-adjusted umbrella and excess cover jumped <b>13%</b>.</p><p><b>Why the split?</b> On the property side, insurers have plenty of capacity, competition is stiff and the U.S. hurricane season has been mild; big catastrophe-exposed programs fell 13%. Liability is a different story. Chubb's CEO says loss costs are still running well ahead of general inflation, and Marsh notes auto loss ratios have topped <b>100%</b> for more than a decade. Size matters too. Ivans' small-commercial renewal data (Oct. 28) still shows property <i>up</i> <b>5.65%</b>, umbrella up <b>6.88%</b> and commercial auto up <b>3.63%</b>. At Chubb, big shared-and-layered property accounts fell 11% while small and mid-size property rose slightly. The discount goes to the big buyers.</p><p><b>Why it matters:</b> Owners with sizable, institutional property programs get a modest NOI tailwind just as a 10-year near 5% squeezes valuations. Industrial and IOS landlords should look at both sides of the lease, though. Their tenants are fleets, contractors and equipment yards, and those businesses pay for auto and umbrella cover, the lines still rising. Higher liability bills eat into tenant margins and make lease-required coverage limits pricier to carry.</p><p><b>What would change it:</b> Soft markets end when losses show up. Hurricane season runs through Nov. 30, and the Jan. 1 reinsurance renewals set the tone for 2027. Insurers are still making money (Kinsale posted a 75.4% combined ratio) but are easing off on rate: W.R. Berkley's increases halved to 4%. Then there's the war. Hormuz war-risk cover went from 0.15–0.25% of hull value before the conflict to 3–10% at its peak earlier this year, a reminder that a shock can spread through marine and energy lines fast.</p>",
     "table": {
-      "cap": "Who's filing",
+      "cap": "Commercial insurance rate changes, Q3 vs Q2 2026",
       "cols": [
-        "Measure",
-        "Latest",
-        "Change / benchmark",
-        "Period"
+        "Line (source)",
+        "Q3 2026",
+        "Q2 2026"
       ],
       "rows": [
         [
-          "Large U.S. bankruptcies (S&P Global)",
-          "372",
-          "vs 371 a year earlier; most since 2010",
-          "H1 2026"
+          "U.S. composite (Marsh)",
+          "−1%",
+          "−2%"
         ],
         [
-          "Commercial filings (Epiq/ABI)",
-          "25,467",
-          "+7% y/y",
-          "Jan–Sep 2026"
+          "U.S. property (Marsh)",
+          "−10%",
+          "−13%"
         ],
         [
-          "Subchapter V elections",
-          "2,442",
-          "+46% y/y",
-          "Jan–Sep 2026"
+          "U.S. casualty (Marsh)",
+          "+6%",
+          "+7%"
         ],
         [
-          "Large filings, assets >$100M (Cornerstone)",
-          "100",
-          "avg 82 (2005–2025)",
-          "12 mo. to Jun 30"
+          "U.S. umbrella/excess, risk-adj. (Marsh)",
+          "+13%",
+          "+15%"
         ],
         [
-          "Mega filings, assets >$1B",
-          "28",
-          "avg 23",
-          "12 mo. to Jun 30"
+          "Small-commercial property renewals (Ivans)",
+          "+5.65%",
+          "+6.40%"
+        ],
+        [
+          "Commercial auto renewals (Ivans)",
+          "+3.63%",
+          "+4.93%"
         ]
       ]
     },
     "watch": [
-      "Epiq/ABI October filing counts, likely early-to-mid November",
-      "S&P Global's monthly large-company bankruptcy tally",
-      "Whether the Fed hikes Dec 9, raising floating-rate costs again"
+      "Late-season hurricanes before the Nov. 30 season end",
+      "Jan. 1 reinsurance renewals, which set 2027 property pricing",
+      "Hormuz escalation spilling war-risk losses into marine and energy lines"
     ],
-    "src": "Sources: S&P Global via CFO Dive (Jul 13) and First Trust (Sep 8); Epiq/ABI via Organiser (Oct 12) and ABF Journal (Oct 9); Cornerstone Research via D&O Diary (Oct 15); EIA."
+    "src": "Sources: Marsh Global Insurance Market Index (Oct 21, 2026); Ivans via Business Insurance (Oct 28, 2026); actuary.info summary of Marsh, Chubb, Kinsale and W.R. Berkley Q3 results (Oct 2026); Insurance Business (Sep 2, 2026)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Business",
-        "title": "September durable goods orders rose 1.8%, lifted by aircraft; core capital goods orders rose 0.5%",
-        "rel": "Durable goods orders, Sep",
-        "act": "1.8%",
-        "cons": "1.5%",
-        "prior": "0.1%",
+        "tag": "Growth",
+        "title": "Q3 GDP grew at a 3.4% annualized pace, the fastest in a year, on equipment spending and inventories",
+        "rel": "GDP, Q3 advance (annualized)",
+        "act": "3.4%",
+        "cons": "3.2%",
+        "prior": "2.2%",
         "good": true,
         "chart": {
-          "t": "New orders for durable goods ($ billions, seasonally adjusted)",
-          "unit": "$B",
+          "t": "Real GDP, % change at an annualized rate",
+          "unit": "%",
           "pts": [
             [
-              "Sep '25",
-              314.1
+              "Q4 '20",
+              4.6
             ],
             [
-              "Oct '25",
-              307.6
+              "Q1 '21",
+              6.2
             ],
             [
-              "Nov '25",
-              324.3
+              "Q2 '21",
+              7.1
             ],
             [
-              "Dec '25",
-              321.3
+              "Q3 '21",
+              3.2
             ],
             [
-              "Jan '26",
-              320.0
+              "Q4 '21",
+              6.8
             ],
             [
-              "Feb '26",
-              316.2
+              "Q1 '22",
+              -1.0
             ],
             [
-              "Mar '26",
-              320.5
+              "Q2 '22",
+              0.6
             ],
             [
-              "Apr '26",
-              347.8
+              "Q3 '22",
+              2.7
             ],
             [
-              "May '26",
-              333.8
+              "Q4 '22",
+              2.7
             ],
             [
-              "Jun '26",
-              335.8
+              "Q1 '23",
+              3.4
             ],
             [
-              "Jul '26",
-              338.7
+              "Q2 '23",
+              2.2
             ],
             [
-              "Aug '26",
-              339.1
+              "Q3 '23",
+              4.5
             ],
             [
-              "Sep '26",
-              345.4
+              "Q4 '23",
+              3.6
+            ],
+            [
+              "Q1 '24",
+              1.4
+            ],
+            [
+              "Q2 '24",
+              3.6
+            ],
+            [
+              "Q3 '24",
+              3.2
+            ],
+            [
+              "Q4 '24",
+              2.4
+            ],
+            [
+              "Q1 '25",
+              0.1
+            ],
+            [
+              "Q2 '25",
+              4.0
+            ],
+            [
+              "Q3 '25",
+              3.9
+            ],
+            [
+              "Q4 '25",
+              0.2
+            ],
+            [
+              "Q1 '26",
+              2.5
+            ],
+            [
+              "Q2 '26",
+              2.2
+            ],
+            [
+              "Q3 '26",
+              3.4
             ]
           ],
-          "src": "Source: U.S. Census Bureau via FRED (DGORDER), fetched Oct 29, 2026."
+          "src": "Source: BEA via FRED (A191RL1Q225SBEA), updated Oct 29, 2026."
         },
-        "body": "<p>New orders for durable goods rose 1.8% in September, released Tuesday, against a Trading Economics consensus of 1.5% (other surveys ran as high as 1.9%). August was revised up to 0.1% from flat. Orders were up 9.9% from a year earlier. Transportation equipment rose 4.6%, with civilian aircraft orders up 28.4%; excluding transportation, orders rose 0.5%, slightly below the 0.6% expected.</p><p>Core capital goods orders, which exclude defense and aircraft, rose 0.5% versus 0.7% expected, after 1.6% in August. Core shipments, the input to GDP's business-investment line, rose 1.2% for an eighth straight monthly gain and were up 11.5% from a year earlier; they grew at a 16.5% annualized rate in the third quarter versus 11.6% in the second. Industrial machinery orders rose 1.2% and computers and electronics 0.8%. Unfilled orders rose 0.8%.</p>",
+        "body": "<p>The economy grew at a 3.4% annualized rate in the third quarter, released Thursday, above the 3.2% consensus and up from 2.2% in the second quarter; it was the fastest pace in a year. Consumer spending rose 3.8%, matching Q2 and adding 2.52 points. Private investment added 3.27 points, with equipment up 20.9%, which Trading Economics ties largely to AI. Inventories added 1.61 points and government spending rose 5.3%, helped by Strategic Petroleum Reserve crude sales. Imports jumped 19.7%, subtracting 2.64 points, and residential investment fell 3.3%.</p><p>September PCE prices, out the same morning, rose 0.5% on the month and 3.6% from a year earlier, both in line; energy rose 9.2% in the month. Core PCE rose 0.3% and 3.1%, also in line. Real consumer spending was flat and the saving rate slipped to 3.8%.</p><p>Treasury yields fell anyway, with the 2-year down 6 basis points to 4.61% and the 10-year down 7 to 4.98%, as a tech-led stock selloff drove buyers into bonds. CME FedWatch odds of a December hike eased to about 75–78% from 84%.</p>",
         "experts": [
           {
-            "who": "Brian Wesbury and Robert Stein, First Trust",
-            "view": "They say aircraft flattered the headline but the shipments data show robust business investment, driven by hyperscaler spending, reshoring and favorable tax rules, though ex-transport growth has slowed from earlier this year.",
-            "url": "https://www.ftportfolios.com/Commentary/EconomicResearch/2026/10/27/new-orders-for-durable-goods-rose-1.8percent-in-september",
-            "src": "First Trust · Oct 27"
+            "who": "Chris Osmond, CIO, Fifth Third Wealth Advisors",
+            "view": "The economy is outrunning expectations while still producing more inflation than the Fed is comfortable with, which could push yields and the FOMC in a hawkish direction.",
+            "url": "https://ng.investing.com/news/economic-indicators/us-gdp-grows-34-in-the-third-quarter-as-inflation-squeeze-persists-2768135",
+            "src": "Investing.com · Oct 29"
           },
           {
-            "who": "investingLive market commentary",
-            "view": "It called the climb welcome but noted the series had been chopping sideways for much of the past year, and said the report rarely moves markets.",
-            "url": "https://investinglive.com/news/us-september-durable-goods-orders-1-8-vs-1-7-expected/",
-            "src": "investingLive · Oct 27"
+            "who": "Andrew Husby, senior U.S. economist, BNP Paribas",
+            "view": "Underneath the headline the economy is performing well, with the AI buildout a support but not the only engine of growth.",
+            "url": "https://finance.yahoo.com/economy/articles/us-economic-growth-jumps-massive-231228793.html",
+            "src": "Yahoo Finance · Oct 29"
+          },
+          {
+            "who": "Kevin Warsh, Fed Chair (Oct 28, before the data)",
+            "view": "Most of his colleagues don't judge the economy to be running hot.",
+            "url": "https://ng.investing.com/news/economic-indicators/us-gdp-grows-34-in-the-third-quarter-as-inflation-squeeze-persists-2768135",
+            "src": "Investing.com · Oct 29"
           }
         ],
-        "lean": "First Trust reads the shipments as strong capex; investingLive's commentary sees a mostly sideways trend.",
-        "src": "Sources: Trading Economics; U.S. Census Bureau via FRED; First Trust; investingLive."
+        "lean": "Osmond reads the report as pressure toward a December hike; Husby sees solid underlying growth; Warsh said this week most Fed colleagues don't see overheating.",
+        "src": "Sources: BEA via Trading Economics (GDP, core PCE, personal spending pages, Oct 29–30); Investing.com; Yahoo Finance/CFO Dive; FRED; Closing Look (yields, FedWatch)."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Iran · Strait of Hormuz",
-      "title": "A Vance letter reopens a channel to Tehran as the strike clock runs",
-      "body": "<p>Washington is talking and threatening at the same time. Reuters reported overnight that Vice President JD Vance wrote to Iranian security official Mohsen Rezaei seeking to revive peace talks; the letter's text and date weren't disclosed. President Trump told Fox News it is \"getting to be decision time,\" and an Iranian official called Qatar's draft proposal unacceptable and \"not a formal offer,\" even as Iran's foreign minister said Tehran is still giving diplomacy a chance.</p><p>The water is no calmer. Iran's navy said on Oct 27 that a tanker running with its tracking turned off caught fire after hitting mines east of the strait, and repeated that Hormuz stays closed to ships that don't coordinate with Iran's forces. Oil had climbed Wednesday on the report that the U.S. told Gulf allies to prepare for strikes after the Nov 3 midterms.</p>",
-      "reach": "Through oil. Brent settled up 1.3% at $115.32 on Oct 28, then slipped about 1% to near $114.20 in Asian trade Thursday as the Vance report trimmed the risk premium.",
+      "kicker": "Iran · Gulf",
+      "title": "Talks stall, the Houthis widen the fight, and the Pentagon briefs on options",
+      "body": "<p>The diplomacy track is alive but not moving. A senior Iranian official dismissed a new Qatari-mediated draft as unacceptable and not a real offer, while Iran's foreign minister said Tehran is still giving diplomacy a chance. The Wall Street Journal reported that the U.S. military's top Middle East commander briefed President Trump on military options Thursday, keeping alive fears of strikes after the Nov 3 midterms.</p><p>The fighting spread along the Gulf's oil infrastructure. The Houthis claimed attacks on Saudi Arabia's Ras Tanura and Rabigh refineries and an Aramco facility at Abqaiq, which Riyadh hasn't confirmed; the Saudi-led coalition said it destroyed a ballistic missile aimed at the Eastern Province early Thursday. Iran's Revolutionary Guards said three tankers hit mines and caught fire on an unauthorized route south of Hormuz in 24 hours. ExxonMobil and Chevron pulled executives from next week's big UAE oil show over security.</p>",
+      "reach": "Through oil. Brent settled down 0.38% at $114.88 on Oct 29 after falling more than $2 intraday, then traded near $116 Friday morning; it is up nearly 14% in October, on track for a fourth monthly gain.",
       "views": [
         {
-          "who": "Warren Patterson, head of commodities strategy, ING",
-          "view": "Brent's risk premium is holding while markets wait out the vote, and a quiet stretch with no new strikes after it could be enough to start eroding it.",
-          "url": "https://www.fxstreet.com/news/brent-risk-premium-holds-as-iran-uncertainty-lingers-ing-202610280627",
-          "src": "ING via FXStreet · Oct 28"
+          "who": "Giovanni Staunovo, UBS",
+          "view": "Renewed efforts to de-escalate with Iran are what's been pressing on prices.",
+          "url": "https://thestar.com.my/business/2026/10/30/oil-falls-as-diplomacy-hopes-ease-supply-fears",
+          "src": "Reuters via The Star · Oct 30"
         },
         {
-          "who": "Tim Skirrow, Energy Aspects Quant Analytics",
-          "view": "Traders buying Brent call options signal they expect tensions to rise after the elections, not fade.",
-          "url": "https://financefeeds.com/brent-crude-oil-price-114-20-thursday-vance-iran-letter-gdp-pce-day-bull-120-bear-108/",
-          "src": "FinanceFeeds · Oct 29"
+          "who": "John Kilduff, partner, Again Capital",
+          "view": "Reports of fresh Houthi attacks pulled oil off its lows, and mixed Russian signals on diesel supply are helping hold prices up.",
+          "url": "https://thestar.com.my/business/2026/10/30/oil-falls-as-diplomacy-hopes-ease-supply-fears",
+          "src": "Reuters via The Star · Oct 30"
         }
       ]
     },
     "hot": [
       {
-        "r": "Iran / Hormuz",
-        "chg": "Oct 27: Iran says a dark tanker hit mines east of the strait; Oct 28–29: Vance letter seeks to revive talks.",
-        "trend": "Escalating, channel open",
-        "tc": "esc",
-        "ch": "Brent, tankers, war-risk insurance",
-        "next": "U.S. midterms, Nov 3"
-      },
-      {
         "r": "Saudi / Houthis",
-        "chg": "Missiles and drones intercepted over the Eastern Province and Riyadh after Oct 26 Tehran talks; Ras Tanura hit claim still unconfirmed.",
+        "chg": "Oct 28–29: Houthis claim hits on Ras Tanura, Rabigh and Abqaiq; Riyadh unconfirmed; coalition downs a missile.",
         "trend": "Escalating",
         "tc": "esc",
-        "ch": "Saudi output, Brent",
-        "next": "OPEC+ meeting, Nov 1"
+        "ch": "Saudi exports, Red Sea shipping",
+        "next": "Riyadh's damage statement"
       },
       {
-        "r": "Russia / Ukraine",
-        "chg": "Oct 23: Trump floated 200% tariffs on both countries to force peace; Kremlin says a Putin–Trump–Xi summit is being prepared.",
-        "trend": "Steady",
-        "tc": "std",
-        "ch": "Tariffs, wheat, European gas",
-        "next": "U.S. midterms, Nov 3"
+        "r": "Euro area",
+        "chg": "Oct 29: ECB held unanimously (deposit 2.50%) after discussing a hike; September inflation 3.8%.",
+        "trend": "Hawkish hold",
+        "tc": "esc",
+        "ch": "Bund yields, euro, diesel",
+        "next": "ECB decision, Dec meeting"
       },
       {
-        "r": "U.S. / China",
-        "chg": "Truce runs to Jan 10, 2027; rare-earth deliveries still short of promises, Taiwan and Iran oil unresolved.",
-        "trend": "Steady",
-        "tc": "std",
-        "ch": "Rare earths, chips, yuan",
-        "next": "Gallium ban suspension ends Nov 27"
+        "r": "Japan",
+        "chg": "Oct 30: BoJ held at 1.25% on an 8–1 vote, one member wanting a hike; underlying inflation reached 2%.",
+        "trend": "Hawkish hold",
+        "tc": "esc",
+        "ch": "JGB yields, yen near 157",
+        "next": "BoJ decision, Dec 18"
+      },
+      {
+        "r": "Canada / Australia / UK",
+        "chg": "Oct 28: Bank of Canada hiked to 2.50%, first hike in three years, citing energy; RBA and BoE next.",
+        "trend": "Tightening wave",
+        "tc": "esc",
+        "ch": "Global front-end yields",
+        "next": "RBA Nov 3, BoE Nov 5"
       }
     ],
     "cb": [
-      {
-        "d": "2026-10-29",
-        "bank": "ECB (refi rate)",
-        "rate": "2.65%",
-        "exp": "Hold (consensus and TE forecast)"
-      },
-      {
-        "d": "2026-10-30",
-        "bank": "Bank of Japan",
-        "rate": "1.25%",
-        "exp": "Hold (consensus and TE forecast)"
-      },
       {
         "d": "2026-11-03",
         "bank": "Reserve Bank of Australia",
@@ -263,10 +300,16 @@
         "exp": "Hike to 4.85% (TE forecast)"
       },
       {
+        "d": "2026-11-04",
+        "bank": "Banco Central do Brasil",
+        "rate": "13.75%",
+        "exp": "Hold (consensus)"
+      },
+      {
         "d": "2026-11-05",
         "bank": "Bank of England",
         "rate": "3.75%",
-        "exp": "Hike to 4.00% (consensus and TE forecast)"
+        "exp": "Hike to 4.00% in play (TE forecast)"
       },
       {
         "d": "2026-11-05",
@@ -275,10 +318,10 @@
         "exp": "Hold (TE forecast)"
       },
       {
-        "d": "2026-11-20",
-        "bank": "PBoC 1-yr loan prime rate",
-        "rate": "3.00%",
-        "exp": "Hold (TE forecast)"
+        "d": "2026-12-09",
+        "bank": "Bank of Canada",
+        "rate": "2.50%",
+        "exp": "Hike to 2.75% (TE forecast)"
       }
     ],
     "real": {
@@ -318,20 +361,24 @@
         ]
       ]
     },
-    "src": "Sources: Reuters via FinanceFeeds (Oct 29); Anadolu (Oct 27); ING via FXStreet (Oct 28); Al-Monitor; Kyiv Post; Trading Economics central bank pages and G20 lists (Oct 29)."
+    "src": "Sources: Reuters via The Star and The Private Banker (Oct 30); Trading Economics (crude, Brent, ECB, BoJ, BoC, RBA, BoE, Banxico, Brazil pages; G20 interest-rate and inflation lists, Oct 30)."
   },
   "reading": {
-    "kind": "Story",
-    "who": "Stephen Schwarzman",
-    "title": "Checking in at the top: Blackstone's Hilton comeback",
-    "dek": "Blackstone bought Hilton at the 2007 peak with a mountain of debt, watched the stake lose about 70%, and still made roughly $14 billion.",
-    "body": "<p>In July 2007, Blackstone, the firm Stephen Schwarzman co-founded, agreed to buy Hilton Hotels for $47.50 a share in cash, a deal valued at about $26 billion including debt. It was peak-cycle in every sense: credit was cheap, lenders were eager, and the buyout left Hilton carrying roughly $20 billion of borrowings. Jonathan Gray, then running Blackstone's real estate arm, led the deal, and it closed that October. Timing, as they say, is everything. Unfortunately.</p><p>Within about a year, the financial crisis had gutted travel demand. By the end of 2008, one of the Blackstone funds behind the deal had already cut the value of its Hilton stake roughly in half; the total markdown eventually reached about 70%. From the outside, the deal looked like the poster child for bubble-era excess: a trophy asset bought at the top with a mountain of debt. Plenty of observers figured the lenders would end up holding the keys.</p><p>Instead of handing them over, Blackstone dug in. In 2010 it injected about $800 million of fresh equity, which Hilton used to buy back mezzanine debt at well under half of face value, while the most junior lenders swapped their claims for preferred equity. Total debt dropped from about $21 billion to roughly $17 billion. Just as important, Blackstone stopped treating Hilton as a crisis to survive and started treating it as a business to grow, backing CEO Chris Nassetta and his team.</p><p>Patience paid. Hilton returned to the NYSE in December 2013 at $20 a share, in an IPO that raised about $2.35 billion. Blackstone sold down over the following years, including a 25% stake to China's HNA Group in 2016, and unloaded its last shares in May 2018. All-in, its funds put roughly $6.5 billion of equity to work and booked around $14 billion of profit, about triple their money over 11 years. It is widely described as the most profitable private equity real estate deal ever.</p><p>The lesson is not <i>buy at the top and pray</i>. It is that <b>capital structure decides whether you survive long enough to be right</b>. Blackstone had long-dated fund money, no forced-sale deadline, and the firepower to recapitalize when its own debt traded at a discount. The same hotel portfolio financed with fragile, short-fuse money would have been a famous wipeout. In today's terms, that is the difference between owning a building and owning a maturity wall. Great assets help; staying power is what actually gets you paid.</p>",
+    "kind": "Thoughts",
+    "who": "Paul Tudor Jones",
+    "title": "Defense wins championships (and portfolios)",
+    "dek": "Paul Tudor Jones built a legendary macro career on one unglamorous idea: worry about losses first, and let the gains take care of themselves.",
+    "body": "<p>Halloween is tomorrow, but the scariest stuff is already on your screen: a 10-year yield hovering near 5%, oil above $100 as the Iran war squeezes supply, and a Fed that sounds more eager to hike than cut. That makes it a fine week to borrow the playbook of <b>Paul Tudor Jones</b>, the macro trader who starts with a question most investors skip. Not how much can I make, but how do I avoid getting wiped out.</p><p>First, a quick refresher. Jones was born in Memphis in 1954, earned an economics degree from the University of Virginia in 1976 and learned cotton futures in New Orleans under broker Eli Tullis. Tullis later fired him for falling asleep at his desk after a night out, which makes for a humbling origin story. After a stint as a commodities broker at E.F. Hutton, he founded Tudor Investment Corporation in 1980. His big moment came in 1987, when the fund reportedly returned about 126% after fees, largely on short bets.</p><p>His framework comes down to <b>defense first</b>, and it rests on three ideas. One: he knows what he's willing to lose <i>before</i> he enters a trade, so the exit is built into the plan from day one. Two: he hunts for lopsided payoffs. He has described looking for trades that risk $1 to make $5. At those odds you can be wrong four times out of five and still come out ahead, so being right matters less than how much each mistake costs. Three: he uses a trend filter. He told Tony Robbins that anything sliding below its 200-day moving average is a reason to get out. It's simple and almost boring, and that's the point, because a mechanical rule keeps your ego out of the decision.</p><p>The logic is just arithmetic. A 50% loss needs a 100% gain to get back to even, so avoiding the big hole matters more than catching every rally. According to Jones, the 200-day rule had him flat at the top of the 1987 crash. It isn't a crystal ball, though. Trend rules get whipsawed in choppy markets, and sometimes you'll sell right before a bounce. Still, a small, known cost beats a ruinous one.</p><p>Why it matters now: when rates climb, being wrong gets more expensive. Long-duration assets take the biggest hit when discount rates rise, and oil can reverse on a single ceasefire headline. Playing defense doesn't mean sitting in cash. It means you pick your exit before the market picks it for you.</p>",
+    "quote": {
+      "text": "At the very top of the crash, I was flat.",
+      "src": "Paul Tudor Jones, interview with Tony Robbins (MONEY: Master the Game)"
+    },
     "takeaways": [
-      "With the 10-year near 5%, how a deal is financed matters as much as the asset.",
-      "In tight credit, patient capital can buy discounted debt while forced sellers bail out.",
-      "Survive the trough first; the upside only counts if you're still holding."
+      "10Y near 5%: higher rates raise the cost of being wrong. Size positions accordingly.",
+      "Oil above $100 can reverse on one ceasefire headline. Set exits before entering.",
+      "Fed leaning toward hikes? Check which holdings sit below their 200-day averages."
     ],
-    "src": "Read more: Wikipedia, \"Hilton Worldwide\" and \"Jonathan D. Gray\"; TTG Asia on Blackstone's 2018 exit."
+    "src": "Read more: Wikipedia, \"Paul Tudor Jones\"; his Tony Robbins interview via trendfollowing.com."
   },
   "econ": [
     {
@@ -342,45 +389,15 @@
     },
     {
       "n": "30-yr mortgage",
-      "v": "7.32%",
-      "d": "Freddie Mac, Oct 22 (7.40% prior week; year ago 6.19%)",
+      "v": "7.24%",
+      "d": "Freddie Mac, Oct 29 (7.32% prior week; year ago 6.17%)",
       "good": false
     }
   ],
   "cal": [
     {
-      "d": "2026-10-29",
-      "tag": "Economy",
-      "e": "GDP, Q3 advance (annualized)",
-      "act": null,
-      "cons": "3.2%",
-      "prior": "2.2%",
-      "good": null,
-      "why": "Growth through the oil shock"
-    },
-    {
-      "d": "2026-10-29",
-      "tag": "Inflation",
-      "e": "Core PCE prices y/y (Sep)",
-      "act": null,
-      "cons": "3.1%",
-      "prior": "3.0%",
-      "good": null,
-      "why": "Fed's preferred inflation gauge"
-    },
-    {
-      "d": "2026-10-29",
-      "tag": "Labor",
-      "e": "Initial jobless claims",
-      "act": null,
-      "cons": "199K",
-      "prior": "194K",
-      "good": null,
-      "why": "Layoffs still low?"
-    },
-    {
       "d": "2026-10-30",
-      "tag": "Inflation",
+      "tag": "Labor",
       "e": "Employment cost index, q/q (Q3)",
       "act": null,
       "cons": "0.8%",
@@ -393,10 +410,20 @@
       "tag": "Economy",
       "e": "ISM manufacturing PMI (Oct)",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "54.7",
+      "prior": "54.5",
       "good": null,
-      "why": "Factory prices paid near 78"
+      "why": "Prices paid seen near 78"
+    },
+    {
+      "d": "2026-11-03",
+      "tag": "Labor",
+      "e": "JOLTS job openings (Sep)",
+      "act": null,
+      "cons": "7.06M",
+      "prior": "7.079M",
+      "good": null,
+      "why": "Labor demand still cooling?"
     },
     {
       "d": "2026-11-03",
@@ -410,188 +437,208 @@
     },
     {
       "d": "2026-11-04",
+      "tag": "Labor",
+      "e": "ADP private payrolls (Oct)",
+      "act": null,
+      "cons": "80K",
+      "prior": "90K",
+      "good": null,
+      "why": "Preview of Friday's jobs"
+    },
+    {
+      "d": "2026-11-04",
       "tag": "Economy",
       "e": "ISM services PMI (Oct)",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "54.5",
+      "prior": "54.9",
       "good": null,
       "why": "Services demand and prices"
     },
     {
-      "d": "2026-11-04",
-      "tag": "Rates",
-      "e": "Treasury quarterly refunding",
+      "d": "2026-11-06",
+      "tag": "Labor",
+      "e": "Nonfarm payrolls (Oct)",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "40K",
+      "prior": "29K",
       "good": null,
-      "why": "Long-bond supply plans"
+      "why": "Hiring after a weak September"
     },
     {
       "d": "2026-11-06",
       "tag": "Labor",
-      "e": "October jobs report",
+      "e": "Unemployment rate (Oct)",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "4.2%",
+      "prior": "4.2%",
       "good": null,
-      "why": "Payrolls after a 29K September"
+      "why": "Slack the Fed is watching"
     },
     {
-      "d": "2026-11-06",
-      "tag": "Consumers",
-      "e": "UMich sentiment, Nov prelim",
+      "d": "2026-11-10",
+      "tag": "Inflation",
+      "e": "October CPI",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Inflation expectations"
+      "why": "First inflation read before Dec 9"
+    },
+    {
+      "d": "2026-11-17",
+      "tag": "Earnings",
+      "e": "Nvidia quarterly results",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "AI spending test after this week"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,743.98",
-      "c": 0.28,
-      "ctext": "+0.28%",
-      "y": 12.4,
-      "ytext": "+12.4%",
-      "why": "A third straight gain after the expected Fed hold, led by Oracle's 11% jump on its cash-flow outlook.",
-      "asof": "Oct 28"
+      "v": "7,720.39",
+      "c": -0.3,
+      "ctext": "−0.30%",
+      "y": 12.0,
+      "ytext": "+12.0%",
+      "why": "Snapped a three-day win streak as Alphabet's record drop outweighed gains in most other stocks.",
+      "asof": "Oct 29"
     },
     {
       "n": "Dow",
-      "v": "52,475.10",
-      "c": 0.19,
-      "ctext": "+0.19%",
-      "y": 10.0,
-      "ytext": "+10.0%",
-      "why": "Edged up as the Fed held but left a December hike on the table, keeping gains small.",
-      "asof": "Oct 28"
+      "v": "52,342.56",
+      "c": -0.25,
+      "ctext": "−0.25%",
+      "y": 9.9,
+      "ytext": "+9.9%",
+      "why": "Slipped less than the Nasdaq as most stocks rose and Treasury yields fell, offsetting heavy tech losses.",
+      "asof": "Oct 29"
     },
     {
       "n": "Nasdaq",
-      "v": "26,549.85",
-      "c": 0.27,
-      "ctext": "+0.27%",
-      "y": 11.4,
-      "ytext": "+11.4%",
-      "why": "Tech names like Oracle and Vertiv rallied, offsetting the Fed's hawkish tilt.",
-      "asof": "Oct 28"
+      "v": "26,184.72",
+      "c": -1.38,
+      "ctext": "−1.38%",
+      "y": 9.3,
+      "ytext": "+9.3%",
+      "why": "Hit hardest as Alphabet's plunge revived doubts that huge AI spending will pay off.",
+      "asof": "Oct 29"
     },
     {
       "n": "WTI crude",
-      "v": "$102.78",
+      "v": "$102.00",
       "rate": true,
-      "c": 2.88,
-      "ctext": "+2.88%",
-      "y": 70.9,
-      "ytext": "+70.9%",
-      "why": "Rose on reports the U.S. told Gulf allies to prepare for post-midterm strikes on Iran.",
-      "asof": "Oct 28"
+      "c": -0.76,
+      "ctext": "−0.76%",
+      "y": null,
+      "ytext": null,
+      "why": "Slipped on renewed U.S.–Iran diplomacy, but Houthi attack reports cut a $2-plus intraday drop.",
+      "asof": "Oct 29"
     },
     {
       "n": "Dollar index",
-      "v": "102.19",
-      "c": -0.13,
-      "ctext": "−0.13%",
+      "v": "101.87",
+      "c": -0.31,
+      "ctext": "−0.31%",
       "y": null,
       "ytext": null,
-      "why": "Slipped after the Fed held and gave little guidance on its next move.",
-      "asof": "Oct 28"
+      "why": "Fell for a second day as Treasury yields dropped and investors moved into bonds.",
+      "asof": "Oct 29"
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.95,
-      "d1m": 5,
-      "d6m": 29,
-      "d1y": -32,
-      "asof": "Oct 27"
+      "cur": 3.94,
+      "d1m": 4,
+      "d6m": 30,
+      "d1y": -37,
+      "asof": "Oct 28"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.67,
-      "d1m": -25,
-      "d6m": 83,
-      "d1y": 120,
-      "asof": "Oct 28"
+      "cur": 4.61,
+      "d1m": -28,
+      "d6m": 69,
+      "d1y": 102,
+      "asof": "Oct 29"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.85,
-      "d1m": -21,
-      "d6m": 88,
-      "d1y": 125,
-      "asof": "Oct 28"
+      "cur": 4.78,
+      "d1m": -28,
+      "d6m": 73,
+      "d1y": 108,
+      "asof": "Oct 29"
     },
     {
       "n": "10Y Treasury",
-      "cur": 5.05,
-      "d1m": -19,
-      "d6m": 69,
-      "d1y": 106,
-      "asof": "Oct 28"
+      "cur": 4.98,
+      "d1m": -28,
+      "d6m": 56,
+      "d1y": 90,
+      "asof": "Oct 29"
     }
   ],
   "rcols": [
-    "Oct 28 '26",
-    "Sep 28 '26",
-    "Apr 28 '26",
-    "Oct 28 '25"
+    "Oct 29 '26",
+    "Sep 29 '26",
+    "Apr 29 '26",
+    "Oct 29 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.67",
-        "4.92",
-        "3.84",
-        "3.47"
+        "4.61",
+        "4.89",
+        "3.92",
+        "3.59"
       ],
-      "d1m": -25,
-      "d1y": 120
+      "d1m": -28,
+      "d1y": 102
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.85",
+        "4.78",
         "5.06",
-        "3.97",
-        "3.60"
+        "4.05",
+        "3.70"
       ],
-      "d1m": -21,
-      "d1y": 125
+      "d1m": -28,
+      "d1y": 108
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "5.05",
-        "5.24",
-        "4.36",
-        "3.99"
+        "4.98",
+        "5.26",
+        "4.42",
+        "4.08"
       ],
-      "d1m": -19,
-      "d1y": 106
+      "d1m": -28,
+      "d1y": 90
     },
     {
-      "grp": "SOFR · dates Oct 27 '26 / Sep 25 '26 / Apr 27 '26 / Oct 27 '25"
+      "grp": "SOFR · dates Oct 28 '26 / Sep 28 '26 / Apr 28 '26 / Oct 28 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.95",
+        "3.94",
         "3.90",
-        "3.66",
-        "4.27"
+        "3.64",
+        "4.31"
       ],
-      "d1m": 5,
-      "d1y": -32
+      "d1m": 4,
+      "d1y": -37
     }
   ],
   "freight": [
@@ -601,28 +648,28 @@
       "pl": "Week",
       "pc": "+$0.076",
       "y": "+$2.634",
-      "why": "Week of Oct 26, out Oct 27; a third straight weekly rise."
+      "why": "Week of Oct 26; next EIA print Nov 2."
     },
     {
       "n": "Baltic Dry Index",
-      "v": "2,652",
+      "v": "2,712",
       "pl": "Day",
-      "pc": "+1.88%",
-      "y": "+35%",
-      "why": "Oct 28; still down about 17% over the past month."
+      "pc": "+2.26%",
+      "y": "+37%",
+      "why": "Oct 29; highest since Oct 13, still down 13% on the month."
     },
     {
       "n": "Drewry WCI, 40ft",
-      "v": "$4,585",
+      "v": "$4,429",
       "pl": "Week",
-      "pc": "+2%",
+      "pc": "−3%",
       "y": null,
-      "why": "Oct 22; a 15-week high, second straight weekly rise."
+      "why": "Oct 29; Shanghai–LA fell 6% to $7,514, more declines expected."
     }
   ],
   "also": "",
-  "sport": "The Milwaukee Brewers won their first World Series, beating the Rays 4–1 in Game 5 Wednesday to take the series 4–1.",
-  "foot": "Sources: U.S. Treasury daily par yield curve CSV (latest Oct 28; references Sep 28, Apr 28 and Oct 28, 2025 from series); NY Fed API (SOFR latest Oct 27; references Sep 25, Apr 27, Oct 27, 2025); BBN Times (Oct 28 index closes); AP via InsuranceNewsNet (Oct 28, 2025 closes: S&P 6,890.89, Dow 47,706.37, Nasdaq 23,827.49); Bloomberg via FinanceFeeds/Rigzone and Trading Economics (WTI $102.78, Brent $115.32 settles Oct 28); Xinhua via The Star (WTI $60.15 Oct 28, 2025); Trading Economics (DXY, Baltic Dry, durable goods, calendar, central banks, G20 lists); Admiral Markets; Yahoo Finance; SiliconANGLE; Fortune; Barchart; EIA; Drewry via Cyprus Shipping News; Freddie Mac; S&P Global; Epiq/ABI; Cornerstone; First Trust; investingLive; FRED; Anadolu; ING; Al-Monitor; Kyiv Post; MLB.com; Wikipedia and TTG Asia (Hilton).<br>Notes: WTI 1Y +70.9% (above 60%) cross-checked against TE's ~+67% 12-month change. Dollar: TE previous close 102.19 vs 102.32; 1Y left out (no dated year-ago close). SOFR for Oct 28 not yet published. Drewry Oct 29 WCI not found; Oct 22 print used. Fed Dec odds vary by source (78% FedWatch to 90%+ Bloomberg); Rundown uses the ~85% futures figure. 2027 meeting change from press-conference coverage (CNBC page blocked). Durable goods consensus ranged 1.5–1.9%; TE's 1.5% shown. Fitch default data left out of the deep dive (secondary source only). Freddie Mac PMMS for Oct 29 not out at run time. Israel election left out of hotspots (no next date); U.S./China row carried from Oct 28. ISM, JOLTS consensus not available; listed as events. Hilton quote omitted (no first-hand source). Calendar has 10 rows: 8 this week, 2 later.",
+  "sport": "The Packers beat the Panthers 27–19 Thursday night at Lambeau as Jordan Love threw for 288 yards and three touchdowns; Green Bay is 5–3.",
+  "foot": "Sources: U.S. Treasury daily par yield CSV (latest Oct 29; references Sep 29, Apr 29 and Oct 29, 2025 from series); NY Fed API (SOFR latest Oct 28; references Sep 28, Apr 28, Oct 28, 2025); AP via La Nacion (Oct 29 index closes); Reuters via Metrobank/Barchart (Oct 29, 2025 closes: S&P 6,890.59, Dow 47,632.00, Nasdaq 23,958.47); Reuters via The Star (WTI $102.00, Brent $114.88 settles Oct 29); Closing Look/Substack (dollar index, yields, FedWatch); Trading Economics (GDP, PCE, calendar, BDI, central banks, G20 lists); Freddie Mac; EIA; Drewry via DCN; Marsh; Ivans/Business Insurance; actuary.info; Insurance Business; Yahoo Finance; Motley Fool; Bloomberg; Capital Brief; ADT 8-K; Packers.com; Wikipedia and trendfollowing.com (Paul Tudor Jones).<br>Notes: WTI 1Y left out (no dated Oct 29, 2025 settle; TE shows about +71% y/y). Dollar index: Closing Look 101.87 (−0.31%) used; TE's previous-close field shows ~102.04; 1Y left out (no dated year-ago close). SOFR for Oct 29 not yet published. Drewry WCI y/y not given. ECI and Chicago PMI not released at run time. Jobless claims actual (194K per Closing Look) not cross-checked on TE. Intel after-hours drop varied 16–23% by source; Alphabet's drop ~12.3–13.4% by source. FedWatch Dec hike odds 75% (TE) to 78% (Closing Look). Chubb, Kinsale and Berkley figures via actuary.info summary; Hormuz war-risk rates from a Sep 2 article. CPI Nov 10 and Nvidia Nov 17 dates from secondary/press notices. U.S./China and Russia/Ukraine rows dropped (no fresh dated news found). World Desk CPI months all September.",
   "series": [
     [
       "2021-10-12",
@@ -8189,6 +8236,12 @@
       4.67,
       4.85,
       5.05
+    ],
+    [
+      "2026-10-29",
+      4.61,
+      4.78,
+      4.98
     ]
   ],
   "log": {
@@ -8240,6 +8293,10 @@
       {
         "d": "2026-10-29",
         "t": "Bankruptcies are sliding down the size ladder"
+      },
+      {
+        "d": "2026-10-30",
+        "t": "Your building is getting cheaper to insure. Your tenant's trucks are not."
       }
     ],
     "corner": [
@@ -8302,6 +8359,11 @@
         "d": "2026-10-29",
         "who": "Stephen Schwarzman",
         "kind": "Story"
+      },
+      {
+        "d": "2026-10-30",
+        "who": "Paul Tudor Jones",
+        "kind": "Thoughts"
       }
     ],
     "focus": [
@@ -8340,6 +8402,10 @@
       {
         "d": "2026-10-29",
         "t": "September durable goods orders rose 1.8%, lifted by aircraft; core capital goods orders rose 0.5%"
+      },
+      {
+        "d": "2026-10-30",
+        "t": "Q3 GDP grew at a 3.4% annualized pace, the fastest in a year, on equipment spending and inventories"
       }
     ],
     "world": [
@@ -8378,6 +8444,10 @@
       {
         "d": "2026-10-29",
         "t": "A Vance letter reopens a channel to Tehran as the strike clock runs"
+      },
+      {
+        "d": "2026-10-30",
+        "t": "Talks stall, the Houthis widen the fight, and the Pentagon briefs on options"
       }
     ]
   }
