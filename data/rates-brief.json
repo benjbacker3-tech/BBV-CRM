@@ -1,233 +1,276 @@
 {
-  "headline": "Oil had its biggest drop since July on Iran-peace hopes and factories beat forecasts, but tech kept sliding as Americans head to the polls.",
-  "dateline": "Tuesday, November 3, 2026 · closes as of Mon Nov 2",
-  "ustDate": "Nov 2, 2026",
+  "headline": "Democrats won both the House and the Senate overnight, and stock futures shook off an early scare as Treasury yields slipped.",
+  "dateline": "Wednesday, November 4, 2026 · closes as of Tue Nov 3",
+  "ustDate": "Nov 3, 2026",
   "rundown": [
     {
       "tag": "Policy",
-      "h": "Americans vote today, and Congress's balance is the market question.",
-      "p": "All 435 House seats, 35 Senate seats and 36 governorships are on the ballot, with the new Congress seated in January. Democrats are expected to win the House while the Senate is a closer call; Schwab gives Republicans the edge there. A split Congress usually means fewer big fiscal surprises, which bond investors tend to like.",
-      "url": "https://www.cnbc.com/2026/11/01/stock-market-today-live-updates.html",
-      "src": "CNBC; Schwab · Nov 2"
+      "h": "Democrats take both chambers, setting up two years of divided government.",
+      "p": "The AP called the Senate just before midnight ET and the House around 1:25 a.m. By morning Democrats held 53 Senate seats to 42, with five uncalled, and led the House 224 to 133. Ned Davis Research notes the S&amp;P 500 rose through year-end in 5 of 8 midterm cycles since 1930 when the president's party lost the House.",
+      "url": "https://www.sbs.com.au/news/live-blog/us-midterm-elections-2026-live-results/1un8q7w91",
+      "src": "AP via TIME; SBS; Fox Business · Nov 4"
     },
     {
-      "tag": "Earnings",
-      "h": "Apple posted a record September quarter, then slipped after hours.",
-      "p": "Revenue rose 12% to $114.5 billion and earnings per share 14% to $2.10, with iPhone sales up about 17% to $57.6 billion and services at a record $31.6 billion. Tariff refunds added 5 cents a share. Shares still fell about 2.8% after the bell on a softer December-quarter gross-margin outlook and iPad sales below estimates.",
-      "url": "https://www.sec.gov/Archives/edgar/data/0000320193/000032019326000024/a8-kex991q4202609262026.htm",
-      "src": "Apple 8-K; Stocktitan · Nov 2"
+      "tag": "Rates",
+      "h": "Treasury sets its borrowing plan today, with no surprises expected.",
+      "p": "Dealers widely expect coupon auction sizes to stay unchanged at this morning's quarterly refunding, in line with Treasury's \"next several quarters\" guidance, with cuts to 20- and 30-year sizes more likely in 2027. TD Securities sees $678 billion of net bill supply from November through January. Fewer long bonds would ease pressure on the long end that sets mortgage and CRE loan rates.",
+      "url": "https://www.investing.com/news/economy-news/us-treasury-auction-changes-loom-in-2027-dealers-eye-longend-cuts-4992387",
+      "src": "Reuters via Investing.com · Nov 2"
     },
     {
       "tag": "Credit",
-      "h": "Oracle wants $20 billion more to keep building AI capacity.",
-      "p": "Oracle plans to sell $10 billion of common stock and $10 billion of senior notes, and its shares closed down about 8%. It is another sign that the AI buildout is moving from cash flow to capital markets, which puts more corporate supply into a bond market already digesting record Treasury issuance.",
-      "url": "https://www.cnbc.com/2026/11/01/stock-market-today-live-updates.html",
-      "src": "CNBC · Nov 2"
-    },
-    {
-      "tag": "Deals",
-      "h": "Marvell bets $115 billion on Lumentum's optical chips.",
-      "p": "The all-stock deal gives Lumentum holders 4.5 Marvell shares each, about $1,132 a share and a 23.9% premium, and leaves them with about a third of the combined company. Marvell expects more than $1 billion of yearly cost savings. Investors balked: Marvell fell almost 13% and Lumentum 18%.",
-      "url": "https://www.sec.gov/Archives/edgar/data/0001633978/000119312526442758/d163169dex991.htm",
-      "src": "Lumentum 8-K; CNBC · Nov 2"
+      "h": "Meta goes shopping for at least $20 billion of bonds.",
+      "p": "Meta is selling about $15 billion in five dollar tranches from 5 to 30 years plus its first-ever euro tranche, with initial talk from 130 to 250 basis points over Treasuries. It follows Microsoft's $25 billion deal last week. Buyers are still showing up for AI debt, but they're asking for bigger concessions, a cost that ripples into every corporate borrower's spread.",
+      "url": "https://investing.com/news/stock-market-news/meta-seeks-at-least-20-billion-in-bond-sale-as-ai-debt-boom-accelerates-4995462",
+      "src": "Bloomberg via Investing.com · Nov 3"
     },
     {
       "tag": "Earnings",
-      "h": "Palantir nearly doubled sales and raised its outlook again.",
-      "p": "Third-quarter revenue rose 96% to $2.313 billion, its first quarter above $2 billion and well past guidance of about $2.16 billion. U.S. commercial revenue jumped 148% to $984 million, topping its U.S. government business for the first time. Palantir lifted its 2026 revenue forecast to about $8.53 billion from $8.15 billion.",
-      "url": "https://www.sec.gov/Archives/edgar/data/0001321655/000132165526000045/a2026q3ex991pressrelease.htm",
-      "src": "Palantir 8-K · Nov 2"
+      "h": "AMD beat on data centers and guided well above Street.",
+      "p": "Third-quarter revenue was $13.38 billion against $13.06 billion expected, and adjusted EPS $2.09 versus $1.94, with record data center sales of $8.55 billion, nearly double a year ago. AMD guided fourth-quarter revenue to about $17 billion, above the $16.23 billion consensus, and shares rose nearly 8% before the open.",
+      "url": "https://www.investing.com/news/earnings/amd-stock-jumps-after-hours-as-quarterly-results-revenue-guidance-beat-estimates-4996344",
+      "src": "Investing.com · Nov 4"
     },
     {
-      "tag": "Economy",
-      "h": "Construction spending had its biggest drop since April 2020.",
-      "p": "Total construction spending fell 1.9% in September, the steepest monthly decline in more than six years, as residential outlays sank 5.5%, per Census data reported Monday. With mortgage rates above 7% and builders facing higher financing costs, the pullback is a headwind for fourth-quarter growth and for new supply.",
-      "url": "https://www.cnbc.com/2026/11/01/stock-market-today-live-updates.html",
-      "src": "Census via CNBC · Nov 2"
+      "tag": "Earnings",
+      "h": "Uber's bookings grew 20% as free cash flow hit $2.5 billion.",
+      "p": "Gross bookings rose to $59.8 billion and revenue 10% to $14.8 billion, while adjusted EBITDA climbed 31% to $2.96 billion. Uber guided fourth-quarter bookings to $63.25–65.25 billion. GAAP EPS was just $0.25 after a $476 million loss on equity revaluations, a reminder that its investment stakes swing reported profit.",
+      "url": "https://investor.uber.com/news-events/news/press-release-details/2026/Uber-Announces-Results-for-Third-Quarter-2026/default.aspx",
+      "src": "Uber · Nov 4"
+    },
+    {
+      "tag": "Earnings",
+      "h": "Shopify kept growing above 30% with fatter margins.",
+      "p": "Revenue rose 32% to $3.742 billion on $119.1 billion of merchandise volume, up 29%. Operating income jumped to $568 million from $343 million, and its free cash flow margin widened to 22% from 18%. Shopify guided to fourth-quarter revenue growth in the low 30s, a decent read on online spending heading into the holidays.",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001594805/000159480526000067/exhibit991pressreleaseq320.htm",
+      "src": "Shopify 8-K · Nov 3"
     }
   ],
   "dive": {
-    "kicker": "Tariffs",
-    "title": "The $166 billion refund is mostly back. The tariffs aren't gone.",
-    "dek": "Eight months after the Supreme Court threw out the IEEPA tariffs, most of the money is headed back to importers, and corporate America is the big winner.",
-    "body": "<p>Remember the $166 billion question? That's roughly what importers paid in IEEPA tariffs before the Supreme Court ruled the president couldn't impose them under that law. Most of it is now on its way back. As of <b>Oct. 23</b>, Customs had accepted about <b>$137.9 billion</b> in refund claims and certified roughly <b>$127.7 billion</b> of duties plus interest to Treasury for payment. The last phase of the refund portal, for older, fully settled entries, opened Oct. 6 and had taken 3,960 declarations covering about 15.8 million entries by Oct. 23.</p><p>The cash went out fast. Treasury paid about $115 billion of customs refunds from May through August, with monthly refunds peaking at <b>$49.1 billion in June</b>. Net customs receipts turned positive again in August at $12.8 billion and came in at $5.9 billion in September. But don't read this as tariffs going away. On July 24, new <b>Section 301 duties of 10% or 12.5%</b> took effect on goods from 60 economies covering about 99.4% of U.S. imports by value, and Section 232 metals tariffs run as high as 50%.</p><p>So who got the check? Mostly corporations. Target said it received almost $1 billion, and the Center for American Progress says refunds materially lifted quarterly profits or margins at Ross Stores, Polaris and Carter's. CAP estimates about $35 billion went to some 234,000 small-business importers, about $149,000 each, while an Atlanta Fed analysis expects only 34% of refunds to reach the most cash-strapped smaller firms. Consumers, who absorbed about 26% of the 2025 tariff increase per New York Fed research, get nothing back.</p><p><b>Why it matters:</b> third-quarter earnings carry one-time refund gains, so strip them out before judging margins. For industrial landlords, import-heavy tenants got a one-time cash cushion, but their ongoing tariff bill hasn't reset. What could still change the picture: the government's appeal of the refund order at the Federal Circuit, a pending class-certification ruling, about $1.3 billion held because importers never gave CBP bank details, and a possible legal deadline for some refund suits as early as February 2027.</p>",
+    "kicker": "Credit",
+    "title": "Banks quietly tap the brakes on CRE again",
+    "dek": "The Fed's latest loan officer survey shows lenders tightening on every type of commercial real estate loan, just as borrower demand fades too.",
+    "body": "<p>Every quarter the Fed asks a few dozen senior loan officers a simple question: are you making it harder or easier to borrow? The October survey came out Monday (61 domestic banks; answers were due Oct. 5), and for commercial real estate the answer flipped. Banks <b>tightened standards on net for all three CRE categories</b>: construction and land, nonfarm nonresidential, and multifamily. Three months ago, the July survey showed more banks easing than tightening in each one.</p><p>The moves are modest, not a 2023-style slam. About 19% of banks tightened construction loans and about 3% eased, a net of roughly +16. Nonfarm nonresidential, the bucket where industrial and outdoor storage live, came in near +9 after easing in July. Demand is the bigger warning. Net demand for construction loans was about −26, and multifamily about −23. Borrowers aren't lining up, and the ones who show up face a pickier lender.</p><p>It isn't only real estate. Standards on C&amp;I loans to small firms (under $50 million in sales) tightened too, and loan demand from businesses of every size weakened, with banks pointing to less spending on plant and equipment. Banks also tightened lending to nonbank lenders across the board, by a net of about 22 for business credit intermediaries, citing a murkier outlook and weaker borrowers. Those nonbanks are the debt funds and specialty lenders that stepped in when banks pulled back.</p><p>Why it matters: a tightening that starts at 9 to 16 net points is the kind that grows if the economy wobbles. For owners, refis and acquisition loans may come with more covenants, lower leverage and slower approvals, especially on smaller deals. In industrial outdoor storage the tenants are often small contractors, fleets and trade firms, so the squeeze on small-business credit could reach rent rolls before it reaches cap rates. Debt coming due in 2027 is worth getting in front of early.</p>",
     "table": {
-      "cap": "IEEPA tariff refunds and what replaced them (CBP and Treasury data via secondary sources, 2026)",
+      "cap": "Net % of domestic banks tightening standards / reporting stronger demand (Fed SLOOS)",
       "cols": [
-        "Measure",
-        "Value",
-        "As of"
+        "Loan category",
+        "Standards, Jul '26",
+        "Standards, Oct '26",
+        "Demand, Oct '26"
       ],
       "rows": [
         [
-          "IEEPA duties collected",
-          "~$166B",
-          "through Jan 2026"
+          "Construction & land",
+          "−3.7",
+          "+15.6",
+          "−25.8"
         ],
         [
-          "Refund claims accepted",
-          "$137.9B",
-          "Oct 23"
+          "Nonfarm nonresidential",
+          "−11.3",
+          "+8.8",
+          "−10.6"
         ],
         [
-          "Certified to Treasury",
-          "$127.7B",
-          "Oct 23"
-        ],
-        [
-          "Peak monthly refunds",
-          "$49.1B",
-          "June"
-        ],
-        [
-          "Net customs receipts",
-          "+$5.9B",
-          "September"
-        ],
-        [
-          "New Section 301 duty",
-          "10–12.5% on ~99.4% of imports",
-          "since Jul 24"
+          "Multifamily",
+          "−5.7",
+          "+8.8",
+          "−22.8"
         ]
       ]
     },
     "watch": [
-      "The Federal Circuit appeal of the refund order (no argument date yet)",
-      "October's Monthly Treasury Statement: do net customs receipts keep rising?",
-      "Q4 earnings: how much margin was one-time refund money"
+      "FDIC Quarterly Banking Profile for Q3, usually late November: CRE past-due rates.",
+      "Fed Financial Stability Report, usually November: CRE and nonbank lending sections.",
+      "Next loan officer survey, usually early February: does tightening spread?"
     ],
-    "src": "Sources: CBP figures via Peter Mento (Nov 2, 2026); Center for American Progress (Oct 1, 2026); Corporate International (Sep 17, 2026); Beancount (Oct 8, 2026); Dave Manuel tariff revenue tracker (Nov 3, 2026); Tradlinx (Apr 8, 2026)."
+    "src": "Sources: Federal Reserve Senior Loan Officer Opinion Survey, October 2026 (Nov 2, 2026) and July 2026, table 1 (net figures computed from reported shares)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Factories",
-        "title": "October ISM manufacturing rose to 55.5, beating forecasts, as production hit a four-year high",
-        "rel": "ISM manufacturing PMI, Oct",
-        "act": "55.5",
-        "cons": "54.6",
-        "prior": "54.5",
-        "good": true,
+        "tag": "Labor",
+        "title": "September job openings jumped to 7.52 million, beating every forecast, as quits surged",
+        "rel": "JOLTS job openings, Sep",
+        "act": "7.523M",
+        "cons": "7.10M",
+        "prior": "7.190M",
+        "good": false,
         "chart": {
-          "t": "ISM manufacturing PMI (50 = no change)",
-          "unit": "",
+          "t": "Job openings (millions)",
+          "unit": "M",
           "pts": [
             [
+              "Oct '24",
+              7.379
+            ],
+            [
+              "Nov '24",
+              7.566
+            ],
+            [
+              "Dec '24",
+              7.295
+            ],
+            [
+              "Jan '25",
+              7.431
+            ],
+            [
+              "Feb '25",
+              7.242
+            ],
+            [
+              "Mar '25",
+              6.952
+            ],
+            [
+              "Apr '25",
+              7.098
+            ],
+            [
+              "May '25",
+              7.31
+            ],
+            [
+              "Jun '25",
+              7.204
+            ],
+            [
+              "Jul '25",
+              7.089
+            ],
+            [
+              "Aug '25",
+              6.919
+            ],
+            [
+              "Sep '25",
+              7.169
+            ],
+            [
+              "Oct '25",
+              7.17
+            ],
+            [
               "Nov '25",
-              48.0
+              6.846
             ],
             [
               "Dec '25",
-              47.9
+              6.55
             ],
             [
               "Jan '26",
-              52.6
+              7.24
             ],
             [
               "Feb '26",
-              52.4
+              6.922
             ],
             [
               "Mar '26",
-              52.7
+              6.887
             ],
             [
               "Apr '26",
-              52.7
+              7.585
             ],
             [
               "May '26",
-              54.0
+              7.537
             ],
             [
               "Jun '26",
-              53.3
+              7.182
             ],
             [
               "Jul '26",
-              55.6
+              7.335
             ],
             [
               "Aug '26",
-              54.6
+              7.19
             ],
             [
               "Sep '26",
-              54.5
-            ],
-            [
-              "Oct '26",
-              55.5
+              7.523
             ]
           ],
-          "src": "Source: ISM Manufacturing Report On Business, Oct 2026 (PR Newswire)."
+          "src": "Source: BLS JOLTS via FRED (JTSJOL), fetched Nov 4, 2026."
         },
-        "body": "<p>The ISM manufacturing index rose to 55.5 in October from 54.5, released Monday, above the 54.6 consensus. It was the tenth straight month of expansion after ten months of contraction; a year ago the index sat at 48.0. S&amp;P Global's final October manufacturing PMI was 54.9, down from a 56.0 flash.</p><p>Production jumped to 59.0 from 56.7, its highest since November 2021, and new orders edged up to 55.5 from 55.3. Inventories moved back into growth at 51.4 from 48.6, while backlogs slowed to 54.6 from 56.4 and employment dipped to 52.4 from 52.7. The prices index fell to 75.2 from 77.9, below the 77 expected, though raw-material prices have now risen for 25 straight months. Supplier deliveries slowed further at 59.1.</p><p>Respondents' comments ran about two negative to one positive, a third straight month of worse sentiment. Price volatility (62% of negative comments), longer lead times, tariffs and the Iran war were the most cited worries; data centers, chips, defense and infrastructure drove demand.</p>",
+        "body": "<p>Job openings rose 333,000 to 7.523 million in September, released Tuesday, against a 7.10 million consensus; August was revised up to 7.190 million from 7.079 million. The openings rate rose to 4.5% from 4.3%, and there were 1.06 openings per unemployed worker, up from 1.02. A year earlier openings stood at 7.169 million.</p><p>Quits jumped 321,000 to 3.365 million, a 2.1% rate, the most since May 2023 per Reuters. Hires rose 131,000 to 5.402 million (3.4%), while layoffs fell 127,000 to 1.641 million, a 1.0% rate. Openings rose most in professional and business services (+106,000), state and local government excluding education (+104,000) and manufacturing (+54,000). Reuters reported that net hiring came from small and mid-sized firms.</p><p>The 10-year Treasury yield rose about 5 to 6 basis points to near 4.96% after the report. Fed funds futures put the odds of a December 9 hike at 81.4% on Wednesday morning, up from 77.4% a day earlier and 76.2% a week before (Investing.com).</p>",
         "experts": [
           {
-            "who": "Vikram Rai, senior economist, TD Economics",
-            "view": "Demand is holding up and production is gaining speed, and softer prices paid ease inflation worries, but high input costs and supplier delays mean the problem isn't solved.",
-            "url": "https://economics.td.com/us-ism-manufacturing-index",
-            "src": "TD Economics · Nov 2"
+            "who": "Matthew Martin, senior U.S. economist, Oxford Economics",
+            "view": "Sees a solid labor market with some struggling pockets and expects the Fed to stay focused on inflation, hiking in December and again in March.",
+            "url": "https://www.staradvertiser.com/2026/11/03/breaking-news/u-s-job-openings-jump-as-resignations-surge/",
+            "src": "Reuters via Star-Advertiser · Nov 3"
           },
           {
-            "who": "investingLive markets desk",
-            "view": "New orders barely improved and backlogs grew more slowly, so part of the headline gain came from inventories and slower deliveries rather than fresh demand.",
-            "url": "https://investinglive.com/news/us-ism-manufacturing-pmi-for-october-55-5-versus-54-5-estimate/",
-            "src": "investingLive · Nov 2"
+            "who": "Ben Ayers, senior economist, Nationwide",
+            "view": "Noted openings again exceed unemployed workers, pointing to upward wage pressure into 2027, but expects job growth to be solid rather than strong.",
+            "url": "https://www.staradvertiser.com/2026/11/03/breaking-news/u-s-job-openings-jump-as-resignations-surge/",
+            "src": "Reuters via Star-Advertiser · Nov 3"
+          },
+          {
+            "who": "Heather Long, chief economist, Navy Federal Credit Union",
+            "view": "Called it encouraging that firms are slowly adding hires despite headwinds, with openings again outnumbering unemployed people.",
+            "url": "https://www.cnbc.com/2026/11/03/job-openings-posted-big-september-gain-in-positive-sign-for-labor-market-ahead-of-payrolls-report.html",
+            "src": "CNBC · Nov 3"
           }
         ],
-        "lean": "TD's Rai reads demand as firm with inflation risks lingering; investingLive says the gain's quality was weaker than the headline.",
-        "src": "Sources: ISM via PR Newswire (Nov 2, 2026); Trading Economics; TD Economics; investingLive."
+        "lean": "Economists quoted read the labor market as solid; Oxford's Martin expects a December hike, while Reuters notes employers remain in low-hire, low-fire mode.",
+        "src": "Sources: BLS JOLTS (Nov 3, 2026); Trading Economics; Reuters; CNBC; FRED; Investing.com Fed Rate Monitor (Nov 4)."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Australia · RBA",
-      "title": "Australia hikes to an 18-year high on a split vote, and says it may not be done",
-      "body": "<p>The Reserve Bank of Australia raised its cash rate a quarter point to <b>4.85%</b> on Tuesday, its fifth increase of 2026 and the highest level since late 2008. The vote was 6–3, with three members preferring to hold. The bank pointed to stubborn inflation, the Middle East war and higher oil prices.</p><p>The outlook got worse, not better. The RBA now sees inflation returning only to the top of its 2–3% target in late 2027, about three quarters later than it projected in August. It also said growth is slowing and home prices have fallen significantly. Unemployment hit 4.7% in September, a five-year high, and the bank expects it to climb further than it forecast three months ago.</p>",
-      "reach": "Through global front-end yields: Australia's cash rate now sits 85 bp above the top of the Fed's 3.75–4.00% range, and the average Australian variable mortgage is 6.49% (Canstar, Nov 3). Another oil-driven hike abroad keeps pressure on the case for a December Fed move.",
+      "kicker": "Iran · Strait of Hormuz",
+      "title": "Washington signs off on Qatar's draft deal, then hits Qeshm Island",
+      "body": "<p>The U.S. approved the draft memorandum of understanding that Qatar presented to Iran on Nov. 2, according to sources cited by Middle East Monitor, with Saudi Arabia and the UAE briefed and on board. Under the outline, Iran would announce a nuclear concession at the same moment Washington releases part of Iran's frozen assets, opening an interim deal and renewed negotiations.</p><p>The same day, the U.S. carried out limited strikes on Iran's Qeshm Island in the Strait of Hormuz; President Trump called it a minor attack on an anti-aircraft site and said a deal could still happen. Iran's Foreign Ministry said it entered talks with complete pessimism, and the IRGC claimed it downed a U.S. drone, which Central Command denied. Qatar said both sides remain committed to diplomacy.</p>",
+      "reach": "Through the oil risk premium: Brent fell $9.32 on Nov. 2 to about $104 as peace hopes built (OilPrice.com), and Aramco said Hormuz flows still haven't returned to prewar levels as it reported third-quarter oil sales at an average $95.20 a barrel, versus $70.10 a year earlier.",
       "views": [
         {
-          "who": "Michele Bullock, Governor, Reserve Bank of Australia",
-          "view": "Said this hike might not be enough and that unemployment will need to rise to bring inflation back to target for good.",
-          "url": "https://investinglive.com/central-banks/rba-governor-bullock-says-it-might-be-that-this-rate-hike-might-not-be-enough/",
-          "src": "investingLive · Nov 3"
+          "who": "Tim Waterer, KCM Trade",
+          "view": "Said reports of the Qeshm strike put risk premium back into oil and reversed the market's move toward pricing in diplomacy.",
+          "url": "https://oilprice.com/Latest-Energy-News/World-News/Oil-Prices-Bounce-Back-Following-Reports-of-US-Strikes-on-Iran.html",
+          "src": "OilPrice.com · Nov 2"
         },
         {
-          "who": "David Robertson, Bendigo Bank",
-          "view": "Argued before the decision that after four hikes this year the RBA could afford to pause in November.",
-          "url": "https://www.sbs.com.au/news/live-blog/rba-november-2026-interest-rates-decision-live/f6csn2n1w",
-          "src": "SBS News · Nov 3"
+          "who": "Priyanka Sachdeva, Phillip Nova",
+          "view": "Argued headlines alone are unlikely to sustain another rally without concrete evidence of new physical supply or infrastructure damage.",
+          "url": "https://oilprice.com/Latest-Energy-News/World-News/Oil-Prices-Bounce-Back-Following-Reports-of-US-Strikes-on-Iran.html",
+          "src": "OilPrice.com · Nov 2"
         }
       ]
     },
     "hot": [
       {
         "r": "Iran / Hormuz",
-        "chg": "Nov 2: a draft peace text circulated after Qatar-mediated talks; WSJ reported a U.S. strike on Qeshm Island, unconfirmed by CENTCOM.",
+        "chg": "Nov 3: U.S. approved Qatar's draft MOU, then struck Qeshm Island; Iran's foreign ministry voiced complete pessimism.",
         "trend": "Talks advance, strikes continue",
         "tc": "std",
         "ch": "Oil risk premium, tankers",
-        "next": "Follow-up Qatar session, date unset"
+        "next": "Joint MOU announcement, date unset"
+      },
+      {
+        "r": "Sweden",
+        "chg": "Nov 4: the Riksbank hiked a quarter point to 2.00% and signaled further tightening is likely.",
+        "trend": "Tightening",
+        "tc": "esc",
+        "ch": "European yields, krona",
+        "next": "Riksbank meeting Dec 16"
       },
       {
         "r": "United Kingdom",
-        "chg": "Reuters poll (Oct 15): 54 of 63 economists expect a hike to 4.00%, with a 7–2 vote; September CPI was 3.5%.",
+        "chg": "Rabobank, BofA and Goldman expect a quarter-point hike to 4.00% on Nov 5; the last vote was 6–3.",
         "trend": "Tightening",
         "tc": "esc",
         "ch": "Gilt yields, sterling",
         "next": "BoE decision Nov 5"
-      },
-      {
-        "r": "U.S. / China",
-        "chg": "No new moves Nov 2–3; the trade truce runs to Jan 10, 2027, with talks on a broader deal continuing.",
-        "trend": "Steady",
-        "tc": "std",
-        "ch": "Tariffs, soybeans, rare earths",
-        "next": "Truce expiry Jan 10"
       },
       {
         "r": "OPEC+",
@@ -243,31 +286,43 @@
         "d": "2026-11-04",
         "bank": "Banco Central do Brasil",
         "rate": "13.75%",
-        "exp": "Focus sees cut to 13.50%; markets price hold"
-      },
-      {
-        "d": "2026-11-04",
-        "bank": "Riksbank",
-        "rate": "1.75%",
-        "exp": "Previews split between hold and hike"
+        "exp": "Hold (TE forecast and consensus)"
       },
       {
         "d": "2026-11-05",
         "bank": "Bank of England",
         "rate": "3.75%",
-        "exp": "Hike to 4.00% (Reuters poll, 54 of 63)"
+        "exp": "Hike to 4.00% (TE consensus)"
       },
       {
         "d": "2026-11-05",
         "bank": "Norges Bank",
         "rate": "4.50%",
-        "exp": "Hold expected by most previews"
+        "exp": "Hold; bank prepared to tighten further (TE)"
       },
       {
         "d": "2026-11-05",
         "bank": "Banxico",
         "rate": "6.50%",
-        "exp": "Hold expected (Polymarket ~90%)"
+        "exp": "Hold (TE forecast)"
+      },
+      {
+        "d": "2026-11-18",
+        "bank": "Bank Indonesia",
+        "rate": "5.75%",
+        "exp": "TE sees 6.25% by quarter end"
+      },
+      {
+        "d": "2026-11-19",
+        "bank": "South African Reserve Bank",
+        "rate": "7.25%",
+        "exp": "Hike to 7.50% (TE forecast)"
+      },
+      {
+        "d": "2026-11-20",
+        "bank": "PBoC loan prime rate",
+        "rate": "3.00%",
+        "exp": "No change seen this quarter (TE)"
       }
     ],
     "real": {
@@ -303,56 +358,46 @@
         ],
         [
           "Euro area",
-          -1.15
+          -1.35
         ]
       ]
     },
-    "src": "Sources: SBS News, investingLive, FXStreet and Australian Property Update (RBA, Nov 2–3); UPI and FinanceFeeds (Iran, Nov 2–3); Reuters poll via FXStreet (BoE, Oct 15); Supply Chain Dive (U.S.–China); Rio Times week preview (Brazil, Riksbank, Norges, Banxico); Trading Economics G20 interest-rate and inflation lists (Nov 3)."
+    "src": "Sources: Middle East Monitor (Nov 3); Gulf News live blog (Nov 3–4); OilPrice.com (Nov 2); Trading Economics country interest-rate pages and G20 lists (Nov 4); FXStreet/Rabobank (Oct 30); OPEC; prior brief (OPEC+ Nov 1)."
   },
   "reading": {
-    "kind": "Reading",
-    "who": "David Swensen",
-    "title": "Swensen's playbook: how Yale learned to get paid for patience",
-    "dek": "Yale's longtime endowment chief wrote the book on many asset classes, patience and discipline, and then told ordinary savers to do something simpler.",
-    "body": "<p>If you want to know why nearly every big university endowment owns private equity, venture capital and real estate today, start with David Swensen. Born in Ames, Iowa, in 1954 and trained as an economist at Yale, he took over Yale's investment office on April 1, 1985, when the endowment held about $1.3 billion, and he ran it until his death in May 2021. By then it had grown to roughly $31.2 billion, even after decades of payouts to the university, and it had earned about 12.4% a year over the 30 years to 2020. His book <i>Pioneering Portfolio Management</i> (2000, revised 2009) is the playbook behind those numbers.</p><p>The first big idea is an <b>equity orientation</b>. An endowment is meant to last forever, so Swensen argued it should lean on ownership assets that grow over time rather than on bonds whose real returns inflation can quietly erode. The second is <b>real diversification</b>. Instead of a portfolio dominated by U.S. stocks and bonds, he spread Yale's money across five or six roughly equal slices, adding foreign equities, real estate, commodities, venture capital, buyouts and hedge funds. No single market could sink the ship.</p><p>The third idea made the \"Yale model\" famous: <b>getting paid for illiquidity</b>. Most investors treat locked-up money as a nuisance. Swensen saw it as a cost a patient, long-horizon investor could accept in exchange for higher returns, since hard-to-sell assets tend to be less efficiently priced and less crowded. Fourth comes <b>discipline</b>: rebalance back to targets regularly, which in practice means trimming what has run up and buying what has fallen. Fifth is <b>manager selection</b>. In private markets the gap between the best and worst funds is enormous, so Yale leaned heavily on carefully chosen outside managers.</p><p>Here's the twist. In <i>Unconventional Success</i> (2005), written for ordinary savers, Swensen told individuals <i>not</i> to copy Yale. Without a professional staff and access to top private funds, most people are better off holding a diversified mix of six core asset classes in low-cost index funds or ETFs, rebalancing regularly, and keeping fees low. Same principles, different tools.</p><p>Both books reward a slow read. The endowment volume is dense but packed with practical thinking on governance and investor behavior; the personal one is a brisk, opinionated guide. Neither is a get-rich-quick manual. They're about building a portfolio you can actually stick with when markets turn ugly. A good plan: read the opening chapters on investment philosophy first, then dip into the asset-class sections that match what you own.</p>",
+    "kind": "Bio",
+    "who": "Charlie Munger",
+    "title": "Charlie Munger: the partner who changed Berkshire's mind",
+    "dek": "A meteorologist turned lawyer turned investor, Munger steered Buffett from cheap stocks toward great businesses and preached patience above all.",
+    "body": "<p>Charlie Munger was born in Omaha on January 1, 1924, the same city where Warren Buffett grew up. He left the University of Michigan, where he studied mathematics, to enlist in 1943, and the Army sent him to Caltech to learn meteorology. After the war he went to Harvard Law School and graduated magna cum laude in 1948. He then moved to Los Angeles and practiced real estate law, co-founding the firm now known as Munger, Tolles &amp; Olson in 1962.</p><p>Law paid the bills, but capital was the real interest. Also in 1962 he launched an investment partnership, Wheeler, Munger &amp; Co., with Jack Wheeler. From 1962 through 1975 it compounded at roughly <b>19.8% a year against 5.0% for the Dow</b>. The concentrated style that produced those numbers also cut deep: the fund fell about 32% in 1973 and 31% in 1974, and Munger wound it up in 1976. Few great records came without a drawdown that tested the investor's nerve.</p><p>His lasting contribution came through Warren Buffett. In 1972 the pair bought See's Candies for $25 million through Blue Chip Stamps, for a business then earning about $4 million a year before taxes. Munger was the one more willing to pay up for pricing power and loyal customers, and he later called See's the first high-quality business Berkshire ever bought. That deal pushed Berkshire away from Graham-style bargain hunting toward owning great franchises at fair prices. Munger became Berkshire's vice chairman in 1978 and held the post until his death, while also chairing Wesco Financial from 1984 to 2011 and leading the Daily Journal.</p><p>Munger's toolkit was intellectual rather than quantitative. He argued for a <i>latticework of mental models</i>, meaning core ideas borrowed from many disciplines, especially psychology, and applied together rather than in isolation. His 1995 Harvard talk on the psychology of human misjudgment catalogued how biases compound into what he called the Lollapalooza effect. Late in life he showed the same flexibility: Buffett credited him with Berkshire's 2008 purchase of a 9.89% stake in Chinese automaker BYD for about $230 million.</p><p>He died in Santa Barbara on November 28, 2023, at 99. His legacy is a temperament as much as a method: patience, few decisions made with conviction, and a willingness to sit on cash until the odds were plainly favorable. With bond yields near 5%, oil swinging on war headlines and AI darlings wobbling, that temperament looks as relevant as ever.</p>",
     "takeaways": [
-      "Stocks swinging on AI-spending fears? Rebalancing turns volatility into a buy-low habit.",
-      "With the 10-year near 4.9%, bonds pay again, but Swensen favored equities long-term.",
-      "Oil near $100 shows why real assets belong in a diversified mix."
+      "With the 10-year near 5%, cash earns enough to wait for real bargains.",
+      "Wobbly AI stocks: pay up for durable pricing power, not just a story.",
+      "Election and war headlines feed biases; check them before trading."
     ],
-    "src": "Read more: David F. Swensen, Pioneering Portfolio Management (2000; rev. 2009) and Unconventional Success (2005); Wikipedia profile."
+    "src": "Read more: https://en.wikipedia.org/wiki/Charlie_Munger · https://en.wikipedia.org/wiki/See%27s_Candies · https://en.wikipedia.org/wiki/BYD_Company"
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "held Oct 28 (10–2); FedWatch ~85% for a Dec 9 hike (Oct 29)",
+      "d": "held Oct 28; futures ~81% for a Dec 9 hike (Nov 4)",
       "good": false
     },
     {
       "n": "30-yr mortgage",
       "v": "7.24%",
-      "d": "Freddie Mac, Oct 29; next Nov 5",
+      "d": "Freddie Mac, Oct 29 (6.17% a year ago); next Nov 5",
       "good": false
     }
   ],
   "cal": [
     {
-      "d": "2026-11-03",
-      "tag": "Labor",
-      "e": "JOLTS job openings (Sep)",
-      "act": null,
-      "cons": "7.10M",
-      "prior": "7.079M",
-      "good": null,
-      "why": "Is labor demand still cooling?"
-    },
-    {
       "d": "2026-11-04",
       "tag": "Labor",
       "e": "ADP private payrolls (Oct)",
       "act": null,
-      "cons": "69K",
+      "cons": "80K",
       "prior": "90K",
       "good": null,
       "why": "Preview of Friday's jobs report"
@@ -368,14 +413,14 @@
       "why": "Services demand and prices"
     },
     {
-      "d": "2026-11-04",
-      "tag": "Rates",
-      "e": "Treasury quarterly refunding announcement",
+      "d": "2026-11-05",
+      "tag": "Labor",
+      "e": "Initial jobless claims",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "196K",
+      "prior": "194K",
       "good": null,
-      "why": "Auction sizes set long-end supply"
+      "why": "Layoffs still near lows?"
     },
     {
       "d": "2026-11-05",
@@ -406,6 +451,16 @@
       "prior": "4.2%",
       "good": null,
       "why": "Slack the Fed is watching"
+    },
+    {
+      "d": "2026-11-06",
+      "tag": "Economy",
+      "e": "UMich sentiment, Nov prelim",
+      "act": null,
+      "cons": "48",
+      "prior": "48.0",
+      "good": null,
+      "why": "Inflation expectations at 4.7%"
     },
     {
       "d": "2026-11-10",
@@ -458,190 +513,200 @@
       "why": "After a third straight drop"
     },
     {
-      "d": "2026-11-24",
+      "d": "2026-11-25",
       "tag": "Economy",
-      "e": "Consumer confidence (Nov)",
+      "e": "Q3 GDP, second estimate",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "After October's jump to 91.7"
+      "why": "First read was 3.4%"
+    },
+    {
+      "d": "2026-11-25",
+      "tag": "Inflation",
+      "e": "October PCE and core PCE",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "The Fed's preferred inflation gauge"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,541.40",
-      "c": -0.51,
-      "ctext": "−0.51%",
-      "y": 10.1,
-      "ytext": "+10.1%",
-      "why": "Gave back a 1.1% morning gain as tech and AI stocks stayed shaky, even though most stocks rose.",
-      "asof": "Nov 2"
+      "v": "7,568.92",
+      "c": 0.36,
+      "ctext": "+0.36%",
+      "y": 11.8,
+      "ytext": "+11.8%",
+      "why": "Snapped a three-day slide as Nvidia, Broadcom and other AI heavyweights bounced, though most stocks in the index fell.",
+      "asof": "Nov 3"
     },
     {
       "n": "Dow",
-      "v": "51,983.98",
-      "c": 0.41,
-      "ctext": "+0.41%",
-      "y": 9.8,
-      "ytext": "+9.8%",
-      "why": "Rose as money rotated out of tech into names like Sherwin-Williams and Home Depot.",
-      "asof": "Nov 2"
+      "v": "51,786.72",
+      "c": -0.38,
+      "ctext": "−0.38%",
+      "y": 10.0,
+      "ytext": "+10.0%",
+      "why": "Apple fell 1.9% after warning that pricier memory chips will squeeze margins, dragging the blue-chip average.",
+      "asof": "Nov 3"
     },
     {
       "n": "Nasdaq",
-      "v": "25,164.32",
-      "c": -1.07,
-      "ctext": "−1.07%",
-      "y": 5.6,
-      "ytext": "+5.6%",
-      "why": "Erased a 1.4% early gain as worries about AI spending returned to chip and software stocks.",
-      "asof": "Nov 2"
+      "v": "25,372.01",
+      "c": 0.83,
+      "ctext": "+0.83%",
+      "y": 8.7,
+      "ytext": "+8.7%",
+      "why": "Chipmakers including Nvidia and AMD climbed as AI stocks steadied after a volatile Monday.",
+      "asof": "Nov 3"
     },
     {
       "n": "WTI crude",
-      "v": "$96.46",
+      "v": "$96.09",
       "rate": true,
-      "c": -7.36,
-      "ctext": "−7.36%",
+      "c": -0.38,
+      "ctext": "−0.38%",
       "y": null,
       "ytext": null,
-      "why": "Biggest one-day drop since July as hopes grew for a negotiated end to the U.S.–Iran war.",
-      "asof": "Nov 2"
+      "why": "Traders cut risk on Election Day and leaned on diplomacy hopes despite a reported U.S. strike on Iran's Qeshm Island.",
+      "asof": "Nov 3"
     },
     {
       "n": "Dollar index",
-      "v": "101.75",
-      "c": -0.13,
-      "ctext": "−0.13%",
-      "y": 1.6,
-      "ytext": "+1.6%",
-      "why": "Slipped for a fourth session as falling oil eased safe-haven demand ahead of the midterms.",
-      "asof": "Nov 2"
+      "v": "101.62",
+      "c": 0.0,
+      "ctext": "0.00%",
+      "y": null,
+      "ytext": null,
+      "why": "Settled unchanged as currency traders sat on their hands waiting for midterm results.",
+      "asof": "Nov 3"
     }
   ],
   "key": [
     {
       "n": "SOFR",
       "cur": 3.95,
-      "d1m": 5,
-      "d6m": 29,
-      "d1y": -9,
-      "asof": "Oct 30"
+      "d1m": 7,
+      "d6m": 31,
+      "d1y": -27,
+      "asof": "Nov 2"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.59,
-      "d1m": -24,
-      "d6m": 71,
-      "d1y": 99,
-      "asof": "Nov 2"
+      "cur": 4.61,
+      "d1m": -22,
+      "d6m": 73,
+      "d1y": 101,
+      "asof": "Nov 3"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.7,
-      "d1m": -36,
-      "d6m": 68,
-      "d1y": 99,
-      "asof": "Nov 2"
+      "cur": 4.74,
+      "d1m": -32,
+      "d6m": 72,
+      "d1y": 102,
+      "asof": "Nov 3"
     },
     {
       "n": "10Y Treasury",
-      "cur": 4.91,
-      "d1m": -37,
-      "d6m": 52,
-      "d1y": 80,
-      "asof": "Nov 2"
+      "cur": 4.95,
+      "d1m": -33,
+      "d6m": 56,
+      "d1y": 82,
+      "asof": "Nov 3"
     }
   ],
   "rcols": [
-    "Nov 2 '26",
+    "Nov 3 '26",
     "Oct 2 '26",
     "May 1 '26",
-    "Oct 31 '25"
+    "Nov 3 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.59",
+        "4.61",
         "4.83",
         "3.88",
         "3.60"
       ],
-      "d1m": -24,
-      "d1y": 99
+      "d1m": -22,
+      "d1y": 101
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.70",
+        "4.74",
         "5.06",
         "4.02",
-        "3.71"
+        "3.72"
       ],
-      "d1m": -36,
-      "d1y": 99
+      "d1m": -32,
+      "d1y": 102
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "4.91",
+        "4.95",
         "5.28",
         "4.39",
-        "4.11"
+        "4.13"
       ],
-      "d1m": -37,
-      "d1y": 80
+      "d1m": -33,
+      "d1y": 82
     },
     {
-      "grp": "SOFR · dates Oct 30 '26 / Sep 30 '26 / Apr 30 '26 / Oct 30 '25"
+      "grp": "SOFR · dates Nov 2 '26 / Oct 2 '26 / May 1 '26 / Oct 31 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
         "3.95",
-        "3.90",
-        "3.66",
-        "4.04"
+        "3.88",
+        "3.64",
+        "4.22"
       ],
-      "d1m": 5,
-      "d1y": -9
+      "d1m": 7,
+      "d1y": -27
     }
   ],
   "freight": [
     {
       "n": "Diesel, U.S. avg (EIA)",
-      "v": "$6.352/gal",
+      "v": "$6.292/gal",
       "pl": "Week",
-      "pc": "+$0.076",
-      "y": "+$2.634",
-      "why": "Week of Oct 26; new EIA print due today."
+      "pc": "−$0.060",
+      "y": "+$2.539",
+      "why": "Week of Nov 2; first drop after oil's slide."
+    },
+    {
+      "n": "Drewry World Container Index",
+      "v": "$4,429/40ft",
+      "pl": "Week",
+      "pc": "−3%",
+      "y": null,
+      "why": "Oct 29; transpacific rates fell, Shanghai–LA −6%."
     },
     {
       "n": "Baltic Dry Index",
-      "v": "2,648",
+      "v": "2,590",
       "pl": "Day",
-      "pc": "−2.43%",
-      "y": "+36%",
-      "why": "Nov 2; down 13.8% over the past month."
-    },
-    {
-      "n": "Logistics Managers' Index",
-      "v": "70.7",
-      "pl": "Month",
-      "pc": "+0.5",
-      "y": null,
-      "why": "October, out Nov 3; transport prices 88.0, capacity still contracting at 38.0."
+      "pc": "−2.19%",
+      "y": "+32%",
+      "why": "Nov 3; down 15.6% over the past month."
     }
   ],
   "also": "",
   "sport": "",
-  "foot": "Sources: U.S. Treasury daily par yield CSV (latest Nov 2; references Oct 2, May 1 and Oct 31, 2025 from series); NY Fed API (SOFR latest Oct 30; references Sep 30, Apr 30, Oct 30, 2025); AP via Yahoo Finance (Nov 2 index closes); CNBC live blog (Nov 3, 2025 closes for 1Y: S&P 6,851.97, Dow 47,336.68, Nasdaq 23,834.72; WTI $96.46 and Brent $104.77 settles Nov 2, Brent also on Stocktitan); Trading Economics (dollar index, BDI, calendar, ISM, G20 lists); ISM via PR Newswire; LMI; EIA; Freddie Mac via TE calendar; Norada (FedWatch); SEC 8-Ks (Apple, Palantir, Lumentum); Schwab; tariff-refund sources listed in the dive; Wikipedia and Yale SOM (Swensen); SBS, investingLive, FXStreet, UPI, FinanceFeeds, Rio Times (World Desk).<br>Notes: SOFR for Nov 2 not yet published at run time. Dollar index 101.75 implied from Trading Economics' Nov 3 reading (101.84, +0.09%); no explicit dated close; y/y 1.59% per TE Nov 2. WTI 1Y left out (no dated Nov 2025 settle; ~$61 intraday). WTI settle from CNBC and search summaries (qz/ebc 403). EIA diesel for Nov 2 not posted at run time, so last week's print is shown. ISM consensus 54.6 per TE (investingLive had 54.5). FedWatch 85% is Oct 29, secondhand. Apple after-hours move (-2.8%) from the markets-agent wrap (Stocktitan/Yahoo). Tariff refund figures from secondary sources citing CBP/Treasury; not checked against CBP filings. Riksbank/Norges expectations carried from Nov 2 previews, not re-verified; PBoC LPR date unverified, left out. No sports line: MNF Bears–Seahawks final not found on a fetched page. World Desk CPI months all September.",
+  "foot": "Sources: U.S. Treasury daily par yield CSV (latest Nov 3; references Oct 2, May 1 and Nov 3, 2025 from series); NY Fed API (SOFR latest Nov 2; references Oct 2, May 1, Oct 31, 2025); AP via WTOP and WPTF (Nov 3 index closes); AP 'How major US stock indexes fared 11/4/2025' via search snippets (mymotherlode, am920) for 1Y closes S&P 6,771.55, Dow 47,085.24, Nasdaq 23,348.64; DTN (WTI $96.09 settle, Brent $103.60, USDX 101.624 settled unchanged, Nov 3); Fox Business (overnight futures, 10Y 4.906%, Nov 4 6:15am ET); TIME, SBS (election calls); Reuters via Investing.com (refunding); Investing.com (AMD, Meta bonds, Fed Rate Monitor); Uber IR; Shopify 8-K; EIA; DCN (Drewry WCI); Trading Economics (BDI, calendar, G20 lists, central bank pages); BLS, FRED, Reuters/Star-Advertiser, CNBC (JOLTS); Freddie Mac; Fed SLOOS Oct 2026; Wikipedia (Munger, See's, BYD); Middle East Monitor, Gulf News, OilPrice.com (World Desk).<br>Notes: SOFR for Nov 3 not yet published. 1Y SOFR reference is Oct 31, 2025 (4.22%, a month-end spike). Dollar index 1Y left out (TE shows +1.09% y/y on Nov 4's 101.30, not Nov 3); TE implies a Nov 3 close near 101.87 vs DTN's 101.624. WTI 1Y left out (no dated Nov 2025 settle). FedWatch page not fetched; Dec hike odds from Investing.com's Fed Rate Monitor (81.4%, Nov 4 7:05am ET). JOLTS components from Reuters; consensus 7.10M per TE/Reuters (CNBC: 7.15M). CPI consensus for Nov 10 unclear on TE, listed without numbers. SLOOS net figures computed from reported shares. Aramco Q3 figures from the Gulf News live blog. BoE expectation per TE consensus and Rabobank/BofA/Goldman previews; OPEC+ Nov 1 row carried from Nov 3 brief. Bank Indonesia Nov 18 TE column unclear; only the quarter-end forecast shown. Real rates use September CPI for U.S., China, Japan, UK, Canada, Mexico, India and the October flash for the euro area (4.0%). Drewry WCI has no y/y figure. No sports line: no Nov 3 result confirmed on a fetched page.",
   "series": [
     [
       "2021-10-12",
@@ -8226,6 +8291,12 @@
       4.59,
       4.7,
       4.91
+    ],
+    [
+      "2026-11-03",
+      4.61,
+      4.74,
+      4.95
     ]
   ],
   "log": {
@@ -8289,6 +8360,14 @@
       {
         "d": "2026-11-03",
         "t": "The $166 billion refund is mostly back. The tariffs aren't gone."
+      },
+      {
+        "d": "2026-11-04",
+        "t": "Banks quietly tap the brakes on CRE again"
+      },
+      {
+        "d": "2026-11-04",
+        "t": "Banks quietly tap the brakes on CRE again"
       }
     ],
     "corner": [
@@ -8366,6 +8445,16 @@
         "d": "2026-11-03",
         "who": "David Swensen",
         "kind": "Reading"
+      },
+      {
+        "d": "2026-11-04",
+        "who": "Charlie Munger",
+        "kind": "Bio"
+      },
+      {
+        "d": "2026-11-04",
+        "who": "Charlie Munger",
+        "kind": "Bio"
       }
     ],
     "focus": [
@@ -8416,6 +8505,14 @@
       {
         "d": "2026-11-03",
         "t": "October ISM manufacturing rose to 55.5, beating forecasts, as production hit a four-year high"
+      },
+      {
+        "d": "2026-11-04",
+        "t": "September job openings jumped to 7.52 million, beating every forecast, as quits surged"
+      },
+      {
+        "d": "2026-11-04",
+        "t": "September job openings jumped to 7.52 million, beating every forecast, as quits surged"
       }
     ],
     "world": [
@@ -8466,6 +8563,14 @@
       {
         "d": "2026-11-03",
         "t": "Australia hikes to an 18-year high on a split vote, and says it may not be done"
+      },
+      {
+        "d": "2026-11-04",
+        "t": "Washington signs off on Qatar's draft deal, then hits Qeshm Island"
+      },
+      {
+        "d": "2026-11-04",
+        "t": "Washington signs off on Qatar's draft deal, then hits Qeshm Island"
       }
     ]
   }
