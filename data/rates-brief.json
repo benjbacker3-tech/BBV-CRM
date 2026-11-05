@@ -1,261 +1,216 @@
 {
-  "headline": "Democrats won both the House and the Senate overnight, and stock futures shook off an early scare as Treasury yields slipped.",
-  "dateline": "Wednesday, November 4, 2026 · closes as of Tue Nov 3",
-  "ustDate": "Nov 3, 2026",
+  "headline": "The Bank of England just raised rates for the first time since 2023, a day after the Democratic sweep sent the Dow up 1,569 points and oil down 8%.",
+  "dateline": "Thursday, November 5, 2026 · closes as of Wed Nov 4",
+  "ustDate": "Nov 4, 2026",
   "rundown": [
     {
-      "tag": "Policy",
-      "h": "Democrats take both chambers, setting up two years of divided government.",
-      "p": "The AP called the Senate just before midnight ET and the House around 1:25 a.m. By morning Democrats held 53 Senate seats to 42, with five uncalled, and led the House 224 to 133. Ned Davis Research notes the S&amp;P 500 rose through year-end in 5 of 8 midterm cycles since 1930 when the president's party lost the House.",
-      "url": "https://www.sbs.com.au/news/live-blog/us-midterm-elections-2026-live-results/1un8q7w91",
-      "src": "AP via TIME; SBS; Fox Business · Nov 4"
-    },
-    {
       "tag": "Rates",
-      "h": "Treasury sets its borrowing plan today, with no surprises expected.",
-      "p": "Dealers widely expect coupon auction sizes to stay unchanged at this morning's quarterly refunding, in line with Treasury's \"next several quarters\" guidance, with cuts to 20- and 30-year sizes more likely in 2027. TD Securities sees $678 billion of net bill supply from November through January. Fewer long bonds would ease pressure on the long end that sets mortgage and CRE loan rates.",
-      "url": "https://www.investing.com/news/economy-news/us-treasury-auction-changes-loom-in-2027-dealers-eye-longend-cuts-4992387",
-      "src": "Reuters via Investing.com · Nov 2"
+      "h": "Treasury holds coupon auctions steady and signals no change ahead.",
+      "p": "Wednesday's quarterly refunding kept nominal coupon sizes flat for a $125 billion package: a $58 billion 3-year on Monday, $42 billion 10-year Tuesday and $25 billion 30-year Thursday. Treasury expects to keep coupon sizes unchanged \"for the next several quarters,\" and set buybacks of up to $95 billion. No surprise supply means one less source of pressure on long-term borrowing costs.",
+      "url": "https://home.treasury.gov/news/press-releases/sb0678",
+      "src": "U.S. Treasury · Nov 4"
     },
     {
-      "tag": "Credit",
-      "h": "Meta goes shopping for at least $20 billion of bonds.",
-      "p": "Meta is selling about $15 billion in five dollar tranches from 5 to 30 years plus its first-ever euro tranche, with initial talk from 130 to 250 basis points over Treasuries. It follows Microsoft's $25 billion deal last week. Buyers are still showing up for AI debt, but they're asking for bigger concessions, a cost that ripples into every corporate borrower's spread.",
-      "url": "https://investing.com/news/stock-market-news/meta-seeks-at-least-20-billion-in-bond-sale-as-ai-debt-boom-accelerates-4995462",
-      "src": "Bloomberg via Investing.com · Nov 3"
+      "tag": "Fed",
+      "h": "Six Fed speakers get two days to frame December.",
+      "p": "Cleveland's Beth Hammack, who dissented in favor of a hike at the Oct. 28 meeting along with Lisa Cook, speaks today with Richmond's Tom Barkin. Friday brings Lorie Logan, John Williams, Alberto Musalem and Michelle Bowman, right after the October jobs report. With the statement saying inflation \"remains elevated,\" any pushback on a December hike would be news.",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+      "src": "Federal Reserve; Trading Economics calendar · Nov 5"
     },
     {
-      "tag": "Earnings",
-      "h": "AMD beat on data centers and guided well above Street.",
-      "p": "Third-quarter revenue was $13.38 billion against $13.06 billion expected, and adjusted EPS $2.09 versus $1.94, with record data center sales of $8.55 billion, nearly double a year ago. AMD guided fourth-quarter revenue to about $17 billion, above the $16.23 billion consensus, and shares rose nearly 8% before the open.",
-      "url": "https://www.investing.com/news/earnings/amd-stock-jumps-after-hours-as-quarterly-results-revenue-guidance-beat-estimates-4996344",
-      "src": "Investing.com · Nov 4"
-    },
-    {
-      "tag": "Earnings",
-      "h": "Uber's bookings grew 20% as free cash flow hit $2.5 billion.",
-      "p": "Gross bookings rose to $59.8 billion and revenue 10% to $14.8 billion, while adjusted EBITDA climbed 31% to $2.96 billion. Uber guided fourth-quarter bookings to $63.25–65.25 billion. GAAP EPS was just $0.25 after a $476 million loss on equity revaluations, a reminder that its investment stakes swing reported profit.",
-      "url": "https://investor.uber.com/news-events/news/press-release-details/2026/Uber-Announces-Results-for-Third-Quarter-2026/default.aspx",
-      "src": "Uber · Nov 4"
+      "tag": "Tech",
+      "h": "Election rally rotates money away from AI chips.",
+      "p": "Wednesday's rally skipped the AI chip trade: Nvidia fell 3.2% and Micron 7.0% even as Microsoft rose 6.8% and Amazon 6.1%. Nasdaq 100 futures were down about 0.8% early Thursday on fears that a Democratic Congress tightens rules on data centers, a risk worth watching for the power and land buyers chasing that build-out.",
+      "url": "https://tradingeconomics.com/united-states/stock-market",
+      "src": "Trading Economics · Nov 5"
     },
     {
       "tag": "Earnings",
-      "h": "Shopify kept growing above 30% with fatter margins.",
-      "p": "Revenue rose 32% to $3.742 billion on $119.1 billion of merchandise volume, up 29%. Operating income jumped to $568 million from $343 million, and its free cash flow margin widened to 22% from 18%. Shopify guided to fourth-quarter revenue growth in the low 30s, a decent read on online spending heading into the holidays.",
-      "url": "https://www.sec.gov/Archives/edgar/data/0001594805/000159480526000067/exhibit991pressreleaseq320.htm",
-      "src": "Shopify 8-K · Nov 3"
+      "h": "AppLovin soars after hours; Qualcomm sinks despite a beat.",
+      "p": "AppLovin's third-quarter revenue rose 55% to $2.18 billion, above its own $2.055 to $2.085 billion guidance, net income climbed 72% to $1.44 billion and it spent $1.4 billion on stock; shares jumped about 20% late Wednesday. Qualcomm fell more than 7% after hours even though results topped estimates. ConocoPhillips, Airbnb and Kimberly-Clark report today.",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000068/exhibit991-3q26earningspre.htm",
+      "src": "AppLovin 8-K; Trading Economics · Nov 4–5"
+    },
+    {
+      "tag": "Energy",
+      "h": "Treasury goes after fake ship registries moving Iranian oil.",
+      "p": "OFAC sanctioned 14 people and companies, mostly India-based, that it says ran sham flag registries and certification services claiming to act for countries such as Guyana, Mali and Timor-Leste, which never authorized them. Falsely flagged tankers lack valid P&amp;I insurance, Treasury warned, and could cause billions in damage. Expect more scrutiny, and costs, for anyone chartering, insuring or financing shadow-fleet tonnage.",
+      "url": "https://home.treasury.gov/news/press-releases/sb0681",
+      "src": "U.S. Treasury · Nov 4"
     }
   ],
   "dive": {
-    "kicker": "Credit",
-    "title": "Banks quietly tap the brakes on CRE again",
-    "dek": "The Fed's latest loan officer survey shows lenders tightening on every type of commercial real estate loan, just as borrower demand fades too.",
-    "body": "<p>Every quarter the Fed asks a few dozen senior loan officers a simple question: are you making it harder or easier to borrow? The October survey came out Monday (61 domestic banks; answers were due Oct. 5), and for commercial real estate the answer flipped. Banks <b>tightened standards on net for all three CRE categories</b>: construction and land, nonfarm nonresidential, and multifamily. Three months ago, the July survey showed more banks easing than tightening in each one.</p><p>The moves are modest, not a 2023-style slam. About 19% of banks tightened construction loans and about 3% eased, a net of roughly +16. Nonfarm nonresidential, the bucket where industrial and outdoor storage live, came in near +9 after easing in July. Demand is the bigger warning. Net demand for construction loans was about −26, and multifamily about −23. Borrowers aren't lining up, and the ones who show up face a pickier lender.</p><p>It isn't only real estate. Standards on C&amp;I loans to small firms (under $50 million in sales) tightened too, and loan demand from businesses of every size weakened, with banks pointing to less spending on plant and equipment. Banks also tightened lending to nonbank lenders across the board, by a net of about 22 for business credit intermediaries, citing a murkier outlook and weaker borrowers. Those nonbanks are the debt funds and specialty lenders that stepped in when banks pulled back.</p><p>Why it matters: a tightening that starts at 9 to 16 net points is the kind that grows if the economy wobbles. For owners, refis and acquisition loans may come with more covenants, lower leverage and slower approvals, especially on smaller deals. In industrial outdoor storage the tenants are often small contractors, fleets and trade firms, so the squeeze on small-business credit could reach rent rolls before it reaches cap rates. Debt coming due in 2027 is worth getting in front of early.</p>",
+    "kicker": "Funding",
+    "title": "The overnight market is getting tighter, and floating-rate borrowers pay first",
+    "dek": "SOFR has drifted above the rate the Fed pays on reserves as Treasury's cash pile swells and the Fed's bill buying sits at zero.",
+    "body": "<p>If you borrow at a floating rate, your loan doesn't really start at the Fed. It starts in the overnight repo market, where SOFR is set each morning from about $3 trillion of trades. And that market has been quietly tightening. SOFR printed <b>3.97% on Nov. 3</b>, up from 3.88% on Oct. 14, while the Fed's target range never moved from 3.75% to 4.00%. It now sits 7 basis points above the 3.90% the Fed pays banks on reserves, and just 3 basis points under the 4.00% rate at the Fed's Standing Repo Facility, the market's effective ceiling.</p><p>Two things are draining the pool. Bank reserves fell <b>$74 billion</b> in the week to Oct. 28, to $2.895 trillion, down from $3.04 trillion in early September, as Treasury's cash account swelled past <b>$1.0 trillion</b>. Meanwhile the Fed has stopped topping up reserves: it bought about $40 billion a month of bills for \"reserve management\" early this year, cut to $25 billion and then $10 billion, and has bought none since mid-August. The current schedule, through Nov. 13, again has zero.</p><p>Why it matters: a floating-rate loan pays SOFR plus a spread, so a few basis points of repo pressure land straight on construction loans, bridge debt, warehouse lines and the debt funds and mortgage REITs that finance themselves in repo, before the Fed lifts a finger. Interest-rate caps and debt-service coverage tests feel it at the margin. For now this is a squeeze, not a seizure: banks borrowed just $5 million from the repo facility on Nov. 3, and SOFR is well below the 4.22% it hit at the end of October 2025.</p><p>What would change the picture: Treasury's own plan assumes its cash balance falls to $850 billion by year-end, which would hand roughly $165 billion back to the banking system. But it then expects to rebuild cash to $1.0 trillion by the end of March while borrowing $800 billion that quarter. Restarting reserve purchases would ease the strain, but with futures leaning toward a December hike, that move would look like easing at an awkward moment.</p>",
     "table": {
-      "cap": "Net % of domestic banks tightening standards / reporting stronger demand (Fed SLOOS)",
+      "cap": "SOFR vs. the Fed's rails (IORB 3.90%, repo facility 4.00%)",
       "cols": [
-        "Loan category",
-        "Standards, Jul '26",
-        "Standards, Oct '26",
-        "Demand, Oct '26"
+        "Date",
+        "SOFR",
+        "99th pct",
+        "Volume ($B)",
+        "vs. IORB"
       ],
       "rows": [
         [
-          "Construction & land",
-          "−3.7",
-          "+15.6",
-          "−25.8"
+          "Oct 14",
+          "3.88%",
+          "3.97%",
+          "2,974",
+          "−2bp"
         ],
         [
-          "Nonfarm nonresidential",
-          "−11.3",
-          "+8.8",
-          "−10.6"
+          "Oct 22",
+          "3.90%",
+          "3.98%",
+          "2,945",
+          "0bp"
         ],
         [
-          "Multifamily",
-          "−5.7",
-          "+8.8",
-          "−22.8"
+          "Oct 27",
+          "3.95%",
+          "4.04%",
+          "3,147",
+          "+5bp"
+        ],
+        [
+          "Oct 30 (month-end)",
+          "3.95%",
+          "4.03%",
+          "3,175",
+          "+5bp"
+        ],
+        [
+          "Nov 3",
+          "3.97%",
+          "4.05%",
+          "3,260",
+          "+7bp"
         ]
       ]
     },
     "watch": [
-      "FDIC Quarterly Banking Profile for Q3, usually late November: CRE past-due rates.",
-      "Fed Financial Stability Report, usually November: CRE and nonbank lending sections.",
-      "Next loan officer survey, usually early February: does tightening spread?"
+      "Around Nov 13: NY Fed's next purchase schedule. Do reserve-management buys restart?",
+      "Nov 30 and Dec 31: month- and year-end. Does SOFR touch 4.00%?",
+      "Thursdays (next: today): Fed H.4.1 release for reserves and Treasury's cash."
     ],
-    "src": "Sources: Federal Reserve Senior Loan Officer Opinion Survey, October 2026 (Nov 2, 2026) and July 2026, table 1 (net figures computed from reported shares)."
+    "src": "Sources: NY Fed SOFR, EFFR and repo operations APIs (fetched Nov 5, 2026); Fed H.4.1 (week ended Oct 28, 2026); NY Fed Treasury operational details; Fed FOMC statement and implementation note (Oct 28, 2026); U.S. Treasury borrowing estimates (Nov 2, 2026)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Labor",
-        "title": "September job openings jumped to 7.52 million, beating every forecast, as quits surged",
-        "rel": "JOLTS job openings, Sep",
-        "act": "7.523M",
-        "cons": "7.10M",
-        "prior": "7.190M",
-        "good": false,
+        "tag": "Services",
+        "title": "October ISM services slipped to 54.5 as orders cooled, but prices paid stayed at 73.0",
+        "rel": "ISM services PMI, Oct",
+        "act": "54.5",
+        "cons": "54.8",
+        "prior": "54.9",
+        "good": null,
         "chart": {
-          "t": "Job openings (millions)",
-          "unit": "M",
+          "t": "ISM services PMI (index, 50 = no change)",
+          "unit": "",
           "pts": [
             [
-              "Oct '24",
-              7.379
-            ],
-            [
-              "Nov '24",
-              7.566
-            ],
-            [
-              "Dec '24",
-              7.295
-            ],
-            [
-              "Jan '25",
-              7.431
-            ],
-            [
-              "Feb '25",
-              7.242
-            ],
-            [
-              "Mar '25",
-              6.952
-            ],
-            [
-              "Apr '25",
-              7.098
-            ],
-            [
-              "May '25",
-              7.31
-            ],
-            [
-              "Jun '25",
-              7.204
-            ],
-            [
-              "Jul '25",
-              7.089
-            ],
-            [
-              "Aug '25",
-              6.919
-            ],
-            [
-              "Sep '25",
-              7.169
-            ],
-            [
-              "Oct '25",
-              7.17
-            ],
-            [
               "Nov '25",
-              6.846
+              52.4
             ],
             [
               "Dec '25",
-              6.55
+              53.8
             ],
             [
               "Jan '26",
-              7.24
+              53.8
             ],
             [
               "Feb '26",
-              6.922
+              56.1
             ],
             [
               "Mar '26",
-              6.887
+              54.0
             ],
             [
               "Apr '26",
-              7.585
+              53.6
             ],
             [
               "May '26",
-              7.537
+              54.5
             ],
             [
               "Jun '26",
-              7.182
+              54.0
             ],
             [
               "Jul '26",
-              7.335
+              54.1
             ],
             [
               "Aug '26",
-              7.19
+              55.4
             ],
             [
               "Sep '26",
-              7.523
+              54.9
+            ],
+            [
+              "Oct '26",
+              54.5
             ]
           ],
-          "src": "Source: BLS JOLTS via FRED (JTSJOL), fetched Nov 4, 2026."
+          "src": "Source: ISM Services PMI report, October 2026 (PR Newswire, Nov 4, 2026)."
         },
-        "body": "<p>Job openings rose 333,000 to 7.523 million in September, released Tuesday, against a 7.10 million consensus; August was revised up to 7.190 million from 7.079 million. The openings rate rose to 4.5% from 4.3%, and there were 1.06 openings per unemployed worker, up from 1.02. A year earlier openings stood at 7.169 million.</p><p>Quits jumped 321,000 to 3.365 million, a 2.1% rate, the most since May 2023 per Reuters. Hires rose 131,000 to 5.402 million (3.4%), while layoffs fell 127,000 to 1.641 million, a 1.0% rate. Openings rose most in professional and business services (+106,000), state and local government excluding education (+104,000) and manufacturing (+54,000). Reuters reported that net hiring came from small and mid-sized firms.</p><p>The 10-year Treasury yield rose about 5 to 6 basis points to near 4.96% after the report. Fed funds futures put the odds of a December 9 hike at 81.4% on Wednesday morning, up from 77.4% a day earlier and 76.2% a week before (Investing.com).</p>",
+        "body": "<p>The ISM services index slipped to 54.5 in October from 54.9, a touch under the 54.8 consensus and still in expansion for a services sector that is most of the economy. Its 12-month average is 54.3, with a range of 52.4 to 56.1 over the past year.</p><p>The cooling came from demand. Business activity fell to 53.8 from 56.5 and new orders to 55.9 from 59.8. Employment rose to 51.4 from 50.1, above 50 for a second month; backlogs rose to 58.0 and supplier deliveries slowed to 56.7.</p><p>Prices paid eased to 73.0 from 74.0, below a 75.0 forecast but above 70 for the seventh time in eight months. Its 12-month average rose to 69.2, the highest since April 2023, and prices have risen 113 months in a row. ISM said tariffs and fuel costs were respondents' most-cited supply-chain issues. On a day dominated by election results, the 2-year Treasury yield closed at 4.58% from 4.61% and the 10-year at 4.90% from 4.95%.</p>",
         "experts": [
           {
-            "who": "Matthew Martin, senior U.S. economist, Oxford Economics",
-            "view": "Sees a solid labor market with some struggling pockets and expects the Fed to stay focused on inflation, hiking in December and again in March.",
-            "url": "https://www.staradvertiser.com/2026/11/03/breaking-news/u-s-job-openings-jump-as-resignations-surge/",
-            "src": "Reuters via Star-Advertiser · Nov 3"
+            "who": "Steve Miller, chair, ISM Services Business Survey Committee",
+            "view": "Said many companies have not yet fully passed fuel and tariff costs on to customers and expect more price pressure unless oil and trade conditions normalize.",
+            "url": "https://www.xtb.com/cy/market-analysis/news-and-research/breaking-ism-for-services-grows-at-the-slowest-pace-in-three-months-cost-pressure-persists",
+            "src": "XTB · Nov 4"
           },
           {
-            "who": "Ben Ayers, senior economist, Nationwide",
-            "view": "Noted openings again exceed unemployed workers, pointing to upward wage pressure into 2027, but expects job growth to be solid rather than strong.",
-            "url": "https://www.staradvertiser.com/2026/11/03/breaking-news/u-s-job-openings-jump-as-resignations-surge/",
-            "src": "Reuters via Star-Advertiser · Nov 3"
+            "who": "Adam Button, chief currency analyst, investingLive",
+            "view": "Read the report as a step back from September showing no big acceleration in the economy, though services remain strong and prices paid are very high.",
+            "url": "https://investinglive.com/news/october-us-ism-services-vs-54-8-expected/",
+            "src": "investingLive · Nov 4"
           },
           {
-            "who": "Heather Long, chief economist, Navy Federal Credit Union",
-            "view": "Called it encouraging that firms are slowly adding hires despite headwinds, with openings again outnumbering unemployed people.",
-            "url": "https://www.cnbc.com/2026/11/03/job-openings-posted-big-september-gain-in-positive-sign-for-labor-market-ahead-of-payrolls-report.html",
-            "src": "CNBC · Nov 3"
+            "who": "XTB market analysts",
+            "view": "Argued the headline dip doesn't signal a weakening economy, pointing to the highest backlogs since 2022 and firmer hiring, in a higher-inflation, resilient-growth picture.",
+            "url": "https://www.xtb.com/cy/market-analysis/news-and-research/breaking-ism-for-services-grows-at-the-slowest-pace-in-three-months-cost-pressure-persists",
+            "src": "XTB · Nov 4"
           }
         ],
-        "lean": "Economists quoted read the labor market as solid; Oxford's Martin expects a December hike, while Reuters notes employers remain in low-hire, low-fire mode.",
-        "src": "Sources: BLS JOLTS (Nov 3, 2026); Trading Economics; Reuters; CNBC; FRED; Investing.com Fed Rate Monitor (Nov 4)."
+        "lean": "Analysts quoted read it as cooler demand but sticky prices; economists polled by Reuters expect a December hike.",
+        "src": "Sources: ISM via PR Newswire; Trading Economics; Verified Investing (component forecasts); Reuters via WIKY; investingLive; XTB; U.S. Treasury yields (Nov 4, 2026)."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Iran · Strait of Hormuz",
-      "title": "Washington signs off on Qatar's draft deal, then hits Qeshm Island",
-      "body": "<p>The U.S. approved the draft memorandum of understanding that Qatar presented to Iran on Nov. 2, according to sources cited by Middle East Monitor, with Saudi Arabia and the UAE briefed and on board. Under the outline, Iran would announce a nuclear concession at the same moment Washington releases part of Iran's frozen assets, opening an interim deal and renewed negotiations.</p><p>The same day, the U.S. carried out limited strikes on Iran's Qeshm Island in the Strait of Hormuz; President Trump called it a minor attack on an anti-aircraft site and said a deal could still happen. Iran's Foreign Ministry said it entered talks with complete pessimism, and the IRGC claimed it downed a U.S. drone, which Central Command denied. Qatar said both sides remain committed to diplomacy.</p>",
-      "reach": "Through the oil risk premium: Brent fell $9.32 on Nov. 2 to about $104 as peace hopes built (OilPrice.com), and Aramco said Hormuz flows still haven't returned to prewar levels as it reported third-quarter oil sales at an average $95.20 a barrel, versus $70.10 a year earlier.",
+      "kicker": "UK · Bank of England",
+      "title": "The Bank of England hikes for the first time since 2023, and hints it may not be done",
+      "body": "<p>The Bank of England raised Bank Rate a quarter point to 4.00% at noon London time today, its first increase since August 2023. The vote was 8–1, with Catherine Mann wanting a bigger half-point move to 4.25%; at the September meeting the committee had held at 3.75% on a 6–3 split. The MPC said activity data had come in stronger than expected and that policy is not on a pre-set path.</p><p>The trigger is energy. UK inflation rose to 3.5% in September from 3.1% in August and 2.9% in July, driven mainly by fuel prices tied to the Middle East conflict, and the Bank now sees inflation peaking near 5% by mid-2027.</p>",
+      "reach": "Through global bond yields and the dollar: the UK 10-year gilt held near 5.15% after the decision and sterling sat around $1.348, a one-month high (Nov 5), with markets pricing three more UK hikes by November 2027.",
       "views": [
         {
-          "who": "Tim Waterer, KCM Trade",
-          "view": "Said reports of the Qeshm strike put risk premium back into oil and reversed the market's move toward pricing in diplomacy.",
-          "url": "https://oilprice.com/Latest-Energy-News/World-News/Oil-Prices-Bounce-Back-Following-Reports-of-US-Strikes-on-Iran.html",
-          "src": "OilPrice.com · Nov 2"
+          "who": "Andrew Bailey, Governor, Bank of England",
+          "view": "Signaled that further rate increases may be needed to bring inflation back to target.",
+          "url": "https://tradingeconomics.com/united-kingdom/government-bond-yield",
+          "src": "Trading Economics · Nov 5"
         },
         {
-          "who": "Priyanka Sachdeva, Phillip Nova",
-          "view": "Argued headlines alone are unlikely to sustain another rally without concrete evidence of new physical supply or infrastructure damage.",
-          "url": "https://oilprice.com/Latest-Energy-News/World-News/Oil-Prices-Bounce-Back-Following-Reports-of-US-Strikes-on-Iran.html",
-          "src": "OilPrice.com · Nov 2"
+          "who": "Economists in Reuters' October poll",
+          "view": "Most expected today's hike, but only about half saw another rise in early 2027, making them more cautious than market pricing.",
+          "url": "https://kfgo.com/2026/10/15/boe-to-raise-rates-to-4-in-november-but-economists-narrowly-expect-hold-from-there-reuters-poll/",
+          "src": "Reuters via KFGO · Oct 15"
         }
       ]
     },
     "hot": [
-      {
-        "r": "Iran / Hormuz",
-        "chg": "Nov 3: U.S. approved Qatar's draft MOU, then struck Qeshm Island; Iran's foreign ministry voiced complete pessimism.",
-        "trend": "Talks advance, strikes continue",
-        "tc": "std",
-        "ch": "Oil risk premium, tankers",
-        "next": "Joint MOU announcement, date unset"
-      },
       {
         "r": "Sweden",
         "chg": "Nov 4: the Riksbank hiked a quarter point to 2.00% and signaled further tightening is likely.",
@@ -265,16 +220,24 @@
         "next": "Riksbank meeting Dec 16"
       },
       {
-        "r": "United Kingdom",
-        "chg": "Rabobank, BofA and Goldman expect a quarter-point hike to 4.00% on Nov 5; the last vote was 6–3.",
-        "trend": "Tightening",
-        "tc": "esc",
-        "ch": "Gilt yields, sterling",
-        "next": "BoE decision Nov 5"
+        "r": "Iran / Hormuz",
+        "chg": "Nov 4: White House tied midterm losses to the war; Trump said no immediate plans to ramp up strikes.",
+        "trend": "Easing on peace hopes",
+        "tc": "eas",
+        "ch": "Oil risk premium, tankers",
+        "next": "Qatar-brokered MOU, date unset"
+      },
+      {
+        "r": "Norway",
+        "chg": "Nov 5: Norges Bank held at 4.50% after September's hike, saying inflation is too high and it may tighten further.",
+        "trend": "Hawkish hold",
+        "tc": "std",
+        "ch": "Krone, European yields",
+        "next": "Norges Bank meeting Dec 17"
       },
       {
         "r": "OPEC+",
-        "chg": "Nov 1: seven core members held December output targets at September levels, a third straight month unchanged.",
+        "chg": "Nov 1: seven core members held December output targets at September levels, a third month unchanged.",
         "trend": "Steady",
         "tc": "std",
         "ch": "Gulf spare capacity, Brent",
@@ -283,28 +246,10 @@
     ],
     "cb": [
       {
-        "d": "2026-11-04",
-        "bank": "Banco Central do Brasil",
-        "rate": "13.75%",
-        "exp": "Hold (TE forecast and consensus)"
-      },
-      {
-        "d": "2026-11-05",
-        "bank": "Bank of England",
-        "rate": "3.75%",
-        "exp": "Hike to 4.00% (TE consensus)"
-      },
-      {
-        "d": "2026-11-05",
-        "bank": "Norges Bank",
-        "rate": "4.50%",
-        "exp": "Hold; bank prepared to tighten further (TE)"
-      },
-      {
         "d": "2026-11-05",
         "bank": "Banxico",
         "rate": "6.50%",
-        "exp": "Hold (TE forecast)"
+        "exp": "Hold (TE forecast and consensus)"
       },
       {
         "d": "2026-11-18",
@@ -316,13 +261,19 @@
         "d": "2026-11-19",
         "bank": "South African Reserve Bank",
         "rate": "7.25%",
-        "exp": "Hike to 7.50% (TE forecast)"
+        "exp": "TE sees 7.50% by quarter end"
       },
       {
         "d": "2026-11-20",
         "bank": "PBoC loan prime rate",
         "rate": "3.00%",
         "exp": "No change seen this quarter (TE)"
+      },
+      {
+        "d": "2026-11-26",
+        "bank": "Bank of Korea",
+        "rate": "3.00%",
+        "exp": "TE sees 3.25% by quarter end"
       }
     ],
     "real": {
@@ -337,12 +288,12 @@
           2.1
         ],
         [
-          "U.S.",
-          0.3
+          "UK",
+          0.5
         ],
         [
-          "UK",
-          0.25
+          "U.S.",
+          0.3
         ],
         [
           "India",
@@ -362,56 +313,40 @@
         ]
       ]
     },
-    "src": "Sources: Middle East Monitor (Nov 3); Gulf News live blog (Nov 3–4); OilPrice.com (Nov 2); Trading Economics country interest-rate pages and G20 lists (Nov 4); FXStreet/Rabobank (Oct 30); OPEC; prior brief (OPEC+ Nov 1)."
+    "src": "Sources: Trading Economics (UK, Norway, Mexico, Indonesia, South Africa, Korea interest-rate pages; UK gilt page; G20 interest-rate and inflation lists; crude oil page), MoneyWeek live blog (BoE vote), Reuters poll via KFGO, OPEC+ from Nov 3–4 briefs."
   },
   "reading": {
-    "kind": "Bio",
-    "who": "Charlie Munger",
-    "title": "Charlie Munger: the partner who changed Berkshire's mind",
-    "dek": "A meteorologist turned lawyer turned investor, Munger steered Buffett from cheap stocks toward great businesses and preached patience above all.",
-    "body": "<p>Charlie Munger was born in Omaha on January 1, 1924, the same city where Warren Buffett grew up. He left the University of Michigan, where he studied mathematics, to enlist in 1943, and the Army sent him to Caltech to learn meteorology. After the war he went to Harvard Law School and graduated magna cum laude in 1948. He then moved to Los Angeles and practiced real estate law, co-founding the firm now known as Munger, Tolles &amp; Olson in 1962.</p><p>Law paid the bills, but capital was the real interest. Also in 1962 he launched an investment partnership, Wheeler, Munger &amp; Co., with Jack Wheeler. From 1962 through 1975 it compounded at roughly <b>19.8% a year against 5.0% for the Dow</b>. The concentrated style that produced those numbers also cut deep: the fund fell about 32% in 1973 and 31% in 1974, and Munger wound it up in 1976. Few great records came without a drawdown that tested the investor's nerve.</p><p>His lasting contribution came through Warren Buffett. In 1972 the pair bought See's Candies for $25 million through Blue Chip Stamps, for a business then earning about $4 million a year before taxes. Munger was the one more willing to pay up for pricing power and loyal customers, and he later called See's the first high-quality business Berkshire ever bought. That deal pushed Berkshire away from Graham-style bargain hunting toward owning great franchises at fair prices. Munger became Berkshire's vice chairman in 1978 and held the post until his death, while also chairing Wesco Financial from 1984 to 2011 and leading the Daily Journal.</p><p>Munger's toolkit was intellectual rather than quantitative. He argued for a <i>latticework of mental models</i>, meaning core ideas borrowed from many disciplines, especially psychology, and applied together rather than in isolation. His 1995 Harvard talk on the psychology of human misjudgment catalogued how biases compound into what he called the Lollapalooza effect. Late in life he showed the same flexibility: Buffett credited him with Berkshire's 2008 purchase of a 9.89% stake in Chinese automaker BYD for about $230 million.</p><p>He died in Santa Barbara on November 28, 2023, at 99. His legacy is a temperament as much as a method: patience, few decisions made with conviction, and a willingness to sit on cash until the odds were plainly favorable. With bond yields near 5%, oil swinging on war headlines and AI darlings wobbling, that temperament looks as relevant as ever.</p>",
+    "kind": "Thoughts",
+    "who": "George Soros",
+    "title": "When the mirror talks back",
+    "dek": "George Soros built a fortune on one uncomfortable idea: market prices don't just reflect reality, they help create it.",
+    "body": "<p>Most market theories start from a tidy assumption: prices are a mirror. Fundamentals change, prices reflect them, and the mirror never talks back. George Soros, born in Budapest in 1930 and a student of philosopher Karl Popper at the London School of Economics, thought the mirror was a lot chattier than that. His name for the back-and-forth was <b>reflexivity</b>, an idea he sketched in the early 1960s and laid out publicly in <i>The Alchemy of Finance</i> in 1987.</p><p>The core claim is simple. Investors act on their beliefs, and those beliefs are always partly wrong. But their actions move prices, and prices can change the very fundamentals they are supposed to be measuring. A classic example is lending. When property values rise, banks happily lend more against them; the extra credit pushes prices higher, which makes the collateral look even safer, which justifies more lending. Run the movie backward and the same loop drives a collapse.</p><p>That loop is the engine of the Soros <b>boom-bust sequence</b>. A trend and a popular belief start reinforcing each other. For a while the story looks confirmed by the data, partly because the story is creating the data. Eventually the gap between perception and reality gets too wide to paper over, sentiment flips, and the unwind tends to be faster and uglier than the run-up. Equilibrium, in this view, is the exception; disequilibrium is the normal weather.</p><p>The practical twist is <b>fallibility</b>, which Soros applied to himself first. If everyone's map of the market is flawed, the edge goes to whoever spots the flaw in their own map soonest. He has credited his success less to being right than to recognizing when he wasn't. That mindset didn't make him timid. On Black Wednesday, September 16, 1992, his fund had sold short more than $10 billion of sterling; when Britain crashed out of the European Exchange Rate Mechanism, the profit was estimated at over $1 billion, and the \"man who broke the Bank of England\" nickname stuck. He saw a policy promise markets had stopped believing, and leaned on it hard.</p><p>The lesson isn't \"bet the farm.\" It's to ask, of any hot trade, whether the price is reflecting reality or manufacturing it, and to know in advance what evidence would tell you your thesis was just a story you told yourself. Soros's real superpower was treating his own conviction as a hypothesis, not a fact.</p>",
+    "quote": {
+      "text": "I'm only rich because I know when I'm wrong.",
+      "src": "George Soros, as cited on Wikipedia"
+    },
     "takeaways": [
-      "With the 10-year near 5%, cash earns enough to wait for real bargains.",
-      "Wobbly AI stocks: pay up for durable pricing power, not just a story.",
-      "Election and war headlines feed biases; check them before trading."
+      "AI stocks: ask whether soaring prices are funding real growth or just the story.",
+      "4.9% yields and a likely December hike can flip a reflexive loop into reverse.",
+      "Oil just fell 8% on peace hopes: name in advance what would prove you wrong."
     ],
-    "src": "Read more: https://en.wikipedia.org/wiki/Charlie_Munger · https://en.wikipedia.org/wiki/See%27s_Candies · https://en.wikipedia.org/wiki/BYD_Company"
+    "src": "Read more: https://en.wikipedia.org/wiki/George_Soros · https://en.wikipedia.org/wiki/Reflexivity_(social_theory)"
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "held Oct 28; futures ~81% for a Dec 9 hike (Nov 4)",
+      "d": "held Oct 28; futures ~79% for a Dec 9 hike (TE, Nov 5)",
       "good": false
     },
     {
       "n": "30-yr mortgage",
       "v": "7.24%",
-      "d": "Freddie Mac, Oct 29 (6.17% a year ago); next Nov 5",
+      "d": "Freddie Mac, Oct 29 (6.17% a year ago); next today",
       "good": false
     }
   ],
   "cal": [
-    {
-      "d": "2026-11-04",
-      "tag": "Labor",
-      "e": "ADP private payrolls (Oct)",
-      "act": null,
-      "cons": "80K",
-      "prior": "90K",
-      "good": null,
-      "why": "Preview of Friday's jobs report"
-    },
-    {
-      "d": "2026-11-04",
-      "tag": "Economy",
-      "e": "ISM services PMI (Oct)",
-      "act": null,
-      "cons": "54.8",
-      "prior": "54.9",
-      "good": null,
-      "why": "Services demand and prices"
-    },
     {
       "d": "2026-11-05",
       "tag": "Labor",
@@ -427,10 +362,20 @@
       "tag": "Labor",
       "e": "Unit labor costs, Q3 prelim",
       "act": null,
-      "cons": "0.7%",
+      "cons": "0.6%",
       "prior": "1.2%",
       "good": null,
       "why": "Labor-cost inflation check"
+    },
+    {
+      "d": "2026-11-05",
+      "tag": "Economy",
+      "e": "Productivity, Q3 prelim",
+      "act": null,
+      "cons": "2.8%",
+      "prior": "1.4%",
+      "good": null,
+      "why": "Growth without wage inflation"
     },
     {
       "d": "2026-11-06",
@@ -454,6 +399,16 @@
     },
     {
       "d": "2026-11-06",
+      "tag": "Labor",
+      "e": "Average hourly earnings y/y (Oct)",
+      "act": null,
+      "cons": "2.9%",
+      "prior": "3.0%",
+      "good": null,
+      "why": "Wage pressure behind services prices"
+    },
+    {
+      "d": "2026-11-06",
       "tag": "Economy",
       "e": "UMich sentiment, Nov prelim",
       "act": null,
@@ -470,7 +425,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Key read before Dec 9"
+      "why": "Last CPI before Dec 9"
     },
     {
       "d": "2026-11-13",
@@ -536,177 +491,177 @@
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,568.92",
-      "c": 0.36,
-      "ctext": "+0.36%",
-      "y": 11.8,
-      "ytext": "+11.8%",
-      "why": "Snapped a three-day slide as Nvidia, Broadcom and other AI heavyweights bounced, though most stocks in the index fell.",
-      "asof": "Nov 3"
+      "v": "7,688.62",
+      "c": 1.58,
+      "ctext": "+1.58%",
+      "y": 13.5,
+      "ytext": "+13.5%",
+      "why": "Jumped after Democrats won both chambers, with consumer, financial and real estate stocks leading the post-election rally.",
+      "asof": "Nov 4"
     },
     {
       "n": "Dow",
-      "v": "51,786.72",
-      "c": -0.38,
-      "ctext": "−0.38%",
-      "y": 10.0,
-      "ytext": "+10.0%",
-      "why": "Apple fell 1.9% after warning that pricier memory chips will squeeze margins, dragging the blue-chip average.",
-      "asof": "Nov 3"
+      "v": "53,356.12",
+      "c": 3.03,
+      "ctext": "+3.03%",
+      "y": 13.3,
+      "ytext": "+13.3%",
+      "why": "Soared 1,569 points to a two-month high as 3M jumped 9.6% and blue chips led the election rally.",
+      "asof": "Nov 4"
     },
     {
       "n": "Nasdaq",
-      "v": "25,372.01",
-      "c": 0.83,
-      "ctext": "+0.83%",
-      "y": 8.7,
-      "ytext": "+8.7%",
-      "why": "Chipmakers including Nvidia and AMD climbed as AI stocks steadied after a volatile Monday.",
-      "asof": "Nov 3"
+      "v": "25,736.51",
+      "c": 1.44,
+      "ctext": "+1.44%",
+      "y": 10.2,
+      "ytext": "+10.2%",
+      "why": "Rose but trailed the Dow as chipmakers sat out the election rally.",
+      "asof": "Nov 4"
     },
     {
       "n": "WTI crude",
-      "v": "$96.09",
+      "v": "$88.12",
       "rate": true,
-      "c": -0.38,
-      "ctext": "−0.38%",
+      "c": -8.29,
+      "ctext": "−8.29%",
       "y": null,
       "ytext": null,
-      "why": "Traders cut risk on Election Day and leaned on diplomacy hopes despite a reported U.S. strike on Iran's Qeshm Island.",
-      "asof": "Nov 3"
+      "why": "Plunged $7.97 as the Democratic sweep raised hopes the Iran war winds down and Trump said he has no plans to escalate.",
+      "asof": "Nov 4"
     },
     {
       "n": "Dollar index",
-      "v": "101.62",
+      "v": "101.56",
       "c": 0.0,
       "ctext": "0.00%",
-      "y": null,
-      "ytext": null,
-      "why": "Settled unchanged as currency traders sat on their hands waiting for midterm results.",
-      "asof": "Nov 3"
+      "y": 1.83,
+      "ytext": "+1.83%",
+      "why": "Hit a five-week low near 101.3 Wednesday as election clarity cut haven demand, then steadied Thursday morning.",
+      "asof": "Nov 5"
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.95,
-      "d1m": 7,
-      "d6m": 31,
-      "d1y": -27,
-      "asof": "Nov 2"
+      "cur": 3.97,
+      "d1m": 9,
+      "d6m": 33,
+      "d1y": -16,
+      "asof": "Nov 3"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.61,
-      "d1m": -22,
-      "d6m": 73,
-      "d1y": 101,
-      "asof": "Nov 3"
+      "cur": 4.58,
+      "d1m": -25,
+      "d6m": 63,
+      "d1y": 100,
+      "asof": "Nov 4"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.74,
-      "d1m": -32,
-      "d6m": 72,
-      "d1y": 102,
-      "asof": "Nov 3"
+      "cur": 4.69,
+      "d1m": -37,
+      "d6m": 61,
+      "d1y": 100,
+      "asof": "Nov 4"
     },
     {
       "n": "10Y Treasury",
-      "cur": 4.95,
-      "d1m": -33,
-      "d6m": 56,
-      "d1y": 82,
-      "asof": "Nov 3"
+      "cur": 4.9,
+      "d1m": -38,
+      "d6m": 45,
+      "d1y": 80,
+      "asof": "Nov 4"
     }
   ],
   "rcols": [
-    "Nov 3 '26",
+    "Nov 4 '26",
     "Oct 2 '26",
-    "May 1 '26",
-    "Nov 3 '25"
+    "May 4 '26",
+    "Nov 4 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.61",
+        "4.58",
         "4.83",
-        "3.88",
-        "3.60"
+        "3.95",
+        "3.58"
       ],
-      "d1m": -22,
-      "d1y": 101
+      "d1m": -25,
+      "d1y": 100
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.74",
+        "4.69",
         "5.06",
-        "4.02",
-        "3.72"
+        "4.08",
+        "3.69"
       ],
-      "d1m": -32,
-      "d1y": 102
+      "d1m": -37,
+      "d1y": 100
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "4.95",
+        "4.90",
         "5.28",
-        "4.39",
-        "4.13"
+        "4.45",
+        "4.10"
       ],
-      "d1m": -33,
-      "d1y": 82
+      "d1m": -38,
+      "d1y": 80
     },
     {
-      "grp": "SOFR · dates Nov 2 '26 / Oct 2 '26 / May 1 '26 / Oct 31 '25"
+      "grp": "SOFR · dates Nov 3 '26 / Oct 2 '26 / May 1 '26 / Nov 3 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.95",
+        "3.97",
         "3.88",
         "3.64",
-        "4.22"
+        "4.13"
       ],
-      "d1m": 7,
-      "d1y": -27
+      "d1m": 9,
+      "d1y": -16
     }
   ],
   "freight": [
+    {
+      "n": "Logistics Managers' Index",
+      "v": "70.7",
+      "pl": "Month",
+      "pc": "+0.5",
+      "y": null,
+      "why": "October; inventory costs 88.8, highest since March 2022."
+    },
+    {
+      "n": "Baltic Dry Index",
+      "v": "2,694",
+      "pl": "Day",
+      "pc": "+4.02%",
+      "y": "+34.5%",
+      "why": "Nov 4; rebounded 104 points after Tuesday's drop."
+    },
     {
       "n": "Diesel, U.S. avg (EIA)",
       "v": "$6.292/gal",
       "pl": "Week",
       "pc": "−$0.060",
       "y": "+$2.539",
-      "why": "Week of Nov 2; first drop after oil's slide."
-    },
-    {
-      "n": "Drewry World Container Index",
-      "v": "$4,429/40ft",
-      "pl": "Week",
-      "pc": "−3%",
-      "y": null,
-      "why": "Oct 29; transpacific rates fell, Shanghai–LA −6%."
-    },
-    {
-      "n": "Baltic Dry Index",
-      "v": "2,590",
-      "pl": "Day",
-      "pc": "−2.19%",
-      "y": "+32%",
-      "why": "Nov 3; down 15.6% over the past month."
+      "why": "Week of Nov 2; next print Nov 9 after oil's plunge."
     }
   ],
   "also": "",
-  "sport": "",
-  "foot": "Sources: U.S. Treasury daily par yield CSV (latest Nov 3; references Oct 2, May 1 and Nov 3, 2025 from series); NY Fed API (SOFR latest Nov 2; references Oct 2, May 1, Oct 31, 2025); AP via WTOP and WPTF (Nov 3 index closes); AP 'How major US stock indexes fared 11/4/2025' via search snippets (mymotherlode, am920) for 1Y closes S&P 6,771.55, Dow 47,085.24, Nasdaq 23,348.64; DTN (WTI $96.09 settle, Brent $103.60, USDX 101.624 settled unchanged, Nov 3); Fox Business (overnight futures, 10Y 4.906%, Nov 4 6:15am ET); TIME, SBS (election calls); Reuters via Investing.com (refunding); Investing.com (AMD, Meta bonds, Fed Rate Monitor); Uber IR; Shopify 8-K; EIA; DCN (Drewry WCI); Trading Economics (BDI, calendar, G20 lists, central bank pages); BLS, FRED, Reuters/Star-Advertiser, CNBC (JOLTS); Freddie Mac; Fed SLOOS Oct 2026; Wikipedia (Munger, See's, BYD); Middle East Monitor, Gulf News, OilPrice.com (World Desk).<br>Notes: SOFR for Nov 3 not yet published. 1Y SOFR reference is Oct 31, 2025 (4.22%, a month-end spike). Dollar index 1Y left out (TE shows +1.09% y/y on Nov 4's 101.30, not Nov 3); TE implies a Nov 3 close near 101.87 vs DTN's 101.624. WTI 1Y left out (no dated Nov 2025 settle). FedWatch page not fetched; Dec hike odds from Investing.com's Fed Rate Monitor (81.4%, Nov 4 7:05am ET). JOLTS components from Reuters; consensus 7.10M per TE/Reuters (CNBC: 7.15M). CPI consensus for Nov 10 unclear on TE, listed without numbers. SLOOS net figures computed from reported shares. Aramco Q3 figures from the Gulf News live blog. BoE expectation per TE consensus and Rabobank/BofA/Goldman previews; OPEC+ Nov 1 row carried from Nov 3 brief. Bank Indonesia Nov 18 TE column unclear; only the quarter-end forecast shown. Real rates use September CPI for U.S., China, Japan, UK, Canada, Mexico, India and the October flash for the euro area (4.0%). Drewry WCI has no y/y figure. No sports line: no Nov 3 result confirmed on a fetched page.",
+  "sport": "Victor Wembanyama poured in 52 points with 24 rebounds and 8 blocks as the Spurs edged the Mavericks 112-111 on Wednesday.",
+  "foot": "Sources: U.S. Treasury daily par yield CSV (latest Nov 4; references Oct 2, May 4 and Nov 4, 2025 from series); NY Fed API (SOFR latest Nov 3; references Oct 2, May 1, Nov 3, 2025); AP via WTOP (Nov 4 index closes) and AP 'How major US stock indexes fared Tuesday, 11/4/2025' via mymotherlode/am920 (1Y closes 6,771.55 / 47,085.24 / 23,348.64); Xinhua via The Star (WTI $88.12 and Brent $94.62 settles, Nov 4); Trading Economics (dollar index, stock market, crude, BDI, LMI, calendar, G20 lists, central bank pages); Treasury refunding (sb0678) and OFAC (sb0681) releases; AppLovin 8-K; Fed FOMC statement Oct 28; NY Fed APIs, H.4.1, Treasury borrowing estimates (deep dive); ISM via PR Newswire, Verified Investing, Reuters/WIKY, investingLive, XTB (Data in focus); MoneyWeek, Reuters/KFGO (World Desk); EIA; Land of Basketball; Wikipedia (Soros).<br>Notes: SOFR for Nov 4 not yet published. Dollar index shown at TE's Nov 5 morning quote (101.562, flat on the day); no dated Nov 4 settle found; TE says it fell to about 101.3 Wednesday. 1Y dollar change per TE. WTI 1Y left out (no dated Nov 2025 settle). TE shows the Dow at 53,365 (+1,578); AP's 53,356.12 used. Nvidia, Micron, Microsoft, Amazon moves and Qualcomm's after-hours drop per TE. Dec hike odds 79% per TE's currency page (Nov 5); FedWatch not fetched. ADP October report left out (actual not confirmed on a fetched page). ISM prices index monthly series not available (only Jul–Oct); chart shows headline. Drewry WCI left out (Nov 5 print not found). Norges Bank Dec 17 date per TE calendar (Jan 21 also listed). Bank of Korea Nov 26 date unverified. Riksbank and OPEC+ facts carried from prior briefs. PBoC row carried from Nov 4 brief. Real rates use September CPI for U.S., China, Japan, UK, Canada, Mexico, India and October for the euro area (TE shows 4.0%; not cross-checked with Eurostat). Euro area policy rate 2.65% as TE lists it. Mortgage rate: Freddie Mac's Nov 5 print comes out after this brief.",
   "series": [
     [
       "2021-10-12",
@@ -8297,6 +8252,12 @@
       4.61,
       4.74,
       4.95
+    ],
+    [
+      "2026-11-04",
+      4.58,
+      4.69,
+      4.9
     ]
   ],
   "log": {
@@ -8366,8 +8327,8 @@
         "t": "Banks quietly tap the brakes on CRE again"
       },
       {
-        "d": "2026-11-04",
-        "t": "Banks quietly tap the brakes on CRE again"
+        "d": "2026-11-05",
+        "t": "The overnight market is getting tighter, and floating-rate borrowers pay first"
       }
     ],
     "corner": [
@@ -8452,9 +8413,9 @@
         "kind": "Bio"
       },
       {
-        "d": "2026-11-04",
-        "who": "Charlie Munger",
-        "kind": "Bio"
+        "d": "2026-11-05",
+        "who": "George Soros",
+        "kind": "Thoughts"
       }
     ],
     "focus": [
@@ -8511,8 +8472,8 @@
         "t": "September job openings jumped to 7.52 million, beating every forecast, as quits surged"
       },
       {
-        "d": "2026-11-04",
-        "t": "September job openings jumped to 7.52 million, beating every forecast, as quits surged"
+        "d": "2026-11-05",
+        "t": "October ISM services slipped to 54.5 as orders cooled, but prices paid stayed at 73.0"
       }
     ],
     "world": [
@@ -8569,8 +8530,8 @@
         "t": "Washington signs off on Qatar's draft deal, then hits Qeshm Island"
       },
       {
-        "d": "2026-11-04",
-        "t": "Washington signs off on Qatar's draft deal, then hits Qeshm Island"
+        "d": "2026-11-05",
+        "t": "The Bank of England hikes for the first time since 2023, and hints it may not be done"
       }
     ]
   }
