@@ -1,0 +1,198 @@
+{
+  "as_of": "2026-11-09",
+  "source": "Outlook review of ben@sandpiperre.com (read-only), 2026-11-06 evening → 2026-11-09 ~11am MT. Automated run; no LOI search. Inbox + Sent Items swept; deal searches for Ives, Brighton Rd, Harrison, Taylor, Nesbitt. No new mail found on 1862 Ives, 11481 Brighton Rd, 5355 N Harrison or 724 Taylor since the 11/8 snapshot, so those deals are left out.",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "stage": "Under Contract",
+        "close_date": "2026-11-13"
+      },
+      "status": [
+        "CLOSING FRIDAY 11/13. Ben told Burke 11/9: DD waived except execution of the SNDA and estoppel; closing held for Friday. Ben confirmed the 11/13 target to Fidelity (Andy Rowley) 11/9.",
+        "Estoppel/SNDA: seller's attorney Craig Johnson (Johnson & Ytterberg) sent three redlines to ZCS 11/9 (J&Y entity language). Ben replied 11/9 asking all parties to use his updated versions (Craig's landlord-entity changes, corporate-entity language, rent update in estoppel §7) and asked David Church (ZCS) to confirm receipt. Pat confirmed ZCS paid November rent (check dated 10/22, received 10/30).",
+        "Lender: Ben confirmed to Essex 11/9 that the $100K escrow stays at Vectra. FIB wants to see the final estoppel/SNDA draft before execution (Perigard 11/9).",
+        "Closing mechanics: Steve Schuster (Burke) asked Fidelity 11/9 for draft closing docs and settlement statement; Fidelity (Briana Randel) asked for all amendments and whether it's a loan; Ben said yes, FIB loan on a separate chain. Polsinelli (Nick McGrath) sent more revisions to the Loan Agreement, CentrePoint Guaranty and Environmental Indemnity 11/9. Burke prioritizing equity docs (JVA + Cross Indemnity; Evan Falon chased comments 11/9).",
+        "Ben owes: total CentrePoint equity figure to Essex for the settlement statement (Ben is waiting on Tyler Hendrickson for it, 11/9); PNC (Timothy Hutchinson) needs the SP Brighton OA dated plus OAs for CPP-SPC Holdco JV, SPC CPP JV Member, CP IOS Manager and CentrePoint Properties to open the operating account (11/9). Ben signed the FIB account setup 11/9."
+      ]
+    },
+    {
+      "key": "281 Fogg",
+      "fields": {
+        "stage": "Negotiating PSA"
+      },
+      "status": [
+        "Seller's PSA redline (Chris Burns, JLL, 11/6) is 'pretty minimal'; Ben told Burns 11/9 he'll try to turn it today. Ben is reviewing it himself while Burke prioritizes the 106th equity docs.",
+        "Plan per Ben 11/4: PSA signed by Thu/Fri 11/12–13; 45-day DD, 15-day close, targeting Jan 13–14. EM: $25K at PSA, $75K more at lease signing, $100K more at go-hard.",
+        "Capital (Essex, Matt Perigard): Ben answered 11/9 — 45-day DD, use approvals secured before DD ends, Carvana lease to commence before closing.",
+        "Seller won't let buyer into the lease negotiations (Turnquist 11/4); Ben agreed to remove PSA §11(d). Carvana does the work and buyer funds it; credit for the wash bay portion.",
+        "Environmental: AEI 2021 Phase I passed to True North 11/6; AEI proposal to start once under contract."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "stage": "Closed"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Verona IOS LLC. GC: TJK. On track for early December completion (Ben to RBN 11/6).",
+        "Catch basin: Ben approved TJK's $10,132 catch basin cover and related work 11/9 (galvanized load-bearing grates $8,453, install/concrete $1,104, plumbing $575); Kevin Harn (TJK) confirmed.",
+        "Still open with TJK (Jon Hepner): electrical options from 11/6 ($512 damaged only or $2,742 uniform in showroom; $772 service bay outlets). No reply seen.",
+        "Data center inquiry: Roy Harel (Nublock) asked Bryant Meyer (Oakbrook) 11/9 what it would take to scale power to 10–55 MW; Meyer says the site has 480V 3-phase 400A today and is calling the utility on feasibility and cost.",
+        "Leasing: slow; RFPs for Congruex and Rent a Fence (11/6). Ben on site Dec 10–11."
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "deal": "10275 E 106th",
+      "name": "Briana Randel",
+      "firm": "Fidelity National Title, National Commercial Services",
+      "email": "briana@fnf.com",
+      "phone": "949.622.4338",
+      "notes": "Role: AVP, National Commercial Escrow Officer on 106th (FBDO-2607358)."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Craig Johnson",
+      "firm": "Johnson & Ytterberg, P.C.",
+      "email": "cjohnson@cdjlaw.com",
+      "phone": "303-466-2335",
+      "notes": "Role: seller's attorney on 106th. Office hours Tue–Thu 9–3."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Timothy Hutchinson",
+      "firm": "PNC Bank",
+      "email": "timothy.hutchinson@pnc.com",
+      "phone": "303-980-7739",
+      "notes": "Role: VP, Business Banking Client Solutions Advisor. Opening the SP Brighton IOS LLC operating account."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Tyler Hendrickson",
+      "firm": "CentrePoint Properties",
+      "email": "tyler@cpointproperties.com",
+      "notes": "Role: CentrePoint (capital partner) on 106th; owes Ben the total equity figure."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Bryant Meyer",
+      "firm": "Oakbrook Corp",
+      "email": "bmeyer@oakbrookcorp.com",
+      "notes": "Role: not stated (inferred: property/facilities contact on 6371–6399 Nesbitt). Checking utility power upgrade for a data center use, 11/9."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Kevin Harn",
+      "firm": "TJK Design Build",
+      "email": "kharn@tjkdesignbuild.com",
+      "phone": "608-513-5254",
+      "notes": "Role: Project Manager, TJK (GC at Nesbitt)."
+    }
+  ],
+  "tasks": [
+    {
+      "contact_email": "mperigard@essexreca.com",
+      "type": "email",
+      "due_date": "2026-11-10",
+      "note": "106th: send FIB the final estoppel/SNDA drafts before execution (Perigard 11/9)"
+    },
+    {
+      "contact_email": "tyler@cpointproperties.com",
+      "type": "email",
+      "due_date": "2026-11-10",
+      "note": "106th: get total CentrePoint equity figure and pass it to Essex for the settlement statement"
+    },
+    {
+      "contact_email": "timothy.hutchinson@pnc.com",
+      "type": "email",
+      "due_date": "2026-11-11",
+      "note": "106th: send PNC the dated SP Brighton OA plus OAs for CPP-SPC Holdco JV, SPC CPP JV Member, CP IOS Manager and CentrePoint Properties"
+    }
+  ],
+  "contact_log": [
+    {
+      "contact_email": "cjohnson@cdjlaw.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "106th: Craig sent estoppel/SNDA/side letter redlines; Ben circulated his updated versions incorporating them."
+    },
+    {
+      "contact_email": "mperigard@essexreca.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "106th: Ben confirmed escrow stays at Vectra; FIB wants final drafts before execution; Essex invoices to title, waiting on equity figure. Fogg: Ben answered DD/use approvals/lease timing."
+    },
+    {
+      "contact_email": "christopher.burns@jll.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "281 Fogg: Ben confirmed receipt of PSA comments; will try to turn today."
+    },
+    {
+      "contact_email": "jhepner@tjkdesignbuild.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "Nesbitt: Ben approved the $10,132 catch basin work."
+    },
+    {
+      "contact_email": "briana@fnf.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "106th: Fidelity asked for amendments and loan vs cash; Ben said FIB loan on a separate chain, closing 11/13."
+    },
+    {
+      "contact_email": "timothy.hutchinson@pnc.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "106th: PNC needs dated OA and parent-entity OAs to open the SP Brighton account."
+    },
+    {
+      "contact_email": "pboylet5853@gmail.com",
+      "type": "email",
+      "date": "2026-11-08",
+      "note": "106th: ZCS paid November rent (check dated 10/22, received 10/30)."
+    }
+  ],
+  "diligence": [],
+  "comps": [
+    {
+      "kind": "lease",
+      "market": "IE",
+      "address": "2042 S Grove Ave",
+      "city": "Ontario",
+      "state": "CA",
+      "submarket": null,
+      "comp_date": null,
+      "available_date": null,
+      "status": "Signed",
+      "landlord": null,
+      "tenant": null,
+      "buyer": null,
+      "seller": null,
+      "property_type": null,
+      "sf": 24147,
+      "acres": 4.2,
+      "price": null,
+      "bumps": null,
+      "term_months": null,
+      "broker": "Voit Real Estate Services - Kevin Fults",
+      "zoning": null,
+      "yard": null,
+      "fence": null,
+      "lit": null,
+      "doors": null,
+      "depth": null,
+      "occupancy_note": null,
+      "marketing": null,
+      "notes": "Lease signed per IOS Daily 11/9; Kevin Fults (Voit) represented the tenant. No rent, term, parties or start date given.",
+      "rent_monthly": null,
+      "rent_plf": null,
+      "nnn_plf": null,
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAABJtOtSAAA=",
+      "source_note": "IOS Daily 11/9 - IOS List"
+    }
+  ],
+  "lois": []
+}
