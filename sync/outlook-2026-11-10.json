@@ -1,0 +1,172 @@
+{
+  "as_of": "2026-11-10",
+  "source": "Outlook review of ben@sandpiperre.com (read-only), 2026-11-09 ~11am MT → 2026-11-10 ~10:30am MT. Automated run; no LOI search. All folders swept (~90 messages). Updates on 106th, 1862 Ives, 6371 Nesbitt, 281 Fogg. 11481 Brighton Rd: only Aviva's 'will relay' (11/10) on Ben's $5M cap, no change, left out. No broker blasts, flyers or OMs in Ben's markets this window, so no comps.",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "stage": "Under Contract",
+        "close_date": "2026-11-13"
+      },
+      "status": [
+        "CLOSING FRIDAY 11/13. Seller's attorney Craig Johnson OK'd the estoppel/SNDA package 11/10 subject to fixing the J&Y/CDJ language in estoppel ¶6; Essex (Cooper Williams) re-sent the estoppel with Craig's and lender's changes 11/10. FIB is good with the provisions (Williams 11/9). Ben asked David Church (ZCS) 11/10 to confirm he has the final docs.",
+        "Equity: CentrePoint (Tyler Hendrickson, 11/9) wants $1,777,777.77 at closing ($1.6M fund / $177,777.77 Sandpiper), with $139,021 of the $1,916,799 underwritten need held as uncalled capital (90/10). Ben agreed 11/9; says it leaves roughly $125K working capital.",
+        "Loan: FIB (Christina Cole, 11/9) advancing $2,920,000 with $340,000 held back as TILC for future funding; net wire $2,892,198.50. Loan origination fee $21,930. Separate buyer and seller settlement statements (Ben + Craig 11/10). Deed shows nominal consideration (Schuster 11/10).",
+        "Legal: Polsinelli (Evan Falon) sent updated JVA + Cross Indemnity 11/10. Burke's accounting comments sent 11/9. Wyoming formation of the SPC member is delayed; fallback is Sandpiper Capital LLC as member, assigned later (Schuster 11/9). Ben signed the SPC CPP JV Member doc 11/9 and sent Schuster the PSA assignment 11/10.",
+        "Ben owes: loan info for the TD-1000 transfer declaration to Pat Boyle (11/10); HoldCo status to Essex so they can push the bank (Williams 11/10); invoices for the buyer statement (Alan Bruno at CPP to send CPP invoices to Ben)."
+      ]
+    },
+    {
+      "key": "281 Fogg",
+      "fields": {
+        "stage": "Negotiating PSA"
+      },
+      "status": [
+        "Seller's PSA redline (Chris Burns, JLL, 11/6) is 'pretty minimal'. Ben asked Steve Schuster (Burke) 11/10 to turn it today; Schuster will call Ben mid-afternoon 11/10 on Fogg.",
+        "Plan per Ben 11/4: PSA signed by Thu/Fri 11/12–13; 45-day DD, 15-day close, targeting Jan 13–14. EM: $25K at PSA, $75K more at lease signing, $100K more at go-hard.",
+        "Capital (Essex, Matt Perigard): Ben answered 11/9 — 45-day DD, use approvals secured before DD ends, Carvana lease to commence before closing.",
+        "Seller won't let buyer into the lease negotiations (Turnquist 11/4); Ben agreed to remove PSA §11(d). Carvana does the work and buyer funds it; credit for the wash bay portion.",
+        "Environmental: AEI 2021 Phase I passed to True North 11/6; AEI proposal to start once under contract."
+      ]
+    },
+    {
+      "key": "1862 Ives",
+      "aliases": [
+        "1962 Ives"
+      ],
+      "fields": {
+        "stage": "Under Contract"
+      },
+      "status": [
+        "Ecology call set: Garrett Leque (GeoEngineers) has a call with the Dept of Ecology Wed 11/11 and will update everyone after. Ben asked 11/9 whether his side should join. DD spend stays on HOLD until then.",
+        "DD clock: Steve Brunette (CBRE) proposed 10/25 as the date seller's diligence deliveries were satisfied (PSA signed 10/20, 5-day delivery). Ben agreed 11/9. Investigation period ~60 days from deliveries, so roughly 12/24 (inferred). Ben's target close is 01/27.",
+        "BNSF easement: HDR (Grant Wood) needs a TCE for a temporary work trestle in the setback area. Brunette wants Ben to talk to Grant first so MVP can sign; Ben asked for a call Thu/Fri this week (11/12–13).",
+        "Vendors parked: Contour ALTA survey on hold (11/5), AM National proposal on hold (11/5), Mackenzie site plan on hold since 10/27.",
+        "Exit idea: Taylor Hudson (NAI) reports interest in buying the finished building; guidance $65/land SF (11/4). Leasing: NAI flyer at $0.42/SF; Sunbelt tour 11/12 at 9:00am."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "stage": "Closed"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Verona IOS LLC. GC: TJK. On track for early December completion (Ben to RBN 11/6).",
+        "Electrical: Ben approved the $512 option (replace damaged only) and $772 service bay outlets 11/9; Jon Hepner (TJK) confirmed 11/10. Catch basin work ($10,132) approved 11/9.",
+        "Data center inquiry: Roy Harel (Nublock) asked Bryant Meyer (Oakbrook) 11/9 about scaling power to 10–55 MW; Meyer checking with the utility (site has 480V 3-phase 400A today).",
+        "Leasing: slow; RFPs for Congruex and Rent a Fence (11/6). Ben on site Dec 10–11; dinner with Bryant Meyer and Tony Keuntjes (Oakbrook) at Tornado Room moved to Thursday night (inferred Dec 10)."
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "deal": "10275 E 106th",
+      "name": "Christina Cole",
+      "firm": "First Interstate Bank",
+      "email": "Christina.Cole@fib.com",
+      "phone": "303-313-8524",
+      "notes": "Role: AVP, CBR III. FIB lender contact on the 106th loan; sends loan fees and the closing wire."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Alan Bruno",
+      "firm": "CentrePoint Properties",
+      "email": "alanb@cpointproperties.com",
+      "notes": "Role: manages CentrePoint invoices; to send CPP invoices for the settlement statement to Ben (Hendrickson 11/9)."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Evan Falon",
+      "firm": "Polsinelli",
+      "email": "efalon@polsinelli.com",
+      "notes": "Role: CentrePoint's counsel on the JVA and Cross Indemnity and Contribution Agreement."
+    },
+    {
+      "deal": "1862 Ives",
+      "name": "Grant Wood",
+      "firm": "HDR",
+      "email": "Grant.Wood@hdrinc.com",
+      "phone": "682-249-7950",
+      "notes": "Role: Real Estate Services for BNSF; negotiating the temporary construction easement (work trestle) on 1862 Ives."
+    }
+  ],
+  "tasks": [
+    {
+      "contact_email": "pboylet5853@gmail.com",
+      "type": "email",
+      "due_date": "2026-11-11",
+      "note": "106th: send Pat the loan info for page 2 of the TD-1000 Real Property Transfer Declaration (title company request, 11/10)"
+    },
+    {
+      "contact_email": "cwilliams@essexreca.com",
+      "type": "email",
+      "due_date": "2026-11-11",
+      "note": "106th: update Essex on HoldCo status so they can push the bank (Williams 11/10)"
+    },
+    {
+      "contact_email": "Steven.Brunette@cbre.com",
+      "type": "call",
+      "due_date": "2026-11-13",
+      "note": "1862 Ives: call with Grant Wood (HDR/BNSF) on the TCE location, Thu or Fri this week"
+    },
+    {
+      "contact_email": "gleque@geoengineers.com",
+      "type": "email",
+      "due_date": "2026-11-12",
+      "note": "1862 Ives: get Garrett's readout from the 11/11 Ecology call, then decide on releasing held DD vendors"
+    }
+  ],
+  "contact_log": [
+    {
+      "contact_email": "tyler@cpointproperties.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "106th: Tyler set closing equity at $1,777,777.77 ($1.6M fund / $177,777.77 Sandpiper) with $139,021 uncalled; Ben agreed."
+    },
+    {
+      "contact_email": "Christina.Cole@fib.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "106th: FIB loan fees and $2.92M advance ($340K TILC holdback), net wire $2,892,198.50."
+    },
+    {
+      "contact_email": "cjohnson@cdjlaw.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "106th: Craig OK'd the doc package subject to the estoppel ¶6 fix; separate settlement statements; nominal consideration on deed."
+    },
+    {
+      "contact_email": "cwilliams@essexreca.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "106th: Essex re-sent the estoppel with Craig's and lender's changes; asked about HoldCo."
+    },
+    {
+      "contact_email": "SSchuster@burkelaw.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "106th: Ben sent the PSA assignment. Fogg: Schuster to call mid-afternoon to turn the PSA."
+    },
+    {
+      "contact_email": "Steven.Brunette@cbre.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "1862 Ives: Ben agreed 10/25 as the diligence-delivery date; asked for a call with Grant Wood Thu/Fri."
+    },
+    {
+      "contact_email": "gleque@geoengineers.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "1862 Ives: Ecology call set for Wed 11/11."
+    },
+    {
+      "contact_email": "jhepner@tjkdesignbuild.com",
+      "type": "email",
+      "date": "2026-11-09",
+      "note": "Nesbitt: Ben approved the $512 and $772 electrical options; Hepner confirmed 11/10."
+    }
+  ],
+  "diligence": [],
+  "comps": [],
+  "lois": []
+}
