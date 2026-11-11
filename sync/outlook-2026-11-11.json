@@ -1,0 +1,289 @@
+{
+  "as_of": "2026-11-11",
+  "source": "Outlook review of ben@sandpiperre.com (read-only), 2026-11-10 ~10:30am MT → 2026-11-11 ~9am MT. Automated run; no LOI search. All folders swept (~100 messages) plus calendar through 11/20. Updates on 106th, 281 Fogg, 6371 Nesbitt, 715 Valley, 2400 S 14th; two new Tracking deals (2045 W Union, 4950 W Watkins). Central 70 IOS flyer (CBRE via Aviva, Denver) has no asking rent ('negotiable'), so not queued as a comp. One sale comp from IOS List (5790 Rogers St, Las Vegas).",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "stage": "Under Contract",
+        "close_date": "2026-11-13"
+      },
+      "status": [
+        "CLOSING FRIDAY 11/13 (Burke 'Close Date' hold 11am MT). Seller's attorney Craig Johnson sent a working draft Special Warranty Deed 11/11 and needs the buyer's address; Westbrook signs as Manager of Precision. Closing will be electronic (Ben to Pat Boyle 11/10).",
+        "Loan: FIB loan amount $2,924,000 per Christina Cole to Fidelity (11/10). Lender counsel Tim Shea (RWO) sent lender's-policy instructions to Fidelity 11/10. Essex circulated revised loan docs with lender counsel's comments late 11/10 (not yet reviewed by Essex). Ben signed the FIB Treasury DocuSign 11/10. Schuster (11/11) asked Polsinelli to confirm sign-off on the consents and closing certificate.",
+        "JV docs: Polsinelli sent further revised JVA + Cross Indemnity 11/10. SPC's Wyoming LLC is formed; Schuster sent Schedule 8.2(b) (SPC owned by Sandpiper Capital LLC, owned by Ben). Ben sent Exhibits A ($1.6M CP Fund I / $177,777.78 Sandpiper = $1,777,777.78, 90/10) and B (business plan) 11/10. Polsinelli declined Ben's 90/10 footnote on Exhibit A (JVA mechanics govern). Still open from CPP: accounting confirmation and Knowledge designees.",
+        "Insurance: CCIG (Erica McCaa) says the $41,000 premium wrongly included higher sewer and O&L limits; underwriter is reducing coverage back to the original quote (11/10). Ben thought it was ~$25K.",
+        "Post-close: RIO Real Estate will manage (Chad Murray intro 11/10; Nick Bhakta as manager, Melinda Robertson runs commercial). They want a site visit next week after closing.",
+        "Ben owes: buyer address for the deed (Craig); TD-1000 (Ben said 11/10 he will complete it); revised insurance premium check; site-visit day/time to RIO."
+      ]
+    },
+    {
+      "key": "281 Fogg",
+      "fields": {
+        "stage": "Negotiating PSA"
+      },
+      "status": [
+        "PSA: Ben and Schuster finished the seller's redline 11/10; comments back to JLL are 'very minimal'. Schuster was tied up with other closings but aimed to turn it the night of 11/10. Chris Burns (JLL) pushing on timing.",
+        "Price $14.5M per Ben (11/10); likely closing with the CPP team again (fund or another vehicle TBD).",
+        "Timeline per Ben: 45-day DD / 15-day close, closing around the week of Jan 11. EM: $25K at PSA, $75K more at lease signing, $100K more at go-hard (11/4).",
+        "Insurance: Morgan Mahoney (CCIG) reviewing the docs; more needs late this week or early next (11/10).",
+        "Seller won't let buyer into the Carvana lease talks; Ben agreed to remove PSA §11(d). Environmental: AEI 2021 Phase I passed to True North; AEI to start once under contract."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "stage": "Closed"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Verona IOS LLC. GC: TJK. On track for early December completion.",
+        "Pending Ben's decisions (TJK, 11/10): Building 4 power + interior/exterior lighting $7,006; Building 2 exterior lighting at the dark south end, where Ben is suggesting 3 lights for about $2,300. Ben's own notes 11/10: 2 gas unit heaters for the Building 1 shop at about $19,000 (inferred estimate).",
+        "Data center angle: Alliant Energy (Brad Hougaard → Amber Rodgers) sent its data-center intake form and NDA 11/11. Bryant Meyer (Oakbrook) will get feedback from the prospective data center user before going further. Ben and Meyer have a 'Nesbitt Rd Discussion' call 11/11 at 2pm MT.",
+        "Leasing: slow; RFPs out to Congruex and Rent a Fence (11/6). Ben on site Dec 10–11."
+      ]
+    },
+    {
+      "key": "715 Valley",
+      "fields": {
+        "stage": "LOI Submitted"
+      },
+      "status": [
+        "Seller won't get to Ben's $1.7M (Dave Faris, SRS, 11/10). He plans to list 715 Valley at $2.1M with his own agent; Faris asked for Ben's best number before it hits the market.",
+        "Ben replied 11/10: 'Not with this clear height, I'm tapped out.' Effectively passed (inferred); left at LOI Submitted since nobody called it dead.",
+        "Seller countered $2,205,000 on 10/26. USS leaves March 2027."
+      ]
+    },
+    {
+      "key": "2400 S 14th",
+      "fields": {
+        "stage": "LOI Submitted"
+      },
+      "status": [
+        "Payton Kruidenier (Ross Brown) spoke with the owner (Jeff) for over an hour 11/10; wants a call with Ben 11/11. He hasn't put Ben's offer in front of the owner yet.",
+        "Tenant Knapheide's 5-year lease ends Jan 18 (2027, inferred); they're moving to a new West Valley facility but asked to stay to July 2027. Knapheide still wants to buy: the seller gave them a number with a Dec 1 deadline, said to be a little above $6MM.",
+        "Seller will sell whether or not Knapheide buys; prefers Knapheide, all cash. Seller carry not ideal. Broker Max Schumacher is '1a', Sandpiper '1b'.",
+        "Risk: the north lot is zoned residential."
+      ]
+    },
+    {
+      "key": "2045 W Union",
+      "insert_only": true,
+      "fields": {
+        "name": "2045 W Union",
+        "address": "2019-2045 W Union Ave",
+        "city": "Englewood",
+        "market": "Denver",
+        "sf": 29139,
+        "acreage": 6.779,
+        "asking_price": 6747138,
+        "stage": "Tracking"
+      },
+      "status": [
+        "Off-market via Kyle Benson (Malman Real Estate) after a call with Ben, 11/10. Asking $6,747,138 ($231.55/SF), 6.5% cap; 29,139 SF on 6.779 ac. Site plan, rent roll and operating statement attached to his email.",
+        "Seller (family, father's estate split among siblings) must net $6.5M after commissions and says not to offer below $6.5M. If buyer pays the commission, gross price could get closer to $6.5M.",
+        "Much of the income is from yard space. Benson sees modest upside from marking warehouse rents to market and knows the tenants in the neighboring portfolio."
+      ]
+    },
+    {
+      "key": "4950 W Watkins",
+      "insert_only": true,
+      "fields": {
+        "name": "4950 W Watkins",
+        "address": "4950 W Watkins St",
+        "city": "Phoenix",
+        "market": "Phoenix",
+        "stage": "Tracking"
+      },
+      "status": [
+        "Value-add Phoenix deal; Nigel Keep (Kidder Mathews) sent the OM 11/10.",
+        "Ben 11/10: loves the deal and location, has been working with Kidder Mathews on it for a while, but 'BIG PRICE'. No price pulled from the OM in this sync."
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "deal": "2045 W Union",
+      "type": "broker",
+      "name": "Kyle Benson",
+      "firm": "Malman Real Estate",
+      "email": "kyle@malmancre.com",
+      "phone": "720-443-7363",
+      "markets": "Denver",
+      "notes": "Brought 2019-2045 W Union Ave (Englewood) off-market 11/10; previously leased the neighboring portfolio."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Melinda Robertson",
+      "firm": "RIO Real Estate",
+      "email": "mrobertson@RIO-RealEstate.com",
+      "notes": "Role: runs RIO's commercial team; property management for 106th after closing; setting up a site visit."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Chad Murray",
+      "firm": "RIO Real Estate",
+      "email": "cmurray@RIO-RealEstate.com",
+      "notes": "Role: introduced RIO's management team (Nick Bhakta, Melinda Robertson) for 106th, 11/10."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Timothy Shea",
+      "firm": "RWO Law",
+      "email": "tshea@rwolaw.com",
+      "phone": "303-297-2600",
+      "notes": "Role: First Interstate Bank's outside counsel on the 106th loan; sent lender's-policy instructions to Fidelity."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Amber Rodgers",
+      "firm": "Alliant Energy",
+      "email": "AmberRodgers@alliantenergy.com",
+      "notes": "Role: Alliant Energy data-center inquiries; sent intake form and NDA for Nesbitt 11/11."
+    }
+  ],
+  "tasks": [
+    {
+      "contact_email": "cjohnson@cdjlaw.com",
+      "type": "email",
+      "due_date": "2026-11-12",
+      "note": "106th: send Craig the buyer's address for the Special Warranty Deed and any deed comments"
+    },
+    {
+      "contact_email": "erica.mccaa@thinkccig.com",
+      "type": "email",
+      "due_date": "2026-11-12",
+      "note": "106th: confirm the corrected insurance premium/coverage before Friday's closing"
+    },
+    {
+      "contact_email": "paytonk@rossbrown.com",
+      "type": "call",
+      "due_date": "2026-11-11",
+      "note": "2400 S 14th: call Payton about his owner call notes and whether to put the offer in front of Jeff"
+    },
+    {
+      "contact_email": "kyle@malmancre.com",
+      "type": "call",
+      "due_date": "2026-11-13",
+      "note": "2045 W Union: review rent roll/op statement and get back to Kyle (seller needs $6.5M net)"
+    },
+    {
+      "contact_email": "jhepner@tjkdesignbuild.com",
+      "type": "email",
+      "due_date": "2026-11-13",
+      "note": "Nesbitt: decide on Building 4 power/lighting ($7,006) and Building 2 exterior lights (~$2,300 for 3)"
+    },
+    {
+      "contact_email": "mrobertson@RIO-RealEstate.com",
+      "type": "email",
+      "due_date": "2026-11-13",
+      "note": "106th: give RIO a day/time next week for the post-closing site visit"
+    }
+  ],
+  "contact_log": [
+    {
+      "contact_email": "efalon@polsinelli.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "106th: remaining JVA items list; Exhibits A/B received from Ben; declined the 90/10 footnote; SPC Wyoming LLC formed."
+    },
+    {
+      "contact_email": "cjohnson@cdjlaw.com",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "106th: sent draft Special Warranty Deed; needs buyer address."
+    },
+    {
+      "contact_email": "erica.mccaa@thinkccig.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "106th: $41K premium included higher sewer/O&L limits in error; reducing coverage to the original quote."
+    },
+    {
+      "contact_email": "cmurray@RIO-RealEstate.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "106th: intro to RIO management team (Nick Bhakta, Melinda Robertson)."
+    },
+    {
+      "contact_email": "Christopher.Burns@jll.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "Fogg: Ben said PSA comments are minimal and attorney is pushing to turn it tonight."
+    },
+    {
+      "contact_email": "Morgan.Mahoney@thinkccig.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "Fogg: Ben sent the new deal ($14.5M, 45 DD / 15 close, week of Jan 11) for insurance."
+    },
+    {
+      "contact_email": "jhepner@tjkdesignbuild.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "Nesbitt: Building 4 electrical/lighting $7,006 and Building 2 exterior lighting proposals."
+    },
+    {
+      "contact_email": "bmeyer@oakbrookcorp.com",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "Nesbitt: Alliant data-center intake/NDA received; Meyer getting feedback from the end user first."
+    },
+    {
+      "contact_email": "dave.faris@srsre.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "715 Valley: seller won't do $1.7M, will list at $2.1M; Ben said he's tapped out."
+    },
+    {
+      "contact_email": "paytonk@rossbrown.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "2400 S 14th: notes from an hour-long owner call (Knapheide Dec 1 deadline, ~$6MM+, residential north lot)."
+    },
+    {
+      "contact_email": "kyle@malmancre.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "2045 W Union: off-market package after a call; $6.5M net to seller."
+    },
+    {
+      "contact_email": "nigel.keep@kidder.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "4950 W Watkins (Phoenix) OM; Ben likes it but price is high."
+    },
+    {
+      "contact_email": "aviva@warehousehotline.com",
+      "type": "email",
+      "date": "2026-11-10",
+      "note": "Central 70 IOS (Denver, CBRE listing, for sale or lease): Ben likes location/zoning but value would crush IOS basis."
+    }
+  ],
+  "diligence": [],
+  "comps": [
+    {
+      "kind": "sale",
+      "market": "Las Vegas",
+      "address": "5790 Rogers St",
+      "city": "Las Vegas",
+      "submarket": null,
+      "comp_date": null,
+      "status": "Closed",
+      "landlord": null,
+      "tenant": "Dogtown Truss & Components",
+      "buyer": "Jadian IOS",
+      "seller": null,
+      "property_type": null,
+      "sf": null,
+      "acres": 2.3,
+      "price": 3675000,
+      "broker": "Kassin Sabbagh Realty - Shivam Whadwa / David Warren",
+      "occupancy_note": "Leased to Dogtown Truss & Components",
+      "marketing": null,
+      "notes": "Fully leased IOS sale reported in IOS List 11/11; sale date not stated.",
+      "message_id": "AAMkAGQzNGM5OWQ1LWQxMjgtNDI4OS1hMDI2LTRkNGQ5ZTVhMmZjNwBGAAAAAAAky_XGJJ4RQpfFHudivmk1BwBS90g6XJRvQIqf5guK_r1JAAAAAAEMAABS90g6XJRvQIqf5guK_r1JAABLCYNcAAA=",
+      "source_note": "IOS List daily 11/11 — KSR sells 2.3 AC Las Vegas IOS for $3.675M"
+    }
+  ],
+  "lois": []
+}
