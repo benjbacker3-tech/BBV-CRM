@@ -1,287 +1,184 @@
 {
-  "headline": "A hotter-than-expected October CPI pushed the 10-year Treasury to 4.98% and left a December Fed hike all but certain, with a half-point move now in play.",
-  "dateline": "Wednesday, November 11, 2026 · closes as of Tue Nov 10",
+  "headline": "An AI rebound lifted stocks Wednesday, but Nvidia's leadership turmoil after the bell and roughly 91% odds of a December Fed hike set a shakier tone for Thursday.",
+  "dateline": "Thursday, November 12, 2026 · closes as of Wed Nov 11",
   "ustDate": "Nov 10, 2026",
   "rundown": [
     {
       "tag": "Fed",
-      "h": "Fed officials line up behind more hikes.",
-      "p": "Governor Waller had said a bigger move should be on the table if October core prices rose 0.3% or more; they did. Dallas Fed President Lorie Logan has called for two more quarter-point hikes, and Governor Bowman said inflation is broadening with more work to do. The Dec. 8–9 meeting is now about how much, not whether.",
-      "url": "https://www.federalreserve.gov/newsevents/speech/waller20261110a.htm",
-      "src": "Federal Reserve; Yahoo Finance · Nov 10"
+      "h": "December hike odds climb to about 91%.",
+      "p": "Futures now price roughly a 91% chance the Fed raises rates in December, up from 84% Tuesday and about 74% a week ago, Trading Economics said Thursday; the 10-year Treasury yield traded near 5.00%. PIMCO's baseline is a December hike, with the risk of one more early in 2027. Thursday is the first cash Treasury session since the hot CPI, after the Veterans Day close.",
+      "url": "https://tradingeconomics.com/united-states/government-bond-yield",
+      "src": "Trading Economics; PIMCO · Nov 12"
     },
     {
-      "tag": "Credit",
-      "h": "CoreWeave beats, but the debt pile keeps growing.",
-      "p": "The AI cloud provider's third-quarter revenue rose 168% to $3.66 billion, above the $3.55 billion expected, and its backlog climbed to $132.5 billion from $104 billion in June. It raised 2026 revenue guidance to $13.0–13.3 billion with $37–39 billion of capex. Debt stood near $47 billion; management plans no new parent-level unsecured bonds through 2027 at current yields, leaning on asset-level loans instead.",
-      "url": "https://www.cnbc.com/2026/11/10/coreweave-crwv-q3-earnings-report-2026.html",
-      "src": "CNBC · Nov 10"
+      "tag": "Tech",
+      "h": "Nvidia's board drama hits after hours.",
+      "p": "Nvidia shares fell as much as 10% after Wednesday's close after the Wall Street Journal reported the board was preparing to remove CEO Jensen Huang, and the New York Times reported allegations involving Huang and an executive, per Trading Economics. The board opened an independent probe Nov. 8. Nasdaq 100 futures were down about 0.9% early Thursday: Nvidia is the AI trade's bellwether, and its results are due within days.",
+      "url": "https://tradingeconomics.com/united-states/stock-market",
+      "src": "Trading Economics (citing WSJ, NYT) · Nov 12"
     },
     {
-      "tag": "Credit",
-      "h": "Household debt tops $19 trillion.",
-      "p": "Balances rose $334 billion in the third quarter to $19.105 trillion, led by a $257 billion jump in mortgages, the New York Fed said Tuesday. The share of debt in some stage of delinquency rose 0.3 point to 5.0%. Student loans are the sore spot: 7.72% of balances rolled into serious delinquency, against 6.87% for cards and 1.60% for mortgages.",
-      "url": "https://www.newyorkfed.org/newsevents/news/research/2026/20261110",
-      "src": "NY Fed · Nov 10"
+      "tag": "Economy",
+      "h": "Small-business owners hold steady, and grumble about taxes.",
+      "p": "The NFIB optimism index edged down to 97.8 in October from 97.9, its lowest since June and just above the 97.7 forecast. Labor quality stayed the top problem at 25%, but 21% of owners named taxes, the highest since May 2021. A net 8% expect better conditions in six months, up 2 points. Main Street isn't cracking, but it isn't hiring with gusto either.",
+      "url": "https://tradingeconomics.com/united-states/nfib-business-optimism-index",
+      "src": "NFIB via Trading Economics · Nov 10"
     },
     {
-      "tag": "Credit",
-      "h": "The Fed starts taking private credit's temperature.",
-      "p": "The Dallas and New York Feds opened a pilot survey of the direct-lending market, running Nov. 9 to 18, a first systematic look at a corner of finance that has grown faster than regulators' data on it. The timing fits the market: Bloomberg reported private lenders are lining up a $1.3 billion loan for L Catterton's Fullscript buyout after the deal struggled to draw leveraged-loan demand.",
-      "url": "https://www.newyorkfed.org/newsevents/news/markets/2026/20261109",
-      "src": "NY Fed; Bloomberg · Nov 9"
-    },
-    {
-      "tag": "Rates",
-      "h": "A 30-year auction tests the long end Thursday.",
-      "p": "Treasury sells $25 billion of 30-year bonds at 1 p.m. ET Thursday, the last leg of this week's refunding after the cash market's Veterans Day break. The October sale cleared at 5.618% with a 2.54 bid-to-cover. With a hike priced for December, a sloppy result would push long yields, and the mortgage and cap rates keyed off them, higher.",
-      "url": "https://home.treasury.gov/news/press-releases/sb0678",
-      "src": "U.S. Treasury · Nov 2026"
+      "tag": "Markets",
+      "h": "Anthropic's mega-IPO heads toward pricing.",
+      "p": "The AI developer filed for an estimated $75 billion Nasdaq listing under the ticker ANT, with $19.7 billion of revenue in the 12 months to June 30, Renaissance Capital said; pricing could come the week of Nov. 16. Reports describe the book as oversubscribed at a targeted $1.5 trillion valuation. It would match SpaceX's $75 billion June raise, a fresh test of appetite for AI paper with yields near 5%.",
+      "url": "https://www.renaissancecapital.com/IPO-Center/News/122417/ai-model-developer-anthropic-pbc-files-for-an-estimated-75-billion-ipo",
+      "src": "Renaissance Capital · Oct 26; Trading Economics · Nov 11"
     },
     {
       "tag": "Energy",
-      "h": "Gas slips under $4 for the first time since July.",
-      "p": "AAA's national average fell to $3.978 a gallon, and the EIA's weekly survey put regular at $3.995, down 15.8 cents in a week but still 93.9 cents above a year ago. Cheaper gas is the one bit of relief for household budgets, though October's report showed price pressure has spread well beyond the pump.",
-      "url": "https://www.eia.gov/petroleum/gasdiesel/",
-      "src": "AAA via CNBC; EIA · Nov 10"
+      "h": "OPEC pumped nearly 2 million more barrels a day.",
+      "p": "OPEC crude output rose almost 2 million barrels a day in October to 27.16 million, ING said, with Saudi Arabia reporting production near prewar levels. The API also reported a 9-million-barrel U.S. crude build for the week to Nov. 6. More supply is the main thing keeping a lid on crude, and eventually diesel, the fuel that sets trucking costs.",
+      "url": "https://www.engine.online/news/brent-gains-as-iran-hardens-stance-against-us-83f9",
+      "src": "Engine (ING); Oilprice.com · Nov 11–12"
     }
   ],
   "dive": {
-    "kicker": "CRE prices",
-    "title": "Property prices are rolling over. Industrial is holding, on a thin cushion.",
-    "dek": "The commercial real estate recovery stalled as the 10-year pressed toward 5%, and industrial's cap-rate cushion over Treasuries is the thinnest it has been.",
-    "body": "<p>The commercial property recovery of 2025–26 has hit a wall, and the wall is the bond market. Green Street's Commercial Property Price Index fell <b>0.7% in October</b>, its biggest monthly drop of the run, the firm said Nov. 5. Prices are still up 3.7% from a year earlier, but that gain has shrunk every month since July's 5.2%. Green Street's Peter Rothemund had warned in September that rising Treasury yields would make buyers rethink what they'll pay; the 10-year closed at 5.227% on Oct. 8.</p><p>Industrial is the relative winner. MSCI's RCA index showed industrial values at a <b>record high in September</b>, up 2.2% from a year earlier, while apartments fell 4.6% and downtown office sits 47% below its peak. By Green Street's September count, industrial was 8% below its 2022 peak against 12.8% for all property, 22% for apartments and 33% for office.</p><p>The catch is the cushion. Avison Young put the average industrial cap rate at <b>6.73% in the third quarter, up 34 basis points</b>, the biggest move of any sector, and in Los Angeles industrial cap rates sat only about 50 basis points over the 10-year (Dallas and Chicago were nearer 200). CBRE, measuring differently, had the all-sector cap rate at 6.0%, versus 6.1% a year ago. Money is still moving: CBRE counted $257.8 billion of third-quarter deals, up 18% excluding two giant entity-level trades. So the repricing is coming through cap rates, not a frozen market.</p><p>Why it matters: with the 10-year at 4.98% and a December hike all but priced, there is little room for cap rates to compress, so industrial values have to grow through rents and income. What would change the picture: a durable drop in the 10-year below about 4.5%, from cheaper oil or a Fed that pauses, would steady prices; Rothemund has said cap rates may not end up moving much. A return above 5.2% would extend the slide, hardest in low-spread coastal markets.</p>",
+    "kicker": "Industrial",
+    "title": "The warehouse glut is gone. The next one is being poured.",
+    "dek": "Record leasing has pulled industrial vacancy off its peak, and developers are already breaking ground again.",
+    "body": [
+      "<p>Two years ago the story in warehouses was oversupply: the 2021–22 building boom delivered space faster than tenants could fill it. That story is over. Cushman &amp; Wakefield put national industrial vacancy at <b>6.8% in the third quarter</b>, 20 basis points below its late-2025 peak and the lowest since the end of 2024 (Oct. 12). CBRE, which measures differently, has it at 6.4%, down 20 basis points from a year earlier (Oct. 23).</p>",
+      "<p>Demand did the work. CBRE counted <b>104.6 million square feet</b> of net absorption in the quarter, the most since late 2022 and well above its 10-year quarterly average of 82.9 million. Leasing hit 276.8 million square feet, up 27.1% from a year earlier, and Savills says the second and third quarters together were the strongest two-quarter stretch it has on record. Meanwhile supply fell: high rates froze starts in 2023–25, so completions through September were down 17% year over year by CBRE's count.</p>",
+      "<p>Developers noticed. Cushman counts about <b>324 million square feet under construction</b>, up 23% from a year earlier, roughly a third of it build-to-suit; CBRE (278 million, +9.3%) and Savills (321.6 million, +10.2%) agree on the direction. Rents are rising but not racing: CBRE's average asking rent is $11.16 a foot, up 3.6%, roughly flat after inflation. And the recovery is lopsided. Savills data, via Propmodo, show big boxes tightening while Class B and C space has lost occupancy for 13 straight quarters, and Inland Empire rents are down 11.6% in a year.</p>",
+      "<p>Why it matters: industrial remains the healthiest corner of commercial real estate, but a new pipeline is now chasing a leasing boom that may have been pulled forward. What would change the picture: if rates stay near 5%, speculative starts get harder to finance, which protects owners of existing buildings. If demand cools in 2027 just as this space delivers, vacancy turns back up, starting in the Sunbelt markets where building is busiest.</p>"
+    ],
     "table": {
-      "cap": "Prices cooling, cushion thin",
+      "cap": "Industrial, Q3 2026",
       "cols": [
         "Measure",
         "Latest",
-        "Period"
+        "Change"
       ],
       "rows": [
         [
-          "Green Street CPPI, all property, m/m",
-          "−0.7%",
-          "Oct 2026"
+          "Vacancy (Cushman &amp; Wakefield)",
+          "6.8%",
+          "−20 bp from late-2025 peak"
         ],
         [
-          "Green Street CPPI, all property, y/y",
-          "+3.7% (+5.2% in Jul)",
-          "Oct 2026"
+          "Net absorption (CBRE)",
+          "104.6M sf",
+          "Most since Q4 2022"
         ],
         [
-          "Industrial vs. 2022 peak (Green Street)",
-          "−8% (all property −12.8%)",
-          "Sep 2026"
+          "Leasing volume (CBRE)",
+          "276.8M sf",
+          "+27.1% y/y"
         ],
         [
-          "RCA CPPI industrial, y/y",
-          "+2.2%, record high",
-          "Sep 2026"
+          "Completions, YTD (CBRE)",
+          "182.7M sf",
+          "−17% y/y"
         ],
         [
-          "Industrial cap rate (Avison Young)",
-          "6.73%, +34 bp",
-          "Q3 2026"
+          "Under construction (C&amp;W)",
+          "~324M sf",
+          "+23% y/y"
         ],
         [
-          "U.S. deal volume (CBRE)",
-          "$257.8B, +18% ex-entity deals",
-          "Q3 2026"
+          "Asking rent (CBRE)",
+          "$11.16/sf",
+          "+3.6% y/y"
         ]
       ]
     },
     "watch": [
-      "Dec 8–9: FOMC decision, and where the 10-year settles after it.",
-      "Early December: Green Street's November CPPI; was October's drop a one-off?",
-      "Late November: RCA's October index; does industrial's record hold?"
+      "Early December: Census October construction spending, a read on new building.",
+      "Mid-to-late January: Q4 broker reports; do starts keep climbing?",
+      "Where the 10-year settles after the Dec. 8–9 Fed meeting, the swing factor for spec financing."
     ],
-    "src": "Sources: Green Street (Nov 5, 2026); CRE Daily on Green Street (Oct 9), MSCI RCA and Avison Young (Oct 28, 2026); Rejournals (Sep 8, 2026); CBRE Q3 2026 Capital Markets Report (Nov 5, 2026); U.S. Treasury (Nov 10)."
+    "src": "Sources: Cushman & Wakefield (Oct 12, 2026); CBRE Q3 2026 Industrial & Logistics report (Oct 23); Savills (Nov 2); Propmodo (Nov 8)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Inflation",
-        "title": "October CPI: prices rose 0.4% and core 0.3%, both a tenth above forecasts",
-        "rel": "CPI m/m, Oct",
-        "act": "0.4%",
-        "cons": "0.3%",
-        "prior": "0.6%",
+        "tag": "Logistics",
+        "title": "October LMI: inventory costs hit their highest since March 2022 as firms stocked up",
+        "rel": "Logistics Managers' Index, Oct",
         "good": false,
-        "chart": {
-          "t": "CPI-U, all items, % change from a year earlier",
-          "unit": "%",
-          "pts": [
-            [
-              "Nov '24",
-              2.7
-            ],
-            [
-              "Dec '24",
-              2.9
-            ],
-            [
-              "Jan '25",
-              3
-            ],
-            [
-              "Feb '25",
-              2.8
-            ],
-            [
-              "Mar '25",
-              2.4
-            ],
-            [
-              "Apr '25",
-              2.3
-            ],
-            [
-              "May '25",
-              2.4
-            ],
-            [
-              "Jun '25",
-              2.7
-            ],
-            [
-              "Jul '25",
-              2.7
-            ],
-            [
-              "Aug '25",
-              2.9
-            ],
-            [
-              "Sep '25",
-              3
-            ],
-            [
-              "Nov '25",
-              2.7
-            ],
-            [
-              "Dec '25",
-              2.7
-            ],
-            [
-              "Jan '26",
-              2.4
-            ],
-            [
-              "Feb '26",
-              2.4
-            ],
-            [
-              "Mar '26",
-              3.3
-            ],
-            [
-              "Apr '26",
-              3.8
-            ],
-            [
-              "May '26",
-              4.2
-            ],
-            [
-              "Jun '26",
-              3.5
-            ],
-            [
-              "Jul '26",
-              3.4
-            ],
-            [
-              "Aug '26",
-              3.4
-            ],
-            [
-              "Sep '26",
-              3.7
-            ]
-          ],
-          "src": "Source: BLS series CUUR0000SA0, 12-month change, fetched Nov 11, 2026. Oct 2025 and Oct 2026 not published (2025 lapse in appropriations)."
-        },
-        "body": "<p>Consumer prices rose 0.4% in October, above the 0.3% consensus, after September's 0.6%; core prices, excluding food and energy, rose 0.3% against 0.2% expected, a third straight 0.3% gain, the BLS said Tuesday. The BLS published no 12-month rates this month because October 2025 prices were never collected during the 2025 funding lapse; the consensus had been 3.9% headline and 2.8% core, after 3.7% and 2.6% in September.</p><p>Energy rose 0.7% on the month, with gasoline up 1.0% seasonally adjusted, food 0.5% and shelter 0.3%. Core goods rose 0.2% even as used cars fell 1.2%; core services rose 0.3%, with vehicle insurance, hospital services and streaming subscriptions among the gainers.</p><p>The 2-year Treasury yield closed at 4.73%, up 17 basis points, and the 10-year at 4.98%. CME FedWatch-based reports put a December quarter-point hike near certain and the odds of a half-point move at roughly 10–15%, up from zero.</p>",
+        "body": [
+          "<p>The Logistics Managers' Index rose to 70.7 in October from 70.2 in September, the second-strongest reading in four years behind June's 71.1, according to the Nov. 3 release. Readings above 50 signal expansion; the index averaged 62.2 from 2016 to 2026 and slipped to 66.6 in August before rebounding.</p>",
+          "<p>Costs drove the gain. Inventory costs jumped to 88.8 from 79.9, the highest since March 2022, as inventory levels rose to 66.9 from 58.9. Warehousing prices climbed to 80.7 from 73.5 while warehousing capacity stayed in contraction at 43.5. Aggregate logistics costs reached 257.5, up 11.4 points and the fastest expansion since March 2022.</p>",
+          "<p>Transportation prices eased to 88 from 92.7 but remained well into expansion, with transportation capacity still contracting at 38. The release came a week before October CPI, which showed core prices rising 0.3%.</p>"
+        ],
         "experts": [
           {
-            "who": "Thomas Ryan, Capital Economics",
-            "view": "Called the report a shock, saying price pressures are spreading well beyond energy.",
-            "url": "https://www.marketplace.org/story/2026/11/10/broad-inflation-persists-across-the-economy-october-cpi-shows",
-            "src": "Marketplace · Nov 10"
+            "who": "LMI researchers (Arizona State, Colorado State, Florida Atlantic, Rutgers, UNR, with CSCMP)",
+            "view": "Say firms are pulling inventory in quickly ahead of the holidays, often at high cost.",
+            "url": "https://www.freightwaves.com/?p=584884",
+            "src": "FreightWaves · Nov 3"
           },
           {
-            "who": "Alex Pelle, Mizuho",
-            "view": "Said the Fed's December debate is now between a quarter-point and a half-point hike, not whether to move.",
-            "url": "https://www.tradingandinvestmentnews.co.uk/treasuries-sell-off-cpi-fed/",
-            "src": "Trading & Investment News, citing Investing.com · Nov 10"
-          },
-          {
-            "who": "Nicholas Colas, DataTrek",
-            "view": "Argued recent market volatility is already doing some of the Fed's tightening, which could reduce the need for hikes next year.",
-            "url": "https://finance.yahoo.com/markets/article/stock-market-today-tuesday-november-10-dow-sp-500-nasdaq-inflation-data-cpi-090627830.html",
-            "src": "Yahoo Finance · Nov 10"
+            "who": "Knight-Swift Transportation, largest U.S. truckload carrier",
+            "view": "Is targeting at least double-digit contract rate increases, citing its heaviest peak-season project freight since the pandemic.",
+            "url": "https://www.freightwaves.com/?p=584884",
+            "src": "FreightWaves · Nov 3"
           }
         ],
-        "lean": "Most quoted expect a December hike; Deutsche Bank and Goldman see 25 bp, with Mizuho flagging 50 bp risk.",
-        "src": "Sources: BLS CPI release and CPI-U series (Nov 10, 2026); Trading Economics; Marketplace, Yahoo Finance, Trading & Investment News (Nov 10); U.S. Treasury par yields (Nov 10)."
+        "src": "Sources: Trading Economics LMI page and Nov 3 news item; FreightWaves (Nov 3, 2026)."
       }
     ]
   },
   "world": {
     "lead": {
       "kicker": "Iran · Strait of Hormuz",
-      "title": "Tankers burn in Hormuz as Qatar buys time for talks",
-      "body": "<p>Shipping attacks picked up again even as diplomacy inched along. On Nov. 10, Iran's Revolutionary Guards said three tankers were on fire in the strait, the UKMTO reported a tanker struck by an unknown projectile off Oman, ADNOC said one of its vessels was damaged in UAE waters, and CENTCOM said it disabled a commercial vessel in the Gulf of Oman. On Nov. 11 Iran's army said a tanker caught fire after hitting a mine in Hormuz, and India said a Liberia-flagged tanker with an Indian crew was hit by a projectile, injuring four.</p><p>On the diplomatic track, Qatar has reportedly secured at least two weeks for talks, with major gaps remaining (Anadolu, citing the Jerusalem Post). Iran's proposal asks Washington to lift its naval and economic blockade and free $8 billion of frozen funds. President Trump said Nov. 10 the war ends \"fairly soon\"; Iranian security chief Mohsen Rezaei denied talks are happening.</p>",
-      "reach": "Through oil and shipping: Brent settled at $91.49 on Nov. 10 and traded at $92.08 early Nov. 11 (Anadolu), still about 22% below its Oct. 30 high of $118. Tanker attacks keep insurance and freight costs on Gulf routes elevated.",
+      "title": "Iran calls the Qatar talks 'lies' as mines disable two more supertankers",
+      "body": "<p>Tehran slammed the diplomatic door, at least in public. On Nov. 11 Mohsen Rezaei, secretary of Iran's security council, called reports of a U.S.–Iran meeting in Qatar \"pure lies\" meant to push oil prices down; President Pezeshkian accused Washington of diplomacy by threat, and Secretary of State Rubio rejected Iran's demand for war reparations (Oilprice.com). On Nov. 12 Rezaei said Iran will not let any enriched nuclear material leave the country (Reuters, via Engine).</p><p>At sea, two supertankers were disabled by explosions in the strait Wednesday night; the IRGC Navy said they ignored warnings about an \"unauthorized route,\" and Iranian state media said they hit mines (Cornerstone Futures). The Washington Institute counted 37 ships struck in October, the most of any month of the war, and Allianz Trade puts physical damage across the Gulf above $200 billion.</p>",
+      "reach": "Through oil: Brent settled up 1.39% at $92.76 on Nov. 11 as Iran denied the talks, yet it is still down about 21% since November began on bets the war is winding down (Oilprice.com, Nov 11). Each flare-up feeds fuel, freight and inflation expectations, and with them Treasury yields.",
       "views": [
         {
-          "who": "Gregory Brew, Eurasia Group",
-          "view": "Doubts Brent can stay below $90 without a more durable de-escalation and a U.S.-Iran deal.",
-          "url": "https://www.business-standard.com/amp/markets/commodities/oil-prices-fall-as-trump-signals-pause-in-military-action-against-iran-126111000067_1.html",
-          "src": "Business Standard · Nov 10"
+          "who": "Giovanni Staunovo, UBS",
+          "view": "Reads oil's rebound as fading hope for an imminent de-escalation.",
+          "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Jumps-3-to-94-as-Iran-Denies-Any-Talks-With-Washington.html",
+          "src": "Oilprice.com · Nov 11"
         },
         {
-          "who": "June Goh, Sparta Commodities",
-          "view": "Sees a more bearish tone for oil despite the ship attacks, with the midterms over and more Middle East crude flowing.",
-          "url": "https://tradingpedia.com/2026/11/11/crude-gains-as-strait-security-fears-cap-peace-hopes",
-          "src": "Tradingpedia · Nov 11"
+          "who": "Javier Blas, Bloomberg Opinion",
+          "view": "Calls Brent near $90 an oddity: too low if the war escalates, too high if a deal is signed.",
+          "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Jumps-3-to-94-as-Iran-Denies-Any-Talks-With-Washington.html",
+          "src": "Oilprice.com · Nov 11"
         }
       ]
     },
     "hot": [
       {
-        "r": "U.S. / China trade",
-        "chg": "Nov 9: China extended its suspension of the extra 24% tariff on U.S. goods by two months; the 10% duty stays.",
-        "trend": "Easing",
-        "tc": "eas",
-        "ch": "Tariffs, chips, critical minerals",
-        "next": "Truce waivers end Jan 10"
-      },
-      {
-        "r": "UAE / Gulf shipping",
-        "chg": "Nov 10: ADNOC said one of its vessels was damaged in UAE waters; Trump says Gulf states favor keeping the blockade.",
-        "trend": "Escalating at sea",
-        "tc": "esc",
-        "ch": "Tanker insurance, Gulf exports",
-        "next": "Qatar talks window, late Nov"
-      },
-      {
-        "r": "India / Gulf crews",
-        "chg": "Nov 11: India said a Liberia-flagged tanker with Indian crew was hit by a projectile in the Gulf; four injured.",
-        "trend": "Escalating",
-        "tc": "esc",
-        "ch": "Freight rates, India crude imports",
-        "next": "No date set"
-      },
-      {
         "r": "Russia / Ukraine",
-        "chg": "Nov 10: Ukrainian drone strikes since late October have cut Russian refining capacity about 30%, industry sources told Reuters.",
+        "chg": "Reported Nov 11: a Ukrainian drone strike started a fire at the Ust-Luga Baltic export hub; attacks have disrupted about 30% of Russian refining.",
         "trend": "Escalating",
         "tc": "esc",
         "ch": "Diesel cracks, Russian fuel exports",
-        "next": "No date set"
+        "next": "EIA diesel print, Nov 17"
+      },
+      {
+        "r": "Japan / yen",
+        "chg": "Nov 11: the dollar rose 0.68% to 159.81 yen, near the 160 line, as hike bets lifted the dollar.",
+        "trend": "Yen under pressure",
+        "tc": "esc",
+        "ch": "Yen, carry trades, global yields",
+        "next": "BoJ December meeting"
+      },
+      {
+        "r": "Gulf tanker market",
+        "chg": "Nov 12: Vortexa says laden VLCCs and Suezmaxes in East Asia are up about 15% since early September as tanker rates correct.",
+        "trend": "Easing",
+        "tc": "eas",
+        "ch": "Tanker rates, crude delivered cost",
+        "next": "Qatar talks window, late Nov"
+      },
+      {
+        "r": "U.S. / China trade",
+        "chg": "Nov 9: China extended its suspension of the extra 24% tariff on U.S. goods by two months; the 10% duty stays.",
+        "trend": "Steady",
+        "tc": "std",
+        "ch": "Tariffs, chips, critical minerals",
+        "next": "Truce waivers end Jan 10"
       }
     ],
     "cb": [
@@ -308,6 +205,12 @@
         "bank": "Bank of Korea",
         "rate": "3.00%",
         "exp": "TE sees a hike to 3.25%"
+      },
+      {
+        "d": "2026-12-04",
+        "bank": "Reserve Bank of India",
+        "rate": "5.50%",
+        "exp": "TE sees a hike to 5.75%"
       }
     ],
     "real": {
@@ -331,7 +234,7 @@
         ],
         [
           "India",
-          -0.04
+          -0.59
         ],
         [
           "Canada",
@@ -347,24 +250,30 @@
         ]
       ]
     },
-    "src": "Sources: Euronews and Channels TV (Nov 11), Anadolu (Nov 11), CNBC (Nov 10), Oilprice.com (Nov 10), Business Standard (Nov 10), Tradingpedia (Nov 11), gCaptain/Reuters (Nov 9), Trading Economics G20 lists and Indonesia, South Africa, Korea pages (Nov 11)."
+    "src": "Sources: Oilprice.com (Nov 11); Engine/Reuters (Nov 12); Cornerstone Futures (Nov 12); Capp Notes market close (Nov 11); Trading Economics G20 lists and central bank pages (fetched Nov 12); prior TE reads for Bank Indonesia."
   },
   "reading": {
-    "kind": "Story",
-    "who": "Bill Ackman",
-    "title": "The $27 million insurance policy",
-    "dek": "In early 2020 Bill Ackman bought cheap credit protection instead of selling his stocks, and turned a small premium into a reported $2.6 billion in under a month.",
-    "body": "<p>In early 2020, as a new virus spread out of China and most of Wall Street still treated it as a distant problem, Bill Ackman decided the risk was not being priced. Ackman, born in 1966, had founded Pershing Square Capital Management in 2004 with $54 million of his own money and backing from Leucadia National. By 2019 the fund was riding high again, with Reuters ranking it among the best-performing hedge funds in the world after a 58.1% gain that year.</p><p>Rather than dump the concentrated portfolio of businesses he believed in, Ackman bought insurance. Pershing Square spent roughly <b>$27 million</b> on credit protection, instruments that rise in value when investors grow fearful about corporate debt. The firm disclosed the position on March 3, 2020. His reasoning was simple: a hedge let him keep owning strong companies through a storm, while selling them would mean guessing both the exit and the re-entry correctly.</p><p>The storm arrived fast. As markets crashed in March, the hedge reportedly turned into about <b>$2.6 billion</b> in under a month, roughly 96 times the premium. On March 18 Ackman went on CNBC and delivered one of the most dramatic interviews of the crisis, urging a thirty-day national shutdown, warning that hotel stocks could go to zero and telling companies to halt buybacks. The appearance drew sharp criticism, partly because he had already banked about half his gains before speaking and later bought discounted stakes in businesses he had warned might fail.</p><p>Set the theatrics aside and the trade itself is a textbook lesson in <i>asymmetry</i>. The cost was a small slice of the fund, a loss he could absorb if nothing happened. The potential payoff was enormous because the protection cost so little relative to what it could pay. Ackman did not need to predict the exact path of the pandemic; he only needed to see that the market was charging very little for a scenario that was far from unlikely.</p><p>The second lesson is about what the hedge made possible. Because the payoff arrived at the very moment prices collapsed, it gave the fund cash and nerve when everyone else was forced to sell. Protection bought in calm markets is cheap; protection bought in a panic is ruinous. The best time to insure a portfolio is when insurance feels unnecessary, and the real value of a hedge is that it lets you play offense while others are playing defense.</p>",
+    "kind": "Thoughts",
+    "who": "Peter Lynch",
+    "title": "Invest in what you know, then do the homework",
+    "dek": "Peter Lynch's best-known slogan was meant as the place research starts, and his six stock categories are the tool he used to carry it through.",
+    "body": [
+      "Between 1977 and 1990, Peter Lynch ran Fidelity's Magellan Fund and oversaw its growth from $18 million to more than $14 billion in assets while posting an average annual return of 29.2%. Yet the idea he is best remembered for sounds almost homespun: <b>invest in what you know</b>. In <i>One Up on Wall Street</i> (1989), written with John Rothchild, he argued that ordinary people often notice a great business at the mall, at work, or in their own kitchen long before analysts do.",
+      "But the slogan is routinely misread. Lynch did not mean that liking a product is reason enough to buy the stock. Familiarity is where research begins, not where it ends. A popular store or gadget earns a company a spot on your watch list; whether it earns a spot in your portfolio depends on the balance sheet, the earnings trend and, crucially, the price. Pay too much for even a wonderful company and the business can do everything right while the stock goes nowhere.",
+      "His framework for that homework starts with sorting. Lynch placed stocks into six buckets: <b>slow growers</b>, mature firms held mainly for dividends; <b>stalwarts</b>, large companies growing somewhat faster than the economy; <b>fast growers</b>, smaller firms expanding rapidly, with the most upside and the most risk; <b>cyclicals</b>, whose profits rise and fall with the economy; <b>turnarounds</b>, troubled companies with a plausible path back; and <b>asset plays</b>, businesses sitting on assets the market undervalues. Each category comes with different expectations and different warning signs. You would not expect a stalwart to triple, nor hold a cyclical forever.",
+      "Sorting forces a discipline Lynch prized: being able to explain, in a few plain sentences, why you own something and what would have to happen for the investment to work. He suggested picking a story line and checking whether the company keeps following it. If you cannot tell that story, you are likely relying on momentum or someone else's conviction, and you will have little to steady you when the price drops for reasons unrelated to the business.",
+      "That test matters more when indexes sit near records and leadership is concentrated in a handful of AI-linked giants. Many investors own those companies through funds without ever classifying them. Is a given chip or cloud name a stalwart, a fast grower, or something closer to a cyclical riding a spending boom? The answer shapes what valuation is reasonable and what news should worry you. With the 10-year Treasury yielding near 5%, a stock now has to earn its place against a credible risk-free alternative."
+    ],
     "quote": {
-      "text": "Hell is coming.",
-      "src": "Bill Ackman, CNBC interview, March 18, 2020"
+      "text": "Know what you own, and know why you own it.",
+      "src": "Peter Lynch, One Up on Wall Street (1989)"
     },
     "takeaways": [
-      "With AI-debt worries building, price credit protection before spreads widen.",
-      "A December hike looks locked in; hedge rate risk while it's still cheap.",
-      "Hedging beats selling quality holdings when oil and geopolitics swing prices."
+      "Classify each AI holding: stalwart, fast grower or cyclical? The label sets the valuation.",
+      "With 10-year yields near 5%, demand a clear earnings story before paying record prices.",
+      "A December hike may jolt prices; owners who know their story can hold steady."
     ],
-    "src": "Read more: en.wikipedia.org/wiki/Bill_Ackman; en.wikipedia.org/wiki/Pershing_Square_Capital_Management"
+    "src": "Read more: Peter Lynch with John Rothchild, One Up on Wall Street (1989); en.wikipedia.org/wiki/Peter_Lynch"
   },
   "econ": [
     {
@@ -409,7 +318,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Long-end demand test"
+      "why": "First long-end test after CPI"
     },
     {
       "d": "2026-11-13",
@@ -442,16 +351,6 @@
       "why": "Consumer demand into the holidays"
     },
     {
-      "d": "2026-11-17",
-      "tag": "Earnings",
-      "e": "Nvidia Q3 results",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "AI spending bellwether"
-    },
-    {
       "d": "2026-11-18",
       "tag": "Fed",
       "e": "FOMC minutes, Oct 27–28 meeting",
@@ -469,7 +368,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Read on low- and middle-income spending"
+      "why": "Low- and middle-income spending read"
     },
     {
       "d": "2026-11-20",
@@ -515,54 +414,54 @@
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,520.93",
-      "c": -0.38,
-      "ctext": "−0.38%",
-      "y": 10.1,
-      "ytext": "+10.1%",
-      "why": "Slipped after hotter October inflation lifted bets on Fed hikes and pushed Treasury yields higher.",
-      "asof": "Nov 10"
+      "v": "7,619.38",
+      "c": 1.31,
+      "ctext": "+1.31%",
+      "y": 11.3,
+      "ytext": "+11.3%",
+      "why": "Rallied as CoreWeave's roughly 25% post-earnings jump revived the AI trade and chipmakers surged.",
+      "asof": "Nov 11"
     },
     {
       "n": "Dow",
-      "v": "52,231.89",
-      "c": -0.3,
-      "ctext": "−0.30%",
-      "y": 10.3,
-      "ytext": "+10.3%",
-      "why": "Gave back 158 points of Monday's rally as rate-hike worries returned.",
-      "asof": "Nov 10"
+      "v": "52,486.49",
+      "c": 0.49,
+      "ctext": "+0.49%",
+      "y": 9.5,
+      "ytext": "+9.5%",
+      "why": "Rose 255 points but lagged, since the day's gains were concentrated in chip and AI stocks.",
+      "asof": "Nov 11"
     },
     {
       "n": "Nasdaq",
-      "v": "25,065.87",
-      "c": -0.74,
-      "ctext": "−0.74%",
-      "y": 6.5,
-      "ytext": "+6.5%",
-      "why": "Lagged as Nvidia fell more than 5% and higher yields weighed on tech.",
-      "asof": "Nov 10"
+      "v": "25,466.19",
+      "c": 1.6,
+      "ctext": "+1.60%",
+      "y": 8.5,
+      "ytext": "+8.5%",
+      "why": "Led as Micron jumped about 12% and semiconductor shares gained roughly 6%.",
+      "asof": "Nov 11"
     },
     {
       "n": "WTI crude",
-      "v": "$86.04",
+      "v": "$86.53",
       "rate": true,
-      "c": -0.93,
-      "ctext": "−0.93%",
-      "y": null,
-      "ytext": null,
-      "why": "Fell to its lowest since late August as traders priced in a diplomatic path with Iran.",
-      "asof": "Nov 10"
+      "c": 0.57,
+      "ctext": "+0.57%",
+      "y": 41.8,
+      "ytext": "+41.8%",
+      "why": "Edged up as Iran denied any talks with Washington, while a large U.S. crude build capped gains.",
+      "asof": "Nov 11"
     },
     {
       "n": "Dollar index",
-      "v": "102.23",
-      "c": 0.57,
-      "ctext": "+0.57%",
-      "y": 3.1,
-      "ytext": "+3.1%",
-      "why": "Rose as the CPI beat strengthened the case for more Fed tightening.",
-      "asof": "Nov 10"
+      "v": "102.91",
+      "c": 0.67,
+      "ctext": "+0.67%",
+      "y": 3.8,
+      "ytext": "+3.8%",
+      "why": "Climbed to its highest since April 2025 as hot inflation and hawkish Fed talk lifted hike bets.",
+      "asof": "Nov 11"
     }
   ],
   "key": [
@@ -664,15 +563,15 @@
       "pl": "Week",
       "pc": "−$0.165",
       "y": "+$2.290",
-      "why": "Week of Nov 9; follows a 6-cent drop the week before."
+      "why": "Week of Nov 9; next EIA print Nov 17."
     },
     {
       "n": "Baltic Dry Index",
-      "v": "2,862",
+      "v": "2,959",
       "pl": "Day",
-      "pc": "+0.28%",
-      "y": "+38.1%",
-      "why": "Nov 10; up 0.35% over the past month."
+      "pc": "+3.39%",
+      "y": "+45.8%",
+      "why": "Nov 11; sixth straight gain, highest since Oct 8."
     },
     {
       "n": "Drewry World Container Index",
@@ -680,12 +579,12 @@
       "pl": "Week",
       "pc": "−1%",
       "y": null,
-      "why": "Nov 5; Shanghai–LA flat at $7,539; next print Nov 12."
+      "why": "Nov 5; easing China port congestion; Shanghai–NY −3%."
     }
   ],
   "also": "",
-  "sport": "Victor Wembanyama had 40 points, 11 rebounds and nine blocks in 25 minutes as the Spurs routed the Suns 122-96 Monday for their ninth straight win.",
-  "foot": "Sources: U.S. Treasury daily par yield CSV (Nov 10; references Oct 9, May 8 '26 and Nov 10 '25 from series); NY Fed API (SOFR latest Nov 9; Nov 10 not yet published; references Oct 9, May 8, Nov 7 '25); AP 'How major US stock indexes fared Tuesday 11/10/2026' via La Nación; Xinhua via The Star (Nov 10, 2025 closes; Nov 10, 2026 WTI settle); Trading Economics (crude why, dollar index, BDI, calendar, CPI, G20 lists, central bank pages); BLS CPI; Marketplace; Yahoo Finance; Trading & Investment News; Federal Reserve (Waller); CNBC (CoreWeave, Nov 10 live blog); NY Fed (household debt, private-credit survey); Bloomberg (Fullscript, via search); Treasury refunding statement and auction tracker (search); EIA; Drewry via DCN (Nov 5); Green Street; CRE Daily; Rejournals; CBRE; Euronews; Channels TV; Anadolu; Business Standard; Tradingpedia; gCaptain/Reuters; Wikipedia (Ackman); The FSD Brief (Spurs score).<br>Notes: Bond market closed Nov 11 (Veterans Day). 1Y index changes vs Nov 10, 2025 closes from Xinhua via The Star. WTI 1Y left out: TE's figure (~+49%, as of Nov 11, CFD-based) looked inconsistent with yesterday's +39.6%. Dollar index 102.23 derived from TE's Nov 11 quote less its change (TE news snippets said 'around 102'/'102.3'); 1Y +3.1% per TE as of Nov 11. Focus: BLS published no 12-month CPI changes for Oct 2026 (Oct 2025 not collected), so act/cons/prior are m/m; chart ends at Sep '26 and skips Oct '25; CPI-U values extracted by fetch summarizer. FedWatch odds varied by source (84–99% for 25 bp; 10–15% for 50 bp). Logan and Bowman remarks via Yahoo Finance; CoreWeave after-hours move not confirmed, left out. 30-year auction size and prior result from search summaries. Lame-duck funding deadline (Dec 11), Anthropic IPO terms and tariff-refund delays left out (search-only or single-source). Deep dive: Green Street's October sector detail not public; CBRE and Avison Young cap rates use different methods. World: hotspot next dates not found for India and Russia rows; Russia row carried from Nov 10 brief; Saudi/Houthi row dropped (no fresh news searched); PBoC LPR date/level carried from prior briefs (TE page showed no values). Real rates use September CPI for U.S., Japan, UK, Canada, India and October for euro area, China, Mexico. Quote in Corner is Ackman's March 18, 2020 CNBC remark as reported on Wikipedia. 30-yr mortgage carried from Nov 5 (next Freddie Mac survey Nov 12). Sports score is from Nov 9 (no fetched Nov 10 final found).",
+  "sport": "Franz Wagner scored 38 as the Magic beat the Jazz 123-106 Wednesday, and the Trail Blazers upset the Thunder 118-108.",
+  "foot": "Sources: NY Fed API (SOFR latest Nov 9; Nov 10 not yet published after the Nov 11 holiday); U.S. Treasury CSV (latest Nov 10; bond market closed Nov 11), rates block carried from Nov 11 brief; AP 'How major US stock indexes fared Wednesday 11/11/2026' via KRMG; AP Nov 11, 2025 closes via Yahoo; StockTitan and Yahoo (market drivers); MarketScreener/MT Newswires (WTI settle $86.53); Xinhua via The Star (Nov 11, 2025 WTI $61.04); Trading Economics (dollar index, 10Y, stock market, NFIB, LMI, BDI, G20 lists, central banks); Oilprice.com; Engine; Cornerstone Futures; Capp Notes; Renaissance Capital; PIMCO; EIA; Drewry; FreightWaves; Cushman & Wakefield; CBRE; Savills; Propmodo; Land of Basketball; Wikipedia and InvestmentNews (Lynch).<br>Notes: Dollar index Nov 11 close (102.91) and +0.67% derived from TE's Nov 12 quote less its change; 1Y +3.8% is TE's figure as of Nov 12. Oil 'why' from Brent/Iran coverage (Oilprice) since no WTI-specific reason was found. Nvidia removal report is TE's summary of WSJ/NYT; primary articles not fetched. Anthropic $1.5T valuation per TE reports. Drewry Nov 12 WCI not found (DCN 404); Nov 5 shown, 1Y left out. Focus: LMI chart left out (only 5 monthly points available). Calendar consensus/prior carried from Nov 11 read of TE (TE calendar fetch failed today); retail sales numbers left out (TE value unlabeled); Nvidia earnings date unconfirmed, left out of calendar. World: U.S. CPI in 'real' is Sep (3.7%); BLS published no Oct y/y; Japan CPI Sep, UK Sep, Canada Sep; others Oct. Ust-Luga strike date per Oilprice Nov 11, not independently confirmed. Bank Indonesia expectation carried from Nov 11 TE read.",
   "series": [
     [
       "2021-10-12",
@@ -8393,6 +8292,10 @@
       {
         "d": "2026-11-11",
         "t": "Property prices are rolling over. Industrial is holding, on a thin cushion."
+      },
+      {
+        "d": "2026-11-12",
+        "t": "The warehouse glut is gone. The next one is being poured."
       }
     ],
     "corner": [
@@ -8500,6 +8403,11 @@
         "d": "2026-11-11",
         "who": "Bill Ackman",
         "kind": "Story"
+      },
+      {
+        "d": "2026-11-12",
+        "who": "Peter Lynch",
+        "kind": "Thoughts"
       }
     ],
     "focus": [
@@ -8574,6 +8482,10 @@
       {
         "d": "2026-11-11",
         "t": "October CPI: prices rose 0.4% and core 0.3%, both a tenth above forecasts"
+      },
+      {
+        "d": "2026-11-12",
+        "t": "October LMI: inventory costs hit their highest since March 2022 as firms stocked up"
       }
     ],
     "world": [
@@ -8648,6 +8560,10 @@
       {
         "d": "2026-11-11",
         "t": "Tankers burn in Hormuz as Qatar buys time for talks"
+      },
+      {
+        "d": "2026-11-12",
+        "t": "Iran calls the Qatar talks 'lies' as mines disable two more supertankers"
       }
     ]
   }
