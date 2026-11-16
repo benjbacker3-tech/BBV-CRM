@@ -1,0 +1,259 @@
+{
+  "as_of": "2026-11-16",
+  "source": "Outlook review of ben@sandpiperre.com (read-only), 2026-11-13 ~9am MT → 2026-11-16 ~9am MT. Automated run; no LOI search (two LOI emails for Phoenix properties surfaced in the general sweep and were deliberately not tracked). All folders swept (~190 messages, mostly 106th closing traffic Fri 11/13). Updates on 106th (closing extended to Tue 11/17), 281 Fogg (PSA signed, DD started), 6371 Nesbitt (heaters final, two lease proposals from Oakbrook), 1862 Ives, 2045 W Union (tour Mon 11/16). No comps queued: C&W Las Vegas IOS MarketFlash Q3 2026 is image-only with no readable figures; Aviva Sonenreich's 32920 Walt Basset Ave (Pueblo, CO) is outside Ben's markets and Ben passed on it 11/13; the Nesbitt lease proposals are Madison, WI (outside comp markets) and are proposals, not signed leases.",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "stage": "Under Contract",
+        "close_date": "2026-11-17"
+      },
+      "status": [
+        "CLOSING moved to Tue 11/17: amendment extending closing signed by Ben and sellers (Pat Boyle, Dale Westbrook) via Adobe Sign 11/13; Burke's close-date hold is 11/17 11am MT. Ben told CCIG and RIO it slipped because of the Outlook outage.",
+        "Loan (FIB): final loan docs circulated by Morgan Nelson 11/13 (no Lease Compliance Certificate needed). Revised Written Consent needs fresh wet-ink signatures from Ben and Tucker Manion, overnighted to title (Essex, 11/13); Tucker leaves the country 11/14. Burke and CPP signed off on loan agreement changes 11/13.",
+        "Tenant docs (Zero Carbon Systems): equipment list fully signed 11/13. Estoppel and Side Letter sent by DocuSign 11/13; Craig Johnson (seller counsel) asked 11/14 to fix his misspelled name ('Criag') and re-send. SNDA must be wet-signed and notarized; ZCS expects to sign early this week; original goes to FIB (Morgan Nelson).",
+        "Funds: CentrePoint Fund I wired $1.6M to Fidelity 11/13; Ben's $177,777.77 wire to Fidelity went out 11/13 then came back (account field error). FIB is raising Ben's wire limit to $500K; re-send expected Mon 11/16.",
+        "Settlement statement: security deposit added and Essex line relabeled (Fidelity 11/13). Red Cedar still sees no CAM proration (Ben 11/14: no other CAM tenant pays direct) and RWO legal invoice is still a $1 placeholder. AEI survey with SP Brighton IOS LLC certification delivered 11/13.",
+        "Post-close: PNC operating account for SP Brighton IOS LLC needs the executed CPP-SPC JV OA and CentrePoint Fund I LP agreement; RIO site meeting Mon 11/16 1pm at the property."
+      ]
+    },
+    {
+      "key": "281 Fogg",
+      "fields": {
+        "stage": "Under Contract"
+      },
+      "status": [
+        "UNDER CONTRACT: Ben told True North (Chris Valcheff) 11/13 'we signed the PSA this morning, kicking off 45 day DD'. Ben sent the buyer-signed PSA to Chris Burns (JLL) 11/13 7:37am; Burns getting seller (Armando) signature and sending to escrow. Fully executed copy not seen in mail yet.",
+        "DD clock: 45-day DD from 11/13 runs to about 12/28 (inferred); 15-day close after that. Price $14.5M; $50K seller break-up fee.",
+        "DD files: JLL (Stephanie Satterwhite) shared the SharePoint DD war room 11/13; Ben is the only user.",
+        "Environmental: former manufactured gas plant site (True North, 11/4). Lender needs a new Phase I; Ben's reply to Valcheff confirming that is still sitting in Drafts (not sent). AEI seismic proposal also pending signature.",
+        "Financing: Essex submission package out; Ben shared it with Nicholas Nasharr (Colliers) 11/14, who offered to help with the 10% equity."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "stage": "Closed"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Verona IOS LLC. GC: TJK. On track for early December completion.",
+        "Heating final (TJK, 11/14): no active water found in Building 2 large garage, so that heater is dropped. Proceeding with Building 1 ($12,212) and Building 2 small bay ($9,652); Ben said 'please proceed' 11/14.",
+        "Leasing: Oakbrook (Bryant Meyer) sent two proposals for Ben's feedback 11/16, both 62-month NNN starting 1/1/2027 with 2 months free rent, building $7.50/SF/yr +3%, IOS $1.00/$1.25/$1.50 per SF then +3%, TI $5/SF: L.E. Myers (16,747 SF bldg, 7.3 ac yard) and Congruex for Parcel C (11,827 SF bldg, 2.6 ac yard). Both email headers say 'Parcel C' and both show TI of $59,135, so parcel labels and TI need checking.",
+        "Construction loan draw: Ben sent TJK license and contract plus Tilsen COI and license 11/13; HighPoint (Karen Mijangos) forwarded everything to LeChelle at Sunwest and asked for the remaining list.",
+        "Roof: Tilsen targeting mid-December; permit to follow. Ben on site Dec 10–11."
+      ]
+    },
+    {
+      "key": "1862 Ives",
+      "aliases": [
+        "1962 Ives"
+      ],
+      "fields": {
+        "stage": "Under Contract"
+      },
+      "status": [
+        "Ecology: the Outlook outage pushed Garrett Leque's meeting; he invited Ecology (Frank Winslow) for 11:30 Fri 11/13. No readout in mail yet. DD spend stays on HOLD.",
+        "DD clock: deliveries deemed 10/25; investigation period ~60 days, so roughly 12/24 (inferred). Target close 01/27.",
+        "BNSF easement: call with Grant Wood (HDR) on the TCE still to be set."
+      ]
+    },
+    {
+      "key": "2045 W Union",
+      "fields": {
+        "stage": "Tracking"
+      },
+      "status": [
+        "Off-market via Kyle Benson (Malman). Asking $6,747,138 ($231.55/SF), 6.5% cap; 29,139 SF on 6.779 ac. Seller must net $6.5M after commissions; open to buyer paying commission to lower the price.",
+        "Kyle sent a site map marked by tenant with lease rollovers 11/13. Property tour Mon 11/16 10–11am MT with Kyle and Gene Baber."
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "deal": "281 Fogg",
+      "name": "Stephanie Satterwhite",
+      "firm": "JLL",
+      "email": "Stephanie.Satterwhite@jll.com",
+      "notes": "Role: JLL team (Chris Burns); sent the 281 Fogg DD SharePoint war room 11/13."
+    },
+    { "name": "Laura Tardiff", "email": "laura@redcedar.io" },
+    { "name": "Craig Johnson", "email": "cjohnson@cdjlaw.com" },
+    { "name": "Briana Randel", "email": "briana@fnf.com" },
+    { "name": "Timothy Shea", "email": "tshea@rwolaw.com" },
+    { "name": "Timothy Hutchinson", "email": "timothy.hutchinson@pnc.com" },
+    { "name": "Tyler Hendrickson", "email": "tyler@cpointproperties.com" },
+    { "name": "Alan Bruno", "email": "alanb@cpointproperties.com" },
+    { "name": "David Church", "email": "dchurch@zerocarbonsystems.com" },
+    { "name": "Matt Perigard", "email": "mperigard@essexreca.com" },
+    { "name": "Morgan Nelson", "email": "Morgan.Nelson@fib.com" },
+    { "name": "Chad Murray", "email": "cmurray@RIO-RealEstate.com" },
+    { "name": "Christopher Burns", "email": "Christopher.Burns@jll.com" },
+    { "name": "Chris Valcheff", "email": "cvalcheff@consulttruenorth.com" },
+    { "name": "Jon Hepner", "email": "jhepner@tjkdesignbuild.com" },
+    { "name": "Bryant Meyer", "email": "bmeyer@oakbrookcorp.com" },
+    { "name": "Karen Mijangos", "email": "Karen@highpointcre.com" },
+    { "name": "Garrett Leque", "email": "gleque@geoengineers.com" },
+    { "name": "Kyle Benson", "email": "kyle@malmancre.com" },
+    { "name": "Aviva Sonenreich", "email": "aviva@warehousehotline.com" }
+  ],
+  "tasks": [
+    {
+      "contact_email": "cjohnson@cdjlaw.com",
+      "type": "email",
+      "due_date": "2026-11-16",
+      "note": "106th: fix Craig Johnson's name ('Criag') on the Side Letter / Estoppel DocuSign and re-send for signature"
+    },
+    {
+      "contact_email": "briana@fnf.com",
+      "type": "email",
+      "due_date": "2026-11-16",
+      "note": "106th: re-send the $177,777.77 wire to Fidelity once FIB raises the limit; get RWO invoice onto the settlement statement before Tue close"
+    },
+    {
+      "contact_email": "tyler@cpointproperties.com",
+      "type": "email",
+      "due_date": "2026-11-17",
+      "note": "106th: get the executed CPP-SPC JV OA and CentrePoint Fund I LP agreement to PNC (Tim Hutchinson) for the SP Brighton account"
+    },
+    {
+      "contact_email": "cvalcheff@consulttruenorth.com",
+      "type": "email",
+      "due_date": "2026-11-17",
+      "note": "Fogg: confirm full Phase I scope with True North (lender needs a new Phase I; reply is still in Drafts)"
+    },
+    {
+      "contact_email": "Christopher.Burns@jll.com",
+      "type": "email",
+      "due_date": "2026-11-17",
+      "note": "Fogg: get the fully executed PSA back from JLL and confirm the escrow open date (sets the 45-day DD clock)"
+    },
+    {
+      "contact_email": "bmeyer@oakbrookcorp.com",
+      "type": "email",
+      "due_date": "2026-11-18",
+      "note": "Nesbitt: send Bryant Meyer feedback on the L.E. Myers and Congruex lease proposals (check parcel labels and TI)"
+    },
+    {
+      "contact_email": "kyle@malmancre.com",
+      "type": "call",
+      "due_date": "2026-11-17",
+      "note": "2045 W Union: follow up with Kyle Benson after the 11/16 tour"
+    }
+  ],
+  "contact_log": [
+    {
+      "contact_email": "laura@redcedar.io",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "106th: deposits now on statement; still no CAM proration and RWO invoice is a $1 placeholder. Ben 11/14: no other CAM tenant pays direct."
+    },
+    {
+      "contact_email": "briana@fnf.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "106th: updated settlement statement; closing extension to Tue 11/17 sent to escrow."
+    },
+    {
+      "contact_email": "mperigard@essexreca.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "106th: FIB loan closing chain; SNDA wet-sign + notary; Ben and Tucker to re-sign revised consent."
+    },
+    {
+      "contact_email": "Morgan.Nelson@fib.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "106th: final FIB loan documents circulated; no Lease Compliance Certificate required."
+    },
+    {
+      "contact_email": "dchurch@zerocarbonsystems.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "106th: ZCS counsel approved estoppel / side letter; SNDA to be signed and notarized early next week."
+    },
+    {
+      "contact_email": "cjohnson@cdjlaw.com",
+      "type": "email",
+      "date": "2026-11-14",
+      "note": "106th: asked Ben to correct misspelled name on the DocuSign and re-send."
+    },
+    {
+      "contact_email": "timothy.hutchinson@pnc.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "106th: PNC account for SP Brighton IOS LLC needs executed JV OA and CentrePoint Fund I LP agreement."
+    },
+    {
+      "contact_email": "cmurray@RIO-RealEstate.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "106th: Ben said closing now Mon/Tue after the Outlook outage."
+    },
+    {
+      "contact_email": "Christopher.Burns@jll.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "Fogg: Burns getting seller signature on the PSA; Ben confirmed he is the only DD war-room user."
+    },
+    {
+      "contact_email": "Stephanie.Satterwhite@jll.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "Fogg: shared the DD SharePoint war room."
+    },
+    {
+      "contact_email": "cvalcheff@consulttruenorth.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "Fogg: Ben said PSA signed, 45-day DD started; Valcheff asked whether to do a full Phase I."
+    },
+    {
+      "contact_email": "jhepner@tjkdesignbuild.com",
+      "type": "email",
+      "date": "2026-11-14",
+      "note": "Nesbitt: no water in Building 2 large garage, heater dropped; Ben approved B1 and B2 small heaters."
+    },
+    {
+      "contact_email": "Karen@highpointcre.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "Nesbitt: forwarded draw documents to LeChelle at Sunwest; asked for outstanding list."
+    },
+    {
+      "contact_email": "bmeyer@oakbrookcorp.com",
+      "type": "email",
+      "date": "2026-11-16",
+      "note": "Nesbitt: L.E. Myers and Congruex lease proposals sent for Ben's feedback."
+    },
+    {
+      "contact_email": "gleque@geoengineers.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "1862 Ives: outage set Ecology meeting back; invite sent for 11:30 11/13."
+    },
+    {
+      "contact_email": "kyle@malmancre.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "2045 W Union: sent tenant site map with lease rollovers; tour Mon 11/16 10am."
+    },
+    {
+      "contact_email": "aviva@warehousehotline.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "32920 Walt Basset Ave, Pueblo CO: Ben passed (location east of town; gut 7.5–8% cap)."
+    }
+  ],
+  "diligence": [
+    {
+      "deal": "10275 E 106th",
+      "category": "survey",
+      "vendor": "AEI Consultants",
+      "items": [
+        ["Survey certified to SP Brighton IOS LLC", "complete"]
+      ]
+    }
+  ],
+  "comps": [],
+  "lois": []
+}

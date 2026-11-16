@@ -1,0 +1,241 @@
+{
+  "as_of": "2026-11-13",
+  "source": "Outlook review of ben@sandpiperre.com (read-only), 2026-11-11 ~9am MT → 2026-11-13 ~9am MT (an earlier run today wrote this file uncommitted; a second run added mail through ~9am: Fogg PSA signed by Ben, Nesbitt heater decisions). Automated run; no LOI search. All folders swept (~210 messages, mostly 106th closing traffic). Updates on 106th, 281 Fogg, 6371 Nesbitt, 1862 Ives, 2045 W Union. No comps queued: IOS List 11/13 had one Las Vegas listing (4880 E Carey Ave, sublease, 4.25 ac) with no asking rent, and Malman's 4002 S Clay St (Denver) package is a for-sale listing, not a lease/sale comp. A Phoenix property Will Groves (C&W) is shadowing (another buyer's DD ends ~11/27) was not added as a deal: no address in the email.",
+  "deals": [
+    {
+      "key": "10275 E 106th",
+      "fields": {
+        "stage": "Under Contract"
+      },
+      "status": [
+        "CLOSING: parties were working to close Fri 11/13 (Burke's Linda Freeman 11/13: 'our closing today'; seller signers Pat Boyle and Dale Westbrook signing with a mobile notary). Ben wrote Red Cedar late 11/12 that, because of the Outlook outage, closing may move to Mon/Tue 11/16–17. Close date left at 11/13 until confirmed.",
+        "Signing: Ben signed at Fidelity's Denver Tech Center office 11/12 at 9:45am; originals overnighted to Fidelity (Newport Beach). CPP's Tucker Manion signed 11/12 (originals to Fidelity overnight). Title approved the deed form and lender counsel (Tim Shea) approved the updated commitment and pro forma 11/12. Burke updated the Assignment of Lease to the correct buying entity 11/13; AEI still owes the survey with the SP Brighton IOS LLC certification.",
+        "JV/loan docs: Polsinelli circulated executed Cross Indemnity and CPP-SPC Holdco JV operating agreement 11/12. FIB loan docs: Burke and CPP OK with lender's changes 11/12 (DSCR suspension, reserve replenishment); Burke revised the consent to also cover the acquisition 11/13. Tenant–landlord equipment list out for signature via Adobe Sign 11/12 (Pat Boyle signed).",
+        "Insurance: corrected premium is $24,446/yr for package + umbrella (Acuity via CCIG, 11/12), down from the $41,751 quote.",
+        "Settlement statement (Red Cedar review 11/12): Burke and RWO invoices still $1 placeholders; confirm tenant security deposit credit; confirm CAM/NNN proration (rent credit $14,568.49, tax proration $76,940.75); relabel Essex $37,930 from 'Legal' to placement fee; confirm $340,000 TILC holdback paid outside closing; get title's tax-proration calc.",
+        "Post-close: RIO (Lindsay Campbell) setting up the owner portal; RIO asked to see the full PM agreement / loan consent before signing (11/12). Ben owes: settlement statement fixes, appraisal copy to Red Cedar (11/13), wire instructions from Fidelity, RIO site-visit time."
+      ]
+    },
+    {
+      "key": "281 Fogg",
+      "fields": {
+        "stage": "Negotiating PSA"
+      },
+      "status": [
+        "PSA: Ben sent his signed PSA to Chris Burns (JLL) 11/13 at 7:37am MT; Burns is getting it signed by the seller (Armando) and over to escrow. Stage stays Negotiating PSA until the fully executed copy comes back. Final terms: seller damages/break-up fee $50,000 (met in the middle vs. buyer's $75K), notice fixes; Schuster OK'd 11/11.",
+        "Ben asked Burns 11/13 to add Schuster and Linda Freeman (Burke) to the escrow chain. Once executed: send the DD war-room list (Ben said just himself, 11/11).",
+        "Financing: Essex (Matt Perigard) sent the Fogg financing submission package 11/11; Ben: 'Looks awesome.'",
+        "Environmental: Ben asked AEI (Taylor Strickland) to add seismic 11/11; AEI sent the updated proposal; Ben to sign it once the PSA is signed.",
+        "Price $14.5M; 45-day DD / 15-day close, closing around the week of Jan 11 (per 11/10)."
+      ]
+    },
+    {
+      "key": "6371 Nesbitt",
+      "fields": {
+        "stage": "Closed"
+      },
+      "status": [
+        "CONSTRUCTION. Owner: Verona IOS LLC. GC: TJK. On track for early December completion.",
+        "Heating (TJK, Jon Hepner, 11/12), each a gas unit heater + Wi-Fi thermostat: Ben approved Building 1 ($12,212) and Building 2 small bay ($9,652) on 11/13. Building 2 large bay ($11,485) on hold: Ben asked whether it has water pipes and whether one heater can hold 50°F. Still pending from 11/10: Building 4 power/lighting $7,006 and Building 2 exterior lights (~$2,300 for 3).",
+        "Roof: Tilsen tracking mid-December completion, weather permitting (11/11). Tilsen sent COI and contractor license 11/13; permit to follow.",
+        "Construction loan draw: Sunwest Bank (Monica Pulido) needs contractor items (insurance certs, GC license, permit, notices). RBN's Mitch Veremeychik says their accounting has chased this for about a month. Ben sent contracts and the first TJK change order 11/11; TJK is gathering the rest.",
+        "Data center angle with Oakbrook (Bryant Meyer) and Alliant still open. Leasing slow; Ben on site Dec 10–11."
+      ]
+    },
+    {
+      "key": "1862 Ives",
+      "aliases": [
+        "1962 Ives"
+      ],
+      "fields": {
+        "stage": "Under Contract"
+      },
+      "status": [
+        "Ecology: Garrett Leque's meeting moved to Thu 11/12 (11/11 was Veterans Day). He meets Ecology (Frank Winslow) alone first on technical direction, then a group call if needed. No readout in mail yet. DD spend stays on HOLD.",
+        "Ben told SKCFTC (Logan Wasem) 11/11 the team is still working through environmental with Ecology; if it goes well, demo likely in Q1.",
+        "DD clock: deliveries deemed 10/25; investigation period ~60 days, so roughly 12/24 (inferred). Target close 01/27.",
+        "BNSF easement: call with Grant Wood (HDR) on the TCE still to be set."
+      ]
+    },
+    {
+      "key": "2045 W Union",
+      "fields": {
+        "stage": "Tracking"
+      },
+      "status": [
+        "Off-market via Kyle Benson (Malman). Asking $6,747,138 ($231.55/SF), 6.5% cap; 29,139 SF on 6.779 ac. Seller must net $6.5M after commissions.",
+        "Ben to Kyle 11/13: tied up with closing the last two days, proposed catching up around 10am 11/13."
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "deal": "10275 E 106th",
+      "name": "Laura Tardiff",
+      "firm": "Red Cedar Advisory Services",
+      "email": "laura@redcedar.io",
+      "phone": "720-431-7449",
+      "notes": "Role: accounting advisor (with Ian Nichols); reviewed the 106th buyer settlement statement 11/12 and asked for the appraisal."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Lindsay Campbell",
+      "firm": "RIO Real Estate",
+      "email": "LCampbell@RIO-RealEstate.com",
+      "phone": "720-392-4983",
+      "notes": "Role: Director of Property Management at RIO; setting up 106th owner portal and onboarding."
+    },
+    {
+      "deal": "10275 E 106th",
+      "name": "Morgan Nelson",
+      "firm": "First Interstate Bank",
+      "email": "Morgan.Nelson@fib.com",
+      "phone": "720-369-5344",
+      "notes": "Role: Associate Commercial Relationship Manager at FIB; coordinating 106th loan signatures."
+    },
+    {
+      "deal": "6371 Nesbitt",
+      "name": "Mitch Veremeychik",
+      "firm": "RBN Group",
+      "email": "mitch@rbngrp.com",
+      "phone": "303-345-3440",
+      "notes": "Role: RBN Group (Verona IOS partner); coordinating the Sunwest construction loan draw on Nesbitt."
+    },
+    {
+      "type": "broker",
+      "name": "Michael Kraus",
+      "firm": "Malman Real Estate",
+      "email": "michael@malmancre.com",
+      "phone": "609-605-9024",
+      "markets": "Denver",
+      "notes": "Sent 4002 S Clay St (Denver) for-sale package 11/12."
+    }
+  ],
+  "tasks": [
+    {
+      "contact_email": "laura@redcedar.io",
+      "type": "email",
+      "due_date": "2026-11-13",
+      "note": "106th: send Red Cedar the appraisal and the revised settlement statement (invoices, deposit, CAM/NNN, Essex label, TILC holdback)"
+    },
+    {
+      "contact_email": "jhepner@tjkdesignbuild.com",
+      "type": "email",
+      "due_date": "2026-11-16",
+      "note": "Nesbitt: decide on unit heaters (B1 $12,212; B2 large $11,485; B2 small $9,652)"
+    },
+    {
+      "contact_email": "Christopher.Burns@jll.com",
+      "type": "email",
+      "due_date": "2026-11-13",
+      "note": "Fogg: send executed PSA and DD war-room access list to Chris Burns"
+    }
+  ],
+  "contact_log": [
+    {
+      "contact_email": "laura@redcedar.io",
+      "type": "email",
+      "date": "2026-11-12",
+      "note": "106th: settlement statement review list; Ben said closing may slip to Mon/Tue due to Outlook outage."
+    },
+    {
+      "contact_email": "erica.mccaa@thinkccig.com",
+      "type": "email",
+      "date": "2026-11-12",
+      "note": "106th: corrected invoice, final premium $24,446/yr (package + umbrella)."
+    },
+    {
+      "contact_email": "Christopher.Burns@jll.com",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "Fogg: final seller redlines ($50K break-up fee); Ben to sign 11/12 and send DD list."
+    },
+    {
+      "contact_email": "SSchuster@burkelaw.com",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "Fogg: revised PSA; no issues with seller's $50K change."
+    },
+    {
+      "contact_email": "mperigard@essexreca.com",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "Fogg financing submission package; 106th loan signing logistics."
+    },
+    {
+      "contact_email": "jhepner@tjkdesignbuild.com",
+      "type": "email",
+      "date": "2026-11-12",
+      "note": "Nesbitt: revised heating proposals for Buildings 1 and 2."
+    },
+    {
+      "contact_email": "graham@tilsenroofing.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "Nesbitt roof: mid-December target; COI and license sent; permit to follow."
+    },
+    {
+      "contact_email": "mitch@rbngrp.com",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "Nesbitt: Sunwest construction draw requests; Ben sent contracts and TJK change order."
+    },
+    {
+      "contact_email": "gleque@geoengineers.com",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "1862 Ives: Ecology meeting moved to 11/12; Garrett meeting Ecology alone first."
+    },
+    {
+      "contact_email": "LWasem@SKCFTC.org",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "1862 Ives: Ben said still working through Ecology; demo likely Q1 if all goes well."
+    },
+    {
+      "contact_email": "michael@malmancre.com",
+      "type": "email",
+      "date": "2026-11-12",
+      "note": "4002 S Clay St (Denver) for sale; Ben internally: already deep on it, almost had it last year."
+    },
+    {
+      "contact_email": "Will.Groves@cushwake.com",
+      "type": "email",
+      "date": "2026-11-11",
+      "note": "Phoenix property in another buyer's DD (Phase II); seller says a couple weeks of DD left. C&W wants to step in if it falls out."
+    },
+    {
+      "contact_email": "kyle@malmancre.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "2045 W Union: Ben proposed catching up ~10am 11/13."
+    },
+    {
+      "contact_email": "Christopher.Burns@jll.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "Fogg: Ben sent signed PSA; Burns getting seller signature and sending to escrow."
+    },
+    {
+      "contact_email": "jhepner@tjkdesignbuild.com",
+      "type": "email",
+      "date": "2026-11-13",
+      "note": "Nesbitt: Ben approved heaters for Building 1 and Building 2 small bay; Building 2 large bay on hold (pipes / 50°F question)."
+    }
+  ],
+  "diligence": [
+    {
+      "deal": "6371 Nesbitt",
+      "category": "roof",
+      "vendor": "Tilsen Roofing",
+      "items": [
+        ["COI (Ben as certificate holder)", "complete"],
+        ["Contractor license", "complete"],
+        ["Permit", "pending"],
+        ["Roof replacement (mid-Dec target)", "in-progress"]
+      ]
+    }
+  ],
+  "comps": [],
+  "lois": []
+}
