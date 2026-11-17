@@ -1,238 +1,282 @@
 {
-  "headline": "Producer prices are up 6.5% from a year ago, the 10-year closed the week at 5.15%, and Fed Chair Warsh speaks at noon ET with a December hike fully priced.",
-  "dateline": "Monday, November 16, 2026 · closes as of Fri Nov 13",
-  "ustDate": "Nov 13, 2026",
+  "headline": "Stocks slid nearly 2% as chipmakers sank ahead of Nvidia's results tonight, while oil fell 3% and the 10-year held above 5% with a December hike all but priced.",
+  "dateline": "Tuesday, November 17, 2026 · closes as of Mon Nov 16",
+  "ustDate": "Nov 16, 2026",
   "rundown": [
     {
       "tag": "Fed",
-      "h": "Warsh takes the mic with a December hike priced in.",
-      "p": "Fed Chair Kevin Warsh speaks at noon ET today, and minutes of the Oct. 27–28 meeting, where Governor Cook and Cleveland Fed President Hammack dissented in favor of a hike, land Wednesday at 2 p.m. CNBC says markets have largely priced a quarter-point increase on Dec. 9. The open question for borrowers is whether anyone pushes the size to a half point.",
-      "url": "https://www.cnbc.com/2026/11/16/treasury-yields-bonds-inflation.html",
-      "src": "CNBC; HeyGoTrade; StockAnalysis · Nov 16"
+      "h": "Warsh talks AI scenarios, not December.",
+      "p": "Speaking Monday at the Fed's AI productivity conference in San Francisco, Chair Kevin Warsh walked through three staff scenarios: an AI productivity boom, automation with rising unemployment, and an investment bust that slows the economy. He called them illustrative, not a forecast. CME FedWatch still shows roughly 91% odds of a quarter-point hike Dec. 9 and 9% for a half point; October minutes land Wednesday at 2 p.m.",
+      "url": "https://www.hngn.com/articles/273846/20261116/stocks-slide-10-year-yield-stays-above-5-before-nvidia.htm",
+      "src": "HNGN · Nov 16"
     },
     {
       "tag": "Earnings",
-      "h": "Nvidia reports Tuesday, its first quarter since Huang's exit.",
-      "p": "LSEG consensus calls for $109.08 billion in revenue, against company guidance of about $108 billion and $57.0 billion a year ago; CFO Colette Kress is interim CEO. The stock is down about 20% in November, on pace for its worst month since late 2022, per CNBC. At a $3.93 trillion market value, it outweighs the other 78 companies reporting this week combined.",
-      "url": "https://www.stocktitan.net/articles/earnings-calendar-week-of-november-16-2026",
-      "src": "StockTitan; CNBC · Nov 15"
+      "h": "Nvidia reports tonight with an interim CEO.",
+      "p": "Nvidia reports third-quarter results after Tuesday's close, with consensus around $2.47–$2.52 a share on roughly $109 billion to $111 billion of revenue, against company guidance of $108 billion. CFO Colette Kress is running the company after Jensen Huang's exit, and the shares fell 4.1% to $156.14 Monday on a report that the board isn't considering bringing him back. It is the week's big AI test.",
+      "url": "https://stocktwits.com/news-articles/markets/equity/what-to-expect-markets-this-week-nov-15-2026/cNbEXadR9Qu",
+      "src": "Stocktwits; Reuters via MarketScreener · Nov 15–16"
     },
     {
-      "tag": "Consumer",
-      "h": "Big-box retailers report into the holiday season.",
-      "p": "Home Depot reports Tuesday before the open, with EPS expected at $3.87 versus $3.74 a year ago. Target follows Wednesday at an expected $2.03, up from $1.78; its full-year guidance includes $1.65 a share from tariff refunds. Walmart closes the run Thursday, expected at $0.64. Together they are the week's best read on spending and on how much tariff cost is reaching shelves.",
-      "url": "https://www.stocktitan.net/articles/earnings-calendar-week-of-november-16-2026",
-      "src": "StockTitan · Nov 15"
+      "tag": "Policy",
+      "h": "Washington tightens the leash on AI chips.",
+      "p": "The administration issued interim rules tightening access to advanced AI chips, reportedly requiring licenses for re-exports to Brazil, Singapore, Indonesia, Malaysia and Thailand, timed with President Trump's trip to China. CoreWeave, Nebius, Lumentum, Sandisk and SK Hynix each fell 5% or more early Monday. For investors, it widens the policy risk around data-center supply chains just as AI valuations are being questioned.",
+      "url": "https://www.hngn.com/articles/273846/20261116/stocks-slide-10-year-yield-stays-above-5-before-nvidia.htm",
+      "src": "HNGN · Nov 16"
     },
     {
-      "tag": "Credit",
-      "h": "Private-credit lenders are merging, at a discount.",
-      "p": "BCP Investment Corp agreed to buy Investcorp Credit Management BDC at 90% of adjusted net asset value, about $1.38 a share, a 126% premium to its 61-cent close; Investcorp jumped about 71% and BCP fell 15.5%. BCP's NAV per share dropped 9.4% to $13.13, with non-accruals at 6.0%. It follows Ares Capital's roughly $2.6 billion deal for MidCap Financial.",
-      "url": "https://www.investing.com/news/economy-news/private-creditroundup-lenders-consolidate-seek-scale-as-earnings-pressure-builds-5025455",
-      "src": "Reuters via Investing.com · Nov 13"
+      "tag": "Energy",
+      "h": "The emergency oil stash is the thinnest since 1982.",
+      "p": "The U.S. Strategic Petroleum Reserve holds 276.4 million barrels, its lowest since August 1982, per Energy Department data cited by Reuters. That leaves Washington less room to cushion a fresh supply shock while the Hormuz conflict drags on. Goldman Sachs, meanwhile, sees Brent averaging $88 in 2027 as supply outruns demand, so the cushion matters most if the glut story breaks.",
+      "url": "https://financefeeds.com/brent-crude-oil-price-91-66-tuesday-goldman-glut-warning-bull-96-bear-88/",
+      "src": "FinanceFeeds, citing DOE via Reuters · Nov 17"
     },
     {
-      "tag": "Markets",
-      "h": "Anthropic's IPO tests the appetite for AI.",
-      "p": "Anthropic's offering this week could raise up to $64.4 billion, plus a $26 billion private placement, and is about six times oversubscribed, CNBC reports, citing Bloomberg. It lands the same week as Nvidia's results, so investors get two reads in a few days on how much they will pay for AI growth after November's selloff in chip stocks.",
-      "url": "https://www.cnbc.com/investingclub/2026/11/15/3-big-things-were-watching-in-the-stock-market-in-the-week-ahead.html",
-      "src": "CNBC · Nov 15"
+      "tag": "Trade",
+      "h": "West Coast port guard talks get more time.",
+      "p": "Labor talks covering marine terminal watchmen at the ports of Los Angeles and Long Beach were extended through Nov. 20, according to Green Worldwide's weekly freight update. The two ports are the main gateway for transpacific imports, so a clean settlement keeps holiday and early-2027 inventory moving; a breakdown would land just as importers are restocking. Shippers with Southern California distribution exposure will want to watch Friday's deadline.",
+      "url": "https://www.greenworldwide.com/freight-market-update-week-46-2026/",
+      "src": "Green Worldwide · Week 46"
     }
   ],
   "dive": {
-    "kicker": "CRE debt",
-    "title": "The maturity wall is shrinking. The distress isn't.",
-    "dek": "CMBS delinquencies dipped in October thanks to one big loan, but special servicing sits at a 13-year high, and industrial is the cleanest book in the market.",
-    "body": "<p>The headline looked like relief. Trepp's CMBS delinquency rate fell to <b>7.87%</b> in October from 8.02% in September (CRE Daily, Nov 3). Look closer and most of the drop came from a single loan: a $975 million showroom loan backed by High Point and Las Vegas properties went current. Office delinquency rose 17 basis points to <b>12.33%</b>, retail jumped 63 to 7.21% and multifamily rose to 8.09%. The month's biggest new delinquencies were a $384.3 million Los Angeles office loan and a $210 million Bay Area apartment loan.</p><p>The slower-moving gauge tells the real story. Trepp's special servicing rate hit <b>11.49%</b> in September, the highest since February 2013 (CommercialSearch, Oct 22). KBRA's distress rate, which counts loans that are delinquent or with a special servicer, rose to 10.3% in October, and its conduit distress rate climbed to 12.5%, up 42 basis points from a year earlier (KBRA, Oct 30). The Mortgage Bankers Association's broader survey shows the same drift: CMBS delinquency rose to 4.97% in the third quarter from 4.82%, and life-company loans to 1.33% from 1.19% (MPA, Oct 28).</p><p>The wall itself is getting smaller. MBA counted <b>$875 billion</b> of commercial mortgages maturing in 2026, down from $957 billion in 2025, with $652 billion due in 2027. But the back end of this year is heavy: Trepp says 39% of 2026's $76.6 billion in CMBS hard maturities land in the fourth quarter, and 27.7% of October's maturing balance had a debt yield under 6%, too thin to refinance at today's rates.</p><p><b>Industrial is the bright spot.</b> Its CMBS delinquency rate slipped to 1.10%, and just 1.23% of industrial loans were in special servicing in September. Yet MBA says 23% of industrial mortgage balances mature this year, the second-highest share after hotels. For owners of good warehouses and yards, that's a rate-reset problem, not a credit problem: the loan gets refinanced, just at a coupon that starts with a 5 or a 6. What would change the picture is the long end of the curve. A 10-year back under 4.5% would rescue a lot of thin-coverage deals; one stuck above 5% keeps the special servicers busy.</p>",
+    "kicker": "Treasuries",
+    "title": "The buyers' strike at 5%",
+    "dek": "Foreign demand thinned at last week's long-bond auctions, and that keeps a floor under the yields that price real estate debt.",
+    "body": "<p>Last week's quarterly refunding was a stress test for the bond market, and it came back soft. Treasury sold <b>$125 billion</b> of 3-, 10- and 30-year debt, refunding about $97 billion of maturing notes and raising roughly $28 billion of new cash (Treasury refunding statement). The 10-year auction on Nov. 10 sold $42 billion at a <b>5.020%</b> high yield, a basis point above where it traded beforehand, with a bid-to-cover of 2.46 against a six-auction average of 2.60 (Newsquawk). Treasury had already lifted its liquidity-support buybacks to at least $4 billion per operation in September.</p><p>The telling number is who showed up. Indirect bidders, the usual stand-in for foreign buyers, took just <b>61.2%</b> of the 10-year, down from 80.3% at the prior auction and a 76.7% average. Direct bidders and dealers absorbed the rest. Two days later the 30-year also tailed, selling $25 billion at 5.441% with indirects at 68.1% versus a 70.5% average, the second weak long-end sale in a row (Newsquawk).</p><p>This fits a slower shift. State Street Global Advisors noted on Oct. 5 that foreign official demand no longer keeps pace with Treasury supply, so price-sensitive buyers have to fill the gap, which makes the term premium, the extra yield investors demand to hold long bonds, swing harder. Foreigners still owned about <b>$9.1 trillion</b> of Treasuries in Treasury's 2025 survey, with the UK passing China for second place behind Japan. They're not leaving; they're asking for a better price.</p><p><b>Why it matters for borrowers:</b> long-term commercial mortgages and cap rates key off the 10-year, not the Fed funds rate. If buyers keep demanding 5%-plus to take duration, fixed-rate debt stays expensive even if the Fed stops hiking after December. What would change the picture: strong indirect demand at the next auctions, Treasury leaning on bills or larger buybacks, or a growth scare that sends investors back to bonds.</p>",
     "table": {
-      "cap": "CMBS stress by the numbers",
+      "cap": "November refunding, by the numbers",
       "cols": [
         "Measure",
         "Latest",
-        "Prior"
+        "Comparison"
       ],
       "rows": [
         [
-          "Trepp delinquency, all (Oct)",
-          "7.87%",
-          "8.02%"
+          "10Y auction high yield (Nov 10)",
+          "5.020%",
+          "5.300% prior auction"
         ],
         [
-          "Trepp delinquency, office (Oct)",
-          "12.33%",
-          "12.16%"
+          "10Y bid-to-cover",
+          "2.46x",
+          "2.60x six-auction avg."
         ],
         [
-          "Trepp delinquency, industrial (Oct)",
-          "1.10%",
-          "1.14%"
+          "10Y indirect share",
+          "61.2%",
+          "76.7% avg."
         ],
         [
-          "Trepp special servicing (Sep)",
-          "11.49%",
-          "11.42%"
+          "30Y auction high yield (Nov 12)",
+          "5.441%",
+          "0.4 bp tail"
         ],
         [
-          "KBRA distress rate (Oct)",
-          "10.3%",
-          "10.26%"
+          "30Y indirect share",
+          "68.1%",
+          "70.5% avg."
         ],
         [
-          "CRE mortgages maturing (MBA)",
-          "$875B (2026)",
-          "$957B (2025)"
+          "Refunding size",
+          "$125B",
+          "~$97B maturing"
         ]
       ]
     },
     "watch": [
-      "Trepp's October special servicing report, due in the second half of November",
-      "Trepp's November delinquency report, in early December",
-      "The 10-year yield: refinancing math for sub-6% debt yields hinges on it"
+      "Wed Nov 18: 20-year bond reopening; watch the indirect share",
+      "September TIC data on foreign holdings, expected this week",
+      "Early February 2027: next refunding and any coupon-size changes"
     ],
-    "src": "Sources: Trepp via CRE Daily (Oct 7, Nov 3, 2026) and CommercialSearch (Oct 22, 2026); KBRA (Oct 30, 2026); MBA via MPA Magazine (Oct 28, 2026) and MBA NewsLink (Feb 9, 2026)."
+    "src": "Sources: Newsquawk (10Y and 30Y auction results, Nov 10 and 12); U.S. Treasury refunding statement and 2025 foreign holdings survey; State Street Global Advisors (Oct 5)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Inflation",
-        "title": "October PPI rose 0.3%, a tenth under forecasts, but producer prices are up 6.5% on the year",
-        "rel": "PPI final demand, Oct",
-        "act": "0.3%",
-        "cons": "0.4%",
-        "prior": "1.4%",
+        "tag": "Factories",
+        "title": "November Empire State index fell to 7.8, well under forecasts, as prices paid dropped 14 points",
+        "rel": "NY Fed Empire State manufacturing survey, Nov",
+        "act": "7.8",
+        "cons": "18",
+        "prior": "25.5",
         "good": null,
         "chart": {
-          "t": "PPI final demand, % y/y",
-          "unit": "%",
+          "t": "Empire State general business conditions, index",
+          "unit": "",
           "pts": [
             [
-              "Oct '25",
-              2.8
+              "Dec '24",
+              2.2
             ],
             [
-              "Nov '25",
-              3.1
+              "Jan '25",
+              -7.4
             ],
             [
-              "Dec '25",
-              3.1
-            ],
-            [
-              "Jan '26",
-              3.1
-            ],
-            [
-              "Feb '26",
-              3.4
-            ],
-            [
-              "Mar '26",
+              "Feb '25",
               4.3
             ],
             [
+              "Mar '25",
+              -15.7
+            ],
+            [
+              "Apr '25",
+              -8.6
+            ],
+            [
+              "May '25",
+              -6.9
+            ],
+            [
+              "Jun '25",
+              -14.9
+            ],
+            [
+              "Jul '25",
+              3.1
+            ],
+            [
+              "Aug '25",
+              9.1
+            ],
+            [
+              "Sep '25",
+              -7
+            ],
+            [
+              "Oct '25",
+              7.8
+            ],
+            [
+              "Nov '25",
+              13.5
+            ],
+            [
+              "Dec '25",
+              -3.7
+            ],
+            [
+              "Jan '26",
+              7.7
+            ],
+            [
+              "Feb '26",
+              7.1
+            ],
+            [
+              "Mar '26",
+              -0.2
+            ],
+            [
               "Apr '26",
-              5.7
+              11
             ],
             [
               "May '26",
-              5.9
+              19.6
             ],
             [
               "Jun '26",
-              5.6
+              5.7
             ],
             [
               "Jul '26",
-              4.9
+              15.6
             ],
             [
               "Aug '26",
-              5.5
+              20.6
             ],
             [
               "Sep '26",
-              6.3
+              7.6
             ],
             [
               "Oct '26",
-              6.5
+              25.5
+            ],
+            [
+              "Nov '26",
+              7.8
             ]
           ],
-          "src": "Source: BLS PPI news release, Table A (Nov 13, 2026)"
+          "src": "Source: New York Fed via FRED (GACDISA066MSFRBNY, seasonally adjusted, revised)"
         },
-        "body": "<p>Producer prices for final demand rose 0.3% in October, below the 0.4% consensus, after a 1.4% jump in September that was revised up from 1.3%, the BLS said Nov. 13. From a year earlier they rose 6.5%, up from 6.3% and the most since November 2022. Core prices excluding food and energy rose 0.3%, in line; excluding food, energy and trade they rose 0.5%, or 4.9% on the year.</p><p>Goods led with a 0.5% gain, and services rose 0.2%. Energy slipped 0.1% after a 10.0% surge, foods rose 1.3% and trade margins fell 0.2%. Truck freight transportation rose 3.9%, more than 80% of the services increase, while diesel fell 7.9%. Upstream, Stage 4 intermediate demand rose 0.4% and is up 8.0% on the year.</p><p>The 10-year yield rose about 4 basis points to 5.143% that day while the 2-year was little changed at 4.859%. By Monday morning, CNBC said markets had largely priced a quarter-point hike on Dec. 9.</p>",
+        "body": "<p>The New York Fed's general business conditions index fell to 7.8 in November from 25.5 in October, the highest reading since December 2021, and well below the 18 consensus on Trading Economics. New orders slowed to 3.0 from 23.2 and shipments to 8.8. Employment went the other way: the employees index rose to 18.1, its highest since June 2022, and capital spending plans hit 23.0, the most since December 2022.</p><p>Prices paid dropped to 45.9 from 59.5, which the New York Fed called a significant moderation in input price increases, and prices received eased to 27.2 from 30.6. Over the past year the headline has swung between −15.7 and 25.5. On the day, the 2-year Treasury yield fell 5 basis points to 4.83% and the 10-year 3 basis points to 5.12% (Treasury), though stocks fell sharply on chip weakness.</p>",
         "experts": [
           {
-            "who": "Chris Rupkey, chief economist, FWDBONDS",
-            "view": "Saw no silver lining in the report and warned that rising factory-gate prices tend to pass through to consumer prices later.",
-            "url": "https://www.cnbc.com/2026/11/13/treasury-yields-fed-rates.html",
-            "src": "CNBC · Nov 13"
+            "who": "Richard Deitz, economic research advisor, New York Fed",
+            "view": "Described activity as growing modestly after a strong October, with employment up sharply and price increases slowing but still elevated.",
+            "url": "https://www.newyorkfed.org/medialibrary/media/survey/empire/empire2026/2026_11_empire-state-manufacturing-survey.pdf",
+            "src": "NY Fed · Nov 16"
           },
           {
-            "who": "Christopher Waller, Fed governor",
-            "view": "Said a half-point hike should be considered if October inflation came in above expectations, arguing a quarter point could put the Fed's credibility at risk.",
-            "url": "https://www.fool.com/investing/2026/11/16/theres-now-100-chance-fed-rate-hike-in-december-thats-not-worst-news-for-wall-street/",
-            "src": "Motley Fool · Nov 16"
+            "who": "Analysts cited by Kitco News",
+            "view": "Read the weak headline as still consistent with growth, leaving the Fed room to keep raising rates.",
+            "url": "https://www.kitco.com/news/article/2026-11-16/gold-price-struggles-even-new-york-feds-empire-state-survey-weakens",
+            "src": "Kitco · Nov 16"
           }
         ],
-        "lean": "Rupkey expects producer-price pressure to reach consumers; Waller has tied a half-point option to October inflation surprising higher, and markets still price a quarter point.",
-        "src": "Sources: BLS PPI release (Nov 13, 2026); Trading Economics PPI pages; CNBC (Nov 13 and 16, 2026); Motley Fool (Nov 16, 2026)."
+        "lean": "The New York Fed's survey team sees modest growth with cooler but elevated prices; market analysts quoted by Kitco say it doesn't change the December hike path.",
+        "src": "Sources: New York Fed Empire State survey (Nov 16); Trading Economics; FRED; U.S. Treasury; Kitco."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Iran · Hormuz · Red Sea",
-      "title": "The Houthis take Bab el-Mandeb as Iran claims more mine strikes in Hormuz",
-      "body": "<p>Iran's Revolutionary Guard claimed two tankers struck naval mines in the Strait of Hormuz on Nov. 15, and on Monday said two more hit mines and exploded; Reuters could not verify the claims. The UK's maritime security agency, UKMTO, raised the regional threat level to \"severe,\" and Bahrain said it intercepted Iranian projectiles after the Guard said it sent six drones at a U.S. radar at Al-Rifaa base (Fox News, Reuters).</p><p>At the other end of Arabia, Reuters reported that Yemeni government forces withdrew from positions overlooking Bab el-Mandeb, leaving the Iran-aligned Houthis in control of the Red Sea's southern chokepoint, as the group claimed new strikes on Saudi East-West pipeline pumping stations that Saudi authorities did not confirm. Reuters also reported that President Trump told advisers he may hold off on further strikes if Iran and the Houthis avoid new provocations, while the blockade stays.</p>",
-      "reach": "Through oil and shipping: Brent traded at $95.89 early Monday, up 5 cents, with Reuters noting high tanker rates tied to Hormuz risk are putting a floor under crude (Reuters, Nov 16). With both chokepoints contested, freight, insurance and fuel costs feed inflation expectations and Treasury yields.",
+      "kicker": "Iran · Strait of Hormuz",
+      "title": "Iran claims more mine strikes, but the oil market is betting on the glut",
+      "body": "<p>Iran's Revolutionary Guard said Tuesday another tanker hit a mine near the Strait of Hormuz, after Iran's navy claimed four such strikes in 24 hours; neither the U.S. nor independent monitors have confirmed them, and Washington says the southern lanes are cleared. The Guard also claimed drones targeted a U.S. radar at Bahrain's Sheikh Isa Air Base, its third claimed attack since Friday (CBS News).</p><p>Diplomacy is moving slowly. Foreign Minister Araghchi met Oman's Badr Albusaidi in Muscat on Tuesday with no announced outcome, and the U.S. calls Iran's demands, including lifting the naval blockade of its ports, unacceptable. Vice President Vance said the administration won't let the war become a two-year commitment (CBS News).</p>",
+      "reach": "Through oil: Brent settled at $92.44 on Nov 16, down 3.6%, and traded at $91.66 early Tuesday, against about $72 before the war (FinanceFeeds, Nov 17; CBS). Cheaper crude eases fuel and freight costs at the margin, while the attacks keep a risk premium in place.",
       "views": [
         {
-          "who": "Tim Waterer, chief market analyst, KCM Trade",
-          "view": "Says high tanker rates from Hormuz risk and a ship shortage are supporting oil, but traders pricing excess supply are dampening the tone.",
-          "url": "https://www.asiaone.com/money/oil-edges-hormuz-tanker-incidents-highlight-shipping-risks",
-          "src": "Reuters via AsiaOne · Nov 16"
+          "who": "Goldman Sachs commodity analysts",
+          "view": "Expect supply to outrun demand and see Brent averaging $88 in 2027, a glut view that is outweighing the war headlines for now.",
+          "url": "https://financefeeds.com/brent-crude-oil-price-91-66-tuesday-goldman-glut-warning-bull-96-bear-88/",
+          "src": "FinanceFeeds · Nov 17"
         },
         {
-          "who": "Scott Bessent, U.S. Treasury Secretary",
-          "view": "Argued Iran's threats show the U.S. pressure campaign is working and projected Iran's economy will shrink 25% between March 2026 and March 2027.",
-          "url": "https://foxnews.com/live-news/iran-war-strikes-donald-trump-strait-hormuz-irgc-november-15",
-          "src": "Fox News · Nov 15"
+          "who": "Majed Al Ansari, spokesperson, Qatar Foreign Ministry",
+          "view": "Urged all sides to show restraint and warned the escalation poses an extremely serious threat to the negotiations Qatar is mediating.",
+          "url": "https://www.cbsnews.com/live-updates/iran-war-us-nuclear-oil-strait-of-hormuz/",
+          "src": "CBS News · Nov 17"
         }
       ]
     },
     "hot": [
       {
-        "r": "Iran diplomacy",
-        "chg": "Nov 15: Tehran rejected Germany's demand to halt enrichment, said NPT safeguards still apply, and a deputy minister said Iran is 'still in a state of war.'",
-        "trend": "Hardening",
+        "r": "Iraq",
+        "chg": "Nov 16: PM Ali al-Zaidi ordered the army into Jurf al-Sakher, a Kataib Hezbollah stronghold, and gave the militia a deadline to leave.",
+        "trend": "Escalating",
         "tc": "esc",
-        "ch": "Oil risk premium, gold",
-        "next": "Araghchi visits Oman, Nov 17"
+        "ch": "Iraqi oil output, militia attacks",
+        "next": "Militia exit deadline (date undisclosed)"
       },
       {
-        "r": "Oil supply",
-        "chg": "Nov 16: the IEA sees fourth-quarter supply of 105 million b/d, 1.7 million above demand, after earlier forecasting a deficit.",
-        "trend": "Easing",
-        "tc": "eas",
-        "ch": "Crude prices, inflation expectations",
-        "next": "IEA's December oil report"
-      },
-      {
-        "r": "Australia",
-        "chg": "Nov 3: the RBA hiked to 4.85% on a 6–3 vote, its fifth increase this year; Trading Economics expects a hold next.",
-        "trend": "Tightening",
+        "r": "EU steel",
+        "chg": "Nov 16: Brussels set anti-dumping duties on cold-rolled steel, effective Nov 17: Japan 27.9%, Taiwan up to 27%, Vietnam 16%, India 9.5%.",
+        "trend": "Escalating",
         "tc": "esc",
-        "ch": "Aussie dollar, global bond yields",
-        "next": "RBA minutes, Nov 17"
+        "ch": "Steel prices, Asian exporters",
+        "next": "Exporter responses; in force Nov 17"
       },
       {
-        "r": "China",
-        "chg": "Oct: consumer prices rose just 0.7% from a year earlier while the one-year loan prime rate sits at 3.00%.",
+        "r": "Russia / Ukraine",
+        "chg": "Nov 10–11: first direct U.S.-Russia-Ukraine talks since February, in Abu Dhabi, ended without a breakthrough but agreed a prisoner swap.",
         "trend": "Steady",
         "tc": "std",
-        "ch": "Commodity demand, yuan",
-        "next": "Loan prime rate fixing, Nov 20"
+        "ch": "European gas, wheat, defense stocks",
+        "next": "Next round not yet scheduled"
+      },
+      {
+        "r": "Lebanon / Israel",
+        "chg": "Nov 16: U.S. envoy Waltz urged Hezbollah to disarm; Israel said it struck a Hezbollah weapons shipment on the Syria border.",
+        "trend": "Escalating",
+        "tc": "esc",
+        "ch": "Regional oil risk premium",
+        "next": "No date set"
       }
     ],
     "cb": [
@@ -246,7 +290,7 @@
         "d": "2026-11-19",
         "bank": "South African Reserve Bank",
         "rate": "7.25%",
-        "exp": "TE sees a hike to 7.50%"
+        "exp": "Consensus and TE forecast: hold"
       },
       {
         "d": "2026-11-20",
@@ -258,13 +302,25 @@
         "d": "2026-11-26",
         "bank": "Bank of Korea",
         "rate": "3.00%",
-        "exp": "TE sees a hike to 3.25%"
+        "exp": "Consensus: hike to 3.25%"
       },
       {
         "d": "2026-12-04",
         "bank": "Reserve Bank of India",
         "rate": "5.50%",
         "exp": "TE sees a hike to 5.75%"
+      },
+      {
+        "d": "2026-12-09",
+        "bank": "Bank of Canada",
+        "rate": "2.50%",
+        "exp": "TE sees a hike to 2.75%"
+      },
+      {
+        "d": "2026-12-09",
+        "bank": "Reserve Bank of New Zealand",
+        "rate": "2.75%",
+        "exp": "TE calendar shows 3.00%"
       }
     ],
     "real": {
@@ -304,36 +360,36 @@
         ]
       ]
     },
-    "src": "Sources: Fox News live blog (Nov 15, 2026); Reuters via AsiaOne (Nov 16, 2026); Trading Economics country and G20 pages (Nov 16, 2026)."
+    "src": "Sources: CBS News live blog (Nov 16–17); FinanceFeeds (Nov 17); House of Saud; Washington Post and Euronews (Nov 10–11); EU News and Mining.com (Nov 16); Trading Economics (G20 lists, central bank pages, read Nov 17)."
   },
   "reading": {
-    "kind": "Story",
-    "who": "John Templeton",
-    "title": "The $10,000 Bet on Everything Nobody Wanted",
-    "dek": "In 1939, as war spread across Europe, a young John Templeton borrowed money to buy the market's most despised stocks, and the bet paid off many times over.",
-    "body": "<p>Picture 1939. War is spreading across Europe, and America is barely a decade past the 1929 crash and the long Depression that followed. Most investors want nothing to do with stocks, and frankly, who could blame them? A 26-year-old from Winchester, Tennessee, with a Yale degree and a stint at Oxford as a Rhodes Scholar, looks at the same gloom and sees a clearance sale. His name is John Templeton.</p><p>He borrowed $10,000 from a friend (roughly $150,000 in today's money) and told his broker to buy shares in every New York Stock Exchange company trading below $1. No stock-by-stock deep dives, no hunt for the one hidden gem. Just a basket of 104 of the most unloved names on the Big Board, and 37 of them were already in bankruptcy. Reckless? To most onlookers, absolutely. To Templeton, it was arithmetic: when prices already assume the worst, things only need to turn out less awful than feared. He didn't need every company to make it through, only enough of them to carry the rest.</p><p>They did. As the war effort revved up American industry, beaten-down businesses came roaring back. Only four of the 104 ended up going out of business, and Templeton made many times his money. Not bad for a young guy putting borrowed cash to work while the headlines were screaming catastrophe. Waiting for an all-clear, as usual, would have meant missing the rebound.</p><p>That trade became the blueprint for a long career. He founded the Templeton Growth Fund in 1954, and his fund was among the first American firms to invest in Japan, starting in the mid-1960s, back when few Western investors would touch a country still rebuilding. He later moved full-time to the Bahamas, created the Templeton Prize in 1972, and was knighted in 1987 for his philanthropy rather than his portfolio. He died in 2008 at 95, with a reputation as one of the great global bargain hunters.</p><p>The lesson isn't to go buy junk. It's that fear and value regularly drift apart, and that gap is where outsized returns tend to come from. Just as important, Templeton didn't bet the farm on picking a single survivor. He bought the whole bargain bin, accepting that some holdings would fail as long as the basket as a whole worked. Contrarianism plus humility about your own forecasting skill: a combo that never goes out of style, even if it rarely feels comfortable in the moment you actually have to act on it.</p>",
+    "kind": "Thoughts",
+    "who": "Jeremy Grantham",
+    "title": "Gravity always wins: Grantham's two-sigma rule",
+    "dek": "GMO's co-founder built a career on one stubborn idea: extreme prices eventually return to trend, though nobody can say when.",
+    "body": "<p>Jeremy Grantham, born in England in 1938, studied economics at the University of Sheffield and earned a Harvard MBA in 1966 before co-founding GMO, the Boston asset manager where he served as chief investment strategist. His central idea is easy to state and hard to live with: <b>prices that stray far from their long-run trend tend to come back</b>. Reversion to the mean is not a forecast of next quarter; it is a claim about gravity.</p><p>What made Grantham distinctive was turning that intuition into a rule. GMO defines a bubble statistically, as a price <i>two standard deviations</i> above its long-term real trend. His reading of history is that in large developed equity markets, two-sigma bubbles have generally deflated all the way back to the trend that prevailed before they formed, as in 1929, 1972 and 2000. The framework forces a question most investors skip: not \"is this a great company?\" but \"what is already in the price?\"</p><p>The record shows both the power and the cost. GMO had cut its Japanese stocks to zero by late 1988, sidestepped technology shares in the late-1990s mania, and in September 2007 warned that housing would break and risk premiums would widen. Yet the method says nothing about timing. Grantham has acknowledged that spotting a bubble is not especially hard but predicting when it bursts is impossible, and that his approach can trail the market for years. That patience earned him the \"permabear\" label.</p><p>His latest test is artificial intelligence. In a January 2026 GMO essay, he argued the US market had been in bubble territory for a long stretch, that the 2022 bear market was cut short by the arrival of ChatGPT, and that the classic signs of a top, such as a collapse in speculative stocks and outperformance by quality names, had not yet fully appeared. He placed AI alongside railways, electricity, radio and the internet: genuine breakthroughs that each produced euphoria, overinvestment and painful declines. He also allowed that AI may eventually deliver major advances. Both things can be true at once.</p><p>The practical lesson is to keep two questions separate. \"Is this expensive?\" can be answered with data; \"when does it end?\" usually cannot. Grantham's framework works best as a guide to how much risk to hold, not as a date to bet on. Valuation sets the odds over a seven-year horizon; humility about timing keeps an investor solvent long enough to collect.</p>",
     "quote": {
-      "text": "The time of maximum pessimism is the best time to buy.",
-      "src": "John Templeton, as quoted by Money"
+      "text": "The rule from history is that great technological innovations lead to great bubbles.",
+      "src": "Jeremy Grantham, \"Valuing AI: Extreme Bubble, New Golden Era, or Both,\" GMO, January 2026"
     },
     "takeaways": [
-      "Stocks near highs means little pessimism priced in; Templeton bought fear, not euphoria.",
-      "AI wobbles? Ask whether prices already assume the worst before buying the dip.",
-      "With the 10Y near 5.15%, spread contrarian bets wide instead of betting on one survivor."
+      "With AI stocks in a correction, ask what is priced in, not what the tech can do.",
+      "A 5% 10-year Treasury raises the bar stretched equity valuations must clear.",
+      "Size risk by valuation; don't bet on timing, since tops can drag on for years."
     ],
-    "src": "Read more: John Templeton on Wikipedia, and his book Buying at the Point of Maximum Pessimism (2010)."
+    "src": "Read more: Jeremy Grantham, \"Valuing AI: Extreme Bubble, New Golden Era, or Both\" (GMO, Jan. 28, 2026), gmo.com; Jeremy Grantham on Wikipedia."
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "held Oct 28; next decision Dec 9",
+      "d": "next decision Dec 9; FedWatch ~91% for a 25 bp hike (Nov 16)",
       "good": false
     },
     {
       "n": "30-yr mortgage",
       "v": "7.11%",
-      "d": "Freddie Mac, Nov 12; 6.24% a year earlier",
+      "d": "Freddie Mac, Nov 12; 6.24% a year earlier; next print Nov 19",
       "good": false
     }
   ],
@@ -346,7 +402,7 @@
       "cons": "0.2%",
       "prior": "0.8%",
       "good": null,
-      "why": "Holiday spending starts here"
+      "why": "Holiday-season spending read"
     },
     {
       "d": "2026-11-17",
@@ -356,24 +412,24 @@
       "cons": "0.1%",
       "prior": "0.7%",
       "good": null,
-      "why": "Factory momentum after ISM's jump"
+      "why": "Checks Empire's factory slowdown"
     },
     {
       "d": "2026-11-17",
       "tag": "Earnings",
-      "e": "Nvidia Q3 results",
+      "e": "Nvidia Q3 results, after close",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "First report after Huang's exit"
+      "why": "AI spending bellwether"
     },
     {
       "d": "2026-11-18",
       "tag": "Housing",
       "e": "October housing starts",
       "act": null,
-      "cons": "1.25M",
+      "cons": "1.27M",
       "prior": "1.22M",
       "good": null,
       "why": "Builders facing 7% mortgages"
@@ -386,47 +442,57 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "How many officials wanted hikes"
+      "why": "How hawkish is the committee?"
     },
     {
       "d": "2026-11-19",
       "tag": "Labor",
       "e": "Initial jobless claims",
       "act": null,
-      "cons": "199K",
+      "cons": "196K",
       "prior": "200K",
       "good": null,
-      "why": "Layoffs still historically low"
+      "why": "Layoffs still near lows"
     },
     {
       "d": "2026-11-19",
       "tag": "Economy",
-      "e": "Philadelphia Fed manufacturing index",
+      "e": "Philadelphia Fed manufacturing, Nov",
       "act": null,
       "cons": "19.2",
       "prior": "20.9",
       "good": null,
-      "why": "Prices paid signal for factories"
+      "why": "Second regional factory check"
     },
     {
-      "d": "2026-11-20",
-      "tag": "Consumer",
-      "e": "UMich sentiment, final November",
-      "act": null,
-      "cons": "52.1",
-      "prior": "51.0",
-      "good": null,
-      "why": "Inflation expectations at 4.3%"
-    },
-    {
-      "d": "2026-11-25",
-      "tag": "Economy",
-      "e": "Q3 GDP second estimate; October PCE",
+      "d": "2026-11-19",
+      "tag": "Earnings",
+      "e": "Walmart Q3 results",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "The Fed's preferred inflation gauge"
+      "why": "Consumer and tariff read"
+    },
+    {
+      "d": "2026-11-25",
+      "tag": "Economy",
+      "e": "Q3 GDP, second estimate",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Revision to 3.4% growth"
+    },
+    {
+      "d": "2026-11-25",
+      "tag": "Inflation",
+      "e": "October PCE inflation",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "The Fed's preferred gauge"
     },
     {
       "d": "2026-11-26",
@@ -436,141 +502,172 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Thin trading around the holiday"
+      "why": "Thin holiday trading"
+    },
+    {
+      "d": "2026-11-29",
+      "tag": "Energy",
+      "e": "OPEC+ meeting on 2027 output",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Supply path into the glut"
+    },
+    {
+      "d": "2026-12-08",
+      "tag": "Fed",
+      "e": "FOMC meeting begins; decision Dec 9",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Hike widely expected"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,561.67",
-      "c": -0.4,
-      "ctext": "−0.40%",
-      "y": 12.2,
-      "ytext": "+12.2%",
-      "why": "Slipped as tech fell 1.7%, yet still gained 2.5% for the week, its first weekly gain since early October.",
-      "asof": "Nov 13"
+      "v": "7,416.59",
+      "c": -1.92,
+      "ctext": "−1.92%",
+      "y": 11.2,
+      "ytext": "+11.2%",
+      "why": "Fell as the chip index sank 5.3% ahead of Nvidia's results and Anthropic's IPO this week.",
+      "asof": "Nov 16"
     },
     {
       "n": "Dow",
-      "v": "52,347.55",
-      "c": 0.1,
-      "ctext": "+0.10%",
-      "y": 10.3,
-      "ytext": "+10.3%",
-      "why": "Edged up 50 points as consumer staples, the day's best sector at +1.39%, offset weakness in technology.",
-      "asof": "Nov 13"
+      "v": "51,608.17",
+      "c": -1.41,
+      "ctext": "−1.41%",
+      "y": 10.8,
+      "ytext": "+10.8%",
+      "why": "Lost 739 points in a broad selloff, with NYSE decliners outnumbering advancers about 3.45 to 1.",
+      "asof": "Nov 16"
     },
     {
       "n": "Nasdaq",
-      "v": "25,136.27",
-      "c": -0.91,
-      "ctext": "−0.91%",
-      "y": 9.9,
-      "ytext": "+9.9%",
-      "why": "Fell as Nvidia slid again a day after Jensen Huang's resignation rattled AI stocks.",
-      "asof": "Nov 13"
+      "v": "24,509.76",
+      "c": -2.49,
+      "ctext": "−2.49%",
+      "y": 7.9,
+      "ytext": "+7.9%",
+      "why": "Slipped into a correction, more than 10% below its Oct 6 high, as Intel and Micron each fell over 7%.",
+      "asof": "Nov 16"
+    },
+    {
+      "n": "WTI crude",
+      "v": "$85.72",
+      "c": -3.21,
+      "ctext": "−3.21%",
+      "y": 43.1,
+      "ytext": "+43.1%",
+      "why": "Fell as Hormuz flows recover and the IEA sees a fourth-quarter supply surplus of about 1.7 million barrels a day.",
+      "asof": "Nov 16",
+      "rate": true
     },
     {
       "n": "Dollar index",
-      "v": "103.41",
-      "c": 0.23,
-      "ctext": "+0.23%",
-      "y": 3.9,
-      "ytext": "+3.9%",
-      "why": "Held at a 19-month high as producer prices rose 6.5% on the year and traders priced a December Fed hike.",
-      "asof": "Nov 13"
+      "v": "103.55",
+      "c": 0.14,
+      "ctext": "+0.14%",
+      "y": 4.1,
+      "ytext": "+4.1%",
+      "why": "Rose to its highest since April 2025 as traders price a December hike and more in 2027.",
+      "asof": "Nov 16"
     }
   ],
   "key": [
     {
       "n": "SOFR",
       "cur": 3.9,
-      "d1m": 3,
-      "d6m": 30,
-      "d1y": -8,
-      "asof": "Nov 12"
+      "d1m": 1,
+      "d6m": 31,
+      "d1y": -10,
+      "asof": "Nov 13"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.88,
+      "cur": 4.83,
       "d1m": 9,
-      "d6m": 90,
-      "d1y": 130,
-      "asof": "Nov 13"
+      "d6m": 74,
+      "d1y": 121,
+      "asof": "Nov 16"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.98,
-      "d1m": -2,
-      "d6m": 86,
-      "d1y": 127,
-      "asof": "Nov 13"
+      "cur": 4.93,
+      "d1m": 4,
+      "d6m": 67,
+      "d1y": 119,
+      "asof": "Nov 16"
     },
     {
       "n": "10Y Treasury",
-      "cur": 5.15,
-      "d1m": -6,
-      "d6m": 69,
-      "d1y": 104,
-      "asof": "Nov 13"
+      "cur": 5.12,
+      "d1m": 3,
+      "d6m": 53,
+      "d1y": 98,
+      "asof": "Nov 16"
     }
   ],
   "rcols": [
-    "Nov 13 '26",
-    "Oct 13 '26",
-    "May 13 '26",
-    "Nov 13 '25"
+    "Nov 16 '26",
+    "Oct 16 '26",
+    "May 15 '26",
+    "Nov 14 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.88",
-        "4.79",
-        "3.98",
-        "3.58"
+        "4.83",
+        "4.74",
+        "4.09",
+        "3.62"
       ],
       "d1m": 9,
-      "d1y": 130
+      "d1y": 121
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.98",
-        "5.00",
-        "4.12",
-        "3.71"
+        "4.93",
+        "4.89",
+        "4.26",
+        "3.74"
       ],
-      "d1m": -2,
-      "d1y": 127
+      "d1m": 4,
+      "d1y": 119
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "5.15",
-        "5.21",
-        "4.46",
-        "4.11"
+        "5.12",
+        "5.09",
+        "4.59",
+        "4.14"
       ],
-      "d1m": -6,
-      "d1y": 104
+      "d1m": 3,
+      "d1y": 98
     },
     {
-      "grp": "SOFR · dates Nov 12 '26 / Oct 9 '26 / May 12 '26 / Nov 12 '25"
+      "grp": "SOFR · dates Nov 13 '26 / Oct 13 '26 / May 13 '26 / Nov 13 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
         "3.90",
-        "3.87",
-        "3.60",
-        "3.98"
+        "3.89",
+        "3.59",
+        "4.00"
       ],
-      "d1m": 3,
-      "d1y": -8
+      "d1m": 1,
+      "d1y": -10
     }
   ],
   "freight": [
@@ -580,28 +677,28 @@
       "pl": "Week",
       "pc": "−$0.165",
       "y": "+$2.290",
-      "why": "Week of Nov 9; next EIA print later today."
+      "why": "Week of Nov 9; Nov 16 EIA print not yet posted."
     },
     {
       "n": "Baltic Dry Index",
-      "v": "2,980",
+      "v": "2,921",
       "pl": "Day",
-      "pc": "−1.32%",
-      "y": "+40.2%",
-      "why": "Nov 13; snapped a seven-day streak, still up 4.4% on the week."
+      "pc": "−1.98%",
+      "y": "+35.7%",
+      "why": "Nov 16; capesize rates fell 3.4%, a near one-week low."
     },
     {
       "n": "Drewry World Container Index",
       "v": "$4,305/FEU",
       "pl": "Week",
       "pc": "−2%",
-      "y": null,
-      "why": "Nov 12; Shanghai–New York at $9,020, lowest since August."
+      "y": "+132%",
+      "why": "Nov 12; third straight weekly drop; next index Nov 19."
     }
   ],
   "also": "",
-  "sport": "The 49ers outlasted the Cowboys 46–40 in Sunday's highest-scoring NFL game, and the Bengals beat the Steelers 38–18 on Sunday Night Football.",
-  "foot": "Sources: NY Fed API (SOFR latest Nov 12; Nov 13 not yet published); U.S. Treasury CSV (Nov 13); AP via La Nacion and Xinhua via The Star (Nov 13, 2026 and Nov 13, 2025 index closes); Trading Economics (dollar index, BDI, PPI, G20 lists, central bank pages); BLS; CNBC; Freddie Mac; EIA; Drewry via DCN; StockTitan; HeyGoTrade; FXEmpire (calendar consensus); BEA; Reuters via Investing.com and AsiaOne; Fox News; Motley Fool; Trepp via CRE Daily and CommercialSearch; KBRA; MBA via MPA and NewsLink; NFL.com; Wikipedia and Money (Templeton).<br>Notes: WTI crude left out of Markets: no dated Nov 13 WTI or Brent settle found (Xinhua/Rigzone/TE checked; CNBC's $88.56 was not a settle). Dollar index Nov 13 close (103.41) derived from TE's Nov 16 quote (103.4531, +0.04%); 1Y +3.9% is TE's figure. TE calendar did not load: consensus/prior from FXEmpire (Nov 16); retail sales consensus 0.2% (CNBC cites traders at 0.6%). Bank of Korea Nov 26 date unclear on TE. Waller remark undated in the Motley Fool piece; second PPI reaction beyond Rupkey not found. World: U.S. CPI in 'real' is Sep (3.7%); Japan, UK, Canada CPI Sep. IRGC mine claims unverified by Reuters; Brent weekly change conflicts (Reuters 16% vs Fox 2.5%), left out. Diesel: Nov 16 EIA print not yet posted. Dive: Trepp October special servicing not verified; MBA maturity figures from Feb 2026.",
+  "sport": "",
+  "foot": "Sources: NY Fed API (SOFR latest Nov 13; Nov 16 not yet published); U.S. Treasury CSV (Nov 16); AP via La Nacion and Reuters via MarketScreener (Nov 16 closes); AP via Yahoo/WTOP (Nov 17, 2025 closes); Reuters via Yahoo Finance (WTI settle) and Rigzone (Nov 17, 2025 WTI $59.91); Trading Economics (dollar index, BDI, Empire, G20 lists, central bank pages); NY Fed; FRED; Kitco; Admiral Markets and The Weekend Spread (calendar consensus, FedWatch); HNGN; Stocktwits; FinanceFeeds; CBS News; Green Worldwide; Newsquawk; Treasury; SSGA; ShipUniverse (Drewry); EIA; Freddie Mac; GMO and Wikipedia (Grantham).<br>Notes: Dollar index Nov 16 close is TE's 'previous' value read Nov 17; 1Y +4.1% is TE's figure from its Nov 17 intraday quote. TE calendar table didn't load: consensus from Admiral Markets; Empire consensus 18 per TE (Kitco 17.6). Empire chart uses FRED revised values. No named outside economist reaction to Empire found beyond Kitco's unnamed analysts. 30Y auction details and refunding size from search summaries of Newsquawk/Treasury, not direct fetches. Tim Waterer quote on oil unattributed in fetched copy, left out. EIA diesel Nov 16 print not posted (CBS reported diesel below $6 on Nov 16). Sports left out: no Nov 16 MNF result found. Hotspots: Iraq deadline, EU steel and Russia/Ukraine have no firm next dates. RBI Dec 4 date/forecast carried from Nov 16 TE read. World 'real': U.S., Japan, UK CPI are September.",
   "series": [
     [
       "2021-10-12",
@@ -8234,6 +8331,12 @@
       4.88,
       4.98,
       5.15
+    ],
+    [
+      "2026-11-16",
+      4.83,
+      4.93,
+      5.12
     ]
   ],
   "log": {
@@ -8333,6 +8436,10 @@
       {
         "d": "2026-11-16",
         "t": "The maturity wall is shrinking. The distress isn't."
+      },
+      {
+        "d": "2026-11-17",
+        "t": "The buyers' strike at 5%"
       }
     ],
     "corner": [
@@ -8455,6 +8562,11 @@
         "d": "2026-11-16",
         "who": "John Templeton",
         "kind": "Story"
+      },
+      {
+        "d": "2026-11-17",
+        "who": "Jeremy Grantham",
+        "kind": "Thoughts"
       }
     ],
     "focus": [
@@ -8541,6 +8653,10 @@
       {
         "d": "2026-11-16",
         "t": "October PPI rose 0.3%, a tenth under forecasts, but producer prices are up 6.5% on the year"
+      },
+      {
+        "d": "2026-11-17",
+        "t": "November Empire State index fell to 7.8, well under forecasts, as prices paid dropped 14 points"
       }
     ],
     "world": [
@@ -8627,6 +8743,10 @@
       {
         "d": "2026-11-16",
         "t": "The Houthis take Bab el-Mandeb as Iran claims more mine strikes in Hormuz"
+      },
+      {
+        "d": "2026-11-17",
+        "t": "Iran claims more mine strikes, but the oil market is betting on the glut"
       }
     ]
   }
