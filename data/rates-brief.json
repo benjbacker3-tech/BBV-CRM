@@ -1,288 +1,182 @@
 {
-  "headline": "Nvidia beat and guided to $130 billion after a selloff that cost the Dow 849 points, while markets price a near-certain December hike and the 10-year sits at 5.10%.",
-  "dateline": "Wednesday, November 18, 2026 · closes as of Tue Nov 17",
-  "ustDate": "Nov 17, 2026",
+  "headline": "Fed minutes show almost all officials expect more hikes, Waller wants a half point in December, and Anthropic priced its IPO at $83 a share.",
+  "dateline": "Thursday, November 19, 2026 · closes as of Wed Nov 18",
+  "ustDate": "Nov 18, 2026",
   "rundown": [
     {
-      "tag": "Earnings",
-      "h": "Nvidia beats and guides to $130 billion.",
-      "p": "In its first report since Jensen Huang's exit, Nvidia posted fiscal third-quarter revenue of $115.8 billion, up 103% from a year ago, against about $109.1 billion expected, and adjusted EPS of $2.68. Data-center sales hit $107.6 billion. It guided to $130 billion next quarter while assuming no China data-center revenue, and gross margin guidance slipped to 71–72%. Shares rose 3% to 4% after hours.",
-      "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262309793-nvidia-earnings-report-q3-rubin-ramp-data-center-growth-revenue-guidance-gross-margin-tradingkey",
-      "src": "TradingKey; CNBC · Nov 17"
-    },
-    {
-      "tag": "Fed",
-      "h": "Fed officials talk up more hikes before today's minutes.",
-      "p": "St. Louis Fed President Alberto Musalem floated as many as four more hikes before spring, New York Fed President John Williams stressed raising rates to contain inflation, and Cleveland's Beth Hammack favored small, gradual increases. Markets put roughly 96% odds on a quarter-point hike Dec. 9. Minutes of the Oct. 27–28 meeting, where two officials dissented in favor of a hike, land at 2 p.m. ET today.",
-      "url": "https://tradingeconomics.com/united-states/government-bond-yield",
-      "src": "Trading Economics · Nov 17–18"
-    },
-    {
       "tag": "Markets",
-      "h": "Anthropic's mega-IPO prices tonight.",
-      "p": "Anthropic plans to sell 825 million Class A shares at $70 to $78, with pricing expected tonight and Nasdaq trading Thursday under ANT, subject to SEC effectiveness. At the $74 midpoint, net proceeds come to about $84.6 billion, including a $26 billion side sale of non-voting shares to seven tech companies. Pre-IPO contracts on Hyperliquid traded near $96.93 Monday, well above the range.",
-      "url": "https://www.stocktitan.net/articles/anthropic-ipo-live-ant-first-trading-day-2026",
-      "src": "StockTitan · Nov 17"
+      "h": "Anthropic prices above range and trades today.",
+      "p": "Anthropic priced its IPO at $83 a share, above the $70 to $78 range, and upsized it to about 980 million shares from 825 million. It raised $81.3 billion at a fully diluted value near $1.5 trillion, with Google, Microsoft, Nvidia and AMD adding $26 billion at the IPO price. It is set to start trading on Nasdaq as ANT today.",
+      "url": "https://www.cnbc.com/2026/11/18/anthropic-ipo-ai-offering-price.html",
+      "src": "CNBC · Nov 18"
     },
     {
       "tag": "Policy",
-      "h": "Chip curbs widen as Trump heads to meet Xi.",
-      "p": "New U.S. rules now require licenses for advanced AI chip shipments to Singapore, Malaysia, Thailand, Indonesia and Brazil, and China said it will take necessary measures in response. ASML fell about 5% and Germany's DAX about 2%. President Trump is reported to meet Xi Jinping on Thursday in Shenzhen, so trade terms and chip access are both on the table.",
-      "url": "https://www.capitalstreetfx.com/market-analysis/daily-index-report-18-nov-2026/",
-      "src": "Capital Street FX, citing Reuters and AP · Nov 18"
+      "h": "A Medicare audit proposal knocks health insurers flat.",
+      "p": "CMS proposed a rule that would extrapolate Medicare Advantage risk-adjustment audit findings back to payment year 2018, and estimates it could recover about $9 billion per payment year. UnitedHealth fell 10.2% Wednesday to $349.91, after a 5.4% drop Tuesday, and Humana fell about 13%. Comments are due Jan. 19, 2027, so the overhang may linger for months.",
+      "url": "https://finchannel.com/unitedhealth-stock-drops-10-as-medicare-audit-proposal-unsettles-insurers/142214/american-business-trends/2026/11/",
+      "src": "FinChannel; Seeking Alpha · Nov 18"
+    },
+    {
+      "tag": "Housing",
+      "h": "Starts jump, but permits hit their lowest since 2020.",
+      "p": "October housing starts rose 9.9% to a 1.309 million annual pace, beating the 1.25 million consensus, as multifamily starts surged 25.5% to 433,000 and single-family rose 4.0% to 864,000. The forward signal was weaker: permits fell 7.4% to 1.295 million against 1.38 million expected, the lowest since 2020, with single-family permits down 8.7%. Builders are finishing what they started, not lining up new work.",
+      "url": "https://tradingeconomics.com/united-states/building-permits",
+      "src": "Trading Economics · Nov 18"
     },
     {
       "tag": "Earnings",
-      "h": "Home Depot beats, and the retail parade continues.",
-      "p": "Home Depot reported third-quarter sales of $43.4 billion, up 4.9%, and now sees full-year sales growth of about 4.5%, the top of its range, yet the stock fell 2.45%. CFO Richard McPhail becomes CEO on Nov. 23. Lowe's, Target and TJX report this morning and Walmart on Thursday, a read on how shoppers are handling high prices into the holidays.",
-      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-17-2026",
-      "src": "StockTitan · Nov 17"
+      "h": "Lowe's, TJX and Target say shoppers are still spending.",
+      "p": "Lowe's posted third-quarter sales of $22.8 billion, with comparable sales up 1.8% and online up 17.4%, and adjusted EPS of $3.10 against about $2.89 expected; it lifted its full-year sales outlook to about $92.5 billion. TJX rose 8% on slightly better earnings, and Target gained 4% on its strongest quarterly sales gain in about five years. Walmart reports this morning.",
+      "url": "https://www.post-gazette.com/business/personal-finance/stock-market-today-november-18-2026-OPGMZLWL7E36MRNUL7DIGS5LLQ/",
+      "src": "AP via Post-Gazette; Lowe's release · Nov 18"
+    },
+    {
+      "tag": "Credit",
+      "h": "Private credit funds keep the exit door half shut.",
+      "p": "Funds run by Morgan Stanley, BlackRock, Ares and Barings have capped redemptions, and Morgan Stanley's North Haven paid out 45% of requests, according to a Nov. 11 report. In the second quarter, the 12 largest non-traded BDCs paid $7.6 billion against about $19.1 billion requested. With rates heading higher, the lock-up risk in semi-liquid credit funds is worth pricing in.",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/record-redemptions-low-fundraising-squeeze-173014260.html",
+      "src": "Yahoo Finance; Yardeni · Nov 11"
     }
   ],
   "dive": {
-    "kicker": "Freight",
-    "title": "Freight's comeback runs on scarcity, not demand",
-    "dek": "Truckload rates are at or near records while volumes fall, because trucks and drivers are leaving the market.",
-    "body": "<p>After a long freight recession, trucking rates have roared back, but not because America is shipping more. DAT's October data show the dry-van spot rate averaged <b>$3.05 a mile</b>, the highest monthly figure since February 2022 and 98 cents above a year earlier, while van contract rates hit $3.28, matching the May 2022 record. Flatbed contract rates set a record for a third straight month at $4.05. Yet DAT's van volume index slipped 2% from a year ago. DAT's Dean Croke summed it up: brokers moved fewer loads and paid carriers about a dollar a mile more to move them (DAT, Nov 10).</p><p>The story is supply. Equipment posted on DAT's load board ran 22% to 26% below last year. Federal enforcement has revoked more than 28,000 non-domiciled commercial driver's licenses, and FMCSA expects about 194,000 holders to eventually exit the freight market (Transport Topics, May 7). Diesel adds a second squeeze: DAT estimated October's van fuel surcharge at 83 cents a mile, roughly double a year ago, which pushes small carriers out. ATA's Bob Costello has said the recovery is nearly all due to capacity leaving (FreightWaves, Oct 3).</p><p>The tightness is spreading to buildings. The Logistics Managers' Index for October showed warehousing prices at <b>80.7</b>, up from 73.5, and transportation capacity contracting at 38 (Trading Economics, Nov 3). Survey respondents have been pulling durable-goods purchases forward on expected price increases, and tariff refunds are giving shippers a temporary lift.</p><p><b>Why it matters:</b> higher freight costs feed goods inflation just as the Fed is hiking, but scarce trucks and scarce yard space support rents for truck terminals, trailer parking and well-located warehouses. What would change the picture: cheaper diesel if the Gulf calms, a court ruling against the license rules, or a demand slump once pre-buying fades and 5% rates bite.</p>",
+    "kicker": "CRE credit",
+    "title": "CMBS distress is moving out of the office",
+    "dek": "Office still leads, but October's securitized-loan data show hotels, apartments and malls taking a bigger share of the trouble.",
+    "body": "<p>For three years the commercial mortgage story has been an office story. October's data say it is broadening. Trepp's CMBS <b>special servicing rate</b>, the share of loans handed to workout specialists, rose 25 basis points to <b>11.74%</b>, up 90 bps on the year and the highest since December 2012 (CRE Daily, Nov 10). Lodging, not office, drove it: hotels made up 37% of October's $3.01 billion of new transfers, led by an 84-hotel, $745.7 million portfolio loan, and the lodging rate jumped 122 bps to 10.17%.</p><p>The headline delinquency rate actually dipped 15 bps to 7.87% in October, mainly because one $975 million showroom loan was brought current (Trepp via CRE Daily, Nov 3). Underneath, office delinquency rose to 12.33%, retail jumped 63 bps to 7.21% and is up 327 bps in a year, and multifamily reached 8.09%, up from 7.12% a year ago and 3.24% two years ago, the biggest two-year rise of any property type (Yield PRO, Nov 5). Industrial sits at 1.10%. Counting loans past maturity but still paying, the overall rate is 9.56%.</p><p>The mechanism is refinancing. Of the $4.42 billion of loans hitting hard maturity this month, Trepp estimates 68 of 182 loans, worth $3.05 billion, cannot refinance at their current balances at 6.44% to 7.11% all-in rates, an equity gap of $804.7 million; the fixed-rate loans carry an average 4.14% coupon (CRE Daily, Nov 13). Only 36% to 41% of the August to October cohorts paid off on time. New issuance is slowing too: KBRA counted 10 private-label CMBS deals in October, down from 19 in September, citing rate and Fed uncertainty (Nov 4).</p><p>Trepp's Lonnie Hendry has said lenders are less willing to extend troubled loans without new equity from borrowers. With the Fed signaling more hikes, the refinance math gets harder before it gets easier. What would change the picture: a turn lower in long rates, or the repricing that finally brings equity back.</p>",
     "table": {
-      "cap": "Truckload and logistics, October 2026",
+      "cap": "Trepp CMBS rates by property type, October 2026",
       "cols": [
-        "Measure",
-        "Latest",
-        "Comparison"
+        "Type",
+        "Delinquency",
+        "Special servicing"
       ],
       "rows": [
         [
-          "DAT dry-van spot rate",
-          "$3.05/mi",
-          "+$0.98 y/y"
+          "Office",
+          "12.33%",
+          "16.60%"
         ],
         [
-          "DAT dry-van contract rate",
-          "$3.28/mi",
-          "Ties May 2022 record"
+          "Retail",
+          "7.21%",
+          "13.71%"
         ],
         [
-          "DAT flatbed contract rate",
-          "$4.05/mi",
-          "Record, 3rd month"
+          "Lodging",
+          "5.94%",
+          "10.17%"
         ],
         [
-          "DAT van volume index",
-          "254",
-          "−2% y/y"
+          "Multifamily",
+          "8.09%",
+          "9.22%"
         ],
         [
-          "LMI warehousing prices",
-          "80.7",
-          "73.5 in Sep"
+          "Industrial",
+          "1.10%",
+          "1.27%"
         ],
         [
-          "LMI transportation capacity",
-          "38",
-          "34.4 in Sep"
+          "All CMBS",
+          "7.87%",
+          "11.74%"
         ]
       ]
     },
     "watch": [
-      "Dec 1: November Logistics Managers' Index",
-      "Early December: DAT's November spot and contract rates",
-      "Mondays: EIA diesel, the swing factor for small carriers"
+      "Early December: Trepp's November delinquency report; office's record is 12.34%",
+      "How many of November's $4.42 billion of maturities pay off",
+      "Dec 9: the FOMC decision, which sets the refinance hurdle"
     ],
-    "src": "Sources: DAT (Nov 10, 2026); Trading Economics LMI (Nov 3); Transport Topics (May 7); FreightWaves (Oct 3)."
+    "src": "Sources: Trepp via CRE Daily (Nov 3, 10, 13, 2026); Yield PRO (Nov 5); KBRA (Nov 4); The Wealth Advisor (Nov 8)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Consumer",
-        "title": "October retail sales rose 0.2%, matching forecasts, as the control group beat",
-        "rel": "Retail sales m/m, Oct",
-        "act": "0.2%",
-        "cons": "0.2%",
-        "prior": "0.8%",
-        "good": null,
-        "chart": {
-          "t": "Retail sales, month-over-month change, %",
-          "unit": "%",
-          "pts": [
-            [
-              "Nov '24",
-              0.57
-            ],
-            [
-              "Dec '24",
-              0.89
-            ],
-            [
-              "Jan '25",
-              -0.68
-            ],
-            [
-              "Feb '25",
-              -0.48
-            ],
-            [
-              "Mar '25",
-              1.61
-            ],
-            [
-              "Apr '25",
-              0.1
-            ],
-            [
-              "May '25",
-              -1.43
-            ],
-            [
-              "Jun '25",
-              0.93
-            ],
-            [
-              "Jul '25",
-              0.92
-            ],
-            [
-              "Aug '25",
-              0.3
-            ],
-            [
-              "Sep '25",
-              0.03
-            ],
-            [
-              "Oct '25",
-              -0.03
-            ],
-            [
-              "Nov '25",
-              0.72
-            ],
-            [
-              "Dec '25",
-              0.11
-            ],
-            [
-              "Jan '26",
-              -0.62
-            ],
-            [
-              "Feb '26",
-              0.87
-            ],
-            [
-              "Mar '26",
-              1.66
-            ],
-            [
-              "Apr '26",
-              0.59
-            ],
-            [
-              "May '26",
-              1.04
-            ],
-            [
-              "Jun '26",
-              0.2
-            ],
-            [
-              "Jul '26",
-              -0.41
-            ],
-            [
-              "Aug '26",
-              1.45
-            ],
-            [
-              "Sep '26",
-              0.83
-            ],
-            [
-              "Oct '26",
-              0.21
-            ]
-          ],
-          "src": "Source: Census Bureau via FRED (RSAFS, seasonally adjusted, current vintage), Nov 18"
-        },
-        "body": "<p>Retail sales rose 0.2% in October, in line with the consensus on Trading Economics, after 0.8% in September; August was revised up to 1.5%. Sales were up 6.8% from a year earlier. Ex-autos sales rose 0.6% against 0.4% expected, and the control group, which feeds GDP, rose 0.6%, above forecasts of 0.3% to 0.4% and its strongest gain since August.</p><p>Miscellaneous retailers jumped 4.7%, gas stations 1.5% and online sellers 1.2%. Car dealers fell 1.6%, furniture 2.3% and clothing 0.7%. Adjusted for inflation, volumes fell 0.1% (TD Economics), with consumer prices up 0.4% in October. Over the past 12 months, monthly gains ranged from −0.6% to 1.7%.</p><p>On the day, the 2-year Treasury yield slipped 3 basis points to 4.80% and the 10-year 2 basis points to 5.10% (Treasury), while futures held near 95% odds of a December hike.</p>",
+        "tag": "Fed",
+        "title": "Fed minutes: almost all officials expect further hikes, and a couple floated more than a quarter point",
+        "rel": "FOMC minutes, Oct 27–28 meeting",
+        "good": false,
+        "body": "<p>Minutes of the Oct. 27–28 meeting, released Wednesday, show the Fed held its range at 3.75% to 4.00% on a 10–2 vote, with Governor Lisa Cook and Cleveland Fed President Beth Hammack dissenting in favor of a quarter-point hike. Almost all participants judged further increases likely appropriate to return inflation to 2% in a timely way, and a couple said a move larger than 25 basis points could merit consideration in December if the data were unfavorable.</p><p>Several participants said market pricing of hikes for December and 2027 was broadly in line with their own views, which reduced the risk of holding. Officials called AI-related demand a material source of inflation risk and flagged opaque AI debt structures, while still expecting inflation to fall sharply in 2027.</p><p>A quarter-point hike on Dec. 9 is fully priced, with low odds of a half point (CNBC). The 10-year Treasury yield slipped 3 basis points on the day, and the dollar firmed.</p>",
         "experts": [
           {
-            "who": "Ksenia Bushmeneva, TD Economics",
-            "view": "Called the report mixed: real volumes dipped, but the strong control group shows consumers enter the holidays in decent shape, with spending likely to cool as high rates weigh on housing and autos.",
-            "url": "https://economics.td.com/us-retail-sales",
-            "src": "TD Economics · Nov 17"
+            "who": "Christopher Waller, Fed governor",
+            "view": "Backs a half-point hike in December, saying inflation is moving the wrong way and spreading, and that more hikes than economists expect may be needed.",
+            "url": "https://www.arkansasonline.com/news/2026/nov/19/fed-officials-expect-december-rate-hike/",
+            "src": "AP via Arkansas Democrat-Gazette · Nov 18"
           },
           {
-            "who": "Sandy Batten, Haver Analytics",
-            "view": "Noted the headline slowed but the details were strong, with upward revisions and solid three-month gains in core categories.",
-            "url": "https://www.haver.com/articles/total-u-s-retail-sales-slowed-in-october-but-details-were-strong",
-            "src": "Haver Analytics · Nov 17"
+            "who": "John Williams, New York Fed president",
+            "view": "Pushed back on a bigger move, saying the situation does not call for dramatic action.",
+            "url": "https://www.arkansasonline.com/news/2026/nov/19/fed-officials-expect-december-rate-hike/",
+            "src": "AP via Arkansas Democrat-Gazette · Nov 17"
           },
           {
-            "who": "Heather Long, chief economist, Navy Federal Credit Union",
-            "view": "Pointed out that inflation-adjusted spending fell and that many household budgets are stretched.",
-            "url": "https://pbs.org/newshour/economy/retail-spending-slowed-in-october-as-high-prices-gave-shoppers-pause",
-            "src": "AP via PBS · Nov 17"
+            "who": "XTB market analysis",
+            "view": "Reads the minutes and October's hot CPI as backing further tightening, but notes markets give minimal odds of more than 25 bp in December, with over 80 bp priced through September 2027.",
+            "url": "https://www.xtb.com/int/market-analysis/news-and-research/fed-minutes-virtually-everyone-in-favor-of-further-rate-hikes-is-there-a-chance-for-50-basis-points-in-december",
+            "src": "XTB · Nov 18"
           }
         ],
-        "lean": "TD and Haver read the details as solid; Navy Federal's Long stresses that real spending slipped.",
-        "src": "Sources: Trading Economics; Haver Analytics; TD Economics; AP via PBS; Breitbart (control consensus); FRED; U.S. Treasury."
+        "lean": "Waller favors a half point; Williams and market pricing, per XTB, point to a quarter point.",
+        "src": "Sources: CNBC; Trading Economics; AP via Arkansas Democrat-Gazette; XTB; U.S. Treasury."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Iran · Strait of Hormuz",
-      "title": "The U.S. hits back near Hormuz as attacks on shipping rise",
-      "body": "<p>U.S. warplanes struck a Revolutionary Guard missile launch site on Qeshm Island, near the Strait of Hormuz, on Nov. 17. A U.S. official called it a response to Iranian attacks on American personnel and assets, after Iran's third attack on Bahrain in under a week targeted a U.S. radar. Iran's Mehr News reported no casualties. A third U.S. carrier strike group arrived in the region Nov. 16 (gCaptain).</p><p>Bloomberg reports Iranian attacks on commercial vessels are rising. Parliament speaker and lead negotiator Mohammad Bagher Ghalibaf warned Iran would hit civilian infrastructure near U.S. and Israeli bases if Iranian civilian sites are struck. Qatar, the main mediator, was due to meet Iranian representatives Nov. 17; neither side has moved on the U.S. naval blockade or nuclear terms.</p>",
-      "reach": "Through oil: Brent settled at $93.14 on Nov 17, up 0.8%, and is up more than 50% this year (Xinhua; Bloomberg via Transport Topics). EIA data show Hormuz flows recovered to 9.1 million barrels a day in the third quarter, so new attacks threaten a recovery that markets had priced in.",
+      "kicker": "U.S. · China · Russia",
+      "title": "Trump, Xi and Putin meet in Shenzhen, and the trade truce stays as it was",
+      "body": "<p>President Trump met Xi Jinping for about an hour in Shenzhen on Nov. 19, on the sidelines of APEC. Xi called relations stable and improved, but no new deal on tariffs, chips or export controls was reported, and the trade truce still runs to Jan. 10, 2027. An unfinalized $60 billion package of reciprocal tariff cuts, including about $17 billion of U.S. farm goods, remains open. Trump said both countries want energy to keep flowing through Hormuz (NBC; CNBC).</p><p>A first-ever three-way meeting with Vladimir Putin followed, about 90 minutes with no press statements. The Kremlin issued a readout it said all three agreed, committing to raise oil and gas output, and China and Russia published a \"Declaration on Peace.\" There was no immediate White House readout, and a Putin aide said no particularly important statements were made on Ukraine (CBS).</p>",
+      "reach": "Through oil and trade: a joint pledge to lift oil and gas output feeds the surplus story, with Brent settling at $91.95 on Nov 18, down 1.3% (DTN). The tariff truce's Jan. 10 expiry keeps import costs uncertain.",
       "views": [
         {
-          "who": "Ryan McKay, senior commodity strategist, TD Securities",
-          "view": "Expects some geopolitical risk premium to be priced back into crude as tensions build and flows through the strait drop.",
-          "url": "https://www.ttnews.com/articles/oil-prices-vessel-attacks",
-          "src": "Bloomberg via Transport Topics · Nov 17"
+          "who": "Fred Gao, Center for China and Globalization",
+          "view": "Sees the meeting as possible groundwork for steadier ties among the three nuclear powers, and says Beijing is willing to mediate between the U.S. and Iran.",
+          "url": "https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888",
+          "src": "NBC News · Nov 19"
         },
         {
-          "who": "Goldman Sachs analysts",
-          "view": "Continue to flag the risk of an oil glut next year, which would cap prices if flows hold up.",
-          "url": "https://www.ttnews.com/articles/oil-prices-vessel-attacks",
-          "src": "Bloomberg via Transport Topics · Nov 17"
+          "who": "Craig Singleton, Foundation for Defense of Democracies",
+          "view": "Describes U.S.-China ties as a managed stalemate, with Washington holding leverage on chips and Beijing on rare earths.",
+          "url": "https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888",
+          "src": "NBC News · Nov 19"
         }
       ]
     },
     "hot": [
       {
+        "r": "Iran / Hormuz",
+        "chg": "Nov 17–18: U.S. hit a Qeshm missile site; an LPG tanker and an ADNOC vessel were struck; 2 strait transits Nov 15 vs ~85 a day.",
+        "trend": "Escalating at sea",
+        "tc": "esc",
+        "ch": "Oil premium, tanker rates, insurance",
+        "next": "Weekly IMF PortWatch transit data"
+      },
+      {
         "r": "Russia / Ukraine",
-        "chg": "Nov 17: Ukraine struck the Kerch Bridge for a second day and says a span collapsed; the Kremlin rejects a temporary ceasefire.",
+        "chg": "Ukrainian strikes cut a Kerch Bridge road span; attacks continued the night of the Nov 19 summit with no ceasefire progress.",
         "trend": "Escalating",
         "tc": "esc",
         "ch": "Black Sea shipping, European gas",
         "next": "No talks round scheduled"
       },
       {
-        "r": "Euro area",
-        "chg": "October inflation hit 4.0% (Italy 5.5%) after the ECB held its refi rate at 2.65% on Oct 29.",
-        "trend": "Tightening bias",
+        "r": "U.S. / China tech",
+        "chg": "DOJ probes alleged Nvidia chip diversion to China; a new U.S. rule limits remote access to advanced AI chips.",
+        "trend": "Escalating",
         "tc": "esc",
-        "ch": "Euro, Bund yields",
-        "next": "ECB decision Dec 17"
+        "ch": "Semis, export controls, rare earths",
+        "next": "Truce expiry Jan 10, 2027"
       },
       {
-        "r": "Japan",
-        "chg": "BoJ held at 1.25% on Oct 30 in an 8–1 vote; most economists in a Reuters poll expect 1.50% in December.",
+        "r": "South Korea",
+        "chg": "Bank of Korea held at 3.00% on Oct 22; consensus and Trading Economics now expect a hike to 3.25%.",
         "trend": "Tightening bias",
         "tc": "esc",
-        "ch": "Yen, JGBs, carry trade",
-        "next": "BoJ decision Dec 18"
-      },
-      {
-        "r": "Indonesia / EM Asia",
-        "chg": "Nov 18: Bank Indonesia hiked 25 bp to 6.00%, following Australia's Nov 3 hike to 4.85%.",
-        "trend": "Hikes broadening",
-        "tc": "esc",
-        "ch": "EM currencies, strong dollar",
-        "next": "Bank Indonesia meets Dec 16"
+        "ch": "Won, Asian rates",
+        "next": "BoK decision Nov 26"
       }
     ],
     "cb": [
@@ -302,7 +196,7 @@
         "d": "2026-11-26",
         "bank": "Bank of Korea",
         "rate": "3.00%",
-        "exp": "TE sees a hike to 3.25%"
+        "exp": "Consensus and TE: hike to 3.25%"
       },
       {
         "d": "2026-12-04",
@@ -314,19 +208,19 @@
         "d": "2026-12-08",
         "bank": "Reserve Bank of Australia",
         "rate": "4.85%",
-        "exp": "Widely expected to hold (TE)"
+        "exp": "Consensus and TE: hold"
       },
       {
         "d": "2026-12-09",
         "bank": "Bank of Canada",
         "rate": "2.50%",
-        "exp": "TE sees a hike to 2.75%"
+        "exp": "TE forecast: hike to 2.75%"
       },
       {
         "d": "2026-12-09",
         "bank": "Reserve Bank of New Zealand",
         "rate": "2.75%",
-        "exp": "TE shows 3.00%"
+        "exp": "TE sees 3.00% by quarter-end"
       }
     ],
     "real": {
@@ -366,30 +260,30 @@
         ]
       ]
     },
-    "src": "Sources: gCaptain; Bloomberg via Transport Topics; Xinhua via The Star; NPR; Al Jazeera; Trading Economics country and G20 pages; Reuters via Yahoo Finance."
+    "src": "Sources: NBC News; CBS News; CNBC; DTN; IBTimes/Reuters; Transport Topics; The War Zone; Trading Economics country and G20 pages; BusinessTech."
   },
   "reading": {
-    "kind": "Bio",
-    "who": "Stanley Druckenmiller",
-    "title": "Druckenmiller: read the central bank first",
-    "dek": "From a Pittsburgh bank trainee to Soros's partner on the sterling trade, Druckenmiller built one of the best long-run records in money management by betting on policy mistakes.",
-    "body": "<p>Before he became a byword for macro investing, Stanley Druckenmiller was an unlikely Wall Street candidate. Born in Pittsburgh on June 14, 1953, and raised in the Philadelphia suburbs, he studied English and economics at Bowdoin College, graduating in 1975. He then enrolled in the economics Ph.D. program at the University of Michigan but left partway through, a detour that pointed him toward markets rather than a lecture hall.</p><p>His first job, in 1977, was as a management trainee at Pittsburgh National Bank. Within roughly a year he was running its equity research group. In the early 1980s he struck out on his own, launching <b>Duquesne Capital Management</b> with a small pool of client money. Dreyfus took notice: he began consulting for the firm in 1985 and moved to New York in 1986 to manage the Dreyfus Fund, all while keeping Duquesne going.</p><p>In 1988 George Soros hired him to replace Victor Niederhoffer as lead portfolio manager of the <b>Quantum Fund</b>. The partnership produced the trade that made both men famous. In 1992 they bet heavily against the British pound, reasoning that the Bank of England lacked the reserves to defend its currency peg and that the rate hikes needed to do so would prove politically impossible. When sterling broke on Black Wednesday, the position reportedly earned more than $1 billion. His Soros years ended in 2000, after steep losses on technology stocks near the top of the dot-com bubble.</p><p>Duquesne, meanwhile, compiled one of the best long-run records in the industry, with average returns of about 30% a year from 1986. By 2010 it managed roughly $12 billion. That August he announced he would close the fund and return outside capital, citing the strain of running so much money and frustration that recent results trailed his own standard. He has since invested his own fortune through a family office and turned to philanthropy, giving $705 million to foundations in 2009 alone, including $100 million to found a neuroscience institute at NYU, and chairing Harlem Children's Zone.</p><p>The through-line of his career is a habit of reading central banks and liquidity first, then sizing positions boldly when the evidence lines up, and cutting them quickly when it does not. The sterling trade was less a gamble than a judgment that policymakers had boxed themselves in. His 2000 stumble is the counterweight: even the best macro thinkers can get caught chasing a mania.</p>",
+    "kind": "Story",
+    "who": "Benjamin Graham",
+    "title": "The bet that broke Graham's rules",
+    "dek": "In 1948 the father of value investing put about a fifth of his fund into one insurer, and it made more money than everything else he ever did.",
+    "body": "<p>In 1948 Benjamin Graham was Wall Street's apostle of caution. Graham-Newman, the fund he had run with partner Jerome Newman since 1936, lived by strict rules: buy below value, spread the risk widely, and seldom let any one holding exceed about 5% of assets. The whole method was built so that no single mistake could sink the ship. That year he broke nearly every one of those rules at once.</p><p>The target was the Government Employees Insurance Company, a car insurer that Leo Goodwin Sr. and his wife Lillian had started in San Antonio in 1936 to serve federal workers. When the Rhea family, early backers of the firm, sold its controlling stake, a group led by Graham-Newman took half of GEICO for roughly $712,000. That put about a fifth of the partnership's capital into a single stock, a concentration Graham would ordinarily have refused without a second thought.</p><p>The deal almost collapsed during negotiations, then ran into a regulatory limit that forced the fund to hand its GEICO stock out to its own shareholders. Those who simply sat on it did remarkably well. An investor holding 100 fund shares in 1948, worth about $11,400, who kept the GEICO distribution would have had roughly $1.66 million by 1972. GEICO's market value grew almost fiftyfold in the decade after the purchase alone. For a bargain hunter, sitting tight on a fast-growing company for decades was an entirely new kind of payoff.</p><p>Graham was unusually frank about what this meant. In a postscript to <i>The Intelligent Investor</i>, he conceded that the gains from this one decision exceeded everything else the partners earned in twenty years of careful, diversified work. Worse for his doctrine, they held on long after the shares looked pricey by their usual yardsticks. He credited luck, but argued that luck tends to favor the prepared: investors whose discipline puts them in a position to spot, and act on, a rare opportunity when it appears.</p><p>The story had a second act. In 1951 a Columbia graduate student named Warren Buffett, studying under Graham, questioned GEICO executive Lorimer Davidson and came away calling it the security he liked best. Buffett later helped rescue the company in 1976, and Berkshire Hathaway bought all of it in 1996. Graham's rules built the foundation of his record; his one great exception built the fortune. The point is not to abandon diversification, but to recognize that real conviction, backed by real homework, occasionally deserves a bigger seat at the table.</p>",
     "quote": {
-      "text": "Thirty years is enough.",
-      "src": "Stanley Druckenmiller on closing Duquesne Capital, 2010 (via InvestmentNews)"
+      "text": "may count for more than a lifetime of journeyman efforts.",
+      "src": "Benjamin Graham, postscript to The Intelligent Investor"
     },
     "takeaways": [
-      "With a Dec. 9 hike nearly priced, the Fed's path still drives every asset.",
-      "A 5.10% 10-year and a strong dollar mean liquidity is tightening, not loosening.",
-      "When a crowded bet turns, cut it fast rather than chase momentum."
+      "Selloffs like this week's are when prepared investors find rare bargains.",
+      "Diversify by default, but let deep homework earn an occasional concentrated position.",
+      "Great businesses bought cheaply can be worth holding long after they stop looking cheap."
     ],
-    "src": "Read more: Stanley Druckenmiller on Wikipedia; InvestmentNews, \"Stanley Druckenmiller closing up shop\" (Sept 2010)."
+    "src": "Read more: Jason Zweig, \"Was Benjamin Graham Skillful or Lucky?\" (jasonzweig.com)"
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "next decision Dec 9; markets ~96% for a 25 bp hike (TE, Nov 18)",
+      "d": "next decision Dec 9; a 25 bp hike fully priced (CNBC, Nov 18)",
       "good": false
     },
     {
@@ -401,31 +295,11 @@
   ],
   "cal": [
     {
-      "d": "2026-11-18",
-      "tag": "Housing",
-      "e": "October housing starts",
-      "act": null,
-      "cons": "1.27M",
-      "prior": "1.22M",
-      "good": null,
-      "why": "Builders facing 7% mortgages"
-    },
-    {
-      "d": "2026-11-18",
-      "tag": "Fed",
-      "e": "FOMC minutes, Oct 27–28 meeting",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "How many officials want hikes?"
-    },
-    {
       "d": "2026-11-19",
       "tag": "Labor",
       "e": "Initial jobless claims",
       "act": null,
-      "cons": "196K",
+      "cons": "197K",
       "prior": "200K",
       "good": null,
       "why": "Layoffs still near lows"
@@ -455,18 +329,18 @@
       "tag": "Economy",
       "e": "Q3 GDP, second estimate",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "3.4%",
+      "prior": "3.4%",
       "good": null,
       "why": "Growth check before the Fed"
     },
     {
       "d": "2026-11-25",
       "tag": "Inflation",
-      "e": "October PCE inflation",
+      "e": "October core PCE, y/y",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "3.2%",
+      "prior": "3.1%",
       "good": null,
       "why": "The Fed's preferred gauge"
     },
@@ -488,7 +362,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Supply path into a glut"
+      "why": "Supply path into a surplus"
     },
     {
       "d": "2026-12-01",
@@ -511,108 +385,118 @@
       "why": "Last payrolls before the decision"
     },
     {
-      "d": "2026-12-08",
+      "d": "2026-12-09",
       "tag": "Fed",
-      "e": "FOMC meeting begins; decision Dec 9",
+      "e": "FOMC decision and projections",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Hike widely expected"
+      "why": "Hike fully priced"
+    },
+    {
+      "d": "2026-12-10",
+      "tag": "Inflation",
+      "e": "November CPI",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "First inflation read after the hike"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,340.53",
-      "c": -1.03,
-      "ctext": "−1.03%",
-      "y": 10.0,
-      "ytext": "+10.0%",
-      "why": "Fell for a fourth straight day, with every sector lower, as software stocks slumped and traders priced a December hike.",
-      "asof": "Nov 17"
+      "v": "7,323.63",
+      "c": -0.23,
+      "ctext": "−0.23%",
+      "y": 10.7,
+      "ytext": "+10.7%",
+      "why": "Fell a fifth straight day, its longest skid since June, as Nvidia slid 2.9% after earnings and energy and health insurers dropped.",
+      "asof": "Nov 18"
     },
     {
       "n": "Dow",
-      "v": "50,759.42",
-      "c": -1.64,
-      "ctext": "−1.64%",
+      "v": "50,198.17",
+      "c": -1.11,
+      "ctext": "−1.11%",
       "y": 8.9,
       "ytext": "+8.9%",
-      "why": "Lost 849 points, about 1,600 in two sessions, as Salesforce sank roughly 9% and financials led the decline.",
-      "asof": "Nov 17"
+      "why": "Lost 561 points as UnitedHealth sank 10% on a proposed Medicare audit rule, with Chevron and Caterpillar also weighing.",
+      "asof": "Nov 18"
     },
     {
       "n": "Nasdaq",
-      "v": "24,328.38",
-      "c": -0.74,
-      "ctext": "−0.74%",
-      "y": 7.1,
-      "ytext": "+7.1%",
-      "why": "Slipped as investors trimmed AI bets before Nvidia's report and Anthropic's IPO; Nvidia rose after hours on its beat.",
-      "asof": "Nov 17"
+      "v": "24,429.88",
+      "c": 0.42,
+      "ctext": "+0.42%",
+      "y": 8.9,
+      "ytext": "+8.9%",
+      "why": "Edged up as some tech stocks rebounded, even as Nvidia fell on lingering leadership worries after Jensen Huang's exit.",
+      "asof": "Nov 18"
     },
     {
       "n": "WTI crude",
-      "v": "$86.01",
-      "c": 0.34,
-      "ctext": "+0.34%",
-      "y": 43.6,
-      "ytext": "+43.6%",
-      "why": "Edged up after Monday's drop as Iranian attacks on commercial ships rose, testing the supply recovery.",
-      "asof": "Nov 17",
+      "v": "$83.26",
+      "c": -3.2,
+      "ctext": "−3.20%",
+      "y": 37.1,
+      "ytext": "+37.1%",
+      "why": "Dropped after U.S. crude stocks rose 3.38 million barrels against an expected draw and the IEA warned of a surplus.",
+      "asof": "Nov 18",
       "rate": true
     },
     {
       "n": "Dollar index",
-      "v": "103.49",
-      "c": -0.06,
-      "ctext": "−0.06%",
+      "v": "103.79",
+      "c": 0.37,
+      "ctext": "+0.37%",
       "y": 3.6,
       "ytext": "+3.6%",
-      "why": "Held near a 19-month high on hawkish Fed talk, including Musalem's case for several more hikes.",
-      "asof": "Nov 17"
+      "why": "Firmed after the Fed minutes showed almost all officials expect more hikes, locking in a December move.",
+      "asof": "Nov 18"
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.93,
-      "d1m": 5,
-      "d6m": 38,
-      "d1y": -2,
-      "asof": "Nov 16"
+      "cur": 3.92,
+      "d1m": 4,
+      "d6m": 37,
+      "d1y": -8,
+      "asof": "Nov 17"
     },
     {
       "n": "2Y Treasury",
       "cur": 4.8,
       "d1m": 6,
-      "d6m": 71,
-      "d1y": 120,
-      "asof": "Nov 17"
+      "d6m": 73,
+      "d1y": 122,
+      "asof": "Nov 18"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.9,
-      "d1m": 1,
-      "d6m": 64,
-      "d1y": 118,
-      "asof": "Nov 17"
+      "cur": 4.89,
+      "d1m": 0,
+      "d6m": 62,
+      "d1y": 119,
+      "asof": "Nov 18"
     },
     {
       "n": "10Y Treasury",
-      "cur": 5.1,
-      "d1m": 1,
-      "d6m": 51,
-      "d1y": 97,
-      "asof": "Nov 17"
+      "cur": 5.07,
+      "d1m": -2,
+      "d6m": 46,
+      "d1y": 95,
+      "asof": "Nov 18"
     }
   ],
   "rcols": [
-    "Nov 17 '26",
+    "Nov 18 '26",
     "Oct 16 '26",
-    "May 15 '26",
-    "Nov 17 '25"
+    "May 18 '26",
+    "Nov 18 '25"
   ],
   "rtab": [
     {
@@ -621,49 +505,49 @@
       "v": [
         "4.80",
         "4.74",
-        "4.09",
-        "3.60"
+        "4.07",
+        "3.58"
       ],
       "d1m": 6,
-      "d1y": 120
+      "d1y": 122
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.90",
         "4.89",
-        "4.26",
-        "3.72"
+        "4.89",
+        "4.27",
+        "3.70"
       ],
-      "d1m": 1,
-      "d1y": 118
+      "d1m": 0,
+      "d1y": 119
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "5.10",
+        "5.07",
         "5.09",
-        "4.59",
-        "4.13"
+        "4.61",
+        "4.12"
       ],
-      "d1m": 1,
-      "d1y": 97
+      "d1m": -2,
+      "d1y": 95
     },
     {
-      "grp": "SOFR · dates Nov 16 '26 / Oct 16 '26 / May 15 '26 / Nov 14 '25"
+      "grp": "SOFR · dates Nov 17 '26 / Oct 16 '26 / May 15 '26 / Nov 17 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.93",
+        "3.92",
         "3.88",
         "3.55",
-        "3.95"
+        "4.00"
       ],
-      "d1m": 5,
-      "d1y": -2
+      "d1m": 4,
+      "d1y": -8
     }
   ],
   "freight": [
@@ -673,28 +557,27 @@
       "pl": "Week",
       "pc": "−$0.190",
       "y": "+$2.069",
-      "why": "Week of Nov 16; first print under $6 since early September."
+      "why": "Week of Nov 16; next EIA print Nov 24."
     },
     {
       "n": "Baltic Dry Index",
-      "v": "2,893",
+      "v": "2,914",
       "pl": "Day",
-      "pc": "−0.96%",
-      "y": "+30.6%",
-      "why": "Nov 17; still up 13.6% over the past month."
+      "pc": "+0.73%",
+      "y": "+28.9%",
+      "why": "Nov 18; up 14.5% over the past month."
     },
     {
-      "n": "Cass Freight Index, shipments",
-      "v": "+5.9% y/y",
-      "pl": "Month",
-      "pc": "−0.6%",
-      "y": "+5.9%",
-      "why": "October; third annual gain after 42 straight months of declines."
+      "n": "DAT van spot rate",
+      "v": "$3.11/mi",
+      "pl": "Week",
+      "pc": "+$0.04",
+      "why": "Week to Nov 16; truck postings rose 9%."
     }
   ],
   "also": "",
-  "sport": "Quentin Grimes hit 10 threes for 47 points and Luka Dončić added 36 as the Lakers beat the Hornets 118-114 in overtime Tuesday.",
-  "foot": "Sources: NY Fed API (SOFR Nov 16); U.S. Treasury CSV (Nov 17); AP via La Nacion and Star-Advertiser (Nov 17 closes); AP via Yahoo (Nov 17, 2025 closes); Xinhua via The Star (WTI/Brent settles); Trading Economics (dollar index, BDI, retail sales, yields, Fed odds, central banks, G20 lists); EIA; FreightWaves (Cass); DAT; TradingKey, CNBC (Nvidia); StockTitan; Capital Street FX; Haver; TD Economics; AP/PBS; FRED; gCaptain; Transport Topics/Bloomberg; NPR; Al Jazeera; Land of Basketball; Wikipedia and InvestmentNews (Druckenmiller).<br>Notes: WTI 1Y uses Rigzone's Nov 17, 2025 settle of $59.91 (read Nov 17), not re-fetched today. Dollar index Nov 17 close is TE's 'previous close' read Nov 18; 1Y +3.6% is TE's figure against its Nov 18 intraday quote. Oil 'why' from Bloomberg via Transport Topics. Control-group consensus differs by source (0.3% Breitbart/ING, 0.4% CNN); Heather Long view from AP/PBS search snippet. Retail sales chart uses current-vintage FRED levels (m/m computed). Housing starts consensus from a partly garbled TE row; claims and Philly Fed consensus carried from Nov 17 read (Admiral Markets). Drewry WCI: no fresh print (next Nov 19), replaced by Cass. Druckenmiller: Duquesne founding year differs (1980 vs 1981), so 'early 1980s'. World: U.S. and Japan CPI are September; UK 4.00% policy rate per TE G20 list (implies a November BoE hike, not verified). PBoC LPR expectation carried from Nov 17 TE read. Trump–Xi Thursday meeting from a broker note citing Reuters/AP.",
+  "sport": "Cooper Flagg scored 33 with nine assists as the Mavericks routed the Curry-less Warriors 116-94 Wednesday, Golden State's third straight game under 100.",
+  "foot": "Sources: NY Fed API (SOFR Nov 17); U.S. Treasury CSV (Nov 18); AP via La Nacion (Nov 18 closes); DTN (WTI, Brent, dollar index); Xinhua via The Star (Nov 18, 2025 WTI); Trading Economics (dollar 1Y, BDI, housing starts/permits, claims, GDP, core PCE, yields, central banks, G20 lists); EIA; DAT via The Trucker; CNBC (Anthropic, Fed minutes); AP via Post-Gazette and Arkansas Democrat-Gazette; XTB; FinChannel/Seeking Alpha (UNH); Lowe's release; Yahoo/Yardeni (private credit); CRE Daily, Yield PRO, KBRA, The Wealth Advisor (CMBS); NBC, CBS, IBTimes/Reuters, TWZ; CBS Sports; Wikipedia and Jason Zweig (Graham).<br>Notes: 1Y-ago index closes (Nov 18, 2025: S&P 6,617.32, Dow 46,091.53, Nasdaq 22,432.85) from AP search-result text; pages returned 404. Dollar index close is DTN's 103.785 (no official close); 1Y +3.6% is TE's figure. UNH/Humana, Lowe's and private-credit figures from search snippets. No named economist reactions found for Fed minutes beyond XTB; Roach (LPL) view unverified, left out. Freight: Drewry WCI Nov 19 not yet out; DAT y/y not available. Mortgage rate carried from Nov 12 Freddie Mac print. Philly Fed consensus carried from Nov 17 read; PBoC LPR expectation carried from Nov 17 TE read; core PCE 3.2% unlabeled on TE (consensus or TE forecast). GDP prior is the 3.4% advance estimate. World: U.S. and Japan CPI are September; Kerch span date unconfirmed; Singleton view is earlier analysis quoted by NBC. Graham GEICO price given as roughly $712,000 (sources say $712,000 and $712,500).",
   "series": [
     [
       "2021-10-12",
@@ -8339,6 +8222,12 @@
       4.8,
       4.9,
       5.1
+    ],
+    [
+      "2026-11-18",
+      4.8,
+      4.89,
+      5.07
     ]
   ],
   "log": {
@@ -8446,6 +8335,10 @@
       {
         "d": "2026-11-18",
         "t": "Freight's comeback runs on scarcity, not demand"
+      },
+      {
+        "d": "2026-11-19",
+        "t": "CMBS distress is moving out of the office"
       }
     ],
     "corner": [
@@ -8578,6 +8471,11 @@
         "d": "2026-11-18",
         "who": "Stanley Druckenmiller",
         "kind": "Bio"
+      },
+      {
+        "d": "2026-11-19",
+        "who": "Benjamin Graham",
+        "kind": "Story"
       }
     ],
     "focus": [
@@ -8672,6 +8570,10 @@
       {
         "d": "2026-11-18",
         "t": "October retail sales rose 0.2%, matching forecasts, as the control group beat"
+      },
+      {
+        "d": "2026-11-19",
+        "t": "Fed minutes: almost all officials expect further hikes, and a couple floated more than a quarter point"
       }
     ],
     "world": [
@@ -8766,6 +8668,10 @@
       {
         "d": "2026-11-18",
         "t": "The U.S. hits back near Hormuz as attacks on shipping rise"
+      },
+      {
+        "d": "2026-11-19",
+        "t": "Trump, Xi and Putin meet in Shenzhen, and the trade truce stays as it was"
       }
     ]
   }
