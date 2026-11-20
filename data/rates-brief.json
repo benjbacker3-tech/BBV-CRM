@@ -1,196 +1,264 @@
 {
-  "headline": "Fed minutes show almost all officials expect more hikes, Waller wants a half point in December, and Anthropic priced its IPO at $83 a share.",
-  "dateline": "Thursday, November 19, 2026 · closes as of Wed Nov 18",
-  "ustDate": "Nov 18, 2026",
+  "headline": "The S&P 500 fell 2% for a sixth straight loss as AI doubts swamped Anthropic's debut, while factory prices paid jumped and the 10-year eased to 5.04%.",
+  "dateline": "Friday, November 20, 2026 · closes as of Thu Nov 19",
+  "ustDate": "Nov 19, 2026",
   "rundown": [
     {
       "tag": "Markets",
-      "h": "Anthropic prices above range and trades today.",
-      "p": "Anthropic priced its IPO at $83 a share, above the $70 to $78 range, and upsized it to about 980 million shares from 825 million. It raised $81.3 billion at a fully diluted value near $1.5 trillion, with Google, Microsoft, Nvidia and AMD adding $26 billion at the IPO price. It is set to start trading on Nasdaq as ANT today.",
-      "url": "https://www.cnbc.com/2026/11/18/anthropic-ipo-ai-offering-price.html",
-      "src": "CNBC · Nov 18"
-    },
-    {
-      "tag": "Policy",
-      "h": "A Medicare audit proposal knocks health insurers flat.",
-      "p": "CMS proposed a rule that would extrapolate Medicare Advantage risk-adjustment audit findings back to payment year 2018, and estimates it could recover about $9 billion per payment year. UnitedHealth fell 10.2% Wednesday to $349.91, after a 5.4% drop Tuesday, and Humana fell about 13%. Comments are due Jan. 19, 2027, so the overhang may linger for months.",
-      "url": "https://finchannel.com/unitedhealth-stock-drops-10-as-medicare-audit-proposal-unsettles-insurers/142214/american-business-trends/2026/11/",
-      "src": "FinChannel; Seeking Alpha · Nov 18"
-    },
-    {
-      "tag": "Housing",
-      "h": "Starts jump, but permits hit their lowest since 2020.",
-      "p": "October housing starts rose 9.9% to a 1.309 million annual pace, beating the 1.25 million consensus, as multifamily starts surged 25.5% to 433,000 and single-family rose 4.0% to 864,000. The forward signal was weaker: permits fell 7.4% to 1.295 million against 1.38 million expected, the lowest since 2020, with single-family permits down 8.7%. Builders are finishing what they started, not lining up new work.",
-      "url": "https://tradingeconomics.com/united-states/building-permits",
-      "src": "Trading Economics · Nov 18"
+      "h": "Anthropic pops on debut, then gives back half.",
+      "p": "Anthropic's first trade on Nasdaq came at $111.50 just after 11:30 a.m. ET Thursday, and the stock hit $115.10 before closing at $97.17, about 17% above its $83 IPO price. The record $81.3 billion raise didn't rescue AI stocks, which kept sliding on doubts about whether the spending will pay off.",
+      "url": "https://finance.yahoo.com/technology/live/anthropic-ipo-live-anthropic-stock-begins-trading-in-record-81b-raise-with-15t-valuation-192410598.html",
+      "src": "Yahoo Finance; AP · Nov 19"
     },
     {
       "tag": "Earnings",
-      "h": "Lowe's, TJX and Target say shoppers are still spending.",
-      "p": "Lowe's posted third-quarter sales of $22.8 billion, with comparable sales up 1.8% and online up 17.4%, and adjusted EPS of $3.10 against about $2.89 expected; it lifted its full-year sales outlook to about $92.5 billion. TJX rose 8% on slightly better earnings, and Target gained 4% on its strongest quarterly sales gain in about five years. Walmart reports this morning.",
-      "url": "https://www.post-gazette.com/business/personal-finance/stock-market-today-november-18-2026-OPGMZLWL7E36MRNUL7DIGS5LLQ/",
-      "src": "AP via Post-Gazette; Lowe's release · Nov 18"
+      "h": "Walmart raises its outlook as online sales climb 23%.",
+      "p": "Walmart's third-quarter revenue rose 5.2% to $188.8 billion, with adjusted EPS of $0.65 and U.S. comparable sales up 2.9% excluding fuel. U.S. e-commerce grew 23% and advertising 37%. It raised its full-year guidance to sales growth of 4.9% to 5.2% at constant currency and adjusted EPS of $2.84 to $2.89, a read that the middle-income shopper is still spending.",
+      "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000168/earningsreleasefy27q3.htm",
+      "src": "Walmart 8-K · Nov 19"
     },
     {
-      "tag": "Credit",
-      "h": "Private credit funds keep the exit door half shut.",
-      "p": "Funds run by Morgan Stanley, BlackRock, Ares and Barings have capped redemptions, and Morgan Stanley's North Haven paid out 45% of requests, according to a Nov. 11 report. In the second quarter, the 12 largest non-traded BDCs paid $7.6 billion against about $19.1 billion requested. With rates heading higher, the lock-up risk in semi-liquid credit funds is worth pricing in.",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/record-redemptions-low-fundraising-squeeze-173014260.html",
-      "src": "Yahoo Finance; Yardeni · Nov 11"
+      "tag": "Tech",
+      "h": "Nvidia's numbers are huge; its leadership is the question.",
+      "p": "Nvidia reported third-quarter revenue of $115.8 billion, up 103%, with data center sales of $107.6 billion, and guided to $130 billion next quarter assuming no China data center revenue. CFO Colette Kress is interim CEO, and the release cites a CEO search and an independent board committee investigation. The stock fell 3.3% Thursday despite the beat.",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/",
+      "src": "Nvidia; Trading Economics · Nov 17–19"
+    },
+    {
+      "tag": "Labor",
+      "h": "Jobless claims tick up, and continuing claims jump.",
+      "p": "Initial claims rose to 203,000 in the week to Nov. 14, above the 197,000 consensus and up from a revised 202,000. Continuing claims rose 70,000 to 1.763 million, and the four-week average rose to 197,750. Layoffs remain low, but the jump in continuing claims hints that people out of work are taking longer to find jobs.",
+      "url": "https://tradingeconomics.com/united-states/jobless-claims",
+      "src": "Trading Economics · Nov 19"
+    },
+    {
+      "tag": "Fed",
+      "h": "Futures price three hikes by next July.",
+      "p": "Fed funds futures imply better than 90% odds of a quarter-point hike on Dec. 9, a slim chance of a half point, and three hikes priced by July 2027, after hawkish remarks from Waller, Logan, Hammack and Williams and a hotter October core CPI. The next big input is October PCE inflation on Nov. 25, the day before Thanksgiving.",
+      "url": "https://tradingeconomics.com/united-states/implied-rates/news/602003",
+      "src": "Trading Economics · Nov 17"
     }
   ],
   "dive": {
-    "kicker": "CRE credit",
-    "title": "CMBS distress is moving out of the office",
-    "dek": "Office still leads, but October's securitized-loan data show hotels, apartments and malls taking a bigger share of the trouble.",
-    "body": "<p>For three years the commercial mortgage story has been an office story. October's data say it is broadening. Trepp's CMBS <b>special servicing rate</b>, the share of loans handed to workout specialists, rose 25 basis points to <b>11.74%</b>, up 90 bps on the year and the highest since December 2012 (CRE Daily, Nov 10). Lodging, not office, drove it: hotels made up 37% of October's $3.01 billion of new transfers, led by an 84-hotel, $745.7 million portfolio loan, and the lodging rate jumped 122 bps to 10.17%.</p><p>The headline delinquency rate actually dipped 15 bps to 7.87% in October, mainly because one $975 million showroom loan was brought current (Trepp via CRE Daily, Nov 3). Underneath, office delinquency rose to 12.33%, retail jumped 63 bps to 7.21% and is up 327 bps in a year, and multifamily reached 8.09%, up from 7.12% a year ago and 3.24% two years ago, the biggest two-year rise of any property type (Yield PRO, Nov 5). Industrial sits at 1.10%. Counting loans past maturity but still paying, the overall rate is 9.56%.</p><p>The mechanism is refinancing. Of the $4.42 billion of loans hitting hard maturity this month, Trepp estimates 68 of 182 loans, worth $3.05 billion, cannot refinance at their current balances at 6.44% to 7.11% all-in rates, an equity gap of $804.7 million; the fixed-rate loans carry an average 4.14% coupon (CRE Daily, Nov 13). Only 36% to 41% of the August to October cohorts paid off on time. New issuance is slowing too: KBRA counted 10 private-label CMBS deals in October, down from 19 in September, citing rate and Fed uncertainty (Nov 4).</p><p>Trepp's Lonnie Hendry has said lenders are less willing to extend troubled loans without new equity from borrowers. With the Fed signaling more hikes, the refinance math gets harder before it gets easier. What would change the picture: a turn lower in long rates, or the repricing that finally brings equity back.</p>",
+    "kicker": "Treasuries",
+    "title": "Who's buying the long end?",
+    "dek": "November's auctions drew softer foreign bids even as overall foreign buying held up, and the answer matters for every mortgage and cap rate.",
+    "body": "<p>With the 10-year Treasury near 5%, the question under every refinancing model is simple: who keeps buying? November's auctions gave a mixed answer. The Treasury sold $42 billion of 10-year notes on Nov. 10 at 5.020%, a basis point above where they traded beforehand, with a bid-to-cover of 2.46 against a 2.60 six-auction average. <b>Indirect bidders</b>, the category that includes foreign buyers, took just 61.2%, down from 80.3% at the prior sale (Newsquawk). Two days later $25 billion of 30-year bonds cleared at 5.441% on a 2.36 bid-to-cover, below the 2.45 average, and RTTNews called demand below average across the week's sales.</p><p>The flow data look sturdier. Treasury's September TIC report, released Nov. 18, showed a net inflow of $261 billion, with foreigners buying $186.7 billion of long-term U.S. securities, including $53.1 billion of notes and bonds from private buyers and $27.6 billion from official ones. The slow leak is in official holdings: per Treasury's major-holders table as compiled by IndraStra (Nov. 17), foreign official holdings fell 4.2% in the year to August to $3.76 trillion, with Japan down 9.8% and China down 15.6%, and the foreign share of debt held by the public slipped to 29.3% from 31.5%.</p><p>That shift shows up in the price investors demand to hold long bonds. The New York Fed's ACM 10-year <b>term premium</b> hit 0.99% on Oct. 7, the highest since 2014, before easing to 0.72% on Nov. 13, against a 2014–2023 average of −0.31% (IndraStra, citing NY Fed data). Treasury has leaned on bills, now 23% of marketable debt against 14.5% at the end of 2019, and plans up to $70 billion of buybacks this quarter.</p><p>Why it matters: a higher term premium lifts long rates even if the Fed stops hiking, which keeps cap rates and fixed-rate loan coupons elevated. The 20-year sale on Nov. 18 cleared with no tail, so this is softer demand, not a buyers' strike. What would change the picture: renewed official selling, or larger coupon sizes at the February refunding.</p>",
     "table": {
-      "cap": "Trepp CMBS rates by property type, October 2026",
+      "cap": "November Treasury coupon auctions",
       "cols": [
-        "Type",
-        "Delinquency",
-        "Special servicing"
+        "Auction",
+        "Size",
+        "High yield",
+        "Bid-to-cover (avg)"
       ],
       "rows": [
         [
-          "Office",
-          "12.33%",
-          "16.60%"
+          "10-year, Nov 10",
+          "$42B",
+          "5.020%",
+          "2.46x (2.60x)"
         ],
         [
-          "Retail",
-          "7.21%",
-          "13.71%"
+          "30-year, Nov 12",
+          "$25B",
+          "5.441%",
+          "2.36x (2.45x)"
         ],
         [
-          "Lodging",
-          "5.94%",
-          "10.17%"
-        ],
-        [
-          "Multifamily",
-          "8.09%",
-          "9.22%"
-        ],
-        [
-          "Industrial",
-          "1.10%",
-          "1.27%"
-        ],
-        [
-          "All CMBS",
-          "7.87%",
-          "11.74%"
+          "20-year, Nov 18",
+          "$16B",
+          "5.459%",
+          "2.63x (2.63x)"
         ]
       ]
     },
     "watch": [
-      "Early December: Trepp's November delinquency report; office's record is 12.34%",
-      "How many of November's $4.42 billion of maturities pay off",
-      "Dec 9: the FOMC decision, which sets the refinance hurdle"
+      "Thanksgiving week: 2-, 5- and 7-year note auctions",
+      "Dec 15: October TIC data on foreign official selling",
+      "Early February: the quarterly refunding and coupon sizes"
     ],
-    "src": "Sources: Trepp via CRE Daily (Nov 3, 10, 13, 2026); Yield PRO (Nov 5); KBRA (Nov 4); The Wealth Advisor (Nov 8)."
+    "src": "Sources: Newsquawk (Nov 10); RTTNews (Nov 12); InvestingLive (Nov 18); U.S. Treasury TIC release (Nov 18); IndraStra compilation of Treasury and NY Fed data (Nov 17); TBAC (Nov 4)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Fed",
-        "title": "Fed minutes: almost all officials expect further hikes, and a couple floated more than a quarter point",
-        "rel": "FOMC minutes, Oct 27–28 meeting",
-        "good": false,
-        "body": "<p>Minutes of the Oct. 27–28 meeting, released Wednesday, show the Fed held its range at 3.75% to 4.00% on a 10–2 vote, with Governor Lisa Cook and Cleveland Fed President Beth Hammack dissenting in favor of a quarter-point hike. Almost all participants judged further increases likely appropriate to return inflation to 2% in a timely way, and a couple said a move larger than 25 basis points could merit consideration in December if the data were unfavorable.</p><p>Several participants said market pricing of hikes for December and 2027 was broadly in line with their own views, which reduced the risk of holding. Officials called AI-related demand a material source of inflation risk and flagged opaque AI debt structures, while still expecting inflation to fall sharply in 2027.</p><p>A quarter-point hike on Dec. 9 is fully priced, with low odds of a half point (CNBC). The 10-year Treasury yield slipped 3 basis points on the day, and the dollar firmed.</p>",
-        "experts": [
-          {
-            "who": "Christopher Waller, Fed governor",
-            "view": "Backs a half-point hike in December, saying inflation is moving the wrong way and spreading, and that more hikes than economists expect may be needed.",
-            "url": "https://www.arkansasonline.com/news/2026/nov/19/fed-officials-expect-december-rate-hike/",
-            "src": "AP via Arkansas Democrat-Gazette · Nov 18"
-          },
-          {
-            "who": "John Williams, New York Fed president",
-            "view": "Pushed back on a bigger move, saying the situation does not call for dramatic action.",
-            "url": "https://www.arkansasonline.com/news/2026/nov/19/fed-officials-expect-december-rate-hike/",
-            "src": "AP via Arkansas Democrat-Gazette · Nov 17"
-          },
-          {
-            "who": "XTB market analysis",
-            "view": "Reads the minutes and October's hot CPI as backing further tightening, but notes markets give minimal odds of more than 25 bp in December, with over 80 bp priced through September 2027.",
-            "url": "https://www.xtb.com/int/market-analysis/news-and-research/fed-minutes-virtually-everyone-in-favor-of-further-rate-hikes-is-there-a-chance-for-50-basis-points-in-december",
-            "src": "XTB · Nov 18"
-          }
-        ],
-        "lean": "Waller favors a half point; Williams and market pricing, per XTB, point to a quarter point.",
-        "src": "Sources: CNBC; Trading Economics; AP via Arkansas Democrat-Gazette; XTB; U.S. Treasury."
+        "tag": "Factories",
+        "title": "November Philly Fed index fell to 6.3, far under forecasts, as prices paid jumped 15 points",
+        "rel": "Philadelphia Fed manufacturing index, Nov",
+        "act": "6.3",
+        "cons": "20",
+        "prior": "20.9",
+        "good": null,
+        "chart": {
+          "t": "Philly Fed prices paid index (SA)",
+          "unit": "",
+          "pts": [
+            [
+              "Dec '24",
+              31.5
+            ],
+            [
+              "Jan '25",
+              34.6
+            ],
+            [
+              "Feb '25",
+              41
+            ],
+            [
+              "Mar '25",
+              46.9
+            ],
+            [
+              "Apr '25",
+              50.4
+            ],
+            [
+              "May '25",
+              58.1
+            ],
+            [
+              "Jun '25",
+              39.2
+            ],
+            [
+              "Jul '25",
+              56
+            ],
+            [
+              "Aug '25",
+              64.3
+            ],
+            [
+              "Sep '25",
+              47.9
+            ],
+            [
+              "Oct '25",
+              51.3
+            ],
+            [
+              "Nov '25",
+              58.9
+            ],
+            [
+              "Dec '25",
+              49.3
+            ],
+            [
+              "Jan '26",
+              46.9
+            ],
+            [
+              "Feb '26",
+              38.9
+            ],
+            [
+              "Mar '26",
+              44.7
+            ],
+            [
+              "Apr '26",
+              59.3
+            ],
+            [
+              "May '26",
+              47.9
+            ],
+            [
+              "Jun '26",
+              53.2
+            ],
+            [
+              "Jul '26",
+              53.9
+            ],
+            [
+              "Aug '26",
+              40.9
+            ],
+            [
+              "Sep '26",
+              48.6
+            ],
+            [
+              "Oct '26",
+              43.2
+            ],
+            [
+              "Nov '26",
+              58.2
+            ]
+          ],
+          "src": "Source: Federal Reserve Bank of Philadelphia via FRED"
+        },
+        "body": "<p>The Philadelphia Fed's current activity index fell to 6.3 in November from 20.9, against a 20 consensus, its lowest in six months (Trading Economics). The index peaked at 47.4 in August and has dropped for three straight months, though it remains positive.</p><p>Underneath, demand softened while costs climbed. New orders slipped to −0.4, shipments rose 10 points to 25.7 and employment rose 3 points to 11.6. <b>Prices paid</b> jumped 15 points to 58.2, the highest since April, and prices received rose 7 points to 47.0, the highest since June 2022. Future capital spending plans fell 16 points to 18.9. In special questions, 56% of firms expect industry cost changes in the near term, up from 44%, and 79% of those expect competitors to raise prices.</p><p>Treasury yields fell, with the 10-year down 3 basis points to 5.04% on the day amid a broad stock selloff, while futures still price a December hike (Trading Economics).</p>",
+        "src": "Sources: Philadelphia Fed (Nov 19); Trading Economics; FRED; U.S. Treasury."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "U.S. · China · Russia",
-      "title": "Trump, Xi and Putin meet in Shenzhen, and the trade truce stays as it was",
-      "body": "<p>President Trump met Xi Jinping for about an hour in Shenzhen on Nov. 19, on the sidelines of APEC. Xi called relations stable and improved, but no new deal on tariffs, chips or export controls was reported, and the trade truce still runs to Jan. 10, 2027. An unfinalized $60 billion package of reciprocal tariff cuts, including about $17 billion of U.S. farm goods, remains open. Trump said both countries want energy to keep flowing through Hormuz (NBC; CNBC).</p><p>A first-ever three-way meeting with Vladimir Putin followed, about 90 minutes with no press statements. The Kremlin issued a readout it said all three agreed, committing to raise oil and gas output, and China and Russia published a \"Declaration on Peace.\" There was no immediate White House readout, and a Putin aide said no particularly important statements were made on Ukraine (CBS).</p>",
-      "reach": "Through oil and trade: a joint pledge to lift oil and gas output feeds the surplus story, with Brent settling at $91.95 on Nov 18, down 1.3% (DTN). The tariff truce's Jan. 10 expiry keeps import costs uncertain.",
+      "kicker": "Iran · Strait of Hormuz",
+      "title": "Iran steps up its tanker attacks just as the oil market stops flinching",
+      "body": "<p>Iran's Revolutionary Guard navy said two supertankers carrying more than 4 million barrels hit mines and caught fire on an \"unauthorised route\" through the strait, and Iran's army said three more tankers were disabled by mines on Nov. 18. The claims have not been independently confirmed, and the U.S. military says the southern shipping lanes are clear of mines (CBS; Le Private Banker, Nov. 19).</p><p>Diplomacy is stalled. President Trump said the U.S. does not need a deal with Iran, while Tehran's demands include sanctions relief, an Iran–Oman system to control traffic through the strait and war compensation (CBS). Tanker tracking shows Gulf flows still below prewar levels but well above the lows of the war's early months, as exporters add ship-to-ship transfers to work around Iran's designation of their shuttle tankers.</p>",
+      "reach": "Through oil and shipping costs: Brent settled at $91.98 on Nov. 19, up 3 cents, against about $72 before the war in late February, and war-risk cover remains far above prewar levels.",
       "views": [
         {
-          "who": "Fred Gao, Center for China and Globalization",
-          "view": "Sees the meeting as possible groundwork for steadier ties among the three nuclear powers, and says Beijing is willing to mediate between the U.S. and Iran.",
-          "url": "https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888",
-          "src": "NBC News · Nov 19"
+          "who": "ING commodity strategists",
+          "view": "See further Hormuz disruption as an important upside risk for prices, but expect the oil market to rebalance gradually.",
+          "url": "https://leprivatebanker.com/2026/11/19/oil-holds-near-92-brent-as-iran-reports-tankers-hitting-mines-in-hormuz-yet-gulf-flows-keep-moving/",
+          "src": "Le Private Banker · Nov 18–19"
         },
         {
-          "who": "Craig Singleton, Foundation for Defense of Democracies",
-          "view": "Describes U.S.-China ties as a managed stalemate, with Washington holding leverage on chips and Beijing on rare earths.",
-          "url": "https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888",
-          "src": "NBC News · Nov 19"
+          "who": "Goldman Sachs",
+          "view": "Forecasts a supply surplus of about 2 million barrels a day in 2027, leaving the market less sensitive to Hormuz disruptions.",
+          "url": "https://invezz.com/news/2026/11/19/oil-price-today-hormuz-tanker-mines-goldman-brent-forecast/",
+          "src": "Invezz · Nov 19"
         }
       ]
     },
     "hot": [
       {
         "r": "Iran / Hormuz",
-        "chg": "Nov 17–18: U.S. hit a Qeshm missile site; an LPG tanker and an ADNOC vessel were struck; 2 strait transits Nov 15 vs ~85 a day.",
+        "chg": "Nov 18–19: Iran claims four to five tankers hit mines; the U.S. says southern lanes are clear; Trump says no deal is needed.",
         "trend": "Escalating at sea",
         "tc": "esc",
-        "ch": "Oil premium, tanker rates, insurance",
-        "next": "Weekly IMF PortWatch transit data"
-      },
-      {
-        "r": "Russia / Ukraine",
-        "chg": "Ukrainian strikes cut a Kerch Bridge road span; attacks continued the night of the Nov 19 summit with no ceasefire progress.",
-        "trend": "Escalating",
-        "tc": "esc",
-        "ch": "Black Sea shipping, European gas",
-        "next": "No talks round scheduled"
+        "ch": "Oil premium, tankers, insurance",
+        "next": "OPEC+ meeting Nov 29"
       },
       {
         "r": "U.S. / China tech",
-        "chg": "DOJ probes alleged Nvidia chip diversion to China; a new U.S. rule limits remote access to advanced AI chips.",
+        "chg": "Nov 16: Commerce required licenses for advanced-chip exports to five more countries; China's commerce ministry vowed \"necessary measures\" Nov 17.",
         "trend": "Escalating",
         "tc": "esc",
-        "ch": "Semis, export controls, rare earths",
-        "next": "Truce expiry Jan 10, 2027"
+        "ch": "Semis, AI capex, rare earths",
+        "next": "Trade truce expires Jan 10"
       },
       {
-        "r": "South Korea",
-        "chg": "Bank of Korea held at 3.00% on Oct 22; consensus and Trading Economics now expect a hike to 3.25%.",
-        "trend": "Tightening bias",
+        "r": "Russia / Ukraine",
+        "chg": "Nov 16–17: Ukrainian drones damaged a Kerch bridge navigation span and hit an oil depot near Rostov.",
+        "trend": "Escalating",
         "tc": "esc",
-        "ch": "Won, Asian rates",
-        "next": "BoK decision Nov 26"
+        "ch": "Black Sea shipping, wheat, oil",
+        "next": "No talks round scheduled"
+      },
+      {
+        "r": "South Africa",
+        "chg": "Nov 19: SARB held at 7.25% on a 4–3 vote, three members wanting a hike; October CPI rose to 5.2%.",
+        "trend": "Hawkish hold",
+        "tc": "std",
+        "ch": "Rand, EM bonds",
+        "next": "SARB decision Jan 28"
       }
     ],
     "cb": [
       {
-        "d": "2026-11-19",
-        "bank": "South African Reserve Bank",
-        "rate": "7.25%",
-        "exp": "Consensus and TE forecast: hold"
-      },
-      {
         "d": "2026-11-20",
         "bank": "PBoC loan prime rate",
         "rate": "3.00%",
-        "exp": "Hold expected (TE)"
+        "exp": "Held at 3.00% (TE)"
       },
       {
         "d": "2026-11-26",
@@ -252,7 +320,7 @@
         ],
         [
           "Japan",
-          -0.85
+          -1.05
         ],
         [
           "Euro area",
@@ -260,70 +328,40 @@
         ]
       ]
     },
-    "src": "Sources: NBC News; CBS News; CNBC; DTN; IBTimes/Reuters; Transport Topics; The War Zone; Trading Economics country and G20 pages; BusinessTech."
+    "src": "Sources: CBS News; Le Private Banker; FinanceFeeds; Invezz; Japan Times; Al Jazeera; Maritime Executive; KEYT/CNN; Trading Economics country and G20 pages."
   },
   "reading": {
-    "kind": "Story",
-    "who": "Benjamin Graham",
-    "title": "The bet that broke Graham's rules",
-    "dek": "In 1948 the father of value investing put about a fifth of his fund into one insurer, and it made more money than everything else he ever did.",
-    "body": "<p>In 1948 Benjamin Graham was Wall Street's apostle of caution. Graham-Newman, the fund he had run with partner Jerome Newman since 1936, lived by strict rules: buy below value, spread the risk widely, and seldom let any one holding exceed about 5% of assets. The whole method was built so that no single mistake could sink the ship. That year he broke nearly every one of those rules at once.</p><p>The target was the Government Employees Insurance Company, a car insurer that Leo Goodwin Sr. and his wife Lillian had started in San Antonio in 1936 to serve federal workers. When the Rhea family, early backers of the firm, sold its controlling stake, a group led by Graham-Newman took half of GEICO for roughly $712,000. That put about a fifth of the partnership's capital into a single stock, a concentration Graham would ordinarily have refused without a second thought.</p><p>The deal almost collapsed during negotiations, then ran into a regulatory limit that forced the fund to hand its GEICO stock out to its own shareholders. Those who simply sat on it did remarkably well. An investor holding 100 fund shares in 1948, worth about $11,400, who kept the GEICO distribution would have had roughly $1.66 million by 1972. GEICO's market value grew almost fiftyfold in the decade after the purchase alone. For a bargain hunter, sitting tight on a fast-growing company for decades was an entirely new kind of payoff.</p><p>Graham was unusually frank about what this meant. In a postscript to <i>The Intelligent Investor</i>, he conceded that the gains from this one decision exceeded everything else the partners earned in twenty years of careful, diversified work. Worse for his doctrine, they held on long after the shares looked pricey by their usual yardsticks. He credited luck, but argued that luck tends to favor the prepared: investors whose discipline puts them in a position to spot, and act on, a rare opportunity when it appears.</p><p>The story had a second act. In 1951 a Columbia graduate student named Warren Buffett, studying under Graham, questioned GEICO executive Lorimer Davidson and came away calling it the security he liked best. Buffett later helped rescue the company in 1976, and Berkshire Hathaway bought all of it in 1996. Graham's rules built the foundation of his record; his one great exception built the fortune. The point is not to abandon diversification, but to recognize that real conviction, backed by real homework, occasionally deserves a bigger seat at the table.</p>",
+    "kind": "Reading",
+    "who": "Mohnish Pabrai",
+    "title": "The Dhandho Investor: small downside, big upside",
+    "dek": "Mohnish Pabrai's 2007 book uses immigrant motel owners to explain a simple, patient way to invest with low risk and high returns.",
+    "body": "<p>Mohnish Pabrai did not start out as a money manager. Born in Mumbai in 1964 and educated at Clemson University, he founded TransTech, an IT consulting firm, in 1991 and sold it in 2000. By then he had already launched Pabrai Investment Funds in 1999, run on principles he freely admits he borrowed from Warren Buffett and other value investors. In 2007 he and fellow investor Guy Spier bid $650,100 at a charity auction for lunch with Buffett. With his wife, Harina Kapoor, he also started the <b>Dakshana Foundation</b> in 2005 to coach bright, low-income Indian students for admission to elite universities.</p><p><i>The Dhandho Investor</i> (Wiley, 2007) takes its title from a Gujarati word for business. Pabrai builds the book around an unlikely case study: the Patels, Gujarati immigrants who arrived in America with little capital and, starting in the 1970s, came to dominate the roadside motel industry. Their method was simple. Buy a motel when the seller is under pressure, borrow most of the price from a bank, staff it with family, live on the premises, cut room rates to keep occupancy high, and use the cash flow to pay down the loan. If the venture fails, the family loses a modest stake. If it works, the return on their small investment is enormous.</p><p>That lopsided payoff is the heart of the book. Pabrai distills it into a nine-point framework. Favor simple, existing businesses over new ventures. Buy distressed businesses, ideally in distressed industries, when sellers are desperate and prices are low. Copy proven models rather than gamble on innovation. And when the odds are clearly in your favor, act decisively: make <b>few bets, big bets, infrequent bets</b>, then wait patiently in between. The goal is not to avoid uncertainty, which is everywhere, but to find situations where the downside is small and well understood while the upside is large.</p><p>The book's strength is its plainness. It is short, conversational and built on stories rather than formulas, which makes it an easy entry point for newer investors and a useful refresher for experienced ones. Readers should keep one caution in mind: concentration magnifies mistakes as much as successes, so the approach only works with rigorous homework and a real margin of safety on every position.</p><p><b>Where to read it:</b> <i>The Dhandho Investor: The Low-Risk Value Method to High Returns</i> runs about 200 pages and is available in hardcover and e-book from Wiley, at major booksellers and in many public libraries.</p>",
     "quote": {
-      "text": "may count for more than a lifetime of journeyman efforts.",
-      "src": "Benjamin Graham, postscript to The Intelligent Investor"
+      "text": "Heads, I win; Tails, I don't lose much",
+      "src": "Mohnish Pabrai, The Dhandho Investor (2007)"
     },
     "takeaways": [
-      "Selloffs like this week's are when prepared investors find rare bargains.",
-      "Diversify by default, but let deep homework earn an occasional concentrated position.",
-      "Great businesses bought cheaply can be worth holding long after they stop looking cheap."
+      "With the 10-year near 5%, demand Patel-style odds: small downside, large upside.",
+      "A six-day stock slide can surface distressed bargains; patience beats chasing dips.",
+      "Ahead of a likely Dec. 9 hike, favor few, well-researched bets over many."
     ],
-    "src": "Read more: Jason Zweig, \"Was Benjamin Graham Skillful or Lucky?\" (jasonzweig.com)"
+    "src": "Read more: Mohnish Pabrai, The Dhandho Investor: The Low-Risk Value Method to High Returns (Wiley, 2007)."
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "next decision Dec 9; a 25 bp hike fully priced (CNBC, Nov 18)",
+      "d": "next decision Dec 9; a 25 bp hike over 90% priced (TE, Nov 17)",
       "good": false
     },
     {
       "n": "30-yr mortgage",
-      "v": "7.11%",
-      "d": "Freddie Mac, Nov 12; 6.24% a year earlier; next print Nov 19",
+      "v": "7.28%",
+      "d": "Freddie Mac, Nov 19; up from 7.11%, ending four weekly declines",
       "good": false
     }
   ],
   "cal": [
-    {
-      "d": "2026-11-19",
-      "tag": "Labor",
-      "e": "Initial jobless claims",
-      "act": null,
-      "cons": "197K",
-      "prior": "200K",
-      "good": null,
-      "why": "Layoffs still near lows"
-    },
-    {
-      "d": "2026-11-19",
-      "tag": "Economy",
-      "e": "Philadelphia Fed manufacturing, Nov",
-      "act": null,
-      "cons": "19.2",
-      "prior": "20.9",
-      "good": null,
-      "why": "After Empire's sharp drop"
-    },
-    {
-      "d": "2026-11-19",
-      "tag": "Earnings",
-      "e": "Walmart Q3 results",
-      "act": null,
-      "cons": null,
-      "prior": null,
-      "good": null,
-      "why": "Consumer and tariff read"
-    },
     {
       "d": "2026-11-25",
       "tag": "Economy",
@@ -392,7 +430,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Hike fully priced"
+      "why": "Hike over 90% priced"
     },
     {
       "d": "2026-12-10",
@@ -402,155 +440,171 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "First inflation read after the hike"
+      "why": "First inflation read after the decision"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "7,323.63",
-      "c": -0.23,
-      "ctext": "−0.23%",
-      "y": 10.7,
-      "ytext": "+10.7%",
-      "why": "Fell a fifth straight day, its longest skid since June, as Nvidia slid 2.9% after earnings and energy and health insurers dropped.",
-      "asof": "Nov 18"
+      "v": "7,175.83",
+      "c": -2.02,
+      "ctext": "−2.02%",
+      "y": 8,
+      "ytext": "+8.0%",
+      "why": "Doubts that AI spending will pay off hit chipmakers and cloud giants, extending its longest losing streak since April 2024.",
+      "asof": "Nov 19"
     },
     {
       "n": "Dow",
-      "v": "50,198.17",
-      "c": -1.11,
-      "ctext": "−1.11%",
-      "y": 8.9,
-      "ytext": "+8.9%",
-      "why": "Lost 561 points as UnitedHealth sank 10% on a proposed Medicare audit rule, with Chevron and Caterpillar also weighing.",
-      "asof": "Nov 18"
+      "v": "49,097.06",
+      "c": -2.19,
+      "ctext": "−2.19%",
+      "y": 6.4,
+      "ytext": "+6.4%",
+      "why": "Lost 1,101 points as the selloff spread well beyond tech, with more than 90% of S&P 500 stocks lower.",
+      "asof": "Nov 19"
     },
     {
       "n": "Nasdaq",
-      "v": "24,429.88",
-      "c": 0.42,
-      "ctext": "+0.42%",
-      "y": 8.9,
-      "ytext": "+8.9%",
-      "why": "Edged up as some tech stocks rebounded, even as Nvidia fell on lingering leadership worries after Jensen Huang's exit.",
-      "asof": "Nov 18"
+      "v": "23,879.20",
+      "c": -2.25,
+      "ctext": "−2.25%",
+      "y": 5.8,
+      "ytext": "+5.8%",
+      "why": "AMD sank 7.7% on a short-seller report, and Amazon, Meta and Nvidia each fell more than 3%.",
+      "asof": "Nov 19"
     },
     {
       "n": "WTI crude",
-      "v": "$83.26",
-      "c": -3.2,
-      "ctext": "−3.20%",
-      "y": 37.1,
-      "ytext": "+37.1%",
-      "why": "Dropped after U.S. crude stocks rose 3.38 million barrels against an expected draw and the IEA warned of a surplus.",
-      "asof": "Nov 18",
+      "v": "$83.21",
+      "c": -0.06,
+      "ctext": "−0.06%",
+      "y": 40,
+      "ytext": "+40.0%",
+      "why": "Briefly topped $84 on reports of new U.S. strikes on Iran, then faded on a third straight U.S. inventory build.",
+      "asof": "Nov 19",
       "rate": true
     },
     {
       "n": "Dollar index",
-      "v": "103.79",
-      "c": 0.37,
-      "ctext": "+0.37%",
-      "y": 3.6,
-      "ytext": "+3.6%",
-      "why": "Firmed after the Fed minutes showed almost all officials expect more hikes, locking in a December move.",
-      "asof": "Nov 18"
+      "v": "103.90",
+      "c": 0.03,
+      "ctext": "+0.03%",
+      "y": 3.7,
+      "ytext": "+3.7%",
+      "why": "Held near its highest since April 2025 as markets priced Fed hikes in December and January.",
+      "asof": "Nov 19"
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.92,
-      "d1m": 4,
+      "cur": 3.9,
+      "d1m": 2,
       "d6m": 37,
-      "d1y": -8,
-      "asof": "Nov 17"
+      "d1y": -4,
+      "asof": "Nov 18"
     },
     {
       "n": "2Y Treasury",
-      "cur": 4.8,
-      "d1m": 6,
-      "d6m": 73,
-      "d1y": 122,
-      "asof": "Nov 18"
+      "cur": 4.76,
+      "d1m": -1,
+      "d6m": 63,
+      "d1y": 118,
+      "asof": "Nov 19"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.89,
-      "d1m": 0,
-      "d6m": 62,
-      "d1y": 119,
-      "asof": "Nov 18"
+      "cur": 4.86,
+      "d1m": -8,
+      "d6m": 54,
+      "d1y": 115,
+      "asof": "Nov 19"
     },
     {
       "n": "10Y Treasury",
-      "cur": 5.07,
-      "d1m": -2,
-      "d6m": 46,
-      "d1y": 95,
-      "asof": "Nov 18"
+      "cur": 5.04,
+      "d1m": -11,
+      "d6m": 37,
+      "d1y": 91,
+      "asof": "Nov 19"
     }
   ],
   "rcols": [
-    "Nov 18 '26",
-    "Oct 16 '26",
-    "May 18 '26",
-    "Nov 18 '25"
+    "Nov 19 '26",
+    "Oct 19 '26",
+    "May 19 '26",
+    "Nov 19 '25"
   ],
   "rtab": [
     {
       "n": "2Y UST",
       "key": true,
       "v": [
-        "4.80",
-        "4.74",
-        "4.07",
+        "4.76",
+        "4.77",
+        "4.13",
         "3.58"
       ],
-      "d1m": 6,
-      "d1y": 122
+      "d1m": -1,
+      "d1y": 118
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.89",
-        "4.89",
-        "4.27",
-        "3.70"
+        "4.86",
+        "4.94",
+        "4.32",
+        "3.71"
       ],
-      "d1m": 0,
-      "d1y": 119
+      "d1m": -8,
+      "d1y": 115
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
-        "5.07",
-        "5.09",
-        "4.61",
-        "4.12"
+        "5.04",
+        "5.15",
+        "4.67",
+        "4.13"
       ],
-      "d1m": -2,
-      "d1y": 95
+      "d1m": -11,
+      "d1y": 91
     },
     {
-      "grp": "SOFR · dates Nov 17 '26 / Oct 16 '26 / May 15 '26 / Nov 17 '25"
+      "grp": "SOFR · dates Nov 18 '26 / Oct 16 '26 / May 18 '26 / Nov 18 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.92",
+        "3.90",
         "3.88",
-        "3.55",
-        "4.00"
+        "3.53",
+        "3.94"
       ],
-      "d1m": 4,
-      "d1y": -8
+      "d1m": 2,
+      "d1y": -4
     }
   ],
   "freight": [
+    {
+      "n": "Drewry WCI, 40ft",
+      "v": "$4,176",
+      "pl": "Week",
+      "pc": "−3%",
+      "y": "+126%",
+      "why": "Nov 19; Shanghai–LA fell 5% to $7,026."
+    },
+    {
+      "n": "Baltic Dry Index",
+      "v": "2,901",
+      "pl": "Day",
+      "pc": "−0.45%",
+      "y": "+27.8%",
+      "why": "Nov 19; still up 11.9% over the past month."
+    },
     {
       "n": "Diesel, U.S. avg (EIA)",
       "v": "$5.937/gal",
@@ -558,26 +612,11 @@
       "pc": "−$0.190",
       "y": "+$2.069",
       "why": "Week of Nov 16; next EIA print Nov 24."
-    },
-    {
-      "n": "Baltic Dry Index",
-      "v": "2,914",
-      "pl": "Day",
-      "pc": "+0.73%",
-      "y": "+28.9%",
-      "why": "Nov 18; up 14.5% over the past month."
-    },
-    {
-      "n": "DAT van spot rate",
-      "v": "$3.11/mi",
-      "pl": "Week",
-      "pc": "+$0.04",
-      "why": "Week to Nov 16; truck postings rose 9%."
     }
   ],
   "also": "",
-  "sport": "Cooper Flagg scored 33 with nine assists as the Mavericks routed the Curry-less Warriors 116-94 Wednesday, Golden State's third straight game under 100.",
-  "foot": "Sources: NY Fed API (SOFR Nov 17); U.S. Treasury CSV (Nov 18); AP via La Nacion (Nov 18 closes); DTN (WTI, Brent, dollar index); Xinhua via The Star (Nov 18, 2025 WTI); Trading Economics (dollar 1Y, BDI, housing starts/permits, claims, GDP, core PCE, yields, central banks, G20 lists); EIA; DAT via The Trucker; CNBC (Anthropic, Fed minutes); AP via Post-Gazette and Arkansas Democrat-Gazette; XTB; FinChannel/Seeking Alpha (UNH); Lowe's release; Yahoo/Yardeni (private credit); CRE Daily, Yield PRO, KBRA, The Wealth Advisor (CMBS); NBC, CBS, IBTimes/Reuters, TWZ; CBS Sports; Wikipedia and Jason Zweig (Graham).<br>Notes: 1Y-ago index closes (Nov 18, 2025: S&P 6,617.32, Dow 46,091.53, Nasdaq 22,432.85) from AP search-result text; pages returned 404. Dollar index close is DTN's 103.785 (no official close); 1Y +3.6% is TE's figure. UNH/Humana, Lowe's and private-credit figures from search snippets. No named economist reactions found for Fed minutes beyond XTB; Roach (LPL) view unverified, left out. Freight: Drewry WCI Nov 19 not yet out; DAT y/y not available. Mortgage rate carried from Nov 12 Freddie Mac print. Philly Fed consensus carried from Nov 17 read; PBoC LPR expectation carried from Nov 17 TE read; core PCE 3.2% unlabeled on TE (consensus or TE forecast). GDP prior is the 3.4% advance estimate. World: U.S. and Japan CPI are September; Kerch span date unconfirmed; Singleton view is earlier analysis quoted by NBC. Graham GEICO price given as roughly $712,000 (sources say $712,000 and $712,500).",
+  "sport": "C.J. Stroud threw three touchdown passes as the Texans routed the Colts 26-3 on Thursday Night Football, holding Indianapolis to a field goal.",
+  "foot": "Sources: NY Fed API (SOFR Nov 18; refs Oct 16, May 18, Nov 18 '25); U.S. Treasury CSV (Nov 19); AP via La Nacion and ABC News (Nov 19 closes); AP via WTOP (Nov 19, 2025 closes); Xinhua via The Star (WTI settles Nov 19 '26 and '25; dollar index late trading); Trading Economics (stock/oil/dollar context, dollar 1Y, Philly Fed, claims, mortgage, implied rates, BDI, G20, central banks); Philadelphia Fed; FRED; Yahoo Finance (Anthropic); Walmart 8-K; Nvidia IR; Drewry via DCN; EIA; CBS Sports; deep dive and world sources as listed.<br>Notes: Dollar index is Xinhua's 103.895 at 3 p.m. ET Nov 19 (+0.03%), not an official close; 1Y +3.7% is TE's. Index 1Y changes computed from AP closes. Stock 'why' lines from Trading Economics and AP (no AP wrap fetched); AMD short report and megacap moves from TE. Philly Fed consensus is TE's 20 (the 19.2 shown Nov 19 came from a different read); no named economist reactions found, so experts left out. Calendar: TE calendar did not load; GDP and core PCE consensus carried from Nov 18 TE read (core PCE 3.2% unlabeled); Nov 20 flash PMIs and UMich left out for lack of consensus. Diesel carried from EIA Nov 16 print. Deep dive: 30-yr auction tail unconfirmed and left out; term premium and foreign-holder figures from IndraStra's compilation, not checked against NY Fed/Treasury files. World: U.S. CPI on TE's G20 list is September; Iranian mine claims unverified; Goldman view from Invezz search text (page 403); Kerch span collapse reported, not confirmed; RBI, RBA, BoC and RBNZ expectations carried from Nov 18 TE read; Russia/Ukraine has no scheduled next date. Pabrai Buffett lunch date not confirmed, so only the 2007 bid is given.",
   "series": [
     [
       "2021-10-12",
@@ -8228,6 +8267,12 @@
       4.8,
       4.89,
       5.07
+    ],
+    [
+      "2026-11-19",
+      4.76,
+      4.86,
+      5.04
     ]
   ],
   "log": {
@@ -8339,6 +8384,10 @@
       {
         "d": "2026-11-19",
         "t": "CMBS distress is moving out of the office"
+      },
+      {
+        "d": "2026-11-20",
+        "t": "Who's buying the long end?"
       }
     ],
     "corner": [
@@ -8476,6 +8525,11 @@
         "d": "2026-11-19",
         "who": "Benjamin Graham",
         "kind": "Story"
+      },
+      {
+        "d": "2026-11-20",
+        "who": "Mohnish Pabrai",
+        "kind": "Reading"
       }
     ],
     "focus": [
@@ -8574,6 +8628,10 @@
       {
         "d": "2026-11-19",
         "t": "Fed minutes: almost all officials expect further hikes, and a couple floated more than a quarter point"
+      },
+      {
+        "d": "2026-11-20",
+        "t": "November Philly Fed index fell to 6.3, far under forecasts, as prices paid jumped 15 points"
       }
     ],
     "world": [
@@ -8672,6 +8730,10 @@
       {
         "d": "2026-11-19",
         "t": "Trump, Xi and Putin meet in Shenzhen, and the trade truce stays as it was"
+      },
+      {
+        "d": "2026-11-20",
+        "t": "Iran steps up its tanker attacks just as the oil market stops flinching"
       }
     ]
   }
