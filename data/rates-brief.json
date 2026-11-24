@@ -1,270 +1,168 @@
 {
-  "headline": "Stocks capped their worst week since April 2025 with a 3.7% S&P 500 drop as the AI selloff deepened, while Treasuries rallied and the 2-year yield fell 13 bp to 4.63%.",
-  "dateline": "Monday, November 23, 2026 · closes as of Fri Nov 20",
-  "ustDate": "Nov 20, 2026",
+  "headline": "Stocks had their best day since April 2025 as Nvidia brought back Jensen Huang, but the 2-year Treasury held at 4.63% as markets still expect a December Fed hike.",
+  "dateline": "Tuesday, November 24, 2026 · closes as of Mon Nov 23",
+  "ustDate": "Nov 23, 2026",
   "rundown": [
     {
-      "tag": "Markets",
-      "h": "Fear spreads well beyond stocks.",
-      "p": "The VIX jumped about 26% Friday to near 36, its highest close since late March. Bitcoin slid to about $59,000, its lowest since June, and gold fell 4% to $3,540 an ounce. Treasuries were the one place to hide, as investors traded risk for safety.",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-futures-plunge-131303598.html",
-      "src": "Yahoo Finance; Trading Economics · Nov 20"
-    },
-    {
       "tag": "Tech",
-      "h": "Nvidia drops 14%, and Anthropic slips toward $89.",
-      "p": "Nvidia fell about 14% Friday and about 23% for the week, the sharpest leg yet of a slide that began with Jensen Huang's resignation, announced Nov. 12, with CFO Colette Kress as interim CEO. Anthropic, priced at $83 in its record IPO, fell nearly 9% to around $89, giving back much of Thursday's first-day pop.",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-futures-plunge-131303598.html",
-      "src": "Yahoo Finance · Nov 20"
+      "h": "Nvidia reinstates Jensen Huang, and adds $950 billion in a day.",
+      "p": "Nvidia's board put Huang back in the CEO chair less than two weeks after his exit, a move President Trump had urged. The stock jumped 31.5% to $165.05, its biggest gain since 2003, but it's still about 30% below its Oct. 6 record. Reports of an SEC investigation remain an overhang.",
+      "url": "https://www.nbcnews.com/business/markets/stocks-rebound-ai-tech-selloff-nvidia-rcna610833",
+      "src": "NBC News · Nov 23"
     },
     {
-      "tag": "Rates",
-      "h": "$183 billion of note auctions test the bond rally.",
-      "p": "Treasury sells $69 billion of 2-year notes Monday, $70 billion of 5-year notes Tuesday and $44 billion of 7-year notes Wednesday, all settling Nov. 30. The sales land right after Friday's haven rally, so soft bidding would show how much of the drop in yields was fear rather than fresh demand.",
-      "url": "https://www.newsquawk.com/headlines/us-to-sell-usd-69bln-of-2-yr-notes-on-november-23rd-usd-70bln-of-5-yr-notes-on-november-24th-and-usd-44bln-of-7-yr-notes-on-november-25th-all-to-settle-on-november-30th",
-      "src": "Newsquawk · Nov 2026"
+      "tag": "Markets",
+      "h": "Plenty of pros aren't buying the bounce yet.",
+      "p": "Rosenberg Research's David Rosenberg called it a classic countertrend rally, and BTIG's Jonathan Krinsky noted that huge one-day gains show up more often in falling markets. Ed Yardeni cut his year-end S&P 500 target to 7,500 but sees no recession. Deutsche Bank's Jim Reid says shocks like this usually take six to eight weeks to fade.",
+      "url": "https://www.nbcnews.com/business/markets/stocks-rebound-ai-tech-selloff-nvidia-rcna610833",
+      "src": "NBC News · Nov 23"
+    },
+    {
+      "tag": "Fed",
+      "h": "Cook warns about falling behind on inflation.",
+      "p": "Fed Governor Lisa Cook said Friday that waiting longer to raise rates risks getting behind the curve. That kept the Dec. 9 decision on track even after last week's selloff: Polymarket's hike odds eased to about 91% from 98% on Nov. 12. For floating-rate borrowers, another quarter point looks like the base case.",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html",
+      "src": "Yahoo Finance · Nov 23"
+    },
+    {
+      "tag": "Deals",
+      "h": "CrowdStrike makes a $43.9 billion bid for Zscaler.",
+      "p": "Zscaler rose 13% Monday, while CrowdStrike fell 9.6% as investors weighed what it would pay. It's one of the biggest software deals of the year, and it landed in a week when tech valuations had just been knocked down, a reminder that buyers with cash and stock to spend go shopping in selloffs.",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html",
+      "src": "Yahoo Finance · Nov 23"
     },
     {
       "tag": "Earnings",
-      "h": "A holiday-short week packed with tech and industrial reports.",
-      "p": "Zoom reports Monday after the close; Medtronic, Analog Devices, Workday, Dell, HP and Best Buy report Tuesday; Deere follows Wednesday. Dell guided to about $49.0 billion of fiscal third-quarter revenue and Deere to fiscal 2026 net income of $4.75 billion to $5.00 billion, so both are fresh reads on AI hardware and farm demand.",
-      "url": "https://news.ifyouspent.com/en/news/thanksgiving-week-earnings-dell-workday-zoom-hp-deere-november-2026",
-      "src": "IfYouSpent earnings preview · Nov 11"
-    },
-    {
-      "tag": "Retail",
-      "h": "Fewer Thanksgiving-weekend shoppers, but online keeps growing.",
-      "p": "The NRF expects 182.7 million people to shop over the Thanksgiving weekend, down 2% from last year's 186.9 million forecast, with 126 million planning to shop on Black Friday. Adobe forecasts holiday-season online sales of $275.1 billion, up 6.7%, including $12.9 billion on Black Friday and $15.1 billion on Cyber Monday, Nov. 30.",
-      "url": "https://nrf.com/media-center/press-releases/183-million-consumers-expected-to-shop-during-thanksgiving-weekend",
-      "src": "NRF; Adobe · Nov/Sep 2026"
+      "h": "Dell has to show its AI backlog turns into revenue.",
+      "p": "Dell jumped 21% Monday ahead of its report this week. Analysts expect EPS of $6.63 on $50.63 billion of revenue, up from $2.35 and $27.01 billion a year ago. The AI server backlog hit a record $95 billion, but memory shortages could slow how fast it ships.",
+      "url": "https://finviz.com/news/423394/dell-must-prove-its-95-billion-ai-backlog-can-convert-despite-memory-constraints",
+      "src": "Earnings Whispers via Finviz · Nov 16; NBC · Nov 23"
     }
   ],
   "dive": {
-    "kicker": "AI credit",
-    "title": "The AI build-out is running on borrowed money",
-    "dek": "Hyperscalers have turned to the bond market to pay for data centers, and the credit market is starting to charge the weaker borrowers for it.",
-    "body": "<p>For most of the AI boom, Big Tech paid for data centers out of cash flow. That changed this fall. On Oct. 29 Microsoft launched a bond sale of at least $25 billion, its first U.S. high-grade deal since 2017, after spending $45.2 billion on data centers and equipment in the September quarter while its free cash flow fell 27% to $18.6 billion (TNW, citing Bloomberg). Within about a week, more than $60 billion of deals from Microsoft, Oracle, Alphabet and Meta had lined up, and cloud and data-center companies had issued <b>$368 billion</b> of debt in 2026, more than six times the prior year's pace (CryptoBriefing, Nov. 3).</p><p>The strong names still borrow cheaply. The stress is lower down the ladder. Oracle's five-year credit default swaps, the price of insurance against default, are around 305 basis points, up from 58 in October 2025, a level that implies a junk rating even though S&amp;P rates it BBB-, one notch above junk (IFR, Nov. 7–13). Oracle has raised $53 billion of investment-grade bonds and $35 billion of equity since September 2025. CoreWeave's swaps passed 1,100 basis points in October, which Reuters calculated implies roughly a 64% chance of default over five years, up from about 30% a year earlier.</p><p>Why it matters: S&amp;P expects the six biggest hyperscalers to spend more than $1.3 trillion on capex next year, against $470 billion two years earlier. That spending is what fills powered land, data-center shells and the industrial supply chains around them. If debt markets start rationing it, the weaker builders pull back first.</p><p>What would change the picture: big order books and tight spreads on the next jumbo deals would say credit is absorbing the supply. A downgrade of Oracle to junk, or capex cuts in fourth-quarter guidance, would say the cycle is turning.</p>",
+    "kicker": "Leverage",
+    "title": "The selloff hasn't shaken out the borrowed money",
+    "dek": "Margin debt barely fell in October's AI correction, so a lot of leverage is still sitting under stock prices as the Fed keeps hiking.",
+    "body": [
+      "<p>Monday's 4.7% jump in the S&amp;P 500 looked like relief. But under the market there's still an unusual amount of borrowed money. Margin debt, the money investors borrow from brokers to buy securities, stood at <b>$1.448 trillion</b> at the end of October, according to FINRA. That was down just 2.1% from September, in a month when the Nasdaq lost more than $2.5 trillion in value (Reuters, Nov. 5).</p>",
+      "<p>The build-up was fast. Margin debt climbed from $1.221 trillion in March to a record $1.502 trillion in June, a 23% jump in three months, and it is still up 22% from October 2025. Subtract the cash investors hold in their brokerage accounts and net borrowing comes to roughly $1.03 trillion, up about 30% in a year. In other words, borrowing has grown faster than the cash cushion.</p>",
+      "<p>Why it matters: margin loans are priced off short-term rates, and the Fed has raised its target to 3.75%–4.00% and is expected to hike again on Dec. 9. Higher carrying costs plus falling prices mean margin calls, and forced selling tends to make a drop worse. The Fed has noticed. Its Nov. 13 Financial Stability Report put hedge fund leverage at the highest since its data began in 2013, and 87% of its survey contacts named AI as a top risk to the financial system (Newsquawk summary). Debt tied to advanced computing passed $680 billion by October, about 31% of nonfinancial investment-grade issuance.</p>",
+      "<p>What would change the picture: a sustained rebound would let borrowers sit tight. A second leg down, with the Nasdaq Composite still about 13% below its Oct. 6 record of 27,599.89, would test how much of that $1.45 trillion is held by people who can't wait it out. For real estate, the read-through is about rates, not stocks: forced selling in risk assets usually pushes money into Treasuries, which is the one part of this that helps borrowers.</p>"
+    ],
     "table": {
-      "cap": "AI build-out financing, fall 2026",
+      "cap": "FINRA margin debit balances",
       "cols": [
-        "Measure",
-        "Figure",
-        "Date"
+        "Month",
+        "Margin debt",
+        "Change"
       ],
       "rows": [
         [
-          "Microsoft bond sale",
-          "$25B+, first since 2017",
-          "Oct 29"
+          "Oct 2025",
+          "$1.184T",
+          "—"
         ],
         [
-          "Cloud/data-center debt issued in 2026",
-          "$368B, 6x prior pace",
-          "Nov 3"
+          "Mar 2026",
+          "$1.221T",
+          "+3% y/y"
         ],
         [
-          "Oracle 5-yr CDS",
-          "~305 bp (58 bp Oct '25)",
-          "Nov 7–13"
+          "Jun 2026 (record)",
+          "$1.502T",
+          "+23% vs Mar"
         ],
         [
-          "CoreWeave 5-yr CDS",
-          "1,100+ bp",
-          "Oct 15"
+          "Sep 2026",
+          "$1.480T",
+          "−1.5% vs Jun"
         ],
         [
-          "Top-6 hyperscaler capex, 2027 (S&P)",
-          "$1.3T+ ($470B two yrs earlier)",
-          "Oct 15"
+          "Oct 2026",
+          "$1.448T",
+          "−2.1% m/m; +22% y/y"
         ]
       ]
     },
     "watch": [
-      "Dec 9: FOMC, with a hike priced, raising the base cost of debt-funded capex",
-      "Oracle's December earnings: capex guidance and any rating action",
-      "Secondary trading in the new Microsoft and Meta bonds"
+      "FINRA's November margin data, due the third week of December",
+      "FOMC decision Dec. 9: another hike lifts broker margin rates",
+      "Whether the Nasdaq holds Monday's gains through month-end"
     ],
-    "src": "Sources: TNW/Bloomberg (Oct 29); CryptoBriefing (Nov 3); IFR issue 2658 (Nov 7–13); Reuters via KSL (Oct 15); S&P via IFR."
+    "src": "Sources: FINRA margin statistics (Oct 2026); Reuters via GV Wire (Nov 5); Federal Reserve Financial Stability Report via Newsquawk (Nov 13); Trading Economics (Fed range)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Inflation",
-        "title": "November final: consumers' year-ahead inflation expectations fell to 3.7%, well under forecasts",
-        "rel": "UMich 1-yr inflation expectations, Nov final",
-        "act": "3.7%",
-        "cons": "4.3%",
-        "prior": "4.7%",
-        "good": true,
-        "chart": {
-          "t": "UMich year-ahead inflation expectations, median %",
-          "unit": "%",
-          "pts": [
-            [
-              "Dec '24",
-              2.8
-            ],
-            [
-              "Jan '25",
-              3.3
-            ],
-            [
-              "Feb '25",
-              4.3
-            ],
-            [
-              "Mar '25",
-              5.0
-            ],
-            [
-              "Apr '25",
-              6.5
-            ],
-            [
-              "May '25",
-              6.6
-            ],
-            [
-              "Jun '25",
-              5.0
-            ],
-            [
-              "Jul '25",
-              4.5
-            ],
-            [
-              "Aug '25",
-              4.8
-            ],
-            [
-              "Sep '25",
-              4.7
-            ],
-            [
-              "Oct '25",
-              4.6
-            ],
-            [
-              "Nov '25",
-              4.5
-            ],
-            [
-              "Dec '25",
-              4.2
-            ],
-            [
-              "Jan '26",
-              4.0
-            ],
-            [
-              "Feb '26",
-              3.4
-            ],
-            [
-              "Mar '26",
-              3.8
-            ],
-            [
-              "Apr '26",
-              4.7
-            ],
-            [
-              "May '26",
-              4.8
-            ],
-            [
-              "Jun '26",
-              4.6
-            ],
-            [
-              "Jul '26",
-              4.2
-            ],
-            [
-              "Aug '26",
-              4.0
-            ],
-            [
-              "Sep '26",
-              4.6
-            ],
-            [
-              "Oct '26",
-              4.7
-            ],
-            [
-              "Nov '26",
-              3.7
-            ]
-          ],
-          "src": "Source: University of Michigan via FRED (MICH); Nov '26 from UMich final release"
-        },
-        "body": "<p>The University of Michigan's final November survey put median year-ahead inflation expectations at 3.7%, down from 4.7% in October and below both the 4.3% preliminary reading and the 4.3% consensus. Trading Economics called it the lowest in nine months, though it is still above the 3.4% of February, before the Iran conflict began. Long-run expectations eased to 3.3% from 3.5%, still above their 2024 range of 2.8% to 3.2%.</p><p>Sentiment rose to 51.5 from 48.0, with the expectations index up 8.4% to 52.9 and current conditions up to 49.4. A year ago the 1-year gauge stood at 4.5%; it peaked at 6.6% in May 2025.</p><p>Low- and middle-wealth households reported relief from falling gas prices, while the biggest stockholders reported weaker finances amid the AI selloff. The 10-year yield fell for a fifth straight session Friday, though Trading Economics tied the move to haven buying, and futures still put roughly 93% odds on a December hike.</p>",
-        "experts": [
-          {
-            "who": "Joanne Hsu, director, University of Michigan Surveys of Consumers",
-            "view": "Expectations came down sharply, but consumers still say inflation, more than unemployment, will cause them the most hardship over the next year or two.",
-            "url": "https://www.sca.isr.umich.edu/",
-            "src": "UMich · Nov 20"
-          }
+        "tag": "Economy",
+        "title": "November flash PMIs: services growth slowed to a four-month low, missing forecasts",
+        "rel": "S&P Global flash services PMI, Nov",
+        "act": "54.7",
+        "cons": "55.6",
+        "prior": "56.1",
+        "good": null,
+        "body": [
+          "<p>S&P Global's flash services PMI fell to 54.7 in November from 56.1, under the 55.6 consensus and the lowest in four months. The composite index slipped to 54.6 from 55.9, and manufacturing eased to 54.5 from 54.9. Readings above 50 mean growth, so the private sector is still expanding at a solid clip, just more slowly. Services were at 58.8 in September, near a five-year high.</p>",
+          "<p>Output and new orders cooled from recent highs. Firms kept hiring to work through backlogs built up by tight capacity; factory job creation was the second strongest since July 2021. Supplier delivery times lengthened the most since August 2022. Input costs and selling prices both rose more slowly than in October, helped by lower fuel prices, but stayed elevated for goods and services. Business confidence showed some signs of reviving on hopes of less political turmoil after the midterms.</p>",
+          "<p>The long-run average for the composite is 53.7. Trading Economics' model sees it at 54.0 by quarter-end.</p>"
         ],
-        "src": "Sources: University of Michigan Surveys of Consumers (Nov 20); Trading Economics (consensus, yields, Fed odds, Nov 20–23); FRED."
+        "src": "Sources: Trading Economics (S&P Global flash PMI pages, Nov 23–24, 2026)."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Oil · Iran",
-      "title": "The oil glut is outweighing the Hormuz risk, for now",
-      "body": "<p>Brent crude has fallen for four straight weeks even as Iran claims mine strikes on tankers in the Strait of Hormuz. U.S. Energy Secretary Chris Wright said around Nov. 20 that flows through the strait had reached record levels, and the U.S., China and Russia agreed to raise refined-fuel output after the Shenzhen summit. The IEA projects a global surplus of about 2 million barrels a day this quarter, and Goldman Sachs has warned of oversupply next year (Trading Economics).</p><p>The risk hasn't gone away. President Trump said he was in no rush to decide on Iran, but was reported on Nov. 22 to be weighing a return to military action after the New Year if talks fail. Israel's Netanyahu was reported on Nov. 19 to be urging a short military campaign.</p>",
-      "reach": "Through oil and inflation: Brent was about $91.20 on Nov. 23, down 21% in a month but still up 45% on the year, which keeps fuel costs and headline inflation (U.S. CPI 3.7% in September) elevated.",
+      "kicker": "Iran · Strait of Hormuz",
+      "title": "Vance opens a channel through Qatar as Brent slips under $90",
+      "body": "<p>Vice President JD Vance met Qatar's prime minister on Nov. 23 about possible U.S.-Iran talks, though Trading Economics notes a breakthrough looks uncertain. President Trump has delayed new strikes but warned that military action could resume after the New Year if talks fail. Tehran wants the U.S. naval blockade and sanctions lifted before it fully reopens Hormuz. Over the weekend, the IRGC claimed attacks on U.S. positions in Bahrain and the Houthis claimed a strike on Saudi Arabia's Rabigh refinery.</p><p>Markets shrugged. Libya's Sharara pipeline restarted, the IEA says Persian Gulf crude exports are back to 74% of pre-war levels, and its November report shows supply outrunning demand for the first time since the war began. Ship-tracker Kpler still has Hormuz flows at about 9.5 million barrels a day in the 10 days to Nov. 19, down from 12.2 million in October.</p>",
+      "reach": "Through oil and inflation: Brent settled at $89.37 on Nov. 23, down 3.5% on the day and about 23% over the month (Xinhua; Trading Economics), easing fuel costs ahead of the Fed's Dec. 9 decision.",
       "views": [
         {
-          "who": "Chris Wright, U.S. Energy Secretary",
-          "view": "Shipping through Hormuz is running at record volumes, so the supply threat is smaller than the headlines suggest.",
+          "who": "International Energy Agency, November Oil Market Report",
+          "view": "Supply now exceeds demand and a fourth-quarter surplus is likely, so the market can absorb more disruption.",
           "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
-          "src": "Trading Economics · Nov 20"
+          "src": "Trading Economics · Nov 23"
         },
         {
-          "who": "Donald Trump, U.S. President",
-          "view": "Military action could resume after the New Year if talks with Iran go nowhere.",
-          "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
-          "src": "Trading Economics · Nov 22"
+          "who": "Iran's government",
+          "view": "Hormuz won't fully reopen until the U.S. lifts its naval blockade and sanctions, and it has threatened tighter control of the strait.",
+          "url": "https://tradingeconomics.com/commodity/crude-oil",
+          "src": "Trading Economics · Nov 23"
         }
       ]
     },
     "hot": [
       {
         "r": "Iran / Hormuz",
-        "chg": "Nov 20–22: Wright says Hormuz flows hit records; Trump reportedly weighs resuming strikes after New Year if talks fail.",
-        "trend": "Simmering",
+        "chg": "Nov 23: Vance meets Qatar's PM on possible talks; Iran demands the blockade end before Hormuz fully reopens.",
+        "trend": "Talks tentative",
         "tc": "std",
         "ch": "Oil premium, tanker insurance",
+        "next": "Strike decision after New Year"
+      },
+      {
+        "r": "Red Sea / Saudi",
+        "chg": "Nov 22–23: Houthis claim a strike on Saudi Arabia's Rabigh refinery, a week after taking Bab el-Mandeb.",
+        "trend": "Escalating",
+        "tc": "esc",
+        "ch": "Red Sea freight, Saudi exports",
         "next": "OPEC+ meeting Nov 29"
       },
       {
+        "r": "U.S. / China / Russia",
+        "chg": "Nov 19: Shenzhen summit ended without breakthroughs on tariffs, rare earths or AI chips; Trump adds a separate Putin meeting.",
+        "trend": "Steady",
+        "tc": "std",
+        "ch": "Tariffs, rare earths, yuan",
+        "next": "Trade truce expires Jan 10"
+      },
+      {
         "r": "Euro area",
-        "chg": "Nov 18: October CPI confirmed at 4.0%; markets price an ECB hike in December and two by April.",
+        "chg": "Nov 18: October CPI confirmed at 4.0%; markets price an ECB hike in December.",
         "trend": "Hawkish shift",
         "tc": "esc",
         "ch": "Euro, Bund yields",
         "next": "ECB decision Dec 17"
-      },
-      {
-        "r": "U.S. / China / Russia",
-        "chg": "Nov 20: after the Shenzhen summit, the three agreed to raise refined petroleum output.",
-        "trend": "Engagement",
-        "tc": "eas",
-        "ch": "Diesel, jet fuel, trade",
-        "next": "Trade truce expires Jan 10"
-      },
-      {
-        "r": "Japan / yen",
-        "chg": "Nov 20: yen firmed to 158.46 per dollar from 159.73; TE sees a BoJ hike to 1.50%.",
-        "trend": "Steady",
-        "tc": "std",
-        "ch": "Yen carry, Treasury demand",
-        "next": "BoJ decision Dec 18"
       }
     ],
     "cb": [
@@ -299,10 +197,16 @@
         "exp": "TE sees 3.00% by quarter-end"
       },
       {
-        "d": "2026-12-10",
-        "bank": "Swiss National Bank",
-        "rate": "0.00%",
-        "exp": "TE: hold at 0.00%"
+        "d": "2026-12-17",
+        "bank": "European Central Bank",
+        "rate": "2.65%",
+        "exp": "Hike priced; TE sees 2.90% by quarter-end"
+      },
+      {
+        "d": "2026-12-17",
+        "bank": "Bank of England",
+        "rate": "4.00%",
+        "exp": "TE: hold at 4.00%"
       }
     ],
     "real": {
@@ -342,30 +246,36 @@
         ]
       ]
     },
-    "src": "Sources: Trading Economics (Brent news Nov 20–23; country interest-rate and CPI pages, Nov 23); Xinhua via The Star (yen, Nov 20)."
+    "src": "Sources: Trading Economics (Brent and WTI news Nov 23–24; country interest-rate pages Nov 24; G20 rate/CPI inputs as of Nov 23); Xinhua via The Star (Brent settle Nov 23); AP/KPBS (Shenzhen summit, Nov 19)."
   },
   "reading": {
-    "kind": "Thoughts",
-    "who": "Seth Klarman",
-    "title": "Seth Klarman and the Cushion Under Every Trade",
-    "dek": "Baupost founder Seth Klarman built a career on one idea: buy well below value and be willing to wait.",
-    "body": "<p>If the market had a mood ring right now, it would be stuck on nervous. Stocks have slid day after day as investors question whether the AI spending spree will ever pay off, the 10-year Treasury is hovering near 5%, and the Fed looks ready to hike again. That makes it a good week to spend a few minutes with Seth Klarman, the Boston investor whose whole career rests on one plain idea: <b>protect the downside first, and the upside tends to take care of itself.</b></p><p>Quick background. Klarman was born in New York City in 1957, studied economics at Cornell, and finished his Harvard MBA in 1982. That same year he helped launch the Baupost Group alongside Harvard professor William Poorvu and a few partners, starting with roughly $27 million (the firm's name is stitched together from the founders' names). Baupost now manages tens of billions. In 1991 he published <i>Margin of Safety</i>, a book that sold only a few thousand copies, went out of print, and now changes hands for hundreds or even thousands of dollars.</p><p>The title borrows Benjamin Graham's favorite phrase. The idea: only buy something when its price sits well below a conservative estimate of what it's actually worth. That gap is your cushion. If your math is a little off, the economy stumbles, or luck turns against you, the cushion absorbs the hit. Klarman's key twist is how he defines risk. It isn't how much a stock bounces around day to day; it's the odds of losing money permanently, and how much you could lose. By that logic, a solid asset that gets cheaper can actually become <i>less</i> risky, not more.</p><p>That mindset shapes everything else. Klarman is an absolute-return investor, meaning he cares about not losing money, not about beating an index in any given year. When nothing looks cheap enough, he is comfortable sitting on a big pile of cash and waiting, even if it makes him look dull while everyone else is partying. Cash, in his view, is an option: it lets you pounce when panicked or forced sellers dump good assets at silly prices. He has also built a habit of digging in unloved corners that most of Wall Street ignores.</p><p>None of this is a prompt to call the bottom. It's a reminder that bouts of fear are exactly what open up the gap between price and value. The job is to do the homework, insist on a cushion, and be genuinely fine waiting until one shows up.</p>",
+    "kind": "Bio",
+    "who": "John Bogle",
+    "title": "The Man Behind Bogle's Folly",
+    "dek": "How a fired fund executive turned an $11 million flop into the index fund that changed everyday investing.",
+    "body": [
+      "<p>If last week's 8.6% slide in the S&amp;P 500 had you refreshing your brokerage app like a doomscroll, and Monday's 4.7% snapback had you reaching for it again, meet the man who'd have told you to put the phone down. John C. \"Jack\" Bogle, born May 8, 1929, in Montclair, New Jersey, spent his career arguing that an investor's biggest enemies are fees, frenzy and their own itchy trigger finger.</p>",
+      "<p>Bogle graduated magna cum laude from Princeton in 1951, and his senior thesis, on the economic role of investment companies, landed on the desk of fund pioneer Walter L. Morgan. Morgan hired him at Wellington, made him his assistant in 1955, and by 1970 Bogle had replaced him as chairman of Wellington's mutual funds. Then came the plot twist: a merger Bogle had approved went sideways, and he was fired. He later called it the biggest mistake of his career. It also turned out to be the best thing that ever happened to small investors.</p>",
+      "<p>Bogle set up The Vanguard Group in 1974 and pitched its board on a radical idea: a mutual fund that skipped stock-picking entirely and just tracked the market. First Index Investment Trust launched on August 31, 1976, built to mirror the S&amp;P 500. The underwriting goal was $150 million; it raised $11.3 million. Wall Street dubbed it <i>Bogle's Folly</i>. That folly is now the Vanguard 500 Index Fund, which turned 50 this past August, and low-cost indexing went on to reshape how everyday people invest.</p>",
+      "<p>He did all this with a heart that kept trying to quit. Bogle suffered his first heart attack at 31 and received a heart transplant in 1996, at 66. He kept going anyway: his 1999 book <i>Common Sense on Mutual Funds</i> became a bestseller, and that same year <i>Fortune</i> named him one of the four investment giants of the twentieth century. He died on January 16, 2019, at 89.</p>",
+      "<p>So what would Jack make of this week? A tech selloff, a record-setting rebound, a Fed expected to hike in December and a 10-year Treasury near 4.9% is exactly the kind of noise his approach was built to ignore. <b>The Bogle playbook</b>: own the whole haystack instead of hunting for needles, keep costs low because they compound just like returns, hold a sensible mix of stocks and bonds, and stay the course. With Treasuries paying close to 5%, the bond half of that mix finally has a pulse. Not thrilling. That's sort of the point.</p>"
+    ],
     "quote": {
-      "text": "Value investing is at its core the marriage of a contrarian streak and a calculator.",
-      "src": "Seth Klarman, via The Acquirer's Multiple"
+      "text": "Jack did more for American investors as a whole than any individual I've known.",
+      "src": "Warren Buffett, to CNBC after Bogle's death, January 2019"
     },
     "takeaways": [
-      "AI-spending jitters may create price-value gaps; demand a real cushion before buying.",
-      "With 10-year yields near 5%, cash and Treasuries pay you to wait.",
-      "A December hike could bring forced selling; Klarman-style patience means dry powder ready."
+      "A 4.7% up day after an 8.6% down week: trading both is how you lose.",
+      "Owning the whole market spreads your AI bets instead of concentrating them.",
+      "With 10-year yields near 4.9%, bonds again earn a place in a balanced mix."
     ],
-    "src": "Read more: Seth Klarman, Margin of Safety: Risk-Averse Value Investing Strategies for the Thoughtful Investor (HarperCollins, 1991)"
+    "src": "Read more: Wikipedia, John C. Bogle; Vanguard, 50 years of the Vanguard 500 Index Fund (Aug 31, 2026); Fortune (Jan 17, 2019)."
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "next decision Dec 9; about 93% odds of a 25 bp hike (TE, Nov 23)",
+      "d": "next decision Dec 9; bond market prices about 92% odds of a 25 bp hike (Yahoo Finance, Nov 23)",
       "good": false
     },
     {
@@ -376,16 +286,6 @@
     }
   ],
   "cal": [
-    {
-      "d": "2026-11-25",
-      "tag": "Economy",
-      "e": "Q3 GDP, second estimate",
-      "act": null,
-      "cons": "3.4%",
-      "prior": "3.4%",
-      "good": null,
-      "why": "Growth check before the Fed"
-    },
     {
       "d": "2026-11-25",
       "tag": "Inflation",
@@ -399,12 +299,32 @@
     {
       "d": "2026-11-25",
       "tag": "Economy",
+      "e": "Q3 GDP, second estimate",
+      "act": null,
+      "cons": null,
+      "prior": "3.4%",
+      "good": null,
+      "why": "Growth check before the Fed"
+    },
+    {
+      "d": "2026-11-25",
+      "tag": "Economy",
       "e": "October durable goods orders, m/m",
       "act": null,
       "cons": "0.4%",
       "prior": "1.9%",
       "good": null,
       "why": "Business equipment demand"
+    },
+    {
+      "d": "2026-11-25",
+      "tag": "Fed",
+      "e": "Fed Beige Book",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Regional read on prices and hiring"
     },
     {
       "d": "2026-11-26",
@@ -425,6 +345,16 @@
       "prior": null,
       "good": null,
       "why": "Supply path into a surplus"
+    },
+    {
+      "d": "2026-11-30",
+      "tag": "Economy",
+      "e": "Dallas Fed manufacturing survey, November",
+      "act": null,
+      "cons": null,
+      "prior": null,
+      "good": null,
+      "why": "Texas factory prices paid"
     },
     {
       "d": "2026-12-04",
@@ -454,7 +384,7 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Hike over 90% priced"
+      "why": "Hike about 92% priced"
     },
     {
       "d": "2026-12-10",
@@ -464,101 +394,101 @@
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "First inflation read after the decision"
+      "why": "First inflation read after the Fed"
     }
   ],
   "tape": [
     {
       "n": "S&P 500",
-      "v": "6,910.39",
-      "c": -3.7,
-      "ctext": "−3.70%",
-      "y": 5.7,
-      "ytext": "+5.7%",
-      "why": "Chipmakers led the rout, with AMD, Micron and Broadcom down 12% to 14%, leaving the index in a correction and down 8.6% on the week.",
-      "asof": "Nov 20"
+      "v": "7,237.17",
+      "c": 4.73,
+      "ctext": "+4.73%",
+      "y": 7.9,
+      "ytext": "+7.9%",
+      "why": "Best day since April 2025, snapping a seven-day losing streak, with about 85% of members rising, not just the chipmakers.",
+      "asof": "Nov 23"
     },
     {
       "n": "Dow",
-      "v": "48,147.33",
-      "c": -1.93,
-      "ctext": "−1.93%",
-      "y": 5.2,
-      "ytext": "+5.2%",
-      "why": "Lost 950 points, less than the others thanks to lighter tech weight, but still fell 8% on the week.",
-      "asof": "Nov 20"
+      "v": "49,595.31",
+      "c": 3.01,
+      "ctext": "+3.01%",
+      "y": 6.8,
+      "ytext": "+6.8%",
+      "why": "Jumped 1,448 points as 26 of its 30 stocks rose; energy and consumer staples were the only S&P sectors to fall.",
+      "asof": "Nov 23"
     },
     {
       "n": "Nasdaq",
-      "v": "22,617.73",
-      "c": -5.28,
-      "ctext": "−5.28%",
-      "y": 2.4,
-      "ytext": "+2.4%",
-      "why": "Its worst day of the AI selloff left the index down 10% for the week and negative for 2026.",
-      "asof": "Nov 20"
+      "v": "24,089.56",
+      "c": 6.51,
+      "ctext": "+6.51%",
+      "y": 5.3,
+      "ytext": "+5.3%",
+      "why": "Chips led the rebound, with the Philadelphia semiconductor index up 14% and memory stocks up 18%.",
+      "asof": "Nov 23"
     },
     {
       "n": "WTI crude",
-      "v": "$83.98",
-      "c": 0.93,
-      "ctext": "+0.93%",
-      "y": 42.0,
-      "ytext": "+42.0%",
-      "why": "Edged up on Iran tensions even as IEA forecasts of a supply surplus kept oil on a weekly losing streak.",
-      "asof": "Nov 20",
+      "v": "$80.17",
+      "c": -3.88,
+      "ctext": "−3.88%",
+      "y": 37.9,
+      "ytext": "+37.9%",
+      "why": "Fell to a three-month low as Libyan supply returned and the IEA's surplus outlook outweighed weekend attacks in the Gulf.",
+      "asof": "Nov 23",
       "rate": true
     },
     {
       "n": "Dollar index",
-      "v": "103.81",
-      "c": -0.08,
-      "ctext": "−0.08%",
-      "y": 3.75,
-      "ytext": "+3.75%",
-      "why": "Barely moved, holding near its highest since April 2025 as markets bet the Fed keeps hiking.",
-      "asof": "Nov 20"
+      "v": "104.32",
+      "c": 0.49,
+      "ctext": "+0.49%",
+      "y": 4.29,
+      "ytext": "+4.29%",
+      "why": "Firmed as AI worries eased while traders kept betting the Fed hikes again to fight inflation.",
+      "asof": "Nov 23"
     }
   ],
   "key": [
     {
       "n": "SOFR",
-      "cur": 3.91,
+      "cur": 3.92,
       "d1m": 4,
-      "d6m": 40,
-      "d1y": 0,
-      "asof": "Nov 19"
+      "d6m": 42,
+      "d1y": 1,
+      "asof": "Nov 20"
     },
     {
       "n": "2Y Treasury",
       "cur": 4.63,
-      "d1m": -16,
-      "d6m": 59,
-      "d1y": 108,
-      "asof": "Nov 20"
+      "d1m": -6,
+      "d6m": 50,
+      "d1y": 112,
+      "asof": "Nov 23"
     },
     {
       "n": "5Y Treasury",
-      "cur": 4.71,
-      "d1m": -23,
-      "d6m": 49,
-      "d1y": 103,
-      "asof": "Nov 20"
+      "cur": 4.74,
+      "d1m": -8,
+      "d6m": 47,
+      "d1y": 112,
+      "asof": "Nov 23"
     },
     {
       "n": "10Y Treasury",
       "cur": 4.92,
-      "d1m": -20,
-      "d6m": 35,
-      "d1y": 82,
-      "asof": "Nov 20"
+      "d1m": -8,
+      "d6m": 36,
+      "d1y": 86,
+      "asof": "Nov 23"
     }
   ],
   "rcols": [
-    "Nov 20 '26",
-    "Oct 20 '26",
-    "May 20 '26",
-    "Nov 20 '25"
+    "Nov 23 '26",
+    "Oct 23 '26",
+    "May 22 '26",
+    "Nov 21 '25"
   ],
   "rtab": [
     {
@@ -566,60 +496,60 @@
       "key": true,
       "v": [
         "4.63",
-        "4.79",
-        "4.04",
-        "3.55"
+        "4.69",
+        "4.13",
+        "3.51"
       ],
-      "d1m": -16,
-      "d1y": 108
+      "d1m": -6,
+      "d1y": 112
     },
     {
       "n": "5Y UST",
       "key": true,
       "v": [
-        "4.71",
-        "4.94",
-        "4.22",
-        "3.68"
+        "4.74",
+        "4.82",
+        "4.27",
+        "3.62"
       ],
-      "d1m": -23,
-      "d1y": 103
+      "d1m": -8,
+      "d1y": 112
     },
     {
       "n": "10Y UST",
       "key": true,
       "v": [
         "4.92",
-        "5.12",
-        "4.57",
-        "4.10"
+        "5.00",
+        "4.56",
+        "4.06"
       ],
-      "d1m": -20,
-      "d1y": 82
+      "d1m": -8,
+      "d1y": 86
     },
     {
-      "grp": "SOFR · dates Nov 19 '26 / Oct 19 '26 / May 19 '26 / Nov 19 '25"
+      "grp": "SOFR · dates Nov 20 '26 / Oct 20 '26 / May 20 '26 / Nov 20 '25"
     },
     {
       "n": "SOFR overnight",
       "v": [
-        "3.91",
-        "3.87",
-        "3.51",
+        "3.92",
+        "3.88",
+        "3.50",
         "3.91"
       ],
       "d1m": 4,
-      "d1y": 0
+      "d1y": 1
     }
   ],
   "freight": [
     {
       "n": "Baltic Dry Index",
-      "v": "2,898",
+      "v": "3,000",
       "pl": "Day",
-      "pc": "−0.10%",
-      "y": "+27.4%",
-      "why": "Nov 20; down 2.8% on the week, up 8.1% on the month."
+      "pc": "+3.52%",
+      "y": "+30.7%",
+      "why": "Nov 23; capesize rates up 6.2%, ending a two-day slide."
     },
     {
       "n": "Drewry WCI, 40ft",
@@ -627,7 +557,7 @@
       "pl": "Week",
       "pc": "−3%",
       "y": "+126%",
-      "why": "Nov 19; fourth straight weekly decline."
+      "why": "Nov 19; fourth straight weekly drop as transpacific rates slid."
     },
     {
       "n": "Diesel, U.S. avg (EIA)",
@@ -635,12 +565,12 @@
       "pl": "Week",
       "pc": "−$0.190",
       "y": "+$2.069",
-      "why": "Week of Nov 16; next EIA print Nov 24."
+      "why": "Week of Nov 16; next EIA print due this week."
     }
   ],
   "also": "",
-  "sport": "Backup Joe Milton led the go-ahead drive, capped by a 7-yard touchdown to DeVonta Smith, as the Eagles beat the Steelers 19-16 to snap a seven-game losing streak.",
-  "foot": "Sources: NY Fed API (SOFR Nov 19; refs Oct 19, May 19, Nov 19 '25); U.S. Treasury CSV (Nov 20); AP via La Nacion (Nov 20 closes); AP Nov 20, 2025 closes (WTOP, via search summary; page 404); AP/BNN Bloomberg wrap and Yahoo Finance (stock moves); Xinhua via The Star (WTI settles Nov 20 '26 and '25; dollar index Nov 20); Trading Economics (dollar 1Y, Fed odds, yields, UMich consensus, BDI, Brent news, central banks, G20 rates/CPI); Freddie Mac (Nov 19); University of Michigan; FRED; EIA; Drewry via search (ShipUniverse); Philadelphia Eagles; deep dive and world sources as listed.<br>Notes: Dollar index is Xinhua's 103.808 at 3 p.m. ET Nov 20 (−0.08%), not an official close; 1Y +3.75% is TE's Nov 23 figure. 10Y on TE/AP was 4.93–4.95%; Treasury's official 4.92% used. SOFR for Nov 20 not yet published. Nvidia SEC-probe report (STL.News citing Reuters) left out as unconfirmed. Treasury auction sizes, NRF/Adobe forecasts, VIX level and earnings dates from search summaries/previews, not fetched releases. UMich: no named outside economist reactions found; only the UMich director's commentary used, so 'lean' omitted. Calendar: TE calendar page did not load; flash PMIs, claims, Conference Board, new/pending home sales, JOLTS and ISM left out for lack of confirmed dates/consensus; OPEC+ Nov 29 carried from Nov 20 brief. Deep dive: Goldman $296B hyperscaler-supply figure and Meta's $15B deal left out (search-only). World: U.S. CPI is September (no October y/y published); euro area uses 2.65% refi (TE fetches conflicted with 2.15%); Russia–Ukraine had no Nov 20–23 news so swapped for Japan; Iranian mine claims unverified.",
+  "sport": "Drew Stevens hit a 26-yard field goal as time expired, and the Commanders beat the Bengals 22-20 on Monday Night Football after Cincinnati had gone ahead with 46 seconds left.",
+  "foot": "Sources: NY Fed API (SOFR Nov 20; refs Oct 20, May 20, Nov 20 '25); U.S. Treasury CSV (Nov 23; refs from series Oct 23, May 22, Nov 21 '25); AP via La Nacion (Nov 23 closes); Zacks via Finviz (Nov 24, 2025 closes for 1Y); Xinhua via The Star (WTI/Brent settles Nov 23); Trading Economics (WTI 1Y, dollar index, flash PMIs, BDI, Brent/WTI news, central banks); NBC News and Yahoo Finance (Nov 23 market moves, analysts, Cook, Polymarket/bond-market odds); Finviz/Earnings Whispers (Dell); FINRA, Reuters via GV Wire, Newsquawk (deep dive); Wikipedia, Vanguard, Fortune/CNBC (Bogle); EIA; Drewry via ShipUniverse; Yahoo Sports (MNF).<br>Notes: Dollar index 104.32 is TE's previous-close figure for Nov 23 (+0.49% vs Friday's 103.81); 1Y +4.29% is TE's Nov 24 figure. WTI 1Y +37.9% from TE's CFD table; Friday's $83.98 in the prior brief was a different contract basis, so day change uses Xinhua's −$3.24. SOFR for Nov 23 not yet published. EIA diesel for week of Nov 23 not yet posted. Flash PMI: no named economist reactions and no 12–24 month series found, so 'experts', 'lean' and chart omitted; composite consensus not shown. Calendar: TE calendar page did not load; durable goods consensus/prior carried from Nov 23 brief; GDP consensus unconfirmed (left blank); claims, consumer confidence, new/pending home sales, Chicago PMI and ISM left out for lack of confirmed dates/consensus; Dell report date unconfirmed (Arincen lists Nov 24 after close). World: TE G20 rate/CPI lists failed today, so 'real' chart carried from Nov 23 (U.S. CPI is September; UK Oct CPI 3.6% re-confirmed); lead views are institutional positions as relayed by TE, no named strategist quotes found; RBA, BoK and Euro-area CPI rows carried from Nov 23 brief. Fed FSR figures from Newsquawk summary (PDF did not parse); deep-dive net leverage is calculated from FINRA columns. Bogle: Sept. 1975 board pitch date left out (search-only).",
   "series": [
     [
       "2021-10-12",
@@ -8303,6 +8233,12 @@
       4.63,
       4.71,
       4.92
+    ],
+    [
+      "2026-11-23",
+      4.63,
+      4.74,
+      4.92
     ]
   ],
   "log": {
@@ -8422,6 +8358,10 @@
       {
         "d": "2026-11-23",
         "t": "The AI build-out is running on borrowed money"
+      },
+      {
+        "d": "2026-11-24",
+        "t": "The selloff hasn't shaken out the borrowed money"
       }
     ],
     "corner": [
@@ -8569,6 +8509,11 @@
         "d": "2026-11-23",
         "who": "Seth Klarman",
         "kind": "Thoughts"
+      },
+      {
+        "d": "2026-11-24",
+        "who": "John Bogle",
+        "kind": "Bio"
       }
     ],
     "focus": [
@@ -8675,6 +8620,10 @@
       {
         "d": "2026-11-23",
         "t": "November final: consumers' year-ahead inflation expectations fell to 3.7%, well under forecasts"
+      },
+      {
+        "d": "2026-11-24",
+        "t": "November flash PMIs: services growth slowed to a four-month low, missing forecasts"
       }
     ],
     "world": [
@@ -8781,6 +8730,10 @@
       {
         "d": "2026-11-23",
         "t": "The oil glut is outweighing the Hormuz risk, for now"
+      },
+      {
+        "d": "2026-11-24",
+        "t": "Vance opens a channel through Qatar as Brent slips under $90"
       }
     ]
   }
