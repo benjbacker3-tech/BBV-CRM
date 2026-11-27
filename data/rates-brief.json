@@ -1,258 +1,276 @@
 {
-  "headline": "Core inflation climbed to 3.3% in October and growth was revised up to a 4.3% pace, keeping a Fed hike on Dec. 9 firmly in view.",
-  "dateline": "Thursday, November 26, 2026 · closes as of Wed Nov 25",
+  "headline": "Wall Street returns for a half-day with a December rate hike all but priced in, as new tariff proposals and another Gulf refinery attack keep inflation risks in view.",
+  "dateline": "Friday, November 27, 2026 · closes as of Wed Nov 25",
   "ustDate": "Nov 25, 2026",
   "rundown": [
     {
-      "tag": "Economy",
-      "h": "Growth got revised up to a 4.3% pace.",
-      "p": "The second estimate put third-quarter GDP growth at a 4.3% annualized rate, well above the 3.5% forecast and the 3.4% first print. Private investment jumped 22.4%, which Trading Economics ties to AI spending, and consumer spending grew 4.2%. Inventories added about 1.6 points, so final demand was a bit softer than the headline, but it is not the picture of an economy that needs relief.",
-      "url": "https://tradingeconomics.com/united-states/gdp-growth",
-      "src": "Trading Economics · Nov 25"
-    },
-    {
-      "tag": "Labor",
-      "h": "Layoffs are still nowhere to be found.",
-      "p": "Initial jobless claims fell to 189,000 in the week ended Nov. 21, under the 200,000 forecast and down from 202,000. Continuing claims dropped to 1.697 million from 1.792 million, and the four-week average eased to 196,000. A labor market this tight keeps paychecks flowing, but it also gives the Fed cover to keep tightening.",
-      "url": "https://tradingeconomics.com/united-states/jobless-claims",
-      "src": "Trading Economics · Nov 25"
-    },
-    {
       "tag": "Fed",
-      "h": "The Beige Book says costs are outrunning prices.",
-      "p": "Eight of the Fed's 12 districts reported slight to moderate growth, with consumer spending little changed and housing and construction weaker. Prices rose moderately, with firms citing energy, transport, healthcare, insurance and tariffs. Input costs are rising faster than selling prices, and contacts expect both to keep climbing: a recipe for thinner margins into 2027.",
-      "url": "https://www.federalreserve.gov/monetarypolicy/beigebook202611-summary.htm",
-      "src": "Federal Reserve · Nov 25"
+      "h": "A December rate hike is close to fully priced.",
+      "p": "CME FedWatch showed better than 90% odds of a quarter-point hike at the Dec. 9 decision as of Nov. 22, and CNBC said Wednesday's inflation data strengthened bets on hikes in December and January. Governor Waller told CNBC the Fed may need to shock people with a half-point move. Floating-rate borrowers should plan on costs rising, not falling, into 2027.",
+      "url": "https://www.cnbc.com/investingclub/2026/11/22/3-big-things-were-watching-in-the-market-this-thanksgiving-week.html",
+      "src": "CNBC"
     },
     {
-      "tag": "Earnings",
-      "h": "Dell doubled its revenue on AI servers.",
-      "p": "Dell's fiscal third-quarter revenue hit a record $54.9 billion, up 103%, as AI-optimized server sales rose 291% to $22.0 billion. It booked $60.2 billion of AI orders, ended with a $132.3 billion AI backlog, raised its full-year revenue outlook to $202 billion from $192 billion and added a $25 billion buyback. The AI build-out's hardware bill is still growing.",
-      "url": "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000050/exhibit991earnings8kq3fy27.htm",
-      "src": "Dell 8-K · Nov 24"
+      "tag": "Trade",
+      "h": "Washington proposed new tariffs on 14 trading partners.",
+      "p": "The U.S. on Wednesday proposed Section 301 tariffs on 14 partners, including China, the EU and Japan, citing overcapacity. China would face an extra 20% on top of the 25% imposed in 2018. Import-heavy tenants, from retailers to distributors, face another round of cost math just as holiday restocking winds down.",
+      "url": "https://www.cnbc.com/2026/11/24/stock-market-today-live-updates-.html",
+      "src": "CNBC"
     },
     {
-      "tag": "Economy",
-      "h": "Factory orders cooled more than expected.",
-      "p": "Durable goods orders rose 0.2% in October, short of the 0.6% forecast, after a 2.0% gain in September (revised from 1.9%). Excluding transportation, orders rose 0.5%. Business equipment demand is still growing, just more slowly than the AI headlines suggest.",
-      "url": "https://tradingeconomics.com/united-states/durable-goods-orders",
-      "src": "Trading Economics · Nov 25"
+      "tag": "Credit",
+      "h": "S&P put Nvidia's AA rating on watch for a downgrade.",
+      "p": "S&P Global placed Nvidia on CreditWatch Negative on Wednesday, citing management and governance risk after CEO Jensen Huang's abrupt Nov. 12 departure. Huang is due before the House Foreign Affairs Committee on Dec. 1 and Senate Banking on Dec. 3. When the AI build-out's strongest balance sheet gets a credit warning, lenders to the rest of the chain notice.",
+      "url": "https://www.cnbc.com/2026/11/24/stock-market-today-live-updates-.html",
+      "src": "CNBC"
+    },
+    {
+      "tag": "Markets",
+      "h": "Last week's slide pushed stocks into a correction.",
+      "p": "The S&P 500 slid into a correction last week after a seven-day losing streak, its longest since February 2020, and the Nasdaq turned negative for the year, per CNBC. Wednesday showed how jumpy it is: the Dow was down more than 1,100 points and the Nasdaq 4.6% before both recovered most of it. Markets close at 1 p.m. ET today.",
+      "url": "https://www.cnbc.com/2026/11/24/stock-market-today-live-updates-.html",
+      "src": "CNBC"
     },
     {
       "tag": "Retail",
-      "h": "Fewer shoppers are expected this holiday weekend.",
-      "p": "The NRF expects 182.7 million people to shop from Thanksgiving through Cyber Monday, slightly below its 186.9 million forecast a year ago. Black Friday stays the big day, with 126 million planning to shop, and 59% of shoppers plan to use AI tools. Gift card spending is forecast at $26.8 billion, the lowest since 2015.",
-      "url": "https://nrf.com/media-center/press-releases/183-million-consumers-expected-to-shop-during-thanksgiving-weekend",
-      "src": "NRF · Nov 19"
+      "h": "Adobe expects a record online Cyber Week.",
+      "p": "Adobe forecasts $47.5 billion in online spending from Thanksgiving through Cyber Monday, up 7.4%, including $12.9 billion on Black Friday and $15.1 billion on Cyber Monday. Buy now, pay later is expected to cover $21.3 billion of November and December spending, up 6.6%. Online growth keeps parcel and last-mile space busy even as foot traffic softens.",
+      "url": "https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record",
+      "src": "Adobe (Sept. 28 forecast)"
     }
   ],
   "dive": {
-    "kicker": "Bank credit",
-    "title": "Loan officers are tightening. Loan books aren't shrinking.",
-    "dek": "The Fed's latest loan officer survey shows banks pulling back on construction and nonbank lenders, even as balances keep growing.",
-    "body": [
-      "<p>Ask bank loan officers how they feel and the answer is: more careful. The Fed's October Senior Loan Officer Opinion Survey, published Nov. 2 and covering the third quarter, found banks tightened standards on all three commercial real estate categories at once, something they last did in the third quarter of 2024. Construction and land development took the hardest hit, with a net <b>15.5%</b> of banks tightening, per TheStreet's read of the survey. Large banks tightened on all three for the first time since late 2023, after six surveys of easing on construction and multifamily.</p>",
-      "<p>Demand is softening too. A net 25.9% of banks reported weaker demand for construction loans and 22.8% for multifamily, according to the National Association of Home Builders. On business loans, standards barely moved for big companies but tightened a bit for small firms, and about 12% of banks, net, saw weaker demand, the first weak readings since mid-2025. The Fed said banks pointed to a less favorable or more uncertain outlook. The sharpest pullback was toward nonbanks: a net 22% tightened on loans to private credit lenders, even as more of those lenders asked for money.</p>",
-      "<p>Yet the balance sheets tell a different story. The Fed's H.8 data, released Nov. 20, show total bank loans grew at an <b>8.9%</b> annualized pace in October, with business loans up 11.7% and commercial real estate up 5.1%, the fastest of the past three periods. One explanation is that borrowers are drawing on lines and extending loans they already have, rather than banks writing fresh deals. The data don't settle that question.</p>",
-      "<p>For industrial owners, the split matters. Credit for stabilized buildings is tighter at the margin but available. Credit for new ground-up projects is getting scarcer, and the private lenders who often fill that gap are now facing tighter terms from banks themselves. That tends to slow new supply. What would change the picture: a Fed that stops hiking, or a January survey showing standards easing again.</p>"
-    ],
+    "kicker": "Auto Credit",
+    "title": "The Car Payment Is Doing a Lot of Work",
+    "dek": "Auto loan delinquencies have cooled from their records, but record payments and seven-year loans suggest the strain is being stretched out, not solved.",
+    "body": "<p>Black Friday gets the headlines, but the consumer bill worth watching is the one parked in the driveway. The New York Fed's Q3 report (Nov. 10) put auto loan balances at <b>$1.734 trillion</b>, up $79 billion from a year earlier, with $208 billion of new loans written in the quarter. The share of auto debt rolling into serious (90+ day) delinquency was 3.02%, essentially flat against 2.99% a year ago. The one soft spot: the New York Fed said early-stage auto delinquencies kept ticking up.</p><p>Here's the twist: the scariest gauge has actually cooled. Fitch's subprime auto ABS 60+ day delinquency rate, which set records in 2025, is now <b>6.27%</b>, down 19 basis points year over year, per Wolf Street's Nov. 19 roundup. Equifax's all-borrower 60+ day rate was 1.50% in September, also lower than a year earlier. Auto debt sits around 7.2% of disposable income, mid-range for the past two decades. Lenders tightened after the 2025 scare, and it shows.</p><p>The catch is that affordability is being absorbed by <i>time</i> rather than income. Edmunds says the average new-car payment hit a record <b>$787</b> in Q3, 21.2% of financed buyers now pay $1,000 or more a month, and a record 25.5% took loans of 84 months or longer. Average lifetime interest reached $9,938. Longer terms keep monthly payments manageable today but leave borrowers underwater longer, so there's less cushion if something goes wrong. Meanwhile, borrowers with scores under 620 still account for 16.8% of originations, per Wolf Street's read of the New York Fed data.</p><p>Why it matters: the car payment is usually the last bill people skip, which makes it a decent read on household cash flow beyond holiday receipts. The current picture is resilient, not robust. For investors, that's relevant to auto ABS and consumer lenders priced for stability, and to industrial outdoor storage, where dealer inventory lots, auction yards and repossession storage tend to get busier when car credit cracks. What would change it: a weaker job market would hit the stretched borrowers first, while lower rates bringing down that sticky 7.0% average APR would help.</p>",
     "table": {
-      "cap": "Bank credit, latest readings",
+      "cap": "Auto credit: calmer delinquencies, heavier payments",
       "cols": [
-        "Measure",
-        "Reading",
-        "Period"
+        "Metric",
+        "Latest",
+        "Year ago",
+        "Source"
       ],
       "rows": [
         [
-          "Net banks tightening: construction & land",
-          "15.5%",
-          "Q3 2026 survey"
+          "Auto debt flowing into 90+ day delinquency",
+          "3.02% (Q3 '26)",
+          "2.99%",
+          "NY Fed"
         ],
         [
-          "Net banks tightening: nonfarm nonresidential CRE",
-          "8.8%",
-          "Q3 2026 survey"
+          "Subprime auto ABS 60+ day delinquency",
+          "6.27%",
+          "-19 bp YoY",
+          "Fitch via Wolf Street"
         ],
         [
-          "Net banks tightening: loans to private credit lenders",
-          "22.0%",
-          "Q3 2026 survey"
+          "Avg. new-car monthly payment",
+          "$787 (Q3 '26)",
+          "$756",
+          "Edmunds"
         ],
         [
-          "Bank CRE loan growth, annualized",
-          "5.1%",
-          "Oct 2026"
+          "Share of new-car buyers paying $1,000+/mo",
+          "21.2%",
+          "19.1%",
+          "Edmunds"
         ],
         [
-          "Bank C&I loan growth, annualized",
-          "11.7%",
-          "Oct 2026"
-        ],
-        [
-          "Bank CRE loans outstanding",
-          "$3,162.5B",
-          "Week of Nov 11"
+          "Share of new-car loans 84+ months",
+          "25.5%",
+          "21.8%",
+          "Edmunds"
         ]
       ]
     },
     "watch": [
-      "Dec 1: Fed Vice Chair for Supervision Bowman testifies to House Financial Services.",
-      "Dec 4 and 11: weekly H.8 data. Does CRE growth hold near 5%?",
-      "Early Feb 2027: next loan officer survey, timed for the January FOMC."
+      "Fitch's monthly auto ABS indices: does the subprime 60+ day rate keep falling year over year?",
+      "NY Fed Q4 household credit report (February): do early auto delinquencies turn into serious ones?",
+      "Edmunds Q4 financing data: further growth in 84-month loans and $1,000+ payments"
     ],
-    "src": "Sources: Federal Reserve SLOOS (Oct 2026, posted Nov 2) and H.8 (Nov 20); TheStreet Pro (Nov 3); NAHB Eye on Housing (Nov 12); Fed December calendar."
+    "src": "Sources: New York Fed Household Debt and Credit Report, Q3 2026 (Nov. 10); Edmunds Q3 2026 data via Auto Remarketing (Oct. 1); Fitch and Equifax data via Wolf Street (Nov. 19)."
   },
   "focus": {
     "items": [
       {
-        "tag": "Inflation",
-        "title": "October core PCE rose to 3.3% a year, a tenth above forecasts, while real spending stalled",
-        "rel": "PCE price index, Oct",
-        "act": "3.3%",
-        "cons": "3.2%",
-        "prior": "3.1%",
-        "good": false,
+        "tag": "Business",
+        "title": "October core capital goods orders jumped 1.2%, beating forecasts, even as headline durables missed",
+        "rel": "Durable goods orders, Oct",
+        "act": "0.2%",
+        "cons": "0.6%",
+        "prior": "2.0%",
+        "good": null,
         "chart": {
-          "t": "Core PCE prices, % change from a year earlier",
-          "unit": "%",
+          "t": "Core capital goods orders (nondefense ex-aircraft), $ billions",
+          "unit": "$B",
           "pts": [
             [
+              "Nov '24",
+              74.3
+            ],
+            [
+              "Dec '24",
+              74.6
+            ],
+            [
+              "Jan '25",
+              76.0
+            ],
+            [
+              "Feb '25",
+              75.6
+            ],
+            [
+              "Mar '25",
+              75.8
+            ],
+            [
+              "Apr '25",
+              74.6
+            ],
+            [
+              "May '25",
+              76.0
+            ],
+            [
+              "Jun '25",
+              75.6
+            ],
+            [
+              "Jul '25",
+              76.2
+            ],
+            [
+              "Aug '25",
+              76.8
+            ],
+            [
               "Sep '25",
-              2.82
+              77.6
             ],
             [
               "Oct '25",
-              2.7
+              77.9
             ],
             [
               "Nov '25",
-              2.72
+              78.6
             ],
             [
               "Dec '25",
-              2.87
+              79.3
             ],
             [
               "Jan '26",
-              2.94
+              79.0
             ],
             [
               "Feb '26",
-              2.96
+              80.2
             ],
             [
               "Mar '26",
-              3.11
+              83.3
             ],
             [
               "Apr '26",
-              3.08
+              82.8
             ],
             [
               "May '26",
-              3.16
+              84.4
             ],
             [
               "Jun '26",
-              3.04
+              85.8
             ],
             [
               "Jul '26",
-              3.0
+              86.3
             ],
             [
               "Aug '26",
-              3.05
+              87.6
             ],
             [
               "Sep '26",
-              3.14
+              88.3
             ],
             [
               "Oct '26",
-              3.26
+              89.4
             ]
           ],
-          "src": "Source: BEA via FRED (PCEPILFE), y/y calculated from the index"
+          "src": "Source: Census Bureau via FRED (NEWORDER), seasonally adjusted"
         },
-        "body": [
-          "<p>Core PCE prices, which strip out food and energy, rose 0.3% in October, matching September and the forecast, but the annual rate climbed to 3.3% from 3.1%, above the 3.2% consensus. Headline PCE rose 0.3% on the month, down from 0.5%, and 3.8% from a year earlier, in line with forecasts. Adjusted for inflation, consumer spending was flat after a 0.1% gain.</p>",
-          "<p>A year ago core PCE was running at 2.7%; it has climbed above 3% since March and is now at its highest of the past 14 months. On a quarterly basis, core prices rose at a 2.5% annualized pace in the third quarter, down from 3.3% in the second.</p>",
-          "<p>The report landed alongside an upward GDP revision. The AP said the inflation data added to Wall Street's worries, though Treasury yields fell on the day, and Trading Economics reports markets are pricing a December rate hike.</p>"
-        ],
+        "body": "<p>Orders for durable goods rose 0.2% in October to $346.7 billion, short of the 0.6% consensus, after a 2.0% gain in September (revised from 1.8%). Orders have risen in seven of the past eight months. Excluding transportation, orders rose 0.5%, matching September; excluding defense they rose 0.4%.</p><p>The stronger signal was in business investment. Core capital goods orders, which exclude defense and aircraft, jumped 1.2% against a 0.7% forecast, and September was revised up to 0.8%. At $89.4 billion they are about 15% above October 2025, per Census data on FRED. Machinery orders rose 1.8% to $46.8 billion, up in 21 of the past 22 months.</p><p>The report landed the same morning as core PCE, the GDP revision and jobless claims. The 10-year Treasury yield fell 6 basis points to 4.85% on the day, per Treasury data; Trading Economics did not tie the move to durables.</p>",
         "experts": [
           {
-            "who": "Oxford Economics (U.S. team)",
-            "view": "In a Nov. 16 preview it expected a 25 bp hike in December and argued markets overprice a half-point move, seeing headline inflation peak this quarter as oil eases.",
-            "url": "https://www.oxfordeconomics.com/resource/us-pce-nowcast-broadening-pressures-lock-in-december-rate-hike/",
-            "src": "Oxford Economics"
-          },
-          {
-            "who": "BofA Global Research",
-            "view": "Before the release it estimated core at 3.3% a year, called that clearly hawkish and said it would meet Governor Waller's bar for 50 bp, though it still expected 25 bp.",
-            "url": "https://pro.thestreet.com/market-commentary/core-cpi-comes-in-hot-again-putting-a-half-point-fed-hike-on-the-table",
-            "src": "TheStreet Pro · Nov 10"
+            "who": "Continuum Economics (preview, Nov 17)",
+            "view": "Before the release it judged that orders momentum had slowed and looked for core orders to rise 0.8%, less than the 1.2% that printed.",
+            "url": "https://continuumeconomics.com/a/60fc5d9d/preview-due-november-25-us-october-durable-goods-orders-momentum-has-slowed",
+            "src": "Continuum Economics"
           }
         ],
-        "lean": "Pre-release previews from Oxford Economics and BofA both expected a quarter-point hike in December rather than a half point.",
-        "src": "Sources: Trading Economics (core and headline PCE, Nov 25); FRED/BEA; AP via La Nacion; Oxford Economics; TheStreet Pro."
+        "src": "Sources: Census Bureau advance durable goods report (Nov 25); Trading Economics (consensus, revisions); FRED NEWORDER; Continuum Economics."
       }
     ]
   },
   "world": {
     "lead": {
-      "kicker": "Saudi Arabia · Houthis",
-      "title": "The Houthis take aim at Saudi Arabia's biggest refinery",
-      "body": "<p>Yemen's Houthis said Wednesday they struck Saudi Arabia's Ras Tanura refinery, the kingdom's largest, and caused fires. The Saudi-led coalition said air defenses intercepted four drones over Ras Tanura and did not say the refinery was hit, but NASA satellite images reviewed by Reuters showed thick smoke over roughly 600 square kilometers around the site.</p><p>The Houthis also claimed strikes on Riyadh's financial district; Saudi civil defense said 11 people were hurt Tuesday when the building housing the Public Investment Fund's headquarters was hit. A Houthi projectile also landed at Jazan port on the Red Sea, causing minor damage. There was no independent confirmation that refining or crude shipments were suspended.</p>",
-      "reach": "Oil, again. Ras Tanura can refine 550,000 barrels a day; Brent rose above $95 on Nov. 26 for a third straight gain, yet is still down nearly 20% this month (Trading Economics).",
+      "kicker": "OPEC+ · Gulf supply",
+      "title": "OPEC+ meets Sunday to set 2027 quotas as Gulf attacks keep oil bid",
+      "body": "<p>OPEC+ ministers meet on Nov 29 to decide supply policy for 2027. The meeting sets new production baselines from a review of members' capacity, and Iraq is pushing for a higher assessment of its own (Trading Economics, Nov 26). At their Nov 1 meeting, the core members held December targets steady and left the harder 2027 decision for this one.</p><p>The Gulf backdrop is getting worse. On Nov 26, Houthi militants struck Saudi Aramco's 400,000 b/d Jazan refinery, which forced a temporary partial suspension. That came after drone attempts on Ras Tanura. Brent rose above $97 on Nov 26 and was heading for its first weekly gain in four weeks. The IEA still forecasts a fourth-quarter supply surplus.</p>",
+      "reach": "Through crude and fuel prices: Brent traded at $96.74 on Nov 27, about $11.50 above WTI at $85.25, so the war premium sits in Gulf-linked barrels, which feeds gasoline and inflation expectations (Trading Economics, Nov 27).",
       "views": [
         {
-          "who": "Newsquawk analysts",
-          "view": "They said rising risks to Saudi production are keeping prices afloat, but noted past attacks on Saudi facilities added premiums that faded once throughput recovered.",
-          "url": "https://newsquawk.com/headlines/market-analysis-oil-prices-remain-afloat-amid-ongoing-tensions-and-increased-geopolitical-risks-to-saudi-production",
-          "src": "Newsquawk · Nov 25"
+          "who": "International Energy Agency (as cited Nov 26)",
+          "view": "It still projects that supply will exceed demand in the fourth quarter, which argues against a lasting rally.",
+          "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
+          "src": "Trading Economics"
         },
         {
-          "who": "International Energy Agency",
-          "view": "It projects a fourth-quarter supply surplus as Gulf shipments recover, which has capped the rally, as cited by Trading Economics.",
+          "who": "Iraq's government (as reported Nov 26)",
+          "view": "Baghdad wants its production capacity assessed higher, so that its 2027 quota baseline would rise and the group's allowed output would grow.",
           "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
-          "src": "Trading Economics · Nov 26"
+          "src": "Trading Economics"
         }
       ]
     },
     "hot": [
       {
-        "r": "Saudi Arabia / Houthis",
-        "chg": "Nov 24–25: Houthis hit a Riyadh building housing the PIF, injuring 11, and claim a Ras Tanura refinery strike.",
-        "trend": "Escalating",
+        "r": "Iran / Strait of Hormuz",
+        "chg": "A tanker was hit in Hormuz on Nov 25, and Iranian reports on Nov 25–26 said several vessels struck mines.",
+        "trend": "Escalating at sea",
         "tc": "esc",
-        "ch": "Oil, refined fuel, Gulf risk",
-        "next": "OPEC+ ministers meet Nov 29"
-      },
-      {
-        "r": "Euro area / UK",
-        "chg": "Euro area inflation 4.0% in October (final Nov 18); UK CPI 3.6%; BoE hiked to 4.00% Nov 5.",
-        "trend": "Inflation rising",
-        "tc": "esc",
-        "ch": "Global yields, euro, sterling",
-        "next": "ECB and BoE Dec 17"
+        "ch": "Tanker rates, Brent premium",
+        "next": "OPEC+ meeting Nov 29"
       },
       {
         "r": "Japan / yen",
-        "chg": "October CPI rose to 2.3%, core 2.2%; BoJ held at 1.25% Oct 30 in an 8–1 vote.",
+        "chg": "USD/JPY was about 159.4 on Nov 27. On Nov 26, BoJ board member Tamura said he sees room for about three hikes from 1.25%.",
         "trend": "Tightening ahead",
         "tc": "esc",
-        "ch": "Yen, JGBs, carry trade",
+        "ch": "Yen, JGB yields, carry trades",
         "next": "BoJ decision Dec 18"
       },
       {
+        "r": "Euro area / UK",
+        "chg": "ECB minutes released Nov 26 showed most policymakers support a 25bp hike on Dec 17. UK CPI was 3.6% in October, after the BoE hiked to 4% on Nov 5.",
+        "trend": "Hikes coming",
+        "tc": "esc",
+        "ch": "Bund/gilt yields, EUR/USD",
+        "next": "ECB and BoE Dec 17"
+      },
+      {
         "r": "U.S. / China",
-        "chg": "Nov 19: Trump and Xi met in Shenzhen with no new deal; China's 24% tariff pause holds.",
-        "trend": "Steady",
-        "tc": "std",
-        "ch": "Tariffs, chips, farm exports",
-        "next": "Tariff pause expires Jan 10"
+        "chg": "Beijing opposed the proposed U.S. tariffs on Nov 25; the offshore yuan held near a three-week high around 6.65 (Nov 27).",
+        "trend": "Escalating",
+        "tc": "esc",
+        "ch": "Yuan, freight, import prices",
+        "next": "U.S. tariff details; 2027 start"
       }
     ],
     "cb": [
@@ -260,7 +278,7 @@
         "d": "2026-12-04",
         "bank": "Reserve Bank of India",
         "rate": "5.50%",
-        "exp": "Consensus and TE: hike to 5.75%"
+        "exp": "Hike expected; SBI Research sees 50bp to 6.00%"
       },
       {
         "d": "2026-12-08",
@@ -278,7 +296,7 @@
         "d": "2026-12-17",
         "bank": "European Central Bank",
         "rate": "2.65%",
-        "exp": "TE sees 2.90%, implying a hike"
+        "exp": "TE sees 2.90%; minutes back a 25bp hike"
       },
       {
         "d": "2026-12-17",
@@ -296,7 +314,7 @@
         "d": "2026-12-18",
         "bank": "Bank of Japan",
         "rate": "1.25%",
-        "exp": "TE: hike to 1.50%"
+        "exp": "Markets expect a hike (TE, Nov 26)"
       }
     ],
     "real": {
@@ -336,36 +354,30 @@
         ]
       ]
     },
-    "src": "Sources: Insurance Journal/Reuters, Al-Monitor, U.S. News/AP (Ras Tanura, Riyadh, Jazan); Newsquawk; Trading Economics (Brent, central banks, CPI, LPR); prior brief (U.S./China)."
+    "src": "Sources: Trading Economics (Brent/oil news Nov 25–27; JPY, CNY, ECB and BoE pages, Nov 27); Reuters-syndicated OPEC+ coverage (Nov 1–2); SBI Research via newkerala (Oct 22). Real rates carried from Nov 26 (TE G20 lists)."
   },
   "reading": {
-    "kind": "Thoughts",
-    "who": "Julian Robertson",
-    "title": "Own the best, short the worst, and know when to walk away",
-    "dek": "Tiger Management's founder built a hedge fund giant on a simple long-short idea, then closed it in March 2000 rather than chase a market he no longer understood.",
-    "body": [
-      "<p>Julian Robertson's core idea was almost disarmingly simple: find the best businesses you can and own them, find the worst and sell them short. If your winners can't beat your losers, he argued in various forms, you are in the wrong line of work. The <b>long-short</b> structure meant Tiger Management's results leaned on stock selection rather than on which way the overall market happened to move. Shorts were a hedge, but also a second source of returns.</p>",
-      "<p>The record made the case. The North Carolina native, a former Kidder Peabody stockbroker, launched Tiger in 1980 with roughly $8 million from family, friends and his own pocket. From inception to its 1998 peak, the fund compounded at about 31.7% a year after fees, against roughly 12.7% for the S&amp;P 500, and posted losses in only four of its 21 years. Assets swelled to about $22 billion by mid-1998, making it one of the largest hedge fund groups in the world.</p>",
-      "<p>Then the framework collided with a market that stopped rewarding it. A wrong-way bet on the Japanese yen in 1998 and a large, struggling stake in US Airways hurt returns, and redemptions followed. Meanwhile Robertson deliberately stayed light on technology as dot-com shares soared. Over about 18 months, losses and withdrawals shrank assets to around $6 billion. In March 2000, close to the very top of the bubble, he shut his six funds and handed outside capital back to investors. His letter conceded that he no longer understood the market, insisted such manic stretches had come and gone before, and maintained that <i>value investing</i> remained the right course.</p>",
-      "<p>The timing looks prescient in hindsight, yet the lesson is subtler than calling the top. Robertson did not abandon his discipline; he declined to keep risking clients' money in a regime where fundamentals seemed disconnected from prices. Knowing when your edge has temporarily stopped working, and stepping aside rather than drifting from your process, is its own form of risk management. So is admitting it publicly, instead of quietly loosening your standards to chase whatever is working.</p>",
-      "<p>His other legacy is human. Robertson trained and later seeded a generation of managers known as the <b>Tiger Cubs</b>, including Lee Ainslie, Stephen Mandel, Andreas Halvorsen, John Griffin and Chase Coleman, often taking a stake in their firms in return. Not every cub thrived; Bill Hwang's Archegos imploded in 2021. Robertson died in August 2022 at 90, having given away more than $2 billion.</p>"
-    ],
+    "kind": "Reading",
+    "who": "Warren Buffett",
+    "title": "The Orangutans of Omaha: Buffett's Case Against Pure Luck",
+    "dek": "Buffett's 1984 Columbia talk still makes the cleanest argument that disciplined value investing, not chance, explains lasting outperformance.",
+    "body": "<p>In May 1984, Columbia Business School marked the 50th anniversary of Graham and Dodd's <i>Security Analysis</i> by staging something close to a debate: efficient-market champion Michael Jensen on one side, Warren Buffett on the other. Buffett's talk, edited and printed that fall in the school's magazine <i>Hermes</i> as \"The Superinvestors of Graham-and-Doddsville,\" remains the most persuasive short answer to the claim that beating the market is just luck.</p><p>He starts by conceding the academics' best point. Picture a national coin-flipping contest with 225 million entrants: after 20 rounds, roughly 215 people will have called every flip right, and some will start believing they are geniuses. Swap the people for orangutans and you get about the same number of winners. Fine. But, Buffett asks, what if a big share of those winning orangutans all came from one zoo in Omaha? You would want to know what they were being fed.</p><p>That is his evidence. He lays out the records of nine portfolios tied to Ben Graham's teaching: Walter Schloss, Tom Knapp's Tweedy, Browne, Bill Ruane's Sequoia Fund, Charlie Munger, Rick Guerin, Stan Perlmeter, his own partnership, and the Washington Post and FMC pension funds. They owned different stocks, made their calls independently and still beat the averages by wide margins. What they shared was a habit of mind, not a ticker list: hunt for gaps between what a business is worth and what the market charges for a slice of it. Buffett's line is that they were buying businesses, not stocks.</p><p>The sharpest section is on risk. Usually more reward means more danger. With value investing, Buffett argues, it runs the other way: a dollar bought for 40 cents is both safer and more profitable than one bought for 60. His example is the <b>Washington Post Company in 1973</b>, valued by the market at about $80 million while its assets would have fetched at least $400 million from buyers. Had the stock fallen further, academic beta would have flagged it as <i>riskier</i>, a conclusion he calls pure Alice in Wonderland.</p><p>Then comes <b>margin of safety</b>: don't pay $80 million for something worth $83 million. Build the bridge for 30,000-pound loads and drive 10,000-pound trucks over it. Buffett closes by noting that the method had been public for half a century and almost nobody adopted it, because people seem to prefer making easy things hard. Forty-two years later, that prediction still looks safe.</p>",
     "quote": {
-      "text": "…risk in a market which I frankly do not understand.",
-      "src": "Julian Robertson, March 2000 letter to Tiger investors (via Fortune, 2022)"
+      "text": "I can only tell you that the secret has been out for 50 years.",
+      "src": "Warren Buffett, \"The Superinvestors of Graham-and-Doddsville,\" Hermes, Fall 1984"
     },
     "takeaways": [
-      "In a choppy AI tape, stock picking on both sides matters more than the index.",
-      "With a 10-year near 4.9%, cash pays you while you wait.",
-      "If prices stop making sense, cut risk rather than loosen your standards."
+      "At 4.85% Treasury yields, every stock's price must clear a higher value hurdle.",
+      "An AI selloff lowers prices, not necessarily values; check which one actually moved.",
+      "Ahead of a possible Dec 9 hike, demand wide margins, not $83-for-$80 bets."
     ],
-    "src": "Read more: \"Julian Robertson, Hedge-Fund Guru to 'Tiger Cubs,' Dies at 90\" (Fortune/Bloomberg, Aug. 23, 2022); Wikipedia, Julian Robertson."
+    "src": "Read more: the full essay is reprinted as an appendix to Graham's The Intelligent Investor (revised edition); Wikipedia's entry \"The Superinvestors of Graham-and-Doddsville\" summarizes it."
   },
   "econ": [
     {
       "n": "Fed funds target",
       "v": "3.75–4.00%",
-      "d": "next decision Dec 9; markets price a December hike (Trading Economics, Nov 26)",
+      "d": "held Oct 28; next decision Dec 9",
       "good": false
     },
     {
@@ -377,54 +389,74 @@
   ],
   "cal": [
     {
-      "d": "2026-11-26",
+      "d": "2026-11-27",
       "tag": "Markets",
-      "e": "Thanksgiving: U.S. markets closed",
+      "e": "U.S. stocks close early, 1 p.m. ET",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Thin holiday trading"
+      "why": "Thin post-holiday trading"
     },
     {
       "d": "2026-11-29",
       "tag": "Energy",
-      "e": "OPEC+ ministers set 2027 output framework",
+      "e": "OPEC+ ministers set 2027 quotas",
       "act": null,
       "cons": null,
       "prior": null,
       "good": null,
-      "why": "Supply path into a surplus"
+      "why": "Supply baselines into a surplus"
     },
     {
       "d": "2026-12-01",
       "tag": "Economy",
-      "e": "November ISM manufacturing PMI",
+      "e": "ISM manufacturing PMI, Nov",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "55.2",
+      "prior": "55.5",
       "good": null,
-      "why": "Factory prices and orders"
+      "why": "Factory demand and prices paid"
     },
     {
       "d": "2026-12-01",
       "tag": "Labor",
-      "e": "October JOLTS job openings",
+      "e": "JOLTS job openings, Oct",
       "act": null,
-      "cons": null,
-      "prior": null,
+      "cons": "7.45M",
+      "prior": "7.52M",
       "good": null,
       "why": "Labor demand check"
     },
     {
-      "d": "2026-12-04",
+      "d": "2026-12-03",
       "tag": "Labor",
-      "e": "November jobs report",
+      "e": "Initial jobless claims",
+      "act": null,
+      "cons": "193K",
+      "prior": "189K",
+      "good": null,
+      "why": "Layoffs still scarce?"
+    },
+    {
+      "d": "2026-12-03",
+      "tag": "Economy",
+      "e": "ISM services PMI, Nov",
       "act": null,
       "cons": null,
-      "prior": null,
+      "prior": "54.5",
       "good": null,
-      "why": "Last payrolls before the decision"
+      "why": "Services prices paid"
+    },
+    {
+      "d": "2026-12-04",
+      "tag": "Labor",
+      "e": "Nonfarm payrolls, Nov",
+      "act": null,
+      "cons": "90K",
+      "prior": "165K",
+      "good": null,
+      "why": "Last payrolls before the Fed"
     },
     {
       "d": "2026-12-09",
@@ -613,24 +645,23 @@
     },
     {
       "n": "Baltic Dry Index",
-      "v": "3,107",
+      "v": "3,152",
       "pl": "Day",
-      "pc": "+1.27%",
-      "y": "+29.4%",
-      "why": "Nov 25; up 18.2% over the past month."
+      "pc": "+1.45%",
+      "y": "+27.1%",
+      "why": "Nov 26; fourth straight gain, highest since Sept 29."
     },
     {
       "n": "Drewry WCI, 40ft",
-      "v": "$4,176",
+      "v": "$4,032",
       "pl": "Week",
       "pc": "−3%",
-      "y": "+126%",
-      "why": "Nov 19; fourth straight weekly decline."
+      "why": "Nov 26; fifth weekly drop, Shanghai–LA down 8%."
     }
   ],
   "also": "",
-  "sport": "The Timberwolves beat the Thunder 113-106 as Jaden McDaniels matched Shai Gilgeous-Alexander's 32, and Victor Wembanyama's 44 couldn't stop Portland's 116-111 win over San Antonio.",
-  "foot": "Sources: NY Fed API (SOFR Nov 24; refs Oct 23, May 22, Nov 24 '25); U.S. Treasury CSV (Nov 25; refs from series Oct 23, May 22, Nov 25 '25); AP via La Nacion (Nov 25 closes); AP via WTOP/am920 search summary (Nov 26, 2025 closes for 1Y; pages 404'd); Newsquawk headline via search + TE previous close (WTI $83.68 Nov 25; 1Y vs $58.58 settle Nov 25, 2025 from search summary); TE (dollar index, PCE, GDP, durables, claims, BDI, Brent, central banks, CPI, LPR); Fed (Beige Book, SLOOS, H.8, FOMC calendar); BLS schedule; Freddie Mac; Dell 8-K; NRF; EIA; TheStreet, NAHB; Oxford Economics; Insurance Journal/Al-Monitor/US News; Wikipedia, Fortune (Robertson); Land of Basketball (NBA).<br>Notes: Dollar 103.67 is TE's previous close (day change vs 103.81 from prior brief); 1Y +4.19% is TE's Nov 26 figure. SOFR for Nov 25 not yet published. Drewry WCI Nov 26 not found (DCN 404); Nov 19 print carried. No consensus/prior found for ISM, JOLTS, jobs (TE calendar didn't load), so calendar rows are events only. Core PCE prior 3.1% per TE; chart y/y calculated from FRED index levels. No post-release expert reactions or FedWatch odds found; Oxford/BofA views are previews. TE headline PCE prior shows 3.7% (first print was 3.6%). SLOOS net percentages via TheStreet's read of the Fed survey. Deere FY Q4 results not found. World: Saudi coalition says drones intercepted; refinery damage unconfirmed. U.S./China row carried from Nov 19 sourcing. Real rates: U.S. CPI is Sep (Oct not published); others Oct 2026.",
+  "sport": "Jake Elliott's 59-yard field goal with two seconds left gave the Eagles a 39-38 Thanksgiving win in Dallas, as the Cowboys blew a 21-point lead and fell to 5-7.",
+  "foot": "Sources: NY Fed API (SOFR Nov 24; Nov 25 not yet published at run time); U.S. Treasury CSV (Nov 25 latest; no Nov 26 data, Thanksgiving); tape carried from the Nov 26 brief (Wed Nov 25 closes; markets closed Thu); CNBC (Fed odds, tariffs, S&P/Nvidia, correction); Adobe (Sept 28 forecast); Census/TE/FRED (durable goods); TE indicator pages (calendar; TE calendar page returned no rows); BLS schedule carried for CPI/PPI dates; EIA; TE (BDI, Brent, yen, yuan, ECB, BoE, BoJ, OPEC+); DCN (Drewry); NY Fed, Wolf Street, Auto Remarketing/Edmunds (deep dive); Wikipedia and essay reprint PDF (Buffett); Yahoo Sports.<br>Notes: No post-release expert reactions to durable goods found; only a Continuum preview. No current CME FedWatch reading after Nov 22. Chicago PMI and ADP consensus not found; ISM services consensus not found. Drewry y/y not on page (dropped). World: TE G20 tables didn't load; real-rate chart carried from Nov 26 inputs. RBA, BoC and Banxico expectations carried from Nov 26. World views are positions cited by TE (IEA, Iraq), not named strategists. Deep dive: Fitch 6.90% peak and 15% year-ago subprime share dropped (unconfirmed).",
   "series": [
     [
       "2021-10-12",
@@ -8442,6 +8473,10 @@
       {
         "d": "2026-11-26",
         "t": "Loan officers are tightening. Loan books aren't shrinking."
+      },
+      {
+        "d": "2026-11-27",
+        "t": "The Car Payment Is Doing a Lot of Work"
       }
     ],
     "corner": [
@@ -8604,6 +8639,11 @@
         "d": "2026-11-26",
         "who": "Julian Robertson",
         "kind": "Thoughts"
+      },
+      {
+        "d": "2026-11-27",
+        "who": "Warren Buffett",
+        "kind": "Reading"
       }
     ],
     "focus": [
@@ -8722,6 +8762,10 @@
       {
         "d": "2026-11-26",
         "t": "October core PCE rose to 3.3% a year, a tenth above forecasts, while real spending stalled"
+      },
+      {
+        "d": "2026-11-27",
+        "t": "October core capital goods orders jumped 1.2%, beating forecasts, even as headline durables missed"
       }
     ],
     "world": [
@@ -8840,6 +8884,10 @@
       {
         "d": "2026-11-26",
         "t": "The Houthis take aim at Saudi Arabia's biggest refinery"
+      },
+      {
+        "d": "2026-11-27",
+        "t": "OPEC+ meets Sunday to set 2027 quotas as Gulf attacks keep oil bid"
       }
     ]
   }
